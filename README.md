@@ -1,8 +1,8 @@
-# DigiPen
+# Slidea
 ITP Projekt 4BHITM - 2020/21
 
 ### About
-* __Technologies__: Angular, Python, Flutter
+* __Technologies__: Angular, Python
 * __Depression__: yes
 
 ### Documentation
