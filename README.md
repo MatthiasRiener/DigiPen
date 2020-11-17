@@ -1,12 +1,11 @@
 # Slidea
 ITP Projekt 4BHITM - 2020/21
-
-### About
-* __Technologies__: Angular, Python
-
-### Documentation
-* [Asana](https://app.asana.com/0/1198996202244277/board)
-
-
-
-
+### Projektleiter
+Riener Matthias
+### Team
+Friesenecker Lukas, Hauser David, Himmetsberger Jonas
+### Beschreibung
+Mit Slidea kann ein Benutzer kostenfrei moderne **Präsentationen** erstellen. Diese können dann durch
+einen Einladungslink mit anderen Benutzern geteilt, und **in Echtzeit bearbeitet** werden. Des weiteren
+wird durch einen **Sprach- und Videochat** für die Kommunikation während der Präsentationserstellung
+gesorgt.
