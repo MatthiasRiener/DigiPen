@@ -6,9 +6,8 @@
 
 [![Github contributors][github-contributors-svg]][contributors-url]
 [![Github Issues][github-issues-svg]][issues-url]
-![MIT License](https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?color=yellow&style=for-the-badge)
+[![MIT Licens][github-license-svg]][license-url]
 ![GitHub last commit](https://img.shields.io/github/last-commit/matthiasriener/slidea?color=yellow&style=for-the-badge)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/matthiasriener/slidea?color=yellow&style=for-the-badge)
 
 **ITP-Projekt**<br>
 **Klasse:** 4BHITM<br>
@@ -50,3 +49,5 @@ gesorgt.
 [issues-url]: https://github.com/MatthiasRiener/Slidea/issues
 [github-contributors-svg]: https://img.shields.io/github/contributors/matthiasriener/slidea?style=for-the-badge
 [contributors-url]: https://github.com/MatthiasRiener/Slidea/graphs/contributors
+[github-license-svg]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?color=yellow&style=for-the-badge
+[license-url]: https://github.com/MatthiasRiener/Slidea/blob/main/LICENSE
