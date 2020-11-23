@@ -3,7 +3,8 @@
 
 
 
-![GitHub contributors](https://img.shields.io/github/contributors/matthiasriener/slidea?style=for-the-badge)
+
+[![Github contributors][github-contributors-svg]][contributors-url]
 [![Github Issues][github-issues-svg]][issues-url]
 ![MIT License](https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?color=yellow&style=for-the-badge)
 ![GitHub last commit](https://img.shields.io/github/last-commit/matthiasriener/slidea?color=yellow&style=for-the-badge)
@@ -47,3 +48,5 @@ gesorgt.
 
 [github-issues-svg]: https://img.shields.io/github/issues/matthiasriener/slidea?color=yellow&style=for-the-badge
 [issues-url]: https://github.com/MatthiasRiener/Slidea/issues
+[github-contributors-svg]: https://img.shields.io/github/contributors/matthiasriener/slidea?style=for-the-badge
+[contributors-url]: https://github.com/MatthiasRiener/Slidea/graphs/contributors
