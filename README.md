@@ -2,8 +2,9 @@
 
 
 ![GitHub contributors](https://img.shields.io/github/contributors/matthiasriener/slidea?style=for-the-badge)
-![GitHub issues](https://img.shields.io/github/issues/matthiasriener/slidea?style=for-the-badge)
-[![MIT License][license-shield]][license-url]
+![GitHub issues](https://img.shields.io/github/issues/matthiasriener/slidea?color=yellow&style=for-the-badge)
+![MIT License](https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?color=yellow&style=for-the-badge)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/matthiasriener/slidea?color=yellow&style=for-the-badge)
 
 **ITP-Projekt**<br>
 **Klasse:** 4BHITM<br>
@@ -40,12 +41,3 @@ gesorgt.
 <img src="documentation/readme_src/img_time_management.png">
 <img src="documentation/readme_src/img_webview_editor.png">
 <img src="documentation/readme_src/img_incoming_call.png">
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/MatthiasRiener/Slidea/graphs/contributors
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/MatthiasRiener/Slidea/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/MatthiasRiener/Slidea/blob/main/LICENSE
