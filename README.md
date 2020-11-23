@@ -27,8 +27,8 @@ gesorgt.
 * JS
 * Python
 
-### Kontakt
-Matthias Riener - matti.riener@gmail.com
-
 ### Bilder
 <img src="documentation/readme_src/img_title.png">
+
+### Kontakt
+Matthias Riener - matti.riener@gmail.com
