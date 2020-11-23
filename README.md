@@ -8,6 +8,7 @@
 [![Github Issues][github-issues-svg]][issues-url]
 [![MIT License][github-license-svg]][license-url]
 [![Last Commit][github-last-commit-svg]][last-commit-url]
+![Languages][github-languages-svg]
 
 
 **ITP-Projekt**<br>
@@ -54,3 +55,5 @@ gesorgt.
 [license-url]: https://github.com/MatthiasRiener/Slidea/blob/main/LICENSE
 [github-last-commit-svg]: https://img.shields.io/github/last-commit/matthiasriener/slidea?color=blueviolet&style=for-the-badge
 [last-commit-url]: https://github.com/MatthiasRiener/Slidea/graphs/commit-activity
+[github-languages-svg]: https://img.shields.io/github/languages/count/matthiasriener/slidea?color=blueviolet&style=for-the-badge
+
