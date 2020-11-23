@@ -30,6 +30,9 @@ gesorgt.
 * Python
 
 ### Bilder
+<img src="documentation/readme_src/img_time_management.png">
+<img src="documentation/readme_src/img_webview_editor.png">
+<img src="documentation/readme_src/img_incoming_call.png">
 
 ### Kontakt
 Matthias Riener - matti.riener@gmail.com
