@@ -46,11 +46,11 @@ gesorgt.
 <img src="documentation/readme_src/img_incoming_call.png">
 
 
-[github-issues-svg]: https://img.shields.io/github/issues/matthiasriener/slidea?color=yellow&style=for-the-badge
+[github-issues-svg]: https://img.shields.io/github/issues/matthiasriener/slidea?color=blueviolet&style=for-the-badge
 [issues-url]: https://github.com/MatthiasRiener/Slidea/issues
-[github-contributors-svg]: https://img.shields.io/github/contributors/matthiasriener/slidea?style=for-the-badge
+[github-contributors-svg]: https://img.shields.io/github/contributors/matthiasriener/slidea?color=blueviolet&style=for-the-badge
 [contributors-url]: https://github.com/MatthiasRiener/Slidea/graphs/contributors
-[github-license-svg]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?color=yellow&style=for-the-badge
+[github-license-svg]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?color=blueviolet&style=for-the-badge
 [license-url]: https://github.com/MatthiasRiener/Slidea/blob/main/LICENSE
-[github-last-commit-svg]: https://img.shields.io/github/last-commit/matthiasriener/slidea?color=yellow&style=for-the-badge
+[github-last-commit-svg]: https://img.shields.io/github/last-commit/matthiasriener/slidea?color=blueviolet&style=for-the-badge
 [last-commit-url]: https://github.com/MatthiasRiener/Slidea/graphs/commit-activity
