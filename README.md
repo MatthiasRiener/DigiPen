@@ -21,13 +21,14 @@ einen Einladungslink mit anderen Benutzern geteilt, und **in Echtzeit bearbeitet
 wird durch einen **Sprach- und Videochat** für die Kommunikation während der Präsentationserstellung
 gesorgt.
 
-### Bilder
-
 ### Technologien
 * HTML
 * CSS
 * JS
 * Python
+
+### Bilder
+<img src="documentation/readme_src/img_title.png">
 
 ### Kontakt
 Matthias Riener - matti.riener@gmail.com
