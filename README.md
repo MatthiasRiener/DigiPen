@@ -4,6 +4,7 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/matthiasriener/slidea?style=for-the-badge)
 ![GitHub issues](https://img.shields.io/github/issues/matthiasriener/slidea?color=yellow&style=for-the-badge)
 ![MIT License](https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?color=yellow&style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/matthiasriener/slidea?color=yellow&style=for-the-badge)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/matthiasriener/slidea?color=yellow&style=for-the-badge)
 
 **ITP-Projekt**<br>
