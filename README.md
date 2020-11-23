@@ -7,24 +7,25 @@ Riener Matthias
 ### Team
 Friesenecker Lukas, Hauser David, Himmetsberger Jonas
 
+<details open="open">
+  <summary><b>Inhaltsverzeichnis</b></summary>
+  <ol>
+    <li><a href="#Beschreibung">Beschreibung</a></li>
+    <li><a href="#Bilder">Bilder</a></li>
+    <li><a href="#Technologien">Technologien</a></li>
+  </ol>
+</details>
+
 ### Beschreibung
 Mit Slidea kann ein Benutzer kostenfrei moderne **Präsentationen** erstellen. Diese können dann durch
 einen Einladungslink mit anderen Benutzern geteilt, und **in Echtzeit bearbeitet** werden. Des weiteren
 wird durch einen **Sprach- und Videochat** für die Kommunikation während der Präsentationserstellung
 gesorgt.
 
-<details open="open">
-  <summary>Table of Contents</summary>
-  <ol>
-    <li><a href="#Bilder">Bilder</a></li>
-  </ol>
-</details>
-
 ### Bilder
-sdflklasdhjfasdlkjfhjasdfs
-dfsdoihfjsdoplfhjsdf
-sdfsdfhjsd
-fsadjufsad
-fsadfjsdf
-sdjfsd
-fjsd
+
+### Technologien
+* HTML
+* CSS
+* JS
+* Python
