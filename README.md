@@ -16,7 +16,7 @@ gesorgt.
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
-    <li><a href="#bilder">Bilder</a></li>
+    <li><a href="#Bilder">Bilder</a></li>
   </ol>
 </details>
 
