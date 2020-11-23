@@ -1,11 +1,7 @@
 # Slidea
 ITP Projekt 4BHITM - 2020/21
-
-### Projektleiter
-Riener Matthias
-
-### Team
-Friesenecker Lukas, Hauser David, Himmetsberger Jonas
+Projektleiter: Riener Matthias
+Team: Friesenecker Lukas, Hauser David, Himmetsberger Jonas
 
 <details open="open">
   <summary><b>Inhaltsverzeichnis</b></summary>
@@ -13,6 +9,7 @@ Friesenecker Lukas, Hauser David, Himmetsberger Jonas
     <li><a href="#Beschreibung">Beschreibung</a></li>
     <li><a href="#Bilder">Bilder</a></li>
     <li><a href="#Technologien">Technologien</a></li>
+    <li><a href="#Kontakt">Kontakt</a></li>
   </ol>
 </details>
 
@@ -29,3 +26,6 @@ gesorgt.
 * CSS
 * JS
 * Python
+
+### Kontakt
+Matthias Riener - matti.riener@gmail.com
