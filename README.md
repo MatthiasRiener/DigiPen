@@ -2,7 +2,8 @@
 
 
 [![Contributors][contributors-shield]][contributors-url]
-[![Issues][issues-shield]][issues-url]
+[![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://github.com/MatthiasRiener/Slidea/issues)
+
 [![MIT License][license-shield]][license-url]
 
 **ITP-Projekt**<br>
@@ -33,6 +34,8 @@ gesorgt.
 * CSS
 * JS
 * Python
+* [![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://GitHub.com/Naereen/)
+
 
 ### Bilder
 <img src="documentation/readme_src/img_time_management.png">
