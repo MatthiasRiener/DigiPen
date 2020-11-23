@@ -1,7 +1,9 @@
 # Slidea
-ITP Projekt 4BHITM - 2020/21
-Projektleiter: Riener Matthias
-Team: Friesenecker Lukas, Hauser David, Himmetsberger Jonas
+**ITP-Projekt**<br>
+**Klasse:** 4BHITM<br>
+**Jahr:** 2020/21<br>
+**Projektleiter:** Riener Matthias<br>
+**Team:** Friesenecker Lukas, Hauser David, Himmetsberger Jonas<br>
 
 <details open="open">
   <summary><b>Inhaltsverzeichnis</b></summary>
