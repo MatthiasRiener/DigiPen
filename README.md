@@ -6,8 +6,9 @@
 
 [![Github contributors][github-contributors-svg]][contributors-url]
 [![Github Issues][github-issues-svg]][issues-url]
-[![MIT Licens][github-license-svg]][license-url]
-![GitHub last commit](https://img.shields.io/github/last-commit/matthiasriener/slidea?color=yellow&style=for-the-badge)
+[![MIT License][github-license-svg]][license-url]
+[![Last Commit][github-last-commit-svg]][last-commit-url]
+
 
 **ITP-Projekt**<br>
 **Klasse:** 4BHITM<br>
@@ -51,3 +52,5 @@ gesorgt.
 [contributors-url]: https://github.com/MatthiasRiener/Slidea/graphs/contributors
 [github-license-svg]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?color=yellow&style=for-the-badge
 [license-url]: https://github.com/MatthiasRiener/Slidea/blob/main/LICENSE
+[github-last-commit-svg]: https://img.shields.io/github/last-commit/matthiasriener/slidea?color=yellow&style=for-the-badge
+[last-commit-url]: https://github.com/MatthiasRiener/Slidea/graphs/commit-activity
