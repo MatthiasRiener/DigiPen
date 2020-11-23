@@ -29,8 +29,18 @@ canvas{
   background-position: 50% 50%;
   background-repeat: no-repeat;
 
-  filter: blur(1px);
 }
+
+.particles-js-canvas-el::after {
+  position:absolute;
+  content:"";
+  width:100%;
+  height:100%;
+  background:inherit;
+  filter:blur(9px);        /* glow range */
+  opacity:0.8;
+  mix-blend-mode: lighten; /* lighter (add) can be used as well */
+  }
 
 .container {
     z-index: 2;
