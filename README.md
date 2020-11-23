@@ -1,7 +1,7 @@
 # Slidea
 
 
-[![Contributors][contributors-shield]][contributors-url]
+![GitHub contributors](https://img.shields.io/github/contributors/matthiasriener/slidea?style=for-the-badge)
 ![GitHub issues](https://img.shields.io/github/issues/matthiasriener/slidea?style=for-the-badge)
 [![MIT License][license-shield]][license-url]
 
