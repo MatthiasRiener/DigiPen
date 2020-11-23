@@ -5,6 +5,8 @@
 **Projektleiter:** Riener Matthias<br>
 **Team:** Friesenecker Lukas, Hauser David, Himmetsberger Jonas<br>
 
+<img src="documentation/readme_src/img_title.png">
+
 <details open="open">
   <summary><b>Inhaltsverzeichnis</b></summary>
   <ol>
@@ -28,7 +30,6 @@ gesorgt.
 * Python
 
 ### Bilder
-<img src="documentation/readme_src/img_title.png">
 
 ### Kontakt
 Matthias Riener - matti.riener@gmail.com
