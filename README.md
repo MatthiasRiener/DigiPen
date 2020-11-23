@@ -2,8 +2,7 @@
 
 
 [![Contributors][contributors-shield]][contributors-url]
-[![GitHub issues](https://img.shields.io/github/issues/Naereen/StrapDown.js.svg)](https://github.com/MatthiasRiener/Slidea/issues)
-
+![GitHub issues](https://img.shields.io/github/issues/matthiasriener/slidea?style=for-the-badge)
 [![MIT License][license-shield]][license-url]
 
 **ITP-Projekt**<br>
