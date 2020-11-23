@@ -21,8 +21,6 @@ einen Einladungslink mit anderen Benutzern geteilt, und **in Echtzeit bearbeitet
 wird durch einen **Sprach- und Videochat** für die Kommunikation während der Präsentationserstellung
 gesorgt.
 
-### Bilder
-
 ### Technologien
 * HTML
 * CSS
@@ -31,3 +29,6 @@ gesorgt.
 
 ### Kontakt
 Matthias Riener - matti.riener@gmail.com
+
+### Bilder
+<img src="documentation/images/image_title.png" width="80" height="80">
