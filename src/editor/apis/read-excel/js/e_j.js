@@ -9,7 +9,10 @@ var ExcelToJSON = function () {
                 type: 'binary'
             });
             workbook.SheetNames.forEach(function (sheetName) {
-                var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName], {header:1,  blankRows: true});
+                var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName], {
+                    header: 1,
+                    blankRows: true
+                });
                 var json_object = JSON.stringify(XL_row_object);
                 createTableFromJson(JSON.parse(json_object));
             })
@@ -27,70 +30,55 @@ function handleFileSelect(evt) {
     var files = evt.target.files;
     var xl2json = new ExcelToJSON();
     xl2json.parseExcel(files[0]);
-
-   
 }
 
 function createTableFromJson(data) {
 
-   console.log(data);
+    var vArr = [], struct = [];
 
-    var vArr = [];
-    var struc = [];
-
-
-    // insert header
-    var maxLength = 0;
     data.forEach((row) => {
-        for (const [key, value] of Object.entries(row)) {
-            if(!struc.includes(key.toString())) {
-                struc.push(key.toString());
-            } 
-        }
-
-        if (maxLength < Object.entries(row).length) {
-            maxLength = Object.entries(row).length;
+        for (const [key, _] of Object.entries(row)) {
+            if (!struct.includes(key.toString())) {
+                struct.push(key.toString());
+            }
         }
     });
 
-    if (maxLength > struc.length) {
-        console.log('Bitte geben Sie für alle Spalten eine Überschrift an.');
-    }
 
-    vArr.push(struc);
+    vArr.push(struct);
 
-    data.forEach((row, rowIndex) => {
+    data.forEach((row) => {
         var dummyArr = [];
         for (const [key, value] of Object.entries(row)) {
-            dummyArr[struc.indexOf(key.toString())] = value;
+            dummyArr[struct.indexOf(key.toString())] = value;
         }
 
         vArr.push(dummyArr);
     });
 
-    
-    for(let i = 0; i < vArr.length; i++) {
-        for(let j = 0; j < struc.length; j++) {
-            if(vArr[i][j] == undefined) {
+
+    for (let i = 0; i < vArr.length; i++) {
+        for (let j = 0; j < struct.length; j++) {
+            if (vArr[i][j] == undefined || vArr[i][j].isEmpty) {
                 vArr[i][j] = '      ';
             }
         }
     }
 
-
-
-
     var table = document.createElement('table');
     var tableBody = document.createElement('tbody');
 
-   
+
     vArr.shift();
 
     vArr.forEach(function (rowData, rowIndex) {
         var row = document.createElement('tr');
-        rowData.forEach(function (cellData) {
-            var cell = rowIndex == 0 ? document.createElement('th') :document.createElement('td');
+        rowData.forEach(function (cellData, x) {
+            var cell = rowIndex == 0 ? document.createElement('th') : document.createElement('td');
             cell.appendChild(document.createTextNode(cellData));
+            cell.classList += 'table-cell';
+            cell.dataset.x = x;
+            cell.dataset.y = rowIndex;
             row.appendChild(cell);
         });
 
@@ -100,6 +88,5 @@ function createTableFromJson(data) {
     table.appendChild(tableBody);
 
     document.getElementsByClassName('table-in')[0].appendChild(table);
-
 
 }
