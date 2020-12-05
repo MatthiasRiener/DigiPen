@@ -1,3 +1,6 @@
+var vArr = [];
+var label = "";
+
 var ExcelToJSON = function () {
 
     this.parseExcel = function (file) {
@@ -34,7 +37,7 @@ function handleFileSelect(evt) {
 
 function createTableFromJson(data) {
 
-    var vArr = [], struct = [];
+    var struct = [];
 
     data.forEach((row) => {
         for (const [key, _] of Object.entries(row)) {
@@ -89,4 +92,94 @@ function createTableFromJson(data) {
 
     document.getElementsByClassName('table-in')[0].appendChild(table);
 
+}
+
+
+
+
+var last = '';
+var chartData = [];
+
+
+$('.table-in').on('click', 'table td', function () {
+    chartData.length = 0;
+
+
+    var y = $(this).data("y");
+
+
+    if (last == 'X') {
+        $(`.table-cell`).removeClass('active');
+    }
+
+    last = 'Y';
+
+    if (!$(`.table-cell[data-y=${y}]`).hasClass('active')) {
+        $(`.table-cell`).removeClass('active');
+        $(`.table-cell[data-y=${y}]`).addClass('active');
+        chartData = vArr[y];
+    } else {
+        $(`.table-cell[data-y=${y}]`).toggleClass('active');
+    }
+
+
+    createDataArray();
+
+});
+
+
+$('.table-in').on('click', 'table th', function () {
+    chartData.length = 0;
+    var x = $(this).data("x");
+    var y = $(this).data("y");
+
+
+
+    if (last == 'Y') {
+        $(`.table-cell`).removeClass('active');
+    }
+
+    last = 'X';
+
+    if (!$(`.table-cell[data-x=${x}]`).hasClass('active')) {
+        $(`.table-cell`).removeClass('active');
+        $(`.table-cell[data-x=${x}]`).addClass('active');
+
+        for (let i = 0; i < vArr.length; i++) {
+            for (let j = 0; j < vArr[i].length; j++) {
+                if (j == x) {
+                    chartData.push(vArr[i][j]);
+                }
+            }
+        }
+
+    } else {
+        $(`.table-cell[data-x=${x}]`).toggleClass('active');
+    }
+
+    createDataArray();
+
+
+});
+
+
+function createDataArray() {
+    label = chartData.shift();
+    chartData = chartData.filter(value => !isNaN(parseInt(value, 10))).map((i) => Number(i));
+
+   if(chartData.length == 0) {
+       
+       chart.clear();
+   }
+
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.length = 0;
+    });
+
+
+    chart.data.labels.length = 0;
+
+    chartData.forEach((el) => {
+        addData(label, el);
+    });
 }

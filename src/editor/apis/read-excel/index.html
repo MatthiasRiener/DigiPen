@@ -17,18 +17,52 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   </head>
   <body>
     <script></script>
 
     <h1>Bitte geben Sie für alle Spalten Überschriften an.</h1>
 
-    <form enctype="multipart/form-data">
-      <input id="upload" type="file" name="files[]" />
-    </form>
+    <div>
+      <form enctype="multipart/form-data">
+        <input id="upload" type="file" name="files[]" />
+      </form>
+
+      <h1>Chart Settings:</h1>
+
+      <br />
+
+      <input checked type="checkbox" id="start_zero" name="begin_at_zero" />
+      <label for="begin_at_zero">Start bei 0</label>
+
+      <br />
+
+      <input type="color" id="chart_color" name="c_color" />
+      <label for="c_color">Color</label>
+
+      <br />
+
+      <input type="checkbox" id="random_c_chart" name="random_c_color" />
+      <label for="random_c_chart">Random Color for each Element: </label>
+
+      <br />
+
+      <label for="chart_type">Chart Type: </label>
+      <select id="chart_type">
+        <option selected value="bar">Bar</option>
+        <option value="line">Line</option>
+        <option value="pie">Pie</option>
+        <option value="bubble">Bubble</option>
+      </select>
+    </div>
+
+    <canvas id="myChart"></canvas>
+
     <div class="table-in"></div>
 
     <script src="js/e_j.js" type="text/javascript" defer></script>
+    <script src="js/chart_dr.js" type="text/javascript" defer></script>
     <script src="js/eventhandler.js" type="text/javascript" defer></script>
   </body>
 </html>
