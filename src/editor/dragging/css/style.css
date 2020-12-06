@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--dark-grey);
+    font-family: 'Karla';
+    color: var(--light-grey);
+}
+
+.controls {
+    display: inline-block;
+}
+
+.canvas-container {
+    width: 80vw !important;
+    height: 60vh !important;
+    background: white;
+}
+
+.upper-canvas, .lower-canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.presentation-area {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
