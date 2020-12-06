@@ -80,18 +80,30 @@ function cloneObject(eventData, target) {
     });
 }
 
-// window.onload = function () {
-//     console.log('Document loaded.');
-//     resizeCanvas();
-// }
+window.onload = function () {
+    console.log('Document loaded.');
+    resizeCanvas();
+}
 
-// $(window).resize(function () {
-//     resizeCanvas();
-// });
+$(window).resize(function () {
+    resizeCanvas();
+});
 
-// function resizeCanvas() {
-//     canvas.width = $(window).width() * 0.8;
-//     canvas.height = $(window).width() * 0.6;
-//     console.log(canvas.width)
-// }
+function resizeCanvas() {
+    canvas.width = $(window).width() * 0.8;
+    canvas.height = $(window).width() * 0.6;
+    cC = $(".canvas-container");
+    cC.css('width', $(window).width() * 0.8 + 'px')
+    cC.css('height', $(window).width() * 0.6 + 'px')
+    lC = $(".lower-canvas");
+    lC.css('width', $(window).width() * 0.8 + 'px')
+    lC.css('height', $(window).width() * 0.6 + 'px')
+    lC.attr('width', $(window).width() * 0.8)
+    lC.attr('height', $(window).width() * 0.6)
+    uC = $(".upper-canvas");
+    uC.css('width', $(window).width() * 0.8 + 'px')
+    uC.css('height', $(window).width() * 0.6 + 'px')
+    uC.attr('width', $(window).width() * 0.8)
+    uC.attr('height', $(window).width() * 0.6)
+}
 
