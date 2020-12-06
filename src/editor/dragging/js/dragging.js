@@ -80,3 +80,18 @@ function cloneObject(eventData, target) {
     });
 }
 
+// window.onload = function () {
+//     console.log('Document loaded.');
+//     resizeCanvas();
+// }
+
+// $(window).resize(function () {
+//     resizeCanvas();
+// });
+
+// function resizeCanvas() {
+//     canvas.width = $(window).width() * 0.8;
+//     canvas.height = $(window).width() * 0.6;
+//     console.log(canvas.width)
+// }
+
