@@ -14,14 +14,7 @@ body {
 }
 
 .canvas-container {
-    width: 80vw !important;
-    height: 60vh !important;
     background: white;
-}
-
-.upper-canvas, .lower-canvas {
-    width: 100% !important;
-    height: 100% !important;
 }
 
 .presentation-area {

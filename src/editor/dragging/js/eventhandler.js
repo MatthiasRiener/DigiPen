@@ -2,9 +2,13 @@
 
 window.onload = function () {
     console.log('Document loaded.');
-    // resize();
+    // resizeCanvas();
 }
 
-// function resize() {
-//     document.getElementsByClassName('upper-canvas lower-canvas')
+// $(window).resize(function () {
+//     resizeCanvas();
+// });
+
+// function resizeCanvas() {
+//     $('#c').width($(window).width() * 0.8).height($(window).width() * 0.6);
 // }
