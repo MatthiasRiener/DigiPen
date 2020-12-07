@@ -136,7 +136,6 @@ $('.table-in').on('click', 'table th', function () {
 
 
 function createDataArray() {
-   // label = chartData.shift();
     chartData = chartData.filter(value => !isNaN(parseInt(value, 10))).map((i) => Number(i)).filter(Boolean);
 
 
