@@ -39,27 +39,6 @@ function renderIcon(icon) {
     }
 }
 
-fabric.Object.prototype.controls.deleteControl = new fabric.Control({
-    x: 0.5,
-    y: -0.5,
-    offsetY: -16,
-    offsetX: 16,
-    cursorStyle: 'pointer',
-    mouseUpHandler: deleteObject,
-    render: renderIcon(deleteImg),
-    cornerSize: 24
-});
-
-fabric.Object.prototype.controls.clone = new fabric.Control({
-    x: -0.5,
-    y: -0.5,
-    offsetY: -16,
-    offsetX: -16,
-    cursorStyle: 'pointer',
-    mouseUpHandler: cloneObject,
-    render: renderIcon(cloneImg),
-    cornerSize: 24
-});
 
 Add();
 

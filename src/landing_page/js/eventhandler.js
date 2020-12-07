@@ -10,52 +10,49 @@ function fillObjects() {
     var objects = [{
         "radius": 25,
         "color": "#EB328D",
-        "top": 5,
-        "left": -19
+        "top": 15,
+        "left": 20
     },
     {
         "radius": 22,
         "color": "#00B285",
-        "top": -20,
-        "left": -17
+        "top": 28,
+        "left": 34
     },
     {
         "radius": 14,
         "color": "#F6D05A",
-        "top": -25,
-        "left": 1
+        "top": 30,
+        "left": 25
     },
     {
         "radius": 16,
         "color": "#D2352F",
-        "top": -14,
-        "left": -14
+        "top": 50,
+        "left": 20
     },
     {
         "radius": 19,
         "color": "#73E7E8",
-        "top": -16,
-        "left": 16
+        "top": 30,
+        "left": 55
     },
     {
         "radius": 23,
         "color": "#4360E5",
-        "top": -6,
-        "left": 18
+        "top": 42,
+        "left": 76
     },
 
     {
         "radius": 22,
         "color": "#7C18EA",
-        "top": -2,
-        "left": 10
+        "top": 40,
+        "left": 30
     },
 ];
 
-    var x1 = $('.header-section').width() / 4;
-    var x2 = $('.header-section').width() - $('.header-section').width() / 4;
-    var y1 = $('.header-section').position().top;
-    var y2 = y1 + $('.header-section').height();
+
 
 
     objects.forEach((el) => {
@@ -64,9 +61,5 @@ function fillObjects() {
     })
 
 
-
-
-
-    console.log(x1, x2, y1, y2)
 
 }
