@@ -1,4 +1,5 @@
 // chart config variables
+
 var beginAtZero = true,
     c_color = $('#chart_color').val(),
     chart_type = $('#chart_type').val(),
@@ -122,3 +123,4 @@ function addData(label, data) {
     });
     chart.update();
 }
+

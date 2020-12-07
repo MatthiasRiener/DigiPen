@@ -1,4 +1,3 @@
-
 function createTableFromJson(data) {
     var struct = [];
 
@@ -60,29 +59,33 @@ function createTableFromJson(data) {
 
 
 
+
 var last = '';
 var chartData = [];
 
 
 $('.table-in').on('click', 'table td', function () {
+    
     chartData.length = 0;
-
-
     var y = $(this).data("y");
+    console.log($(this).data("y"))
+
+
 
 
     if (last == 'X') {
-        $(`.table-cell`).removeClass('active');
+        $(`.table-cell`).removeClass('highlighted');
     }
 
     last = 'Y';
 
-    if (!$(`.table-cell[data-y=${y}]`).hasClass('active')) {
-        $(`.table-cell`).removeClass('active');
-        $(`.table-cell[data-y=${y}]`).addClass('active');
+    if (!$(`.table-cell[data-y=${y}]`).hasClass('highlighted')) {
+        $(`.table-cell`).removeClass('highlighted');
+        $(`.table-cell[data-y=${y}]`).addClass('highlighted');
+        console.log(vArr[y]);
         chartData = vArr[y];
     } else {
-        $(`.table-cell[data-y=${y}]`).toggleClass('active');
+        $(`.table-cell[data-y=${y}]`).toggleClass('highlighted');
     }
 
 
@@ -92,21 +95,26 @@ $('.table-in').on('click', 'table td', function () {
 
 
 $('.table-in').on('click', 'table th', function () {
+
+
+
+
     chartData.length = 0;
     var x = $(this).data("x");
     var y = $(this).data("y");
 
 
+    console.log(x, y);
 
     if (last == 'Y') {
-        $(`.table-cell`).removeClass('active');
+        $(`.table-cell`).removeClass('highlighted');
     }
 
     last = 'X';
 
-    if (!$(`.table-cell[data-x=${x}]`).hasClass('active')) {
-        $(`.table-cell`).removeClass('active');
-        $(`.table-cell[data-x=${x}]`).addClass('active');
+    if (!$(`.table-cell[data-x=${x}]`).hasClass('highlighted')) {
+        $(`.table-cell`).removeClass('highlighted');
+        $(`.table-cell[data-x=${x}]`).addClass('highlighted');
 
         for (let i = 0; i < vArr.length; i++) {
             for (let j = 0; j < vArr[i].length; j++) {
@@ -117,7 +125,7 @@ $('.table-in').on('click', 'table th', function () {
         }
 
     } else {
-        $(`.table-cell[data-x=${x}]`).toggleClass('active');
+        $(`.table-cell[data-x=${x}]`).toggleClass('highlighted');
     }
 
     createDataArray();
@@ -126,14 +134,18 @@ $('.table-in').on('click', 'table th', function () {
 });
 
 
-function createDataArray() {
-    label = chartData.shift();
-    chartData = chartData.filter(value => !isNaN(parseInt(value, 10))).map((i) => Number(i));
 
-   if(chartData.length == 0) {
-       
-       chart.clear();
-   }
+function createDataArray() {
+   // label = chartData.shift();
+    chartData = chartData.filter(value => !isNaN(parseInt(value, 10))).map((i) => Number(i)).filter(Boolean);
+
+
+    console.log(chartData);
+
+    if (chartData.length == 0) {
+
+        chart.clear();
+    }
 
     chart.data.datasets.forEach((dataset) => {
         dataset.data.length = 0;

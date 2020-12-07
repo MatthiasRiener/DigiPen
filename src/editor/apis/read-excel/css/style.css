@@ -8,6 +8,7 @@ table {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    user-select: none;
 }
 
 table td,
@@ -33,6 +34,6 @@ table th {
 }
 
 
-.active {
+.highlighted {
     background: red !important;
 }
