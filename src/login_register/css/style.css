@@ -11,6 +11,10 @@ body{
     height: 100%;
     display: flex;
     flex-direction: row;
+
+    overflow: hidden;
+    margin: 0 !important;
+    padding: 0 !important;;
 }
 
 .left-side{
@@ -129,11 +133,12 @@ input[type=button]{
 
 .right-side a{
     color: var(--white);
-    font-size: 300%;
+    font-size: 250%;
     text-decoration: none;
     text-transform: none;
     background-color: transparent;
     position: absolute;
-    right: 1vw;
+    right: 2vw;
     top: 2vh;
+    font-weight: bold;
 }
