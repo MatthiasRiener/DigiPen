@@ -46,6 +46,7 @@ body{
     margin: auto;
     color: var(--dark-grey);
     opacity: 50%;
+    font-weight: 500;
 }
  
 .line-left, .line-right{
@@ -89,7 +90,8 @@ form .forgot{
     opacity: 50%;
     text-transform: none;
     text-decoration: none;
-    font-size: 80%;
+    font-size: 100%;
+    font-weight: 300;
     margin: 0.5vh 0 1vh 0;
 }
 
@@ -98,7 +100,7 @@ input[type=text]{
     padding: 12px 10px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid var(--dark-grey);
+    border: 1.5px solid var(--dark-grey);
     opacity: 50%;
     border-radius: 4px;
     box-sizing: border-box;
@@ -142,6 +144,7 @@ p{
     color: var(--dark-grey);
     opacity: 50%;
     margin: 0.5vh;
+    font-weight: 300;
 }
 
 p .policy{
