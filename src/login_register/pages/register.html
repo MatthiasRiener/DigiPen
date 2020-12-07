@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla">
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
@@ -16,7 +16,7 @@
 <body>
     <div class="left-side">
         <div class="content">
-            <h1>Welcome back!</h1>
+            <h1>Hey, join us!</h1>
 
             <div class="logos">
                 <div class="apple"><ion-icon name="logo-apple"></ion-icon></div>
@@ -30,13 +30,14 @@
             </div>
 
             <form name="logIn">
+                <input type="text" class="name" placeholder="Name">
                 <input type="text" class="email" placeholder="E-Mail">
                 <input type="text" class="password" placeholder="Password">
-                <a href="#">Forgot?</a>
                 <div class="buttons">
                     <input type="button" class="continue" value="Continue">
-                    <input type="button" class="register" value="New here?">
+                    <a href="login.html"><input type="button" class="login" value="Go to Login"></a>
                 </div>
+                <p>By joining you agree with our <a class="policy" href="#">Private Policy</a></p>
             </form>
 
            
