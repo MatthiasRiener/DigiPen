@@ -1,14 +1,7 @@
 var canvas = this.__canvas = new fabric.Canvas('c');
-// create a rect object
-var deleteIcon = "https://img.icons8.com/fluent-systems-filled/2x/delete-sign.png";
 
-var cloneIcon = "https://img.icons8.com/officexs/2x/copy.png"
 
-var deleteImg = document.createElement('img');
-deleteImg.src = deleteIcon;
 
-var cloneImg = document.createElement('img');
-cloneImg.src = cloneIcon;
 
 fabric.Object.prototype.transparentCorners = false;
 fabric.Object.prototype.cornerColor = 'blue';
