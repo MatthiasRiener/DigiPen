@@ -1,48 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basic Structure</title>
 
-    <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Karla">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Karla"
+    />
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
-
 
     <link href="css/style.css" type="text/css" rel="stylesheet" />
     <link href="css/variables.css" type="text/css" rel="stylesheet" />
 
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-
-</head>
-<body>
-
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <div id="nav-bar">
-        <p id="nav-bar-logo">Slidea</p>
-        <p>Login</p>
-        <div id="nav-bar-sign-up-div"><p>Sign up</p></div>
-
+      <p id="nav-bar-logo">Slidea</p>
+      <p>Login</p>
+      <div id="nav-bar-sign-up-div"><p>Sign up</p></div>
     </div>
-
 
     <div class="header-section" id="header-section-header">
-        <h1>Get your slide and<br>team online</h1>
-        <p>Slidea allows you to create and publish presentations quickly<br>and easily by using realtime technology.</p>
+      <h1>Get your slide and<br />team online</h1>
+      <p>
+        Slidea allows you to create and publish presentations quickly<br />and
+        easily by using realtime technology.
+      </p>
 
-        <div class="header-option-container">
-            <div class="register">
-                <p>Register Now</p>
-            </div>
-            <div class="watch-demo">
-                <ion-icon name="play-outline"></ion-icon>
-                <p>Watch demo</p>
-            </div>
+      <div class="header-option-container">
+        <div class="register">
+          <p>Register Now</p>
         </div>
+        <div class="watch-demo">
+          <ion-icon name="play-outline"></ion-icon>
+          <p>Watch demo</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-two">
+      <div class="video-section">
+        <img src="img/img_webview_editor.png" />
+      </div>
+    </div>
+
+    <div class="section-realtime">
+      <div class="section-realtime-header">
+          <p>Realtime</p>
+          <p>No need to wait for the latest news.</p>
+      </div>
+      <div class="section-realtime-main">
+        <div class="section-realtime-main-image">
+            <div class="section-realtime-main-image-container"></div>
+        </div>
+
+        <div class="section-realtime-main-messages">
+            <div class="message left-message">
+                <p>Hi Willy. We need to talk.</p>
+            </div>
+            <div class="message right-message">
+                <p>Can I call you later? I'm at an appointment.</p>
+            </div>
+            <div class="message right-message">
+                <p>Don't forget about our upcoming presentation.</p>
+            </div>
+            <div class="message left-message">
+                <p>I am breaking up with you.</p>
+            </div>
+            <div class="message right-message">
+                <p>Heard about the new Slidea update? It's great!</p>
+            </div>
+            <div class="message right-message">
+                <img width="100%;" style="border-radius: 5px;"  src="./img/party-gif.gif">
+            </div>
+
+        </div>
+
+        <div class="section-realtime-main-image" style="justify-content: flex-end;">
+            <div class="section-realtime-main-image-container" style="background-position-x: right;"></div>
+        </div>
+      </div>
+      <div class="section-realtime-bottom">
+        <p>Bad times? We are <a href="#">here</a> for you.</p>
+      </div>
+
+      
+    </div>
+
+    <div class="section-users">
 
     </div>
 
+    <div class="section-templates">
+        
+    </div>
     <script src="js/eventhandler.js" type="text/javascript" defer></script>
-</body>
+  </body>
 </html>

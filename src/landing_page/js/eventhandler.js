@@ -16,8 +16,8 @@ function fillObjects() {
     {
         "radius": 22,
         "color": "#00B285",
-        "top": 28,
-        "left": 34
+        "top": 20,
+        "left": 67
     },
     {
         "radius": 14,
@@ -35,7 +35,7 @@ function fillObjects() {
         "radius": 19,
         "color": "#73E7E8",
         "top": 30,
-        "left": 55
+        "left": 65
     },
     {
         "radius": 23,
