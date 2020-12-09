@@ -2,6 +2,8 @@
 
 window.onload = function () {
     fillObjects();
+    insertUsers();
+    fillTemplates();
 }
 
 
@@ -62,4 +64,19 @@ function fillObjects() {
 
 
 
+}
+
+
+function insertUsers() {
+    for(let i = 1; i <= 15; i++) {
+        console.log(Math.ceil(i / 5) - 1);
+        $('.flex-container').eq(Math.ceil(i / 5) - 1).append(`<div class="flex-item" style="background-image: url(img/users/user_${i}.png)"></div>`)
+    }
+}
+
+
+function fillTemplates() {
+    for (let i = 1; i <= 3; i++) {
+        $('.grid-container').eq(0).append(`<div class="grid-templates" style="background-image: url(img/templates/template_${i}.png)"></div>`);
+    }
 }

@@ -19,15 +19,29 @@
       integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
       crossorigin="anonymous"
     ></script>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.css"
+      integrity="sha512-/AilQf/shuEGfh8c3DoIqcIqHZCKpiImSyt+fxIKJphHiNa6QMPb6AbDly6rkjmGr/5OZd35JtvVkbEKnCZO+A=="
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.js"
+      integrity="sha512-XOpdFagEEv9XMxN/2EdvFL/PfGtFDjX+AkRznsFHDtdC05YWdkMnz5JZUfrbnEabOQaMc7YNTl2xPbOu3J858Q=="
+      crossorigin="anonymous"
+    ></script>
   </head>
-  <body>
+  <body id="fullPage">
     <div id="nav-bar">
       <p id="nav-bar-logo">Slidea</p>
       <p>Login</p>
       <div id="nav-bar-sign-up-div"><p>Sign up</p></div>
     </div>
 
-    <div class="header-section" id="header-section-header">
+    <div class="section header-section" id="header-section-header">
       <h1>Get your slide and<br />team online</h1>
       <p>
         Slidea allows you to create and publish presentations quickly<br />and
@@ -51,55 +65,92 @@
       </div>
     </div>
 
-    <div class="section-realtime">
+    <div class="section section-realtime">
       <div class="section-realtime-header">
-          <p>Realtime</p>
-          <p>No need to wait for the latest news.</p>
+        <p>Realtime</p>
+        <p>No need to wait for the latest news.</p>
       </div>
       <div class="section-realtime-main">
         <div class="section-realtime-main-image">
-            <div class="section-realtime-main-image-container"></div>
+          <div class="section-realtime-main-image-container"></div>
         </div>
 
         <div class="section-realtime-main-messages">
-            <div class="message left-message">
-                <p>Hi Willy. We need to talk.</p>
-            </div>
-            <div class="message right-message">
-                <p>Can I call you later? I'm at an appointment.</p>
-            </div>
-            <div class="message right-message">
-                <p>Don't forget about our upcoming presentation.</p>
-            </div>
-            <div class="message left-message">
-                <p>I am breaking up with you.</p>
-            </div>
-            <div class="message right-message">
-                <p>Heard about the new Slidea update? It's great!</p>
-            </div>
-            <div class="message right-message">
-                <img width="100%;" style="border-radius: 5px;"  src="./img/party-gif.gif">
-            </div>
-
+          <div class="message left-message">
+            <p>Hi Willy. We need to talk.</p>
+          </div>
+          <div class="message right-message">
+            <p>Can I call you later? I'm at an appointment.</p>
+          </div>
+          <div class="message right-message">
+            <p>Don't forget about our upcoming presentation.</p>
+          </div>
+          <div class="message left-message">
+            <p>I am breaking up with you.</p>
+          </div>
+          <div class="message right-message">
+            <p>Heard about the new Slidea update? It's great!</p>
+          </div>
+          <div class="message right-message">
+            <img
+              width="100%;"
+              style="border-radius: 5px"
+              src="./img/party-gif.gif"
+            />
+          </div>
         </div>
 
-        <div class="section-realtime-main-image" style="justify-content: flex-end;">
-            <div class="section-realtime-main-image-container" style="background-position-x: right;"></div>
+        <div
+          class="section-realtime-main-image"
+          style="justify-content: flex-end"
+        >
+          <div
+            class="section-realtime-main-image-container"
+            style="background-position-x: right"
+          ></div>
         </div>
       </div>
       <div class="section-realtime-bottom">
         <p>Bad times? We are <a href="#">here</a> for you.</p>
       </div>
-
-      
     </div>
 
-    <div class="section-users">
+    <div class="section section-users">
+      <div class="images-section">
+        <div class="flex-container"></div>
+        <div class="flex-container"></div>
+        <div class="flex-container"></div>
+      </div>
 
+      <div class="section-users-text">
+        <p>4 users.</p>
+        <p>Great experience.</p>
+        <p>Excellent taste in presentation software.</p>
+      </div>
     </div>
 
-    <div class="section-templates">
+    <div class="section section-templates">
+      <div class="grid-container">
+        <div class="grid-templates">
+          <p>New Templates</p>
+          <p>Countless ways to<br> rearrange your Slides.</p>
+          <p>
+            Choose from the most new Templates ever, then customise them to
+            match your mood, style, or favourite activity.
+          </p>
+        </div>
         
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-content">
+        <p>Copyright © 2020 Slidea Inc. All rights reserved. </p>
+        <p style="margin-left: auto;">Privacy Policy</p>
+        <div class="horizontal-splitter"></div>
+        <p>Terms of Service</p>
+        <p style="margin-left: auto;">Austria</p>
+      </div>
     </div>
     <script src="js/eventhandler.js" type="text/javascript" defer></script>
   </body>
