@@ -1,18 +1,10 @@
 var canvas = this.__canvas = new fabric.Canvas('c');
-// create a rect object
-var deleteIcon = "https://img.icons8.com/fluent-systems-filled/2x/delete-sign.png";
-
-var cloneIcon = "https://img.icons8.com/officexs/2x/copy.png"
-
-var deleteImg = document.createElement('img');
-deleteImg.src = deleteIcon;
-
-var cloneImg = document.createElement('img');
-cloneImg.src = cloneIcon;
 
 fabric.Object.prototype.transparentCorners = false;
-fabric.Object.prototype.cornerColor = 'blue';
-fabric.Object.prototype.cornerStyle = 'circle';
+fabric.Object.prototype.cornerStyle = 'rect';
+fabric.Object.prototype.cornerSize = 6.5;
+fabric.Object.prototype.transparentCorners = false;
+fabric.Object.prototype.cornerColor = '#aaaaff';
 
 
 function Add() {
@@ -25,57 +17,15 @@ function Add() {
         objectCaching: false,
         stroke: 'lightgreen',
         strokeWidth: 4,
-        cornerStyle: 'rect',
-        cornerSize: 6.5,
-        transparentCorners: false,
-        cornerColor: '#aaaaff',
     });
 
     canvas.add(rect);
     canvas.setActiveObject(rect);
 }
 
-function renderIcon(icon) {
-    return function renderIcon(ctx, left, top, styleOverride, fabricObject) {
-        var size = this.cornerSize;
-        ctx.save();
-        ctx.translate(left, top);
-        ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
-        ctx.drawImage(icon, -size / 2, -size / 2, size, size);
-        ctx.restore();
-    }
-}
-
-fabric.Object.prototype.controls.deleteControl = new fabric.Control({
-    x: 0.5,
-    y: -0.5,
-    offsetY: -16,
-    offsetX: 16,
-    cursorStyle: 'pointer',
-    mouseUpHandler: deleteObject,
-    render: renderIcon(deleteImg),
-    cornerSize: 24
-});
-
-fabric.Object.prototype.controls.clone = new fabric.Control({
-    x: -0.5,
-    y: -0.5,
-    offsetY: -16,
-    offsetX: -16,
-    cursorStyle: 'pointer',
-    mouseUpHandler: cloneObject,
-    render: renderIcon(cloneImg),
-    cornerSize: 24
-});
-
 Add();
 
-function deleteObject(eventData, target) {
-    var canvas = target.canvas;
-    canvas.remove(target);
-    canvas.requestRenderAll();
-}
-
+/*
 function cloneObject(eventData, target) {
     var canvas = target.canvas;
     target.clone(function (cloned) {
@@ -84,6 +34,7 @@ function cloneObject(eventData, target) {
         canvas.add(cloned);
     });
 }
+*/
 
 let originalSize;
 
@@ -119,3 +70,56 @@ function resizeCanvas() {
     uC.attr('height', $(window).width() * 0.45);
 }
 
+// create a rectangle object
+var rect = new fabric.Rect({
+    left: 100,
+    top: 50,
+    fill: '#D81B60',
+    width: 100,
+    height: 100,
+    strokeWidth: 2,
+    stroke: "#880E4F",
+    rx: 10,
+    ry: 10,
+    angle: 45,
+    hasControls: true
+});
+
+canvas.add(rect);
+
+// create a rectangle object
+var rect2 = new fabric.Rect({
+    left: 200,
+    top: 50,
+    fill: '#F06292',
+    width: 100,
+    height: 100,
+    strokeWidth: 2,
+    stroke: "#880E4F",
+    rx: 10,
+    ry: 10,
+    angle: 45,
+    hasControls: true
+});
+
+canvas.add(rect2);
+
+var circle1 = new fabric.Circle({
+    radius: 65,
+    fill: '#039BE5',
+    left: 0
+});
+
+var circle2 = new fabric.Circle({
+    radius: 65,
+    fill: '#4FC3F7',
+    left: 110,
+    opacity: 0.7
+});
+
+var group = new fabric.Group([circle1, circle2,], {
+    left: 40,
+    top: 250
+});
+
+canvas.add(group); 

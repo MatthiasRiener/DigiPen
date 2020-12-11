@@ -23,8 +23,8 @@
   <summary><b>Inhaltsverzeichnis</b></summary>
   <ol>
     <li><a href="#Beschreibung">Beschreibung</a></li>
-    <li><a href="#Bilder">Bilder</a></li>
     <li><a href="#Technologien">Technologien</a></li>
+    <li><a href="#Bilder">Bilder</a></li>
   </ol>
 </details>
 
