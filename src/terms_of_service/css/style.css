@@ -1,0 +1,18 @@
+
+* {
+    background: var(--dark-color);
+    font-family: 'Karla';
+    color: var(--light-grey);
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.nav-bar {
+    height: 7vh;  
+    box-shadow: 0px 1px 10px #00000022;  
+}
