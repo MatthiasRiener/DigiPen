@@ -17,14 +17,14 @@
                     },
                     "image": {
                         "name": "Image",
-                        "type": ""
+                        "type": "",
                         "options": ["unsplash", "upload"],
                         "expandable": true,
                         "children": {
                             "position": {
                                 "name": "position",
                                 "type": "options",
-                                "options": ["left", "right", "center", "block"],
+                                "options": ["left", "right", "center", "block"]
                             }
                         }
                     }
