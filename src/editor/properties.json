@@ -1,0 +1,39 @@
+[
+    { "elementType": "text", 
+      "properties": [
+             {
+                 "name": "color",
+                 "type": "picker",
+                 "default": "#000000" 
+            },
+            {
+                "name": "background",
+                "expandable": true,
+                "children": {
+                    "color": {
+                        "name": "color",
+                        "type": "picker",
+                        "default": "#000000"
+                    },
+                    "image": {
+                        "name": "Image",
+                        "type": ""
+                        "options": ["unsplash", "upload"],
+                        "expandable": true,
+                        "children": {
+                            "position": {
+                                "name": "position",
+                                "type": "options",
+                                "options": ["left", "right", "center", "block"],
+                            }
+                        }
+                    }
+
+                }
+            }
+        ]
+    },
+    {"elementType": "image"},
+    {"elementType": "quiz"},
+    {"elementType": "chart"}
+]
