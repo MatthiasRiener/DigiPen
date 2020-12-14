@@ -394,7 +394,7 @@ form input:focus {
     color: white;
 }
 
-/* .popupbox {
+.popupbox {
     display: flex;
     position: absolute;
     left: 0;
@@ -414,5 +414,11 @@ form input:focus {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding
-} */
+    padding: 5vw;
+    box-shadow: 0 0 5px lightgray;
+    border-radius: 20px;
+}
+
+#tf {
+    display: none;
+}
