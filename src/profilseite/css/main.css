@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    outline: none;
 }
 
 .sidenavW3 {
@@ -323,7 +324,7 @@ form span {
     width: 45%;
 }
 
-form input {
+form input, #confirm input {
     background: #E9EAEE;
     border: solid 1px #E3E3E3;
     color: #9C9FAA;
@@ -334,9 +335,15 @@ form input {
     padding: 5px 7px;
     outline: none;
     border-radius: 7px;
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;
+    /* Firefox, other Gecko */
+    box-sizing: border-box;
+    /* Opera/IE 8+ */
 }
 
-form input:focus {
+form input:focus, #confirm input:focus {
     background-color: #FDFBE3;
 }
 
@@ -359,6 +366,7 @@ form input:focus {
 
 .twofactorauthentication h2, .accountremoval h2 {
     color: #6B6B6B;
+    min-height: 60px;
 }
 
 .twofactorauthentication button {
@@ -395,7 +403,7 @@ form input:focus {
 }
 
 .popupbox {
-    display: flex;
+    display: none;
     position: absolute;
     left: 0;
     top: 0;
@@ -414,11 +422,92 @@ form input:focus {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 5vw;
+    padding: 20px;
     box-shadow: 0 0 5px lightgray;
     border-radius: 20px;
+    text-align: center;
+}
+
+.popup h1 {
+    font-size: larger;
+}
+
+.popup h2 {
+    font-size: medium;
+    margin: 10px 0;
+    font-weight: lighter;
+}
+
+.popup p {
+    font-size: small;
+    color: #9C9FAA;
 }
 
 #tf {
     display: none;
+}
+
+.trashcanicon {
+    margin-bottom: 20px;
+    border-radius: 100%;
+    background: #FEEDEF;
+    font-size: 30px;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    color: #FF495E;
+}
+
+.buttons {
+    margin-top: 40px;
+    width: 100%;
+}
+
+#cancelbutton, #deletebutton, #deleteButtonConf {
+    color: white;
+    background: #646568;
+    border: none;
+    border-radius: 10px;
+    width: 45%;
+    position: relative;
+    height: 40px;
+    margin: 0 2%;
+    outline: none;
+}
+
+#deletebutton {
+    background: #FF495E;
+}
+
+#confirm {
+    display: none;
+    width: 100%;
+    height: fit-content;
+    margin-top: 20px;
+}
+
+#confirmtext {
+    width: 100%;
+    background: #E9EAEE;
+    border: solid 1px #E3E3E3;
+}
+
+#confirm input {
+    padding: 10px 10px;
+    margin: 5px 0;
+}
+
+#confirm p {
+    color: black;
+}
+
+#deleteButtonConf {
+    width: 100%;
+    margin: 0;
+    background: #FF495E;
+}
+
+#deleteButtonConf:disabled, #deleteButtonConf[disabled] {
+    background: #FFBFC7;
 }

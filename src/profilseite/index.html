@@ -180,7 +180,7 @@
                                 It is possible to <span>delete your account</span>, but it’s irreversible.
                                 Please be sure that you would like to do that.
                             </p>
-                            <button>Delete Account</button>
+                            <button id="dBactPU">Delete Account</button>
                         </div>
                     </div>
                 </div>
@@ -219,6 +219,11 @@
                 <button id="cancelbutton">Cancel</button>
                 <button id="deletebutton">Delete</button>
             </div>
+            <div id="confirm">
+                <p>Please type <strong>GregorDeschwanden</strong> to confirm.</p>
+                <input type="text" name="confirmtext" id="confirmtext">
+                <button id="deleteButtonConf" disabled>Delete</button>
+            </div>
         </div>
     </div>
 
@@ -249,6 +254,50 @@
         $("#openCloseNav").click(function () {
             openNav();
         });
+
+        $("#dBactPU").click(function () {
+            $(".popupbox").css('display', 'flex');
+            $('.trashicanicon').css('justify-content', 'center');
+        });
+
+        $('.popupbox').click(function (e) {
+            if (!e.target.classList.contains("popupbox")) return;
+            $('.buttons').css('display', 'flex');
+            $('#confirm').css('display', 'none');
+            $('.popupbox').css('display', 'none');
+            $("#deleteButtonConf").prop('disabled', true);
+        });
+
+        $("#deletebutton").click(function () {
+            $('.buttons').css('display', 'none');
+            $('#confirm').css('display', 'block');
+        });
+
+        $("#deleteButtonConf").click(function () {
+            $('.buttons').css('display', 'flex');
+            $('#confirm').css('display', 'none');
+            $('.popupbox').css('display', 'none');
+            $("#deleteButtonConf").prop('disabled', true);
+            $('#confirmtext').val('');
+        });
+
+        $('#confirmtext').on('input', function () {
+            text = $('#confirmtext').val();
+            $("#deleteButtonConf").prop('disabled', text == "GregorDeschwanden" ? false : true);
+        });
+
+        $(document).ready(function () {
+            $(".accountremoval p").css('min-height', $(".twofactorauthentication p").height())
+        });
+
+        $(window).resize(function () {
+            $(".accountremoval p").css('min-height', $(".twofactorauthentication p").height())
+        });
+
+        $("#cancelbutton").click(function () {
+            $(".popupbox").css('display', 'none');
+        });
+
     </script>
 
 </body>
