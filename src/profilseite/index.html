@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slidea</title>
+
+    <link rel="stylesheet" type="text/css" href="css/fullpage.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="css/examples.css" /> -->
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+</head>
+
+<body>
+    <div id="mySidenavW3" class="sidenavW3">
+        <nav>
+            <h2>Navigation</h2>
+            <a href="#">
+                <i class="fas fa-chart-bar"></i>
+                Dashboard
+            </a>
+            <a href="#">
+                <i class="fas far fa-check-square"></i>
+                Tasks
+                <span>#</span>
+            </a>
+            <a href="#">
+                <i class="fas fa-users"></i>
+                Teams
+                <span><i class="fas fa-plus"></i></span>
+            </a>
+            <a href="#">
+                <i class="fas fa-cog"></i>
+                Settings
+                <span><i class="fas fa-angle-down"></i></span>
+            </a>
+            <a href="#">
+                <i class="fas fa-user"></i>
+                Profile
+            </a>
+            <a href="#">
+                <i class="fas fa-lightbulb"></i>
+                Slidea
+            </a>
+            <a href="#">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </a>
+        </nav>
+    </div>
+    <div id="openCloseNav">
+        <div id="burger-top"></div>
+        <div id="burger-middle"></div>
+        <div id="burger-bottom"></div>
+    </div>
+
+    <div id="fullpage">
+        <div class="section" id="section1">
+            <content class="intro">
+                <h1>SLIDEA</h1>
+                <content id="name">
+                    <p>Gregor <br>
+                        Deschwanden</p>
+                </content>
+                <div id="ppContainer">
+                    <img id="PP" src="./img/cat.jpg" alt="Profile Picture">
+                </div>
+                <div id="yut">
+                    <div id="header">
+                        <h2>April 10, 2020</h2>
+                        <p>Your upcoming Tasks</p>
+                    </div>
+                    <div class="Task">
+                        <p>Government Work</p>
+                        <h2>Is Biden a cat person?</h2>
+                        <div class="contribuer">
+                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
+                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
+                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
+                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
+                        </div>
+                    </div>
+                    <div class="Task">
+                        <p>Government Work</p>
+                        <h2>ObAmA</h2>
+                        <div class="contribuer">
+                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
+                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
+                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
+                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
+                        </div>
+                    </div>
+                    <div class="Task">
+                        <p>Austrian History</p>
+                        <h2>Willkommen!</h2>
+                        <div class="contribuer">
+                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
+                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
+                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
+                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
+                        </div>
+
+                    </div>
+                </div>
+                <footer>
+                    <div>
+                        <h2>Born on</h2>
+                        <p>July 10, 2001</p>
+                    </div>
+                    <div>
+                        <h2>Presentations</h2>
+                        <p>34</p>
+                    </div>
+                    <div>
+                        <button>Edit Profile</button>
+                    </div>
+                    <div>
+                        <h2>Workspaces</h2>
+                        <p>None</p>
+                    </div>
+                    <div>
+                        <h2>User since</h2>
+                        <p>June 19, 2017</p>
+                    </div>
+                </footer>
+        </div>
+        <div class="section" id="section2">
+            <div class="intro">
+                <h1>SLIDEA</h1>
+                <div id="Profile">
+                    <div class="whoami">
+                        <div id="secppContainer">
+                            <img id="secPP" src="./img/cat.jpg" alt="Profile Picture">
+                        </div>
+                        <p>Gregor <br>
+                            Deschwanden</p>
+                    </div>
+                    <hr>
+                    <form>
+                        <div class="inpbox">
+                            <span>E-mail</span><br>
+                            <input type="email" name="email" id="email">
+                        </div>
+                        <div class="inpbox">
+                            <span>Date of Birth</span><br>
+                            <input type="date" name="dateofbirth" id="dateofbirth">
+                        </div>
+                        <div class="inpbox">
+                            <span>Username</span><br>
+                            <input type="text" name="username" id="username">
+                        </div>
+                        <div class="inpbox">
+                            <span>Phone Number</span><br>
+                            <input type="tel" name="phonenumber" id="phonenumber">
+                        </div>
+                        <div class="inpbox">
+                            <span>Password</span><br>
+                            <input type="password" name="password" id="password">
+                        </div>
+                        <div class="inpbox">
+                        </div>
+                    </form>
+                    <hr class="clearfloat">
+                    <div class="settingsbox">
+                        <div class="twofactorauthentication">
+                            <h2>Two-Factor Authentication</h2>
+                            <p>
+                                Protect your Slidea account with an extra layer of security. Once configured, you’ll
+                                be equipped to enter both your password and an authentication code from your mobile
+                                Phone in order to sign in.
+                            </p>
+                            <button>Enable Two-Factor Auth</button>
+                        </div>
+                        <div class="accountremoval">
+                            <h2>Account Removal</h2>
+                            <p>
+                                It is possible to <span>delete your account</span>, but it’s irreversible.
+                                Please be sure that you would like to do that.
+                            </p>
+                            <button>Delete Account</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="missingConfigurations">
+                    <h2>Missing Configurations</h2>
+                    <p id="mCDescription">
+                        Checking those options will increase your
+                        account security.
+                    </p>
+                    <div class="configshadow">
+                        <div class="configs">
+                            <i class="fas fa-times deleteconfig"></i>
+                            <p>Phone Number</p>
+                        </div>
+                        <div class="configs">
+                            <i class="fas fa-times deleteconfig"></i>
+                            <p>Two-Factor Authentication</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popupbox">
+        <div class="popup" id="tf">
+
+        </div>
+        <div class="popup" id="del">
+            <i class="fas fa-trash-alt trashcanicon"></i>
+            <h1>Delete Account</h1>
+            <h2>Are you sure you want to <br>
+                permanently delete your account?</h2>
+            <p>You can’t undo this action.</p>
+            <div class="buttons">
+                <button id="cancelbutton">Cancel</button>
+                <button id="deletebutton">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/fullpage.js"></script>
+    <script type="text/javascript">
+        var myFullpage = new fullpage('#fullpage', {
+            sectionsColor: ['#fff', '#fff'],
+            anchors: ['firstPage', 'secondPage'],
+            navigation: true,
+            navigationPosition: 'left',
+            navigationTooltips: ['First page', 'Second page']
+        });
+
+        let dummy = false;
+
+        function openNav() {
+            if (dummy) {
+                $("#mySidenavW3").css('width', 0);
+                $("#fullpage, #fp-nav, #openCloseNav").css('margin-left', 0);
+                dummy = false;
+            } else {
+                $("#mySidenavW3").css('width', '16.67vw');
+                $("#fullpage, #fp-nav, #openCloseNav").css('margin-left', '16.67vw');
+                dummy = true;
+            }
+        }
+
+        $("#openCloseNav").click(function () {
+            openNav();
+        });
+    </script>
+
+</body>
+
+</html>
