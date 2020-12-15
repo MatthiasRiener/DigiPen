@@ -172,7 +172,7 @@
                                 be equipped to enter both your password and an authentication code from your mobile
                                 Phone in order to sign in.
                             </p>
-                            <button>Enable Two-Factor Auth</button>
+                            <button id="tfBactPU">Enable Two-Factor Auth</button>
                         </div>
                         <div class="accountremoval">
                             <h2>Account Removal</h2>
@@ -207,10 +207,49 @@
 
     <div class="popupbox">
         <div class="popup" id="tf">
-
+            <div class="iconbox">
+                <i class="fas fa-lock lockicon"></i>
+            </div>
+            <h1>Enable Two-Factor</h1>
+            <p id="marginp">Please enter 6-digit code we sent to your account-email.</p>
+            <div class="mm-number">
+                <div class="mm-number-container">
+                    <div class="mm-number-input">
+                        <div class="mm-number-input-container animated">
+                            <div class="mm-number-input-item">
+                                <input type="number" pattern="\d*" class="animated" max="1" maxlength="1"
+                                    placeholder="_">
+                            </div>
+                            <div class="mm-number-input-item">
+                                <input type="number" pattern="\d*" class="animated" max="1" maxlength="1"
+                                    placeholder="_">
+                            </div>
+                            <div class="mm-number-input-item">
+                                <input type="number" pattern="\d*" class="animated" max="1" maxlength="1"
+                                    placeholder="_">
+                            </div>
+                            <div class="mm-number-input-item">
+                                <input type="number" pattern="\d*" class="animated" max="1" maxlength="1"
+                                    placeholder="_">
+                            </div>
+                            <div class="mm-number-input-item">
+                                <input type="number" pattern="\d*" class="animated" max="1" maxlength="1"
+                                    placeholder="_">
+                            </div>
+                            <div class="mm-number-input-item">
+                                <input type="number" pattern="\d*" class="animated" max="1" maxlength="1"
+                                    placeholder="_">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="activated" disabled>Activate</button>
         </div>
         <div class="popup" id="del">
-            <i class="fas fa-trash-alt trashcanicon"></i>
+            <div class="iconbox">
+                <i class="fas fa-trash-alt trashcanicon"></i>
+            </div>
             <h1>Delete Account</h1>
             <h2>Are you sure you want to <br>
                 permanently delete your account?</h2>
@@ -228,6 +267,7 @@
     </div>
 
     <script type="text/javascript" src="js/fullpage.js"></script>
+    <script type="text/javascript" src="js/popup.js"></script>
     <script type="text/javascript">
         var myFullpage = new fullpage('#fullpage', {
             sectionsColor: ['#fff', '#fff'],
@@ -255,49 +295,16 @@
             openNav();
         });
 
-        $("#dBactPU").click(function () {
-            $(".popupbox").css('display', 'flex');
-            $('.trashicanicon').css('justify-content', 'center');
-        });
-
-        $('.popupbox').click(function (e) {
-            if (!e.target.classList.contains("popupbox")) return;
-            $('.buttons').css('display', 'flex');
-            $('#confirm').css('display', 'none');
-            $('.popupbox').css('display', 'none');
-            $("#deleteButtonConf").prop('disabled', true);
-        });
-
-        $("#deletebutton").click(function () {
-            $('.buttons').css('display', 'none');
-            $('#confirm').css('display', 'block');
-        });
-
-        $("#deleteButtonConf").click(function () {
-            $('.buttons').css('display', 'flex');
-            $('#confirm').css('display', 'none');
-            $('.popupbox').css('display', 'none');
-            $("#deleteButtonConf").prop('disabled', true);
-            $('#confirmtext').val('');
-        });
-
-        $('#confirmtext').on('input', function () {
-            text = $('#confirmtext').val();
-            $("#deleteButtonConf").prop('disabled', text == "GregorDeschwanden" ? false : true);
-        });
-
         $(document).ready(function () {
             $(".accountremoval p").css('min-height', $(".twofactorauthentication p").height())
+            $(".trashcanicon, .lockicon").css('display', 'flex');
+            $(".trashcanicon, .lockicon").css('justify-content', 'center');
+            $(".trashcanicon, .lockicon").css('align-items', 'center');
         });
 
         $(window).resize(function () {
             $(".accountremoval p").css('min-height', $(".twofactorauthentication p").height())
         });
-
-        $("#cancelbutton").click(function () {
-            $(".popupbox").css('display', 'none');
-        });
-
     </script>
 
 </body>
