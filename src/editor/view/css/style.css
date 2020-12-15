@@ -3,10 +3,11 @@
     padding: 0;
     margin: 0;
 }
-
+/*
 ::-webkit-scrollbar {
     display: none;
 }
+*/
 
 #content{
     width: 100vw;
@@ -395,4 +396,122 @@
     border-radius: 7px 0 0 0;
     background-color: var(--white);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+#popupBox{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--dark-grey);
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#popupBox-top{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#popupBox-top-controls{
+    width: 50%;
+    height: 20%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+#popupBox-top-controls-buttons{
+    width: 20%;
+    height: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#popupBox-top-controls-buttons-use{
+    width: 80%;
+    height: 50%;
+    background-color: white;
+    border-radius: 5px;
+    color: var(--dark-grey);
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#popupBox-top-controls-buttons-exit{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#popupBox-top-controls-buttons-exit-icon{
+    color: var(--white);
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+#popupBox-top-main{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#popupBox-top-main-leftArrow, #popupBox-top-main-rightArrow{
+    width: 10%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    font-size: 5rem;
+    transition: all 0.5s;
+}
+
+#popupBox-top-main-leftArrow:hover, #popupBox-top-main-rightArrow:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+#popupBox-top-main-middle{
+    width: 50vw;
+    height: 28.125vw;
+    background-color: red;
+}
+
+#popupBox-bottom{
+    height: 30%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#popupBox-bottom-inner{
+    height: 10vw;
+    width: 100%;
+    background-color: green;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.popupBox-bottom-inner-slide{
+    min-width: 17.77777777777vw;
+    height: 10vw;
+    background-color: blue;
+    margin: 0 1vw;
 }
