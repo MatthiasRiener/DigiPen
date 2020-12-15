@@ -32,19 +32,23 @@
                 Teams
                 <span><i class="fas fa-plus"></i></span>
             </a>
-            <a href="#">
-                <i class="fas fa-cog"></i>
-                Settings
-                <span><i class="fas fa-angle-down"></i></span>
-            </a>
-            <a href="#">
-                <i class="fas fa-user"></i>
-                Profile
-            </a>
-            <a href="#">
-                <i class="fas fa-lightbulb"></i>
-                Slidea
-            </a>
+            <div class="dropdownsidebar">
+                <a href="#">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                    <span><i class="fas fa-angle-down"></i></span>
+                </a>
+                <div class="dropdown">
+                    <a href="#" class="innersettings">
+                        <i class="fas fa-user"></i>
+                        Profile
+                    </a>
+                    <a href="#" class="innersettings">
+                        <i class="fas fa-lightbulb"></i>
+                        Slidea
+                    </a>
+                </div>
+            </div>
             <a href="#">
                 <i class="fas fa-sign-out-alt"></i>
                 Logout
@@ -115,7 +119,7 @@
                         <p>34</p>
                     </div>
                     <div>
-                        <button>Edit Profile</button>
+                        <button id="edidprofilebutton">Edit Profile</button>
                     </div>
                     <div>
                         <h2>Workspaces</h2>
@@ -277,6 +281,10 @@
             navigationTooltips: ['First page', 'Second page']
         });
 
+        $("#edidprofilebutton").click(function () {
+            myFullpage.moveSectionDown();
+        });
+
         let dummy = false;
 
         function openNav() {
@@ -304,6 +312,24 @@
 
         $(window).resize(function () {
             $(".accountremoval p").css('min-height', $(".twofactorauthentication p").height())
+        });
+
+        let isdropped = false;
+
+        $('.fa-angle-down, .fa-angle-up').click(function () {
+            if (!isdropped) {
+                $(this).addClass('fa-angle-up');
+                $(this).removeClass('fa-angle-down');
+                $('.dropdown').css('display', 'block');
+                isdropped = true;
+            }
+            else {
+                $(this).removeClass('fa-angle-up');
+                $(this).addClass('fa-angle-down');
+                $('.dropdown').css('display', 'none');
+                isdropped = false;
+            }
+
         });
     </script>
 

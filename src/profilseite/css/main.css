@@ -31,9 +31,11 @@
     margin: 10px 0;
 }
 
-.sidenavW3 i {
+.sidenavW3 i, .sidenavW3 span {
+    text-align: center;
     min-width: fit-content;
-    width: 2.5vw;
+    width: 40px;
+    font-size: medium;
 }
 
 .sidenavW3 a {
@@ -42,6 +44,12 @@
     color: #908f90;
     transition: 0.3s;
     display: block;
+    font-size: small;
+}
+
+.sidenavW3 a span {
+    right: 0;
+    position: absolute;
 }
 
 .sidenavW3 a:hover {
@@ -137,6 +145,7 @@
 }
 
 .intro footer button {
+    text-decoration: none;
     border: solid lightgray 2px;
     padding: 10px 50px;
     background: none;
@@ -642,4 +651,20 @@ form input:focus, #confirm input:focus {
     color: white;
     font-weight: bolder;
     cursor: pointer;
+}
+
+.innersettings {
+    background: #E5E5EA;
+    color: rgba(0, 0, 0, 0.8) !important;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+.dropdownsidebar {
+    border-right: #383838 solid 3px;
+    padding-right: 20px;
+}
+
+.dropdown {
+    display: none;
 }
