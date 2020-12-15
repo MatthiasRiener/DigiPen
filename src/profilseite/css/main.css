@@ -469,6 +469,7 @@ form input:focus, #confirm input:focus {
 .lockicon {
     background: #E7F2FF;
     color: #4E82FC;
+    transition: all .2s;
 }
 
 .buttons {

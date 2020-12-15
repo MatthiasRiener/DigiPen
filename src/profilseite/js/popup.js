@@ -23,6 +23,10 @@ function closePUP() {
     $("#deleteButtonConf").prop('disabled', true);
     $('.mm-number-input-item input').val('');
     $('#activated').prop('disabled', true);
+    $('.lockicon').css('background-color', '#E7F2FF');
+    $('.lockicon').css('color', '#4E82FC');
+    $(".lockicon").addClass("fa-lock");
+    $(".lockicon").removeClass("fa-lock-open");
 }
 
 $("#deletebutton").click(function () {
@@ -100,20 +104,20 @@ jQuery(document).ready(function () {
 
         if (id === count) {
             if (parseInt(number) === password) {
-                jQuery('.mm-number-input-container').addClass('bounceOutUp');
+                $('.mm-number-input-container').addClass('bounceOutUp');
+                $(".lockicon").removeClass("fa-lock");
+                $(".lockicon").addClass("fa-lock-open");
+                $('.lockicon').css('background-color', '#E2FFEA');
+                $('.lockicon').css('color', '#00BE4E');
                 $('#activated').prop('disabled', false);
-                // setTimeout(function () {
-                //     jQuery('.mm-number-input-container').removeClass('bounceOutUp').addClass('bounceInDown');
-                //     setTimeout(function () {
-                //         jQuery('.mm-number-input-container').removeClass('bounceInDown');
-                //         jQuery('.mm-number-input-item input').val('');
-                //         jQuery('.mm-number-input-item-1 input').focus();
-                //     }, 500);
-                // }, 1500);
             }
             else {
                 $('.mm-number-input-item input').addClass('shake');
                 $('#activated').prop('disabled', true);
+                $(".lockicon").addClass("fa-lock");
+                $(".lockicon").removeClass("fa-lock-open");
+                $('.lockicon').css('background-color', '#E7F2FF');
+                $('.lockicon').css('color', '#4E82FC');
                 $('.shake').on("animationend", function () {
                     $(this).removeClass('shake');
                     $('.mm-number-input-item-1 input').focus();
