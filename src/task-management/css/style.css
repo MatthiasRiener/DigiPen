@@ -60,3 +60,29 @@ body {
 
     border-radius: 50%;
 }
+
+
+.main-content {
+    height: 93vh;
+    width: 100%;
+    background: transparent;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.left-side-bar {
+    margin-top: 1%;
+    width: 17%;
+    height: 98%;
+    background: white;
+    box-shadow: 1px 0px 10px #00000020;
+}
+
+.task-content {
+    margin: 1%;
+    width: 81%;
+    height: 98%;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px #00000020;
+}
