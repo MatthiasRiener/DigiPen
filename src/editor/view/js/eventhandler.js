@@ -1,3 +1,5 @@
+/* --------------- SLides-Menu --------------- */
+
 let trackingIndex = 0;
 
 $(document).ready(function () {
@@ -34,6 +36,8 @@ $('#content-leftSlides-slidesContent').scroll(function(){
     $('#content-leftSlides-slidesContent-animatedBar').css("top", `${$('.content-leftSlides-slidesContent-slide-leftBar').eq(trackingIndex).position().top}px`);
 });
 
+/* --------------- POPUPS --------------- */
+
 $('#content-leftSlides-topBar-down').click(function(){
     $('#popupBox').css('display', 'flex');
     $('#content').css('display', 'none');
@@ -42,4 +46,16 @@ $('#content-leftSlides-topBar-down').click(function(){
 $('#popupBox-top-controls-buttons-exit').click(function(){
     $('#popupBox').css('display', 'none');
     $('#content').css('display', 'flex');
+});
+
+$('#content-navigation-first-right-icon').click(function(){
+    $('#addObjectPopup-inner-popup').css('display', 'flex');
+    $('#addObjectPopup').css('display', 'flex');
+});
+
+$(document).click(function(event) {
+    if (!$(event.target).closest("#addObjectPopup-inner-popup, #content-navigation-first-right-icon").length) {
+        $('#addObjectPopup-inner-popup').css('display', 'none');
+        $('#addObjectPopup').css('display', 'none');
+    }
 });
