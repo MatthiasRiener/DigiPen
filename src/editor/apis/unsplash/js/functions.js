@@ -3,7 +3,7 @@ var res;
 
 function getUnsplashDocuments() {
     var http = new XMLHttpRequest();
-    http.open("GET", "https://raw.githubusercontent.com/MatthiasRiener/Slidea/main/src/editor/apis/response_01.json", false);
+    http.open("GET", "https://raw.githubusercontent.com/MatthiasRiener/Slidea/main/src/editor/apis/unsplash/response_01.json", false);
     http.send(null);
 
 
