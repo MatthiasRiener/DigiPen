@@ -4,20 +4,28 @@ window.onload = function () {
     loadTerms();
 }
 
+var content_array = []
 function loadTerms() {
     $.get("https://raw.githubusercontent.com/MatthiasRiener/Slidea/main/src/terms_of_service/terms/terms.md", function (data) {
         var terms = data.split("\n").filter(Boolean);
 
         terms.forEach(element => {
+            var title = element.slice(1, element.length).trim()
+            var content = element.trim()
             if (element.startsWith("#")) {
                 $('.side-bar').eq(0).append(`<div class="content-point" ><p>${element.slice(1, element.length).trim()}</p></div>`);
                 $('.main-content').eq(0).append(`<p class="title" id="${element.slice(1, element.length).trim().replaceAll(" ", "_")}">${element.slice(1, element.length).trim()}</div>`);
+                content_array.push({type:"title", title})
             } else {
                 $('.main-content').eq(0).append(`<p class="content">${element.trim()}</div>`);
+                
+                content_array.push({type:"content", content})
             }
         });
     });
 }
+
+console.log(content_array)
 
 $('body').on('click', '.content-point ', function () {
     $(".main-content").animate({
@@ -28,7 +36,7 @@ $('body').on('click', '.content-point ', function () {
 });
 
 //Download PDF File
-var doc = new jsPDF();
+var doc = new jsPDF("p", "mm", "a4");
 var specialElementHandlers = {
     '#editor': function (element, renderer) {
         return true;
@@ -40,7 +48,7 @@ $('.btDownload').click(function () {
         'width': 170,
             'elementHandlers': specialElementHandlers
     });
-    doc.save('sample-file.pdf');
+    doc.save('Terms_of_Service.pdf');
 });
 
 
