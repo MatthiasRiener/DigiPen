@@ -1,36 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basic Structure</title>
 
-    <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Karla">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Karla"
+    />
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
-
 
     <link href="css/style.css" type="text/css" rel="stylesheet" />
     <link href="css/variables.css" type="text/css" rel="stylesheet" />
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="header-nav">
+      <p id="logo">Slidea</p>
+      <div class="content-right-container">
+        <p>Matthias Riener</p>
+        <p>Power User</p>
+      </div>
+      <div class="nav-profile-image"></div>
+    </div>
 
-</head>
-<body>
-   <div class="header-nav">
-       <p id="logo">Slidea</p>
-       <div class="content-right-container">
-           <p>Matthias Riener</p>
-           <p>Power User</p>
-       </div>
-       <div class="nav-profile-image"></div>
-   </div>
+    <div class="main-content">
+      <div class="left-side-bar"></div>
+      <div class="task-content">
+        <div class="top-bar-task">
+          <p>Presentation Roadmap</p>
+          <ion-icon style="margin-left: auto" name="add-outline"></ion-icon>
+          <ion-icon
+            style="margin-right: 20px"
+            name="chevron-down-outline"
+            id="change-visibility"
+          ></ion-icon>
+        </div>
+        <div class="calendar-row">
 
-   <div class="main-content">
-       <div class="left-side-bar"></div>
-       <div class="task-content"></div>
-   </div>
+           
+
+            
+        </div>
+      </div>
+    </div>
+
+    <div class="visibility-popup visibility-class">
+      <p id="title">Visibility</p>
+      <div class="visibility-popup-checkbox">
+        <label class="container"
+          >
+          <input type="checkbox" />
+          <span class="checkmark"></span>
+        </label>
+        <p>All</p>
+      </div>
+    </div>
 
     <script src="js/eventhandler.js" type="text/javascript" defer></script>
-</body>
+  </body>
 </html>
