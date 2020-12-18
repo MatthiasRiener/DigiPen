@@ -26,3 +26,21 @@ $('body').on('click', '.content-point ', function () {
 
     //document.getElementById(`${$(this).children("p").text().trim().replaceAll(" ", "_")}`).scrollIntoView({behavior: 'smooth'});
 });
+
+//Download PDF File
+var doc = new jsPDF();
+var specialElementHandlers = {
+    '#editor': function (element, renderer) {
+        return true;
+    }
+};
+
+$('.btDownload').click(function () {   
+    doc.fromHTML($('.main-content').html(), 15, 15, {
+        'width': 170,
+            'elementHandlers': specialElementHandlers
+    });
+    doc.save('sample-file.pdf');
+});
+
+

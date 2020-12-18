@@ -83,6 +83,26 @@ body {
     font-size: 30px;
 }
 
+.side-bar .download{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 10vh;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 170%;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+}
+
+.side-bar .download ion-icon{
+    margin: 0 1vw 0 0;
+}
+
+
+
 
 
 
