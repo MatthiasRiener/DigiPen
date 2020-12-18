@@ -2,6 +2,15 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: Karla;
+}
+
+h1 {
+    color: #383838;
+}
+
+p {
+    color: rgba(56, 56, 56, 0.6)
 }
 
 #myInput {
@@ -11,8 +20,12 @@
     width: 100%;
     font-size: 16px;
     padding: 0 20px 0 50px;
-    border: 1px solid #ddd;
-    margin-bottom: 12px;
+    height: 45px;
+    outline: none;
+    border: none;
+    background: #F6F4F9;
+    border-radius: 8px;
+    min-width: 200px;
 }
 
 #myUL {
@@ -42,23 +55,40 @@
 }
 
 .input-icons {
-    width: 100%;
-    margin-bottom: 0px;
+    width: 50px;
+    height: 45px;
+    position: absolute;
 }
 
 .icon {
-    padding: 0px;
-    color: green;
     min-width: 50px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    color: #C6C6C6;
 }
 
 .input-field {
     width: 100%;
-    padding: 0px;
     text-align: center;
 }
 
-h2 {
-    color: green;
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.searchbox {
+    width: 45%;
+    position: relative;
+}
+
+.createPresentation {
+    display: flex;
+    cursor: pointer;
 }
