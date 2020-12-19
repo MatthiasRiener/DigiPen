@@ -3,9 +3,7 @@
 function overlap(dateRanges) {
 
 
-    var sortedRanges = dateRanges.sort((previous, current) => {
-        return previous.start.getTime() - current.start.getTime();
-    });
+    var sortedRanges = sortDates(dateRanges)
 
 
 
@@ -43,4 +41,11 @@ function overlap(dateRanges) {
 
     // return the final results  
     return result;
+}
+
+function sortDates(dates) {
+    return dates.sort((previous, current) => {
+        return previous.start.getTime() - current.start.getTime();
+    });
+
 }

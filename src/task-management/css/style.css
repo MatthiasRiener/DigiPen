@@ -285,3 +285,8 @@ body {
     position: relative;
     border-radius: 10px;
 }
+
+.presentation-section {
+    background: red;
+    width: 100%;
+}

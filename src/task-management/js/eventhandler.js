@@ -17,6 +17,9 @@ window.onload = function () {
     end2.setDate(start2.getDate() + 5);
 
     calculateTaskWidth(start2, end2, '30123414');
+
+    calculateTaskWidth(start2, end2, '3013414');
+
 }
 
 
@@ -51,7 +54,7 @@ function insertProfileImages() {
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
-const presentations = {};
+const presentations = new Map();
 
 
 
@@ -65,14 +68,23 @@ function calculateTaskWidth(start, end, id) {
     const diff = dateDiffInDays(start, end)
 
 
-    if (presentations[id] == null || presentations[id] === undefined) {
-        presentations[id] = [];
+    if (!presentations.has(id)) {
+        presentations.set(id, []);
 
-        presentations[id].push([{
+        presentations.get(id).push([{
             "start": start,
             "end": end
         }]);
-        insertTask(0, {
+
+
+        var index = [...presentations.keys()].indexOf(id);
+
+        console.log("hallo", index, id, presentations)
+
+        $('.presentation-section').eq(index).append(`<div class="task-row"></div>`);
+
+
+        insertTask(index, 0, {
             distance: distance,
             diff: diff,
             cWidth: completeWidth,
@@ -81,30 +93,32 @@ function calculateTaskWidth(start, end, id) {
 
     } else {
         // loop through each row
-        presentations[id].forEach((row, index) => {
+        presentations.get(id).forEach((row, index) => {
             var arr = [...row];
             arr.push({
                 "start": start,
                 "end": end
             });
             var overlaps = overlap(arr);
+            var pres_index = [...presentations.keys()].indexOf(id);
+
 
 
             if (!overlaps.overlap) {
-                insertTask(index, {
+                insertTask(pres_index, index, {
                     distance: distance,
                     diff: diff,
                     cWidth: completeWidth,
                     sPos: startPos
                 })
-            } else if (presentations[id].length - 1 == index) {
-                presentations[id].push([{
+            } else if (presentations.get(id).length - 1 == index) {
+                presentations.get(id).push([{
                     "start": start,
                     "end": end
                 }]);
                 console.log("creating new row.....");
-                $('.task-of-presentations').append(`<div class="task-row"></div>`);
-                insertTask(index + 1, {
+                $('.presentation-section').eq(pres_index).append(`<div class="task-row"></div>`);
+                insertTask(pres_index, index + 1, {
                     distance: distance,
                     diff: diff,
                     cWidth: completeWidth,
@@ -119,8 +133,9 @@ function calculateTaskWidth(start, end, id) {
 
 }
 
-function insertTask(index, pos) {
-    $('.task-row').eq(index).append(`<div class="task-item" style="width:${(pos.distance * pos.diff) / pos.cWidth * 100 - 0.2}%; left: ${pos.sPos / pos.cWidth * 100}%"></div>`)
+function insertTask(p_index, index, pos) {
+    console.log(p_index, index)
+    $('.presentation-section').eq(p_index).find('.task-row').eq(index).append(`<div class="task-item" style="width:${(pos.distance * pos.diff) / pos.cWidth * 100 - 0.2}%; left: ${pos.sPos / pos.cWidth * 100}%"></div>`)
 }
 
 
