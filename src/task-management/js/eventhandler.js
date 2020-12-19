@@ -2,6 +2,7 @@
 
 window.onload = function () {
     console.log('Document loaded.')
+    initializeContainers();
     loadCalendar()
     insertProfileImages()
 
@@ -23,6 +24,10 @@ window.onload = function () {
 
     loadBackgroundGrid();
 
+}
+
+function initializeContainers() {
+    $('.cur-workspace').width(`${$('.cur-workspace').height()}px`);
 }
 
 
