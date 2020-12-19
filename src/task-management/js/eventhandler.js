@@ -23,7 +23,31 @@ window.onload = function () {
 
 
     loadBackgroundGrid();
+    positionCursor();
 
+}
+
+
+function positionCursor() {
+    var now = new Date();
+    var container = $('.calendar-row-days').find(`.calendar-day[data-date='${now}']`)
+    console.log(container.position().top)
+    var top = container.position().top;
+    var left = container.position().left;
+
+
+    $('.active-bar').css('top', `${top}px`)
+    $('.active-bar').css('left', `${left}px`)
+
+    $('.active-bar').height($('.task-of-presentations').height());
+
+    $('.top-active').height(container.height());
+    $('.top-active').width(container.width());
+
+    $('.top-active p').html(now.getDate());
+
+
+    console.log(height)
 }
 
 function initializeContainers() {
