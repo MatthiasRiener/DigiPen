@@ -41,6 +41,7 @@ gesorgt.
   * JQuery
   * FabricJS
 * Python
+  * Flask
 
 
 ### Bilder
