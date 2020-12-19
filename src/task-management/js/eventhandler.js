@@ -14,7 +14,7 @@ window.onload = function () {
     var start2 = new Date();
     start2.setDate(start2.getDate() - 3);
     var end2 = new Date();
-    end2.setDate(start2.getDate() + 4);
+    end2.setDate(start2.getDate() + 5);
 
     calculateTaskWidth(start2, end2, '30123414');
 }
@@ -58,7 +58,7 @@ const presentations = {};
 function calculateTaskWidth(start, end, id) {
     // Calculate Width of Single Container (Day)
 
-    
+
     const distance = $('.calendar-day').width();
     const completeWidth = $('.calendar-row-days').eq(0).width();
     const startPos = dateDiffInDays(new Date($('.calendar-day').eq(0).data("date")), start) * distance;
@@ -68,24 +68,61 @@ function calculateTaskWidth(start, end, id) {
     if (presentations[id] == null || presentations[id] === undefined) {
         presentations[id] = [];
 
-        presentations[id].push([{"start": start, "end": end}]);
+        presentations[id].push([{
+            "start": start,
+            "end": end
+        }]);
+        insertTask(0, {
+            distance: distance,
+            diff: diff,
+            cWidth: completeWidth,
+            sPos: startPos
+        })
+
     } else {
-        console.log(elementOverlaps(presentations[id], {"start": start, "end": end}));
+        // loop through each row
+        presentations[id].forEach((row, index) => {
+            var arr = [...row];
+            arr.push({
+                "start": start,
+                "end": end
+            });
+            var overlaps = overlap(arr);
+
+
+            if (!overlaps.overlap) {
+                insertTask(index, {
+                    distance: distance,
+                    diff: diff,
+                    cWidth: completeWidth,
+                    sPos: startPos
+                })
+            } else if (presentations[id].length - 1 == index) {
+                presentations[id].push([{
+                    "start": start,
+                    "end": end
+                }]);
+                console.log("creating new row.....");
+                $('.task-of-presentations').append(`<div class="task-row"></div>`);
+                insertTask(index + 1, {
+                    distance: distance,
+                    diff: diff,
+                    cWidth: completeWidth,
+                    sPos: startPos
+                })
+            }
+
+        });
     }
 
 
 
-    console.log(presentations)
-
-    $('.task-row').eq(0).append(`<div class="task-item" style="width:${(distance * diff) / completeWidth * 100}%; left: ${startPos / completeWidth * 100}%"></div>`)
-
-
 }
 
-
-function elementOverlaps(pres, el) {
-   return (pres, el)
+function insertTask(index, pos) {
+    $('.task-row').eq(index).append(`<div class="task-item" style="width:${(pos.distance * pos.diff) / pos.cWidth * 100 - 0.2}%; left: ${pos.sPos / pos.cWidth * 100}%"></div>`)
 }
+
 
 
 const _MS_PER_DAY = 1000 * 60 * 60 * 24;

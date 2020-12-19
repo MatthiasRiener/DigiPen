@@ -1,33 +1,13 @@
-var r1 = {
-    start: new Date("2/4/2001"),
-    end: new Date("7/1/2002")
-};
 
-var r2 = {
-    start: new Date("7/2/2002"),
-    end: new Date("2/4/2003")
-};
-
-// start date overlaps with end date of previous
-var r3 = {
-    start: new Date("2/4/2003"),
-    end: new Date("5/12/2007")
-};
-
-var ranges = [r1, r3, r2];
-
-var output = overlap(ranges);
-console.log(output);
-// this function takes an array of date ranges in this format:
-// [{ start: Date, end: Date}]
-// the array is first sorted, and then checked for any overlap
 
 function overlap(dateRanges) {
+
+
     var sortedRanges = dateRanges.sort((previous, current) => {
-
         return previous.start.getTime() - current.start.getTime();
-
     });
+
+
 
     var result = sortedRanges.reduce((result, current, idx, arr) => {
         // get the previous range
