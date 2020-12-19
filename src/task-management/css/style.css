@@ -279,5 +279,5 @@ body {
 .task-item {
     background: #546DE5;
     height: 55px;
-    width: 70px;
+    position: relative;
 }
