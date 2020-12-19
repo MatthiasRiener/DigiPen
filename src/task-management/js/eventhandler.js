@@ -20,12 +20,23 @@ window.onload = function () {
 
     calculateTaskWidth(start2, end2, '3013414');
 
+
+    loadBackgroundGrid();
+
 }
 
 
 $('#change-visibility').click(function () {
     $('.visibility-popup').toggleClass("visibility-class")
 });
+
+function loadBackgroundGrid() {
+    const distance = $('.calendar-day').width();
+    const completeWidth = $('.calendar-row-days').eq(0).width();
+
+    var gridWidth = distance / completeWidth * 100;
+    $('.task-row').css("background-size", gridWidth+"% " + gridWidth + "%");
+}
 
 
 function loadCalendar() {
@@ -135,7 +146,7 @@ function calculateTaskWidth(start, end, id) {
 
 function insertTask(p_index, index, pos) {
     console.log(p_index, index)
-    $('.presentation-section').eq(p_index).find('.task-row').eq(index).append(`<div class="task-item" style="width:${(pos.distance * pos.diff) / pos.cWidth * 100 - 0.2}%; left: ${pos.sPos / pos.cWidth * 100}%"></div>`)
+    $('.presentation-section').eq(p_index).find('.task-row').eq(index).append(`<div class="task-item" style="width:${(pos.distance * pos.diff) / pos.cWidth * 100}%; left: ${pos.sPos / pos.cWidth * 100}%"></div>`)
 }
 
 

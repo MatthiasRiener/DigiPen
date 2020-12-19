@@ -221,6 +221,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
+
 }
 
 
@@ -277,6 +278,8 @@ body {
     display: flex;
     align-items: center;
     flex-direction: row;
+    background-image: linear-gradient(to right, #70707020 3px, transparent 1px);
+
 }
 
 .task-item {
@@ -287,6 +290,6 @@ body {
 }
 
 .presentation-section {
-    background: red;
     width: 100%;
+
 }
