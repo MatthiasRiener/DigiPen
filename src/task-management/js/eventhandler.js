@@ -1,7 +1,6 @@
 // This is where all events are 
 
 window.onload = function () {
-    console.log('Document loaded.')
     initializeContainers();
     loadCalendar()
     insertProfileImages()
@@ -100,7 +99,8 @@ const presentations = new Map();
 
 function calculateTaskWidth(start, end, id) {
     // Calculate Width of Single Container (Day)
-
+    start = new Date(start)
+    end = new Date(end)
 
     const distance = $('.calendar-day').width();
     const completeWidth = $('.calendar-row-days').eq(0).width();
@@ -175,7 +175,7 @@ function calculateTaskWidth(start, end, id) {
 
 function insertTask(p_index, index, pos) {
     console.log(p_index, index)
-    $('.presentation-section').eq(p_index).find('.task-row').eq(index).append(`<div class="task-item" style="width:${(pos.distance * pos.diff) / pos.cWidth * 100}%; left: ${pos.sPos / pos.cWidth * 100}%"></div>`)
+    $('.presentation-section').eq(p_index).find('.task-row').eq(index).append(`<div class="task-item" style="width:${(pos.distance * pos.diff) / pos.cWidth * 100}%; left: ${pos.sPos / pos.cWidth * 100}%"><div class="user-task" style="background-image: url('../img/user_${randomNumber(1,14)}.png')"></div><p>Schaut Österreich wie ein Schnitzel aus?</div>`)
 }
 
 
