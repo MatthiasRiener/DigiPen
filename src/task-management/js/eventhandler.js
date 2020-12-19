@@ -7,7 +7,7 @@ window.onload = function () {
 
     var start = new Date();
     var end = new Date();
-    end.setDate(start.getDate() + 5);
+    end.setDate(start.getDate() + 1);
 
     calculateTaskWidth(start, end);
 }
@@ -26,7 +26,7 @@ function loadCalendar() {
 
     for (let i = 1; i <= 18; i++) {
         let newDate = new Date(now.setDate(now.getDate() + 1));
-        $('.calendar-row').append(`<div class="calendar-day" data-date="${newDate}" ><p>${newDate.getDate()}</p></div>`)
+        $('.calendar-row-days').append(`<div class="calendar-day" data-date="${newDate}" ><p>${newDate.getDate()}</p></div>`)
     }
 
   
@@ -35,7 +35,6 @@ function loadCalendar() {
 function insertProfileImages() {
     $('.profile-images').each(function (index, obj) {
         const number = randomNumber(2, 5);
-        console.log(number)
         for (let i = 0; i < number; i++) {
             $('.profile-images').eq(index).append(`<div style="margin-left: -0.4vw; z-index: ${number - i}; background-image: url(../img/user_${randomNumber(1,14)}.png)" class="user"></div>`)
         }
@@ -50,13 +49,18 @@ function randomNumber(min, max) {
 
 function calculateTaskWidth(start, end) {
     // Calculate Width of Single Container (Day)
+    console.log(new Date($('.calendar-day').eq(0).data("date")))
     var distance = $('.calendar-day').width();
-    var startPos = $(`.calendar-day[data-date='${start}']`).offset().left - $(`.calendar-row`).offset().left;
+    
+    var completeWidth = $('.calendar-row-days').eq(0).width();
+    var startPos =  dateDiffInDays(new Date($('.calendar-day').eq(0).data("date")), start) * distance;
+
+    console.log(startPos)
 
     var diff = dateDiffInDays(start, end)
 
 
-    $('.task-row').eq(0).append(`<div class="task-item" style="width:${distance * diff}px; left: ${startPos}px"></div>`)
+    $('.task-row').eq(0).append(`<div class="task-item" style="width:${(distance * diff) / completeWidth * 100}%; left: ${startPos / completeWidth * 100}%"></div>`)
 
 
     console.log(diff)
@@ -65,9 +69,8 @@ function calculateTaskWidth(start, end) {
 
 const _MS_PER_DAY = 1000 * 60 * 60 * 24;
 
-// a and b are javascript Date objects
+
 function dateDiffInDays(a, b) {
-    // Discard the time and time-zone information.
     const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
     const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
 
