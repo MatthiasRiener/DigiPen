@@ -38,6 +38,8 @@ gesorgt.
 * HTML
 * CSS
 * JS
+  * JQuery
+  * FabricJS
 * Python
 
 
