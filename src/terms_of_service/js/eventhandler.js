@@ -37,17 +37,35 @@ $('body').on('click', '.content-point ', function () {
 
 //Download PDF File
 var doc = new jsPDF("p", "mm", "a4");
-var specialElementHandlers = {
-    '#editor': function (element, renderer) {
-        return true;
-    }
-};
 
-$('.btDownload').click(function () {   
-    doc.fromHTML($('.main-content').html(), 15, 15, {
-        'width': 170,
-            'elementHandlers': specialElementHandlers
-    });
+
+$('.btDownload').click(function () { 
+    //Titelblatt
+    doc.setFontSize(15);
+    doc.setTextColor(150);
+    doc.text("Terms of Service", 150, 15);
+    doc.setFontSize(60);
+    doc.setTextColor(0,255,0);
+    doc.text( "Slidea", 76, 80);
+    doc.setFontSize(30);
+    doc.setTextColor(0);
+    doc.text("Terms of Service", 66, 120);
+    doc.setFontSize(20);
+    doc.text("from", 97, 180);
+    doc.text("Platzhalter", 88, 200);
+    doc.addPage();
+
+    //Inhaltsverzeichnis
+    doc.setFontSize(15);
+    doc.setTextColor(150);
+    //Inhaltsverzeichnis
+    doc.text("Terms of Service", 150, 15);
+    for(var i=0; i<=content_array.length; i++){
+        var text = (content_array[i]);
+        doc.text(text, 0, 50);
+    };
+    
+
     doc.save('Terms_of_Service.pdf');
 });
 
