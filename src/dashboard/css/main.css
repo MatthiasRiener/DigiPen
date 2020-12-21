@@ -28,13 +28,19 @@ p {
     min-width: 200px;
 }
 
-#myUL {
+.myUl {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-#myUL li a {
+.myUl li {
+    margin: 2vw 2vw 0 2vw;
+}
+
+.myUl li a {
     border: 1px solid #ddd;
     margin-top: -1px;
     /* Prevent double borders */
@@ -43,10 +49,10 @@ p {
     text-decoration: none;
     font-size: 18px;
     color: black;
-    display: block
+    display: block;
 }
 
-#myUL li a:hover:not(.header) {
+.myUl li a:hover:not(.header) {
     background-color: #eee;
 }
 
@@ -58,15 +64,15 @@ p {
     width: 50px;
     height: 45px;
     position: absolute;
-}
-
-.icon {
-    min-width: 50px;
-    height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+.icon {
+    min-width: fit-content;
+    height: fit-content;
     color: #C6C6C6;
 }
 
@@ -81,6 +87,7 @@ p {
     align-items: center;
     position: relative;
     width: 100%;
+    padding: 2vw;
 }
 
 .searchbox {
@@ -89,6 +96,38 @@ p {
 }
 
 .createPresentation {
+    width: fit-content;
     display: flex;
     cursor: pointer;
+    align-items: center;
+}
+
+.createPresentation i {
+    width: 20px;
+}
+
+.template, .template_yourPresentation {
+    width: 14vw;
+    height: 7.875vw;
+    background: white;
+    border: solid 1px lightgray;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.searchitem, .searchitem_yourPresentation {
+    font-weight: bolder;
+}
+
+.text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2vw 2vw 0 2vw;
+}
+
+#contentbox {
+    width: 80vw;
+    height: 80vh;
 }
