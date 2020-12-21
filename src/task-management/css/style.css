@@ -266,13 +266,12 @@ body {
     align-items: center;
     flex-direction: row;
     background-image: linear-gradient(to right, #70707020 3px, transparent 1px);
-
+    position: relative;
 }
 
 .task-item {
-    background: #546DE5;
     height: 60px;
-    position: relative;
+    position: absolute;
     border-radius: 10px;
 
     display: flex;
@@ -296,6 +295,7 @@ body {
     border: 2px solid white;
     margin: 5px;
 }
+
 .presentation-section {
     width: 100%;
 
@@ -429,6 +429,8 @@ body {
     z-index: 1;
     top: 10px;
     box-shadow: 0px 0px 5px #F8A5C2;
+
+    display: none;
 }
 
 .top-active {
