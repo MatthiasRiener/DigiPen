@@ -101,6 +101,12 @@ body {
     margin: 0 1vw 0 0;
 }
 
+.side-bar .download a{
+    text-decoration: none;
+    text-transform: none;
+    color: var(--dark-color);
+}
+
 
 
 
