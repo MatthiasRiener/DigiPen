@@ -1,6 +1,6 @@
 const tasks = [{
         id: "6123125",
-        name: "British Tea Tips",
+        name: "Friesi und die ITP Gruppe",
         members: 4,
         taskColor: "#F02700",
         tasks: [{
@@ -22,10 +22,16 @@ const tasks = [{
         members: 2,
         taskColor: "#079992",
         tasks: [{
-            taskName: "How to eat Cookies with Heroin?",
-            start: "12/17/2020",
-            end: "12/20/2020"
-        }]
+                taskName: "How to eat Cookies with Heroin?",
+                start: "12/17/2020",
+                end: "12/20/2020"
+            },
+            {
+                taskName: "How to eat Cookies with Crack?",
+                start: "12/24/2020",
+                end: "12/28/2020"
+            }
+        ]
     },
 
 
@@ -78,8 +84,10 @@ function calculateTasks(pres) {
     let arr = [
         []
     ];
+
     pres.tasks.forEach((task) => {
         arr.forEach((curArray, index) => {
+
             var dummyArray = curArray.map(({
                 taskName,
                 ...keep
@@ -120,7 +128,7 @@ function insertTasks(tasks, pres) {
             const distance = $('.calendar-day').width();
             const cWidth = $('.calendar-row-days').eq(0).width();
             const startPos = dateDiffInDays(new Date($('.calendar-day').eq(0).data("date")), new Date(task.start)) * distance;
-            const diff = dateDiffInDays(new Date(task.start),new Date(task.end))
+            const diff = dateDiffInDays(new Date(task.start), new Date(task.end))
             $(`.presentation-section[data-presentation-id=${pres.id}] .task-row`).eq(rIndex).append(`<div class="task-item" style="background-color:${pres.taskColor};width:${(distance * diff) / cWidth * 100}%; left: ${startPos / cWidth * 100}%"><div class="user-task" style="background-image: url('../img/user_${randomNumber(1,14)}.png')"></div><p>${task.taskName}</p></div>`)
         });
     })
