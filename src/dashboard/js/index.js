@@ -72,19 +72,26 @@ $(".fa-angle-down, .fa-angle-up").click(function (e) {
     let position = 0,
         ignoreAmount = 4;
     if (e.target.classList.contains("fa-angle-down")) {
-        e.target.classList.remove("fa-angle-down")
-        e.target.classList.add("fa-angle-up")
+        e.target.classList.remove("fa-angle-down");
+        e.target.classList.add("fa-angle-up");
         [...$(".myUl")].forEach((uls) => {
+            if (uls.children.length <= ignoreAmount) return;
             [...uls.children].forEach((e) => {
                 if (position >= ignoreAmount) {
                     e.style.display = "none";
                 }
                 position++;
             })
+            position = 0;
         })
     } else {
-        e.target.classList.add("fa-angle-down")
-        e.target.classList.remove("fa-angle-up")
+        e.target.classList.add("fa-angle-down");
+        e.target.classList.remove("fa-angle-up");
+        [...$(".myUl")].forEach((uls) => {
+            [...uls.children].forEach((e) => {
+                e.style.display = "block";
+            })
+        })
     }
 
 });
