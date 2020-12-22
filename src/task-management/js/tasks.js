@@ -5,13 +5,19 @@ const tasks = [{
         taskColor: "#F02700",
         tasks: [{
                 taskName: "Schaut Österreich wie ein Schnitzel aus?",
-                start: "12/17/2020",
-                end: "12/20/2020"
+                start: "12/21/2020",
+                end: "12/24/2020"
             },
             {
                 taskName: "Sollte Südtirol zu Österreich gehören?",
-                start: "12/21/2020",
-                end: "12/22/2020"
+                start: "12/22/2020",
+                end: "12/27/2020"
+            },
+
+            {
+                taskName: "Sollte Südtirol zu Österreich gehören?",
+                start: "12/24/2020",
+                end: "12/28/2020"
             },
         ]
     },
@@ -33,8 +39,6 @@ const tasks = [{
             }
         ]
     },
-
-
 ];
 
 
@@ -88,15 +92,7 @@ function calculateTasks(pres) {
     pres.tasks.forEach((task) => {
         arr.forEach((curArray, index) => {
 
-            var dummyArray = curArray.map(({
-                taskName,
-                ...keep
-            }) => {
-                return {
-                    start: new Date(keep.start),
-                    end: new Date(keep.end)
-                }
-            });
+            var dummyArray = curArray.map(({taskName,...keep}) => {return {start: new Date(keep.start),end: new Date(keep.end)}});
 
 
             dummyArray.push({
@@ -118,18 +114,14 @@ function calculateTasks(pres) {
 }
 
 function insertTasks(tasks, pres) {
-
-
-
     tasks.forEach((row, rIndex) => {
-        console.log(row)
         $(`.presentation-section[data-presentation-id=${pres.id}]`).append(`<div class="task-row"></div>`);
         row.forEach((task) => {
             const distance = $('.calendar-day').width();
             const cWidth = $('.calendar-row-days').eq(0).width();
             const startPos = dateDiffInDays(new Date($('.calendar-day').eq(0).data("date")), new Date(task.start)) * distance;
             const diff = dateDiffInDays(new Date(task.start), new Date(task.end))
-            $(`.presentation-section[data-presentation-id=${pres.id}] .task-row`).eq(rIndex).append(`<div class="task-item" style="background-color:${pres.taskColor};width:${(distance * diff) / cWidth * 100}%; left: ${startPos / cWidth * 100}%"><div class="user-task" style="background-image: url('../img/user_${randomNumber(1,14)}.png')"></div><p>${task.taskName}</p></div>`)
+            $(`.presentation-section[data-presentation-id=${pres.id}] .task-row`).eq(rIndex).append(`<div class="task-item" style="background-color:${pres.taskColor};width:${(distance * diff) / cWidth * 100 - 0.2}%; left: ${startPos / cWidth * 100 + 0.2}%"><div class="user-task" style="background-image: url('../img/user_${randomNumber(1,14)}.png')"></div><p>${task.taskName}</p></div>`)
         });
     })
 }
