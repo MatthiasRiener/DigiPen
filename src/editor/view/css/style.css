@@ -803,7 +803,7 @@
 }
 
 #settingsPopup-inner-bottom-header-exit{
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: var(--white);
     margin-top: 1vh;
 }
@@ -834,19 +834,67 @@
     background-color: #16171A;
 }
 
-#settingsPopup-inner-bottom-header{
+#settingsPopup-inner-bottom-picture{
     width: 100%;
-    height: 10%;
+    height: 50%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
+}
+
+#settingsPopup-inner-bottom-picture-inner {
+    width: 18vh;
+    height: 18vh;
+    background-color: blue;
+    border-radius: 100%;
 }
 
 #settingsPopup-inner-bottom-header-exit:hover{
     cursor: pointer;
 }
 
-#settingsPopup-inner-bottom-main{
+#settingsPopup-inner-bottom-settings{
     width: 100%;
-    height: 90%;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#settingsPopup-inner-bottom-settings-cam, #settingsPopup-inner-bottom-settings-mic {
+    width: 8vh;
+    height: 8vh;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5vh;
+    background-color: #2A2A2F;
+}
+
+#settingsPopup-inner-bottom-settings-cam-icon, #settingsPopup-inner-bottom-settings-mic-icon {
+    font-size: 1.6rem;
+    color: var(--white);
+}
+
+#settingsPopup-inner-bottom-button{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#settingsPopup-inner-bottom-button-join{
+    width: 40%;
+    height: 50%;
+    background-color: #2A2A2F;
+    border-radius: 10px;
+    color: var(--white);
+    font-size: 1.4rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
