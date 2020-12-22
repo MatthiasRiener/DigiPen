@@ -67,3 +67,25 @@ function dynamicDisplay() {
 }
 
 dynamicDisplay();
+
+$(".fa-angle-down, .fa-angle-up").click(function (e) {
+    console.log($(this))
+    if (e.target.classList.contains("fa-angle-down")) {
+        e.target.classList.remove("fa-angle-down")
+        e.target.classList.add("fa-angle-up")
+        let position = 0,
+            ignoreAmount = 4;
+        [...$(".myUl")].forEach((uls) => {
+            [...uls.children].forEach((e) => {
+                if (position >= ignoreAmount) {
+                    e.style.display = "none";
+                }
+                position++;
+            })
+        })
+    } else {
+        e.target.classList.add("fa-angle-down")
+        e.target.classList.remove("fa-angle-up")
+    }
+
+});
