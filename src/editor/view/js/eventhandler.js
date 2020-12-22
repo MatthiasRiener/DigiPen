@@ -68,6 +68,27 @@ $('#content-navigation-second-settings').click(function() {
     $('#settingsPopup').css('display', 'flex');
 });
 
+$('#settingsPopup-inner-bottom-settings-cam-bottom-popup').click(function() {
+    $('#camPopup').css('display', 'flex');
+});
+
+$(document).click(function(event) {
+    if (!$(event.target).closest("#settingsPopup-inner-bottom-settings-cam-bottom-popup").length) {
+        $('#camPopup').css('display', 'none');    
+    }
+});
+
+$('#settingsPopup-inner-bottom-settings-mic-bottom-popup').click(function() {
+    $('#micPopup').css('display', 'flex');
+});
+
+$(document).click(function(event) {
+    if (!$(event.target).closest("#settingsPopup-inner-bottom-settings-mic-bottom-popup").length) {
+        $('#micPopup').css('display', 'none');    
+    }
+});
+
+
 $('#settingsPopup-inner-bottom-header-exit').click(function() {
     $('#settingsPopup').css('display', 'none');
     $('#settingsPopup-inner-bottom-button-join').css('display', 'none');
