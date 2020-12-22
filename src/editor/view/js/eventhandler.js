@@ -64,6 +64,14 @@ $('#addObjectPopup-inner-popup-image').click(function(){
     $('#addObjectPopup-inner-unsplash').css('display', 'flex');
 });
 
+$('#content-navigation-second-settings').click(function() {
+    $('#settingsPopup').css('display', 'flex');
+});
+
+$('#settingsPopup-inner-bottom-header-exit').click(function() {
+    $('#settingsPopup').css('display', 'none');
+});
+
 $('#content-navigation-fifth-box-down').click(function(){
     $('#presentationModePopup').css('display', 'flex');
     $('#presentationModePopup-inner-popup').css('display', 'flex');
