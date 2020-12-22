@@ -40,12 +40,10 @@ $('#content-leftSlides-slidesContent').scroll(function(){
 
 $('#content-leftSlides-topBar-down').click(function(){
     $('#popupBox').css('display', 'flex');
-    $('#content').css('display', 'none');
 });
 
 $('#popupBox-top-controls-buttons-exit').click(function(){
     $('#popupBox').css('display', 'none');
-    $('#content').css('display', 'flex');
 });
 
 $('#content-navigation-first-right-icon').click(function(){
