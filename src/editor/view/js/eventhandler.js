@@ -70,6 +70,7 @@ $('#content-navigation-second-settings').click(function() {
 
 $('#settingsPopup-inner-bottom-header-exit').click(function() {
     $('#settingsPopup').css('display', 'none');
+    $('#settingsPopup-inner-bottom-button-join').css('display', 'none');
 });
 
 $('#content-navigation-fifth-box-down').click(function(){

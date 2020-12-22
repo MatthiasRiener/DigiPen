@@ -867,10 +867,43 @@
     height: 8vh;
     border-radius: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
     margin: 0.5vh;
     background-color: #2A2A2F;
+}
+
+#settingsPopup-inner-bottom-settings-cam:hover, #settingsPopup-inner-bottom-settings-mic:hover {
+    cursor: pointer;
+}
+
+#settingsPopup-inner-bottom-settings-cam-top, #settingsPopup-inner-bottom-settings-mic-top {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#settingsPopup-inner-bottom-settings-cam-bottom, #settingsPopup-inner-bottom-settings-mic-bottom {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+#settingsPopup-inner-bottom-settings-cam-bottom-popup, #settingsPopup-inner-bottom-settings-mic-bottom-popup {
+    width: 2.2vh;
+    height: 2.2vh;
+    background-color: #2A2A2F;
+    border: solid 3px #16171A;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
 }
 
 #settingsPopup-inner-bottom-settings-cam-icon, #settingsPopup-inner-bottom-settings-mic-icon {
@@ -897,4 +930,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#settingsPopup-inner-bottom-button-join:hover {
+    cursor: pointer;
 }
