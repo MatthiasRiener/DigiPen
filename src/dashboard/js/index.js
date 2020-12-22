@@ -11,7 +11,7 @@ function myFunction() {
         for (i = 0; i < li.length; i++) {
             a = li[i].getElementsByClassName("searchitem")[0] || li[i].getElementsByClassName("searchitem_yourPresentation")[0];
             txtValue = a.textContent || a.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            if (txtValue.toUpperCase().indexOf(filter) === 0) {
                 li[i].style.display = "";
             } else {
                 li[i].style.display = "none";
