@@ -728,8 +728,10 @@
     border-radius: 10px;
     background-color: var(--white);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    margin: 1.5vh;
+    margin: 1vh 1.5vh;
+    opacity: 0;
     padding-left: 1vw;
+    transition: all 0.1s;
 }
 
 #presentationModePopup-inner-popup-headline{

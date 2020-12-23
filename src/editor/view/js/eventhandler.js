@@ -97,12 +97,22 @@ $('#settingsPopup-inner-bottom-header-exit').click(function() {
 $('#content-navigation-fifth-box-down').click(function(){
     $('#presentationModePopup').css('display', 'flex');
     $('#presentationModePopup-inner-popup').css('display', 'flex');
+    $('#presentationModePopup-inner-popup').animate({
+        margin: "1.8vh 1.5vh",
+        opacity: 1.0
+    }, 100);
 });
+
 
 $(document).click(function(event) {
     if (!$(event.target).closest("#presentationModePopup-inner-popup, #content-navigation-fifth-box-down").length) {
-        $('#presentationModePopup').css('display', 'none');
-        $('#presentationModePopup-inner-popup').css('display', 'none');
-        $('#presentationModePopup-inner-unsplash').css('display', 'none');
+        $('#presentationModePopup-inner-popup').animate({
+            margin: "0vh 1.5vh",
+            opacity: 0.0
+        }, 10);
+        setTimeout(function() {
+            $('#presentationModePopup-inner-popup').css('display', 'none');
+            $('#presentationModePopup').css('display', 'none');
+        }, 100);
     }
 });
