@@ -98,7 +98,7 @@ $('#content-navigation-fifth-box-down').click(function(){
     $('#presentationModePopup').css('display', 'flex');
     $('#presentationModePopup-inner-popup').css('display', 'flex');
     $('#presentationModePopup-inner-popup').animate({
-        margin: "1.8vh 1.5vh",
+        margin: "5vh 5vh",
         opacity: 1.0
     }, 100);
 });
