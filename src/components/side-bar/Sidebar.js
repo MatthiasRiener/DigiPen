@@ -197,10 +197,15 @@
     }
 
     connectedCallback() {
-        this.container.style.width = "300px";
+        this.container.style.width = `${this.getAttribute("width")}%`;
+
+        this.calculateWorkspaceWidth();
     }
 
-
+      calculateWorkspaceWidth() {
+        var workSpace = this.shadowRoot.querySelector('.cur-workspace');
+        workSpace.style.width = `${workSpace.getBoundingClientRect().height}px`;
+      }
 
     disconnectedCallback() {
 
