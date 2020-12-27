@@ -125,7 +125,7 @@
     margin-left: 20px;
 }
     </style>
-
+<div>
    <div class="left-side-bar">
         <div class="left-side-content">
           <p id="title-nav">Navigation</p>
@@ -181,6 +181,7 @@
           </div>
         </div>
       </div>
+      </div>
 `;
 
   class Sidebar extends HTMLElement {
@@ -191,14 +192,15 @@
         mode: 'open'
       });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
+      this.container = this.shadowRoot.querySelector('.side-bar-left');
 
     }
 
     connectedCallback() {
-      this.userImg.style.backgroundImage = `url('${this.getAttribute("img")}')`;
-      this.username.innerHTML = this.getAttribute('username');
-      this.userrole.innerHTML = this.getAttribute("role");
+        this.container.style.width = "300px";
     }
+
+
 
     disconnectedCallback() {
 
