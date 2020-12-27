@@ -192,7 +192,7 @@
         mode: 'open'
       });
       this.shadowRoot.appendChild(template.content.cloneNode(true));
-      this.container = this.shadowRoot.querySelector('.side-bar-left');
+      this.container = this.shadowRoot.querySelector('.left-side-bar');
 
     }
 
