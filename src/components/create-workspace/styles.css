@@ -15,5 +15,74 @@
     height: 46%;
     border-radius: 30px;
     background: white;
-    box-shadow: 0px 0px 20px rgba(0,0,0,30);
+    box-shadow: 0px 0px 20px #00000030;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.left-side-container {
+    margin: 45px 45px 30px 45px;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-side-container {
+    flex: 1;
+    margin: 60px 45px 30px 45px;
+}
+
+.workplace-picture {
+
+    width: 100%;
+    background: #EA8685;
+    border-radius: 20px;
+}
+
+#workspace-title {
+    font-weight: bold;
+    font-size: 30px;
+    margin: 0 !important;
+}
+
+.textfield-title {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0 !important;
+    margin-top: 15px !important; 
+}
+
+.left-side-container input[type=text], .left-side-container textarea {
+    border: none;
+    background: #F6F4F9;
+    width: 100%;
+    min-height: 13px;
+    border-radius: 10px;
+    margin: 10px 0px 10px 0px;
+
+    color: #383838;
+    font-size: 15px;
+    padding: 15px;
+}
+
+.inv-user-txt {
+    flex: 1;
+}
+
+.btn-create-ws {
+    margin-top: 15px;
+    background: #4C6EFF;
+    height: 58px;
+    width: 166px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-create-ws p {
+    color: white; 
+    font-weight: bold;
+    font-size: 22px;
 }

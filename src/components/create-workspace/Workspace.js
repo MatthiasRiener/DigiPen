@@ -34,9 +34,10 @@
     }
 
 
+
       calculateWorkspaceWidth() {
-        var workSpace = this.shadowRoot.querySelector('.cur-workspace');
-        workSpace.style.width = `${workSpace.getBoundingClientRect().height}px`;
+        var workSpace = this.shadowRoot.querySelector('.workplace-picture');
+        workSpace.style.height = `${workSpace.getBoundingClientRect().width}px`;
       }
 
     disconnectedCallback() {
