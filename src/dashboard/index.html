@@ -9,110 +9,115 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla">
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
-    <link href="css/main.css" type="text/css" rel="stylesheet" />
+    <link href="./css/main.css" type="text/css" rel="stylesheet" />
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="../components/side-bar/Sidebar.js" type="module"></script>
 </head>
 
 <body>
-    <div id="contentbox">
-        <div class="header">
-            <div class="searchbox">
-                <div class="input-icons">
-                    <i class="fas fa-search icon"></i>
+    <div class="navandcontent">
+        <side-bar path="../components/side-bar/styles.css" style="width: 17%; height: 100%;"></side-bar>
+
+        <div id="contentbox">
+            <div class="header">
+                <div class="searchbox">
+                    <div class="input-icons">
+                        <i class="fas fa-search icon"></i>
+                    </div>
+                    <input type="text" id="myInput" placeholder="Search" title="Type in  name" autocomplete="off">
                 </div>
-                <input type="text" id="myInput" placeholder="Search" title="Type in  name" autocomplete="off">
+                <div class="createPresentation">
+                    <i class="fas fa-plus"></i>
+                    <p>Create Presentation</p>
+                </div>
             </div>
-            <div class="createPresentation">
-                <i class="fas fa-plus"></i>
-                <p>Create Presentation</p>
-            </div>
-        </div>
 
-        <div class="text">
-            <div>
-                <h1>Templates</h1>
-                <p>Templates help you with creating your presentations easy and efficient.
-                    Use one of our Templates or one of the community.</p>
+            <div class="text">
+                <div>
+                    <h1>Templates</h1>
+                    <p>Templates help you with creating your presentations easy and efficient.
+                        Use one of our Templates or one of the community.</p>
+                </div>
+                <i class="fas fa-angle-down"></i>
             </div>
-            <i class="fas fa-angle-down"></i>
-        </div>
 
-        <ul class="myUl">
-            <li>
-                <div class="template"></div>
-                <p class="searchitem"></p>
-            </li>
-            <li>
-                <div class="template"></div>
-                <p class="searchitem"></p>
-            </li>
-            <li>
-                <div class="template"></div>
-                <p class="searchitem"></p>
-            </li>
-            <li>
-                <div class="template"></div>
-                <p class="searchitem"></p>
-            </li>
-            <li>
-                <div class="template"></div>
-                <p class="searchitem"></p>
-            </li>
-            <li>
-                <div class="template"></div>
-                <p class="searchitem"></p>
-            </li>
-            <li>
-                <div class="template"></div>
-                <p class="searchitem"></p>
-            </li>
-            <li>
-                <div class="template"></div>
-                <p class="searchitem"></p>
-            </li>
-            <li>
-                <div class="template"></div>
-                <p class="searchitem"></p>
-            </li>
-            <li>
-                <div class="template"></div>
-                <p class="searchitem"></p>
-            </li>
-            <li>
-                <div class="template"></div>
-                <p class="searchitem"></p>
-            </li>
-            <li>
-                <div class="template"></div>
-                <p class="searchitem"></p>
-            </li>
-        </ul>
-        <div class="text">
-            <div>
-                <h1>Your presentations</h1>
+            <ul class="myUl">
+                <li>
+                    <div class="template"></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"></div>
+                    <p class="searchitem"></p>
+                </li>
+            </ul>
+            <div class="text">
+                <div>
+                    <h1>Your presentations</h1>
+                </div>
             </div>
+            <ul class="myUl">
+                <li>
+                    <div class="template_yourPresentation"></div>
+                    <p class="searchitem_yourPresentation"></p>
+                    <p class="amoutofslides"></p>
+                </li>
+                <li>
+                    <div class="template_yourPresentation"></div>
+                    <p class="searchitem_yourPresentation"></p>
+                    <p class="amoutofslides"></p>
+                </li>
+                <li>
+                    <div class="template_yourPresentation"></div>
+                    <p class="searchitem_yourPresentation"></p>
+                    <p class="amoutofslides"></p>
+                </li>
+            </ul>
         </div>
-        <ul class="myUl">
-            <li>
-                <div class="template_yourPresentation"></div>
-                <p class="searchitem_yourPresentation"></p>
-                <p class="amoutofslides"></p>
-            </li>
-            <li>
-                <div class="template_yourPresentation"></div>
-                <p class="searchitem_yourPresentation"></p>
-                <p class="amoutofslides"></p>
-            </li>
-            <li>
-                <div class="template_yourPresentation"></div>
-                <p class="searchitem_yourPresentation"></p>
-                <p class="amoutofslides"></p>
-            </li>
-        </ul>
     </div>
 
     <script src="./js/index.js"></script>
