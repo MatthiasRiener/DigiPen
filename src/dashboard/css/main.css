@@ -160,10 +160,10 @@ p {
     opacity: 1;
 }
 
-.usetemplatebox {
+#usetemplatebox {
     width: 100vw;
     height: 100vh;
-    background: rgba(56, 56, 56, 0.6);
+    background: rgba(0, 0, 0, 0.89);
     position: absolute;
     left: 0;
     top: 0;
@@ -190,6 +190,14 @@ p {
     align-items: center;
 }
 
+#niggas div {
+    padding-right: 10%;
+}
+
+#niggas div i {
+    margin-right: 3%;
+}
+
 #usetemplate {
     color: black;
     background: white;
@@ -204,4 +212,16 @@ p {
     color: white;
     font-size: 300%;
     cursor: pointer;
+}
+
+#template_big_img {
+    width: 70vw;
+    margin: 3%;
+}
+
+#template_big {
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

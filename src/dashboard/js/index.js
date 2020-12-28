@@ -1,22 +1,22 @@
 let templates = [
-    { name: "Planner", image: './img/Presentation_1.png' },
-    { name: "Science", image: './img/Presentation_1.png' },
-    { name: "School", image: './img/Presentation_1.png' },
-    { name: "Politics", image: './img/Presentation_1.png' },
-    { name: "Christmas", image: './img/Presentation_1.png' },
-    { name: "Winter", image: './img/Presentation_1.png' },
-    { name: "Planner", image: './img/Presentation_1.png' },
-    { name: "Creative", image: './img/Presentation_1.png' },
-    { name: "Nature", image: './img/Presentation_1.png' },
-    { name: "Food", image: './img/Presentation_1.png' },
-    { name: "Portfolio", image: './img/Presentation_1.png' },
-    { name: "Sport", image: './img/Presentation_1.png' },
-    { name: "Health", image: './img/Presentation_1.png' }
+    { name: "Planner", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Science", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "School", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Politics", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Christmas", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Winter", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Planner", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Creative", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Nature", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Food", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Portfolio", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Sport", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Health", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' }
 ],
     yourPresentations = [
-        { name: "British Tea Tips", image: './img/Presentation_1.png', slides: 13 },
-        { name: "Austrian History", image: './img/Presentation_1.png', slides: 22 },
-        { name: "Government Work", image: './img/Presentation_1.png', slides: 47 },
+        { name: "British Tea Tips", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
+        { name: "Austrian History", image: './img/Presentation_1.png', slides: 22, downloads: 12343, created: '28.12.2020' },
+        { name: "Government Work", image: './img/Presentation_1.png', slides: 47, downloads: 12343, created: '28.12.2020' },
     ],
     i = 0;
 
@@ -97,6 +97,24 @@ $(".fa-angle-down, .fa-angle-up").click(function (e) {
 });
 
 $(".myUl li").click(function (e) {
-    console.log(e.target.parentElement.children[1].innerText)
+    title = "";
+    if (["searchitem_yourPresentation", "searchitem"].includes(e.target.parentElement.parentElement.children[1].classList.value)) {
+        title = e.target.parentElement.parentElement.children[1].innerText;
+    } else if (["searchitem_yourPresentation", "searchitem"].includes(e.target.parentElement.children[1].classList.value)) {
+        title = e.target.parentElement.children[1].innerText;
+    }
+
+    $("#usetemplatebox").css('display', 'flex')
+    $("#template_title").text(title);
+
+    [yourPresentations, templates].forEach((e) => {
+        e.forEach((templates) => {
+            if (templates.name == title) {
+                $("#downloadamount").text(templates.downloads)
+                $("#createddate").text(templates.created)
+                $("#template_big_img").attr("src", templates.image);
+            }
+        })
+    })
     // console.log(e.target.parentElement.getElementsByClassName('searchitem_yourPresentation').classList || e.target.parentElement.getElementsByClassName('searchitem').classList)
 });
