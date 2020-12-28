@@ -43,6 +43,9 @@
     disconnectedCallback() {
 
     }
+    animateWorkspace() {
+        console.log("creating workspace....");
+    }
   }
 
 window.customElements.define('create-workspace', Workspace);

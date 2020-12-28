@@ -25,11 +25,11 @@
 
           <div class="nav-bar-element">
             <ion-icon name="people-outline" class="icon-navbar"></ion-icon>
-            <p>Workspaces</p>
+            <p>Workspace</p>
             <ion-icon
               name="add-outline"
               style="margin-left: auto; margin-right: 15px"
-              class="icon-navbar"
+              class="icon-navbar add-workspace-btn"
             ></ion-icon>
           </div>
 

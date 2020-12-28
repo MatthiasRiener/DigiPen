@@ -16,8 +16,17 @@
         this.shadowRoot.appendChild(this.temp.content.cloneNode(true));
         this.loadCss(this.getAttribute("path"));
         this.container = this.shadowRoot.querySelector('.left-side-bar');
+        this.workSpaceBtn = this.shadowRoot.querySelector('.add-workspace-btn');
 
+        this.initializeEvents();
     }
+      initializeEvents() {
+          this.workSpaceBtn.addEventListener('click', e => {this.addWorkSpace() });
+      }
+
+      addWorkSpace() {
+        this.dispatchEvent(new CustomEvent('animWorkSpace', {}));
+      }
 
       loadCss(path) {
           fetch(path)
