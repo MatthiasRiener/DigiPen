@@ -95,3 +95,5 @@ $(".fa-angle-down, .fa-angle-up").click(function (e) {
     }
 
 });
+
+$(".ul li").click();

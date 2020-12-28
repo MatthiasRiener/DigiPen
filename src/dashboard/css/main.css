@@ -114,6 +114,11 @@ p {
     border-radius: 10px;
     background-repeat: no-repeat;
     background-size: cover;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 4%;
 }
 
 .searchitem, .searchitem_yourPresentation {
@@ -137,4 +142,12 @@ p {
     display: flex;
     height: 100vh;
     width: 100vw;
+}
+
+.fa-eye {
+    background: white;
+    padding: 2%;
+    border-radius: 100%;
+    right: 0;
+    bottom: 0;
 }
