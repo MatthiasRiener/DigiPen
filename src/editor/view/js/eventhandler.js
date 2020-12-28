@@ -60,8 +60,7 @@ $(document).click(function(event) {
 });
 
 $('#addObjectPopup-inner-popup-image').click(function(){
-    $('#addObjectPopup-inner-popup').css('display', 'none');
-    $('#addObjectPopup-inner-unsplash').css('display', 'flex');
+    $('#imagePopup').css('display', 'flex');
 });
 
 $('#content-navigation-second-settings').click(function() {
