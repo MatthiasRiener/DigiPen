@@ -177,10 +177,16 @@ function loadCalendar() {
 
     for (let i = 1; i <= 18; i++) {
         let newDate = new Date(now.setDate(now.getDate() + 1));
-        $('.calendar-row-days').append(`<div class="calendar-day" data-date="${newDate}" ><p>${newDate.getDate()}</p></div>`)
+
+        console.log(newDate, new Date());
+
+        if(newDate.toLocaleDateString('en-US') == new Date().toLocaleDateString('en-US')) {
+            $('.calendar-row-days').append(`<div class="cur-day-active calendar-day" data-date="${newDate}"><p>${newDate.getDate()}</p></div>`);
+        } else {
+            console.log("andere tag")
+            $('.calendar-row-days').append(`<div class="calendar-day" data-date="${newDate}"><p>${newDate.getDate()}</p></div>`);
+        }
     }
-
-
 }
 
 

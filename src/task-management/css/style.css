@@ -302,7 +302,13 @@ body {
 
 }
 
+.cur-day-active {
+    background: #383838 !important;
+}
 
+.cur-day-active p {
+    color: white;
+}
 
 .active-bar {
     position: absolute;
