@@ -1,3 +1,7 @@
+:host {
+  position: relative;
+  z-index: 2;
+}
 
 .header-nav {
   height: 7vh;
