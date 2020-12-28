@@ -118,3 +118,8 @@ $(".myUl li").click(function (e) {
     })
     // console.log(e.target.parentElement.getElementsByClassName('searchitem_yourPresentation').classList || e.target.parentElement.getElementsByClassName('searchitem').classList)
 });
+
+$("#usetemplatebox").click(function (e) {
+    if (e.target.id == "usetemplatebox")
+        $(this).css('display', 'none')
+})
