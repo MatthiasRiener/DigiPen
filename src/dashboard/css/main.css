@@ -38,6 +38,7 @@ p {
 
 .myUl li {
     margin: 2vw 2vw 0 2vw;
+    cursor: pointer;
 }
 
 .myUl li a {
@@ -140,14 +141,66 @@ p {
 
 .navandcontent {
     display: flex;
-    height: 100vh;
+    height: 93vh;
     width: 100vw;
 }
 
 .fa-eye {
+    opacity: 0;
     background: white;
     padding: 2%;
     border-radius: 100%;
     right: 0;
+    transition: all .2s;
     bottom: 0;
+}
+
+.template:hover .fa-eye, .template_yourPresentation:hover .fa-eye {
+    opacity: 1;
+}
+
+.usetemplatebox {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(56, 56, 56, 0.6);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+}
+
+#usetemplateboxheader {
+    width: 70vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#niggas div, #template_title, #downloadamount, #createddate {
+    color: white;
+}
+
+#niggas, #niggas div {
+    display: flex;
+    align-items: center;
+}
+
+#usetemplate {
+    color: black;
+    background: white;
+    padding: 1% 2%;
+    border-radius: 10px;
+    font-weight: bolder;
+    border: none;
+    cursor: pointer;
+}
+
+#template_big i {
+    color: white;
+    font-size: 300%;
+    cursor: pointer;
 }

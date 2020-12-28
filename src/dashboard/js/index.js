@@ -1,3 +1,26 @@
+let templates = [
+    { name: "Planner", image: './img/Presentation_1.png' },
+    { name: "Science", image: './img/Presentation_1.png' },
+    { name: "School", image: './img/Presentation_1.png' },
+    { name: "Politics", image: './img/Presentation_1.png' },
+    { name: "Christmas", image: './img/Presentation_1.png' },
+    { name: "Winter", image: './img/Presentation_1.png' },
+    { name: "Planner", image: './img/Presentation_1.png' },
+    { name: "Creative", image: './img/Presentation_1.png' },
+    { name: "Nature", image: './img/Presentation_1.png' },
+    { name: "Food", image: './img/Presentation_1.png' },
+    { name: "Portfolio", image: './img/Presentation_1.png' },
+    { name: "Sport", image: './img/Presentation_1.png' },
+    { name: "Health", image: './img/Presentation_1.png' }
+],
+    yourPresentations = [
+        { name: "British Tea Tips", image: './img/Presentation_1.png', slides: 13 },
+        { name: "Austrian History", image: './img/Presentation_1.png', slides: 22 },
+        { name: "Government Work", image: './img/Presentation_1.png', slides: 47 },
+    ],
+    i = 0;
+
+
 $("#myInput").keyup(myFunction);
 
 function myFunction() {
@@ -7,7 +30,6 @@ function myFunction() {
     ul = document.getElementsByClassName("myUl");
     [...ul].forEach(function (e) {
         li = e.getElementsByTagName("li");
-        console.log("li");
         for (i = 0; i < li.length; i++) {
             a = li[i].getElementsByClassName("searchitem")[0] || li[i].getElementsByClassName("searchitem_yourPresentation")[0];
             txtValue = a.textContent || a.innerText;
@@ -22,35 +44,13 @@ function myFunction() {
 }
 
 function dynamicDisplay() {
-    let templates = [
-        { name: "Planner", image: '' },
-        { name: "Science", image: '' },
-        { name: "School", image: '' },
-        { name: "Politics", image: '' },
-        { name: "Christmas", image: '' },
-        { name: "Winter", image: '' },
-        { name: "Planner", image: '' },
-        { name: "Creative", image: '' },
-        { name: "Nature", image: '' },
-        { name: "Food", image: '' },
-        { name: "Portfolio", image: '' },
-        { name: "Sport", image: '' },
-        { name: "Health", image: '' }
-    ],
-        yourPresentations = [
-            { name: "British Tea Tips", image: '', slides: 13 },
-            { name: "Austrian History", image: '', slides: 22 },
-            { name: "Government Work", image: '', slides: 47 },
-        ],
-        i = 0;
-
     templates.forEach((e) => {
         if (!$(".searchitem")[i] || !$(".template")[i]) {
             i = 0;
             return;
         }
         $(".searchitem")[i].innerText = e.name;
-        $(".template")[i].style.backgroundImage = "url('./img/Presentation_" + i + ".png')";
+        $(".template")[i].style.backgroundImage = "url('" + templates[i].image + "')";
         i++;
     });
 
@@ -60,7 +60,7 @@ function dynamicDisplay() {
             return;
         }
         $(".searchitem_yourPresentation")[i].innerText = e.name;
-        $(".template_yourPresentation")[i].style.backgroundImage = "url('./img/Presentation_" + i + ".png')";
+        $(".template_yourPresentation")[i].style.backgroundImage = "url('" + templates[i].image + "')";
         $(".amoutofslides")[i].innerText = e.slides + " Slides";
         i++;
     });
@@ -96,4 +96,6 @@ $(".fa-angle-down, .fa-angle-up").click(function (e) {
 
 });
 
-$(".ul li").click();
+$(".myUl li").click(function (e) {
+    console.log(e.target.parentElement.getElementsByClassName('searchitem_yourPresentation').classList || e.target.parentElement.getElementsByClassName('searchitem').classList)
+});
