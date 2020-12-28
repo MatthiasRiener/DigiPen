@@ -136,7 +136,8 @@ p {
 #contentbox {
     position: relative;
     width: 83%;
-    height: 80vh;
+    height: 93vh;
+    overflow: auto;
 }
 
 .navandcontent {

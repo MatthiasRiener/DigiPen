@@ -97,5 +97,6 @@ $(".fa-angle-down, .fa-angle-up").click(function (e) {
 });
 
 $(".myUl li").click(function (e) {
-    console.log(e.target.parentElement.getElementsByClassName('searchitem_yourPresentation').classList || e.target.parentElement.getElementsByClassName('searchitem').classList)
+    console.log(e.target.parentElement.children[1].innerText)
+    // console.log(e.target.parentElement.getElementsByClassName('searchitem_yourPresentation').classList || e.target.parentElement.getElementsByClassName('searchitem').classList)
 });
