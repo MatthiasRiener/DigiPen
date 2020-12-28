@@ -6,36 +6,41 @@ const tasks = [{
         tasks: [{
                 taskName: "Schaut Österreich wie ein Schnitzel aus?",
                 start: "12/21/2020",
-                end: "12/24/2020"
+                end: "12/24/2020",
+                finished: true,
             },
             {
                 taskName: "Sollte Südtirol zu Österreich gehören?",
                 start: "12/22/2020",
-                end: "12/27/2020"
+                end: "12/27/2020",
+                finished: false,
             },
 
             {
                 taskName: "Sollte Südtirol zu Österreich gehören?",
                 start: "12/24/2020",
-                end: "12/28/2020"
+                end: "12/28/2020",
+                finished: false,
             },
         ]
     },
 
     {
         id: "432561123",
-        name: "Austrian Government",
+        name: "Austrian Governmet",
         members: 2,
         taskColor: "#079992",
         tasks: [{
                 taskName: "How to eat Cookies with Heroin?",
                 start: "12/17/2020",
-                end: "12/20/2020"
+                end: "12/20/2020",
+                finished: false,
             },
             {
                 taskName: "How to eat Cookies with Crack?",
                 start: "12/24/2020",
-                end: "12/28/2020"
+                end: "12/28/2020",
+                finished: true,
             }
         ]
     },
@@ -79,7 +84,7 @@ function initializePresentationContainers() {
 
 function initializeUsers(pres) {
     for (let i = 0; i < pres.members; i++) {
-        $(`.presentation-section[data-presentation-id=${pres.id}] .presentation-header .profile-images`).append(`<div style="margin-left: -0.4vw; z-index: ${pres.members - i}; background-image: url(../img/user_${randomNumber(1,14)}.png)" class="user"></div>`)
+        $(`.presentation-section[data-presentation-id=${pres.id}] .presentation-header .profile-images`).append(`<div style="margin-left: -0.4vw; z-index: ${pres.members - i}; background-image: url(./img/user_${randomNumber(1,14)}.png)" class="user"></div>`)
     }
 }
 
@@ -121,7 +126,7 @@ function insertTasks(tasks, pres) {
             const cWidth = $('.calendar-row-days').eq(0).width();
             const startPos = dateDiffInDays(new Date($('.calendar-day').eq(0).data("date")), new Date(task.start)) * distance;
             const diff = dateDiffInDays(new Date(task.start), new Date(task.end))
-            $(`.presentation-section[data-presentation-id=${pres.id}] .task-row`).eq(rIndex).append(`<div class="task-item" style="background-color:${pres.taskColor};width:${(distance * diff) / cWidth * 100 - 0.2}%; left: ${startPos / cWidth * 100 + 0.2}%"><div class="user-task" style="background-image: url('../img/user_${randomNumber(1,14)}.png')"></div><p>${task.taskName}</p></div>`)
+            $(`.presentation-section[data-presentation-id=${pres.id}] .task-row`).eq(rIndex).append(`<div class="task-item" style="background-color:${ task.finished ? pres.taskColor.concat("80") : pres.taskColor};width:${(distance * diff) / cWidth * 100 - 0.2}%; left: ${startPos / cWidth * 100 + 0.2}%"><div class="user-task" style="background-image: url('./img/user_${randomNumber(1,14)}.png')"></div><p>${task.taskName}</p></div>`)
         });
     })
 }
