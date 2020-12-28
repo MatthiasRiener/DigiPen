@@ -97,29 +97,41 @@ $('#settingsPopup-inner-bottom-header-exit').click(function() {
 // open cam popup in settings popup
 $('#settingsPopup-inner-bottom-settings-cam-bottom-popup').click(function() {
     $('#camPopup').css('display', 'flex');
+    $('#camPopup-inner-popup').css('display', 'flex');
+    $('#camPopup-inner-popup').animate({
+        opacity: 1.0
+    }, 100);
 });
 
 // close cam popup in settings popup
 $(document).click(function(event) {
     if (!$(event.target).closest("#camPopup-inner-popup, #settingsPopup-inner-bottom-settings-cam-bottom-popup").length) {
         $('#camPopup').css('display', 'none');    
+        $('#camPopup-inner-popup').css('display', 'none');
+        $('#camPopup-inner-popup').css('opacity', '0.0');
     }
 });
 
 // open mic popup in settings popup
 $('#settingsPopup-inner-bottom-settings-mic-bottom-popup').click(function() {
     $('#micPopup').css('display', 'flex');
+    $('#micPopup-inner-popup').css('display', 'flex');
+    $('#micPopup-inner-popup').animate({
+        opacity: 1.0
+    }, 100);
 });
 
 // close mic popup in settings popup
 $(document).click(function(event) {
     if (!$(event.target).closest("#micPopup-inner-popup, #settingsPopup-inner-bottom-settings-mic-bottom-popup").length) {
-        $('#micPopup').css('display', 'none');    
+        $('#micPopup').css('display', 'none');   
+        $('#micPopup-inner-popup').css('display', 'none');
+        $('#micPopup-inner-popup').css('opacity', '0.0'); 
     }
 });
 
 // open presentation-mode popup
-$('#content-navigation-fifth-box-down').click(function(){
+$('#content-navigation-fifth-box-down').click(function() {
     $('#presentationModePopup').css('display', 'flex');
     $('#presentationModePopup-inner-popup').css('display', 'flex');
     $('#presentationModePopup-inner-popup').animate({
