@@ -1,6 +1,5 @@
 
   export const template = `
-   <div class="left-side-bar">
         <div class="left-side-content">
           <p id="title-nav">Navigation</p>
 
@@ -54,6 +53,5 @@
             <p>Profile</p>
           </div>
         </div>
-      </div>
       </div>
 `;

@@ -32,7 +32,7 @@
 
     <div class="main-content">
 
-        <side-bar path="../components/side-bar/styles.css"  style="width: 17%; height: 99%;"></side-bar>
+        <side-bar path="../components/side-bar/styles.css" containerWidth="17" style="width: 17%; height: 98%;"></side-bar>
       <div class="task-content">
         <div class="top-bar-task">
           <p>Presentation Roadmap</p>

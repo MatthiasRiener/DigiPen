@@ -14,7 +14,7 @@
       });
 
         this.shadowRoot.appendChild(this.temp.content.cloneNode(true));
-        this.loadCss("styles.css");
+        this.loadCss(this.getAttribute("path"));
         this.container = this.shadowRoot.querySelector('.left-side-bar');
 
     }
@@ -31,8 +31,6 @@
       }
     connectedCallback() {
 
-        this.container.style.width = `${this.getAttribute("width")}%`;
-        this.container.style.height = `${this.getAttribute("height")}%`;
     }
 
 
