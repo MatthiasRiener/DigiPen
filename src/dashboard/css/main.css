@@ -237,13 +237,15 @@ p {
 }
 
 #template_big_img {
-    width: 70%;
+    max-width: 70vw;
+    max-height: 65vh;
     margin: 3%;
     border: solid 1px white;
 }
 
 #template_small_img {
-    width: 100%;
+    max-width: 40vw;
+    max-height: 30vh;
     margin: 3%;
 }
 
@@ -254,8 +256,12 @@ p {
     align-items: center;
 }
 
+#template_small {
+    height: 50%;
+}
+
 #template_scroll {
-    width: 70vw;
+    max-width: 70vw;
     position: relative;
     overflow: auto;
     white-space: nowrap;
@@ -263,7 +269,9 @@ p {
 }
 
 #template_scroll img {
-    width: 12vw;
+    max-width: 12vw;
+    max-height: 12vh;
+    margin-right: 10px;
     border: solid 1px white;
 }
 
@@ -292,6 +300,7 @@ p {
 
 .controllsandshareview {
     width: 70vw;
+    height: 70vh;
     display: none;
     justify-content: space-between;
 }
@@ -308,8 +317,8 @@ p {
 }
 
 .profile img {
-    width: 5vw;
-    height: 5vw;
+    width: 50px;
+    height: 50px;
     margin-right: 1vh;
     border: solid 2px black;
     border-radius: 100%;
@@ -317,18 +326,19 @@ p {
 
 .shareview {
     width: 100%;
+    height: 50%;
     background-color: white;
     padding: 2vw;
     border-radius: 10px;
-    height: fit-content;
+    overflow: auto;
 }
 
-.shareview h2 {
+.shareview h2, .controlls h2 {
     font-size: large;
     margin-bottom: 1vh;
 }
 
-.shareview h3 {
+.shareview h3, .controlls h3 {
     font-size: medium;
     color: #383838;
     margin-top: 2vh;
@@ -343,13 +353,92 @@ p {
     color: #383838;
 }
 
-.acceptedbox, .pendingbox {
-    max-height: 20vh;
-    overflow: auto;
-}
-
 .controlls {
     width: 30vw;
     height: 100%;
     background: white;
+    border-radius: 10px;
+    padding: 2vw;
+    box-sizing: border-box;
+}
+
+.controlls form {
+    height: 93%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.controlls form input[type="checkbox"] {
+    display: none;
+}
+
+.controlls form input[type="checkbox"]+label::before {
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: "";
+    float: left;
+    margin-right: 5px;
+    border: solid 1px #383838;
+    border-radius: 5px;
+}
+
+.controlls form input[type="checkbox"]:checked+label::before {
+    background: #383838;
+    content: "✓";
+    font-size: 10px;
+    color: white;
+}
+
+.controlls form label {
+    font-weight: bolder;
+    font-size: small;
+    color: #C6C6C6;
+}
+
+.keywords {
+    margin: 1vh 0 5vh 0;
+}
+
+.keywords span {
+    background: #383838;
+    box-shadow: -2px 2px 5px gray;
+    color: white;
+    font-size: small;
+    padding: 1% 3%;
+    border-radius: 4px;
+}
+
+#addkeyword {
+    width: 100%;
+    font-size: 16px;
+    padding: 7px 17px;
+    outline: none;
+    border: none;
+    background: #F6F4F9;
+    border-radius: 8px;
+    margin-top: 1vh;
+}
+
+#submitcontrolls {
+    position: relative;
+    left: 0;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: medium;
+    font-weight: bolder;
+    background: #383838;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+#submitcontrolls:hover {
+    background: rgba(0, 0, 0, 0.89);
 }

@@ -219,7 +219,27 @@
                 </div>
             </div>
             <div class="controlls">
-
+                <h2>Settings</h2>
+                <form action="">
+                    <h3>Import</h3>
+                    <input type="checkbox" id="importcheck" name="importcheck" value="importcheck">
+                    <label for="importcheck"> Import complete Template</label><br>
+                    <h3>Timeline</h3>
+                    <input type="checkbox" id="timelinecheck" name="timelinecheck" value="timelinecheck">
+                    <label for="timelinecheck"> Create Timeline</label><br>
+                    <h3>Keywords</h3>
+                    <input type="text" name="addkeyword" id="addkeyword" placeholder="Add">
+                    <div class="keywords">
+                        <span>Space</span>
+                        <span>Rocket</span>
+                        <span>Science</span>
+                    </div>
+                    <h2>Permission</h2>
+                    <h3>Export</h3>
+                    <input type="checkbox" id="exportcheck" name="exportcheck" value="exportcheck">
+                    <label for="exportcheck"> Allow everyone to generate PDF</label><br>
+                    <input type="submit" value="Start Presentation" id="submitcontrolls">
+                </form>
             </div>
         </div>
     </div>
