@@ -297,6 +297,7 @@
     text-align: center;
     flex: 1 0 auto;
     height: auto;
+    transition: 0.3s all ease-in;
 }
 
 .flex-item:before {
