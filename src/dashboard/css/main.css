@@ -181,20 +181,20 @@ p {
     align-items: center;
 }
 
-#niggas div, #template_title, #downloadamount, #createddate {
+#statsbox div, #template_title, #downloadamount, #createddate {
     color: white;
 }
 
-#niggas, #niggas div {
+#statsbox, #statsbox div {
     display: flex;
     align-items: center;
 }
 
-#niggas div {
+#statsbox div {
     padding-right: 10%;
 }
 
-#niggas div i {
+#statsbox div i {
     margin-right: 3%;
 }
 
@@ -217,6 +217,7 @@ p {
 #template_big_img {
     width: 70vw;
     margin: 3%;
+    border: solid 1px white;
 }
 
 #template_big {
@@ -224,4 +225,40 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#template_scroll {
+    width: 70vw;
+    position: relative;
+    overflow: auto;
+    white-space: nowrap;
+    padding-bottom: 10px;
+}
+
+#template_scroll img {
+    width: 12vw;
+    border: solid 1px white;
+}
+
+#template_scroll::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+/* Track */
+
+#template_scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+
+#template_scroll::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+
+#template_scroll::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
