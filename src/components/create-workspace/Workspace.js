@@ -31,7 +31,8 @@
               });
       }
     connectedCallback() {
-
+        // intialize start state
+        this.classList.add('hidden');
     }
 
 
@@ -47,14 +48,15 @@
     animateWorkspace() {
         this.classList.remove('hidden');
         this.classList.add('visible');
-        this.container.classList.remove('addPopupAnim');
-        void this.container.offsetWidth;
-        this.container.classList.add('addPopupAnim');
+
+        this.container.classList.add('popTransition');
+
     }
 
     createWorkspace() {
         this.classList.remove('visible');
         this.classList.add('hidden');
+        this.container.classList.remove('popTransition');
     }
   }
 
