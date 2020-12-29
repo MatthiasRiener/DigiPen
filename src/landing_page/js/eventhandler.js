@@ -6,6 +6,10 @@ window.onload = function () {
     fillTemplates();
 }
 
+new fullpage('#fullpage', {
+    
+});
+
 
 function fillObjects() {
 

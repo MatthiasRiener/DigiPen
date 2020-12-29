@@ -1,95 +1,79 @@
-body {
+* {
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+#fullpage {
     height: 540vh;
     background: var(--white);
     margin: 0 !important;
-
-
     display: flex;
-    align-items: center;
     flex-direction: column;
-
-    overflow-x: hidden;
 }
 
+.header-section {
+    width: 100%;
+    height: 100vh;
+    margin-top: 30px;
+    font-family: 'Karla';
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: var(--white);
+}
 
 #nav-bar {
     width: 100%;
-    ;
     height: 5vh;
     background: var(--white);
     box-shadow: 0px 0px 4px 0px #00000032;
-
     display: flex;
     align-items: center;
     justify-content: flex-end;
-
     font-family: 'Karla';
-    color: var(--dark-grey);
     font-weight: bold;
-    ;
-
 }
 
-
 #nav-bar-logo {
-
     font-size: 26px;
     margin-left: 35px;
     margin-right: auto;
+    color: var(--dark-grey);
 }
 
 #nav-bar-sign-up-div {
     width: 100px;
     height: 75%;
     background: var(--dark-grey);
-
     margin: 0px 35px 0px 35px;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     color: var(--white);
 }
 
-
-.header-section {
+.headerBottom {
     width: 100%;
-    height: 45vh;
-
-    margin-top: 30px;
-
-    font-family: 'Karla';
-
-
+    height: 95vh;
     display: flex;
-    flex-direction: column;
-
     align-items: center;
-    justify-content: flex-end;
-
-
-
+    flex-direction: column;
+    justify-content: center;
 }
 
 .header-section h1 {
-
     margin: 0 !important;
-
-    color: #000000;
     font-size: 70px;
     letter-spacing: -40;
     font-weight: bold;
     text-align: center;
     line-height: 1;
     z-index: 2;
-
-
 }
 
 .header-section p {
-    color: #000000;
-    font-size: 25px;
+    font-size: 20px;
     letter-spacing: -40;
     font-weight: 400;
     text-align: center;
@@ -97,18 +81,22 @@ body {
     z-index: 2;
 }
 
-
 .object-header {
     border-radius: 90%;
     position: absolute;
+}
 
+.positionHeaderButtons {
+    width: 100%;
+    height: 6vh;
+    display: flex;
+    justify-content: center;
 }
 
 .header-option-container {
     margin-top: 50px !important;
     width: 26%;
-    height: 6vh;
-
+    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -132,29 +120,23 @@ body {
 .header-option-container .watch-demo {
     height: 100%;
     width: 40%;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     font-size: 28px;
     color: var(--dark-grey);
-
 }
 
 .header-option-container .watch-demo p {
     font-size: 18px;
 }
 
-
 .video-section {
-    margin-top: 20vh;
-    height: 80vh;
+    width: 80%;
+    height: 80%;
     background-image: url('../img/video-gradient-bg.png');
     background-size: cover;
     background-position: center;
-    width: 80%;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -168,21 +150,26 @@ body {
     box-shadow: 0px 0px 40px #33333392;
 }
 
-
 .section-two {
     width: 100%;
-    height: 150vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
-
+    align-items: center;
 }
 
+.positionVideo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .section-realtime {
     height: 100vh;
     width: 100%;
 }
-
 
 .section-realtime-header {
     width: 100%;
@@ -190,15 +177,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     justify-content: flex-end;
-
     line-height: 0.8;
-
     font-family: 'Karla';
     font-weight: bold;
 }
-
 
 .section-realtime-header p:nth-child(1) {
     font-size: 45px;
@@ -209,13 +192,11 @@ body {
 .section-realtime-header p:nth-child(2) {
     font-size: 30px;
     color: #38383875;
-
 }
 
 .section-realtime-main {
     width: 100%;
     height: 75vh;
-
     display: flex;
     flex-direction: row;
 }
@@ -223,11 +204,9 @@ body {
 .section-realtime-bottom {
     height: 10vh;
     width: 100%;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     font-size: 28px;
     font-weight: bold;
     font-family: 'Karla';
@@ -237,7 +216,6 @@ body {
 .section-realtime-main-messages {
     height: 100%;
     width: 50%;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -258,7 +236,6 @@ body {
     background-image: url('../img/img_webview_editor.png');
 }
 
-
 .message {
     padding: 13px;
     height: auto;
@@ -268,8 +245,6 @@ body {
     font-size: 20px;
     font-family: 'Karla';
     margin: 10px;
-
-
 }
 
 .message p {
@@ -287,7 +262,6 @@ body {
     background: #4D4FFB;
 }
 
-
 .section-users {
     height: 100vh;
     width: 100%;
@@ -296,19 +270,22 @@ body {
     justify-content: space-around;
 }
 
-
-
+.positionUsers{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
 
 .flex-container {
     padding: 0;
     margin: 0;
     list-style: none;
-
     display: flex;
     justify-content: space-around;
-
     line-height: 30px;
-
 }
 
 .flex-item {
@@ -333,14 +310,11 @@ body {
     height: auto;
 }
 
-
 .section-users-text {
     height: 100%;
     width: 30%;
-
     display: flex;
     flex-direction: column;
-
     justify-content: center;
     text-align: left;
 }
@@ -368,32 +342,34 @@ body {
     font-weight: bold;
 }
 
-
 .section-templates {
-    height: 100vh;
+    height: 85vh;
     width: 100%;
-
     background: black;
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+.positionTemplates{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .grid-container {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-
     height: 90%;
     width: 90%;
 }
 
 .grid-templates {
-   
     height: calc(50% - 20px);
     width: calc(50% - 20px);
-
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -401,9 +377,6 @@ body {
     background-size: cover;
     background-position: center;
 }
-
-
-
 
 .grid-templates  p {
     margin: 0 !important;
@@ -424,15 +397,11 @@ body {
 .grid-templates  p:nth-of-type(3) {
     font-size: 24px;
     color: white;
- 
 }
-
 
 .footer {
     height: 15vh;
     width: 100%;
-    background: black;
-
     display: flex;
     align-items: flex-end;
     justify-content: center;
@@ -440,15 +409,11 @@ body {
 
 .footer-content {
     width: 90%;
-    height: 70%;
+    height: 100%;
     background-color: black;
-
     border-top: 2px solid #A2A2A2;
-
     display: flex;
     flex-direction: row;
-
-
 }
 
 .footer-content p {
