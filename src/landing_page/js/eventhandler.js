@@ -74,9 +74,15 @@ function insertUsers() {
 }
 
 function updateUsers() {
+    let counter = 0;
     do {
         index = Math.floor(Math.random() * users.length) + 1;
         picture = Math.floor(Math.random() * PICTURECOUNT) + 1;
+        counter++;
+        console.log("break: " + counter)
+        if(counter == 200) {
+            break;
+        }
     } while(users.includes(picture));
 
     console.log("index:" + index);
