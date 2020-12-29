@@ -3,11 +3,29 @@
     width: 100%;
     height: 100%;
     z-index: 10;
-    display: none !important;
     background: rgba(0,0,0,0.4);
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+:host(.hidden) {
+    display: none !important;
+}
+
+
+:host(.visible) {
+    display: flex !important;
+}
+
+@keyframes popup {
+    from {background-color: red !important;}
+    to {background-color: blue !important;}
+}
+
+.addPopupAnim {
+    animation-name: popup;
+    animation-duration: 2s;
 }
 
 .workspace-container {

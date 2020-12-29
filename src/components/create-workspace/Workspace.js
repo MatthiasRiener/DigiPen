@@ -15,8 +15,9 @@
 
         this.shadowRoot.appendChild(this.temp.content.cloneNode(true));
         this.loadCss(this.getAttribute("path"));
-        this.container = this.shadowRoot.querySelector('.left-side-bar');
+        this.container = this.shadowRoot.querySelector('.workspace-container');
 
+        this.shadowRoot.querySelector('.btn-create-ws').addEventListener('click', e => {this.createWorkspace()});
     }
 
       loadCss(path) {
@@ -44,7 +45,16 @@
 
     }
     animateWorkspace() {
-        console.log("creating workspace....");
+        this.classList.remove('hidden');
+        this.classList.add('visible');
+        this.container.classList.remove('addPopupAnim');
+        void this.container.offsetWidth;
+        this.container.classList.add('addPopupAnim');
+    }
+
+    createWorkspace() {
+        this.classList.remove('visible');
+        this.classList.add('hidden');
     }
   }
 
