@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     font-family: Karla;
+    outline: none;
 }
 
 h1 {
@@ -201,26 +202,52 @@ p {
 #usetemplate {
     color: black;
     background: white;
-    padding: 1% 2%;
+    padding: 1vh 2vw;
     border-radius: 10px;
     font-weight: bolder;
     border: none;
     cursor: pointer;
 }
 
-#template_big i {
+#usetemplate:hover {
+    background: #f1f1f1;
+}
+
+.closeicon {
+    color: white;
+    font-size: 200%;
+    position: absolute;
+    right: 10vw;
+    cursor: pointer;
+}
+
+#controllsbox {
+    display: flex;
+    align-items: center;
+}
+
+#template_big i, #template_small i {
     color: white;
     font-size: 300%;
     cursor: pointer;
 }
 
+#template_small i {
+    font-size: 150%;
+}
+
 #template_big_img {
-    width: 70vw;
+    width: 70%;
     margin: 3%;
     border: solid 1px white;
 }
 
-#template_big {
+#template_small_img {
+    width: 100%;
+    margin: 3%;
+}
+
+#template_big, #template_small {
     height: fit-content;
     display: flex;
     justify-content: center;
@@ -261,4 +288,68 @@ p {
 
 #template_scroll::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+.controllsandshareview {
+    width: 70vw;
+    display: none;
+    justify-content: space-between;
+}
+
+.templateshareview {
+    width: 40vw;
+    margin-right: 5vw;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    margin: 1vh 0;
+}
+
+.profile img {
+    width: 5vw;
+    height: 5vw;
+    margin-right: 1vh;
+    border: solid 2px black;
+    border-radius: 100%;
+}
+
+.shareview {
+    width: 100%;
+    background-color: white;
+    padding: 2vw;
+    border-radius: 10px;
+    height: fit-content;
+}
+
+.shareview h2 {
+    font-size: large;
+    margin-bottom: 1vh;
+}
+
+.shareview h3 {
+    font-size: medium;
+    color: #383838;
+    margin-top: 2vh;
+}
+
+.shareview p {
+    font-size: small;
+}
+
+.name {
+    font-weight: bolder;
+    color: #383838;
+}
+
+.acceptedbox, .pendingbox {
+    max-height: 20vh;
+    overflow: auto;
+}
+
+.controlls {
+    width: 30vw;
+    height: 100%;
+    background: white;
 }

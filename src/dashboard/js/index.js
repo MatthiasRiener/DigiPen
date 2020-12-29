@@ -112,13 +112,22 @@ $(".myUl li").click(function (e) {
             if (templates.name == title) {
                 $("#downloadamount").text(templates.downloads)
                 $("#createddate").text(templates.created)
-                $("#template_big_img").attr("src", templates.image);
+                $("#template_big_img, #template_small_img").attr("src", templates.image);
             }
         })
     })
 });
 
 $("#usetemplatebox").click(function (e) {
-    if (e.target.id == "usetemplatebox")
+    if (e.target.id == "usetemplatebox" || e.target.classList.contains("closeicon")) {
         $(this).css('display', 'none')
+        $("#template_big, #template_scroll, #usetemplate").css('display', 'flex');
+        $(".controllsandshareview").css('display', 'none');
+    }
 })
+
+$("#usetemplate").click(function (e) {
+    $(this).css('display', 'none');
+    $("#template_big, #template_scroll").css('display', 'none');
+    $(".controllsandshareview").css('display', 'flex');
+});
