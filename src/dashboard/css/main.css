@@ -14,7 +14,7 @@ p {
     color: rgba(56, 56, 56, 0.6)
 }
 
-#myInput {
+#myInput, #myInput_search {
     /* background-image: url('/css/searchicon.png'); */
     background-position: 10px 12px;
     background-repeat: no-repeat;
@@ -139,6 +139,7 @@ p {
     width: 83%;
     height: 93vh;
     overflow: auto;
+    padding-bottom: 5%;
 }
 
 .navandcontent {
@@ -216,8 +217,6 @@ p {
 .closeicon {
     color: white;
     font-size: 200%;
-    position: absolute;
-    right: 10vw;
     cursor: pointer;
 }
 
@@ -277,7 +276,7 @@ p {
 
 #template_scroll::-webkit-scrollbar {
     width: 4px;
-    height: 4px;
+    height: 8px;
 }
 
 /* Track */
@@ -367,6 +366,7 @@ p {
     position: relative;
     display: flex;
     flex-direction: column;
+    align-content: space-between;
 }
 
 .controlls form input[type="checkbox"] {
@@ -425,8 +425,8 @@ p {
 }
 
 #submitcontrolls {
-    position: relative;
-    left: 0;
+    position: absolute;
+    bottom: 0;
     width: 100%;
     border: none;
     border-radius: 10px;
@@ -437,6 +437,9 @@ p {
     padding: 10px 0;
     cursor: pointer;
     transition: background .2s;
+    margin-bottom: 0;
+    vertical-align: bottom;
+    float: right;
 }
 
 #submitcontrolls:hover {

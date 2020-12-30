@@ -116,6 +116,7 @@ $(".myUl li").click(function (e) {
             }
         })
     })
+    sizetoimg();
 });
 
 $("#usetemplatebox").click(function (e) {
@@ -130,4 +131,15 @@ $("#usetemplate").click(function (e) {
     $(this).css('display', 'none');
     $("#template_big, #template_scroll").css('display', 'none');
     $(".controllsandshareview").css('display', 'flex');
+    sizetoimg();
 });
+
+$(window).resize(sizetoimg);
+
+function sizetoimg() {
+    if ($("#template_big").css("display") != "none") {
+        let img_width = $("#template_big_img").width();
+        $("#usetemplateboxheader, #template_scroll").css('width', img_width);
+    } else
+        $("#usetemplateboxheader").css('width', '70vw');
+}
