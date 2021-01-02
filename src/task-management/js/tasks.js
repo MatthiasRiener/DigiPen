@@ -181,12 +181,3 @@ function dateDiffInDays(a, b) {
 
     return Math.floor((utc2 - utc1) / _MS_PER_DAY);
 }
-
-/* set all checkboxes */
-$('#checkAll').change(function() {
-    if($('#checkAll').prop('checked') == true) {
-        $('.checkbox').prop('checked', true);
-    }else {
-        $('.checkbox').prop('checked', false);
-    }
-});
