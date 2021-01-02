@@ -23,8 +23,7 @@ var props = {
 };
 
 
-var figureEditor = false,
-    textEditor = false;
+var figureEditor = false;
 
 
 $(document).ready(function () {
@@ -33,10 +32,8 @@ $(document).ready(function () {
 
 });
 
-var bruh = true;
-
+var counter = 0;
 $('#addObjectPopup-inner-popup-text').on('click', function () {
-   bruh = !bruh;
     addText();
 });
 
@@ -71,7 +68,7 @@ function init() {
                     getFill();
                     break;
                 case 'i-text':
-                    textEditor = true;
+                    textEditor['visible'] = true;
                     getLineHeight();
                     getCharSpacing();
                     getBold();
@@ -79,8 +76,6 @@ function init() {
                     getTextDecoration();
                     getTextAlign();
                     getFontFamily();
-
-                    console.log(getFontFamily()); 
                     break;
 
                 case 'image':
@@ -131,6 +126,7 @@ function extend(obj, id) {
 }
 
 function selectItemAfterAdded(obj) {
+    console.log(obj)
     canvas.discardActiveObject().renderAll();
     canvas.setActiveObject(obj);
 }
@@ -141,7 +137,7 @@ function randomId() {
 
 
 function resetPanels() {
-
+    textEditor['visible'] = false;
 }
 
 
@@ -260,8 +256,13 @@ var CustomNGIf = function(element, callback, propertyName) {
 
 
 
-var div = document.getElementById('test-ngif');
-var obj = new CustomNGIf(div, function() {
-    
-}, bruh);
+ /*------------------------EDITOR-WINDOWS------------------------*/
+ 
+
+var textEditorContainer = document.getElementById('text-editor');
+var textEditor = new CustomNGIf(textEditorContainer, function() {
+    console.log('textEditor visible');
+}, 'visible');
+
+textEditor['visible'] = false;
 
