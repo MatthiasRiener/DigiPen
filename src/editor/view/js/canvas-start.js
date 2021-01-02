@@ -144,6 +144,13 @@ $('body').on('input', '.font-size-text', function () {
     props.fontSize = $(this).val();
     setFontSize();
 });
+
+
+$('body').on('change', '.text-isbold', function () {
+    props.fontWeight = !props.fontWeight;
+    console.log(props.fontWeight)
+    setBold();
+});
 /*------------------------Helper Functions------------------------*/
 
 
@@ -313,7 +320,7 @@ function getOpacity() {
 }
 
 function setOpacity() {
-    this.setActiveStyle('opacity', parseInt(this.props.opacity, 10) / 100, null);
+    setActiveStyle('opacity', parseInt(props.opacity, 10) / 100, null);
 }
 
 function getFill() {
@@ -335,11 +342,12 @@ function getCharSpacing() {
 
 function getFontSize() {
     props.fontSize = getActiveStyle('fontSize', null);
+    
 }
 
 
 function setFontSize() {
-    this.setActiveStyle('fontSize', parseInt(props.fontSize, 10), null);
+    setActiveStyle('fontSize', parseInt(props.fontSize, 10), null);
 }
 
 
@@ -347,6 +355,9 @@ function getBold() {
     props.fontWeight = getActiveStyle('fontWeight', null);
 }
 
+function setBold() {
+    setActiveStyle('fontWeight', props.fontWeight ? 'bold' : '', null);
+}
 
 function getTextDecoration() {
     props.TextDecoration = getActiveStyle('textDecoration', null);
