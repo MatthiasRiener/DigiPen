@@ -1,10 +1,6 @@
 /* set all checkboxes */
 $('#checkAll').change(function() {
-    if($('#checkAll').prop('checked') == true) {
-        $('.checkbox').prop('checked', true);
-    }else {
-        $('.checkbox').prop('checked', false);
-    }
+    $('.checkbox').prop('checked', $('#checkAll').prop('checked'));
 });
 
 /* open task popup */
