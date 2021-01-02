@@ -290,6 +290,10 @@ body {
     box-shadow: 0px 0px 5px #F8A5C2;
 }
 
+.task-item:hover {
+    cursor: pointer;
+}
+
 #taskPopup {
     width: 16vw;
     height: 40vh;
@@ -299,4 +303,83 @@ body {
     background-color: var(--white);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#taskPopup-top {
+    width: 96%;
+    height: 12%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#taskPopup-top-left {
+    width: 50%;
+    height: 60%;
+    background-color: red;
+    border-radius: 100px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--white);
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 0 0.3vw;
+}
+
+#taskPopup-top-left-icon {
+    font-size: 1.4rem;
+    color: var(--white);
+}
+
+#taskPopup-top-right {
+    width: 14%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: var(--dark-grey);
+}
+
+#taskPopup-top-right:hover {
+    cursor: pointer;
+}
+
+#taskPopup-second {
+    width: 96%;
+    height: 8%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#taskPopup-second-headline {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 80%;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--dark-grey);
+}
+
+#taskPopup-third {
+    width: 96%;
+    height: 1.4%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#taskPopup-third-line {
+    width: 24%;
+    height: 100%;
+    background-color: var(--dark-grey);
+    margin-left: 0.1vw;
 }

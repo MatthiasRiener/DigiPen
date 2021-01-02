@@ -23,3 +23,7 @@ $('body').on('click', '.task-item', function () {
        opacity: 1.0
    }, 100);
 });
+
+$('#taskPopup-top-right').click(function () {
+    $('#taskPopup').css('opacity', '0.0');
+});
