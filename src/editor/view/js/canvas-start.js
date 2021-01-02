@@ -134,6 +134,11 @@ $('body').on('input', '.text-opacity-slider', function() {
     setOpacity();
 });
 
+$('body').on('change', '.text-font-family', function() {
+    props.fontFamily = $(this).val();
+    setFontFamily();
+});
+
 /*------------------------Helper Functions------------------------*/
 
 
@@ -200,6 +205,23 @@ function getActiveStyle(styleName, object) {
         return (object[styleName] || '');
     }
 }
+
+function setActiveProp(name, value) {
+    const object = canvas.getActiveObject();
+    if(!object) {return ''; }
+    object.set(name, value).setCoords();
+    canvas.renderAll();
+}
+
+function getActiveProp(name) {
+    const object = canvas.getActiveObject();
+    if (!object) {
+        return '';
+    }
+    return object[name] || '';
+}
+
+
 
 function setActiveStyle(styleName, value, object) {
     object = object || this.canvas.getActiveObject();
@@ -308,6 +330,10 @@ function getFontSize() {
     props.fontSize = getActiveStyle('fontSize', null);
 }
 
+function setFontFamily() {
+    setActiveProp('fontFamily', props.fontFamily);
+}
+
 function getBold() {
     props.fontWeight = getActiveStyle('fontWeight', null);
 }
@@ -325,13 +351,6 @@ function getFontFamily() {
     props.fontFamily = getActiveProp('fontFamily');
 }
 
-function getActiveProp(name) {
-    const object = canvas.getActiveObject();
-    if (!object) {
-        return '';
-    }
-    return object[name] || '';
-}
 
 
 /*------------------------Custom NGIF------------------------*/
