@@ -1322,3 +1322,20 @@
     margin-right: auto;
 }
 
+
+.text-editor-item input[type="color"] {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #CBCBCB;
+    border-radius: 10px;
+}
+
+.text-editor-item input[type="color"]::-webkit-color-swatch-wrapper {
+    border-radius: 10px;
+    padding: 0;
+}
+.text-editor-item input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 10px;
+
+}

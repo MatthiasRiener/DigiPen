@@ -113,7 +113,7 @@ function addText() {
 
 /*------------------------Events------------------------*/
 
-$('body').on('change', '.fill-color-picker', function () {
+$('body').on('input', '.fill-color-picker', function () {
     props.fill = $(this).val();
     setFill();
 });
@@ -166,6 +166,7 @@ function getActiveStyle(styleName, object) {
 
 function setActiveStyle(styleName, value, object) {
     object = object || this.canvas.getActiveObject();
+    console.log(this.canvas.getActiveObject());
     if (!object) {
         return;
     }
@@ -232,7 +233,6 @@ function setActiveStyle(styleName, value, object) {
 
         object.set(styleName, value);
     }
-
     object.setCoords();
     canvas.renderAll();
 
@@ -249,6 +249,7 @@ function getOpacity() {
 
 function getFill() {
     props.fill = getActiveStyle('fill', null);
+    $('.fill-color-picker').val(props.fill);
 }
 
 function setFill() {
