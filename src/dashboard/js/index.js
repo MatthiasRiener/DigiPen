@@ -140,6 +140,8 @@ function sizetoimg() {
     if ($("#template_big").css("display") != "none") {
         let img_width = $("#template_big_img").width();
         $("#usetemplateboxheader, #template_scroll").css('width', img_width);
-    } else
-        $("#usetemplateboxheader").css('width', '70vw');
+    } else {
+        $("#usetemplateboxheader").css('width', $(".controllsandshareview").width() - parseFloat($("#template_small_img").css('marginLeft')) * 2);
+        $(".shareview").css('width', $("#template_small_img").width())
+    }
 }
