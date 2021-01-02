@@ -1,5 +1,3 @@
-/* --------------- SLides-Menu --------------- */
-
 let trackingIndex = 0;
 
 $(document).ready(function () {
@@ -7,6 +5,8 @@ $(document).ready(function () {
     addSlide();
     toggleVisibility(0);
 });
+
+/* --------------- SLides-Menu --------------- */
 
 $('#content-leftSlides-topBar-plus').click(function(){
     addSlide();
@@ -85,7 +85,7 @@ $('#addObjectPopup-inner-popup-quiz').click(function() {
 });
 
 // open second quiz popup in add-object popup
-$('#openQuizPopup').click(function() {
+$('.addObjectPopup-inner-quiz-bottom-row').click(function() {
     $('#addObjectPopup-inner-quizInfo').css('display', 'flex');
     $('#addObjectPopup-inner-quizInfo').animate({
         margin: "1.5vh 0vw",
