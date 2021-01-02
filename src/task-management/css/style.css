@@ -2,6 +2,10 @@
     font-family: 'Karla';
 }
 
+[contenteditable] {
+    outline: none;
+}
+
 body {
     height: 100vh;
     width: 100%;
@@ -319,7 +323,7 @@ body {
 
 #taskPopup-top-left {
     width: 50%;
-    height: 60%;
+    height: 70%;
     background-color: red;
     border-radius: 100px;
     display: flex;
@@ -332,7 +336,7 @@ body {
 }
 
 #taskPopup-top-left-icon {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: var(--white);
 }
 
@@ -352,7 +356,7 @@ body {
 
 #taskPopup-second {
     width: 96%;
-    height: 8%;
+    height: 10.6%;
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
@@ -382,4 +386,80 @@ body {
     height: 100%;
     background-color: var(--dark-grey);
     margin-left: 0.1vw;
+}
+
+#taskPopup-fourth {
+    width: 96%;
+    height: 12%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#taskPopup-fourth-left {
+    width: 12%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#taskPopup-fourth-left-image {
+    width: 1.6vw;
+    height: 1.6vw;
+    border-radius: 100%;
+    background-color: var(--dark-grey);
+}
+
+#taskPopup-fourth-middle {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--dark-grey);
+}
+
+#taskPopup-fourth-right {
+    width: 14%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: var(--dark-grey);
+}
+
+#taskPopup-fifth {
+    width: 96%;
+    height: 14%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+#taskPopup-fifth-headline {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--dark-grey);
+}
+
+#taskPopup-fifth-date {
+    width: 100%;
+    height: 50%;
+}
+
+#taskPopup-fifth-date-input {
+    width: 40%;
+    border-radius: 10px;
+    padding: 5px;
+    outline: none;
+}
+
+#taskPopup-fifth-date-input:hover {
+    cursor: pointer;
 }
