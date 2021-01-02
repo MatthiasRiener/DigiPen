@@ -79,6 +79,15 @@ $('#addObjectPopup-inner-popup-quiz').click(function() {
 
     $('#addObjectPopup-inner-quiz').css('display', 'flex');
     $('#addObjectPopup-inner-quiz').animate({
+        margin: "1.5vh 0.8vw 0vw 0vw",
+        opacity: 1.0
+    }, 100);
+});
+
+// open second quiz popup in add-object popup
+$('#openQuizPopup').click(function() {
+    $('#addObjectPopup-inner-quizInfo').css('display', 'flex');
+    $('#addObjectPopup-inner-quizInfo').animate({
         margin: "1.5vh 0vw",
         opacity: 1.0
     }, 100);
@@ -86,7 +95,7 @@ $('#addObjectPopup-inner-popup-quiz').click(function() {
 
 // close all add-objects popups
 $(document).click(function(event) {
-    if (!$(event.target).closest("#addObjectPopup-inner-popup, #content-navigation-first-right-icon, #addObjectPopup-inner-unsplash, #addObjectPopup-inner-popup-image, #addObjectPopup-inner-quiz, #addObjectPopup-inner-quiz").length) {
+    if (!$(event.target).closest("#addObjectPopup-inner-popup, #content-navigation-first-right-icon, #addObjectPopup-inner-unsplash, #addObjectPopup-inner-popup-image, #addObjectPopup-inner-quiz, #addObjectPopup-inner-quiz, #addObjectPopup-inner-quizInfo").length) {
         $('#addObjectPopup').css('display', 'none');
 
         $('#addObjectPopup-inner-popup').css('display', 'none');
@@ -106,6 +115,10 @@ function closeInnerPopups() {
     $('#addObjectPopup-inner-quiz').css('display', 'none');
     $('#addObjectPopup-inner-quiz').css('margin', '1.5vh 0vw');
     $('#addObjectPopup-inner-quiz').css('opacity', '0.0');
+
+    $('#addObjectPopup-inner-quizInfo').css('display', 'none');
+    $('#addObjectPopup-inner-quizInfo').css('margin', '1.5vh 0vw');
+    $('#addObjectPopup-inner-quizInfo').css('opacity', '0.0');
 }
 
 // open settings popup
