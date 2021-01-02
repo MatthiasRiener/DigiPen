@@ -111,8 +111,12 @@ function addText() {
 }
 
 
+/*------------------------Events------------------------*/
 
-
+$('body').on('change', '.fill-color-picker', function () {
+    props.fill = $(this).val();
+    setFill();
+});
 
 /*------------------------Helper Functions------------------------*/
 function extend(obj, id) {
@@ -126,7 +130,6 @@ function extend(obj, id) {
 }
 
 function selectItemAfterAdded(obj) {
-    console.log(obj)
     canvas.discardActiveObject().renderAll();
     canvas.setActiveObject(obj);
 }
@@ -161,6 +164,80 @@ function getActiveStyle(styleName, object) {
     }
 }
 
+function setActiveStyle(styleName, value, object) {
+    object = object || this.canvas.getActiveObject();
+    if (!object) {
+        return;
+    }
+
+    if (object.setSelectionStyles && object.isEditing) {
+        const style = {};
+        style[styleName] = value;
+
+        if (typeof value === 'string') {
+            if (value.includes('underline')) {
+                object.setSelectionStyles({
+                    underline: true
+                });
+            } else {
+                object.setSelectionStyles({
+                    underline: false
+                });
+            }
+
+            if (value.includes('overline')) {
+                object.setSelectionStyles({
+                    overline: true
+                });
+            } else {
+                object.setSelectionStyles({
+                    overline: false
+                });
+            }
+
+            if (value.includes('line-through')) {
+                object.setSelectionStyles({
+                    linethrough: true
+                });
+            } else {
+                object.setSelectionStyles({
+                    linethrough: false
+                });
+            }
+        }
+
+        object.setSelectionStyles(style);
+        object.setCoords();
+
+    } else {
+        if (typeof value === 'string') {
+            if (value.includes('underline')) {
+                object.set('underline', true);
+            } else {
+                object.set('underline', false);
+            }
+
+            if (value.includes('overline')) {
+                object.set('overline', true);
+            } else {
+                object.set('overline', false);
+            }
+
+            if (value.includes('line-through')) {
+                object.set('linethrough', true);
+            } else {
+                object.set('linethrough', false);
+            }
+        }
+
+        object.set(styleName, value);
+    }
+
+    object.setCoords();
+    canvas.renderAll();
+
+}
+
 
 /*------------------------Styles Functions------------------------*/
 
@@ -172,6 +249,10 @@ function getOpacity() {
 
 function getFill() {
     props.fill = getActiveStyle('fill', null);
+}
+
+function setFill() {
+    setActiveStyle('fill', props.fill, null);
 }
 
 function getLineHeight() {
@@ -205,7 +286,9 @@ function getFontFamily() {
 
 function getActiveProp(name) {
     const object = canvas.getActiveObject();
-    if(!object) {return ''; }
+    if (!object) {
+        return '';
+    }
     return object[name] || '';
 }
 
@@ -214,55 +297,54 @@ function getActiveProp(name) {
 
 
 
-var CustomNGIf = function(element, callback, propertyName) {
+var CustomNGIf = function (element, callback, propertyName) {
     var _value = null;
-  
+
     // Create copies of elements do that you can store/use it in future 
     this.parent = element.parentNode;
     this.element = element;
     this.clone = null;
-  
+
     // Create a property that is supposed to be watched
     Object.defineProperty(this, propertyName, {
-      get: function() {
-        return _value;
-      },
-      set: function(value) {
-        // If same value is passed, do nothing.
-        if (_value === value) return;
-        _value = !!value;
-        this.handleChange(_value);
-      }
+        get: function () {
+            return _value;
+        },
+        set: function (value) {
+            // If same value is passed, do nothing.
+            if (_value === value) return;
+            _value = !!value;
+            this.handleChange(_value);
+        }
     });
-  
-    this.handleChange = function(value) {
-      this.clone = this.element.cloneNode(true);
-      if (_value) {
-        var index = Array.from(this.parent.children).indexOf(this.element);
-  
-        // Check if element is already existing or not.
-        // This can happen if some code breaks before deleting node.
-        if (index >= 0) return;
-        this.element = this.clone.cloneNode(true);
-        this.parent.appendChild(this.element);
-      } else {
-        this.element.remove();
-      }
-  
-      // For any special handling
-      callback && callback();
+
+    this.handleChange = function (value) {
+        this.clone = this.element.cloneNode(true);
+        if (_value) {
+            var index = Array.from(this.parent.children).indexOf(this.element);
+
+            // Check if element is already existing or not.
+            // This can happen if some code breaks before deleting node.
+            if (index >= 0) return;
+            this.element = this.clone.cloneNode(true);
+            this.parent.appendChild(this.element);
+        } else {
+            this.element.remove();
+        }
+
+        // For any special handling
+        callback && callback();
     }
-  }
+}
 
 
 
- /*------------------------EDITOR-WINDOWS------------------------*/
- 
+/*------------------------EDITOR-WINDOWS------------------------*/
+
 
 var textEditorContainer = document.getElementById('text-editor');
-var textEditor = new CustomNGIf(textEditorContainer, function() {
+var textEditor = new CustomNGIf(textEditorContainer, function () {
     console.log('textEditor visible');
 }, 'visible');
 
 textEditor['visible'] = false;
-
