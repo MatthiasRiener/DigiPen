@@ -118,7 +118,38 @@ $('body').on('input', '.fill-color-picker', function () {
     setFill();
 });
 
+
+$('body').keydown(function (event) {
+    var keycode = (event.keycode ? event.keycode : event.which);
+    console.log(keycode);
+    // delete key pressed => delete selected objects
+    if (keycode === 46) {
+        removeSelected();
+    }
+})
+
 /*------------------------Helper Functions------------------------*/
+
+
+function removeSelected() {
+    const activeObject = canvas.getActiveObject();
+    const activeGroup = canvas.getActiveObjects();
+
+    console.log(activeObject, activeGroup);
+
+    if (activeObject) {
+        canvas.remove(activeObject);
+    }
+    
+    if (Array.isArray(activeGroup)) {
+        canvas.discardActiveObject();
+        const self = this;
+        activeGroup.forEach((object) => {
+            self.canvas.remove(object);
+        });
+    }
+}
+
 function extend(obj, id) {
     obj.toObject = ((toObject) => {
         return function () {
