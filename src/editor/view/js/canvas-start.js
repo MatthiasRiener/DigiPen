@@ -126,7 +126,13 @@ $('body').keydown(function (event) {
     if (keycode === 46) {
         removeSelected();
     }
-})
+});
+
+
+$('body').on('input', '.text-opacity-slider', function() {
+    props.opacity = $(this).val();
+    setOpacity();
+});
 
 /*------------------------Helper Functions------------------------*/
 
@@ -277,6 +283,9 @@ function getOpacity() {
     props.opacity = getActiveStyle('opacity', null) * 100;
 }
 
+function setOpacity() {
+    this.setActiveStyle('opacity', parseInt(this.props.opacity, 10) / 100, null);
+}
 
 function getFill() {
     props.fill = getActiveStyle('fill', null);
