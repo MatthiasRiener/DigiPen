@@ -2,32 +2,26 @@
     font-family: 'Karla';
 }
 
-
 body {
     height: 100vh;
     width: 100%;
     background: #F6F4F9;
     padding: 0 !important;
     margin: 0 !important;
-
     overflow: hidden;
 }
-
 
 .header-nav {
     height: 7vh;
     background: #FFFFFF;
-
     display: flex;
     align-items: center;
-
     box-shadow: 0px 1px 5px #00000050;
 }
 
 .header-nav p {
     padding: 0 !important;
     margin: 0 !important;
-
     color: var(--dark-grey);
 }
 
@@ -52,23 +46,18 @@ body {
     background: url('../img/profile_img.png');
     background-position: center;
     background-size: cover;
-
     margin-right: 55px;
     margin-left: 20px;
-
     border-radius: 50%;
 }
-
 
 .main-content {
     height: 93vh;
     width: 100%;
     background: transparent;
-
     display: flex;
     flex-direction: row;
 }
-
 
 .task-content {
     margin: 1%;
@@ -76,24 +65,19 @@ body {
     height: 98%;
     background: #FFFFFF;
     box-shadow: 0px 0px 10px #00000020;
-
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-
 .top-bar-task {
     width: 100%;
     height: 8%;
-
     display: flex;
     align-items: center;
-
     font-size: 22px;
     color: var(--dark-grey);
     font-weight: bold;
-
     box-shadow: 0px 3px 3px #00000025;
     position: relative;
 }
@@ -108,33 +92,30 @@ body {
     margin: 5px;
 }
 
-
 .calendar-row {
     height: 6%;
     width: 100%;
     background: #FFFFFF;
     display: flex;
-
     box-shadow: 0px 3px 3px #00000020;
 }
-
 
 .visibility-popup {
     position: absolute;
     background: #F8F7F9;
     box-shadow: 0px 1px 10px #00000070;
-
     width: 245px;
-    height: 288px;
-
+    height: 250px;
     top: 13%;
     right: 3%;
-
     border-radius: 15px;
-
     z-index: 2;
+    overflow: auto;
 }
 
+.visibility-popup::-webkit-scrollbar {
+    display: none;
+}
 
 .visibility-popup #title {
     margin: 14px;
@@ -151,23 +132,20 @@ body {
     background: #FFFFFF;
     border-radius: 10px;
     box-shadow: 0px 0px 6px #00000020;
-
-
     display: flex;
     align-items: center;
 }
-
 
 .visibility-popup-checkbox input[type="checkbox"] {
     width: 18px;
     height: 18px;
     border-radius: 5px;
+    margin: 0 0.5vw;
 }
 
 .checkmark {
     background: var(--dark-grey)
 }
-
 
 .visibility-class {
     display: none !important;
@@ -195,22 +173,14 @@ body {
     background-color: var(--dark-grey);
 }
 
-
-
-
-
 .task-of-presentations {
     height: 86%;
     width: calc(100% - 30px);
-
     overflow-y: auto;
-
     display: flex;
     align-items: center;
     flex-direction: column;
-
 }
-
 
 .presentation-header {
     width: 100%;
@@ -219,9 +189,7 @@ body {
     margin-bottom: 25px;
     display: flex;
     align-items: center;
-
 }
-
 
 .presentation-header p {
     padding: 0 !important;
@@ -245,10 +213,8 @@ body {
     border-radius: 50%;
     border: 2px solid white;
     position: relative;
-
     background-size: cover;
     background-position: center;
-
 }
 
 .spacer-header {
@@ -257,11 +223,9 @@ body {
     background: #70707020;
 }
 
-
 .task-row {
     width: 100%;
     height: 75px;
-
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -277,15 +241,12 @@ body {
     align-items: center;
     overflow: hidden;
     white-space: nowrap;
-
 }
 
 .task-item p {
     margin-left: 10px;
     color: white;
-
 }
-
 
 .user-task {
     width: 30px;
@@ -293,13 +254,12 @@ body {
     border-radius: 50%;
     border: 2px solid white;
     background-size: cover;
-    background-positon: center;
+    background-position: center;
     margin: 5px;
 }
 
 .presentation-section {
     width: 100%;
-
 }
 
 .cur-day-active {
@@ -317,7 +277,6 @@ body {
     z-index: 1;
     top: 10px;
     box-shadow: 0px 0px 5px #F8A5C2;
-
     display: none;
 }
 
@@ -329,5 +288,4 @@ body {
     align-items: center;
     font-size: 26px;
     box-shadow: 0px 0px 5px #F8A5C2;
-
 }

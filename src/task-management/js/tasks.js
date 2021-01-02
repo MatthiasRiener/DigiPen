@@ -15,7 +15,6 @@ const tasks = [{
                 end: "12/27/2020",
                 finished: false,
             },
-
             {
                 taskName: "Sollte Südtirol zu Österreich gehören?",
                 start: "12/24/2020",
@@ -46,19 +45,14 @@ const tasks = [{
     },
 ];
 
-
-
 window.onload = function () {
     initializeContainers();
     loadCalendar()
 
-
     initializePresentationContainers();
-
 
     loadBackgroundGrid();
     positionCursor();
-
 }
 
 function initializePresentationContainers() {
@@ -74,20 +68,17 @@ function initializePresentationContainers() {
         </div>
         `);
 
-
         initializeUsers(pres);
         calculateTasks(pres);
     });
 
 }
 
-
 function initializeUsers(pres) {
     for (let i = 0; i < pres.members; i++) {
         $(`.presentation-section[data-presentation-id=${pres.id}] .presentation-header .profile-images`).append(`<div style="margin-left: -0.4vw; z-index: ${pres.members - i}; background-image: url(./img/user_${randomNumber(1,14)}.png)" class="user"></div>`)
     }
 }
-
 
 function calculateTasks(pres) {
     let arr = [
@@ -96,9 +87,7 @@ function calculateTasks(pres) {
 
     pres.tasks.forEach((task) => {
         arr.forEach((curArray, index) => {
-
             var dummyArray = curArray.map(({taskName,...keep}) => {return {start: new Date(keep.start),end: new Date(keep.end)}});
-
 
             dummyArray.push({
                 start: new Date(task.start),
@@ -113,8 +102,6 @@ function calculateTasks(pres) {
             }
         });
     });
-
-
     insertTasks(arr, pres);
 }
 
@@ -137,7 +124,6 @@ function positionCursor() {
     var top = container.position().top;
     var left = container.position().left;
 
-
     $('.active-bar').css('top', `${top}px`)
     $('.active-bar').css('left', `${left}px`)
 
@@ -147,14 +133,11 @@ function positionCursor() {
     $('.top-active').width(container.width());
 
     $('.top-active p').html(now.getDate());
-
-
 }
 
 function initializeContainers() {
     $('.cur-workspace').width(`${$('.cur-workspace').height()}px`);
 }
-
 
 $('#change-visibility').click(function () {
     $('.visibility-popup').toggleClass("visibility-class")
@@ -168,12 +151,9 @@ function loadBackgroundGrid() {
     $('.task-row').css("background-size", gridWidth + "% " + gridWidth + "%");
 }
 
-
 function loadCalendar() {
     let now = new Date()
     now.setDate(now.getDate() - 5)
-
-
 
     for (let i = 1; i <= 18; i++) {
         let newDate = new Date(now.setDate(now.getDate() + 1));
@@ -189,19 +169,11 @@ function loadCalendar() {
     }
 }
 
-
-
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-
-
-
-
-
 const _MS_PER_DAY = 1000 * 60 * 60 * 24;
-
 
 function dateDiffInDays(a, b) {
     const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
@@ -209,3 +181,12 @@ function dateDiffInDays(a, b) {
 
     return Math.floor((utc2 - utc1) / _MS_PER_DAY);
 }
+
+/* set all checkboxes */
+$('#checkAll').change(function() {
+    if($('#checkAll').prop('checked') == true) {
+        $('.checkbox').prop('checked', true);
+    }else {
+        $('.checkbox').prop('checked', false);
+    }
+});
