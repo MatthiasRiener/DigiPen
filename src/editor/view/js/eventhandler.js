@@ -66,8 +66,8 @@ $('#content-navigation-first-right-icon').click(function(){
 $('#addObjectPopup-inner-popup-image').click(function(){
     closeInnerPopups();
 
-    $('#addObjectPopup-inner-unsplash').css('display', 'flex');
-    $('#addObjectPopup-inner-unsplash').animate({
+    $('#addObjectPopup-inner-pictures').css('display', 'flex');
+    $('#addObjectPopup-inner-pictures').animate({
         margin: "1.5vh 0vw",
         opacity: 1.0
     }, 100);
@@ -95,7 +95,7 @@ $('#openQuizPopup').click(function() {
 
 // close all add-objects popups
 $(document).click(function(event) {
-    if (!$(event.target).closest("#addObjectPopup-inner-popup, #content-navigation-first-right-icon, #addObjectPopup-inner-unsplash, #addObjectPopup-inner-popup-image, #addObjectPopup-inner-quiz, #addObjectPopup-inner-quiz, #addObjectPopup-inner-quizInfo").length) {
+    if (!$(event.target).closest("#addObjectPopup-inner-popup, #content-navigation-first-right-icon, #addObjectPopup-inner-pictures, #addObjectPopup-inner-popup-image, #addObjectPopup-inner-quiz, #addObjectPopup-inner-quiz, #addObjectPopup-inner-quizInfo").length) {
         $('#addObjectPopup').css('display', 'none');
 
         $('#addObjectPopup-inner-popup').css('display', 'none');
@@ -108,9 +108,9 @@ $(document).click(function(event) {
 
 // close add objects inner popups
 function closeInnerPopups() {
-    $('#addObjectPopup-inner-unsplash').css('display', 'none');
-    $('#addObjectPopup-inner-unsplash').css('margin', '1.5vh 0vw');
-    $('#addObjectPopup-inner-unsplash').css('opacity', '0.0');
+    $('#addObjectPopup-inner-pictures').css('display', 'none');
+    $('#addObjectPopup-inner-pictures').css('margin', '1.5vh 0vw');
+    $('#addObjectPopup-inner-pictures').css('opacity', '0.0');
 
     $('#addObjectPopup-inner-quiz').css('display', 'none');
     $('#addObjectPopup-inner-quiz').css('margin', '1.5vh 0vw');
