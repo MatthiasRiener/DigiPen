@@ -1266,3 +1266,11 @@
 .camPopup-inner-popup-top-main-row-right-circle:focus, .camPopup-inner-popup-bottom-main-row-right-circle:focus, .micPopup-inner-popup-top-main-row-right-circle:focus, .micPopup-inner-popup-bottom-main-row-right-circle:focus {
     outline: none;
 }
+
+
+
+#canvas {
+    background: red;
+    width: 100%;
+    height: 100%;
+}
