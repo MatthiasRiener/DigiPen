@@ -282,19 +282,19 @@ p {
 /* Track */
 
 #template_scroll::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #888;
 }
 
 /* Handle */
 
 #template_scroll::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #f1f1f1;
 }
 
 /* Handle on hover */
 
 #template_scroll::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #C6C6C6;
 }
 
 .controllsandshareview {
