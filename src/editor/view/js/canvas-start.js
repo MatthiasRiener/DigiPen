@@ -151,6 +151,17 @@ $('body').on('change', '.text-isbold', function () {
     console.log(props.fontWeight)
     setBold();
 });
+
+$('body').on('click', '.text-centerYX', function () {
+    centerObj();
+});
+
+
+$('body').on('input', '.text-char-spacing', function() {
+    props.charSpacing = $(this).val();
+    setCharSpacing();
+});
+
 /*------------------------Helper Functions------------------------*/
 
 
@@ -315,6 +326,11 @@ function setActiveStyle(styleName, value, object) {
 /*------------------------Styles Functions------------------------*/
 
 
+function centerObj() {
+    const obj = canvas.getActiveObject();
+    obj.center();
+}
+
 function getOpacity() {
     props.opacity = getActiveStyle('opacity', null) * 100;
 }
@@ -340,9 +356,12 @@ function getCharSpacing() {
     props.charSpacing = getActiveStyle('charSpacing', null);
 }
 
+function setCharSpacing() {
+    setActiveStyle('charSpacing', parseInt(props.charSpacing, 10), null);
+}
+
 function getFontSize() {
     props.fontSize = getActiveStyle('fontSize', null);
-    
 }
 
 
