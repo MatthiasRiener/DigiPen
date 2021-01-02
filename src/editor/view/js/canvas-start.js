@@ -129,16 +129,21 @@ $('body').keydown(function (event) {
 });
 
 
-$('body').on('input', '.text-opacity-slider', function() {
+$('body').on('input', '.text-opacity-slider', function () {
     props.opacity = $(this).val();
     setOpacity();
 });
 
-$('body').on('change', '.text-font-family', function() {
+$('body').on('change', '.text-font-family', function () {
     props.fontFamily = $(this).val();
     setFontFamily();
 });
 
+
+$('body').on('input', '.font-size-text', function () {
+    props.fontSize = $(this).val();
+    setFontSize();
+});
 /*------------------------Helper Functions------------------------*/
 
 
@@ -151,7 +156,7 @@ function removeSelected() {
     if (activeObject) {
         canvas.remove(activeObject);
     }
-    
+
     if (Array.isArray(activeGroup)) {
         canvas.discardActiveObject();
         const self = this;
@@ -208,7 +213,9 @@ function getActiveStyle(styleName, object) {
 
 function setActiveProp(name, value) {
     const object = canvas.getActiveObject();
-    if(!object) {return ''; }
+    if (!object) {
+        return '';
+    }
     object.set(name, value).setCoords();
     canvas.renderAll();
 }
@@ -330,9 +337,11 @@ function getFontSize() {
     props.fontSize = getActiveStyle('fontSize', null);
 }
 
-function setFontFamily() {
-    setActiveProp('fontFamily', props.fontFamily);
+
+function setFontSize() {
+    this.setActiveStyle('fontSize', parseInt(props.fontSize, 10), null);
 }
+
 
 function getBold() {
     props.fontWeight = getActiveStyle('fontWeight', null);
@@ -351,7 +360,9 @@ function getFontFamily() {
     props.fontFamily = getActiveProp('fontFamily');
 }
 
-
+function setFontFamily() {
+    setActiveProp('fontFamily', props.fontFamily);
+}
 
 /*------------------------Custom NGIF------------------------*/
 
