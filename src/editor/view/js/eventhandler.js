@@ -64,6 +64,8 @@ $('#content-navigation-first-right-icon').click(function(){
 
 // open image popup in add-object popup
 $('#addObjectPopup-inner-popup-image').click(function(){
+    closeInnerPopups();
+
     $('#addObjectPopup-inner-unsplash').css('display', 'flex');
     $('#addObjectPopup-inner-unsplash').animate({
         margin: "1.5vh 0vw",
@@ -71,20 +73,40 @@ $('#addObjectPopup-inner-popup-image').click(function(){
     }, 100);
 });
 
+// open quiz popup in add-object popup
+$('#addObjectPopup-inner-popup-quiz').click(function() {
+    closeInnerPopups();
+
+    $('#addObjectPopup-inner-quiz').css('display', 'flex');
+    $('#addObjectPopup-inner-quiz').animate({
+        margin: "1.5vh 0vw",
+        opacity: 1.0
+    }, 100);
+});
+
 // close all add-objects popups
 $(document).click(function(event) {
-    if (!$(event.target).closest("#addObjectPopup-inner-popup, #content-navigation-first-right-icon, #addObjectPopup-inner-unsplash, #addObjectPopup-inner-popup-image").length) {
+    if (!$(event.target).closest("#addObjectPopup-inner-popup, #content-navigation-first-right-icon, #addObjectPopup-inner-unsplash, #addObjectPopup-inner-popup-image, #addObjectPopup-inner-quiz, #addObjectPopup-inner-quiz").length) {
         $('#addObjectPopup').css('display', 'none');
 
         $('#addObjectPopup-inner-popup').css('display', 'none');
         $('#addObjectPopup-inner-popup').css('margin', '0vh 0.8vw 0 0.4vw');
         $('#addObjectPopup-inner-popup').css('opacity', '0.0');
 
-        $('#addObjectPopup-inner-unsplash').css('display', 'none');
-        $('#addObjectPopup-inner-unsplash').css('margin', '1.5vh 0vw');
-        $('#addObjectPopup-inner-unsplash').css('opacity', '0.0');
+        closeInnerPopups();
     }
 });
+
+// close add objects inner popups
+function closeInnerPopups() {
+    $('#addObjectPopup-inner-unsplash').css('display', 'none');
+    $('#addObjectPopup-inner-unsplash').css('margin', '1.5vh 0vw');
+    $('#addObjectPopup-inner-unsplash').css('opacity', '0.0');
+
+    $('#addObjectPopup-inner-quiz').css('display', 'none');
+    $('#addObjectPopup-inner-quiz').css('margin', '1.5vh 0vw');
+    $('#addObjectPopup-inner-quiz').css('opacity', '0.0');
+}
 
 // open settings popup
 $('#content-navigation-second-settings').click(function() {

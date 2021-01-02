@@ -706,6 +706,95 @@
     border-radius: 10px;
 }
 
+#addObjectPopup-inner-quiz{
+    width: 20vw;
+    height: 60vh;
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    z-index: 500 !important;
+    background-color: var(--white);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 10px;
+    margin: 1.5vh 0vw;
+    opacity: 0;
+    padding-left: 1vw;
+    transition: all 0.1s;
+}
+
+#addObjectPopup-inner-quiz-top{
+    width: 100%;
+    height: 20%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#addObjectPopup-inner-quiz-top-headline {
+    width: 94%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--dark-grey);
+}
+
+#addObjectPopup-inner-quiz-top-input{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#addObjectPopup-inner-quiz-top-input-background{
+    width: 94%;
+    height: 90%;
+    background-color: var(--light-grey);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#addObjectPopup-inner-quiz-top-input-background-icon{
+    width: 15%;
+    font-size: 1.6rem;
+    color: var(--dark-grey);
+    opacity: 0.4;
+}
+
+#addObjectPopup-inner-quiz-top-input-background-field{
+    width: 85%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--light-grey);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--dark-grey);
+}
+
+#addObjectPopup-inner-quiz-top-input-background-field::placeholder{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--dark-grey);
+    opacity: 0.4;
+}
+
+#addObjectPopup-inner-quiz-top-input-background-field:focus{
+    outline: none;
+}
+
+#addObjectPopup-inner-quiz-bottom{
+    width: 100%;
+    height: 80%;
+    border-radius: 10px;
+}
+
 #presentationModePopup{
     width: 100vw;
     height: 100vh;
