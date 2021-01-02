@@ -5,20 +5,20 @@ const tasks = [{
         taskColor: "#F02700",
         tasks: [{
                 taskName: "Schaut Österreich wie ein Schnitzel aus?",
-                start: "12/21/2020",
-                end: "12/24/2020",
+                start: "01/03/2021",
+                end: "01/04/2021",
                 finished: true,
             },
             {
                 taskName: "Sollte Südtirol zu Österreich gehören?",
-                start: "12/22/2020",
-                end: "12/27/2020",
+                start: "01/02/2021",
+                end: "01/07/2021",
                 finished: false,
             },
             {
                 taskName: "Sollte Südtirol zu Österreich gehören?",
-                start: "12/24/2020",
-                end: "12/28/2020",
+                start: "01/01/2021",
+                end: "01/06/2021",
                 finished: false,
             },
         ]
@@ -31,14 +31,14 @@ const tasks = [{
         taskColor: "#079992",
         tasks: [{
                 taskName: "How to eat Cookies with Heroin?",
-                start: "12/17/2020",
-                end: "12/20/2020",
+                start: "01/02/2021",
+                end: "01/07/2021",
                 finished: false,
             },
             {
                 taskName: "How to eat Cookies with Crack?",
-                start: "12/24/2020",
-                end: "12/28/2020",
+                start: "01/01/2021",
+                end: "01/06/2021",
                 finished: true,
             }
         ]
@@ -115,7 +115,7 @@ function insertTasks(tasks, pres) {
             const diff = dateDiffInDays(new Date(task.start), new Date(task.end))
             $(`.presentation-section[data-presentation-id=${pres.id}] .task-row`).eq(rIndex).append(`<div class="task-item" style="background-color:${ task.finished ? pres.taskColor.concat("80") : pres.taskColor};width:${(distance * diff) / cWidth * 100 - 0.2}%; left: ${startPos / cWidth * 100 + 0.2}%"><div class="user-task" style="background-image: url('./img/user_${randomNumber(1,14)}.png')"></div><p>${task.taskName}</p></div>`)
         });
-    })
+    });
 }
 
 function positionCursor() {
