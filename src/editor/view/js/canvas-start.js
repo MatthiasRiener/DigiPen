@@ -157,7 +157,7 @@ $('body').on('click', '.text-centerYX', function () {
 });
 
 
-$('body').on('input', '.text-char-spacing', function() {
+$('body').on('input', '.text-char-spacing', function () {
     props.charSpacing = $(this).val();
     setCharSpacing();
 });
@@ -330,6 +330,12 @@ function centerObj() {
     const obj = canvas.getActiveObject();
     console.log(obj.width);
     obj.animate('left', canvas.width / 2 - obj.width / 2, {
+        duration: 400,
+        onChange: canvas.renderAll.bind(canvas),
+        easing: fabric.util.ease['easeInQuint'],
+    });
+
+    obj.animate('top', canvas.height / 2 - obj.height / 2, {
         duration: 400,
         onChange: canvas.renderAll.bind(canvas),
         easing: fabric.util.ease['easeInQuint'],
