@@ -532,3 +532,39 @@ body {
     width: 80%;
     height: 100%;
 }
+
+#presentationPopup {
+    width: 14vw;
+    height: 30vh;
+    position: absolute;
+    z-index: 100;
+    border-radius: 10px;
+    background-color: var(--white);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    opacity: 0;
+    margin-left: 2vw;
+}
+
+#personPopup {
+    width: 14vw;
+    height: 30vh;
+    position: absolute;
+    z-index: 100;
+    border-radius: 10px;
+    background-color: var(--white);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    opacity: 0;
+    margin-left: 2vw;
+}
+
+#subTaskPopup {
+    width: 14vw;
+    height: 10vh;
+    position: absolute;
+    z-index: 100;
+    border-radius: 10px;
+    background-color: var(--white);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    opacity: 0;
+    margin-left: 2vw;
+}
