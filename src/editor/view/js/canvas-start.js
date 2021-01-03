@@ -137,6 +137,11 @@ $('body').keydown(function (event) {
     if (keycode === 46 && canDeleteText) {
         removeSelected();
     }
+
+    // shortcut to create text
+    if(event.ctrlKey && keycode === 84) {
+        addText();
+    }
 });
 
 
