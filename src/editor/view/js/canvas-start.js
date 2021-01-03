@@ -56,7 +56,6 @@ function init() {
 
             if (selectedObject.type !== 'group' && selectedObject) {
                 getId();
-                getOpacity();
             }
 
 
@@ -69,6 +68,7 @@ function init() {
                     break;
                 case 'i-text':
                     textEditor['visible'] = true;
+                    getOpacity();
                     getLineHeight();
                     getCharSpacing();
                     getBold();
@@ -195,8 +195,11 @@ function extend(obj, id) {
 }
 
 function selectItemAfterAdded(obj) {
-    canvas.discardActiveObject().renderAll();
+    console.log(obj)
+    canvas.discardActiveObject();
     canvas.setActiveObject(obj);
+    canvas.renderAll();
+
 }
 
 function randomId() {
@@ -344,6 +347,9 @@ function centerObj() {
 
 function getOpacity() {
     props.opacity = getActiveStyle('opacity', null) * 100;
+    console.log(props.opacity);
+    document.getElementsByClassName('text-opacity-slider')[0].value = props.opacity;
+   
 }
 
 function setOpacity() {
