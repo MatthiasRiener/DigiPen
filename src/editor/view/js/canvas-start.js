@@ -193,6 +193,13 @@ $('body').on('input', '.text-line-height', function() {
     setLineHeight();
 });
 
+
+$('body').on('click', '.btn-text-style', function() {
+    var val = $(this).data("val");
+    console.log(val)
+   setTextDecoration(val);
+});
+
 /*------------------------Helper Functions------------------------*/
 
 function initializeShortcuts() {
@@ -435,6 +442,17 @@ function setBold() {
 
 function getTextDecoration() {
     props.TextDecoration = getActiveStyle('textDecoration', null);
+}
+
+function setTextDecoration(value) {
+    let iclass = props.TextDecoration;
+    if (iclass.includes(value)) {
+      iclass = iclass.replace(RegExp(value, 'g'), '');
+    } else {
+      iclass += ` ${value}`;
+    }
+    props.TextDecoration = iclass;
+    setActiveStyle('textDecoration', props.TextDecoration, null);
 }
 
 function getTextAlign() {
