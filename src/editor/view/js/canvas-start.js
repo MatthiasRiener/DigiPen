@@ -328,7 +328,12 @@ function setActiveStyle(styleName, value, object) {
 
 function centerObj() {
     const obj = canvas.getActiveObject();
-    obj.center();
+    console.log(obj.width);
+    obj.animate('left', canvas.width / 2 - obj.width / 2, {
+        duration: 400,
+        onChange: canvas.renderAll.bind(canvas),
+        easing: fabric.util.ease['easeInQuint'],
+    });
 }
 
 function getOpacity() {
