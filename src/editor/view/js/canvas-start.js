@@ -389,6 +389,7 @@ function setFontSize() {
 
 function getBold() {
     props.fontWeight = getActiveStyle('fontWeight', null);
+    $('.text-isbold').prop('checked', props.fontWeight);
 }
 
 function setBold() {
