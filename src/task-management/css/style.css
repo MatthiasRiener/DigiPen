@@ -361,7 +361,7 @@ body {
 
 #taskPopup-second {
     width: 96%;
-    height: 10.6%;
+    height: 6%;
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
@@ -444,7 +444,7 @@ body {
 
 #taskPopup-fifth {
     width: 96%;
-    height: 18%;
+    min-height: 18%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -521,12 +521,11 @@ body {
 
 #taskPopup-sixth-bottom {
     width: 100%;
-    height: 80%;
-    overflow: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 0.4vh;
+    overflow: auto;
 }
 
 .taskPopup-sixth-bottom-row {
@@ -645,7 +644,6 @@ body {
 #presentationPopup-bottom {
     width: 100%;
     height: 60%;
-    min-height: 60%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
