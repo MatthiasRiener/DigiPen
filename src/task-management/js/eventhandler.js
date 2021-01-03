@@ -87,3 +87,17 @@ function closeAllSubPopups() {
     $('#subTaskPopup').css('opacity', '0');
     $('#subTaskPopup').css('margin-left', '2vw');
 }
+
+$('#subTaskPopup-bottom-add').click(function () {
+    $('#taskPopup-sixth-bottom').append(`
+    <div class="taskPopup-sixth-bottom-row">
+        <div class="taskPopup-sixth-bottom-row-left">
+            <input class="taskPopup-sixth-bottom-row-left-input" type="checkbox">
+        </div>
+        <div class="taskPopup-sixth-bottom-row-right">${$('#subTaskPopup-bottom-input').val()}</div>
+    </div>
+    `);
+
+    $('#subTaskPopup').css('opacity', '0');
+    $('#subTaskPopup').css('margin-left', '2vw');
+});
