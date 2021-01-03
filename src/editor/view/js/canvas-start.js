@@ -30,9 +30,7 @@ var figureEditor = false;
 
 
 $(document).ready(function () {
-
     init();
-
 });
 
 var counter = 0;
@@ -58,7 +56,6 @@ function init() {
             switch (selectedObject.type) {
                 case 'i-text':
                     canDeleteText = !canDeleteText;
-                    console.log(selectedObject.isEditing);
                     break;
             }
         },
@@ -189,6 +186,11 @@ $('body').on('click', '.text-centerYX', function () {
 $('body').on('input', '.text-char-spacing', function () {
     props.charSpacing = $(this).val();
     setCharSpacing();
+});
+
+$('body').on('input', '.text-line-height', function() {
+    props.lineHeight = $(this).val();
+    setLineHeight();
 });
 
 /*------------------------Helper Functions------------------------*/
@@ -395,6 +397,11 @@ function setFill() {
 
 function getLineHeight() {
     props.lineHeight = getActiveStyle('lineHeight', null);
+    document.getElementsByClassName('text-line-height')[0].value = props.lineHeight;
+}
+
+function setLineHeight() {
+    setActiveStyle('lineHeight', parseFloat(props.lineHeight), null);    
 }
 
 function getCharSpacing() {
