@@ -405,6 +405,7 @@ function getTextAlign() {
 
 function getFontFamily() {
     props.fontFamily = getActiveProp('fontFamily');
+    $('.text-font-family').val(props.fontFamily);
 }
 
 function setFontFamily() {
