@@ -148,10 +148,10 @@ $('body').keydown(function (event) {
     try {
         const [index, val] = Object.entries(shortcuts).find(([i, e]) => JSON.stringify(e.keys.sort()) === JSON.stringify(curKeys.sort()));
         window[val.callback]();
-    } catch(e) {
-       
+    } catch (e) {
+
     }
-   
+
 
     curKeys = [];
 });
@@ -190,20 +190,20 @@ $('body').on('input', '.text-char-spacing', function () {
     setCharSpacing();
 });
 
-$('body').on('input', '.text-line-height', function() {
+$('body').on('input', '.text-line-height', function () {
     props.lineHeight = $(this).val();
     setLineHeight();
 });
 
 
-$('body').on('click', '.btn-text-style', function() {
+$('body').on('click', '.btn-text-style', function () {
     var val = $(this).data("val");
     console.log(val)
-   setTextDecoration(val);
+    setTextDecoration(val);
 });
 
 
-$('body').on('click', '.btn-text-align', function() {
+$('body').on('click', '.btn-text-align', function () {
     var val = $(this).data("val");
     setTextAlign(val);
 });
@@ -216,6 +216,14 @@ $('body').on('input', '.canvas-fill-color', function () {
     props.canvasFill = $(this).val();
     setCanvasFill();
 });
+
+
+$('body').on('keypress', '.canvas-background-img', function (e) {
+    if (e.which === 13) {
+        props.canvasImage = $(this).val();
+        setCanvasImage();
+    }
+})
 
 /*------------------------Helper Functions------------------------*/
 
@@ -425,7 +433,7 @@ function getLineHeight() {
 }
 
 function setLineHeight() {
-    setActiveStyle('lineHeight', parseFloat(props.lineHeight), null);    
+    setActiveStyle('lineHeight', parseFloat(props.lineHeight), null);
 }
 
 function getCharSpacing() {
@@ -464,9 +472,9 @@ function getTextDecoration() {
 function setTextDecoration(value) {
     let iclass = props.TextDecoration;
     if (iclass.includes(value)) {
-      iclass = iclass.replace(RegExp(value, 'g'), '');
+        iclass = iclass.replace(RegExp(value, 'g'), '');
     } else {
-      iclass += ` ${value}`;
+        iclass += ` ${value}`;
     }
     props.TextDecoration = iclass;
     setActiveStyle('textDecoration', props.TextDecoration, null);
@@ -493,9 +501,21 @@ function setFontFamily() {
 /*Canvas*/
 
 function setCanvasFill() {
-    if(!props.canvasImage) {
+    if (!props.canvasImage) {
         canvas.backgroundColor = props.canvasFill;
         canvas.renderAll();
+    }
+}
+
+
+function setCanvasImage() {
+    if (props.canvasImage) {
+        this.canvas.setBackgroundColor({
+            source: props.canvasImage,
+            repeat: 'repeat'
+        }, function () {
+            canvas.renderAll();
+        })
     }
 }
 
