@@ -225,7 +225,18 @@ $('body').on('keypress', '.canvas-background-img', function (e) {
     }
 })
 
+
+
+$('body').on('click', '.btn-export-to-json', function() {
+    saveCanvasToJson();
+});
 /*------------------------Helper Functions------------------------*/
+
+function saveCanvasToJson() {
+    const json = canvas.toJSON();
+    console.log(json);
+}
+
 
 function initializeShortcuts() {
     $.getJSON("js/shortcuts.json", function (data) {
