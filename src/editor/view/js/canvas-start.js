@@ -5,6 +5,7 @@ var canvas = this.__canvas = new fabric.Canvas('canvas', {
 });
 
 var selected;
+var canDeleteText = true;
 
 var props = {
     canvasFill: '#ffffff',
@@ -44,7 +45,17 @@ function init() {
 
     canvas.on({
         'object:moving': (e) => {},
-        'object:modified': (e) => {},
+        'object:modified': (e) => {
+            const selectedObject = e.target;
+            // don't allow delete inside text
+
+            switch(selectedObject.type) {
+                case 'i-text':
+                    canDeleteText = !canDeleteText;
+                    console.log(selectedObject.isEditing);
+                    break;
+            }
+        },
         'selection:created': (e) => {
             const selectedObject = e.target;
             selected = selectedObject;
@@ -122,9 +133,8 @@ $('body').on('input', '.fill-color-picker', function () {
 
 $('body').keydown(function (event) {
     var keycode = (event.keycode ? event.keycode : event.which);
-    console.log(keycode);
     // delete key pressed => delete selected objects
-    if (keycode === 46) {
+    if (keycode === 46 && canDeleteText) {
         removeSelected();
     }
 });
@@ -332,7 +342,6 @@ function setActiveStyle(styleName, value, object) {
 
 function centerObj() {
     const obj = canvas.getActiveObject();
-    console.log(obj.width);
     obj.animate('left', canvas.width / 2 - obj.width / 2, {
         duration: 400,
         onChange: canvas.renderAll.bind(canvas),
@@ -371,6 +380,7 @@ function getLineHeight() {
 
 function getCharSpacing() {
     props.charSpacing = getActiveStyle('charSpacing', null);
+    $('.text-char-spacing').val(props.charSpacing);
 }
 
 function setCharSpacing() {
@@ -379,7 +389,6 @@ function setCharSpacing() {
 
 function getFontSize() {
     props.fontSize = getActiveStyle('fontSize', null);
-    console.log(props.fontSize);
     $('.font-size-text').val(props.fontSize);
 }
 
