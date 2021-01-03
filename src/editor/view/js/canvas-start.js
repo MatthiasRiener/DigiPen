@@ -4,6 +4,8 @@ var canvas = this.__canvas = new fabric.Canvas('canvas', {
     selectionBorderColor: 'blue',
 });
 
+let shortcuts = [];
+
 var selected;
 var canDeleteText = true;
 
@@ -40,6 +42,10 @@ $('#addObjectPopup-inner-popup-text').on('click', function () {
 
 
 function init() {
+
+    initializeShortcuts();
+
+
     canvas.setWidth($('#content-main-inner-spacing-middle').width());
     canvas.setHeight($('#content-main-inner-spacing-middle').height());
 
@@ -49,7 +55,7 @@ function init() {
             const selectedObject = e.target;
             // don't allow delete inside text
 
-            switch(selectedObject.type) {
+            switch (selectedObject.type) {
                 case 'i-text':
                     canDeleteText = !canDeleteText;
                     console.log(selectedObject.isEditing);
@@ -132,16 +138,23 @@ $('body').on('input', '.fill-color-picker', function () {
 
 
 $('body').keydown(function (event) {
+    var curKeys = [];
     var keycode = (event.keycode ? event.keycode : event.which);
-    // delete key pressed => delete selected objects
-    if (keycode === 46 && canDeleteText) {
-        removeSelected();
+
+    curKeys.push(event.code);
+    if (event.ctrlKey && event.code != "ControlLeft") {
+        curKeys.push("ControlLeft");
     }
 
-    // shortcut to create text
-    if(event.ctrlKey && keycode === 84) {
-        addText();
+    try {
+        const [index, val] = Object.entries(shortcuts).find(([i, e]) => JSON.stringify(e.keys.sort()) === JSON.stringify(curKeys.sort()));
+        window[val.callback]();
+    } catch(e) {
+       
     }
+   
+
+    curKeys = [];
 });
 
 
@@ -180,12 +193,15 @@ $('body').on('input', '.text-char-spacing', function () {
 
 /*------------------------Helper Functions------------------------*/
 
+function initializeShortcuts() {
+    $.getJSON("js/shortcuts.json", function (data) {
+        shortcuts = [...data];
+    });
+}
 
 function removeSelected() {
     const activeObject = canvas.getActiveObject();
     const activeGroup = canvas.getActiveObjects();
-
-    console.log(activeObject, activeGroup);
 
     if (activeObject) {
         canvas.remove(activeObject);
@@ -211,11 +227,9 @@ function extend(obj, id) {
 }
 
 function selectItemAfterAdded(obj) {
-    console.log(obj)
     canvas.discardActiveObject();
     canvas.setActiveObject(obj);
     canvas.renderAll();
-
 }
 
 function randomId() {
@@ -347,13 +361,13 @@ function setActiveStyle(styleName, value, object) {
 
 function centerObj() {
     const obj = canvas.getActiveObject();
-    obj.animate('left', canvas.width / 2 - obj.width / 2, {
+    obj.animate('left', canvas.width / 2, {
         duration: 400,
         onChange: canvas.renderAll.bind(canvas),
         easing: fabric.util.ease['easeInQuint'],
     });
 
-    obj.animate('top', canvas.height / 2 - obj.height / 2, {
+    obj.animate('top', canvas.height / 2, {
         duration: 400,
         onChange: canvas.renderAll.bind(canvas),
         easing: fabric.util.ease['easeInQuint'],
@@ -479,7 +493,6 @@ var CustomNGIf = function (element, callback, propertyName) {
 
 
 var textEditorContainer = document.getElementById('text-editor');
-var textEditor = new CustomNGIf(textEditorContainer, function () {
-}, 'visible');
+var textEditor = new CustomNGIf(textEditorContainer, function () {}, 'visible');
 
 textEditor['visible'] = false;

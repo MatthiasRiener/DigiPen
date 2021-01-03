@@ -1,0 +1,15 @@
+[
+    {
+        "name": "create_text",
+        "keys": [
+            "ControlLeft",
+            "KeyT"
+        ],
+        "callback": "addText"
+    },
+    {
+        "name": "delete",
+        "keys": ["Delete"],
+        "callback": "removeSelected"
+    }
+]
