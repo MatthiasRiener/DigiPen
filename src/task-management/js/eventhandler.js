@@ -113,4 +113,5 @@ $('#subTaskPopup-bottom-add').click(function () {
     $('#subTaskPopup').css('display', 'none');
     $('#subTaskPopup').css('opacity', '0');
     $('#subTaskPopup').css('margin-left', '2vw');
+    $('#subTaskPopup-bottom-input').val("");
 });
