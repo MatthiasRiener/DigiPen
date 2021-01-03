@@ -76,6 +76,7 @@ function init() {
                     getTextDecoration();
                     getTextAlign();
                     getFontFamily();
+                    getFontSize();
                     break;
 
                 case 'image':
@@ -347,9 +348,8 @@ function centerObj() {
 
 function getOpacity() {
     props.opacity = getActiveStyle('opacity', null) * 100;
-    console.log(props.opacity);
     document.getElementsByClassName('text-opacity-slider')[0].value = props.opacity;
-   
+
 }
 
 function setOpacity() {
@@ -379,6 +379,8 @@ function setCharSpacing() {
 
 function getFontSize() {
     props.fontSize = getActiveStyle('fontSize', null);
+    console.log(props.fontSize);
+    $('.font-size-text').val(props.fontSize);
 }
 
 
@@ -464,7 +466,6 @@ var CustomNGIf = function (element, callback, propertyName) {
 
 var textEditorContainer = document.getElementById('text-editor');
 var textEditor = new CustomNGIf(textEditorContainer, function () {
-    console.log('textEditor visible');
 }, 'visible');
 
 textEditor['visible'] = false;
