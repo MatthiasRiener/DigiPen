@@ -72,6 +72,8 @@ function init() {
                 getId();
             }
 
+            console.log(selectedObject.type);
+
 
             switch (selectedObject.type) {
                 case 'rect':
@@ -80,7 +82,7 @@ function init() {
                     figureEditor = true;
                     getFill();
                     break;
-                case 'i-text':
+                case 'textbox':
                     textEditor['visible'] = true;
                     getOpacity();
                     getLineHeight();
@@ -107,7 +109,7 @@ function init() {
 
 
 function addText() {
-    const text = new fabric.IText('hallo', {
+    const text = new fabric.Textbox('hallo', {
         left: 10,
         top: 10,
         fontFamily: 'helvetica',
@@ -198,6 +200,21 @@ $('body').on('click', '.btn-text-style', function() {
     var val = $(this).data("val");
     console.log(val)
    setTextDecoration(val);
+});
+
+
+$('body').on('click', '.btn-text-align', function() {
+    var val = $(this).data("val");
+    setTextAlign(val);
+});
+
+
+
+/*--------Canvas-------- */
+
+$('body').on('input', '.canvas-fill-color', function () {
+    props.canvasFill = $(this).val();
+    setCanvasFill();
 });
 
 /*------------------------Helper Functions------------------------*/
@@ -459,6 +476,11 @@ function getTextAlign() {
     props.textAlign = getActiveProp('textAlign');
 }
 
+function setTextAlign(value) {
+    props.textAlign = value;
+    setActiveProp('textAlign', props.textAlign);
+}
+
 function getFontFamily() {
     props.fontFamily = getActiveProp('fontFamily');
     $('.text-font-family').val(props.fontFamily);
@@ -466,6 +488,15 @@ function getFontFamily() {
 
 function setFontFamily() {
     setActiveProp('fontFamily', props.fontFamily);
+}
+
+/*Canvas*/
+
+function setCanvasFill() {
+    if(!props.canvasImage) {
+        canvas.backgroundColor = props.canvasFill;
+        canvas.renderAll();
+    }
 }
 
 /*------------------------Custom NGIF------------------------*/
