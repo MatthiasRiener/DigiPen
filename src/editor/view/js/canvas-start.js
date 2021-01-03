@@ -9,7 +9,7 @@ let shortcuts = [];
 var selected;
 var canDeleteText = true;
 
-var props = {
+var propsText = {
     canvasFill: '#ffffff',
     canvasImage: '',
     id: null,
@@ -23,6 +23,75 @@ var props = {
     textAlign: null,
     fontFamily: null,
     TextDecoration: ''
+};
+
+var propsImage = {
+    grayscale: {
+        active: false,
+        avg: null,
+        lum: null,
+        light: null,
+    },
+    invert: null,
+    sepia: null,
+    black_white: null,
+    brownie: null,
+    vintage: null,
+    kodachrome: null,
+    technicolor: null,
+    polaroid: null,
+    remove_color: {
+        active: false,
+        color: null,
+        distance: null,
+    },
+    brightness: {
+        active: false,
+        val: null,
+    },
+    gamma: {
+        active: false,
+        red: null,
+        green: null,
+        blue: null,
+    },
+    contrast: {
+        active: false,
+        val: null,
+    },
+    saturation: {
+        active: false,
+        val: null,
+    },
+    hue: {
+        active: false,
+        val: null,
+    },
+    noise: {
+        active: false,
+        val: null,
+    },
+    pixelate: {
+        active: false,
+        val: null,
+    },
+    blur: {
+        active: false,
+        val: null,
+    },
+    sharpen: null,
+    emboss: null,
+    blend: {
+        active: false,
+        mode: null,
+        color: null,
+        alpha: null,
+    },
+    blend: {
+        active: false,
+        mode: null,
+        alpha: null,
+    }
 };
 
 
@@ -131,7 +200,7 @@ function addText() {
 /*------------------------Events------------------------*/
 
 $('body').on('input', '.fill-color-picker', function () {
-    props.fill = $(this).val();
+    propsText.fill = $(this).val();
     setFill();
 });
 
@@ -158,25 +227,25 @@ $('body').keydown(function (event) {
 
 
 $('body').on('input', '.text-opacity-slider', function () {
-    props.opacity = $(this).val();
+    propsText.opacity = $(this).val();
     setOpacity();
 });
 
 $('body').on('change', '.text-font-family', function () {
-    props.fontFamily = $(this).val();
+    propsText.fontFamily = $(this).val();
     setFontFamily();
 });
 
 
 $('body').on('input', '.font-size-text', function () {
-    props.fontSize = $(this).val();
+    propsText.fontSize = $(this).val();
     setFontSize();
 });
 
 
 $('body').on('change', '.text-isbold', function () {
-    props.fontWeight = !props.fontWeight;
-    console.log(props.fontWeight)
+    propsText.fontWeight = !propsText.fontWeight;
+    console.log(propsText.fontWeight)
     setBold();
 });
 
@@ -186,12 +255,12 @@ $('body').on('click', '.text-centerYX', function () {
 
 
 $('body').on('input', '.text-char-spacing', function () {
-    props.charSpacing = $(this).val();
+    propsText.charSpacing = $(this).val();
     setCharSpacing();
 });
 
 $('body').on('input', '.text-line-height', function () {
-    props.lineHeight = $(this).val();
+    propsText.lineHeight = $(this).val();
     setLineHeight();
 });
 
@@ -213,14 +282,14 @@ $('body').on('click', '.btn-text-align', function () {
 /*--------Canvas-------- */
 
 $('body').on('input', '.canvas-fill-color', function () {
-    props.canvasFill = $(this).val();
+    propsText.canvasFill = $(this).val();
     setCanvasFill();
 });
 
 
 $('body').on('keypress', '.canvas-background-img', function (e) {
     if (e.which === 13) {
-        props.canvasImage = $(this).val();
+        propsText.canvasImage = $(this).val();
         setCanvasImage();
     }
 })
@@ -288,7 +357,7 @@ function resetPanels() {
 
 
 function getId() {
-    props.id = canvas.getActiveObject().toObject().id;
+    propsText.id = canvas.getActiveObject().toObject().id;
 }
 
 
@@ -420,109 +489,109 @@ function centerObj() {
 }
 
 function getOpacity() {
-    props.opacity = getActiveStyle('opacity', null) * 100;
-    document.getElementsByClassName('text-opacity-slider')[0].value = props.opacity;
+    propsText.opacity = getActiveStyle('opacity', null) * 100;
+    document.getElementsByClassName('text-opacity-slider')[0].value = propsText.opacity;
 
 }
 
 function setOpacity() {
-    setActiveStyle('opacity', parseInt(props.opacity, 10) / 100, null);
+    setActiveStyle('opacity', parseInt(propsText.opacity, 10) / 100, null);
 }
 
 function getFill() {
-    props.fill = getActiveStyle('fill', null);
-    $('.fill-color-picker').val(props.fill);
+    propsText.fill = getActiveStyle('fill', null);
+    $('.fill-color-picker').val(propsText.fill);
 }
 
 function setFill() {
-    setActiveStyle('fill', props.fill, null);
+    setActiveStyle('fill', propsText.fill, null);
 }
 
 function getLineHeight() {
-    props.lineHeight = getActiveStyle('lineHeight', null);
-    document.getElementsByClassName('text-line-height')[0].value = props.lineHeight;
+    propsText.lineHeight = getActiveStyle('lineHeight', null);
+    document.getElementsByClassName('text-line-height')[0].value = propsText.lineHeight;
 }
 
 function setLineHeight() {
-    setActiveStyle('lineHeight', parseFloat(props.lineHeight), null);
+    setActiveStyle('lineHeight', parseFloat(propsText.lineHeight), null);
 }
 
 function getCharSpacing() {
-    props.charSpacing = getActiveStyle('charSpacing', null);
-    $('.text-char-spacing').val(props.charSpacing);
+    propsText.charSpacing = getActiveStyle('charSpacing', null);
+    $('.text-char-spacing').val(propsText.charSpacing);
 }
 
 function setCharSpacing() {
-    setActiveStyle('charSpacing', parseInt(props.charSpacing, 10), null);
+    setActiveStyle('charSpacing', parseInt(propsText.charSpacing, 10), null);
 }
 
 function getFontSize() {
-    props.fontSize = getActiveStyle('fontSize', null);
-    $('.font-size-text').val(props.fontSize);
+    propsText.fontSize = getActiveStyle('fontSize', null);
+    $('.font-size-text').val(propsText.fontSize);
 }
 
 
 function setFontSize() {
-    setActiveStyle('fontSize', parseInt(props.fontSize, 10), null);
+    setActiveStyle('fontSize', parseInt(propsText.fontSize, 10), null);
 }
 
 
 function getBold() {
-    props.fontWeight = getActiveStyle('fontWeight', null);
-    $('.text-isbold').prop('checked', props.fontWeight);
+    propsText.fontWeight = getActiveStyle('fontWeight', null);
+    $('.text-isbold').prop('checked', propsText.fontWeight);
 }
 
 function setBold() {
-    setActiveStyle('fontWeight', props.fontWeight ? 'bold' : '', null);
+    setActiveStyle('fontWeight', propsText.fontWeight ? 'bold' : '', null);
 }
 
 function getTextDecoration() {
-    props.TextDecoration = getActiveStyle('textDecoration', null);
+    propsText.TextDecoration = getActiveStyle('textDecoration', null);
 }
 
 function setTextDecoration(value) {
-    let iclass = props.TextDecoration;
+    let iclass = propsText.TextDecoration;
     if (iclass.includes(value)) {
         iclass = iclass.replace(RegExp(value, 'g'), '');
     } else {
         iclass += ` ${value}`;
     }
-    props.TextDecoration = iclass;
-    setActiveStyle('textDecoration', props.TextDecoration, null);
+    propsText.TextDecoration = iclass;
+    setActiveStyle('textDecoration', propsText.TextDecoration, null);
 }
 
 function getTextAlign() {
-    props.textAlign = getActiveProp('textAlign');
+    propsText.textAlign = getActiveProp('textAlign');
 }
 
 function setTextAlign(value) {
-    props.textAlign = value;
-    setActiveProp('textAlign', props.textAlign);
+    propsText.textAlign = value;
+    setActiveProp('textAlign', propsText.textAlign);
 }
 
 function getFontFamily() {
-    props.fontFamily = getActiveProp('fontFamily');
-    $('.text-font-family').val(props.fontFamily);
+    propsText.fontFamily = getActiveProp('fontFamily');
+    $('.text-font-family').val(propsText.fontFamily);
 }
 
 function setFontFamily() {
-    setActiveProp('fontFamily', props.fontFamily);
+    setActiveProp('fontFamily', propsText.fontFamily);
 }
 
 /*Canvas*/
 
 function setCanvasFill() {
-    if (!props.canvasImage) {
-        canvas.backgroundColor = props.canvasFill;
+    if (!propsText.canvasImage) {
+        canvas.backgroundColor = propsText.canvasFill;
         canvas.renderAll();
     }
 }
 
 
 function setCanvasImage() {
-    if (props.canvasImage) {
+    if (propsText.canvasImage) {
         this.canvas.setBackgroundColor({
-            source: props.canvasImage,
+            source: propsText.canvasImage,
             repeat: 'repeat'
         }, function () {
             canvas.renderAll();
