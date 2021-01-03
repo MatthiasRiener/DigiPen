@@ -11,12 +11,14 @@ let taskHeight;
 /* open task popup */
 $('body').on('click', '.task-item', function () {
     $('#taskPopup').css('opacity', '0.0');
+    $('#taskPopup').css('display', 'none');
 
     taskWidth = $(this).width();
     taskHeight = $(this).height();
     taskPositionTop = $(this).offset().top;
     taskPositonLeft = $(this).offset().left;
 
+    $('#taskPopup').css('display', 'flex');
    $('#taskPopup').css('top', taskPositionTop - 340);
    $('#taskPopup').css('left', taskPositonLeft + taskWidth - 30);
    $('#taskPopup').animate({
@@ -28,12 +30,14 @@ $('body').on('click', '.task-item', function () {
 
 $('#taskPopup-top-right').click(function () {
     $('#taskPopup').css('opacity', '0.0');
+    $('#taskPopup').css('display', 'none');
     closeAllSubPopups();
 });
 
 $('#taskPopup-top-left-icon').click(function () {
     if($('#presentationPopup').css('opacity') == 0) {
         closeAllSubPopups();
+        $('#presentationPopup').css('display', 'flex');
         $('#presentationPopup').css('top', taskPositionTop - 340);
         $('#presentationPopup').css('left', taskPositonLeft + taskWidth - 310);
         $('#presentationPopup').animate({
@@ -43,12 +47,14 @@ $('#taskPopup-top-left-icon').click(function () {
     }else {
         $('#presentationPopup').css('opacity', '0');
         $('#presentationPopup').css('margin-left', '2vw');
+        $('#presentationPopup').css('display', 'none');
     }
 });
 
 $('#taskPopup-fourth-right-icon').click(function () {
     if($('#personPopup').css('opacity') == 0) {
         closeAllSubPopups();
+        $('#personPopup').css('display', 'flex');
         $('#personPopup').css('top', taskPositionTop - 250);
         $('#personPopup').css('left', taskPositonLeft + taskWidth - 310);
         $('#personPopup').animate({
@@ -58,12 +64,14 @@ $('#taskPopup-fourth-right-icon').click(function () {
     }else {
         $('#personPopup').css('opacity', '0');
         $('#personPopup').css('margin-left', '2vw');
+        $('#personPopup').css('display', 'none');
     }
 });
 
 $('#taskPopup-sixth-top-add').click(function () {
     if($('#subTaskPopup').css('opacity') == 0) {
         closeAllSubPopups();
+        $('#subTaskPopup').css('display', 'flex');
         $('#subTaskPopup').css('top', taskPositionTop - 140);
         $('#subTaskPopup').css('left', taskPositonLeft + taskWidth - 310);
         $('#subTaskPopup').animate({
@@ -73,6 +81,7 @@ $('#taskPopup-sixth-top-add').click(function () {
     }else {
         $('#subTaskPopup').css('opacity', '0');
         $('#subTaskPopup').css('margin-left', '2vw');
+        $('#subTaskPopup').css('display', 'none');
     }
 });
 
@@ -80,10 +89,28 @@ $('#taskPopup-sixth-top-add').click(function () {
 function closeAllSubPopups() {
     $('#presentationPopup').css('opacity', '0');
     $('#presentationPopup').css('margin-left', '2vw');
+    $('#presentationPopup').css('display', 'none');
 
     $('#personPopup').css('opacity', '0');
     $('#personPopup').css('margin-left', '2vw');
+    $('#personPopup').css('display', 'none');
 
     $('#subTaskPopup').css('opacity', '0');
     $('#subTaskPopup').css('margin-left', '2vw');
+    $('#subTaskPopup').css('display', 'none');
 }
+
+$('#subTaskPopup-bottom-add').click(function () {
+    $('#taskPopup-sixth-bottom').append(`
+    <div class="taskPopup-sixth-bottom-row">
+        <div class="taskPopup-sixth-bottom-row-left">
+            <input class="taskPopup-sixth-bottom-row-left-input" type="checkbox">
+        </div>
+        <div class="taskPopup-sixth-bottom-row-right">${$('#subTaskPopup-bottom-input').val()}</div>
+    </div>
+    `);
+
+    $('#subTaskPopup').css('display', 'none');
+    $('#subTaskPopup').css('opacity', '0');
+    $('#subTaskPopup').css('margin-left', '2vw');
+});
