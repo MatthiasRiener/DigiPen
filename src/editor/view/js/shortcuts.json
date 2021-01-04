@@ -11,5 +11,13 @@
         "name": "delete",
         "keys": ["Delete"],
         "callback": "removeSelected"
+    },
+    {
+        "name": "addImage",
+        "keys": [
+            "ControlLeft",
+            "KeyI"
+        ],
+        "callback": "addImage"
     }
 ]

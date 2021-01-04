@@ -196,6 +196,31 @@ function addText() {
 
 }
 
+function addImage() {
+    const url = "https://media.contentapi.ea.com/content/dam/gin/images/2017/01/the-simpsons-game-key-art.jpg.adapt.crop191x100.628p.jpg";
+
+    if(url) {
+        const img = fabric.Image.fromURL(url, (image) => {
+            image.set({
+                left: 10,
+                top: 10,
+                angle: 0,
+                padding: 10,
+                cornerSize: 10,
+                hasRotationPoint: true,
+            });
+
+            image.scaleToWidth(200);
+            image.scaleToHeight(200);
+            extend(image, randomId());
+            canvas.add(image);
+            selectItemAfterAdded(image);
+        });
+
+        console.log('hallo')
+    }
+}
+
 
 /*------------------------Events------------------------*/
 
