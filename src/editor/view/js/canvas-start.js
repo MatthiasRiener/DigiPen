@@ -26,6 +26,8 @@ var propsText = {
 };
 
 var propsImage = {
+    strokeWidth: null, 
+    strokeColor: null,
     grayscale: {
         active: false,
         avg: null,
@@ -208,6 +210,8 @@ function addImage() {
                 angle: 0,
                 padding: 10,
                 cornerSize: 10,
+                strokeWidth: 0,
+                stroke: '#000000',
                 hasRotationPoint: true,
             });
 
@@ -324,6 +328,22 @@ $('body').on('keypress', '.canvas-background-img', function (e) {
 
 $('body').on('click', '.btn-export-to-json', function() {
     saveCanvasToJson();
+});
+
+
+
+/*--------Image-------*/
+$('body').on('input', '.img-stroke-width', function() {
+    var val = $(this).val();
+    propsImage.strokeWidth = val;
+    setImgStrokeWidth();
+});
+
+
+$('body').on('input', '.img-stroke-color', function() {
+    var val = $(this).val();
+    propsImage.strokeColor = val;
+    setImgStrokeColor();
 });
 /*------------------------Helper Functions------------------------*/
 
@@ -626,6 +646,17 @@ function setCanvasImage() {
     }
 }
 
+
+/* Image */
+
+function setImgStrokeWidth() {
+    setActiveStyle('strokeWidth',parseInt(propsImage.strokeWidth, 10) , null);
+}
+
+
+function setImgStrokeColor() {
+    setActiveStyle('stroke', propsImage.strokeColor, null);
+}
 /*------------------------Custom NGIF------------------------*/
 
 
