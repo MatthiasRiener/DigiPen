@@ -35,7 +35,7 @@ body{
 .content h1{
     color: var(--dark-grey);
     font-size: 250%;
-    font-weight: bold;π
+    font-weight: bold;
 }
 
 .line{
@@ -162,16 +162,16 @@ p .policy{
     background-size: cover;
     background-position: 75%;
     background-repeat: no-repeat;
+    
 }
 
-.right-side a{
+.right-side p{
     color: var(--white);
-    font-size: 250%;
-    text-decoration: none;
-    text-transform: none;
     background-color: transparent;
+    font-size: 250%;
     position: absolute;
     right: 2vw;
     top: 2vh;
     font-weight: bold;
+    opacity: 1;
 }
