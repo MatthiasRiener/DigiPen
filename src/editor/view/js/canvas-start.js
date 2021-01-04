@@ -165,6 +165,7 @@ function init() {
                     break;
 
                 case 'image':
+                    imageEditor['visible'] = true;
                     break;
             }
         },
@@ -378,6 +379,7 @@ function randomId() {
 
 function resetPanels() {
     textEditor['visible'] = false;
+    imageEditor['visible'] = false;
 }
 
 
@@ -677,3 +679,9 @@ var textEditorContainer = document.getElementById('text-editor');
 var textEditor = new CustomNGIf(textEditorContainer, function () {}, 'visible');
 
 textEditor['visible'] = false;
+
+
+var imageEditorContainer = document.getElementById('image-editor');
+var imageEditor = new CustomNGIf(imageEditorContainer, function () {}, 'visible');
+
+imageEditor['visible'] = false;
