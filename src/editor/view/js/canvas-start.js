@@ -4,6 +4,8 @@ var canvas = this.__canvas = new fabric.Canvas('canvas', {
     selectionBorderColor: 'blue',
 });
 
+canvas.enableGLFiltering = false;
+
 let shortcuts = [];
 
 var selected;
@@ -26,7 +28,9 @@ var propsText = {
 };
 
 var propsImage = {
+    // done
     strokeWidth: null, 
+    // done
     strokeColor: null,
     grayscale: {
         active: false,
@@ -34,7 +38,8 @@ var propsImage = {
         lum: null,
         light: null,
     },
-    invert: null,
+
+    invert: false,
     sepia: null,
     black_white: null,
     brownie: null,
@@ -200,7 +205,7 @@ function addText() {
 }
 
 function addImage() {
-    const url = "https://media.contentapi.ea.com/content/dam/gin/images/2017/01/the-simpsons-game-key-art.jpg.adapt.crop191x100.628p.jpg";
+    const url = "https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg";
 
     if(url) {
         const img = fabric.Image.fromURL(url, (image) => {
@@ -214,17 +219,20 @@ function addImage() {
                 stroke: '#000000',
                 hasRotationPoint: true,
             });
-
             image.scaleToWidth(200);
             image.scaleToHeight(200);
             extend(image, randomId());
             canvas.add(image);
             selectItemAfterAdded(image);
-        });
+            
+        }, {crossOrigin: 'Anonymous'});
 
-        console.log('hallo')
+      
     }
 }
+
+
+
 
 
 /*------------------------Events------------------------*/
@@ -345,6 +353,12 @@ $('body').on('input', '.img-stroke-color', function() {
     propsImage.strokeColor = val;
     setImgStrokeColor();
 });
+
+$('body').on('click', '.img-invert-img', function() {
+    propsImage.invert = !propsImage.invert;
+    setImgInvert();
+});
+
 /*------------------------Helper Functions------------------------*/
 
 function saveCanvasToJson() {
@@ -431,6 +445,26 @@ function setActiveProp(name, value) {
     object.set(name, value).setCoords();
     canvas.renderAll();
 }
+
+function setActiveImgFilter(filter, operation, obj ) {
+    console.log("hallo");
+    var object = obj || canvas.getActiveObject();
+
+    if(!operation) {
+        const index = object.filters.indexOf(filter);
+        if(index > -1) {
+            object.filters.splice(index, 1);
+        } 
+    } else {
+        object.filters.push(filter);
+        console.log("applying filter");
+    }
+
+    object.applyFilters();
+    canvas.renderAll();
+    console.log(object);
+}
+
 
 function getActiveProp(name) {
     const object = canvas.getActiveObject();
@@ -657,6 +691,12 @@ function setImgStrokeWidth() {
 function setImgStrokeColor() {
     setActiveStyle('stroke', propsImage.strokeColor, null);
 }
+
+
+function setImgInvert() {
+    setActiveImgFilter(new fabric.Image.filters.Invert(), propsImage.invert, null );
+}
+
 /*------------------------Custom NGIF------------------------*/
 
 
