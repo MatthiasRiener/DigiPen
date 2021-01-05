@@ -32,15 +32,21 @@ var propsImage = {
     strokeWidth: null,
     // done
     strokeColor: null,
+    // done
     grayscale: {
         active: false,
         mode: null,
     },
-
+    // done
     invert: false,
+    // done
     sepia: false,
+    // done
     black_white: false,
+    // done
     brownie: false,
+
+    // done
     vintage: false,
     kodachrome: false,
     technicolor: false,
@@ -390,6 +396,21 @@ $('body').on('click', '.img-sepia-img', function() {
 });
 
 
+$('body').on('click', '.img-black_white-img', function() {
+    propsImage.black_white = !propsImage.black_white;
+    setBlackAndWhite();
+});
+
+$('body').on('click', '.img-brownie-img', function() {
+    propsImage.brownie = !propsImage.brownie
+    setImgBrownie();
+});
+
+
+$('body').on('click', '.img-vintage-img', function() {
+    propsImage.vintage = !propsImage.vintage
+    setImgVintage();
+});
 /*------------------------Helper Functions------------------------*/
 
 function saveCanvasToJson() {
@@ -759,6 +780,19 @@ function setImgSepia() {
     console.log("mama")
     setActiveImgFilter("sepia", new fabric.Image.filters.Sepia(), propsImage.sepia, null);
 }
+
+function setBlackAndWhite() {
+    setActiveImgFilter("black_white", new fabric.Image.filters.BlackWhite(), propsImage.black_white, null);
+}
+
+function setImgBrownie() {
+    setActiveImgFilter("brownie", new fabric.Image.filters.Brownie(), propsImage.brownie, null);
+}
+
+function setImgVintage() {
+    setActiveImgFilter("vintage", new fabric.Image.filters.Vintage(), propsImage.vintage, null);
+}
+
 
 /*------------------------Custom NGIF------------------------*/
 
