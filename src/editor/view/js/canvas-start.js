@@ -446,18 +446,13 @@ function setActiveProp(name, value) {
     canvas.renderAll();
 }
 
-function setActiveImgFilter(filter, operation, obj ) {
-    console.log("hallo");
+function setActiveImgFilter(filter, operation, obj, filterIndex) {
     var object = obj || canvas.getActiveObject();
 
     if(!operation) {
-        const index = object.filters.indexOf(filter);
-        if(index > -1) {
-            object.filters.splice(index, 1);
-        } 
+        object.filters.splice(filterIndex, 1);
     } else {
         object.filters.push(filter);
-        console.log("applying filter");
     }
 
     object.applyFilters();
@@ -694,7 +689,8 @@ function setImgStrokeColor() {
 
 
 function setImgInvert() {
-    setActiveImgFilter(new fabric.Image.filters.Invert(), propsImage.invert, null );
+    console.log(propsImage.invert);
+    setActiveImgFilter(new fabric.Image.filters.Invert(), propsImage.invert, null, 0);
 }
 
 /*------------------------Custom NGIF------------------------*/
