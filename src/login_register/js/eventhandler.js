@@ -17,3 +17,22 @@ $('.logo').click(function() {
     alert("This page is in work.")
    // window.location = "#"
 })
+
+$('.login').click(function() {
+    window.location = "../pages/login.html"
+})
+
+$('.policy').click(function() {
+    alert("This page is in work.")
+   // window.location = "#"
+})
+
+$('.apple').click(function() {
+    alert("This page is in work.")
+   // window.location = "#"
+})
+
+$('.google').click(function() {
+    alert("This page is in work.")
+   // window.location = "#"
+})

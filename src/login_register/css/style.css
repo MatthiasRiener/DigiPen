@@ -140,19 +140,24 @@ form a .login, form a .register{
     cursor: pointer;
 }
 
+.text{
+    display: flex;
+    flex-direction: row;
+}
+
 p{
     color: var(--dark-grey);
     opacity: 50%;
-    margin: 0.5vh;
+    margin: 0.5vh 0.1vw;
     font-weight: 300;
+    display: flex;
+    flex-direction: column;
 }
 
-p .policy{
+.policy{
     color: var(--dark-grey);
-    opacity: 50%;
+    opacity: 25%;
     font-size: 100%;
-    text-decoration: none;
-    text-transform: none;
 }
 
 .right-side{
