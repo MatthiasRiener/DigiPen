@@ -96,7 +96,7 @@ $('#taskPopup-last-bottom-left-reactions-add').click(function () {
         closeAllSubPopups();
         $('#reactionPopup').css('display', 'flex');
         $('#reactionPopup').css('top', taskPositionTop - 10);
-        $('#reactionPopup').css('left', taskPositonLeft + taskWidth - 85);
+        $('#reactionPopup').css('left', taskPositonLeft + taskWidth - 84);
         $('#reactionPopup').animate({
             opacity: 1.0,
             margin: 0
