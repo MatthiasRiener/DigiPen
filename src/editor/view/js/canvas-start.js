@@ -29,24 +29,22 @@ var propsText = {
 
 var propsImage = {
     // done
-    strokeWidth: null, 
+    strokeWidth: null,
     // done
     strokeColor: null,
     grayscale: {
         active: false,
-        avg: null,
-        lum: null,
-        light: null,
+        mode: null,
     },
 
     invert: false,
-    sepia: null,
-    black_white: null,
-    brownie: null,
-    vintage: null,
-    kodachrome: null,
-    technicolor: null,
-    polaroid: null,
+    sepia: false,
+    black_white: false,
+    brownie: false,
+    vintage: false,
+    kodachrome: false,
+    technicolor: false,
+    polaroid: false,
     remove_color: {
         active: false,
         color: null,
@@ -86,8 +84,8 @@ var propsImage = {
         active: false,
         val: null,
     },
-    sharpen: null,
-    emboss: null,
+    sharpen: false,
+    emboss: false,
     blend: {
         active: false,
         mode: null,
@@ -207,7 +205,7 @@ function addText() {
 function addImage() {
     const url = "https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg";
 
-    if(url) {
+    if (url) {
         const img = fabric.Image.fromURL(url, (image) => {
             image.set({
                 left: 10,
@@ -224,10 +222,12 @@ function addImage() {
             extend(image, randomId());
             canvas.add(image);
             selectItemAfterAdded(image);
-            
-        }, {crossOrigin: 'Anonymous'});
 
-      
+        }, {
+            crossOrigin: 'Anonymous'
+        });
+
+
     }
 }
 
@@ -334,30 +334,77 @@ $('body').on('keypress', '.canvas-background-img', function (e) {
 
 
 
-$('body').on('click', '.btn-export-to-json', function() {
+$('body').on('click', '.btn-export-to-json', function () {
     saveCanvasToJson();
 });
 
 
 
 /*--------Image-------*/
-$('body').on('input', '.img-stroke-width', function() {
+$('body').on('input', '.img-stroke-width', function () {
     var val = $(this).val();
     propsImage.strokeWidth = val;
     setImgStrokeWidth();
 });
 
 
-$('body').on('input', '.img-stroke-color', function() {
+$('body').on('input', '.img-stroke-color', function () {
     var val = $(this).val();
     propsImage.strokeColor = val;
     setImgStrokeColor();
 });
 
-$('body').on('click', '.img-invert-img', function() {
+$('body').on('click', '.img-invert-img', function () {
     propsImage.invert = !propsImage.invert;
     setImgInvert();
 });
+
+$('body').on('click', '.img-grayscale-img', function () {
+    propsImage.grayscale.active = !propsImage.grayscale.active;
+    setImgGrayScale();
+});
+
+
+$('body').on('click', '.img-avg-img', function () {
+    propsImage.grayscale.avg = !propsImage.grayscale.avg;
+    setFilterValue("grayscale", 'mode', 'average', propsImage.grayscale.avg);
+});
+
+$('body').on('change', '.img-grayscale-val', function () {
+    var val = $(this).children("option:selected").val();
+
+    if (val !== 'cancel') {
+        propsImage.grayscale.mode = val;
+        setFilterValue("grayscale", 'mode', val, 1, null);
+    } else {
+        propsImage.grayscale.mode = null;
+        setFilterValue("grayscale", 'mode', val, 0, null);
+    }
+});
+
+function setFilterValue(index, prop, value, status, obj) {
+    var obj = obj || canvas.getActiveObject();
+    var index = Object.keys(propsImage).indexOf(index);
+    console.log(index);
+
+    obj.filters[index][prop] = null;
+
+    if (status) {
+        obj.filters[index][prop] = value;
+    } else {
+        delete obj.filters[index].mode;
+    }
+
+    obj.applyFilters();
+    canvas.renderAll();
+}
+
+/*
+img-lum-img
+
+img-lig-img
+
+
 
 /*------------------------Helper Functions------------------------*/
 
@@ -446,18 +493,27 @@ function setActiveProp(name, value) {
     canvas.renderAll();
 }
 
-function setActiveImgFilter(filter, operation, obj, filterIndex) {
+function setActiveImgFilter(filterName, filter, operation, obj) {
+    var index = Object.keys(propsImage).indexOf(filterName);
+
+    if (index === -1) {
+        console.log('kein Filter gefunden.');
+    }
+
+
     var object = obj || canvas.getActiveObject();
 
-    if(!operation) {
-        object.filters.splice(filterIndex, 1);
+    if (!operation) {
+        object.filters.splice(index, 1);
     } else {
-        object.filters.push(filter);
+        object.filters[index] = filter;
     }
+
+
 
     object.applyFilters();
     canvas.renderAll();
-    console.log(object);
+
 }
 
 
@@ -679,7 +735,7 @@ function setCanvasImage() {
 /* Image */
 
 function setImgStrokeWidth() {
-    setActiveStyle('strokeWidth',parseInt(propsImage.strokeWidth, 10) , null);
+    setActiveStyle('strokeWidth', parseInt(propsImage.strokeWidth, 10), null);
 }
 
 
@@ -689,8 +745,12 @@ function setImgStrokeColor() {
 
 
 function setImgInvert() {
-    console.log(propsImage.invert);
-    setActiveImgFilter(new fabric.Image.filters.Invert(), propsImage.invert, null, 0);
+    setActiveImgFilter("invert", new fabric.Image.filters.Invert(), propsImage.invert, null);
+}
+
+function setImgGrayScale() {
+    console.log(propsImage.grayscale.active);
+    setActiveImgFilter("grayscale", new fabric.Image.filters.Grayscale(), propsImage.grayscale.active, null);
 }
 
 /*------------------------Custom NGIF------------------------*/
