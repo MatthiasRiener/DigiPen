@@ -382,28 +382,12 @@ $('body').on('change', '.img-grayscale-val', function () {
     }
 });
 
-function setFilterValue(index, prop, value, status, obj) {
-    var obj = obj || canvas.getActiveObject();
-    var index = Object.keys(propsImage).indexOf(index);
-    console.log(index);
 
-    obj.filters[index][prop] = null;
 
-    if (status) {
-        obj.filters[index][prop] = value;
-    } else {
-        delete obj.filters[index].mode;
-    }
-
-    obj.applyFilters();
-    canvas.renderAll();
-}
-
-/*
-img-lum-img
-
-img-lig-img
-
+$('body').on('click', '.img-sepia-img', function() {
+    propsImage.sepia = !propsImage.sepia;
+    setImgSepia();
+});
 
 
 /*------------------------Helper Functions------------------------*/
@@ -510,10 +494,28 @@ function setActiveImgFilter(filterName, filter, operation, obj) {
     }
 
 
-
+    console.log(object);
     object.applyFilters();
     canvas.renderAll();
 
+}
+
+
+function setFilterValue(index, prop, value, status, obj) {
+    var obj = obj || canvas.getActiveObject();
+    var index = Object.keys(propsImage).indexOf(index);
+    console.log(index);
+
+    obj.filters[index][prop] = null;
+
+    if (status) {
+        obj.filters[index][prop] = value;
+    } else {
+        delete obj.filters[index].mode;
+    }
+
+    obj.applyFilters();
+    canvas.renderAll();
 }
 
 
@@ -751,6 +753,11 @@ function setImgInvert() {
 function setImgGrayScale() {
     console.log(propsImage.grayscale.active);
     setActiveImgFilter("grayscale", new fabric.Image.filters.Grayscale(), propsImage.grayscale.active, null);
+}
+
+function setImgSepia() {
+    console.log("mama")
+    setActiveImgFilter("sepia", new fabric.Image.filters.Sepia(), propsImage.sepia, null);
 }
 
 /*------------------------Custom NGIF------------------------*/
