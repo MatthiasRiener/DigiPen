@@ -351,7 +351,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: var(--dark-grey);
 }
 
@@ -361,7 +361,7 @@ body {
 
 #taskPopup-second {
     width: 96%;
-    height: 6%;
+    height: 10.6%;
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
@@ -444,7 +444,7 @@ body {
 
 #taskPopup-fifth {
     width: 96%;
-    min-height: 18%;
+    height: 18%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -521,6 +521,7 @@ body {
 
 #taskPopup-sixth-bottom {
     width: 100%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -577,16 +578,79 @@ body {
 }
 
 #taskPopup-last-top {
-    width: 20%;
-    height: 100%;
+    width: 100%;
+    height: 20%;
     font-size: 0.9rem;
     font-weight: bold;
     color: var(--dark-grey);
 }
 
 #taskPopup-last-bottom {
-    width: 80%;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#taskPopup-last-bottom-left {
+    width: 85%;
     height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#taskPopup-last-bottom-left-reactions {
+    width: 70%;
+    height: 70%;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 13px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#taskPopup-last-bottom-left-reactions-add {
+    width: 1.3vw;
+    height: 1.3vw;
+    border: dashed 1px var(--dark-grey);
+    border-radius: 100%;
+    margin-left: 0.3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+#taskPopup-last-bottom-left-reactions-add:hover {
+    cursor: pointer;
+}
+
+#taskPopup-last-bottom-right {
+    width: 15%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#taskPopup-last-bottom-right-inner {
+    width: 1.6vw;
+    height: 1.6vw;
+    background-color: var(--dark-grey);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: var(--white);
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+#taskPopup-last-bottom-right-inner:hover {
+    cursor: pointer;
 }
 
 #presentationPopup {
@@ -898,4 +962,16 @@ body {
 
 #subTaskPopup-bottom-add:hover {
     cursor: pointer;
+}
+
+#reactionPopup {
+    width: 2.3vw;
+    height: 20vh;
+    position: absolute;
+    z-index: 100;
+    border-radius: 15px;
+    background-color: var(--white);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    opacity: 0;
+    margin-left: 2vw;
 }
