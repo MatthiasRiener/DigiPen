@@ -54,12 +54,13 @@ var propsImage = {
     technicolor: false,
     // done
     polaroid: false,
-
+    // done
     remove_color: {
         active: false,
         color: null,
         distance: 0,
     },
+
     brightness: {
         active: false,
         val: null,
@@ -433,7 +434,7 @@ $('body').on('click', '.img-polaroid-img', function () {
 });
 
 
-$('body').on('click', '.img-removeColor-img', function() {
+$('body').on('click', '.img-removeColor-img', function () {
     propsImage.remove_color.active = !propsImage.remove_color.active;
     propsImage.remove_color.distance = parseInt($('.img-removeColor-slider-img').val(), 10) / 100;
     propsImage.remove_color.color = $('.img-removeColor-color-img').val();
@@ -441,17 +442,30 @@ $('body').on('click', '.img-removeColor-img', function() {
     setImgRemoveColor();
 });
 
-$('body').on('input', '.img-removeColor-slider-img', function() {
+$('body').on('input', '.img-removeColor-slider-img', function () {
     propsImage.remove_color.distance = parseInt($('.img-removeColor-slider-img').val(), 10) / 100;
     setImgRemoveColor();
 });
 
 
-$('body').on('input', '.img-removeColor-color-img', function() {
+$('body').on('input', '.img-removeColor-color-img', function () {
     propsImage.remove_color.color = $('.img-removeColor-color-img').val();
     setImgRemoveColor();
 });
 
+
+$('body').on('click', '.img-brightness-img', function () {
+    propsImage.brightness.active = !propsImage.brightness.active;
+
+    propsImage.brightness.val = parseFloat($('.img-brightness-slider-img').val(), 10) / 100;
+    setImgBrightness();
+});
+
+
+$('body').on('input', '.img-brightness-slider-img', function () {
+    propsImage.brightness.val = parseFloat($(this).val(), 10) / 100;
+    setFilterValue("brightness", 'brightness', propsImage.brightness.val, propsImage.brightness.active);
+});
 
 /*------------------------Helper Functions------------------------*/
 
@@ -556,8 +570,6 @@ function setActiveImgFilter(filterName, filter, operation, obj) {
         object.filters[index] = filter;
     }
 
-
-    console.log(object);
     object.applyFilters();
     canvas.renderAll();
 
@@ -853,6 +865,13 @@ function setImgRemoveColor() {
         distance: propsImage.remove_color.distance,
         color: propsImage.remove_color.color
     }), propsImage.remove_color.active);
+}
+
+
+function setImgBrightness() {
+    setActiveImgFilter("brightness", new fabric.Image.filters.Brightness({
+        brightness: propsImage.brightness.val
+    }), propsImage.brightness.active);
 }
 
 /*------------------------Custom NGIF------------------------*/
