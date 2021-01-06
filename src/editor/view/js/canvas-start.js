@@ -48,13 +48,17 @@ var propsImage = {
 
     // done
     vintage: false,
+    // done
     kodachrome: false,
+    // done
     technicolor: false,
+    // done
     polaroid: false,
+
     remove_color: {
         active: false,
         color: null,
-        distance: null,
+        distance: 0,
     },
     brightness: {
         active: false,
@@ -390,27 +394,65 @@ $('body').on('change', '.img-grayscale-val', function () {
 
 
 
-$('body').on('click', '.img-sepia-img', function() {
+$('body').on('click', '.img-sepia-img', function () {
     propsImage.sepia = !propsImage.sepia;
     setImgSepia();
 });
 
 
-$('body').on('click', '.img-black_white-img', function() {
+$('body').on('click', '.img-black_white-img', function () {
     propsImage.black_white = !propsImage.black_white;
     setBlackAndWhite();
 });
 
-$('body').on('click', '.img-brownie-img', function() {
+$('body').on('click', '.img-brownie-img', function () {
     propsImage.brownie = !propsImage.brownie
     setImgBrownie();
 });
 
 
-$('body').on('click', '.img-vintage-img', function() {
+$('body').on('click', '.img-vintage-img', function () {
     propsImage.vintage = !propsImage.vintage
     setImgVintage();
 });
+
+$('body').on('click', '.img-kodachrome-img', function () {
+    propsImage.kodachrome = !propsImage.kodachrome
+    setImgKodachrome();
+});
+
+
+$('body').on('click', '.img-technicolor-img', function () {
+    propsImage.technicolor = !propsImage.technicolor
+    setImgTechnicolor();
+});
+
+$('body').on('click', '.img-polaroid-img', function () {
+    propsImage.polaroid = !propsImage.polaroid
+    setImgPolaroid();
+});
+
+
+$('body').on('click', '.img-removeColor-img', function() {
+    propsImage.remove_color.active = !propsImage.remove_color.active;
+    propsImage.remove_color.distance = parseInt($('.img-removeColor-slider-img').val(), 10) / 100;
+    propsImage.remove_color.color = $('.img-removeColor-color-img').val();
+    console.log(propsImage.remove_color);
+    setImgRemoveColor();
+});
+
+$('body').on('input', '.img-removeColor-slider-img', function() {
+    propsImage.remove_color.distance = parseInt($('.img-removeColor-slider-img').val(), 10) / 100;
+    setImgRemoveColor();
+});
+
+
+$('body').on('input', '.img-removeColor-color-img', function() {
+    propsImage.remove_color.color = $('.img-removeColor-color-img').val();
+    setImgRemoveColor();
+});
+
+
 /*------------------------Helper Functions------------------------*/
 
 function saveCanvasToJson() {
@@ -772,12 +814,10 @@ function setImgInvert() {
 }
 
 function setImgGrayScale() {
-    console.log(propsImage.grayscale.active);
     setActiveImgFilter("grayscale", new fabric.Image.filters.Grayscale(), propsImage.grayscale.active, null);
 }
 
 function setImgSepia() {
-    console.log("mama")
     setActiveImgFilter("sepia", new fabric.Image.filters.Sepia(), propsImage.sepia, null);
 }
 
@@ -793,6 +833,27 @@ function setImgVintage() {
     setActiveImgFilter("vintage", new fabric.Image.filters.Vintage(), propsImage.vintage, null);
 }
 
+function setImgKodachrome() {
+    setActiveImgFilter("kodachrome", new fabric.Image.filters.Kodachrome(), propsImage.kodachrome, null);
+}
+
+function setImgTechnicolor() {
+    setActiveImgFilter("technicolor", new fabric.Image.filters.Technicolor(), propsImage.technicolor, null);
+}
+
+
+function setImgPolaroid() {
+    setActiveImgFilter("polaroid", new fabric.Image.filters.Polaroid(), propsImage.polaroid, null);
+}
+
+
+function setImgRemoveColor() {
+
+    setActiveImgFilter("remove_color", new fabric.Image.filters.RemoveColor({
+        distance: propsImage.remove_color.distance,
+        color: propsImage.remove_color.color
+    }), propsImage.remove_color.active);
+}
 
 /*------------------------Custom NGIF------------------------*/
 
