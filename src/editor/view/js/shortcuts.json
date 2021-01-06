@@ -19,5 +19,13 @@
             "KeyI"
         ],
         "callback": "addImage"
+    },
+    {
+        "name": "paste",
+        "keys": [
+            "ControlLeft",
+            "KeyV"
+        ],
+        "callback": "paste"
     }
 ]

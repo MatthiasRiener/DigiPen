@@ -60,11 +60,12 @@ var propsImage = {
         color: null,
         distance: 0,
     },
-
+    // done
     brightness: {
         active: false,
         val: null,
     },
+    
     gamma: {
         active: false,
         red: null,
@@ -194,8 +195,8 @@ function init() {
 
 
 
-function addText() {
-    const text = new fabric.Textbox('hallo', {
+function addText(t) {
+    const text = new fabric.Textbox(t == undefined ? 'hallo' : t, {
         left: 10,
         top: 10,
         fontFamily: 'helvetica',
@@ -678,6 +679,64 @@ function setActiveStyle(styleName, value, object) {
 
 }
 
+
+async function paste() {
+    var clipBoard;
+    await navigator.clipboard.readText().then(text => {
+        clipBoard = text;
+    });
+    var obj = canvas.getActiveObject() || clipBoard;
+    console.log(canvas.getActiveObject());
+
+
+
+    if(canvas.getActiveObject() != null) {
+        const activeObject = canvas.getActiveObject();
+        console.log(activeObject);
+
+        if (activeObject) {
+            let clone;
+            switch (activeObject.type) {
+              case 'rect':
+                clone = new fabric.Rect(activeObject.toObject());
+                break;
+              case 'circle':
+                clone = new fabric.Circle(activeObject.toObject());
+                break;
+              case 'triangle':
+                clone = new fabric.Triangle(activeObject.toObject());
+                break;
+              case 'i-text':
+                clone = new fabric.IText('', activeObject.toObject());
+                break;
+              case 'image':
+                clone = fabric.util.object.clone(activeObject);
+                break;
+            }
+            if (clone) {
+              clone.set({ left: activeObject.left + 30, top: activeObject.top + 30});
+              this.canvas.add(clone);
+              this.selectItemAfterAdded(clone);
+            }
+          }
+          return ;
+    }
+
+    var isImg = obj.match(/\.(jpeg|jpg|gif|png)$/) != null;
+
+    console.log(canvas.getActiveObject());
+
+    if(isImg) {
+        console.log('link is a img');
+    } else {
+        // if link is not a image create new text
+
+        addText(obj);
+        console.log('link is not a img');
+    }
+    // show image popup
+
+}
 
 /*------------------------Styles Functions------------------------*/
 
