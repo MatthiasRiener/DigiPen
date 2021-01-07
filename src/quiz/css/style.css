@@ -1,30 +1,117 @@
 * {
-    background: var(--dark-grey);
     font-family: 'Karla';
-    color: var(--light-grey);
+    color: var(--dark-grey);
     margin: 0;
     padding: 0;
-}
-
-top-bn {
-    position: absolute;
-    z-index: 100;
+    box-sizing: border-box;
+    outline: none;
 }
 
 .navandquizbox {
     display: flex;
-    align-items: center;
-    position: absolute;
     width: 100vw;
     height: 93vh;
 }
 
-side-bar {
+.myquizbox {
+    position: relative;
+    width: 83%;
+    height: 93vh;
+    overflow: auto;
+    padding-bottom: 5%;
+}
+
+.searchheader, .boxleft {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     position: relative;
 }
 
-.myquizbox {
-    background: white;
-    width: 83%;
-    height: 100%;
+.searchheader {
+    width: 80%;
+    padding: 2vw;
+}
+
+.searchbox {
+    width: 14vw;
+    margin-left: 3vw;
+    position: relative;
+}
+
+.input-icons i {
+    position: absolute;
+}
+
+.input-icons {
+    width: 50px;
+    height: 45px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.icon {
+    min-width: fit-content;
+    height: fit-content;
+    color: #C6C6C6;
+}
+
+#myInput {
+    /* background-image: url('/css/searchicon.png'); */
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 0 20px 0 50px;
+    height: 45px;
+    outline: none;
+    border: none;
+    background: #F6F4F9;
+    border-radius: 8px;
+    min-width: 200px;
+}
+
+#newQuiz {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#newQuiz ion-icon {
+    border-radius: 100%;
+    background: rgb(196, 53, 218);
+    background: linear-gradient(90deg, rgba(196, 53, 218, 1) 0%, rgba(219, 60, 70, 1) 100%);
+    color: white;
+    padding: 8px;
+    font-size: 20px;
+    box-shadow: 0 0 10px rgb(196, 53, 218, 0.6)
+}
+
+#newQuiz p {
+    color: white;
+    padding: 8px;
+    font-size: 20px;
+    text-shadow: 0 0 10px rgb(196, 53, 218, 0.6);
+    background: -webkit-linear-gradient(90deg, rgba(196, 53, 218, 1) 0%, rgba(219, 60, 70, 1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bolder;
+}
+
+.bigquizes {
+    margin: 2vw 0 0 2vw;
+    height: 30vh;
+    width: 100%;
+    display: flex;
+}
+
+.bigquizes div {
+    height: 30vh;
+    width: 30vh;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }

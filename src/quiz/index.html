@@ -15,6 +15,8 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="../components/side-bar/Sidebar.js" type="module"></script>
     <script src="../components/nav/Navigation.js" type="module"></script>
 </head>
@@ -24,12 +26,31 @@
         img="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
         username="Matthias Riener" role="Power User" path="../components/nav/styles.css"></top-nb>
 
-
     <div class="navandquizbox">
         <side-bar path="../components/side-bar/styles.css" style="width: 17%; height: 100%; background-color: #F8F7F9;">
         </side-bar>
         <div class="myquizbox">
-            <ion-icon name="heart"></ion-icon>
+            <div class="searchheader">
+                <div class="boxleft">
+                    <h1>My Quizes</h1>
+                    <div class="searchbox">
+                        <div class="input-icons">
+                            <i class="fas fa-search icon"></i>
+                        </div>
+                        <input type="text" id="myInput" placeholder="Search" title="Type in  name" autocomplete="off">
+                    </div>
+                </div>
+                <div id="newQuiz">
+                    <ion-icon name="add-outline"></ion-icon>
+                    <p>New Quiz</p>
+                </div>
+            </div>
+            <div class="bigquizes">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
     </div>
 
