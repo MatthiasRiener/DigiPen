@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basic Structure</title>
 
-    <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Karla">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla">
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
 
     <link href="css/style.css" type="text/css" rel="stylesheet" />
     <link href="css/variables.css" type="text/css" rel="stylesheet" />
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="../components/side-bar/Sidebar.js" type="module"></script>
+    <script src="../components/nav/Navigation.js" type="module"></script>
 </head>
-<body>
-    <h1>Dokument geladen!</h1>
 
-    <ion-icon name="heart"></ion-icon>
+<body>
+    <top-nb
+        img="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
+        username="Matthias Riener" role="Power User" path="../components/nav/styles.css"></top-nb>
+
+
+    <div class="navandquizbox">
+        <side-bar path="../components/side-bar/styles.css" style="width: 17%; height: 100%; background-color: #F8F7F9;">
+        </side-bar>
+        <div class="myquizbox">
+            <ion-icon name="heart"></ion-icon>
+        </div>
+    </div>
 
     <script src="js/eventhandler.js" type="text/javascript" defer></script>
 </body>
+
 </html>

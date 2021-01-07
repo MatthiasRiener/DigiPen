@@ -1,6 +1,30 @@
-
 * {
-    background: var(--dark-color);
+    background: var(--dark-grey);
     font-family: 'Karla';
     color: var(--light-grey);
+    margin: 0;
+    padding: 0;
+}
+
+top-bn {
+    position: absolute;
+    z-index: 100;
+}
+
+.navandquizbox {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    width: 100vw;
+    height: 93vh;
+}
+
+side-bar {
+    position: relative;
+}
+
+.myquizbox {
+    background: white;
+    width: 83%;
+    height: 100%;
 }
