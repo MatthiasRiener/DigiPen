@@ -158,7 +158,6 @@ function init() {
                 getId();
             }
 
-            console.log(selectedObject.type);
 
 
             switch (selectedObject.type) {
@@ -212,6 +211,7 @@ function addText(t) {
     canvas.add(text);
     selectItemAfterAdded(text);
 
+
 }
 
 var chart;
@@ -246,10 +246,10 @@ function addChart() {
 
 function chartLoaded() {
     const data = chart.toBase64Image();
-    addImage(data);
+    addImage(data, true);
 }
 
-function addImage(customurl) {
+function addImage(customurl, isChart) {
     const url = customurl || "https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg";
 
     if (url) {
@@ -266,10 +266,9 @@ function addImage(customurl) {
             });
             image.scaleToWidth(200);
             image.scaleToHeight(200);
-            extend(image, randomId());
+            extend(image, isChart ? `chart_${randomId()}` : randomId());
             canvas.add(image);
             selectItemAfterAdded(image);
-
         }, {
             crossOrigin: 'Anonymous'
         });
@@ -294,9 +293,10 @@ var curKeys = [];
 $('body').keydown(function (event) {
     curKeys = [];
     var keycode = (event.keycode ? event.keycode : event.which);
+    event.preventDefault();
     curKeys.push(event.code);
 
-    console.log(event)
+
     if (event.ctrlKey && event.code != "ControlLeft") {
         curKeys.push("ControlLeft");
     }
