@@ -2,7 +2,7 @@
     {
         "name": "create_text",
         "keys": [
-            "ControlLeft",
+            "ShiftLeft",
             "KeyT"
         ],
         "callback": "addText"
@@ -15,7 +15,7 @@
     {
         "name": "addImage",
         "keys": [
-            "ControlLeft",
+            "ShiftLeft",
             "KeyI"
         ],
         "callback": "addImage"
@@ -23,7 +23,7 @@
     {
         "name": "addChart",
         "keys": [
-            "ControlLeft",
+            "ShiftLeft",
             "KeyN"
         ],
         "callback": "addChart"
@@ -31,7 +31,7 @@
     {
         "name": "canvasToSVG",
         "keys": [
-            "ControlLeft",
+            "ShiftLeft",
             "KeyK"
         ],
         "callback": "rasterizeSVG"
@@ -39,7 +39,7 @@
     {
         "name": "paste",
         "keys": [
-            "ControlLeft",
+            "ShiftLeft",
             "KeyV"
         ],
         "callback": "paste"
