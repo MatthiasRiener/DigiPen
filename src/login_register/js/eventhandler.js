@@ -4,35 +4,40 @@ window.onload = function () {
     console.log('Document loaded.')
 }
 
-$('.register').click(function() {
+$('body').on('click', '.lg_bt_register_click', function(){
     window.location = "../pages/register.html"
 })
 
-$('.continue').click(function() {
-    alert("This page is in work.")
-   // window.location = "#"
+$('body').on('click', '.lg_bt_continue_click', function(){
+    window.location = "../../profilseite/index.html"
 })
 
-$('.logo').click(function() {
-    alert("This page is in work.")
-   // window.location = "#"
+$('body').on('click', '.lg_logo_click', function(){
+    window.location = "../../../src/landing_page/index.html"
 })
 
-$('.login').click(function() {
+$('body').on('click', '.rg_bt_login_click', function(){
     window.location = "../pages/login.html"
 })
 
-$('.policy').click(function() {
-    alert("This page is in work.")
-   // window.location = "#"
+$('body').on('click', '.rg_bt_continue_click', function(){
+    window.location = "../../profilseite/index.html"
 })
 
-$('.apple').click(function() {
-    alert("This page is in work.")
-   // window.location = "#"
+$('body').on('click', '.rg_policy_click', function(){
+    window.location = "../../terms_of_service/index.html"
 })
 
-$('.google').click(function() {
-    alert("This page is in work.")
-   // window.location = "#"
+$('body').on('click', '.rg_logo_click', function(){
+    window.location = "../../../src/landing_page/index.html"
+})
+
+$('body').on('click', '.apple', function(){
+    alert('this page is in work.')
+    // window.location = "#"
+})
+
+$('body').on('click', '.google', function(){
+    alert('this page is in work.')
+    // window.location = "#"
 })

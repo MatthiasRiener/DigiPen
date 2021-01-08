@@ -125,11 +125,11 @@ input[type=button]{
     cursor: pointer;
 }
 
-form a{
+form input[type='button']{
     width: 100%;
 }
 
-form a .login, form a .register{
+form input[type='button'] .lg_bt_login_click, form input[type='button'] .lg_bt_register_click{
     width: 100%;
     background-color: var(--dark-grey);
     color: var(--white);
