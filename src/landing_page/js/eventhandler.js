@@ -115,3 +115,11 @@ $('body').on('click', '.lp_bt_register_click', function(){
 $('body').on('click', '.lp_bt_here_click', function(){
     window.location = "index.html";
 });
+
+$('body').on('click', '.lp_bt_privacy_click', function(){
+    window.location = "../../src/terms_of_service/index.html";
+});
+
+$('body').on('click', '.lp_bt_tos_click', function(){
+    window.location = "../../src/terms_of_service/index.html";
+});
