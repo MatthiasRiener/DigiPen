@@ -214,12 +214,43 @@ function addText(t) {
 
 }
 
+var chart;
+
 function addChart() {
-    console.log("hallo wlet")
+    var ctx = document.getElementById('chart-last-config').getContext('2d');
+    chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45]
+            }]
+        },
+
+        // Configuration options go here
+        options: {
+            animation: {
+                onComplete: chartLoaded
+            }
+        }
+    });
 }
 
-function addImage() {
-    const url = "https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg";
+
+
+function chartLoaded() {
+    const data = chart.toBase64Image();
+    addImage(data);
+}
+
+function addImage(customurl) {
+    const url = customurl || "https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg";
 
     if (url) {
         const img = fabric.Image.fromURL(url, (image) => {
@@ -481,6 +512,7 @@ $('body').on('input', '.img-brightness-slider-img', function () {
     propsImage.brightness.val = parseFloat($(this).val(), 10) / 100;
     setFilterValue("brightness", 'brightness', propsImage.brightness.val, propsImage.brightness.active);
 });
+
 
 /*------------------------Helper Functions------------------------*/
 

@@ -4,6 +4,11 @@
     margin: 0;
 }
 
+#chart-last-config {
+    display: none !important;
+}
+
+
 #content {
     width: 100vw;
     height: 100vh;

@@ -6,13 +6,16 @@ $(document).ready(function () {
     toggleVisibility(0);
 });
 
+
+
+
 /* --------------- SLides-Menu --------------- */
 
-$('#content-leftSlides-topBar-plus').click(function(){
+$('#content-leftSlides-topBar-plus').click(function () {
     addSlide();
 });
 
-function addSlide(){
+function addSlide() {
     let slides = $('.content-leftSlides-slidesContent-slide');
     let width = 10;
     let height = width / (16 / 9);
@@ -27,19 +30,23 @@ function addSlide(){
     $('#content-leftSlides-slidesContent-animatedBar').height(height + 'vw');
 }
 
-function toggleVisibility(index){
+function toggleVisibility(index) {
     trackingIndex = index;
-    $('#content-leftSlides-slidesContent-animatedBar').css({'top':`${$("#content-leftSlides-slidesContent-animatedBar").position().top}`}).animate({"top":`${$('.content-leftSlides-slidesContent-slide-leftBar').eq(trackingIndex).position().top}px`}, "slow");
+    $('#content-leftSlides-slidesContent-animatedBar').css({
+        'top': `${$("#content-leftSlides-slidesContent-animatedBar").position().top}`
+    }).animate({
+        "top": `${$('.content-leftSlides-slidesContent-slide-leftBar').eq(trackingIndex).position().top}px`
+    }, "slow");
 }
 
-$('#content-leftSlides-slidesContent').scroll(function(){
+$('#content-leftSlides-slidesContent').scroll(function () {
     $('#content-leftSlides-slidesContent-animatedBar').css("top", `${$('.content-leftSlides-slidesContent-slide-leftBar').eq(trackingIndex).position().top}px`);
 });
 
 /* --------------- POPUPS --------------- */
 
 // open slides popup
-$('#content-leftSlides-topBar-down').click(function(){
+$('#content-leftSlides-topBar-down').click(function () {
     $('#popupBox').css('display', 'flex');
     $('#popupBox').animate({
         opacity: 1.0
@@ -47,13 +54,13 @@ $('#content-leftSlides-topBar-down').click(function(){
 });
 
 // close slides popup
-$('#popupBox-top-controls-buttons-exit').click(function(){
+$('#popupBox-top-controls-buttons-exit').click(function () {
     $('#popupBox').css('display', 'none');
     $('#popupBox').css('opacity', '0.0');
 });
 
 // open add-object popup
-$('#content-navigation-first-right-icon').click(function(){
+$('#content-navigation-first-right-icon').click(function () {
     $('#addObjectPopup').css('display', 'flex');
     $('#addObjectPopup-inner-popup').css('display', 'flex');
     $('#addObjectPopup-inner-popup').animate({
@@ -63,13 +70,13 @@ $('#content-navigation-first-right-icon').click(function(){
 });
 
 // close popups when creatin text
-$('#addObjectPopup-inner-popup-text').click(function(){
+$('#addObjectPopup-inner-popup-text').click(function () {
     $('#addObjectPopup').css('display', 'none');
     closeInnerPopups();
 });
 
 // open image popup in add-object popup
-$('#addObjectPopup-inner-popup-image').click(function(){
+$('#addObjectPopup-inner-popup-image').click(function () {
     closeInnerPopups();
 
     $('#addObjectPopup-inner-pictures').css('display', 'flex');
@@ -80,7 +87,7 @@ $('#addObjectPopup-inner-popup-image').click(function(){
 });
 
 // open chart popup in add-object popup
-$('#addObjectPopup-inner-popup-chart').click(function(){
+$('#addObjectPopup-inner-popup-chart').click(function () {
     closeInnerPopups();
 
     $('#addObjectPopup-inner-chart').css('display', 'flex');
@@ -91,7 +98,7 @@ $('#addObjectPopup-inner-popup-chart').click(function(){
 });
 
 // open quiz popup in add-object popup
-$('#addObjectPopup-inner-popup-quiz').click(function() {
+$('#addObjectPopup-inner-popup-quiz').click(function () {
     closeInnerPopups();
 
     $('#addObjectPopup-inner-quiz').css('display', 'flex');
@@ -102,7 +109,7 @@ $('#addObjectPopup-inner-popup-quiz').click(function() {
 });
 
 // open second quiz popup in add-object popup
-$('.addObjectPopup-inner-quiz-bottom-row').click(function() {
+$('.addObjectPopup-inner-quiz-bottom-row').click(function () {
     $('#addObjectPopup-inner-quizInfo').css('display', 'flex');
     $('#addObjectPopup-inner-quizInfo').animate({
         margin: "1.5vh 0vw",
@@ -111,7 +118,7 @@ $('.addObjectPopup-inner-quiz-bottom-row').click(function() {
 });
 
 // close all add-objects popups
-$(document).click(function(event) {
+$(document).click(function (event) {
     if (!$(event.target).closest("#addObjectPopup-inner-popup, #content-navigation-first-right-icon, #addObjectPopup-inner-pictures, #addObjectPopup-inner-popup-image, #addObjectPopup-inner-quiz, #addObjectPopup-inner-quiz, #addObjectPopup-inner-quizInfo").length) {
         $('#addObjectPopup').css('display', 'none');
 
@@ -143,7 +150,7 @@ function closeInnerPopups() {
 }
 
 // open settings popup
-$('#content-navigation-second-settings').click(function() {
+$('#content-navigation-second-settings').click(function () {
     $('#settingsPopup').css('display', 'flex');
     $('#settingsPopup').animate({
         opacity: 1.0
@@ -151,14 +158,14 @@ $('#content-navigation-second-settings').click(function() {
 });
 
 // close settings popup
-$('#settingsPopup-inner-bottom-header-exit').click(function() {
+$('#settingsPopup-inner-bottom-header-exit').click(function () {
     $('#settingsPopup').css('display', 'none');
     $('#settingsPopup').css('opacity', '0.0');
     $('#settingsPopup-inner-bottom-button-join').css('display', 'none');
 });
 
 // open cam popup in settings popup
-$('#settingsPopup-inner-bottom-settings-cam-bottom-popup').click(function() {
+$('#settingsPopup-inner-bottom-settings-cam-bottom-popup').click(function () {
     $('#camPopup').css('display', 'flex');
     $('#camPopup-inner-popup').css('display', 'flex');
     $('#camPopup-inner-popup').animate({
@@ -167,16 +174,16 @@ $('#settingsPopup-inner-bottom-settings-cam-bottom-popup').click(function() {
 });
 
 // close cam popup in settings popup
-$(document).click(function(event) {
+$(document).click(function (event) {
     if (!$(event.target).closest("#camPopup-inner-popup, #settingsPopup-inner-bottom-settings-cam-bottom-popup").length) {
-        $('#camPopup').css('display', 'none');    
+        $('#camPopup').css('display', 'none');
         $('#camPopup-inner-popup').css('display', 'none');
         $('#camPopup-inner-popup').css('opacity', '0.0');
     }
 });
 
 // open mic popup in settings popup
-$('#settingsPopup-inner-bottom-settings-mic-bottom-popup').click(function() {
+$('#settingsPopup-inner-bottom-settings-mic-bottom-popup').click(function () {
     $('#micPopup').css('display', 'flex');
     $('#micPopup-inner-popup').css('display', 'flex');
     $('#micPopup-inner-popup').animate({
@@ -185,16 +192,16 @@ $('#settingsPopup-inner-bottom-settings-mic-bottom-popup').click(function() {
 });
 
 // close mic popup in settings popup
-$(document).click(function(event) {
+$(document).click(function (event) {
     if (!$(event.target).closest("#micPopup-inner-popup, #settingsPopup-inner-bottom-settings-mic-bottom-popup").length) {
-        $('#micPopup').css('display', 'none');   
+        $('#micPopup').css('display', 'none');
         $('#micPopup-inner-popup').css('display', 'none');
-        $('#micPopup-inner-popup').css('opacity', '0.0'); 
+        $('#micPopup-inner-popup').css('opacity', '0.0');
     }
 });
 
 // open presentation-mode popup
-$('#content-navigation-fifth-box-down').click(function() {
+$('#content-navigation-fifth-box-down').click(function () {
     $('#presentationModePopup').css('display', 'flex');
     $('#presentationModePopup-inner-popup').css('display', 'flex');
     $('#presentationModePopup-inner-popup').animate({
@@ -204,7 +211,7 @@ $('#content-navigation-fifth-box-down').click(function() {
 });
 
 // close presentation-mode popup
-$(document).click(function(event) {
+$(document).click(function (event) {
     if (!$(event.target).closest("#presentationModePopup-inner-popup, #content-navigation-fifth-box-down").length) {
         $('#presentationModePopup-inner-popup').css('display', 'none');
         $('#presentationModePopup').css('display', 'none');
