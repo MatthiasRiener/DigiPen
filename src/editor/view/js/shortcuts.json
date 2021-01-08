@@ -146,6 +146,15 @@
             "down",
             "jump"
         ]
+    },
+    {
+        "name": "normal-video",
+        "keys": [
+            "ShiftLeft",
+            "KeyG"
+        ],
+        "callback": "addVideo"
+
     }
 
 ]

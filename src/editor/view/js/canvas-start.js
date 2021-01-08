@@ -144,12 +144,13 @@ function init() {
                     canDeleteText = !canDeleteText;
                     break;
             }
+
         },
         'selection:created': (e) => {
             const selectedObject = e.target;
             const id = getId();
 
-            
+
             selected = selectedObject;
             selectedObject.hasRotationPoint = true;
             selectedObject.transparentCorners = false;
@@ -161,8 +162,8 @@ function init() {
                 getId();
             }
 
-       
-            if(typeof id === 'string' && id.includes('chart')) {
+
+            if (typeof id === 'string' && id.includes('chart')) {
                 chartEditor['visible'] = true;
                 return;
             }
@@ -199,6 +200,34 @@ function init() {
     })
 }
 
+
+
+
+
+function addVideo() {
+    var video = document.createElement('video');
+
+    video.src = "http://html5demos.com/assets/dizzy.mp4"
+
+    video.autoplay = true;
+
+    video.width = 300
+    video.height = 300 / 16 * 9;
+
+    var fabricVideo = new fabric.Image(video, {
+        left: 100,
+        top: 100,
+        originX: 'center',
+        originY: 'center',
+        centeredScaling: true,
+    });
+
+
+    //extend(fabricVideo, `video${randomId()}`)
+    
+    canvas.add(fabricVideo);
+    fabricVideo.getElement().play();
+}
 
 
 function addText(t) {
@@ -286,6 +315,10 @@ function addImage(customurl, isChart) {
 
 
 
+fabric.util.requestAnimFrame(function render() {
+    canvas.renderAll();
+    fabric.util.requestAnimFrame(render);
+});
 
 
 /*------------------------Events------------------------*/
@@ -524,8 +557,30 @@ $('body').on('input', '.img-brightness-slider-img', function () {
 });
 
 
-/*------------------------Helper Functions------------------------*/
+$(window).resize(function() {
+    var width = $('#content-main-inner-spacing-middle').width();
+    var height = $('#content-main-inner-spacing-middle').height();
 
+
+    resizeCanvas(width, height);
+    originalSize = canvas.width;
+
+});
+
+/*------------------------Helper Functions------------------------*/
+let originalSize;
+
+function resizeCanvas(width, height) {
+
+    if(originalSize) {
+        val = canvas.width / originalSize;
+        canvas.setZoom(val);
+    }
+
+    canvas.setWidth(width * 0.8);
+    canvas.setHeight(width * 0.45);
+    canvas.renderAll();
+}
 
 function move(params) {
     var dir = params[0];

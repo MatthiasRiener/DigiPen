@@ -17,6 +17,10 @@
     <script src="./js/fabric.min.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
+    <script src="../../config/config.js" type="text/javascript"></script>
+    <script src="./js/read-sheet.js" type="text/javascript"></script>
+
+
 
     <link href="css/style.css" type="text/css" rel="stylesheet" />
     <link href="css/variables.css" type="text/css" rel="stylesheet" />
@@ -419,7 +423,11 @@
             </div>
 
             <div id="addObjectPopup-inner-chart">
-
+                <div id="addObjectPopup-inner-quiz-top-header">
+                    <div id="addObjectPopup-inner-quiz-top-header-headline">Quizes</div>
+                </div>
+                <label for="spreadsheet-link">Spreadsheet Link:</label>
+                <input type="text" id="spreadsheet-link" />
             </div>
 
             <div id="addObjectPopup-inner-quiz">
