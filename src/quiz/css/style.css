@@ -102,11 +102,41 @@
     font-weight: bolder;
 }
 
+.bigquizscrollbar {
+    width: 100%;
+    height: fit-content;
+    overflow-x: scroll;
+}
+
+.bigquizscrollbar::-webkit-scrollbar {
+    width: 4px;
+    height: 8px;
+}
+
+/* Track */
+
+.bigquizscrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+
+.bigquizscrollbar::-webkit-scrollbar-thumb {
+    background: #818181;
+}
+
+/* Handle on hover */
+
+.bigquizscrollbar::-webkit-scrollbar-thumb:hover {
+    background: #C6C6C6;
+}
+
 .bigquizes {
-    margin: 2vw 0 0 2vw;
+    margin: 2vw;
     height: 20vw;
     width: fit-content;
     display: flex;
+    align-items: center;
 }
 
 .bigquizes div.quiz {
@@ -114,19 +144,21 @@
     width: 20vw;
     border-radius: 10px;
     margin-right: 3vw;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 .quiz img {
     width: 100%;
     height: 70%;
+    border-radius: 10px 10px 0 0;
     object-fit: cover;
 }
 
 .description {
     padding: 1vw;
     height: 30%;
-    background: red;
     bottom: 0;
 }
 
