@@ -180,3 +180,61 @@
 .description div ion-icon {
     margin: 0 .5vw;
 }
+
+#quizjoinpopup {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#quizjoinpopup div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#quizjoinpopup h1 {
+    color: white;
+}
+
+#qrbox {
+    background: white;
+    padding: 2vh 2vh 2vh 2vh;
+    border-radius: 10px;
+    margin: 3vh 0 3vh 0;
+}
+
+#qrbox h3 {
+    font-size: medium;
+    font-weight: bolder;
+}
+
+#qrbox img {
+    width: 10vw;
+    margin: 0 0 1vh 0;
+}
+
+#randomNumber {
+    font-weight: bolder;
+    font-size: xx-large;
+}
+
+#startquizbutton {
+    background: rgb(196, 53, 218);
+    background: linear-gradient(90deg, rgba(196, 53, 218, 1) 0%, rgba(219, 60, 70, 1) 100%);
+    font-size: small;
+    width: 14vw;
+    color: white;
+    border: none;
+    padding: 1.5vh 0;
+    box-shadow: 0 0 10px rgb(196, 53, 218, 0.2);
+    border-radius: 5px;
+    cursor: pointer;
+}
