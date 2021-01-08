@@ -27,5 +27,109 @@
             "KeyV"
         ],
         "callback": "paste"
+    },
+    
+    {
+        "name": "moveLeft",
+        "keys": [
+            "ArrowLeft"
+        ],
+        "callback": "move",
+        "params": [
+            "left",
+            "move"
+        ]
+    },
+
+    {
+        "name": "jumpLeft",
+        "keys": [
+            "ArrowLeft",
+            "ShiftLeft"
+        ],
+        "callback": "move",
+        "params": [
+            "left",
+            "jump"
+        ]
+    },
+
+
+
+    {
+        "name": "moveRight",
+        "keys": [
+            "ArrowRight"
+        ],
+        "callback": "move",
+        "params": [
+            "right",
+            "move"
+        ]
+    },
+
+    {
+        "name": "jumpRight",
+        "keys": [
+            "ArrowRight",
+            "ShiftLeft"
+        ],
+        "callback": "move",
+        "params": [
+            "right",
+            "jump"
+        ]
+    },
+
+
+    {
+        "name": "moveUp",
+        "keys": [
+            "ArrowUp"
+        ],
+        "callback": "move",
+        "params": [
+            "up",
+            "move"
+        ]
+    },
+
+    {
+        "name": "jumpUp",
+        "keys": [
+            "ArrowUp",
+            "ShiftLeft"
+        ],
+        "callback": "move",
+        "params": [
+            "up",
+            "jump"
+        ]
+    },
+
+    {
+        "name": "moveDown",
+        "keys": [
+            "ArrowDown"
+        ],
+        "callback": "move",
+        "params": [
+            "down",
+            "move"
+        ]
+    },
+
+    {
+        "name": "jumpDown",
+        "keys": [
+            "ArrowDown",
+            "ShiftLeft"
+        ],
+        "callback": "move",
+        "params": [
+            "down",
+            "jump"
+        ]
     }
+
 ]

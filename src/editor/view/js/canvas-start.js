@@ -65,7 +65,7 @@ var propsImage = {
         active: false,
         val: null,
     },
-    
+
     gamma: {
         active: false,
         red: null,
@@ -254,19 +254,29 @@ $('body').on('input', '.fill-color-picker', function () {
     setFill();
 });
 
+var curKeys = [];
 
 $('body').keydown(function (event) {
-    var curKeys = [];
+    curKeys = [];
     var keycode = (event.keycode ? event.keycode : event.which);
-
     curKeys.push(event.code);
+
+    console.log(event)
     if (event.ctrlKey && event.code != "ControlLeft") {
         curKeys.push("ControlLeft");
     }
 
+    if (event.shiftKey && event.code != "ShiftLeft") {
+        curKeys.push("ShiftLeft");
+    }
+
     try {
         const [index, val] = Object.entries(shortcuts).find(([i, e]) => JSON.stringify(e.keys.sort()) === JSON.stringify(curKeys.sort()));
-        window[val.callback]();
+        if (val.params) {
+            window[val.callback](val.params);
+        } else {
+            window[val.callback]();
+        }
     } catch (e) {
 
     }
@@ -470,9 +480,39 @@ $('body').on('input', '.img-brightness-slider-img', function () {
 
 /*------------------------Helper Functions------------------------*/
 
+
+function move(params) {
+    var dir = params[0];
+    var mode = params[1];
+
+    console.log(dir, mode)
+
+    var obj = canvas.getActiveObject();
+
+    switch (dir) {
+        case "left":
+            obj.left = mode == "jump" ? obj.left - 10 : obj.left - 1;
+            break;
+        case "right":
+            obj.left = mode == "jump" ? obj.left + 10 : obj.left + 1;
+            break;
+
+        case "up":
+            obj.top = mode == "jump" ? obj.top - 10 : obj.top - 1;
+            break;
+
+        case "down":
+            obj.top = mode == "jump" ? obj.top + 10 : obj.top + 1;
+            break;
+    }
+
+    canvas.renderAll();
+
+}
+
+
 function saveCanvasToJson() {
     const json = canvas.toJSON();
-    console.log(json);
 }
 
 
@@ -690,43 +730,46 @@ async function paste() {
 
 
 
-    if(canvas.getActiveObject() != null) {
+    if (canvas.getActiveObject() != null) {
         const activeObject = canvas.getActiveObject();
         console.log(activeObject);
 
         if (activeObject) {
             let clone;
             switch (activeObject.type) {
-              case 'rect':
-                clone = new fabric.Rect(activeObject.toObject());
-                break;
-              case 'circle':
-                clone = new fabric.Circle(activeObject.toObject());
-                break;
-              case 'triangle':
-                clone = new fabric.Triangle(activeObject.toObject());
-                break;
-              case 'i-text':
-                clone = new fabric.IText('', activeObject.toObject());
-                break;
-              case 'image':
-                clone = fabric.util.object.clone(activeObject);
-                break;
+                case 'rect':
+                    clone = new fabric.Rect(activeObject.toObject());
+                    break;
+                case 'circle':
+                    clone = new fabric.Circle(activeObject.toObject());
+                    break;
+                case 'triangle':
+                    clone = new fabric.Triangle(activeObject.toObject());
+                    break;
+                case 'i-text':
+                    clone = new fabric.IText('', activeObject.toObject());
+                    break;
+                case 'image':
+                    clone = fabric.util.object.clone(activeObject);
+                    break;
             }
             if (clone) {
-              clone.set({ left: activeObject.left + 30, top: activeObject.top + 30});
-              this.canvas.add(clone);
-              this.selectItemAfterAdded(clone);
+                clone.set({
+                    left: activeObject.left + 30,
+                    top: activeObject.top + 30
+                });
+                this.canvas.add(clone);
+                this.selectItemAfterAdded(clone);
             }
-          }
-          return ;
+        }
+        return;
     }
 
     var isImg = obj.match(/\.(jpeg|jpg|gif|png)$/) != null;
 
     console.log(canvas.getActiveObject());
 
-    if(isImg) {
+    if (isImg) {
         console.log('link is a img');
     } else {
         // if link is not a image create new text
