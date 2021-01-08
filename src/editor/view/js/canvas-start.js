@@ -214,6 +214,10 @@ function addText(t) {
 
 }
 
+function addChart() {
+    console.log("hallo wlet")
+}
+
 function addImage() {
     const url = "https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg";
 
@@ -513,6 +517,13 @@ function move(params) {
 
 function saveCanvasToJson() {
     const json = canvas.toJSON();
+}
+
+function rasterizeSVG() {
+    const w = window.open('')
+    w.document.write(canvas.toSVG());
+    return 'data:image/svg+xml;utf8,' + encodeURIComponent(canvas.toSVG());
+
 }
 
 

@@ -21,6 +21,22 @@
         "callback": "addImage"
     },
     {
+        "name": "addChart",
+        "keys": [
+            "ControlLeft",
+            "KeyN"
+        ],
+        "callback": "addChart"
+    },
+    {
+        "name": "canvasToSVG",
+        "keys": [
+            "ControlLeft",
+            "KeyK"
+        ],
+        "callback": "rasterizeSVG"
+    },
+    {
         "name": "paste",
         "keys": [
             "ControlLeft",
