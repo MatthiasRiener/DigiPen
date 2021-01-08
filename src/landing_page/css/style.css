@@ -102,7 +102,7 @@
     justify-content: space-between;
 }
 
-.header-option-container .register {
+.header-option-container .lp_bt_register_click {
     height: 100%;
     width: 40%;
     background: var(--dark-grey);
@@ -111,7 +111,7 @@
     align-items: center;
 }
 
-.header-option-container .register p {
+.header-option-container .lp_bt_register_click p {
     color: var(--white);
     font-weight: 300;
     font-size: 18px;
@@ -212,6 +212,11 @@
     font-family: 'Karla';
     color: #38383875;
 }
+
+.section-realtime-bottom .lp_bt_here_click{
+    color: #0B51F0;
+}
+
 
 .section-realtime-main-messages {
     height: 100%;

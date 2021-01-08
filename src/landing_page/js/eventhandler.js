@@ -98,3 +98,20 @@ function fillTemplates() {
         $('.grid-container').eq(0).append(`<div class="grid-templates" style="background-image: url(img/templates/template_${i}.png)"></div>`);
     }
 }
+
+/* Navigation */
+$('body').on('click', '#nav-bar-sign-up-div', function(){
+    window.location = "../../src/login_register/pages/register.html";
+});
+
+$('body').on('click', '.nav-bar-login', function(){
+    window.location = "../../src/login_register/pages/login.html";
+});
+
+$('body').on('click', '.lp_bt_register_click', function(){
+    window.location = "../../src/login_register/pages/register.html";
+});
+
+$('body').on('click', '.lp_bt_here_click', function(){
+    window.location = "index.html";
+});
