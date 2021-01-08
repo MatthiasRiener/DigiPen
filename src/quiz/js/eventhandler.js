@@ -1,5 +1,5 @@
-// This is where all events are 
+// This is where all events are handled
 
-window.onload = function () {
-    console.log('Document loaded.')
-}
+$("#newQuiz").click(function () {
+    console.log("this")
+});
