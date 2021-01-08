@@ -147,6 +147,9 @@ function init() {
         },
         'selection:created': (e) => {
             const selectedObject = e.target;
+            const id = getId();
+
+            
             selected = selectedObject;
             selectedObject.hasRotationPoint = true;
             selectedObject.transparentCorners = false;
@@ -158,7 +161,11 @@ function init() {
                 getId();
             }
 
-
+       
+            if(typeof id === 'string' && id.includes('chart')) {
+                chartEditor['visible'] = true;
+                return;
+            }
 
             switch (selectedObject.type) {
                 case 'rect':
@@ -609,11 +616,12 @@ function randomId() {
 function resetPanels() {
     textEditor['visible'] = false;
     imageEditor['visible'] = false;
+    chartEditor['visible'] = false;
 }
 
 
 function getId() {
-    propsText.id = canvas.getActiveObject().toObject().id;
+    return propsText.id = canvas.getActiveObject().toObject().id;
 }
 
 
@@ -1081,3 +1089,9 @@ var imageEditorContainer = document.getElementById('image-editor');
 var imageEditor = new CustomNGIf(imageEditorContainer, function () {}, 'visible');
 
 imageEditor['visible'] = false;
+
+
+var chartEditorContainer = document.getElementById('chart-editor');
+var chartEditor = new CustomNGIf(chartEditorContainer, function () {}, 'visible');
+
+chartEditor['visible'] = false;
