@@ -294,7 +294,8 @@ $('body').keydown(function (event) {
     curKeys = [];
     var keycode = (event.keycode ? event.keycode : event.which);
     curKeys.push(event.code);
-
+    event.preventDefault();
+    event.stopImmediatePropagation();
 
     if (event.ctrlKey && event.code != "ControlLeft") {
         curKeys.push("ControlLeft");
@@ -307,11 +308,9 @@ $('body').keydown(function (event) {
     try {
         const [index, val] = Object.entries(shortcuts).find(([i, e]) => JSON.stringify(e.keys.sort()) === JSON.stringify(curKeys.sort()));
         if (val.params) {
-            event.preventDefault();
 
             window[val.callback](val.params);
         } else {
-            event.preventDefault();
 
             window[val.callback]();
         }
