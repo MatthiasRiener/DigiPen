@@ -320,6 +320,7 @@ $('body').keydown(function (event) {
 
 
     curKeys = [];
+    return false;
 });
 
 
