@@ -119,7 +119,7 @@ $('.addObjectPopup-inner-quiz-bottom-row').click(function () {
 
 // close all add-objects popups
 $(document).click(function (event) {
-    if (!$(event.target).closest("#addObjectPopup-inner-popup, #content-navigation-first-right-icon, #addObjectPopup-inner-pictures, #addObjectPopup-inner-popup-image, #addObjectPopup-inner-quiz, #addObjectPopup-inner-quiz, #addObjectPopup-inner-quizInfo").length) {
+    if (!$(event.target).closest("#addObjectPopup-inner-popup, #content-navigation-first-right-icon, #addObjectPopup-inner-pictures, #addObjectPopup-inner-popup-image, #addObjectPopup-inner-chart, #addObjectPopup-inner-quiz, #addObjectPopup-inner-quizInfo").length) {
         $('#addObjectPopup').css('display', 'none');
 
         $('#addObjectPopup-inner-popup').css('display', 'none');

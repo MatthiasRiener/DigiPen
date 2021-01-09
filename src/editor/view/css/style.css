@@ -861,6 +861,145 @@
     transition: all 0.1s;
 }
 
+#addObjectPopup-inner-chart-top {
+    width: 100%;
+    height: 20%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#addObjectPopup-inner-chart-top-header {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#addObjectPopup-inner-chart-top-header-headline {
+    width: 94%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--dark-grey);
+}
+
+#addObjectPopup-inner-chart-top-header-add:hover {
+    cursor: pointer;
+}
+
+#addObjectPopup-inner-chart-top-input {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#addObjectPopup-inner-chart-top-input-background {
+    width: 90%;
+    height: 90%;
+    background-color: var(--light-grey);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#addObjectPopup-inner-chart-top-input-background-icon {
+    width: 15%;
+    font-size: 1.6rem;
+    color: var(--dark-grey);
+    opacity: 0.4;
+}
+
+#addObjectPopup-inner-chart-top-input-background-field {
+    width: 85%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--light-grey);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--dark-grey);
+}
+
+#addObjectPopup-inner-chart-top-input-background-field::placeholder {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--dark-grey);
+    opacity: 0.4;
+}
+
+#addObjectPopup-inner-chart-top-input-background-field:focus {
+    outline: none;
+}
+
+#addObjectPopup-inner-chart-bottom {
+    width: 100%;
+    height: 80%;
+    border-radius: 10px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+#addObjectPopup-inner-chart-bottom-header {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#addObjectPopup-inner-chart-bottom-header-headline {
+    width: 94%;
+    height: 10%;
+    font-size: 1.2rem;
+    color: var(--dark-grey);
+    font-weight: bold;
+}
+
+#addObjectPopup-inner-chart-bottom-content {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+}
+
+#addObjectPopup-inner-chart-bottom-content::-webkit-scrollbar {
+    display: none;
+}
+
+#addObjectPopup-inner-chart-bottom-content-row {
+    width: 85%;
+    min-height: 6vh;
+    background-color: var(--light-grey);
+    margin: 0.6vh 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1vw;
+    color: var(--dark-grey);
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#addObjectPopup-inner-chart-bottom-content-row:hover {
+    cursor: pointer;
+}
+
 #addObjectPopup-inner-quiz {
     width: 20vw;
     height: 60vh;
