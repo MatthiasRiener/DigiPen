@@ -160,11 +160,15 @@ $('.addObjectPopup-inner-chart-bottom-content-row').click(function () {
     closeInnerPopups();
 
     $('#chartsPopup').css('display', 'flex');
+    $('#chartsPopup').animate({
+        opacity: 1.0
+    }, 100);
 });
 
 // close charts popup
-$('#closeChartsPopup').click(function () {
+$('#chartsPopup-inner-right-settings-close').click(function () {
     $('#chartsPopup').css('display', 'none');
+    $('#chartsPopup').css('opacity', '0.0');
 });
 
 // open settings popup
