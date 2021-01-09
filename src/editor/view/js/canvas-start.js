@@ -334,8 +334,7 @@ $('body').keydown(function (event) {
     curKeys = [];
     var keycode = (event.keycode ? event.keycode : event.which);
     curKeys.push(event.code);
-    event.preventDefault();
-    event.stopImmediatePropagation();
+   
 
     if (event.ctrlKey && event.code != "ControlLeft") {
         curKeys.push("ControlLeft");
@@ -360,7 +359,6 @@ $('body').keydown(function (event) {
 
 
     curKeys = [];
-    return false;
 });
 
 
@@ -566,6 +564,9 @@ $(window).resize(function() {
     originalSize = canvas.width;
 
 });
+
+
+
 
 /*------------------------Helper Functions------------------------*/
 let originalSize;

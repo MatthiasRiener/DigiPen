@@ -163,6 +163,9 @@ $('.addObjectPopup-inner-chart-bottom-content-row').click(function () {
     $('#chartsPopup').animate({
         opacity: 1.0
     }, 100);
+
+
+
 });
 
 // close charts popup
