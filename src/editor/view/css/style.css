@@ -984,7 +984,7 @@
 .addObjectPopup-inner-chart-bottom-content-row {
     width: 85%;
     min-height: 6vh;
-    background-color: var(--light-grey);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     margin: 0.6vh 0;
     border-radius: 10px;
     display: flex;
