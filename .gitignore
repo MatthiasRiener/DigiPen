@@ -1,3 +1,7 @@
 **/.DS_Store
 config.js
 **/.vscode
+.env
+.env.example
+.env.local
+.env.staging
