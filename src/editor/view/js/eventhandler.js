@@ -149,6 +149,24 @@ function closeInnerPopups() {
     $('#addObjectPopup-inner-quizInfo').css('opacity', '0.0');
 }
 
+// open charts popup
+$('.addObjectPopup-inner-chart-bottom-content-row').click(function () {
+    $('#addObjectPopup').css('display', 'none');
+
+    $('#addObjectPopup-inner-popup').css('display', 'none');
+    $('#addObjectPopup-inner-popup').css('margin', '0vh 0.8vw 0 0.4vw');
+    $('#addObjectPopup-inner-popup').css('opacity', '0.0');
+
+    closeInnerPopups();
+
+    $('#chartsPopup').css('display', 'flex');
+});
+
+// close charts popup
+$('#closeChartsPopup').click(function () {
+    $('#chartsPopup').css('display', 'none');
+});
+
 // open settings popup
 $('#content-navigation-second-settings').click(function () {
     $('#settingsPopup').css('display', 'flex');
