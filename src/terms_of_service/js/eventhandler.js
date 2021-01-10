@@ -28,7 +28,3 @@ $('body').on('click', '.content-point ', function () {
 
     //document.getElementById(`${$(this).children("p").text().trim().replaceAll(" ", "_")}`).scrollIntoView({behavior: 'smooth'});
 });
-
-
-
-
