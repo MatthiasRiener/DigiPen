@@ -144,4 +144,12 @@ function sizetoimg() {
         $("#usetemplateboxheader").css('width', $(".controllsandshareview").width() - parseFloat($("#template_small_img").css('marginLeft')) * 2);
         $(".shareview").css('width', $("#template_small_img").width())
     }
-}
+};
+
+$('body').on('click', '.createPresentation', function(){
+    window.location = "../../src/editor/view/index.html"
+});
+
+$('body').on('click', '#submitcontrolls', function(){
+    window.location = "../../../src/editor/view/index.html"
+});

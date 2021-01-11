@@ -244,3 +244,9 @@ $(document).click(function (event) {
         $('#presentationModePopup-inner-popup').css('opacity', '0.0');
     }
 });
+
+//Navigation
+
+$('body').on('click', '.ed_bt_arrow_click', function(){
+    window.location = "../../../src/dashboard/index.html"
+})
