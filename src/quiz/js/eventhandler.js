@@ -27,3 +27,7 @@ $("#quizjoinpopup").click(function (e) {
 $("#startquizbutton").click(function () {
     window.location = "https://www.youtube.com/watch?v=j42QOK4SLk4&ab_channel=WBKids";
 })
+
+$("#newQuiz").click(function () {
+
+});
