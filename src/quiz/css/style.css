@@ -19,6 +19,7 @@
     height: 93vh;
     overflow: auto;
     padding-bottom: 5%;
+    display: none;
 }
 
 .searchheader, .boxleft {
@@ -237,4 +238,109 @@
     box-shadow: 0 0 10px rgb(196, 53, 218, 0.2);
     border-radius: 5px;
     cursor: pointer;
+}
+
+.dos #backbox {
+    display: flex;
+    align-items: center;
+    font-size: larger;
+    margin: 2vw;
+    cursor: pointer;
+}
+
+#backbox h1 {
+    font-size: x-large;
+}
+
+#backbox i {
+    font-size: large;
+    margin-right: 1vw;
+}
+
+#Questionpattern {
+    display: none;
+}
+
+.customQuestions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#questions {
+    width: 100%;
+    overflow: auto;
+    padding: 2vw;
+}
+
+.answers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.answerbox {
+    width: 50%;
+    padding: 1vw 0;
+    display: flex;
+    align-items: center;
+}
+
+.answerbox input {
+    margin: 0 2%;
+}
+
+#infoOnQuestions {
+    margin: 2vh 0;
+    display: block;
+}
+
+.questionTitle {
+    font-size: large;
+    padding: .5vh 1vw;
+}
+
+.quizTitle {
+    font-size: 300%;
+    width: 100%;
+    text-align: center;
+    padding: .5vh 1vw;
+    border: none;
+    text-decoration: underline;
+}
+
+.answertext {
+    padding: .5vw;
+    flex-grow: 1;
+    border: none;
+}
+
+.QuestionCount {
+    margin: 0 0 2vh 0;
+    display: block;
+}
+
+.buttonsBox {
+    width: 100%;
+    display: flex;
+}
+
+.quizButton {
+    width: 49%;
+    padding: 2vh;
+    border: none;
+    margin-bottom: 1vh;
+    font-size: large;
+}
+
+#dublicate {
+    color: white;
+    background-color: rgba(80, 80, 80, 1);
+    margin-right: 2%;
+}
+
+#saveQuiz {
+    color: white;
+    background-color: rgb(61, 204, 68);
 }

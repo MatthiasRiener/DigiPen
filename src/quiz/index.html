@@ -29,7 +29,7 @@
     <div class="navandquizbox">
         <side-bar path="../components/side-bar/styles.css" style="width: 17%; height: 100%; background-color: #F8F7F9;">
         </side-bar>
-        <div class="myquizbox">
+        <div class="myquizbox uno">
             <div class="searchheader">
                 <div class="boxleft">
                     <h1>My Quizes</h1>
@@ -135,6 +135,48 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="myquizbox dos">
+            <div id="backbox">
+                <i class="fas fa-angle-left"></i>
+                <h1>Back</h1>
+            </div>
+            <div id="questions">
+                <input type="text" name="quizTitle" class="quizTitle" placeholder="Quiz Title" autocomplete="off">
+                <span id="infoOnQuestions">Tick <b>only</b> the right answers!</span>
+                <!-- load question-pattern -->
+                <span id="loadPattern"></span>
+                <div class="buttonsBox">
+                    <button class="quizButton" id="dublicate">Add Question</button>
+                    <button class="quizButton" id="saveQuiz">Save Quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="Questionpattern">
+        <div class="customQuestions">
+            <input type="text" name="questionTitle" class="questionTitle" placeholder="Here goes the Question">
+            <div class="answers">
+                <div class="answerbox1 answerbox">
+                    <input type="checkbox" class="answercheck" name="vehicle" value="value">
+                    <input type="text" name="answer" class="answertext" placeholder="A)">
+                </div>
+                <div class="answerbox2 answerbox">
+                    <input type="checkbox" class="answercheck" name="vehicle" value="value">
+                    <input type="text" name="answer" class="answertext" placeholder="B)">
+                </div>
+            </div>
+            <div class="answers">
+                <div class="answerbox3 answerbox">
+                    <input type="checkbox" class="answercheck" name="vehicle" value="value">
+                    <input type="text" name="answer" class="answertext" placeholder="C)">
+                </div>
+                <div class="answerbox4 answerbox">
+                    <input type="checkbox" class="answercheck" name="vehicle" value="value">
+                    <input type="text" name="answer" class="answertext" placeholder="D)">
                 </div>
             </div>
         </div>
