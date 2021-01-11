@@ -240,6 +240,8 @@ function addText(t) {
         scaleX: 0.5,
         scaleY: 0.5,
         fontWeight: '',
+        originX: 'center',
+        originY: 'center',
         hasRotationPoint: true,
     });
 
