@@ -27,3 +27,11 @@ $('body').on('click', '.content-point ', function () {
 
     //document.getElementById(`${$(this).children("p").text().trim().replaceAll(" ", "_")}`).scrollIntoView({behavior: 'smooth'});
 });
+
+$('body').on('click', '.nav-bar-title', function(){
+    window.location = "../../../src/landing_page/index.html"
+});
+
+$('body').on('click', '#nav-bar-icon', function(){
+    window.location = "../../../src/landing_page/index.html"
+});
