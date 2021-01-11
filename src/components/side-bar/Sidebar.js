@@ -17,11 +17,23 @@
         this.loadCss(this.getAttribute("path"));
         this.container = this.shadowRoot.querySelector('.left-side-bar');
         this.workSpaceBtn = this.shadowRoot.querySelector('.add-workspace-btn');
+        this.dashboardBtn = this.shadowRoot.querySelector('.dashboard-item');
+        this.taskBtn = this.shadowRoot.querySelector('.task-item');
+        this.profileBtn = this.shadowRoot.querySelector('.profile-item');
+
 
         this.initializeEvents();
     }
       initializeEvents() {
+
+        this.path = "../../../src";
           this.workSpaceBtn.addEventListener('click', e => {this.addWorkSpace() });
+
+          // event listeners
+          this.dashboardBtn.addEventListener('click', e => {console.log(window.location = `${this.path}/dashboard/index.html`)})
+          this.taskBtn.addEventListener('click', e => {console.log(window.location = `${this.path}/task-management/index.html`)})
+          this.profileBtn.addEventListener('click', e => {console.log(window.location = `${this.path}/profilseite/index.html`)})
+
       }
 
       addWorkSpace() {

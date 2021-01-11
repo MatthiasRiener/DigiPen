@@ -12,12 +12,12 @@
             </div>
           </div>
 
-          <div class="nav-bar-element">
+          <div class="nav-bar-element dashboard-item">
             <ion-icon name="albums-outline" class="icon-navbar"></ion-icon>
             <p>Dashboard</p>
           </div>
 
-          <div class="nav-bar-element">
+          <div class="nav-bar-element task-item">
             <ion-icon name="checkbox-outline" class="icon-navbar"></ion-icon>
             <p>Tasks</p>
             <div class="notification-navbar"><p>3</p></div>
@@ -43,12 +43,9 @@
             ></ion-icon>
           </div>
 
-          <div class="nav-bar-element-subtask">
-            <ion-icon name="sunny-outline" class="icon-navbar"></ion-icon>
-            <p>Slidea</p>
-          </div>
+        
 
-          <div class="nav-bar-element-subtask">
+          <div class="nav-bar-element-subtask profile-item">
             <ion-icon name="person-outline" class="icon-navbar"></ion-icon>
             <p>Profile</p>
           </div>

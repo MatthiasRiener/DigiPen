@@ -17,6 +17,9 @@ class TopNavigation extends HTMLElement {
         this.username = this.shadowRoot.querySelector('.content-right-container #username');
         this.userrole = this.shadowRoot.querySelector('.content-right-container #role');
         this.userImg = this.shadowRoot.querySelector('.nav-profile-image');
+
+        this.logo = this.shadowRoot.querySelector('#logo');
+        
     }
 
     loadCss(path) {
@@ -33,6 +36,15 @@ class TopNavigation extends HTMLElement {
         this.userImg.style.backgroundImage = `url('${this.getAttribute("img")}')`;
         this.username.innerHTML = this.getAttribute('username');
         this.userrole.innerHTML = this.getAttribute('role');
+
+        this.logo.addEventListener('click', (e) => {
+            window.location = "../../../src/landing_page/index.html";
+        });
+
+
+        this.userImg.addEventListener('click', (e) => {
+            window.location = "../../../src/profilseite/index.html";
+        });
     }
 
     disconnectedCallback() {

@@ -12,49 +12,20 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+
+    <script src="../components/create-workspace/Workspace.js" type="module"></script>
+
+    <script src="../components/side-bar/Sidebar.js" type="module" ></script>
 </head>
 
 <body>
-    <div id="mySidenavW3" class="sidenavW3">
-        <nav>
-            <h2>Navigation</h2>
-            <a href="#">
-                <i class="fas fa-chart-bar"></i>
-                Dashboard
-            </a>
-            <a href="#">
-                <i class="fas far fa-check-square"></i>
-                Tasks
-                <span>#</span>
-            </a>
-            <a href="#">
-                <i class="fas fa-users"></i>
-                Teams
-                <span><i class="fas fa-plus"></i></span>
-            </a>
-            <div class="dropdownsidebar">
-                <a href="#">
-                    <i class="fas fa-cog"></i>
-                    Settings
-                    <span><i class="fas fa-angle-down"></i></span>
-                </a>
-                <div class="dropdown">
-                    <a href="#" class="innersettings">
-                        <i class="fas fa-user"></i>
-                        Profile
-                    </a>
-                    <a href="#" class="innersettings">
-                        <i class="fas fa-lightbulb"></i>
-                        Slidea
-                    </a>
-                </div>
-            </div>
-            <a href="#">
-                <i class="fas fa-sign-out-alt"></i>
-                Logout
-            </a>
-        </nav>
-    </div>
+    
+    <side-bar id="sidebar-comp" path="../components/side-bar/styles.css"  class="sidenavW3" ></side-bar>
+    <create-workspace id="workspace-comp" path="../components/create-workspace/styles.css"></create-workspace>
+
+
+
     <div id="openCloseNav">
         <div id="burger-top"></div>
         <div id="burger-middle"></div>
@@ -290,11 +261,11 @@
 
         function openNav() {
             if (dummy) {
-                $("#mySidenavW3").css('width', 0);
+                $("#sidebar-comp").css('width', 0);
                 $("#fullpage, #fp-nav, #openCloseNav").css('margin-left', 0);
                 dummy = false;
             } else {
-                $("#mySidenavW3").css('width', '16.67vw');
+                $("#sidebar-comp").css('width', '16.67vw');
                 $("#fullpage, #fp-nav, #openCloseNav").css('margin-left', '16.67vw');
                 dummy = true;
             }
@@ -333,6 +304,15 @@
 
         });
     </script>
+
+<script type="text/javascript">
+    var workspace = document.getElementById('workspace-comp');
+    var sideBar = document.getElementById('sidebar-comp');
+    
+     sideBar.addEventListener('animWorkSpace', e => {                   
+        workspace.animateWorkspace();
+    })
+</script>
 
 </body>
 

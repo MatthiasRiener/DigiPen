@@ -68,7 +68,7 @@
     position: absolute;
     top: 5vh;
     left: 3vh;
-    z-index: 100;
+    z-index: 5;
     cursor: pointer;
     width: fit-content;
     height: fit-content;
