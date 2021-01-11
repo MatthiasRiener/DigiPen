@@ -19,7 +19,6 @@ function loadTerms() {
     });
 }
 
-console.log(content_array)
 
 $('body').on('click', '.content-point ', function () {
     $(".main-content").animate({
