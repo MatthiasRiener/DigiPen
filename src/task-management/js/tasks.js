@@ -10,15 +10,15 @@ const tasks = [{
                 finished: true,
             },
             {
-                taskName: "Sollte Südtirol zu Österreich gehören?",
+                taskName: "Sollte d zu Österreich gehören?",
                 start: "01/02/2021",
                 end: "01/07/2021",
                 finished: false,
             },
             {
                 taskName: "Sollte Südtirol zu Österreich gehören?",
-                start: "01/01/2021",
-                end: "01/06/2021",
+                start: "01/10/2021",
+                end: "01/14/2021",
                 finished: false,
             },
         ]
@@ -87,7 +87,15 @@ function calculateTasks(pres) {
 
     pres.tasks.forEach((task) => {
         arr.forEach((curArray, index) => {
-            var dummyArray = curArray.map(({taskName,...keep}) => {return {start: new Date(keep.start),end: new Date(keep.end)}});
+            var dummyArray = curArray.map(({
+                taskName,
+                ...keep
+            }) => {
+                return {
+                    start: new Date(keep.start),
+                    end: new Date(keep.end)
+                }
+            });
 
             dummyArray.push({
                 start: new Date(task.start),
@@ -95,11 +103,30 @@ function calculateTasks(pres) {
             })
             var overflow = overlap(dummyArray)
 
-            if (!overflow.overlap) {
-                curArray.push(task);
-            } else if (curArray.length - 1 == index) {
-                arr.push([task]);
+            var today = new Date();
+
+
+            var checkDateRange = overlap([{
+                    "start": new Date(task.start),
+                    end: new Date(task.end)
+                },
+                {
+                    "start": new Date(today.setDate(today.getDate() - 5)),
+                    end: new Date(today.setDate(today.getDate() + 18))
+                },
+            ]);
+
+
+
+
+            if (checkDateRange.overlap) {
+                if (!overflow.overlap) {
+                    curArray.push(task);
+                } else if (curArray.length - 1 == index) {
+                    arr.push([task]);
+                }
             }
+
         });
     });
     insertTasks(arr, pres);
@@ -158,12 +185,10 @@ function loadCalendar() {
     for (let i = 1; i <= 18; i++) {
         let newDate = new Date(now.setDate(now.getDate() + 1));
 
-        console.log(newDate, new Date());
 
-        if(newDate.toLocaleDateString('en-US') == new Date().toLocaleDateString('en-US')) {
+        if (newDate.toLocaleDateString('en-US') == new Date().toLocaleDateString('en-US')) {
             $('.calendar-row-days').append(`<div class="cur-day-active calendar-day" data-date="${newDate}"><p>${newDate.getDate()}</p></div>`);
         } else {
-            console.log("andere tag")
             $('.calendar-row-days').append(`<div class="calendar-day" data-date="${newDate}"><p>${newDate.getDate()}</p></div>`);
         }
     }

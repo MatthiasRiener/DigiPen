@@ -2,11 +2,9 @@
 
 
 function overlap(dateRanges) {
-
-
     var sortedRanges = sortDates(dateRanges)
 
-
+    
 
     var result = sortedRanges.reduce((result, current, idx, arr) => {
         // get the previous range
