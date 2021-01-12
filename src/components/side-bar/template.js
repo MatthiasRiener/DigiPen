@@ -33,6 +33,11 @@
             ></ion-icon>
           </div>
 
+          <div class="nav-bar-element quiz-item">
+            <ion-icon name="stats-chart-outline" class="icon-navbar"></ion-icon>
+            <p>Quiz</p>
+          </div>
+
           <div class="nav-bar-element">
             <ion-icon name="cog-outline" class="icon-navbar"></ion-icon>
             <p>Settings</p>
