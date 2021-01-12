@@ -33,17 +33,38 @@ $("#newQuiz, #backbox").click(function (e) {
     changeDisplay();
 });
 
+let firstanimation = true;
 changeDisplay();
 
 function changeDisplay() {
     if ($(".myquizbox")[0].style.display == "block") {
-        $(".myquizbox")[0].style.display = "none"
-        $(".myquizbox")[1].style.display = "block"
+        // $(".myquizbox")[0].style.display = "none";
+        $(".myquizbox")[1].style.display = "block";
+        $(".myquizbox").eq(1).addClass("animateQuizboxForward");
     } else {
-        $(".myquizbox")[1].style.display = "none"
-        $(".myquizbox")[0].style.display = "block"
+        if (firstanimation) {
+            $(".myquizbox")[0].style.display = "block";
+            $(".myquizbox")[1].style.display = "none";
+            firstanimation = false;
+        } else {
+            $(".myquizbox")[0].style.display = "block";
+            $(".myquizbox").eq(1).addClass("animateQuizboxBackward")
+        }
     }
 }
+
+$('.myquizbox').on("animationend", function () {
+    if ($(this).hasClass("animateQuizboxForward")) {
+        $(".myquizbox")[0].style.display = "none";
+        $(".myquizbox")[1].style.display = "block";
+    }
+    $(this).removeClass("animateQuizboxForward");
+    if ($(this).hasClass("animateQuizboxBackward")) {
+        $(".myquizbox")[0].style.display = "block";
+        $(".myquizbox")[1].style.display = "none";
+    }
+    $(this).removeClass("animateQuizboxBackward");
+});
 
 $("#dublicate").click(function () {
     addQuestion();

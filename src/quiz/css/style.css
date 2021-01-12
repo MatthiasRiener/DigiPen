@@ -7,10 +7,17 @@
     outline: none;
 }
 
+body {
+    overflow: hidden;
+}
+
 .navandquizbox {
     display: flex;
     width: 100vw;
     height: 93vh;
+    overflow-x: hidden;
+    position: absolute;
+    bottom: 0;
 }
 
 .myquizbox {
@@ -343,4 +350,42 @@
 #saveQuiz {
     color: white;
     background-color: rgb(61, 204, 68);
+}
+
+.animateQuizboxForward, .animateQuizboxBackward {
+    background-color: white;
+    position: absolute;
+    z-index: 100;
+}
+
+.animateQuizboxForward {
+    animation: animateEditorForward .5s linear 0s;
+}
+
+.animateQuizboxBackward {
+    animation: animateEditorBackward .5s linear 0s;
+}
+
+@keyframes animateEditorForward {
+    0% {
+        right: -100%;
+    }
+    100% {
+        right: 0%;
+    }
+}
+
+@keyframes animateEditorBackward {
+    0% {
+        right: 0%;
+    }
+    100% {
+        right: -100%;
+    }
+}
+
+top-nb {
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
 }
