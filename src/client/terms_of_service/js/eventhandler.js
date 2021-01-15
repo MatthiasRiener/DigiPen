@@ -5,7 +5,7 @@ window.onload = function () {
 }
 
 function loadTerms() {
-    $.get("https://raw.githubusercontent.com/MatthiasRiener/Slidea/main/src/terms_of_service/terms/terms.md", function (data) {
+    $.get("https://raw.githubusercontent.com/MatthiasRiener/Slidea/main/src/client/terms_of_service/terms/terms.md", function (data) {
         var terms = data.split("\n").filter(Boolean);
 
         terms.forEach(element => {
