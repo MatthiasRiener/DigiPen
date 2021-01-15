@@ -18,8 +18,8 @@ const tasks = [{
             {
                 taskName: "Sollte Südtirol zu Österreich gehören?",
                 start: "01/10/2021",
-                end: "01/14/2021",
-                finished: false,
+                end: "01/18/2021",
+                finished: true,
             },
         ]
     },
