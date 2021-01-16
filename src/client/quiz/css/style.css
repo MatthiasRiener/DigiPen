@@ -359,11 +359,11 @@ body {
 }
 
 .animateQuizboxForward {
-    animation: animateEditorForward .5s linear 0s;
+    animation: animateEditorForward .25s ease-out 0s;
 }
 
 .animateQuizboxBackward {
-    animation: animateEditorBackward .5s linear 0s;
+    animation: animateEditorBackward .25s ease-in 0s;
 }
 
 @keyframes animateEditorForward {
