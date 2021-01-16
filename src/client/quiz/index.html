@@ -170,7 +170,13 @@
 
     <div id="Questionpattern">
         <div class="customQuestions">
-            <input type="text" name="questionTitle" class="questionTitle" placeholder="Here goes the Question">
+            <div class="imageandtitle">
+                <input type="text" name="questionTitle" class="questionTitle" placeholder="Here goes the Question">
+                <label class="custom-file-upload">
+                    <input type="file" name="image" accept="image/*" class="imageinput">
+                    Upload Image
+                </label>
+            </div>
             <div class="answers">
                 <div class="answerbox1 answerbox">
                     <input type="checkbox" class="answercheck" name="vehicle" value="value">
