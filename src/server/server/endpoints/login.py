@@ -1,8 +1,7 @@
-from flask_classful import FlaskView, route
+from flask import Blueprint, abort
 
-class LoginView(FlaskView):
-    route_base="/mama/"
+login = Blueprint('login', __name__)
 
-    @route('/name/')
-    def mumname(self):
-        return "soos"
+@login.route('/name')
+def name():
+    return 'mein name ist thomas' 
