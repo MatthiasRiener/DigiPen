@@ -93,4 +93,8 @@ $("#saveQuiz").click(function () {
     addQuestion();
     $(".quizTitle").val("");
     changeDisplay();
-})
+});
+
+[...$(".bigquizscrollbar")].forEach(function (e) {
+    e.innerHTML = $(".bigquizscrollbar").eq(0).html();
+});
