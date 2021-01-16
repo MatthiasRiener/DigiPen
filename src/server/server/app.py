@@ -1,12 +1,12 @@
 from flask import Flask
 # import all endpoints
-from endpoints.login import login
+from endpoints.auth import auth
 from endpoints.error_handler import ErrorHandler
 
 errorHandler = ErrorHandler()
 app = Flask(__name__)
 
-app.register_blueprint(login, url_prefix="/login")
+app.register_blueprint(auth, url_prefix="/auth")
 
 
 def initializeErrors():
