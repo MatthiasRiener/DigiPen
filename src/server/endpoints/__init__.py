@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from .auth.views import auth, oidc
 from .error_handler.views import pagenotfound
-
+from .profile.views import profile
 
 
 app = Flask(__name__, template_folder="./error_handler/templates")
@@ -22,5 +22,6 @@ app.config.update({
 
 
 app.register_blueprint(auth, url_prefix="/auth")
+app.register_blueprint(profile, url_prefix="/profile")
 app.register_error_handler(404, pagenotfound)
 
