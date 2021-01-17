@@ -1,8 +1,10 @@
-from flask import Flask
+from flask import Flask, render_template
 from .auth.views import auth, oidc
+from .error_handler.views import pagenotfound
 
 
-app = Flask(__name__)
+
+app = Flask(__name__, template_folder="./error_handler/templates")
 
 app.config.update({
     'SECRET_KEY': 'SomethingNotEntirelySecret',
@@ -18,4 +20,7 @@ app.config.update({
 })
 
 
+
 app.register_blueprint(auth, url_prefix="/auth")
+app.register_error_handler(404, pagenotfound)
+
