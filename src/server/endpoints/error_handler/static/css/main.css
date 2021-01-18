@@ -11,6 +11,8 @@ body {
     font-weight: bold;
     height: 100vh;
     overflow: hidden;
+
+    user-select: none; 
 }
 
 
@@ -43,6 +45,8 @@ p {
 .sub-text-second {
     font-size: 20px;
     animation: fadeInTitle 0.2s ease-in forwards;
+    text-transform: uppercase;
+
 }
 
 .rainbow-text {
