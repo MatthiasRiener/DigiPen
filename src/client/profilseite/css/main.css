@@ -128,7 +128,7 @@
     position: absolute;
     bottom: 5vh;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -219,7 +219,7 @@
 
 #Profile {
     width: 50%;
-    margin-left: 50px;
+    margin-left: 10vw;
     bottom: 5%;
     max-height: 90vh;
     overflow-y: auto;
@@ -250,6 +250,10 @@
 
 #Profile::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+.intro #missingConfigurations{
+    padding-left:20vw;
 }
 
 #missingConfigurations .configshadow {
