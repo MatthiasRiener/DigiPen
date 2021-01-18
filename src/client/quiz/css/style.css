@@ -148,6 +148,8 @@ body {
 .publicquizes {
     margin: 2vw;
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .bigquizes {
@@ -163,7 +165,7 @@ body {
 }
 
 .publicquizes div.quiz {
-    width: 25vw;
+    width: 24vw;
     margin-right: 3vw;
     margin-bottom: 3vw;
     display: flex;
