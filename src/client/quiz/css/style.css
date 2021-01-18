@@ -43,7 +43,6 @@ body {
 
 .searchbox {
     width: 14vw;
-    margin-left: 3vw;
     position: relative;
 }
 
@@ -113,7 +112,7 @@ body {
 .bigquizscrollbar {
     width: 100%;
     height: fit-content;
-    overflow-x: scroll;
+    overflow: hidden;
 }
 
 .bigquizscrollbar::-webkit-scrollbar {
@@ -141,32 +140,28 @@ body {
 
 .bigquizes {
     margin: 2vw;
-    height: 20vw;
     width: fit-content;
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .bigquizes div.quiz {
-    height: 10vw;
-    width: 10vw;
-    border-radius: 10px;
+    width: 17vw;
     margin-right: 3vw;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
 }
 
 .quiz img {
     width: 100%;
-    height: 70%;
-    border-radius: 10px 10px 0 0;
+    border-radius: 5px;
     object-fit: cover;
 }
 
 .description {
-    padding: 1vw;
+    padding-top: 1vw;
     height: 30%;
     bottom: 0;
 }
@@ -183,10 +178,6 @@ body {
 
 .description div p {
     font-size: small;
-}
-
-.description div ion-icon {
-    margin: 0 .5vw;
 }
 
 #quizjoinpopup {
