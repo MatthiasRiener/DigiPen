@@ -140,15 +140,32 @@ body {
 
 .bigquizes {
     margin: 2vw;
-    width: fit-content;
     display: flex;
     align-items: center;
     position: relative;
 }
 
+.publicquizes {
+    margin: 2vw;
+    width: 100%;
+}
+
+.bigquizes {
+    width: fit-content;
+}
+
 .bigquizes div.quiz {
     width: 17vw;
     margin-right: 3vw;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.publicquizes div.quiz {
+    width: 25vw;
+    margin-right: 3vw;
+    margin-bottom: 3vw;
     display: flex;
     flex-direction: column;
     cursor: pointer;
@@ -407,4 +424,8 @@ top-nb {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.bigquizes:nth-of-type(0) {
+    background: red !important;
 }
