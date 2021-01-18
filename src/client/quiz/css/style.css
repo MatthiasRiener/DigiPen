@@ -157,7 +157,7 @@ body {
 }
 
 .bigquizes div.quiz {
-    width: 17vw;
+    width: 16vw;
     margin-right: 3vw;
     display: flex;
     flex-direction: column;
