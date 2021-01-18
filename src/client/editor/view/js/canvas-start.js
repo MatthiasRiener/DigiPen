@@ -17,6 +17,7 @@ var propsText = {
     id: null,
     opacity: null,
     fill: null,
+    backgroundColor: '#ffffff',
     fontSize: null,
     lineHeight: null,
     charSpacing: null,
@@ -181,6 +182,7 @@ function init() {
                     getLineHeight();
                     getCharSpacing();
                     getBold();
+                    getItalic();
                     getFill();
                     getTextDecoration();
                     getTextAlign();
@@ -240,6 +242,7 @@ function addText(t) {
         scaleX: 0.5,
         scaleY: 0.5,
         fontWeight: '',
+        fontStyle: '',
         originX: 'center',
         originY: 'center',
         hasRotationPoint: true,
@@ -330,6 +333,11 @@ $('body').on('input', '.fill-color-picker', function () {
     setFill();
 });
 
+$('body').on('input', '.background-color-picker', function () {
+    propsText.fill = $(this).val();
+    setBackground();
+});
+
 var curKeys = [];
 
 $('body').keydown(function (event) {
@@ -385,6 +393,12 @@ $('body').on('change', '.text-isbold', function () {
     propsText.fontWeight = !propsText.fontWeight;
     console.log(propsText.fontWeight)
     setBold();
+});
+
+$('body').on('change', '.text-isitalic', function () {
+    propsText.fontStyle = !propsText.fontStyle;
+    console.log(propsText.fontStyle)
+    setItalic();
 });
 
 $('body').on('click', '.text-centerYX', function () {
@@ -930,6 +944,15 @@ function setFill() {
     setActiveStyle('fill', propsText.fill, null);
 }
 
+function getBackground() {
+    propsText.textBackgroundColor = getActiveStyle('fill', null);
+    $('.background-color-picker').val(propsText.textBackgroundColor);
+}
+
+function setBackground() {
+    setActiveStyle('textBackgroundColor', propsText.textBackgroundColor, null);
+}
+
 function getLineHeight() {
     propsText.lineHeight = getActiveStyle('lineHeight', null);
     document.getElementsByClassName('text-line-height')[0].value = propsText.lineHeight;
@@ -966,6 +989,15 @@ function getBold() {
 
 function setBold() {
     setActiveStyle('fontWeight', propsText.fontWeight ? 'bold' : '', null);
+}
+
+function getItalic() {
+    propsText.fontStyle = getActiveStyle('fontStyle', null);
+    $('.text-isitalic').prop('checked', propsText.fontStyle);
+}
+
+function setItalic() {
+    setActiveStyle('fontStyle', propsText.fontStyle ? 'italic' : '', null);
 }
 
 function getTextDecoration() {
