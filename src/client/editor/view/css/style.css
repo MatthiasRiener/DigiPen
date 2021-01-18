@@ -1852,3 +1852,51 @@
 .text-centerYX:hover {
     cursor: pointer;
 }
+
+.text-char-spacing {
+    width: 35%;
+    height: 50%;
+    background-color: var(--white);
+    border: solid 1px var(--light-grey);
+    padding-left: 0.5vw;
+}
+
+.text-char-spacing:focus {
+    outline: none;
+}
+
+.btn-text-style {
+    width: 20%;
+    height:50%;
+    background-color: var(--white);
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    font-size: 0.8rem;
+    color: var(--dark-grey);
+    font-weight: bold;
+    margin: 0 0.2vw;
+}
+
+.btn-text-style:hover {
+    cursor: pointer;
+}
+
+.btn-text-align {
+    width: 14.5%;
+    height:50%;
+    background-color: var(--white);
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    font-size: 0.8rem;
+    color: var(--dark-grey);
+    font-weight: bold;
+    margin: 0 0.2vw;
+}
+
+.btn-text-align:hover {
+    cursor: pointer;
+}
