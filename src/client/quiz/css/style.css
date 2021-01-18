@@ -148,8 +148,8 @@ body {
 }
 
 .bigquizes div.quiz {
-    height: 20vw;
-    width: 20vw;
+    height: 10vw;
+    width: 10vw;
     border-radius: 10px;
     margin-right: 3vw;
     display: flex;
@@ -324,6 +324,7 @@ body {
     padding: .5vw;
     flex-grow: 1;
     border: none;
+    font-size: 2vh;
 }
 
 .QuestionCount {
