@@ -1,0 +1,50 @@
+body {
+    background-image: url('https://cataas.com/cat/gif');
+    background-size: cover;
+    background-color: black !important;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Karla';
+    font-weight: bold;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+@keyframes fadeInTitle {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+p {
+    color: white;
+    margin: 0 !important;
+}
+
+.title {
+    font-size: 300px;
+    animation: fadeInTitle 0.2s ease-in forwards;
+}
+
+.sub-text {
+    font-size: 50px;
+    animation: fadeInTitle 0.2s ease-in forwards;
+    text-transform: uppercase;
+}
+
+.sub-text-second {
+    font-size: 20px;
+    animation: fadeInTitle 0.2s ease-in forwards;
+}
+
+.rainbow-text {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #f1f1f1, 0 0 40px #ffffff, 0 0 50px #f1f1f1, 0 0 60px #d1d1d1, 0 0 70px #ececec;
+}

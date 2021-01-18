@@ -2,9 +2,9 @@ from flask import Flask, render_template
 from .auth.views import auth, oidc
 from .error_handler.views import pagenotfound
 from .profile.views import profile
+from .taskmanagement.views import man
 
-
-app = Flask(__name__, template_folder="./error_handler/templates")
+app = Flask(__name__, template_folder="./error_handler/templates", static_folder="./error_handler/static")
 
 app.config.update({
     'SECRET_KEY': 'SomethingNotEntirelySecret',
@@ -23,5 +23,7 @@ app.config.update({
 
 app.register_blueprint(auth, url_prefix="/auth")
 app.register_blueprint(profile, url_prefix="/profile")
+app.register_blueprint(man, url_prefix="/task")
+
 app.register_error_handler(404, pagenotfound)
 
