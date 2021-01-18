@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif, Karla;
     outline: none;
 }
 
@@ -333,12 +333,13 @@ form span {
 }
 
 form input, #confirm input {
+    font-family: Karla;
     background: #E9EAEE;
     border: solid 1px #E3E3E3;
     color: #9C9FAA;
     font-size: small;
     width: 100%;
-    min-height: 20px;
+    min-height: 30px;
     position: relative;
     padding: 5px 7px;
     outline: none;
@@ -387,7 +388,8 @@ form input:focus, #confirm input:focus {
 
 .accountremoval button {
     background: #F04742;
-    border: none;
+    border: solid 1px #eb6a66;
+    font-weight: bolder;
     border-radius: 7px;
     padding: 10px 23px;
 }
