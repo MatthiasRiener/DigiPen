@@ -17,7 +17,7 @@ var propsText = {
     id: null,
     opacity: null,
     fill: null,
-    backgroundColor: '#ffffff',
+    textBackgroundColor: null,
     fontSize: null,
     lineHeight: null,
     charSpacing: null,
@@ -184,6 +184,7 @@ function init() {
                     getBold();
                     getItalic();
                     getFill();
+                    getBackground();
                     getTextDecoration();
                     getTextAlign();
                     getFontFamily();
@@ -201,10 +202,6 @@ function init() {
         }
     })
 }
-
-
-
-
 
 function addVideo() {
     var video = document.createElement('video');
@@ -224,13 +221,11 @@ function addVideo() {
         centeredScaling: true,
     });
 
-
     //extend(fabricVideo, `video${randomId()}`)
     
     canvas.add(fabricVideo);
     fabricVideo.getElement().play();
 }
-
 
 function addText(t) {
     const text = new fabric.Textbox(t == undefined ? 'hallo' : t, {
@@ -239,6 +234,7 @@ function addText(t) {
         fontFamily: 'helvetica',
         angle: 0,
         fill: '#000000',
+        textBackgroundColor: '',
         scaleX: 0.5,
         scaleY: 0.5,
         fontWeight: '',
@@ -251,8 +247,6 @@ function addText(t) {
     extend(text, randomId());
     canvas.add(text);
     selectItemAfterAdded(text);
-
-
 }
 
 var chart;
@@ -283,8 +277,6 @@ function addChart() {
     });
 }
 
-
-
 function chartLoaded() {
     const data = chart.toBase64Image();
     addImage(data, true);
@@ -313,18 +305,13 @@ function addImage(customurl, isChart) {
         }, {
             crossOrigin: 'Anonymous'
         });
-
-
     }
 }
-
-
 
 fabric.util.requestAnimFrame(function render() {
     canvas.renderAll();
     fabric.util.requestAnimFrame(render);
 });
-
 
 /*------------------------Events------------------------*/
 
@@ -334,7 +321,7 @@ $('body').on('input', '.fill-color-picker', function () {
 });
 
 $('body').on('input', '.background-color-picker', function () {
-    propsText.fill = $(this).val();
+    propsText.textBackgroundColor = $(this).val();
     setBackground();
 });
 
@@ -366,7 +353,6 @@ $('body').keydown(function (event) {
     } catch (e) {
 
     }
-
 
     curKeys = [];
 });

@@ -9,9 +9,6 @@ $('body').on('change', '#addObjectPopup-inner-chart-top-input-background-field',
 
     spreadsheet_id = spreadsheet.trim().split("/")[5];
 
-
-
-
     $.getJSON(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheet_id}/?key=${key}`, function (res) {
         console.log(res);    
          $('#addObjectPopup-inner-chart-bottom-header-headline').html(res.properties.title);
