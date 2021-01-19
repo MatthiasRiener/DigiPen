@@ -1946,3 +1946,35 @@
 .img-grayscale-val:focus {
     outline: none;
 }
+
+.toggleButton {
+    width: 30%;
+    height: 50%;
+    background-color: var(--white);
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    font-size: 0.8rem;
+    color: var(--dark-grey);
+    font-weight: bold;
+    margin: 0 0.2vw;
+}
+
+.img-removeColor-img, .img-brightness-img {
+    width: 20%;
+    height: 50%;
+    background-color: var(--white);
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    font-size: 0.8rem;
+    color: var(--dark-grey);
+    font-weight: bold;
+    margin: 0 0.2vw;
+}
+
+.img-removeColor-slider-img, .img-brightness-slider-img {
+    margin: 0 0.5vw;
+}
