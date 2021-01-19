@@ -1,11 +1,10 @@
 from ..auth.views import oidc
-from flask import Flask, Blueprint
+from flask import Flask, Blueprint, render_template
 
-profile = Blueprint("profile", __name__)
+profile = Blueprint("profile", __name__, static_folder="static", template_folder="templates")
 
 @profile.route('/')
-def initialize():
-    print("getting profile")
-    return str(oidc.user_getfield("sub"))
+def index():
+    return render_template('index.html');
 
 

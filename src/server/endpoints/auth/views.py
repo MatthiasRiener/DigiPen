@@ -1,20 +1,14 @@
-from flask import Blueprint, render_template, current_app as app
+from flask import Blueprint, render_template, redirect, url_for, current_app as app
 from flask_oidc import OpenIDConnect
 from oauth2client.client import OAuth2Credentials
 import requests
 from .custom_oidc_socket import logoutSession
-from ..db.settings import mongo
+from ..db.settings import mongo, oidc
+
+from ..profile.views import profile
+
 auth = Blueprint('auth', __name__, static_folder="static",
                  template_folder="templates")
-oidc = OpenIDConnect()
-
-
-# der openid client soll vor dem ersten request abgesendet werden, method notwendig weil app nur in request zugreifbar ist
-
-
-@auth.before_app_first_request
-def initializeOidc():
-    oidc.init_app(app)
 
 
 @auth.route('/')
@@ -39,7 +33,7 @@ def login():
     else:
         print("user is in mongo")
    
-    return 'Succesfully logged in. <a href="/auth/logout">Log out</a>'
+    return redirect(url_for('profile.index'))
 
 
 @auth.route('/logout')
