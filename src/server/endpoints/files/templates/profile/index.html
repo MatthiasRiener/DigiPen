@@ -15,15 +15,15 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
-    <script src="../components/create-workspace/Workspace.js" type="module"></script>
+    <!--<script src="../components/create-workspace/Workspace.js" type="module"></script>-->
 
-    <script src="../components/side-bar/Sidebar.js" type="module" ></script>
+   <!--<script src="../components/side-bar/Sidebar.js" type="module" ></script>-->
 </head>
 
 <body>
     
-    <side-bar id="sidebar-comp" path="../components/side-bar/styles.css"  class="sidenavW3" ></side-bar>
-    <create-workspace id="workspace-comp" path="../components/create-workspace/styles.css"></create-workspace>
+  <!--  <side-bar id="sidebar-comp" path="../components/side-bar/styles.css"  class="sidenavW3" ></side-bar>-->
+   <!-- <create-workspace id="workspace-comp" path="../components/create-workspace/styles.css"></create-workspace>-->
 
 
 
@@ -42,7 +42,7 @@
                         Deschwanden</p>
                 </content>
                 <div id="ppContainer">
-                    <img id="PP" src="./img/cat.jpg" alt="Profile Picture">
+                    <img id="PP" src={{ url_for("static", filename="/profile/img/cat.jpg") }} alt="Profile Picture">
                 </div>
                 <div id="yut">
                     <div id="header">
@@ -53,30 +53,30 @@
                         <p>Government Work</p>
                         <h2>Is Biden a cat person?</h2>
                         <div class="contribuer">
-                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
-                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
-                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
-                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
+                            <img id="PPc" src={{ url_for("static", filename="/profile/img/cat.jpg") }} alt="Profile Picture">
+                            <img id="PPc" src={{ url_for("static", filename="/profile/img/cat.jpg") }} alt="Profile Picture">
+                            <img id="PPc" src={{ url_for("static", filename="/profile/img/cat.jpg") }} alt="Profile Picture">
+                            <img id="PPc" src={{ url_for("static", filename="/profile/img/cat.jpg") }} alt="Profile Picture">
                         </div>
                     </div>
                     <div class="Task">
                         <p>Government Work</p>
                         <h2>ObAmA</h2>
                         <div class="contribuer">
-                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
-                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
-                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
-                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
+                            <img id="PPc" src={{ url_for("static", filename="/profile/img/cat.jpg") }} alt="Profile Picture">
+                            <img id="PPc" src={{ url_for("static", filename="/profile/img/cat.jpg") }} alt="Profile Picture">
+                            <img id="PPc" src={{ url_for("static", filename="/profile/img/cat.jpg") }} alt="Profile Picture">
+                            <img id="PPc" src={{ url_for("static", filename="/profile/img/cat.jpg") }} alt="Profile Picture">
                         </div>
                     </div>
                     <div class="Task">
                         <p>Austrian History</p>
                         <h2>Willkommen!</h2>
                         <div class="contribuer">
-                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
-                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
-                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
-                            <img id="PPc" src="./img/cat.jpg" alt="Profile Picture">
+                            <img id="PPc" src={{ url_for("static", filename="/profile/img/cat.jpg") }} alt="Profile Picture">
+                            <img id="PPc" src={{ url_for("static", filename="/profile/img/cat.jpg") }} alt="Profile Picture">
+                            <img id="PPc" src={{ url_for("static", filename="/profile/img/cat.jpg") }} alt="Profile Picture">
+                            <img id="PPc" src={{ url_for("static", filename="/profile/img/cat.jpg") }} alt="Profile Picture">
                         </div>
 
                     </div>
@@ -109,7 +109,7 @@
                 <div id="Profile">
                     <div class="whoami">
                         <div id="secppContainer">
-                            <img id="secPP" src="{{ url_for('static', filename='img/cat.jpg') }}" alt="Profile Picture">
+                            <img id="secPP" src={{ url_for("static", filename="/profile/img/cat.jpg") }} alt="Profile Picture">
                         </div>
                         <p>Gregor <br>
                             Deschwanden</p>
@@ -242,9 +242,9 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="{{ url_for('static', filename='js/fullpage.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/popup.js') }}" ></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/fullpage.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/main.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/popup.js') }}" ></script>
     <script type="text/javascript">
         var myFullpage = new fullpage('#fullpage', {
             sectionsColor: ['#fff', '#fff'],

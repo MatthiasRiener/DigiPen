@@ -5,6 +5,6 @@ profile = Blueprint("profile", __name__, static_folder="static", template_folder
 
 @profile.route('/')
 def index():
-    return render_template('index.html');
+    return render_template('/profile/index.html');
 
 
