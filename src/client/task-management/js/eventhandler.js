@@ -63,8 +63,8 @@ $('#taskPopup-fourth-right-icon').click(function () {
     if($('#personPopup').css('opacity') == 0) {
         closeAllSubPopups();
         $('#personPopup').css('display', 'flex');
-        $('#personPopup').css('top', taskPositionTop - 250);
-        $('#personPopup').css('left', taskPositonLeft + taskWidth - 310);
+        $('#personPopup').css('top', (taskPositionTop - 26) + "vh");
+        $('#personPopup').css('left', (taskPositonLeft + taskWidth - 16.5) + "vw");
         $('#personPopup').animate({
             opacity: 1.0,
             margin: 0
@@ -80,8 +80,8 @@ $('#taskPopup-sixth-top-add').click(function () {
     if($('#subTaskPopup').css('opacity') == 0) {
         closeAllSubPopups();
         $('#subTaskPopup').css('display', 'flex');
-        $('#subTaskPopup').css('top', taskPositionTop - 140);
-        $('#subTaskPopup').css('left', taskPositonLeft + taskWidth - 310);
+        $('#subTaskPopup').css('top', (taskPositionTop - 14) + "vh");
+        $('#subTaskPopup').css('left', (taskPositonLeft + taskWidth - 16.5) + "vw");
         $('#subTaskPopup').animate({
             opacity: 1.0,
             margin: 0
@@ -97,8 +97,8 @@ $('#taskPopup-last-bottom-left-reactions-add').click(function () {
     if($('#reactionPopup').css('opacity') == 0) {
         closeAllSubPopups();
         $('#reactionPopup').css('display', 'flex');
-        $('#reactionPopup').css('top', taskPositionTop - 10);
-        $('#reactionPopup').css('left', taskPositonLeft + taskWidth - 84);
+        $('#reactionPopup').css('top', (taskPositionTop - 2) + "vh");
+        $('#reactionPopup').css('left', (taskPositonLeft + taskWidth - 4.8) + "vw");
         $('#reactionPopup').animate({
             opacity: 1.0,
             margin: 0
