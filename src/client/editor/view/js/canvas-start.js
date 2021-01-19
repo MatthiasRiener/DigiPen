@@ -482,13 +482,10 @@ $('body').on('change', '.img-grayscale-val', function () {
     }
 });
 
-
-
 $('body').on('click', '.img-sepia-img', function () {
     propsImage.sepia = !propsImage.sepia;
     setImgSepia();
 });
-
 
 $('body').on('click', '.img-black_white-img', function () {
     propsImage.black_white = !propsImage.black_white;
@@ -500,7 +497,6 @@ $('body').on('click', '.img-brownie-img', function () {
     setImgBrownie();
 });
 
-
 $('body').on('click', '.img-vintage-img', function () {
     propsImage.vintage = !propsImage.vintage
     setImgVintage();
@@ -510,7 +506,6 @@ $('body').on('click', '.img-kodachrome-img', function () {
     propsImage.kodachrome = !propsImage.kodachrome
     setImgKodachrome();
 });
-
 
 $('body').on('click', '.img-technicolor-img', function () {
     propsImage.technicolor = !propsImage.technicolor
@@ -567,9 +562,6 @@ $(window).resize(function() {
 
 });
 
-
-
-
 /*------------------------Helper Functions------------------------*/
 let originalSize;
 
@@ -609,11 +601,8 @@ function move(params) {
             obj.top = mode == "jump" ? obj.top + 10 : obj.top + 1;
             break;
     }
-
     canvas.renderAll();
-
 }
-
 
 function saveCanvasToJson() {
     const json = canvas.toJSON();
@@ -625,7 +614,6 @@ function rasterizeSVG() {
     return 'data:image/svg+xml;utf8,' + encodeURIComponent(canvas.toSVG());
 
 }
-
 
 function initializeShortcuts() {
     $.getJSON("js/shortcuts.json", function (data) {
@@ -670,19 +658,15 @@ function randomId() {
     return Math.floor(Math.random() * 999999) + 1;
 }
 
-
 function resetPanels() {
     textEditor['visible'] = false;
     imageEditor['visible'] = false;
     chartEditor['visible'] = false;
 }
 
-
 function getId() {
     return propsText.id = canvas.getActiveObject().toObject().id;
 }
-
-
 
 function getActiveStyle(styleName, object) {
     object = object || canvas.getActiveObject();
@@ -714,7 +698,6 @@ function setActiveImgFilter(filterName, filter, operation, obj) {
         console.log('kein Filter gefunden.');
     }
 
-
     var object = obj || canvas.getActiveObject();
 
     if (!operation) {
@@ -725,9 +708,7 @@ function setActiveImgFilter(filterName, filter, operation, obj) {
 
     object.applyFilters();
     canvas.renderAll();
-
 }
-
 
 function setFilterValue(index, prop, value, status, obj) {
     var obj = obj || canvas.getActiveObject();
@@ -746,7 +727,6 @@ function setFilterValue(index, prop, value, status, obj) {
     canvas.renderAll();
 }
 
-
 function getActiveProp(name) {
     const object = canvas.getActiveObject();
     if (!object) {
@@ -754,8 +734,6 @@ function getActiveProp(name) {
     }
     return object[name] || '';
 }
-
-
 
 function setActiveStyle(styleName, value, object) {
     object = object || this.canvas.getActiveObject();
@@ -828,9 +806,7 @@ function setActiveStyle(styleName, value, object) {
     }
     object.setCoords();
     canvas.renderAll();
-
 }
-
 
 async function paste() {
     var clipBoard;
@@ -839,8 +815,6 @@ async function paste() {
     });
     var obj = canvas.getActiveObject() || clipBoard;
     console.log(canvas.getActiveObject());
-
-
 
     if (canvas.getActiveObject() != null) {
         const activeObject = canvas.getActiveObject();
@@ -890,11 +864,9 @@ async function paste() {
         console.log('link is not a img');
     }
     // show image popup
-
 }
 
 /*------------------------Styles Functions------------------------*/
-
 
 function centerObj() {
     const obj = canvas.getActiveObject();
@@ -931,7 +903,7 @@ function setFill() {
 }
 
 function getBackground() {
-    propsText.textBackgroundColor = getActiveStyle('fill', null);
+    propsText.textBackgroundColor = getActiveStyle('textBackgroundColor', null);
     $('.background-color-picker').val(propsText.textBackgroundColor);
 }
 
@@ -1108,8 +1080,6 @@ function setImgBrightness() {
 
 /*------------------------Custom NGIF------------------------*/
 
-
-
 var CustomNGIf = function (element, callback, propertyName) {
     var _value = null;
 
@@ -1150,10 +1120,7 @@ var CustomNGIf = function (element, callback, propertyName) {
     }
 }
 
-
-
 /*------------------------EDITOR-WINDOWS------------------------*/
-
 
 var textEditorContainer = document.getElementById('text-editor');
 var textEditor = new CustomNGIf(textEditorContainer, function () {}, 'visible');

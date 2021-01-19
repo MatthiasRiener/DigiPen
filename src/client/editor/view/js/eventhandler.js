@@ -6,11 +6,6 @@ $(document).ready(function () {
     toggleVisibility(0);
 });
 
-$('.toggleButton').click(function () {
-    $(this).css('background-color', ($(this).css('background-color') == 'rgb(255, 255, 255)') ? 'rgb(227, 227, 227)' : 'rgb(255, 255, 255)');
-});
-
-
 /* --------------- SLides-Menu --------------- */
 
 $('#content-leftSlides-topBar-plus').click(function () {
