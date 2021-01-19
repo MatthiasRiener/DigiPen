@@ -18,10 +18,10 @@ app.config.update({
     'OIDC_OPENID_REALM': 'flask-demo',
     'OIDC_SCOPES': ['openid', 'email', 'profile'],
     'OIDC_INTROSPECTION_AUTH_METHOD': 'client_secret_post',
-    'MONGO_URI': "mongodb://localhost:27017/slideadb",
-    'MONGO_USERNAME': "root",
-    "MONGO_PASSWORD": "rootpassword",
-    "MONGO_AUTH_SOURCE": "admin"
+    'MONGO_URI': "mongodb://root:rootpassword@localhost:27017/slideadb?authSource=admin",
+  
+
+
 })
 
 mongo.init_app(app)

@@ -28,7 +28,17 @@ def index():
 @auth.route('/login')
 @oidc.require_login
 def login():
-    print(mongo.db.collection_names)
+    info = oidc.user_getinfo(['preferred_username', 'email', 'sub']) 
+    user_id = info.get('sub')
+    user_db = mongo.db.usersettings.find_one({"user_id": user_id})
+    print(user_id)
+
+    if user_db is None:
+        res = mongo.db.usersettings.insert({"user_id": user_id})
+        print("user registrerd in mongo", res)
+    else:
+        print("user is in mongo")
+   
     return 'Succesfully logged in. <a href="/auth/logout">Log out</a>'
 
 
