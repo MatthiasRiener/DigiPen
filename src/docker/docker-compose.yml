@@ -3,6 +3,7 @@ version: '3'
 volumes:
   mysql_data:
       driver: local
+  mongodb_data_container:    
 
 services:
   mysql:
@@ -28,3 +29,13 @@ services:
         - 8080:8080
       depends_on:
         - mysql
+  dbmongo:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - 27017:27017
+    volumes: 
+      - mongodb_data_container:/data/db  
+

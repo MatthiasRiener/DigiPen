@@ -1,5 +1,4 @@
 body {
-    background-image: url('https://cataas.com/cat/gif');
     background-size: cover;
     background-color: black !important;
 
@@ -33,18 +32,19 @@ p {
 
 .title {
     font-size: 300px;
+}
+
+.animation {
     animation: fadeInTitle 0.2s ease-in forwards;
 }
 
 .sub-text {
     font-size: 50px;
-    animation: fadeInTitle 0.2s ease-in forwards;
     text-transform: uppercase;
 }
 
 .sub-text-second {
     font-size: 20px;
-    animation: fadeInTitle 0.2s ease-in forwards;
     text-transform: uppercase;
 
 }

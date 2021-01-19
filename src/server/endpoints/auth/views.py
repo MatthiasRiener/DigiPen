@@ -3,7 +3,7 @@ from flask_oidc import OpenIDConnect
 from oauth2client.client import OAuth2Credentials
 import requests
 from .custom_oidc_socket import logoutSession
-
+from ..db.settings import mongo
 auth = Blueprint('auth', __name__, static_folder="static",
                  template_folder="templates")
 oidc = OpenIDConnect()
@@ -28,7 +28,7 @@ def index():
 @auth.route('/login')
 @oidc.require_login
 def login():
-    print(oidc.get_access_token())
+    print(mongo.db.collection_names)
     return 'Succesfully logged in. <a href="/auth/logout">Log out</a>'
 
 

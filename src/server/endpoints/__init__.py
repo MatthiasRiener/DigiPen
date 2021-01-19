@@ -3,6 +3,7 @@ from .auth.views import auth, oidc
 from .error_handler.views import pagenotfound
 from .profile.views import profile
 from .taskmanagement.views import man
+from .db.settings import mongo
 
 app = Flask(__name__, template_folder="./error_handler/templates", static_folder="./error_handler/static")
 
@@ -16,14 +17,20 @@ app.config.update({
     'OIDC_USER_INFO_ENABLED': True,
     'OIDC_OPENID_REALM': 'flask-demo',
     'OIDC_SCOPES': ['openid', 'email', 'profile'],
-    'OIDC_INTROSPECTION_AUTH_METHOD': 'client_secret_post'
+    'OIDC_INTROSPECTION_AUTH_METHOD': 'client_secret_post',
+    'MONGO_URI': "mongodb://localhost:27017/slideadb",
+    'MONGO_USERNAME': "root",
+    "MONGO_PASSWORD": "rootpassword",
+    "MONGO_AUTH_SOURCE": "admin"
 })
 
+mongo.init_app(app)
 
 
 app.register_blueprint(auth, url_prefix="/auth")
 app.register_blueprint(profile, url_prefix="/profile")
 app.register_blueprint(man, url_prefix="/task")
+
 
 app.register_error_handler(404, pagenotfound)
 
