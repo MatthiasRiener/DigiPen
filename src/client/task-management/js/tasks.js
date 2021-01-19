@@ -11,14 +11,14 @@ const tasks = [{
             },
             {
                 taskName: "Sollte d zu Österreich gehören?",
-                start: "01/02/2021",
-                end: "01/07/2021",
+                start: "01/19/2021",
+                end: "01/25/2021",
                 finished: false,
             },
             {
                 taskName: "Sollte Südtirol zu Österreich gehören?",
-                start: "01/10/2021",
-                end: "01/18/2021",
+                start: "01/23/2021",
+                end: "01/22/2021",
                 finished: true,
             },
         ]

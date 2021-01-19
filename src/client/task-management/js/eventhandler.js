@@ -13,17 +13,18 @@ $('body').on('click', '.task-item', function () {
     $('#taskPopup').css('opacity', '0.0');
     $('#taskPopup').css('display', 'none');
 
-    taskWidth = $(this).width();
-    taskHeight = $(this).height();
-    taskPositionTop = $(this).offset().top;
-    taskPositonLeft = $(this).offset().left;
+    taskWidth = ($(this).width() / $(window).width()) * 100;
+    taskHeight = ($(this).height() / $(window).height()) * 100;
+    taskPositionTop = ($(this).offset().top / $(window).height()) * 100;
+    taskPositonLeft = ($(this).offset().left / $(window).width()) * 100;
 
     $('#taskPopup').css('display', 'flex');
-   $('#taskPopup').css('top', taskPositionTop - 340);
-   $('#taskPopup').css('left', taskPositonLeft + taskWidth - 30);
-   $('#taskPopup').animate({
-       opacity: 1.0
-   }, 100);
+    //alert(taskPositionTop);
+    $('#taskPopup').css('top', (taskPositionTop - 36) + "vh");
+    $('#taskPopup').css('left', (taskPositonLeft + taskWidth - 2) + "vw");
+    $('#taskPopup').animate({
+        opacity: 1.0
+    }, 100);
 
    closeAllSubPopups();
 });
@@ -44,8 +45,9 @@ $('#taskPopup-top-left-icon').click(function () {
     if($('#presentationPopup').css('opacity') == 0) {
         closeAllSubPopups();
         $('#presentationPopup').css('display', 'flex');
-        $('#presentationPopup').css('top', taskPositionTop - 340);
-        $('#presentationPopup').css('left', taskPositonLeft + taskWidth - 310);
+        $('#presentationPopup').css('top', (taskPositionTop - 36) + "vh");
+        //alert(taskPositionTop);
+        $('#presentationPopup').css('left', (taskPositonLeft + taskWidth - 16.5) + "vw");
         $('#presentationPopup').animate({
             opacity: 1.0,
             margin: 0
