@@ -15,15 +15,14 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
-    <!--<script src="../components/create-workspace/Workspace.js" type="module"></script>-->
+    <script src={{ url_for('static', filename="components/side-bar/Sidebar.js") }} type="module"></script>
+    <script src={{ url_for('static', filename="components/create-workspace/Workspace.js") }} type="module"></script>
 
-   <!--<script src="../components/side-bar/Sidebar.js" type="module" ></script>-->
 </head>
 
 <body>
     
-  <!--  <side-bar id="sidebar-comp" path="../components/side-bar/styles.css"  class="sidenavW3" ></side-bar>-->
-   <!-- <create-workspace id="workspace-comp" path="../components/create-workspace/styles.css"></create-workspace>-->
+    <side-bar id="sidebar-comp"   style="width: 0%; height: 100%; background-color: #F8F7F9;" class="sidenavW3"></side-bar>
 
 
 
@@ -34,10 +33,13 @@
     </div>
 
     <div id="fullpage">
+
+
         <div class="section" id="section1">
             <content class="intro">
                 <h1 class="pp_bt_logo_click">SLIDEA</h1>
                 <content id="name">
+                    
                     <p>Gregor <br>
                         Deschwanden</p>
                 </content>
@@ -274,6 +276,7 @@
 
         $("#openCloseNav").click(function () {
             openNav();
+            console.log("hallo")
         });
 
         $(document).ready(function () {
