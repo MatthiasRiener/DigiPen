@@ -14,7 +14,9 @@ auth = Blueprint('auth', __name__, static_folder="static",
 @auth.route('/')
 def index():
     if oidc.user_loggedin:
-        return 'Hello %s <a href="/auth/logout">Log out</a>' % oidc.user_getfield('preferred_username')
+        access_token = OAuth2Credentials.from_json(
+        oidc.credentials_store[oidc.user_getfield('sub')]).access_token
+        return redirect(url_for('profile.index', user_id=oidc.user_getfield('sub'), access_token=access_token))
     else:
         return 'You are not logged in. <a href="/auth/login">Log In </a>'
 
@@ -22,7 +24,7 @@ def index():
 @auth.route('/login')
 @oidc.require_login
 def login():
-    info = oidc.user_getinfo(['preferred_username', 'email', 'sub']) 
+    info = oidc.user_getinfo(['preferred_username', 'email', 'sub'])
     user_id = info.get('sub')
     user_db = mongo.db.usersettings.find_one({"user_id": user_id})
     print(user_id)
@@ -32,8 +34,13 @@ def login():
         print("user registrerd in mongo", res)
     else:
         print("user is in mongo")
-   
-    return redirect(url_for('profile.index'))
+
+    access_token = OAuth2Credentials.from_json(
+        oidc.credentials_store[user_id]).access_token
+
+    redir = redirect(url_for('profile.index', user_id=user_id,
+                             access_token=access_token))
+    return redir
 
 
 @auth.route('/logout')
