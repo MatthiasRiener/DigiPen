@@ -41,7 +41,7 @@
                 <h1 class="pp_bt_logo_click">SLIDEA</h1>
                 <content id="name">
                     
-                    <p>{{username}}</p>
+                    <p id="insert-username"></p>
 
                     
                 </content>
@@ -318,6 +318,22 @@
      sideBar.addEventListener('animWorkSpace', e => {                   
         workspace.animateWorkspace();
     })
+</script>
+
+<script type="text/javascript">
+    var token = localStorage.getItem('token');
+    // test to get user data
+   $.ajax({
+  type: "POST",
+  url: "user/",
+  headers: {
+    "Authorization": "Bearer " + token
+  }
+}).done(function(data) {
+    console.log(data);
+    $('#insert-username').html(data);
+});
+
 </script>
 
 </body>

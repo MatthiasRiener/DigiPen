@@ -13,13 +13,7 @@ auth = Blueprint('auth', __name__, static_folder="static",
 
 @auth.route('/')
 def index():
-    if oidc.user_loggedin:
-        access_token = OAuth2Credentials.from_json(
-        oidc.credentials_store[oidc.user_getfield('sub')]).access_token
-        return redirect(url_for('profile.index', user_id=oidc.user_getfield('sub'), access_token=access_token))
-    else:
-        return 'You are not logged in. <a href="/auth/login">Log In </a>'
-
+   return 'Waiting...'
 
 @auth.route('/login')
 @oidc.require_login
@@ -38,8 +32,7 @@ def login():
     access_token = OAuth2Credentials.from_json(
         oidc.credentials_store[user_id]).access_token
 
-    redir = redirect(url_for('profile.index', user_id=user_id,
-                             access_token=access_token))
+    redir = render_template('/setstorage/storage.html', access_token=access_token)
     return redir
 
 
@@ -55,6 +48,8 @@ def logout():
         return "You've already been logged out. <a href='/auth'>Back</a>"
 
 
-@auth.route('/templatetest')
-def test():
-    return render_template('test.html')
+@auth.route('authorization_complete')
+def redirectProfile():
+    return redirect(url_for('profile.index'))
+
+

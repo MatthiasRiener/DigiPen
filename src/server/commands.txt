@@ -1,1 +1,1 @@
-mongo -u 'root' -p 'password'
+mongo -u 'root' -p 'rootpassword'
