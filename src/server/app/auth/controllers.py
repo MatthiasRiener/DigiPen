@@ -53,5 +53,14 @@ def redirectProfile():
     return redirect(url_for('profile.index'))
 
 
-def add(x, y):
+############ helper functions #########
+
+def add (x, y):
     return x + y
+
+def sub(x, y):
+    return x - y
+
+def remove_spaces(str):
+    return str.replace(' ', '')
+
