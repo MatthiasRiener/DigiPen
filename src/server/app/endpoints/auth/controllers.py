@@ -23,8 +23,7 @@ auth = Blueprint('auth', __name__, static_folder="static",
 @oidc.require_login
 def login():
     user_id = oidc.user_getinfo(['preferred_username', 'email', 'sub']).get('sub')
-
-    repo.createUser("donald_duck")
+    repo.createUser(user_id)
 
     access_token = OAuth2Credentials.from_json(
         oidc.credentials_store[user_id]).access_token
@@ -50,14 +49,4 @@ def redirectProfile():
     return redirect(url_for('profile.index'))
 
 
-############ helper functions #########
-
-def add (x, y):
-    return x + y
-
-def sub(x, y):
-    return x - y
-
-def remove_spaces(str):
-    return str.replace(' ', '')
 

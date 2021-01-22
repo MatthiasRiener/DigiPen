@@ -1,6 +1,8 @@
-from ..app.endpoints.auth.controllers import add, sub, remove_spaces
+from ..app.endpoints.auth.repository.AuthenticationRepository import AuthenticationRepository
 import pytest
 
+
+auth = AuthenticationRepository()
 
 @pytest.mark.parametrize('x, y, result', [
     (10, 10, 20),
@@ -8,7 +10,7 @@ import pytest
     (None, 10, 10)
 ])
 def test_add(x, y, result):
-    assert add(x, y) == result
+    assert auth.add(x, y) == result
 
 
 @pytest.mark.parametrize('x, y, result', [
@@ -17,7 +19,7 @@ def test_add(x, y, result):
     (None, 10, -10)
 ])
 def test_sub(x, y, result):
-    assert sub(x, y) == result
+    assert auth.sub(x, y) == result
 
 
 @pytest.mark.parametrize('data, result', [
@@ -29,4 +31,4 @@ def test_sub(x, y, result):
     (None, '')
 ])
 def test_remove_spaces(data, result):
-    assert remove_spaces(data) == result
+    assert auth.remove_spaces(data) == result
