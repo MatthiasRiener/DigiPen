@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from .auth.views import auth
+from .auth.controllers import auth
 from .error.views import pagenotfound
 from .profile.views import profile
 from .taskmanagement.views import man
