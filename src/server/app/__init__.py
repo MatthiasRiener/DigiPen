@@ -1,8 +1,8 @@
 from flask import Flask, render_template
 from .auth.controllers import auth
-from .error.views import pagenotfound
-from .profile.views import profile
-from .taskmanagement.views import man
+from .error.controllers import pagenotfound
+from .profile.controllers import profile
+from .taskmanagement.controllers import man
 from .db.settings import mongo, oidc
 
 app = Flask(__name__, template_folder="./files/templates", static_folder="./files/static")
@@ -19,9 +19,6 @@ app.config.update({
     'OIDC_SCOPES': ['openid', 'email', 'profile'],
     'OIDC_INTROSPECTION_AUTH_METHOD': 'client_secret_post',
     'MONGO_URI': "mongodb://root:rootpassword@localhost:27017/slideadb?authSource=admin",
-  
-
-
 })
 
 mongo.init_app(app)

@@ -5,7 +5,7 @@ import requests
 from .custom_oidc_socket import logoutSession
 from ..db.settings import mongo, oidc
 
-from ..profile.views import profile
+from ..profile.controllers import profile
 
 auth = Blueprint('auth', __name__, static_folder="static",
                  template_folder="templates")
