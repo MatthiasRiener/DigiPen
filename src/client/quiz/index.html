@@ -217,7 +217,6 @@
             </div>
             <div id="questions">
                 <input type="text" name="quizTitle" class="quizTitle" placeholder="Quiz Title" autocomplete="off">
-                <span id="infoOnQuestions">Tick <b>only</b> the right answers!</span>
                 <!-- load question-pattern -->
                 <span id="loadPattern"></span>
                 <div class="buttonsBox">
@@ -225,36 +224,46 @@
                     <button class="quizButton" id="saveQuiz">Save Quiz</button>
                 </div>
             </div>
+            </div>
         </div>
-    </div>
+    <div class="questionPart"> 
+        <div id="Questionpattern">
+            <div class="customQuestions">
+                <div class="imageandtitle">
+                    <input type="text" name="questionTitle" class="questionTitle" placeholder="Here goes the Question">
+                    <label class="custom-file-upload">
+                        <input type="file" name="image" accept="image/*" class="imageinput">
+                        Upload Image
+                    </label>
+                </div>
+                <div class="answers">
 
-    <div id="Questionpattern">
-        <div class="customQuestions">
-            <div class="imageandtitle">
-                <input type="text" name="questionTitle" class="questionTitle" placeholder="Here goes the Question">
-                <label class="custom-file-upload">
-                    <input type="file" name="image" accept="image/*" class="imageinput">
-                    Upload Image
-                </label>
-            </div>
-            <div class="answers">
-                <div class="answerbox1 answerbox">
-                    <input type="checkbox" class="answercheck" name="vehicle" value="value">
-                    <input type="text" name="answer" class="answertext" placeholder="A)">
+                    <div class="answerbox1 answerbox">
+                        <input type="text" name="answer" class="answertext" placeholder="A)">
+                        <ion-icon name="checkmark-outline" class="bt_right_click"></ion-icon>                        
+                        <hr>
+                        <ion-icon name="close-outline" class="bt_false_click"></ion-icon>
+                    </div>
+                    <div class="answerbox2 answerbox">
+                        <input type="text" name="answer" class="answertext" placeholder="B)">
+                        <ion-icon name="checkmark-outline" class="bt_right_click"></ion-icon>                        
+                        <hr>
+                        <ion-icon name="close-outline" class="bt_false_click"></ion-icon>
+                    </div>
                 </div>
-                <div class="answerbox2 answerbox">
-                    <input type="checkbox" class="answercheck" name="vehicle" value="value">
-                    <input type="text" name="answer" class="answertext" placeholder="B)">
-                </div>
-            </div>
-            <div class="answers">
-                <div class="answerbox3 answerbox">
-                    <input type="checkbox" class="answercheck" name="vehicle" value="value">
-                    <input type="text" name="answer" class="answertext" placeholder="C)">
-                </div>
-                <div class="answerbox4 answerbox">
-                    <input type="checkbox" class="answercheck" name="vehicle" value="value">
-                    <input type="text" name="answer" class="answertext" placeholder="D)">
+                <div class="answers">
+                    <div class="answerbox3 answerbox">
+                        <input type="text" name="answer" class="answertext" placeholder="C)">
+                        <ion-icon name="checkmark-outline" class="bt_right_click"></ion-icon>                        
+                        <hr>
+                        <ion-icon name="close-outline" class="bt_false_click"></ion-icon>
+                    </div>
+                    <div class="answerbox4 answerbox">
+                        <input type="text" name="answer" class="answertext" placeholder="D)">
+                        <ion-icon name="checkmark-outline" class="bt_right_click"></ion-icon>
+                        <hr>
+                        <ion-icon name="close-outline" class="bt_false_click"></ion-icon>
+                    </div>
                 </div>
             </div>
         </div>
