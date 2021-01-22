@@ -1961,7 +1961,7 @@
     margin: 0 0.2vw;
 }
 
-.img-removeColor-img, .img-brightness-img {
+.img-removeColor-img, .img-brightness-img, .img-opacity-img {
     width: 20%;
     height: 50%;
     background-color: var(--white);
@@ -1975,6 +1975,6 @@
     margin: 0 0.2vw;
 }
 
-.img-removeColor-slider-img, .img-brightness-slider-img {
+.img-removeColor-slider-img, .img-brightness-slider-img, .img-opacity-slider-img {
     margin: 0 0.5vw;
 }

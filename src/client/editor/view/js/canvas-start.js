@@ -109,7 +109,8 @@ var propsImage = {
         active: false,
         mode: null,
         alpha: null,
-    }
+    },
+    opacity: null
 };
 
 
@@ -545,10 +546,14 @@ $('body').on('click', '.img-brightness-img', function () {
     setImgBrightness();
 });
 
-
 $('body').on('input', '.img-brightness-slider-img', function () {
     propsImage.brightness.val = parseFloat($(this).val(), 10) / 100;
     setFilterValue("brightness", 'brightness', propsImage.brightness.val, propsImage.brightness.active);
+});
+
+$('body').on('input', '.img-opacity-slider-img', function () {
+    propsImage.opacity = $(this).val();
+    setImgOpacity();
 });
 
 
@@ -1076,6 +1081,10 @@ function setImgBrightness() {
     setActiveImgFilter("brightness", new fabric.Image.filters.Brightness({
         brightness: propsImage.brightness.val
     }), propsImage.brightness.active);
+}
+
+function setImgOpacity() {
+    setActiveStyle('opacity', parseInt(propsImage.opacity, 10) / 100, null);
 }
 
 /*------------------------Custom NGIF------------------------*/
