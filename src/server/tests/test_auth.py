@@ -1,4 +1,4 @@
-from ..app.auth.controllers import add, sub, remove_spaces
+from ..app.endpoints.auth.controllers import add, sub, remove_spaces
 import pytest
 
 

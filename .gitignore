@@ -5,3 +5,6 @@ config.js
 .env.example
 .env.local
 .env.staging
+
+__pycache__/
+

@@ -3,7 +3,7 @@ from flask_oidc import OpenIDConnect
 from oauth2client.client import OAuth2Credentials
 import requests
 from .custom_oidc_socket import logoutSession
-from ..db.settings import mongo, oidc
+from ...db.settings import mongo, oidc
 
 from ..profile.controllers import profile
 

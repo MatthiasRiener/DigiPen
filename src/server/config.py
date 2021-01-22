@@ -1,11 +1,11 @@
 from flask import Flask, render_template
-from app.auth.controllers import auth
-from app.error.controllers import pagenotfound
-from app.profile.controllers import profile
-from app.taskmanagement.controllers import man
+from app.endpoints.auth.controllers import auth
+from app.endpoints.error.controllers import pagenotfound
+from app.endpoints.profile.controllers import profile
+from app.endpoints.taskmanagement.controllers import man
 from app.db.settings import mongo, oidc
 
-app = Flask(__name__, template_folder="./files/templates", static_folder="./files/static")
+app = Flask(__name__, template_folder="./app/files/templates", static_folder="./app/files/static")
 
 app.config.update({
     'SECRET_KEY': 'SomethingNotEntirelySecret',

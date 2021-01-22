@@ -1,4 +1,4 @@
-from ..db.settings import mongo, oidc
+from ...db.settings import mongo, oidc
 from flask import Flask, Blueprint, render_template, abort, g
 from oauth2client.client import OAuth2Credentials
 
