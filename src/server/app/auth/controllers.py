@@ -53,3 +53,5 @@ def redirectProfile():
     return redirect(url_for('profile.index'))
 
 
+def add(x, y):
+    return x + y
