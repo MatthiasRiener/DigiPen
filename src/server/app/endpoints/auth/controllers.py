@@ -1,33 +1,30 @@
 from flask import Blueprint, render_template, redirect, url_for, current_app as app
 from flask_oidc import OpenIDConnect
 from oauth2client.client import OAuth2Credentials
-import requests
 from .custom_oidc_socket import logoutSession
-from ...db.settings import mongo, oidc
+from ...db.settings import db, oidc
 
 from ..profile.controllers import profile
+
+
+from ...models.User import User
+from .repository.AuthenticationRepository import AuthenticationRepository
+
+
+
+repo = AuthenticationRepository()
 
 auth = Blueprint('auth', __name__, static_folder="static",
                  template_folder="templates")
 
 
-@auth.route('/')
-def index():
-   return 'Waiting...'
 
 @auth.route('/login')
 @oidc.require_login
 def login():
-    info = oidc.user_getinfo(['preferred_username', 'email', 'sub'])
-    user_id = info.get('sub')
-    user_db = mongo.db.usersettings.find_one({"user_id": user_id})
-    print(user_id)
+    user_id = oidc.user_getinfo(['preferred_username', 'email', 'sub']).get('sub')
 
-    if user_db is None:
-        res = mongo.db.usersettings.insert({"user_id": user_id})
-        print("user registrerd in mongo", res)
-    else:
-        print("user is in mongo")
+    repo.createUser("donald_duck")
 
     access_token = OAuth2Credentials.from_json(
         oidc.credentials_store[user_id]).access_token

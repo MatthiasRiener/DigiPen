@@ -3,9 +3,10 @@ from app.endpoints.auth.controllers import auth
 from app.endpoints.error.controllers import pagenotfound
 from app.endpoints.profile.controllers import profile
 from app.endpoints.taskmanagement.controllers import man
-from app.db.settings import mongo, oidc
+from app.db.settings import db, oidc
 
-app = Flask(__name__, template_folder="./app/files/templates", static_folder="./app/files/static")
+app = Flask(__name__, template_folder="./app/files/templates",
+            static_folder="./app/files/static")
 
 app.config.update({
     'SECRET_KEY': 'SomethingNotEntirelySecret',
@@ -18,10 +19,20 @@ app.config.update({
     'OIDC_OPENID_REALM': 'flask-demo',
     'OIDC_SCOPES': ['openid', 'email', 'profile'],
     'OIDC_INTROSPECTION_AUTH_METHOD': 'client_secret_post',
-    'MONGO_URI': "mongodb://root:rootpassword@localhost:27017/slideadb?authSource=admin",
+    'MONGO_URI': "mongodb://root:rootpassword@localhost:27017/slideadb/?authSource=admin"
 })
 
-mongo.init_app(app)
+app.config['MONGODB_SETTINGS'] = {
+    'db': 'slideadb',
+    'host': 'localhost',
+    'port': 27017,
+    'username': 'root',
+    'password': 'rootpassword',
+    'authentication_source': 'admin'
+}
+
+# intializing for mongo and oidc
+db.init_app(app)
 oidc.init_app(app)
 
 

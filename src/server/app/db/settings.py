@@ -1,9 +1,8 @@
 from flask_pymongo import PyMongo
 from flask_oidc import OpenIDConnect
+from flask_mongoengine import MongoEngine
 
-mongo = PyMongo()
+
+
+db = MongoEngine()
 oidc = OpenIDConnect()
-
-
-def getActiveSession():
-    return oidc.user_getfield('sub');
