@@ -26,7 +26,7 @@ def login():
    
     # test to get user
     user = repo.retrieveUser(user_id)
-    print("user: %s" % (user.print()))
+    print("user: %s" % (user.as_json()))
 
     access_token = OAuth2Credentials.from_json(
         oidc.credentials_store[user_id]).access_token
