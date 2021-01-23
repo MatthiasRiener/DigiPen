@@ -29,7 +29,6 @@ def login():
     user_id = oidc.user_getinfo(
         ['preferred_username', 'email', 'sub']).get('sub')
     # test to get user
-    print(user_id)
     user = repo.retrieveUser(user_id)
 
     access_token = create_access_token(identity=user_id)
@@ -50,6 +49,7 @@ def logout():
         access_token = oidc.get_access_token()
         logoutSession(refresh_token, access_token)
         oidc.logout()
+        print("user has been logged out.")
         return "You've been logged out. <a href='/auth'>Back</a>"
     #logoutSession(refresh_token, access_token)
     return "You've been logged out."
