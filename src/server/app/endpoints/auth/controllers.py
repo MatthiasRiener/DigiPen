@@ -23,7 +23,10 @@ auth = Blueprint('auth', __name__, static_folder="static",
 @oidc.require_login
 def login():
     user_id = oidc.user_getinfo(['preferred_username', 'email', 'sub']).get('sub')
-    repo.createUser(user_id)
+   
+    # test to get user
+    user = repo.retrieveUser(user_id)
+    print("user: %s" % (user.print()))
 
     access_token = OAuth2Credentials.from_json(
         oidc.credentials_store[user_id]).access_token

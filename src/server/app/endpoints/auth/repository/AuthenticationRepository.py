@@ -8,6 +8,14 @@ class AuthenticationRepository():
             return "Error while inserting user: %s" % (e)
         return "User succesfully inserted."   
 
+    def retrieveUser(self, user_id):
+        try:
+            # [0] is working in this case, because it should only return one user
+            user = User.objects(u_id=user_id)[0]
+            return user
+        except Exception as e:
+            return "Error occured while retrieving user: %s" % (e)
+
     def add(self, x, y):
         if x is None: return y
         if y is None: return x
