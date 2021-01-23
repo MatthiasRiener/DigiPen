@@ -6,10 +6,14 @@ from ...db.settings import db, oidc
 
 from ..profile.controllers import profile
 
+import json, datetime
 
 from ...models.User import User
 from .repository.AuthenticationRepository import AuthenticationRepository
 
+
+from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt, set_access_cookies,
+    set_refresh_cookies, unset_jwt_cookies)
 
 
 repo = AuthenticationRepository()
@@ -26,12 +30,14 @@ def login():
    
     # test to get user
     user = repo.retrieveUser(user_id)
-    print("user: %s" % (user.as_json()))
+    
+    access_token = create_access_token(identity=user_id, expires_delta=datetime.timedelta(seconds=10))
+    refresh_token = create_refresh_token(identity=user_id)
 
-    access_token = OAuth2Credentials.from_json(
-        oidc.credentials_store[user_id]).access_token
+    print("a_token: %s, r_token: %s" % (access_token, refresh_token))
 
-    redir = render_template('/setstorage/storage.html', access_token=access_token)
+
+    redir = render_template('/setstorage/storage.html', access=access_token, refresh=refresh_token)
     return redir
 
 
@@ -45,6 +51,22 @@ def logout():
         return "You've been logged out. <a href='/auth'>Back</a>"
     else:
         return "You've already been logged out. <a href='/auth'>Back</a>"
+
+
+@auth.route('/test')
+@jwt_required
+def test():
+    return 'moin!'
+
+
+@auth.route('/refresh_token', methods=['POST'])
+@jwt_refresh_token_required
+def refresh():
+    current_user = get_jwt_identity()
+    access_token = create_access_token(identity=current_user)
+
+ 
+    return access_token
 
 
 @auth.route('authorization_complete')
