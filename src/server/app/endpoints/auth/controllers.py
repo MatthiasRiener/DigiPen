@@ -6,14 +6,15 @@ from ...db.settings import db, oidc
 
 from ..profile.controllers import profile
 
-import json, datetime
+import json
+import datetime
 
 from ...models.User import User
 from .repository.AuthenticationRepository import AuthenticationRepository
 
 
-from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt, set_access_cookies,
-    set_refresh_cookies, unset_jwt_cookies)
+from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt, set_access_cookies, get_jti,
+                                set_refresh_cookies, unset_jwt_cookies, decode_token)
 
 
 repo = AuthenticationRepository()
@@ -22,26 +23,27 @@ auth = Blueprint('auth', __name__, static_folder="static",
                  template_folder="templates")
 
 
-
 @auth.route('/login')
 @oidc.require_login
 def login():
-    user_id = oidc.user_getinfo(['preferred_username', 'email', 'sub']).get('sub')
-   
+    user_id = oidc.user_getinfo(
+        ['preferred_username', 'email', 'sub']).get('sub')
     # test to get user
+    print(user_id)
     user = repo.retrieveUser(user_id)
-    
-    access_token = create_access_token(identity=user_id, expires_delta=datetime.timedelta(seconds=10))
+
+    access_token = create_access_token(identity=user_id)
     refresh_token = create_refresh_token(identity=user_id)
 
     print("a_token: %s, r_token: %s" % (access_token, refresh_token))
 
-
-    redir = render_template('/setstorage/storage.html', access=access_token, refresh=refresh_token)
+    redir = render_template('/setstorage/storage.html',
+                            access=access_token, refresh=refresh_token)
     return redir
 
 
 @auth.route('/logout')
+@jwt_required
 def logout():
     if oidc.user_loggedin:
         refresh_token = oidc.get_refresh_token()
@@ -49,8 +51,8 @@ def logout():
         logoutSession(refresh_token, access_token)
         oidc.logout()
         return "You've been logged out. <a href='/auth'>Back</a>"
-    else:
-        return "You've already been logged out. <a href='/auth'>Back</a>"
+    #logoutSession(refresh_token, access_token)
+    return "You've been logged out."
 
 
 @auth.route('/test')
@@ -65,13 +67,11 @@ def refresh():
     current_user = get_jwt_identity()
     access_token = create_access_token(identity=current_user)
 
- 
+    print("current user: %s" % current_user)
     return access_token
 
 
 @auth.route('authorization_complete')
 def redirectProfile():
     return redirect(url_for('profile.index'))
-
-
 
