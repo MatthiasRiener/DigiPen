@@ -1,6 +1,7 @@
-export const template = `<div class="cookie-placer">
+export const template = `
+    <div class="cookie-placer">
     <div class="cookie-container-box">
-        <i class="fas fa-cookie-bite"></i>
+        <img src="./cookie-bite-solid.svg" class="cookie-bite" alt="cookie">
         <div class="cookie-container-content">
             We use cookies and other tracking technologies to improve your browsing experience on our website, to show
             you
@@ -11,6 +12,5 @@ export const template = `<div class="cookie-placer">
         </div>
         <button id="agree">Okay</button>
     </div>
-</div>
-<script src="https://kit.fontawesome.com/a076d05399.js" defer></script>`;
+</div>`;
 

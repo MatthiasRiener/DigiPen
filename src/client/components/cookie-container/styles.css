@@ -37,9 +37,8 @@
   box-shadow: 0 0 20px 10px #686e7d3b;
 }
 
-.fa-cookie-bite {
-  color: #4177f4;
-  font-size: xx-large;
+.cookie-bite {
+  width: 4vw;
   margin: 0 1.7vw;
 }
 
