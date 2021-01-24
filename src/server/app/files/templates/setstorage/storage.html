@@ -5,7 +5,9 @@
   crossorigin="anonymous"
 ></script>
 
-<button onclick="sendRequest()"></button>
+<script src={{ url_for('static', filename="authentication/auth_flow.js") }} type="text/javascript"></script>
+
+<button onclick="sendGetRequestToServer('http://localhost:5000/auth/test', localStorage.getItem('a_token'))">sendRequest</button>
 <button onclick="logOut()">Log Out</button>
 <script type="text/javascript">
   var a_token = "{{ access }}"
@@ -13,7 +15,6 @@
 
   localStorage.setItem("a_token", a_token);
   localStorage.setItem("r_token", r_token);
-    
 
   console.log(a_token, r_token)  
   // window.location.href = "authorization_complete";
