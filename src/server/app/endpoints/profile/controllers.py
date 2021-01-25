@@ -24,10 +24,7 @@ def index():
 @jwt_required
 def getUserData():
     cur_user = get_jwt_identity()
-    
     user = repo.retrieveUser(cur_user)
 
-    print("user", user.as_json())
-
-    return 'Hello Friesi!!'
+    return user.as_json()
 
