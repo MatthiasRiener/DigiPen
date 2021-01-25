@@ -20,7 +20,7 @@ function sendRequestToServer(args) {
         success: function (data) {
           console.log("Return from " + args.url + ": " + data);
         },
-      });
+    });
 }
 
 function silentLogin(r_token, callback, args) {
