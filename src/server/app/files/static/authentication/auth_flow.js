@@ -3,23 +3,26 @@ console.log('Authentification JavaSript loaded!');
 const baseURL = "http://localhost:5000";
 
 function sendRequestToServer(args) {
-    $.ajax({
-        type: args.type,
-        url: baseURL + args.url,
-        headers: {
-          Authorization: "Bearer " + getAToken(),
-        },
-        statusCode: {
-          400: function () {
-            alert("400 status code! user error");
-          },
-          401: function () {
-            silentLogin(getRToken(), sendRequestToServer, args);
-          },
-        },
-        success: function (data) {
-          console.log("Return from " + args.url + ": " + data);
-        },
+    return new Promise(function(resolve, reject) {
+        $.ajax({
+            type: args.type,
+            url: baseURL + args.url,
+            headers: {
+                Authorization: "Bearer " + getAToken(),
+            },
+            statusCode: {
+                400: function () {
+                    alert("400 status code! user error");
+                },
+                401: function () {
+                    silentLogin(getRToken(), sendRequestToServer, args);
+                },
+            },
+            success: function (data) {
+                console.log("Return from " + args.url + ": " + data);
+                resolve(JSON.parse(data));
+            },
+        })
     });
 }
 

@@ -1,5 +1,7 @@
-let user = sendRequestToServer({type: "GET", url: "/profile/user/"});
+sendRequestToServer({type: "GET", url: "/profile/user/"}).then(data => {
+    // Insert name
+    $('#insert-username').text(data.name);
 
-alert(user);
-
-$('#insert-username').text(user.firstname + user.lastname);
+    // Insert profile picture
+    $('#PP').attr('src', data.img);
+});
