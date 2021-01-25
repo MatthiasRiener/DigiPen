@@ -58,3 +58,4 @@ function silentLogin(r_token, callback) {
  function getRToken() {
     return localStorage.getItem("r_token");
  }
+ 
