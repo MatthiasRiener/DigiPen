@@ -14,8 +14,9 @@ profile = Blueprint("profile", __name__,
 def index():
     return render_template('/profile/index.html')
 
+
 @profile.route('/user/')
 @jwt_required
 def getUserData():
-    return 'Hello Peter!'
+    return 'Hello Friesi!!'
 
