@@ -7,7 +7,7 @@
 
 <script src={{ url_for('static', filename="authentication/auth_flow.js") }} type="text/javascript"></script>
 
-<button onclick="sendRequestToServer('GET', 'http://localhost:5000/auth/test')">sendRequest</button>
+<button onclick="sendRequestToServer({type: 'GET', url: 'http://localhost:5000/auth/test'})">sendRequest</button>
 <button onclick="logOut()">Log Out</button>
 <script type="text/javascript">
   var a_token = "{{ access }}"

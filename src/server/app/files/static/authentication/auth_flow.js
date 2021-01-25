@@ -1,9 +1,9 @@
 console.log('Authentification JavaSript loaded!');
 
-function sendRequestToServer(type, url) {
+function sendRequestToServer(args) {
     $.ajax({
-        type: type,
-        url: url,
+        type: args.type,
+        url: args.url,
         headers: {
           Authorization: "Bearer " + getAToken(),
         },
@@ -12,7 +12,7 @@ function sendRequestToServer(type, url) {
             alert("400 status code! user error");
           },
           401: function () {
-            silentLogin(getRToken(), sendGetRequestToServer(type, url));
+            silentLogin(getRToken(), sendRequestToServer(args));
           },
         },
         success: function (data) {
@@ -38,7 +38,7 @@ function silentLogin(r_token, callback) {
         },
         success: function (data) {
             setAToken(data);
-            callback();
+            callback(args);
         },
     });
  }
