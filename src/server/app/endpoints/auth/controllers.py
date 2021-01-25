@@ -36,7 +36,7 @@ def login():
 
     print("a_token: %s, r_token: %s" % (access_token, refresh_token))
 
-    redir = render_template('/setstorage/storage.html',
+    redir = render_template('/profile/index.html',
                             access=access_token, refresh=refresh_token)
     return redir
 
