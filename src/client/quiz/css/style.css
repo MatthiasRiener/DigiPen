@@ -424,12 +424,14 @@ body {
     color: #7292ea;
     background-color: #ebeffc;
     margin-top: 1vh;
+    border-radius: 0.5vh;
 }
 
 #saveQuiz {
     color: white;
     width: 35%;
     background-color: #476ce1;
+    border-radius: 0.5vh;
 }
 
 .animateQuizboxForward, .animateQuizboxBackward {
