@@ -1,18 +1,18 @@
 console.log('Authentification JavaSript loaded!');
 
-function sendGetRequestToServer(url, a_token) {
+function sendRequestToServer(type, url) {
     $.ajax({
-        type: "GET",
+        type: type,
         url: url,
         headers: {
-          Authorization: "Bearer " + a_token,
+          Authorization: "Bearer " + getAToken(),
         },
         statusCode: {
           400: function () {
             alert("400 status code! user error");
           },
           401: function () {
-            silentLogin(localStorage.getItem("r_token"), sendGetRequestToServer());
+            silentLogin(getRToken(), sendGetRequestToServer(type, url));
           },
         },
         success: function (data) {
@@ -26,7 +26,7 @@ function silentLogin(r_token, callback) {
         type: "POST",
         url: "http://localhost:5000/auth/refresh_token",
         headers: {
-        Authorization: "Bearer " + r_token,
+        Authorization: "Bearer " + getRToken(),
         },
         statusCode: {
         400: function () {
@@ -37,8 +37,24 @@ function silentLogin(r_token, callback) {
         },
         },
         success: function (data) {
-            localStorage.setItem("a_token", data);
+            setAToken(data);
             callback();
         },
     });
+ }
+
+ function setAToken(token) {
+    localStorage.setItem("a_token", token);
+}
+
+ function getAToken() {
+    return localStorage.getItem("a_token");
+ }
+
+ function setRToken(token) {
+    localStorage.setItem("r_token", token);
+ }
+
+ function getRToken() {
+    return localStorage.getItem("r_token");
  }
