@@ -31,7 +31,7 @@ def login():
     # test to get user
     user = repo.retrieveUser(user_id)
 
-    access_token = create_access_token(identity=user_id)
+    access_token = create_access_token(identity=user_id, expires_delta=datetime.timedelta(seconds=10))
     refresh_token = create_refresh_token(identity=user_id)
 
     print("a_token: %s, r_token: %s" % (access_token, refresh_token))
@@ -58,6 +58,8 @@ def logout():
 @auth.route('/test')
 @jwt_required
 def test():
+    current_user = get_jwt_identity()
+    print(current_user)
     return 'moin!'
 
 
