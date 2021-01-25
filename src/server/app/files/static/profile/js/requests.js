@@ -1,0 +1,1 @@
+sendRequestToServer({type: "GET", url: "/profile/user/"});

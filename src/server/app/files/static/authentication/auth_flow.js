@@ -1,9 +1,11 @@
 console.log('Authentification JavaSript loaded!');
 
+const baseURL = "http://localhost:5000";
+
 function sendRequestToServer(args) {
     $.ajax({
         type: args.type,
-        url: args.url,
+        url: baseURL + args.url,
         headers: {
           Authorization: "Bearer " + getAToken(),
         },
@@ -12,7 +14,6 @@ function sendRequestToServer(args) {
             alert("400 status code! user error");
           },
           401: function () {
-              console.log("Refereshing token");
             silentLogin(getRToken(), sendRequestToServer, args);
           },
         },
@@ -25,7 +26,7 @@ function sendRequestToServer(args) {
 function silentLogin(r_token, callback, args) {
     $.ajax({
         type: "POST",
-        url: "http://localhost:5000/auth/refresh_token",
+        url: baseURL + "/auth/refresh_token",
         headers: {
         Authorization: "Bearer " + getRToken(),
         },
