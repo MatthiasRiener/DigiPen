@@ -72,7 +72,7 @@ $("#dublicate").click(function () {
 addQuestion();
 
 function addQuestion() {
-    $("#loadPattern").append('<span span class="QuestionCount">Question ' + questionCount + '</span>')
+    $(".questionPart").prepend('<span span class="QuestionCount">Question ' + questionCount + '</span>')
     $("#loadPattern").append($("#Questionpattern").html())
     questionCount++;
 }
