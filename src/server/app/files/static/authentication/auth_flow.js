@@ -12,16 +12,17 @@ function sendRequestToServer(args) {
             alert("400 status code! user error");
           },
           401: function () {
-            silentLogin(getRToken(), sendRequestToServer(args));
+              console.log("Refereshing token");
+            silentLogin(getRToken(), sendRequestToServer, args);
           },
         },
         success: function (data) {
-          alert(data);
+          console.log("Return from " + args.url + ": " + data);
         },
       });
 }
 
-function silentLogin(r_token, callback) {
+function silentLogin(r_token, callback, args) {
     $.ajax({
         type: "POST",
         url: "http://localhost:5000/auth/refresh_token",
@@ -37,11 +38,33 @@ function silentLogin(r_token, callback) {
         },
         },
         success: function (data) {
+            console.log("Token refreshed");
             setAToken(data);
             callback(args);
         },
     });
  }
+
+ function logOut() {
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:5000/auth/logout",
+        headers: {
+            Authorization: "Bearer " + getAToken(),
+        },
+        statusCode: {
+            400: function () {
+                alert("400 status code! user error");
+            },
+            401: function () {
+                alert("500 status code! server error");
+            },
+        },
+        success: function (data) {
+            window.location.href = "/";
+        },
+    });
+}
 
  function setAToken(token) {
     localStorage.setItem("a_token", token);
