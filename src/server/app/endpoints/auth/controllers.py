@@ -10,7 +10,7 @@ import json
 import datetime
 
 from ...models.User import User
-from .repository.AuthenticationRepository import AuthenticationRepository
+from ...repository.AuthenticationRepository import AuthenticationRepository
 
 
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt, set_access_cookies, get_jti,
@@ -26,9 +26,14 @@ auth = Blueprint('auth', __name__, static_folder="static",
 @auth.route('/login')
 @oidc.require_login
 def login():
-    user_id = oidc.user_getinfo(
-        ['preferred_username', 'email', 'sub']).get('sub')
+    user_creds = oidc.user_getinfo(
+        ['preferred_username', 'email', 'sub'])
+        
+    user_id = user_creds.get('sub')
+    user_name = user_creds.get('preferred_username')
+
     # test to get user
+    User(u_id=user_id, name=user_name, last_login="JETZT GARAD XD").save()
     user = repo.retrieveUser(user_id)
 
     access_token = create_access_token(identity=user_id, expires_delta=datetime.timedelta(seconds=10))

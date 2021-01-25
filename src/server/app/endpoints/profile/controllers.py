@@ -6,9 +6,14 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
                                 set_refresh_cookies, unset_jwt_cookies, decode_token)
 
 
+from ...models.User import User
+from ...repository.AuthenticationRepository import AuthenticationRepository
+
+
 profile = Blueprint("profile", __name__,
                     static_folder="static", template_folder="templates")
 
+repo = AuthenticationRepository()
 
 @profile.route('/')
 def index():
@@ -18,5 +23,11 @@ def index():
 @profile.route('/user/')
 @jwt_required
 def getUserData():
+    cur_user = get_jwt_identity()
+    
+    user = repo.retrieveUser(cur_user)
+
+    print("user", user.as_json())
+
     return 'Hello Friesi!!'
 

@@ -3,6 +3,7 @@ import json
 
 class User(db.Document):
     u_id = db.StringField(primary_key=True, required=True)
+    name = db.StringField()
     last_login = db.StringField()
 
     def print(self):

@@ -1,4 +1,4 @@
-from ....models.User import User
+from ..models.User import User
 
 class AuthenticationRepository():
     def createUser(self, user_id):
