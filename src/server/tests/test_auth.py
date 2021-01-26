@@ -21,6 +21,7 @@ def test_createUser(user_id, name, img, last_login, result):
     (1, )
 ])
 def test_retrieveUser(user_id, result):
+    # da muss ich einen user anlegen und im result kann ich das selbe objekt übergeben
     assert auth.retrieveUser(user_id) == result
 
 
