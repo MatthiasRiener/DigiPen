@@ -40,13 +40,14 @@ function connectButtonHandler(event) {
 };
 
 function connect(username) {
+    console.log("xonnection,,,")
     let promise = new Promise((resolve, reject) => {
         // get a token from the back end
         fetch('/login', {
             method: 'POST',
             body: JSON.stringify({'username': username})
-        }).then(res => res.json()).then(data => {
-            // join video call
+        }).then(res => res).then(data => {
+            data = JSON.parse(data)
             return Twilio.Video.connect(data.token);
         }).then(_room => {
             room = _room;
@@ -56,7 +57,8 @@ function connect(username) {
             connected = true;
             updateParticipantCount();
             resolve();
-        }).catch(() => {
+        }).catch((err) => {
+            console.log(err)
             reject();
         });
     });
