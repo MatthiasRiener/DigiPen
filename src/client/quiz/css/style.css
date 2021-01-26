@@ -285,6 +285,21 @@ body {
     padding-top: 2vh;
 }
 
+.questionDelete{
+    display: flex;
+    flex: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 86%;
+    margin: 0 5vw;
+}
+
+.bt_close_click{
+    color: gray;
+    text-align: right;
+    font-size: 200%;
+}
+
 #Questionpattern {
     display: none;
 }
@@ -398,9 +413,7 @@ body {
 }
 
 .QuestionCount {
-    margin: 3vh 0;
     display: inline;
-    padding: 0 5vw;
     font-size: x-large;
 }
 
