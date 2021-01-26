@@ -1,6 +1,8 @@
 version: '3'
 
 volumes:
+  shared_data:
+      driver: local
   mysql_data:
       driver: local
   mongodb_data_container:    
@@ -18,24 +20,29 @@ services:
   keycloak:
       image: jboss/keycloak:latest
       volumes: 
-        -  ./imports/realm/realm-export.json:/tmp/example-realm.json
         - ./imports/cache_reload/disable-theme-cache.cli:/opt/jboss/startup-scripts/disable-theme-cache.cli
-        - ./imports/realm/:/opt/jboss/keycloak/imports/
         - ./imports/themes/custom/:/opt/jboss/keycloak/themes/custom-theme/
-        
+        - shared_data:/opt/
       environment:
         DB_VENDOR: MYSQL
         DB_ADDR: mysql
         DB_DATABASE: keycloak
         DB_USER: keycloak
         DB_PASSWORD: password
-        KEYCLOAK_USER: admin
-        KEYCLOAK_PASSWORD: Pa55w0rd
-        KEYCLOAK_IMPORT: /tmp/example-realm.json
+        #KEYCLOAK_USER: admin
+        #KEYCLOAK_PASSWORD: Pa55w0rd
       ports:
         - 8080:8080
       depends_on:
         - mysql
+  keycloak_installer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./imports/realm/realm-export.json:/root/jboss/startup-scripts/custom-import.json
+      - shared_data:/root
+   
   dbmongo:
     image: mongo:latest
     environment:
@@ -45,4 +52,3 @@ services:
       - 27017:27017
     volumes: 
       - mongodb_data_container:/data/db  
-
