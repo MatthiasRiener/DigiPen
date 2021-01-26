@@ -22,7 +22,11 @@ services:
         - ./imports/realm/:/opt/jboss/keycloak/imports
         - ./imports/themes/custom/:/opt/jboss/keycloak/themes/custom-theme/
       command:
-        - "-b 0.0.0.0 -Dkeycloak.import=/opt/jboss/keycloak/imports/realm-export.json -Dkeycloak.profile.feature.upload_scripts=enabled"
+        - "/opt/jboss/keycloak/bin/standalone.sh \
+        -Djboss.socket.binding.port-offset=100 \
+        -Dkeycloak.migration.action=import \
+        -Dkeycloak.migration.provider=singleFile \
+        -Dkeycloak.migration.file=/opt/jboss/keycloak/imports/realm-export.json"
       environment:
         DB_VENDOR: MYSQL
         DB_ADDR: mysql
