@@ -18,9 +18,11 @@ services:
   keycloak:
       image: jboss/keycloak:latest
       volumes: 
+        -  ./imports/realm/realm-export.json:/tmp/example-realm.json
         - ./imports/cache_reload/disable-theme-cache.cli:/opt/jboss/startup-scripts/disable-theme-cache.cli
         - ./imports/realm/:/opt/jboss/keycloak/imports/
         - ./imports/themes/custom/:/opt/jboss/keycloak/themes/custom-theme/
+        
       environment:
         DB_VENDOR: MYSQL
         DB_ADDR: mysql
@@ -29,7 +31,7 @@ services:
         DB_PASSWORD: password
         KEYCLOAK_USER: admin
         KEYCLOAK_PASSWORD: Pa55w0rd
-        KEYCLOAK_IMPORT: ./opt/jboss/keycloak/imports/realm-export.json -Dkeycloak.profile.feature.upload_scripts=enabled
+        KEYCLOAK_IMPORT: /tmp/example-realm.json
       ports:
         - 8080:8080
       depends_on:
