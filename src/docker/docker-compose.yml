@@ -18,11 +18,12 @@ services:
         MYSQL_USER: keycloak
         MYSQL_PASSWORD: password
   keycloak:
-      image: jboss/keycloak:latest
+      image: jboss/keycloak:7.0.0
       volumes: 
+        - shared_data:/opt/
         - ./imports/cache_reload/disable-theme-cache.cli:/opt/jboss/startup-scripts/disable-theme-cache.cli
         - ./imports/themes/custom/:/opt/jboss/keycloak/themes/custom-theme/
-        - shared_data:/opt/
+        - ./imports/realm/realm-export.json:/root/opt/jboss/keycloak/bin/custom-import.json
       environment:
         DB_VENDOR: MYSQL
         DB_ADDR: mysql
@@ -40,8 +41,11 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./imports/realm/realm-export.json:/root/jboss/startup-scripts/custom-import.json
-      - shared_data:/root
+      - ./imports/scripts/import-realm.sh:/docker-entrypoint-initdb.d/init.sh
+      - ./imports/realm/realm-export.json:/root/jboss/keycloak/bin/custom-import.json
+      - shared_data:/root/
+    ports:
+      - 8090:8080
    
   dbmongo:
     image: mongo:latest

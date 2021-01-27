@@ -30,11 +30,12 @@ echo "connect to server >$HOST<"
 
 ./kcadm.sh config credentials --server http://keycloak:8080/auth --realm master --user admin --password Pa55w0rd
 
-COUNT=$(./kcadm.sh get realms | grep custom-import | wc -l)
+COUNT=$(./kcadm.sh get realms | grep slidea | wc -l)
 
 if [[ "$COUNT." == "0." ]]
 then
-    ./kcadm.sh create realms -f ~/jboss/startup-scripts/custom-import.json
+    ./standalone.sh -Dkeycloak.migration.action=import -Djboss.socket.binding.port-offset=100  -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.file=./custom-import.json -Dkeycloak.migration.usersExportStrategy=REALM_FILE -Dkeycloak.profile.feature.upload_scripts=enabled 
+   # ./kcadm.sh create realms -f ~/jboss/startup-scripts/custom-import.json
 else 
     echo "realm exists with $COUNT lines"
 fi
