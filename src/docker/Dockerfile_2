@@ -1,0 +1,4 @@
+FROM jboss/keycloak:7.0.0
+USER root
+RUN ["chmod", "+x", "/opt/jboss/tools/docker-entrypoint.sh"]
+ENTRYPOINT [ "sh", "/opt/jboss/tools/docker-entrypoint.sh" ]
