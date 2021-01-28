@@ -26,6 +26,8 @@ services:
         - ./imports/cache_reload/disable-theme-cache.cli:/opt/jboss/startup-scripts/disable-theme-cache.cli
         - ./imports/themes/custom/:/opt/jboss/keycloak/themes/custom-theme/
         - ./imports/realm/realm-export.json:/root/opt/jboss/keycloak/bin/custom-import.json
+        - ./imports/scripts/entrypoint.sh:/opt/jboss/entrypoint.sh
+
       environment:
         DB_VENDOR: MYSQL
         DB_ADDR: mysql
