@@ -1,8 +1,10 @@
 from ..app.reprository.AuthenticationRepository import AuthenticationRepository
 import pytest
 import time
+import json
 
 auth = AuthenticationRepository()
+
 
 @pytest.mark.parametrize('user_id, name, img, last_login, result', [
     (1, "Max", None, time.time(), "User 1 was successfully inserted"),
@@ -11,18 +13,43 @@ auth = AuthenticationRepository()
     (4, "Max", None, None, "User 4 was successfully inserted."),
     (1, "Max", None, None, "There is already a user with the userid 1"),
     (5, None, None, None, "No information was given regarding the users username"),
-    (None, None, None, None, "No information was given regarding the users userid")
+    (None, None, None, None, "No information was given regarding the users userid"),
+    (-1, "Max", None, None,
+     "Invalid information was given regarding the users userid (no negative numbers)"),
+    ("1a", "Max", None, None, "User 1a was successfully inserted.")
 ])
 def test_createUser(user_id, name, img, last_login, result):
     assert auth.createUser(user_id, name, img, last_login) == result
 
+
+# @pytest.mark.parametrize('user_id, user, result', [
+#     (1,
+#      '{ "userid":1, "name":"Max", "img":"./test.png", "last_login":"01.01.2021"}',
+#      "Successfully retrieved user with the userid: 1"),
+#     (2,
+#      '{ "userid":1, "name":"Max", "img":"./test.png", "last_login":"01.01.2021"}',
+#      "Successfully retrieved user with the userid: 1")
+# ])
+# def test_retrieveUser(user_id, user, result):
+#     json.loads(user)
+#     createdUser = auth.createUser(
+#         user["userid"],
+#         user["name"],
+#         user["img"],
+#         user["last_login"])
+#     retrievedUser = auth.retrieveUser(user_id)
+#     assert retrievedUser is createdUser and retrievedUser is result
+
+
 @pytest.mark.parametrize('user_id, result', [
-    (None, "No information was given regarding the users userid"),
-    (1, )
+    (1, "Successfully retrieved user with the userid: 1"),
+    ("1a", "Successfully retrieved user with the userid: 1a"),
+    (-1, "Invalid information was given regarding the users userid (no negative numbers)"),
+    (3, "No user was retrieved with the userid 3"),
+    (None, "Invalid information was given regarding the users userid")
 ])
 def test_retrieveUser(user_id, result):
-    # da muss ich einen user anlegen und im result kann ich das selbe objekt übergeben
-    assert auth.retrieveUser(user_id) == result
+    assert auth.retrieveUser(user_id) == result or type(result) is object
 
 
 @pytest.mark.parametrize('x, y, result', [
