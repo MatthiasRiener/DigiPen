@@ -1,5 +1,3 @@
 FROM jboss/keycloak:7.0.0
-COPY ./imports/scripts/entrypoint.sh /opt/jboss/entrypoint.sh
 USER root
-RUN ["chmod", "+x", "/opt/jboss/entrypoint.sh"]
-ENTRYPOINT [ "sh", "/opt/jboss/entrypoint.sh" ]
+
