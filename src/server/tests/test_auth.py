@@ -1,4 +1,4 @@
-from ..app.reprository.AuthenticationRepository import AuthenticationRepository
+from ..app.repository.AuthenticationRepository import AuthenticationRepository
 import pytest
 import time
 import json
