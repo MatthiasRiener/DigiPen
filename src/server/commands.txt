@@ -1,1 +1,3 @@
 mongo -u 'root' -p 'rootpassword'
+use admin
+db.createUser({user: "testUser", pwd: "testing", roles: ["root"]})

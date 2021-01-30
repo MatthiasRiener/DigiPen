@@ -23,7 +23,7 @@ echo "keycloak service port available"
 
 netstat -ant|grep LISTEN
 sleep 1
-pushd ~/jboss/keycloak/bin
+pushd /opt/jboss/keycloak/bin
 echo "connect to server >$HOST<"
 
 

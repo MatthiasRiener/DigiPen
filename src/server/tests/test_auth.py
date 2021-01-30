@@ -1,21 +1,36 @@
-from ..app.repository.AuthenticationRepository import AuthenticationRepository
 import pytest
+from ..app.repository.AuthenticationRepository import AuthenticationRepository
 import time
 import json
 
-auth = AuthenticationRepository()
+from ..app.models.User import User
+from mongoengine import disconnect, connect
 
+auth = AuthenticationRepository(testing=True) 
+
+
+@pytest.fixture(scope="session", autouse=True)
+def app():
+    disconnect()
+    db = connect('testing_db',
+        host="localhost",
+        username="root",
+        password="rootpassword",
+        authentication_source='admin')
+    
+    auth.deleteAll()
+
+    # clear db to run tests
+    
 
 @pytest.mark.parametrize('user_id, name, img, last_login, result', [
-    (1, "Max", None, time.time(), "User 1 was successfully inserted"),
+    (1, "Max", None, time.time(), "User 1 was successfully inserted."),
     (2, "Max123", None, None, "The username can only contain alphabetical letters"),
     (3, "Max", None, "invalid", "The time format is invalid"),
     (4, "Max", None, None, "User 4 was successfully inserted."),
     (1, "Max", None, None, "There is already a user with the userid 1"),
     (5, None, None, None, "No information was given regarding the users username"),
     (None, None, None, None, "No information was given regarding the users userid"),
-    (-1, "Max", None, None,
-     "Invalid information was given regarding the users userid (no negative numbers)"),
     ("1a", "Max", None, None, "User 1a was successfully inserted.")
 ])
 def test_createUser(user_id, name, img, last_login, result):

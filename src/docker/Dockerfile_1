@@ -1,5 +1,4 @@
 FROM solr:latest
-COPY ./imports/realm/realm-export.json ./root/jboss/keycloak/bin/custom-import.json
 COPY ./imports/scripts/import-realm.sh ./docker-entrypoint-initdb.d/init.sh
 USER root
 RUN apt-get update \

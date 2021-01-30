@@ -1,3 +1,2 @@
-FROM jboss/keycloak:7.0.0
+FROM jboss/keycloak:latest
 USER root
-

@@ -29,9 +29,11 @@ app.config['MONGODB_SETTINGS'] = {
     'port': 27017,
     'username': 'root',
     'password': 'rootpassword',
-    'authentication_source': 'admin'
+    'authentication_source': 'admin',
+    'alias':'default'
 }
 
+app.config['MONGODB_CONNECT'] = False
 # intializing for mongo and oidc
 db.init_app(app)
 oidc.init_app(app)

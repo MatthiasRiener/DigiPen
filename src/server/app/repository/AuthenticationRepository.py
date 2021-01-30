@@ -1,21 +1,55 @@
 from ..models.User import User
+import re
+import time
 
 class AuthenticationRepository():
-    def createUser(self, user_id):
-        try:
-             User(u_id=user_id, last_login="HIHI").save() 
-        except Exception as e:
-            return "Error while inserting user: %s" % (e)
-        return "User succesfully inserted."   
+
+    def __init__(self, testing):
+        self.testing = testing
+
+    def createUser(self, user_id, name, img, last_login):
+
+
+        if user_id is None:
+            return "No information was given regarding the users userid"
+        # test case username not None
+        if name is None:
+            return "No information was given regarding the users username"
+
+        # test case only letters
+        if name.isalpha() is False:
+            return 'The username can only contain alphabetical letters'
+
+        if  isinstance(last_login, str):
+            return 'The time format is invalid'
+
+        if User.objects(user_id=user_id):
+            return "There is already a user with the userid %s" % (user_id)
+        else: 
+            User(u_id=str(user_id), name=name, img=img, last_login="HIHI").save() 
+        return "User %s was successfully inserted." % (user_id)
 
     def retrieveUser(self, user_id):
+
+        
+        if user_id is None:
+            return "Invalid information was given regarding the users userid"
+
+        if not User.objects(u_id=user_id):
+            return "No user was retrieved with the userid %s" % (user_id)
+        
         try:
-            # [0] is working in this case, because it should only return one user
-            user = User.objects(u_id=user_id)[0]
+            user = User.objects(u_id=user_id).first()
             return user
         except Exception as e:
             return "Error occured while retrieving user: %s" % (e)
 
+    def deleteAll(self):
+        if self.testing:
+            User.objects().delete()
+            return 'All users deleted...'
+        else:
+            return "You don't have the permission for that."
     def add(self, x, y):
         if x is None: return y
         if y is None: return x
