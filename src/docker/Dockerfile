@@ -1,4 +1,3 @@
-
 FROM jboss/keycloak
-USER root
-HEALTHCHECK --interval=1s --timeout=5s --start-period=5s --retries=40 CMD [ "echo CONTAINER IS UP!" ]
+COPY ./imports/realm/realm-export.json /tmp/realm-export.json
+ENV KEYCLOAK_USER=admin KEYCLOAK_PASSWORD=admin KEYCLOAK_IMPORT="/tmp/realm-export.json -Dkeycloak.profile.feature.upload_scripts=enabled"

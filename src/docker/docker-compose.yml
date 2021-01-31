@@ -17,6 +17,14 @@ services:
         MYSQL_DATABASE: keycloak
         MYSQL_USER: keycloak
         MYSQL_PASSWORD: password
+  keycloak_test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on: 
+      - mysql
   dbmongo:
     image: mongo:latest
     environment:

@@ -17,7 +17,7 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
                                 set_refresh_cookies, unset_jwt_cookies, decode_token)
 
 
-repo = AuthenticationRepository()
+repo = AuthenticationRepository(testing=False)
 
 auth = Blueprint('auth', __name__, static_folder="static",
                  template_folder="templates")

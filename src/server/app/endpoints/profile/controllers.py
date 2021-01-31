@@ -13,7 +13,7 @@ from ...repository.AuthenticationRepository import AuthenticationRepository
 profile = Blueprint("profile", __name__,
                     static_folder="static", template_folder="templates")
 
-repo = AuthenticationRepository()
+repo = AuthenticationRepository(testing=False)
 
 @profile.route('/')
 def index():
