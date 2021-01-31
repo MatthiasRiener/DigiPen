@@ -31,7 +31,7 @@ lastlogin = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
     (keycloakid, "Max", None, lastlogin, "User %s was successfully inserted." % (keycloakid)),
     (keycloakid, "Max", None, None, "Last login must not be None"),
     (str(uuid.uuid4()), "Max123", None, lastlogin, "The username can only contain alphabetical letters"),
-    (str(uuid.uuid4()), "Max", None, datetime.today().strftime("%Y/%m/%d"), "The time format is invalid. It has to be the following: %Y-%m-%d %H:%M:%S (Bsp.: %s)" % (lastlogin)),
+    (str(uuid.uuid4()), "Max", None, datetime.today().strftime("%Y/%m/%d"), "The time format is invalid. It has to be the following: %s (Bsp.: %s)" % ('%Y-%m-%d %H:%M:%S', lastlogin)),
     (keycloakid, "Max", None, lastlogin, "There is already a user with the userid %s" % (keycloakid)),
     (str(uuid.uuid4()), None, None, lastlogin, "No information was given regarding the users username"),
     (str(uuid.uuid4()), "Max", None, (datetime.today() + timedelta(days=1)).strftime("%Y-%m-%d %H:%M:%S"), "Last login must not be in the future"),
