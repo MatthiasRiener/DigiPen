@@ -17,37 +17,6 @@ services:
         MYSQL_DATABASE: keycloak
         MYSQL_USER: keycloak
         MYSQL_PASSWORD: password
-  keycloak:
-    build:
-      context: .
-      dockerfile: Dockerfile_2
-    volumes: 
-      - ./imports/cache_reload/disable-theme-cache.cli:/opt/jboss/startup-scripts/disable-theme-cache.cli
-      - ./imports/themes/custom/:/opt/jboss/keycloak/themes/custom-theme/
-      - ./imports/realm/realm-export.json:/root/opt/jboss/keycloak/bin/custom-import.json
-    environment:
-      DB_VENDOR: MYSQL
-      DB_ADDR: mysql
-      DB_DATABASE: keycloak
-      DB_USER: keycloak
-      DB_PASSWORD: password
-        #KEYCLOAK_USER: admin
-        #KEYCLOAK_PASSWORD: Pa55w0rd
-    ports:
-      - 8080:8080
-    depends_on:
-      - mysql
-  keycloak_installer:
-    build:
-      context: .
-      dockerfile: Dockerfile_1
-    privileged: true
-    volumes:
-      - ./imports/scripts/import-realm.sh:/docker-entrypoint-initdb.d/init.sh
-    ports:
-      - 8090:8080
-    depends_on: 
-      - keycloak
   dbmongo:
     image: mongo:latest
     environment:
