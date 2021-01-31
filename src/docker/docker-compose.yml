@@ -18,7 +18,7 @@ services:
         MYSQL_USER: keycloak
         MYSQL_PASSWORD: password
   keycloak_test:
-    build:
+    build: 
       context: .
       dockerfile: Dockerfile
     ports:
