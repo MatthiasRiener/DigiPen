@@ -1,11 +1,13 @@
 import pytest
 from ..app.repository.AuthenticationRepository import AuthenticationRepository
-import time
 import json
+import re
+import uuid 
 
 from ..app.models.User import User
 from mongoengine import disconnect, connect
-
+from datetime import datetime, timedelta
+   
 auth = AuthenticationRepository(testing=True) 
 
 
@@ -22,45 +24,26 @@ def app():
 
     # clear db to run tests
     
+keycloakid = uuid.uuid4()
 
 @pytest.mark.parametrize('user_id, name, img, last_login, result', [
-    (1, "Max", None, time.time(), "User 1 was successfully inserted."),
-    (2, "Max123", None, None, "The username can only contain alphabetical letters"),
-    (3, "Max", None, "invalid", "The time format is invalid"),
-    (4, "Max", None, None, "User 4 was successfully inserted."),
-    (1, "Max", None, None, "There is already a user with the userid 1"),
-    (5, None, None, None, "No information was given regarding the users username"),
-    (None, None, None, None, "No information was given regarding the users userid"),
-    ("1a", "Max", None, None, "User 1a was successfully inserted.")
+    (keycloakid, "Max", None, datetime.today().strftime("%Y-%m-%d %H:%M:%S"), "User " + keycloakid + " was successfully inserted."),
+    (uuid.uuid4(), "Max123", None, None, "The username can only contain alphabetical letters"),
+    (uuid.uuid4(), "Max", None, datetime.today().strftime("%Y/%m/%d"), "The time format is invalid. It has to be the following: %Y-%m-%d %H:%M:%S"),
+    (uuid.uuid4(), "Max", None, None, "User 4 was successfully inserted."),
+    (keycloakid, "Max", None, None, "There is already a user with the userid " + keycloakid),
+    (uuid.uuid4(), None, None, None, "No information was given regarding the users username"),
+    (uuid.uuid4(), "Max", None, (datetime.today() + timedelta(days=1)).strftime("%Y-%m-%d %H:%M:%S"), "Last login must not be in the future"),
+    (None, None, None, None, "No information was given regarding the users userid")
 ])
 def test_createUser(user_id, name, img, last_login, result):
     assert auth.createUser(user_id, name, img, last_login) == result
 
 
-# @pytest.mark.parametrize('user_id, user, result', [
-#     (1,
-#      '{ "userid":1, "name":"Max", "img":"./test.png", "last_login":"01.01.2021"}',
-#      "Successfully retrieved user with the userid: 1"),
-#     (2,
-#      '{ "userid":1, "name":"Max", "img":"./test.png", "last_login":"01.01.2021"}',
-#      "Successfully retrieved user with the userid: 1")
-# ])
-# def test_retrieveUser(user_id, user, result):
-#     json.loads(user)
-#     createdUser = auth.createUser(
-#         user["userid"],
-#         user["name"],
-#         user["img"],
-#         user["last_login"])
-#     retrievedUser = auth.retrieveUser(user_id)
-#     assert retrievedUser is createdUser and retrievedUser is result
-
-
 @pytest.mark.parametrize('user_id, result', [
-    (1, "Successfully retrieved user with the userid: 1"),
-    ("1a", "Successfully retrieved user with the userid: 1a"),
-    (-1, "Invalid information was given regarding the users userid (no negative numbers)"),
-    (3, "No user was retrieved with the userid 3"),
+    (keycloakid, "Successfully retrieved user with the userid: 1"),
+    ("abc-av-ac-agg", "Invalid information was given regarding the users userid (no negative numbers)"),
+    (uuid.uuid4(), "No user was retrieved with the userid 3"),
     (None, "Invalid information was given regarding the users userid")
 ])
 def test_retrieveUser(user_id, result):
