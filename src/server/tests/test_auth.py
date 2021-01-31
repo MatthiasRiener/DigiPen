@@ -24,26 +24,28 @@ def app():
 
     # clear db to run tests
     
-keycloakid = uuid.uuid4()
+keycloakid = str(uuid.uuid4())
+lastlogin = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
 
 @pytest.mark.parametrize('user_id, name, img, last_login, result', [
-    (keycloakid, "Max", None, datetime.today().strftime("%Y-%m-%d %H:%M:%S"), "User " + keycloakid + " was successfully inserted."),
-    (uuid.uuid4(), "Max123", None, None, "The username can only contain alphabetical letters"),
-    (uuid.uuid4(), "Max", None, datetime.today().strftime("%Y/%m/%d"), "The time format is invalid. It has to be the following: %Y-%m-%d %H:%M:%S"),
-    (uuid.uuid4(), "Max", None, None, "User 4 was successfully inserted."),
-    (keycloakid, "Max", None, None, "There is already a user with the userid " + keycloakid),
-    (uuid.uuid4(), None, None, None, "No information was given regarding the users username"),
-    (uuid.uuid4(), "Max", None, (datetime.today() + timedelta(days=1)).strftime("%Y-%m-%d %H:%M:%S"), "Last login must not be in the future"),
-    (None, None, None, None, "No information was given regarding the users userid")
+    (keycloakid, "Max", None, lastlogin, "User " + keycloakid + " was successfully inserted."),
+    (keycloakid, "Max", None, None, "Last login must not be None"),
+    (str(uuid.uuid4()), "Max123", None, lastlogin, "The username can only contain alphabetical letters"),
+    (str(uuid.uuid4()), "Max", None, datetime.today().strftime("%Y/%m/%d"), "The time format is invalid. It has to be the following: %Y-%m-%d %H:%M:%S"),
+    (keycloakid, "Max", None, lastlogin, "There is already a user with the userid " + keycloakid),
+    (str(uuid.uuid4()), None, None, lastlogin, "No information was given regarding the users username"),
+    (str(uuid.uuid4()), "Max", None, (datetime.today() + timedelta(days=1)).strftime("%Y-%m-%d %H:%M:%S"), "Last login must not be in the future"),
+    (None, None, None, None, "No information was given")
 ])
 def test_createUser(user_id, name, img, last_login, result):
     assert auth.createUser(user_id, name, img, last_login) == result
 
+dummyid = str(uuid.uuid4())
 
 @pytest.mark.parametrize('user_id, result', [
-    (keycloakid, "Successfully retrieved user with the userid: 1"),
-    ("abc-av-ac-agg", "Invalid information was given regarding the users userid (no negative numbers)"),
-    (uuid.uuid4(), "No user was retrieved with the userid 3"),
+    (keycloakid, "Successfully retrieved user with the userid: " + keycloakid),
+    ("abc-av-ac-agg", "Invalid information was given regarding the users userid"),
+    (dummyid, "No user was retrieved with the userid " + dummyid),
     (None, "Invalid information was given regarding the users userid")
 ])
 def test_retrieveUser(user_id, result):
