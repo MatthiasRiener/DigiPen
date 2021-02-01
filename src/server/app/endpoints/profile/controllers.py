@@ -20,7 +20,7 @@ def index():
     return render_template('/profile/index.html')
 
 
-@profile.route('/user/')
+@profile.route('/user')
 @jwt_required
 def getUserData():
     cur_user = get_jwt_identity()
