@@ -3,6 +3,7 @@ from app.endpoints.auth.controllers import auth
 from app.endpoints.error.controllers import pagenotfound
 from app.endpoints.profile.controllers import profile
 from app.endpoints.taskmanagement.controllers import man
+from app.endpoints.workspace.controllers import workspace
 from app.db.settings import db, oidc, jwt
 
 app = Flask(__name__, template_folder="./app/files/templates",
@@ -43,6 +44,6 @@ jwt.init_app(app)
 app.register_blueprint(auth, url_prefix="/auth")
 app.register_blueprint(profile, url_prefix="/profile")
 app.register_blueprint(man, url_prefix="/task")
-
+app.register_blueprint(workspace, url_prefix="/workspace")
 
 app.register_error_handler(404, pagenotfound)
