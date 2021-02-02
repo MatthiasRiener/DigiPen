@@ -58,10 +58,16 @@
         this.classList.add('hidden');
         this.container.classList.remove('popTransition');
 
-        let workspaceName = 'Test Workspace';
-        let workspaceUsers = 'friesi';
+        let workspaceName = this.shadowRoot.querySelector('#workspaceName').value;
+        let workspaceUsers = this.shadowRoot.querySelector('#workspaceUsers').value.split(';');
 
-        sendRequestToServer({type: "POST", url: "/workspace/createWorkspace", data: {name: 'Test Workspace'}}).then(data => {
+        let workspace = {
+          name: workspaceName,
+          users: workspaceUsers,
+          image: 'https://www.ruhr24.de/bilder/2020/01/30/13511554/547564660-haben-macher-die-simpsons-coronavirus-schon-vorhergesehen-Mn1zvMk6Lec.jpg'
+        }
+
+        sendRequestToServer({type: "POST", url: "/workspace/createWorkspace", data: workspace}).then(data => {
           alert(data);
       });
     }
