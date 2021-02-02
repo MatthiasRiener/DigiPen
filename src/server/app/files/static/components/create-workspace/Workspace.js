@@ -61,7 +61,7 @@
         let workspaceName = 'Test Workspace';
         let workspaceUsers = 'friesi';
 
-        sendRequestToServer({type: "POST", url: "/workspace/createWorkspace"}).then(data => {
+        sendRequestToServer({type: "POST", url: "/workspace/createWorkspace", data: {name: 'Test Workspace'}}).then(data => {
           alert(data);
       });
     }

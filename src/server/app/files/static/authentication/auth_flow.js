@@ -7,6 +7,7 @@ function sendRequestToServer(args) {
         $.ajax({
             type: args.type,
             url: baseURL + args.url,
+            data: args.data == undefined ? {} : args.data,
             headers: {
                 Authorization: "Bearer " + getAToken(),
             },
