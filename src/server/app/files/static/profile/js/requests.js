@@ -1,4 +1,4 @@
-sendRequestToServer({type: "GET", url: "/profile/user/"}).then(data => {
+sendRequestToServer({type: "GET", url: "/profile/user"}).then(data => {
     // Insert name
     $('#insert-username').text(data.name);
 

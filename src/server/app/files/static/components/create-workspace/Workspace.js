@@ -57,6 +57,13 @@
         this.classList.remove('visible');
         this.classList.add('hidden');
         this.container.classList.remove('popTransition');
+
+        let workspaceName = 'Test Workspace';
+        let workspaceUsers = 'friesi';
+
+        sendRequestToServer({type: "POST", url: "/workspace/createWorkspace"}).then(data => {
+          alert(data);
+      });
     }
   }
 
