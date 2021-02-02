@@ -28,5 +28,5 @@ def createWorkspace():
     msg = repo.createWorkspace(name=w_name, img=w_image, users=w_users, creator=get_jwt_identity())
 
 
-    return json.dumps(msg)
+    return msg
 
