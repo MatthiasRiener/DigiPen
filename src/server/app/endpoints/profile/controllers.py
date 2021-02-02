@@ -8,13 +8,15 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
 
 from ...models.User import User
 from ...repository.AuthenticationRepository import AuthenticationRepository
+from ...repository.WorkspaceRepository import WorkspaceRepository
 
+import json
 
 profile = Blueprint("profile", __name__,
                     static_folder="static", template_folder="templates")
 
 repo = AuthenticationRepository(testing=False)
-
+wRepo = WorkspaceRepository(testing=False)
 @profile.route('/')
 def index():
     return render_template('/profile/index.html')
@@ -25,6 +27,7 @@ def index():
 def getUserData():
     cur_user = get_jwt_identity()
     user = repo.retrieveUser(user_id=cur_user)
+    user.update({"workspaces": wRepo.getRepoCounter(u_id=cur_user)})
+    return user
 
-    return user.as_json()
 

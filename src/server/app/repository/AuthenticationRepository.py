@@ -39,7 +39,7 @@ class AuthenticationRepository():
             return "No user was retrieved with the userid %s" % (user_id)
         
         try:
-            user = User.objects(u_id=user_id).first()
+            user = User.objects(u_id=user_id).first().to_mongo()
             return user
         except Exception as e:
             return "Error occured while retrieving user: %s" % (e)
