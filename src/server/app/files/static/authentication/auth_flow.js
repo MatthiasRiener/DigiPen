@@ -3,32 +3,40 @@ console.log('Authentification JavaSript loaded!');
 const baseURL = "http://localhost:5000";
 
 function sendRequestToServer(args) {
-    console.log(args.data, args.data == undefined)
+
+    if('isCallback' in args) {
+        ajaxRequest(args['resolve'], args['reject'], args)
+        return;
+    } 
     return new Promise(function(resolve, reject) {
-        $.ajax({
-            type: args.type,
-            url: baseURL + args.url,
-            data: args.data == undefined ? {} : args.data,
-            headers: {
-                Authorization: "Bearer " + getAToken(),
-            },
-            statusCode: {
-                400: function () {
-                    alert("400 status code! user error");
-                },
-                401: function () {
-                    silentLogin(getRToken(), sendRequestToServer, args);
-                },
-            },
-            success: function (data) {
-                console.log("Return from " + args.url + ": " + data);
-                resolve(JSON.parse(data));
-            },
-        })
-    });
+        ajaxRequest(resolve, reject, args);
+    })
 }
 
-function silentLogin(r_token, callback, args) {
+function ajaxRequest(resolve, reject, args) {
+    $.ajax({
+        type: args.type,
+        url: baseURL + args.url,
+        data: args.data == undefined ? {} : args.data,
+        headers: {
+            Authorization: "Bearer " + getAToken(),
+        },
+        statusCode: {
+            400: function () {
+                alert("400 status code! user error");
+            },
+            401: function () {
+                silentLogin(getRToken(), sendRequestToServer, args, resolve, reject);
+            },
+        },
+        success: function (data) {
+            console.log("Return from " + args.url + ": " + data);
+            resolve(JSON.parse(data));
+        },
+    })
+}
+
+function silentLogin(r_token, callback, args, resolve, reject) {
     $.ajax({
         type: "POST",
         url: baseURL + "/auth/refresh_token",
@@ -44,7 +52,10 @@ function silentLogin(r_token, callback, args) {
         },
         },
         success: function (data) {
-            console.log("Token refreshed");
+            console.log("Token refreshed", args);
+            args["isCallback"] = true;
+            args['resolve'] = resolve;
+            args['reject'] = reject;
             setAToken(data);
             callback(args);
         },
