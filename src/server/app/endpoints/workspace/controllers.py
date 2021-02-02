@@ -25,7 +25,7 @@ def createWorkspace():
     w_name = data['name']
     w_users = data.getlist('users[]')
     w_image = data['image']
-    msg = repo.createWorkspace(name=w_name, img=w_image, users=w_users)
+    msg = repo.createWorkspace(name=w_name, img=w_image, users=w_users, creator=get_jwt_identity())
 
 
     return json.dumps(msg)
