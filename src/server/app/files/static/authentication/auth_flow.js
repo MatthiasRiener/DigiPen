@@ -3,6 +3,7 @@ console.log('Authentification JavaSript loaded!');
 const baseURL = "http://localhost:5000";
 
 function sendRequestToServer(args) {
+    console.log(args.data, args.data == undefined)
     return new Promise(function(resolve, reject) {
         $.ajax({
             type: args.type,
