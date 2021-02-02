@@ -31,9 +31,9 @@ def login():
         
     user_id = user_creds.get('sub')
     user_name = user_creds.get('preferred_username')
-
+    user_mail = user_creds.get('email')
     # test to get user
-    User(u_id=user_id, name=user_name, last_login="JETZT GARAD XD").save()
+    User(u_id=user_id, name=user_name, mail=user_mail,  last_login="JETZT GARAD XD").save()
     user = repo.retrieveUser(user_id)
 
     access_token = create_access_token(identity=user_id, expires_delta=datetime.timedelta(seconds=10))
@@ -47,7 +47,6 @@ def login():
 
 
 @auth.route('/logout')
-@jwt_required
 def logout():
     if oidc.user_loggedin:
         refresh_token = oidc.get_refresh_token()

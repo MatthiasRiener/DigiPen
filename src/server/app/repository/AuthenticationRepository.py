@@ -7,7 +7,7 @@ class AuthenticationRepository():
     def __init__(self, testing):
         self.testing = testing
 
-    def createUser(self, user_id, name, img, last_login):
+    def createUser(self, user_id, name, email, img, last_login):
 
 
         if user_id is None:
@@ -26,7 +26,7 @@ class AuthenticationRepository():
         if User.objects(user_id=user_id):
             return "There is already a user with the userid %s" % (user_id)
         else: 
-            User(u_id=str(user_id), name=name, img=img, last_login="HIHI").save() 
+            User(u_id=str(user_id), name=name, mail=email, img=img, last_login="HIHI").save() 
         return "User %s was successfully inserted." % (user_id)
 
     def retrieveUser(self, user_id):
@@ -43,6 +43,18 @@ class AuthenticationRepository():
             return user
         except Exception as e:
             return "Error occured while retrieving user: %s" % (e)
+
+    def retrieveUserByMail(self, user_mail):
+        user = User.objects(mail=user_mail).first()        
+        return user
+
+    def getUserIds(self, users):
+        userIds = []
+        for user in users:
+            rUser = self.retrieveUserByMail(user)
+            if rUser is not None:
+                userIds.append(rUser.u_id)
+        return userIds
 
     def deleteAll(self):
         if self.testing:

@@ -23,7 +23,9 @@ repo = WorkspaceRepository(testing=False)
 def createWorkspace():
     data = request.form
     w_name = data['name']
-    msg = repo.createWorkspace(name=w_name)
+    w_users = data.getlist('users[]')
+    w_image = data['image']
+    msg = repo.createWorkspace(name=w_name, img=w_image, users=w_users)
 
 
     return json.dumps(msg)
