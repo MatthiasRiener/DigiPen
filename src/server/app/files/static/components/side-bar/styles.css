@@ -113,3 +113,7 @@
 .nav-bar-element-subtask p {
     margin-left: 20px;
 }
+
+.logout-item:hover {
+    cursor: pointer;
+}

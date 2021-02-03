@@ -21,6 +21,7 @@
         this.taskBtn = this.shadowRoot.querySelector('.task-item');
         this.profileBtn = this.shadowRoot.querySelector('.profile-item');
         this.quizBtn = this.shadowRoot.querySelector('.quiz-item');
+        this.logoutBtn = this.shadowRoot.querySelector('.logout-item');
 
 
         this.initializeEvents();
@@ -35,6 +36,7 @@
           this.taskBtn.addEventListener('click', e => {console.log(window.location = `${this.path}/task-management/index.html`)})
           this.profileBtn.addEventListener('click', e => {console.log(window.location = `${this.path}/profilseite/index.html`)})
           this.quizBtn.addEventListener('click', e => {console.log(window.location = `${this.path}/quiz/index.html`)})
+          this.logoutBtn.addEventListener('click', e => {logOut()})
       }
 
       addWorkSpace() {

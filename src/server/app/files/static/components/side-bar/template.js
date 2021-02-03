@@ -54,6 +54,11 @@
             <ion-icon name="person-outline" class="icon-navbar"></ion-icon>
             <p>Profile</p>
           </div>
+
+          <div class="nav-bar-element logout-item" id="logout">
+            <ion-icon name="log-out-outline" class="icon-navbar"></ion-icon>
+            <p>Log Out</p>
+          </div>
         </div>
       </div>
 `;
