@@ -35,7 +35,7 @@ def login():
     user_mail = user_creds.get('email')
     # test to get user
 
-    user = repo.createUser(user_id=user_id, name=user_name, email=user_mail, img=None, last_login=str(time.time()), created=str(time.time()))
+    user = repo.createUser(user_id=user_id, name=user_name, email=user_mail, img=None, last_login=time.time(), created=time.time())
 
     print("user", user)
 

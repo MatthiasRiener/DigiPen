@@ -20,14 +20,12 @@ class AuthenticationRepository():
         if name.isalpha() is False:
             return 'The username can only contain alphabetical letters'
 
-        if not isinstance(last_login, str):
-            return 'The time format is invalid'
-
+     
         if User.objects(u_id=user_id):
             print("retrieving user....")
             return self.retrieveUser(user_id=user_id)
         else: 
-            user = User(u_id=str(user_id), name=name, mail=email, img=img, last_login=last_login, created=str(time.time())).save()
+            user = User(u_id=str(user_id), name=name, mail=email, img=img, last_login=last_login, created=time.time()).save()
             print("user created....", user)
             return self.retrieveUser(user_id=user_id)
         return "User %s was successfully inserted." % (user_id)
@@ -42,7 +40,7 @@ class AuthenticationRepository():
             return "No user was retrieved with the userid %s" % (user_id)
         
         try:
-            User.objects(u_id=user_id).first().update(set__last_login=str(time.time()))
+            User.objects(u_id=user_id).first().update(set__last_login=time.time())
             user = User.objects(u_id=user_id).first().to_mongo()
             return user
         except Exception as e:
