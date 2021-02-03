@@ -58,6 +58,9 @@ class AuthenticationRepository():
                 userIds.append(rUser.u_id)
         return userIds
 
+    def getUserCount(self):
+        return User.objects().count()
+
     def deleteAll(self):
         if self.testing:
             User.objects().delete()
