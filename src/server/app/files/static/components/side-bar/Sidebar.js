@@ -44,7 +44,7 @@
 
       loadCss(path) {
         
-          fetch(`http://localhost:5000/static/components/side-bar/styles.css`)
+          fetch(baseURL + `/static/components/side-bar/styles.css`)
           .then(response => response.text())
               .then(data => {
                   let node = document.createElement('style');

@@ -22,16 +22,16 @@
 
     <script src={{ url_for('static', filename="components/side-bar/Sidebar.js") }} type="module"></script>
     <script src={{ url_for('static', filename="components/create-workspace/Workspace.js") }} type="module"></script>
-
+    <script src={{ url_for('static', filename="authentication/auth_flow.js") }} type="text/javascript"></script>
+    
+    <script src={{ url_for('static', filename="dashboard/js/requests.js") }} type="text/javascript" defer></script>
 </head>
 
 <body>
 
     <create-workspace id="workspace-comp"></create-workspace>
 
-    <top-nb
-        img="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
-        username="Matthias Riener" role="Power User"></top-nb>
+    <top-nb></top-nb>
 
     <div class="navandcontent">
         <side-bar id="sidebar-comp"  style="width: 17%; height: 100%; background-color: #F8F7F9;">

@@ -22,10 +22,11 @@ class TopNavigation extends HTMLElement {
 
         this.logo = this.shadowRoot.querySelector('#logo');
 
+        this.getUserData();
     }
 
     loadCss(path) {
-        fetch(`http://localhost:5000/static/components/nav/styles.css`)
+        fetch(baseURL + `/static/components/nav/styles.css`)
         .then(response => response.text())
             .then(data => {
                 let node = document.createElement('style');
@@ -35,10 +36,6 @@ class TopNavigation extends HTMLElement {
     }
 
     connectedCallback() {
-        this.userImg.style.backgroundImage = `url('${this.getAttribute("img")}')`;
-        this.username.innerHTML = this.getAttribute('username');
-        this.userrole.innerHTML = this.getAttribute('role');
-
         this.logo.addEventListener('click', (e) => {
             window.location = "../../../src/landing_page/index.html";
         });
@@ -51,6 +48,14 @@ class TopNavigation extends HTMLElement {
 
     disconnectedCallback() {
 
+    }
+
+    getUserData() {
+        sendRequestToServer({type: "GET", url: "/profile/user"}).then(data => {
+            this.userImg.style.backgroundImage = `url('${data.img}')`;
+            this.username.innerHTML = data.name;
+            this.userrole.innerHTML = data.mail;
+        });
     }
 }
 
