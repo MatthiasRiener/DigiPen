@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Structure</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla">
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/dashboard/css/main.css') }}" />
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+
+    <script src={{ url_for('static', filename="components/nav/Navigation.js") }} type="module"></script>
+
+    <script src={{ url_for('static', filename="components/side-bar/Sidebar.js") }} type="module"></script>
+    <script src={{ url_for('static', filename="components/create-workspace/Workspace.js") }} type="module"></script>
+
+</head>
+
+<body>
+
+    <create-workspace id="workspace-comp"></create-workspace>
+
+    <top-nb
+        img="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
+        username="Matthias Riener" role="Power User"></top-nb>
+
+    <div class="navandcontent">
+        <side-bar id="sidebar-comp"  style="width: 17%; height: 100%; background-color: #F8F7F9;">
+        </side-bar>
+
+        <div id="contentbox">
+            <div class="header">
+                <div class="searchbox">
+                    <div class="input-icons">
+                        <i class="fas fa-search icon"></i>
+                    </div>
+                    <input type="text" id="myInput" placeholder="Search" title="Type in  name" autocomplete="off">
+                </div>
+                <div class="createPresentation">
+                    <i class="fas fa-plus"></i>
+                    <p>Create Presentation</p>
+                </div>
+            </div>
+
+            <div class="text">
+                <div>
+                    <h1>Templates</h1>
+                    <p>Templates help you with creating your presentations easy and efficient.
+                        Use one of our Templates or one of the community.</p>
+                </div>
+                <i class="fas fa-angle-down"></i>
+            </div>
+
+            <ul class="myUl">
+                <li>
+                    <div class="template"><i class="fas fa-eye"></i></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"><i class="fas fa-eye"></i></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"><i class="fas fa-eye"></i></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"><i class="fas fa-eye"></i></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"><i class="fas fa-eye"></i></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"><i class="fas fa-eye"></i></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"><i class="fas fa-eye"></i></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"><i class="fas fa-eye"></i></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"><i class="fas fa-eye"></i></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"><i class="fas fa-eye"></i></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"><i class="fas fa-eye"></i></div>
+                    <p class="searchitem"></p>
+                </li>
+                <li>
+                    <div class="template"><i class="fas fa-eye"></i></div>
+                    <p class="searchitem"></p>
+                </li>
+            </ul>
+            <div class="text">
+                <div>
+                    <h1>Your presentations</h1>
+                </div>
+            </div>
+            <ul class="myUl">
+                <li>
+                    <div class="template_yourPresentation"><i class="fas fa-eye"></i></div>
+                    <p class="searchitem_yourPresentation"></p>
+                    <p class="amoutofslides"></p>
+                </li>
+                <li>
+                    <div class="template_yourPresentation"><i class="fas fa-eye"></i></div>
+                    <p class="searchitem_yourPresentation"></p>
+                    <p class="amoutofslides"></p>
+                </li>
+                <li>
+                    <div class="template_yourPresentation"><i class="fas fa-eye"></i></div>
+                    <p class="searchitem_yourPresentation"></p>
+                    <p class="amoutofslides"></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="usetemplatebox">
+        <div id="usetemplateboxheader">
+            <div>
+                <p id="template_title">gugu</p>
+                <div id="statsbox">
+                    <div class="downloads">
+                        <i class="fas fa-download"></i>
+                        <p id="downloadamount">gaga</p>
+                    </div>
+                    <div class="user" id="userbox">
+                        <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
+                            alt="pp">
+                        <p id="usernamebox">Matthias Riener</p>
+                    </div>
+                    <div class="created" id="createdbox">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p id="createddate">gigi</p>
+                    </div>
+                </div>
+            </div>
+            <div id="controllsbox">
+                <button id="usetemplate">Use Template</button>
+                <ion-icon name="close-outline" class="closeicon"></ion-icon>
+            </div>
+        </div>
+        <!-- Vorschau -->
+        <div id="template_big">
+            <i class="fas fa-chevron-left"></i>
+            <img src="" id="template_big_img" alt="gugu">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+        <div id="template_scroll">
+            <img src="{{ url_for('static', filename='/dashboard/img/Presentation_1.png') }}" alt="">
+
+            <img src="{{ url_for('static', filename='/dashboard/img/Presentation_1.png') }}" alt="">
+
+            <img src="{{ url_for('static', filename='/dashboard/img/Presentation_1.png') }}" alt="">
+
+            <img src="{{ url_for('static', filename='/dashboard/img/Presentation_1.png') }}" alt="">
+
+            <img src="{{ url_for('static', filename='/dashboard/img/Presentation_1.png') }}" alt="">
+
+            <img src="{{ url_for('static', filename='/dashboard/img/Presentation_1.png') }}" alt="">
+
+            <img src="{{ url_for('static', filename='/dashboard/img/Presentation_1.png') }}" alt="">
+
+            <img src="{{ url_for('static', filename='/dashboard/img/Presentation_1.png') }}" alt="">
+        </div>
+        <!-- Detailed view -->
+        <div class="controllsandshareview">
+            <div class="templateshareview">
+                <div id="template_small">
+                    <i class="fas fa-chevron-left"></i>
+                    <img src="" id="template_small_img" alt="gugu">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="shareview">
+                    <h2>Share with Teammates or Workspaces</h2>
+                    <div class="searchbox">
+                        <div class="input-icons">
+                            <i class="fas fa-search icon"></i>
+                        </div>
+                        <input type="text" id="myInput_search" placeholder="Search" title="Type in  name"
+                            autocomplete="off">
+                    </div>
+                    <div class="acceptedbox">
+                        <h3>Accepted</h3>
+                        <div class="profile">
+                            <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
+                                alt="">
+                            <div class="info">
+                                <p class="name">Matthias Riener (You)</p>
+                                <p class="role">Owner</p>
+                            </div>
+                        </div>
+                        <div class="profile">
+                            <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
+                                alt="">
+                            <div class="info">
+                                <p class="name">Jonas Himmetsberger</p>
+                                <p class="role">Member</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pendingbox">
+                        <h3>Pending</h3>
+                        <div class="profile">
+                            <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
+                                alt="">
+                            <div class="info">
+                                <p class="name">Lucki Zucki</p>
+                                <p class="role">Member</p>
+                            </div>
+                        </div>
+                        <div class="profile">
+                            <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
+                                alt="">
+                            <div class="info">
+                                <p class="name">David Hauser</p>
+                                <p class="role">Member</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="controlls">
+                <h2>Settings</h2>
+                <form action="../editor/view/index.html">
+                    <h3>Import</h3>
+                    <input type="checkbox" id="importcheck" name="importcheck" value="importcheck">
+                    <label for="importcheck"> Import complete Template</label><br>
+                    <h3>Timeline</h3>
+                    <input type="checkbox" id="timelinecheck" name="timelinecheck" value="timelinecheck">
+                    <label for="timelinecheck"> Create Timeline</label><br>
+                    <h3>Keywords</h3>
+                    <input type="text" name="addkeyword" id="addkeyword" placeholder="Add">
+                    <div class="keywords">
+                        <span>Space</span>
+                        <span>Rocket</span>
+                        <span>Science</span>
+                    </div>
+                    <h2>Permission</h2>
+                    <h3>Export</h3>
+                    <input type="checkbox" id="exportcheck" name="exportcheck" value="exportcheck">
+                    <label for="exportcheck"> Allow everyone to generate PDF</label><br>
+                    <input type="submit" value="Start Presentation" id="submitcontrolls">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='/dashboard/js/index.js') }}" ></script>
+    <script type="text/javascript">
+        var workspace = document.getElementById('workspace-comp');
+        var sideBar = document.getElementById('sidebar-comp');
+        
+         sideBar.addEventListener('animWorkSpace', e => {                   
+            workspace.animateWorkspace();
+        })
+    </script>
+
+</body>
+
+</html>

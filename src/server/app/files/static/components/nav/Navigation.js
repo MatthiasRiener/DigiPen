@@ -1,4 +1,6 @@
-import { template } from './template.js';
+import {
+    template
+} from './template.js';
 
 class TopNavigation extends HTMLElement {
     constructor() {
@@ -19,11 +21,11 @@ class TopNavigation extends HTMLElement {
         this.userImg = this.shadowRoot.querySelector('.nav-profile-image');
 
         this.logo = this.shadowRoot.querySelector('#logo');
-        
+
     }
 
     loadCss(path) {
-        fetch(path)
+        fetch(`http://localhost:5000/static/components/nav/styles.css`)
         .then(response => response.text())
             .then(data => {
                 let node = document.createElement('style');
@@ -53,4 +55,3 @@ class TopNavigation extends HTMLElement {
 }
 
 window.customElements.define('top-nb', TopNavigation);
-
