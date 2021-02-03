@@ -181,6 +181,7 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 #statsbox div, #template_title, #downloadamount, #createddate, #usernamebox {
@@ -189,6 +190,7 @@ p {
 }
 
 #template_title {
+    font-weight: bold;
     font-size: 150%;
 }
 
@@ -254,8 +256,12 @@ p {
 
 #template_small_img {
     max-width: 40vw;
+    height: 30vh;
     max-height: 30vh;
-    margin: 3%;
+    /* width: 30vw;
+    height: 16.5vw;
+    object-fit: cover; */
+    margin: 0 3%;
 }
 
 #template_big, #template_small {
@@ -266,7 +272,7 @@ p {
 }
 
 #template_small {
-    height: 50%;
+    height: fit-content;
 }
 
 #template_scroll {
@@ -318,7 +324,7 @@ p {
     margin-right: 5vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 

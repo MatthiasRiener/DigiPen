@@ -144,10 +144,16 @@ function sizetoimg() {
         $("#usetemplateboxheader, #template_scroll").css('width', img_width);
     } else {
         $("#usetemplateboxheader").css('width', $(".controllsandshareview").width() - parseFloat($("#template_small_img").css('marginLeft')) * 2);
+        $("#usetemplateboxheader").css('margin-left', parseFloat($("#template_small_img").css('marginLeft')) + $(".fa-chevron-right").eq(1).width());
         $(".shareview").css('width', $("#template_small_img").width())
     }
 
     $("#template_big_img").css('width', $("#template_big_img").height() * 16 / 9);
+    [...$("#template_scroll img")].forEach((e) => {
+        e.style.width = $("#template_scroll img").height() * 16 / 9 + 'px';
+    })
+
+    $("#template_small_img").css('width', $("#template_small_img").height() * 16 / 9);
     [...$("#template_scroll img")].forEach((e) => {
         e.style.width = $("#template_scroll img").height() * 16 / 9 + 'px';
     })
