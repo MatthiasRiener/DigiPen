@@ -5,7 +5,9 @@ from app.endpoints.profile.controllers import profile
 from app.endpoints.taskmanagement.controllers import man
 from app.endpoints.workspace.controllers import workspace
 from app.endpoints.dashboard.controllers import dashboard
+from app.endpoints.landing_page.controllers import landing_page
 from app.db.settings import db, oidc, jwt
+
 
 app = Flask(__name__, template_folder="./app/files/templates",
             static_folder="./app/files/static")
@@ -47,5 +49,6 @@ app.register_blueprint(profile, url_prefix="/profile")
 app.register_blueprint(man, url_prefix="/task")
 app.register_blueprint(workspace, url_prefix="/workspace")
 app.register_blueprint(dashboard, url_prefix="/dashboard")
+app.register_blueprint(landing_page)
 
 app.register_error_handler(404, pagenotfound)
