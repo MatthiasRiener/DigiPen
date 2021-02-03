@@ -1,6 +1,6 @@
 let templates = [
-    { name: "Planner", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
-    { name: "Science", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Planner", image: 'https://picsum.photos/200/300', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Science", image: 'https://picsum.photos/200/300', slides: 13, downloads: 12343, created: '28.12.2020' },
     { name: "School", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
     { name: "Politics", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
     { name: "Christmas", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
@@ -11,7 +11,7 @@ let templates = [
     { name: "Food", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
     { name: "Portfolio", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
     { name: "Sport", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
-    { name: "Health", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' }
+    { name: "Health", image: 'https://picsum.photos/300/100', slides: 13, downloads: 12343, created: '28.12.2020' }
 ],
     yourPresentations = [
         { name: "British Tea Tips", image: './img/Presentation_1.png', slides: 13, downloads: 12343, created: '28.12.2020' },
@@ -107,6 +107,7 @@ $(".myUl li").click(function (e) {
     $("#usetemplatebox").css('display', 'flex')
     $("#template_title").text(title);
 
+    sizetoimg();
     [yourPresentations, templates].forEach((e) => {
         e.forEach((templates) => {
             if (templates.name == title) {
@@ -124,6 +125,7 @@ $("#usetemplatebox").click(function (e) {
         $(this).css('display', 'none')
         $("#template_big, #template_scroll, #usetemplate").css('display', 'flex');
         $(".controllsandshareview").css('display', 'none');
+        sizetoimg();
     }
 })
 
@@ -144,12 +146,20 @@ function sizetoimg() {
         $("#usetemplateboxheader").css('width', $(".controllsandshareview").width() - parseFloat($("#template_small_img").css('marginLeft')) * 2);
         $(".shareview").css('width', $("#template_small_img").width())
     }
+
+    if ($("#template_big_img").width() * 9 / 16 >= $("#template_big_img").height()) {
+        $("#template_big_img").css('width', $("#template_big_img").height() * 16 / 9);
+        [...$("#template_scroll img")].forEach((e) => {
+            e.style.width = $("#template_scroll img").height() * 16 / 9 + 'px';
+        })
+
+    }
 };
 
-$('body').on('click', '.createPresentation', function(){
+$('body').on('click', '.createPresentation', function () {
     window.location = "../../src/editor/view/index.html"
 });
 
-$('body').on('click', '#submitcontrolls', function(){
+$('body').on('click', '#submitcontrolls', function () {
     window.location = "../../../src/editor/view/index.html"
 });
