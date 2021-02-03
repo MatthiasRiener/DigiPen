@@ -65,7 +65,7 @@ function silentLogin(r_token, callback, args, resolve, reject) {
  function logOut() {
     $.ajax({
         type: "GET",
-        url: "http://localhost:5000/auth/logout",
+        url: baseURL + "/auth/logout",
         headers: {
             Authorization: "Bearer " + getAToken(),
         },
@@ -78,7 +78,7 @@ function silentLogin(r_token, callback, args, resolve, reject) {
             },
         },
         success: function (data) {
-            window.location.href = "/";
+            window.location.href = baseURL + "/auth/login";
         },
     });
 }
