@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, current_app as app
+from flask import Blueprint, render_template, redirect, url_for, request,  current_app as app
 from flask_oidc import OpenIDConnect
 from oauth2client.client import OAuth2Credentials
 from .custom_oidc_socket import logoutSession
@@ -8,6 +8,7 @@ from ..profile.controllers import profile
 
 import json
 import datetime
+import time
 
 from ...models.User import User
 from ...repository.AuthenticationRepository import AuthenticationRepository
@@ -33,30 +34,30 @@ def login():
     user_name = user_creds.get('preferred_username')
     user_mail = user_creds.get('email')
     # test to get user
-    User(u_id=user_id, name=user_name, mail=user_mail,  last_login="JETZT GARAD XD").save()
-    user = repo.retrieveUser(user_id)
+
+    user = repo.createUser(user_id=user_id, name=user_name, email=user_mail, img=None, last_login=str(time.time()), created=str(time.time()))
+
+    print("user", user)
+
 
     access_token = create_access_token(identity=user_id, expires_delta=datetime.timedelta(seconds=10))
     refresh_token = create_refresh_token(identity=user_id)
-
-    print("a_token: %s, r_token: %s" % (access_token, refresh_token))
 
     redir = render_template('/profile/index.html',
                             access=access_token, refresh=refresh_token)
     return redir
 
 
-@auth.route('/logout')
+@auth.route('/logout', methods=['GET'])
 def logout():
     if oidc.user_loggedin:
         refresh_token = oidc.get_refresh_token()
         access_token = oidc.get_access_token()
+
         logoutSession(refresh_token, access_token)
         oidc.logout()
-        print("user has been logged out.")
-        return "You've been logged out. <a href='/auth'>Back</a>"
     #logoutSession(refresh_token, access_token)
-    return "You've been logged out."
+    return json.dumps({"success": 1})
 
 
 @auth.route('/test')

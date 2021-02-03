@@ -7,7 +7,7 @@ class AuthenticationRepository():
     def __init__(self, testing):
         self.testing = testing
 
-    def createUser(self, user_id, name, email, img, last_login):
+    def createUser(self, user_id, name, email, img, last_login, created):
 
 
         if user_id is None:
@@ -20,13 +20,16 @@ class AuthenticationRepository():
         if name.isalpha() is False:
             return 'The username can only contain alphabetical letters'
 
-        if  isinstance(last_login, str):
+        if not isinstance(last_login, str):
             return 'The time format is invalid'
 
-        if User.objects(user_id=user_id):
-            return "There is already a user with the userid %s" % (user_id)
+        if User.objects(u_id=user_id):
+            print("retrieving user....")
+            return self.retrieveUser(user_id=user_id)
         else: 
-            User(u_id=str(user_id), name=name, mail=email, img=img, last_login="HIHI").save() 
+            user = User(u_id=str(user_id), name=name, mail=email, img=img, last_login=last_login, created=str(time.time())).save()
+            print("user created....", user)
+            return self.retrieveUser(user_id=user_id)
         return "User %s was successfully inserted." % (user_id)
 
     def retrieveUser(self, user_id):
@@ -39,6 +42,7 @@ class AuthenticationRepository():
             return "No user was retrieved with the userid %s" % (user_id)
         
         try:
+            User.objects(u_id=user_id).first().update(set__last_login=str(time.time()))
             user = User.objects(u_id=user_id).first().to_mongo()
             return user
         except Exception as e:
