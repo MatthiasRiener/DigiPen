@@ -4,4 +4,7 @@ sendRequestToServer({type: "GET", url: "/profile/user"}).then(data => {
 
     // Insert profile picture
     $('#PP').attr('src', data.img);
+
+    // Insert workspace count
+    $('#workspaceCount').text(data.workspaces);
 });

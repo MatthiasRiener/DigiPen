@@ -68,7 +68,7 @@
         }
 
         sendRequestToServer({type: "POST", url: "/workspace/createWorkspace", data: workspace}).then(data => {
-          console.log(data);
+          $('#workspaceCount').text(data.workspaces);
       })
     }
   }
