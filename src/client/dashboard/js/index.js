@@ -147,13 +147,10 @@ function sizetoimg() {
         $(".shareview").css('width', $("#template_small_img").width())
     }
 
-    if ($("#template_big_img").width() * 9 / 16 >= $("#template_big_img").height()) {
-        $("#template_big_img").css('width', $("#template_big_img").height() * 16 / 9);
-        [...$("#template_scroll img")].forEach((e) => {
-            e.style.width = $("#template_scroll img").height() * 16 / 9 + 'px';
-        })
-
-    }
+    $("#template_big_img").css('width', $("#template_big_img").height() * 16 / 9);
+    [...$("#template_scroll img")].forEach((e) => {
+        e.style.width = $("#template_scroll img").height() * 16 / 9 + 'px';
+    })
 };
 
 $('body').on('click', '.createPresentation', function () {
