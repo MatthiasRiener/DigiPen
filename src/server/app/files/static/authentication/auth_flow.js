@@ -63,23 +63,11 @@ function silentLogin(r_token, callback, args, resolve, reject) {
  }
 
  function logOut() {
-    $.ajax({
-        type: "GET",
-        url: baseURL + "/auth/logout",
-        headers: {
-            Authorization: "Bearer " + getAToken(),
-        },
-        statusCode: {
-            400: function () {
-                alert("400 status code! user error");
-            },
-            401: function () {
-                alert("500 status code! server error");
-            },
-        },
-        success: function (data) {
-            window.location.href = baseURL + "/auth/login";
-        },
+    sendRequestToServer({type: "POST", url: "/auth/logout", data: {atoken: getAToken(), rtoken: getRToken()}}).then(data => {
+        console.log("logged out");
+        unsetAToken();
+        unsetRToken();
+        window.location.href = baseURL + "/auth/login";
     });
 }
 
@@ -91,10 +79,18 @@ function silentLogin(r_token, callback, args, resolve, reject) {
     return localStorage.getItem("a_token");
  }
 
+ function unsetAToken() {
+    localStorage.removeItem("a_token");
+ }
+
  function setRToken(token) {
     localStorage.setItem("r_token", token);
  }
 
  function getRToken() {
     return localStorage.getItem("r_token");
+ }
+
+ function unsetRToken() {
+    localStorage.removeItem("r_token");
  }
