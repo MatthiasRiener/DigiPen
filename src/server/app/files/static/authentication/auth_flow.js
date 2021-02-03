@@ -63,7 +63,7 @@ function silentLogin(r_token, callback, args, resolve, reject) {
  }
 
  function logOut() {
-    sendRequestToServer({type: "POST", url: "/auth/logout", data: {atoken: getAToken(), rtoken: getRToken()}}).then(data => {
+    sendRequestToServer({type: "GET", url: "/auth/logout"}).then(data => {
         console.log("logged out");
         unsetAToken();
         unsetRToken();
