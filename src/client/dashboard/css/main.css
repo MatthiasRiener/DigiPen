@@ -355,21 +355,18 @@ p {
 .shareview::-webkit-scrollbar {
     width: 8px;
     height: 8px;
-    /* border-radius: 0 10px 10px 0; */
 }
 
 /* Track */
 
 .shareview::-webkit-scrollbar-track {
     background: #888;
-    /* border-radius: 0 10px 10px 0; */
 }
 
 /* Handle */
 
 .shareview::-webkit-scrollbar-thumb {
     background: #f1f1f1;
-    /* border-radius: 0 10px 10px 0; */
 }
 
 /* Handle on hover */
