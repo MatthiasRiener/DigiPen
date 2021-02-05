@@ -36,13 +36,13 @@ lastlogin = time.time()
     (keycloakid, "Max", None, None, lastlogin, "Last login must not be None"),
     (keycloakid, "Max", None, lastlogin, None, "The time when the user was created must not be None"),
     (str(uuid.uuid4()), "Max123", None, lastlogin, lastlogin, "The username can only contain alphabetical letters"),
-    (str(uuid.uuid4()), "Max", None, str(time.time()), lastlogin, "The time format of last login is invalid. It has to a integer (Bsp.: %s)" % (lastlogin)),
-    (str(uuid.uuid4()), "Max", None, time.time(), str(lastlogin), "The time format of created is invalid. It has to a integer (Bsp.: %s)" % (lastlogin)),
+    (str(uuid.uuid4()), "Max", None, str(time.time()), lastlogin, "The time format of last login is invalid. It has to be an integer (Bsp.: %s)" % (lastlogin)),
+    (str(uuid.uuid4()), "Max", None, time.time(), str(lastlogin), "The time format of created is invalid. It has to be an integer (Bsp.: %s)" % (lastlogin)),
     (keycloakid, "Max", None, lastlogin, lastlogin, "There is already a user with the userid %s" % (keycloakid)),
     (str(uuid.uuid4()), None, None, lastlogin, lastlogin, "No information was given regarding the users username"),
     (str(uuid.uuid4()), "Max", None, lastlogin * 2, lastlogin, "Last login must not be in the future"),
     (str(uuid.uuid4()), "Max", None, lastlogin, lastlogin * 2, "Created must not be in the future"),
-    (str(uuid.uuid4()), "Max", None, lastlogin / 2, lastlogin, "Last login be equal/greater then created"),
+    (str(uuid.uuid4()), "Max", None, lastlogin / 2, lastlogin, "Last login has to be equal/greater then created"),
     (None, None, None, None, None, "No information was given")
 ])
 def test_createUser(user_id, name, img, last_login, created, result):
