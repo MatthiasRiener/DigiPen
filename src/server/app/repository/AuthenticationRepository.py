@@ -1,6 +1,8 @@
 from ..models.User import User
 import re
 import time
+from .CustomException import CustomException
+
 
 class AuthenticationRepository():
 
@@ -11,22 +13,20 @@ class AuthenticationRepository():
 
 
         if user_id is None:
-            return "No information was given regarding the users userid"
+            raise CustomException("No information was given regarding the users userid")
         # test case username not None
         if name is None:
-            return "No information was given regarding the users username"
+            raise CustomException("No information was given regarding the users username")
 
         # test case only letters
         if name.isalpha() is False:
-            return 'The username can only contain alphabetical letters'
+            raise CustomException('The username can only contain alphabetical letters')
 
      
         if User.objects(u_id=user_id):
-            print("retrieving user....")
             return self.retrieveUser(user_id=user_id)
         else: 
             user = User(u_id=str(user_id), name=name, mail=email, img=img, last_login=last_login, created=time.time()).save()
-            print("user created....", user)
             return self.retrieveUser(user_id=user_id)
         return "User %s was successfully inserted." % (user_id)
 
@@ -34,10 +34,10 @@ class AuthenticationRepository():
 
         
         if user_id is None:
-            return "Invalid information was given regarding the users userid"
+            raise CustomException("Invalid information was given regarding the users userid")
 
         if not User.objects(u_id=user_id):
-            return "No user was retrieved with the userid %s" % (user_id)
+            raise CustomException("No user was retrieved with the userid %s" % (user_id))
         
         try:
             User.objects(u_id=user_id).first().update(set__last_login=time.time())
