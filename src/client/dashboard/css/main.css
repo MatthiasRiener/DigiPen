@@ -256,11 +256,10 @@ p {
 
 #template_small_img {
     max-width: 40vw;
-    height: 30vh;
-    max-height: 30vh;
+    height: 33vh;
     /* width: 30vw;
-    height: 16.5vw;
-    object-fit: cover; */
+    height: 16.5vw; */
+    object-fit: cover;
     margin: 0 3%;
 }
 

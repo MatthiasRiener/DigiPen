@@ -154,9 +154,6 @@ function sizetoimg() {
     })
 
     $("#template_small_img").css('width', $("#template_small_img").height() * 16 / 9);
-    [...$("#template_scroll img")].forEach((e) => {
-        e.style.width = $("#template_scroll img").height() * 16 / 9 + 'px';
-    })
 };
 
 $('body').on('click', '.createPresentation', function () {
