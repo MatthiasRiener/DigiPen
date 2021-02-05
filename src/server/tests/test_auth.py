@@ -29,7 +29,6 @@ keycloakid = str(uuid.uuid4())
 # lastlogin = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
 lastlogin = time.time()
 
-# last login, created nochmal überprüfen (datetime.today() -> time.time())
 
 @pytest.mark.parametrize('user_id, name, img, last_login, created, result', [
     (keycloakid, "Max", None, lastlogin, lastlogin, "User %s was successfully inserted." % (keycloakid)),
@@ -46,7 +45,7 @@ lastlogin = time.time()
     (None, None, None, None, None, "No information was given")
 ])
 def test_createUser(user_id, name, img, last_login, created, result):
-    assert auth.createUser(user_id, name, img, last_login) == result
+    assert auth.createUser(user_id, name, img, last_login, created) == result
 
 dummyid = str(uuid.uuid4())
 
