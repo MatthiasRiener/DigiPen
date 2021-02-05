@@ -322,7 +322,7 @@ p {
 }
 
 .templateshareview {
-    margin-right: 5vw;
+    margin-right: 1.5vw;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -347,9 +347,35 @@ p {
     width: 100%;
     height: 50%;
     background-color: white;
-    padding: 2vw;
+    padding: 1.5vw;
     border-radius: 10px;
     overflow: auto;
+}
+
+.shareview::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    /* border-radius: 0 10px 10px 0; */
+}
+
+/* Track */
+
+.shareview::-webkit-scrollbar-track {
+    background: #888;
+    /* border-radius: 0 10px 10px 0; */
+}
+
+/* Handle */
+
+.shareview::-webkit-scrollbar-thumb {
+    background: #f1f1f1;
+    /* border-radius: 0 10px 10px 0; */
+}
+
+/* Handle on hover */
+
+.shareview::-webkit-scrollbar-thumb:hover {
+    background: #C6C6C6;
 }
 
 .shareview h2, .controlls h2 {
@@ -382,7 +408,7 @@ p {
 }
 
 .controlls form {
-    height: 93%;
+    height: 98%;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -430,13 +456,13 @@ p {
     box-shadow: -2px 2px 5px gray;
     color: white;
     font-size: small;
-    padding: 3% 7%;
+    padding: 1.5% 5%;
     border-radius: 4px;
 }
 
 #addkeyword {
     width: 100%;
-    font-size: 16px;
+    font-size: 13px;
     padding: 7px 17px;
     outline: none;
     border: none;
@@ -449,7 +475,7 @@ p {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 14%;
+    height: 10%;
     border: none;
     border-radius: 10px;
     color: white;
