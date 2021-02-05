@@ -31,28 +31,29 @@ lastlogin = time.time()
 
 
 @pytest.mark.parametrize('user_id, name, email, img, last_login, created, result', [
-    (keycloakid, "Max", "max@mustermail.at", None, lastlogin, lastlogin, "User %s was successfully inserted." % (keycloakid)),
+    (keycloakid, "Max", "max@mustermail.at", None, lastlogin, lastlogin, 1),
     (str(uuid.uuid4()), "Max", "max@mustermail.at",None, None, lastlogin, "Last login must not be None"),
     (str(uuid.uuid4()), "Max", "max@mustermail.at",None, lastlogin, None, "The time when the user was created must not be None"),
     (str(uuid.uuid4()), "Max123", "max@mustermail.at", None, lastlogin, lastlogin, "The username can only contain alphabetical letters"),
-    (str(uuid.uuid4()), "Max", "max@mustermail.at", None, str(time.time()), lastlogin, "The time format of last login is invalid. It has to be an integer (Bsp.: %s)" % (lastlogin)),
-    (str(uuid.uuid4()), "Max", "max@mustermail.at", None, time.time(), str(lastlogin), "The time format of created is invalid. It has to be an integer (Bsp.: %s)" % (lastlogin)),
-    (keycloakid, "Max", "max@mustermail.at", None, lastlogin, lastlogin, "There is already a user with the userid %s" % (keycloakid)),
+    (str(uuid.uuid4()), "Max", "max@mustermail.at", None, str(time.time()), lastlogin, "The time format of last login is invalid. It has to be an integer"),
+    (str(uuid.uuid4()), "Max", "max@mustermail.at", None, time.time(), str(lastlogin), "The time format of created is invalid. It has to be an integer"),
+    (keycloakid, "Max", "max@mustermail.at", None, lastlogin, lastlogin, 1),
     (str(uuid.uuid4()), None, "max@mustermail.at", None, lastlogin, lastlogin, "No information was given regarding the users username"),
     (str(uuid.uuid4()), "Max", "max@mustermail.at", None, lastlogin * 2, lastlogin, "Last login must not be in the future"),
     (str(uuid.uuid4()), "Max", "max@mustermail.at", None, lastlogin, lastlogin * 2, "Created must not be in the future"),
     (str(uuid.uuid4()), "Max", "max@mustermail.at", None, lastlogin / 2, lastlogin, "Last login has to be equal/greater then created"),
     (str(uuid.uuid4()), "Max", None, None, lastlogin, lastlogin, "Email must not be None"),
-    (str(uuid.uuid4()), "Max", max@mustermail.at, None, lastlogin, lastlogin, "Email must be a String"),
-    (None, None, None, None, None, None, "No information was given")
+    (str(uuid.uuid4()), "Max", 1, None, lastlogin, lastlogin, "Email must be a String"),
 ])
 def test_createUser(user_id, name, email, img, last_login, created, result):
-    assert auth.createUser(user_id, name, email, img, last_login, created) == result
+    if result == 1:
+        assert auth.createUser(user_id=user_id, name=name, email=email, img=img, last_login=last_login, created=created) == auth.retrieveUser(user_id=user_id)
+    else:
+        assert auth.createUser(user_id=user_id, name=name, email=email, img=img, last_login=last_login, created=created) == result
 
 dummyid = str(uuid.uuid4())
 
 @pytest.mark.parametrize('user_id, result', [
-    (keycloakid, "Successfully retrieved user with the userid: %s" % (keycloakid)),
     ("abc-av-ac-agg", "Invalid information was given regarding the users userid"),
     (dummyid, "No user was retrieved with the userid %s" % (dummyid)),
     (None, "Invalid information was given regarding the users userid")

@@ -2,7 +2,7 @@ from ..models.User import User
 import re
 import time
 from .CustomException import CustomException
-
+import uuid
 
 class AuthenticationRepository():
 
@@ -12,15 +12,45 @@ class AuthenticationRepository():
     def createUser(self, user_id, name, email, img, last_login, created):
 
 
+        
+
+        if email is None:
+            return CustomException("Email must not be None").__str__()
+
+        if type(email) is not str:
+            return CustomException("Email must be a String").__str__()
+
+        if created is None:
+            return CustomException("The time when the user was created must not be None").__str__()
+
+        if type(created) is not float:
+            return CustomException("The time format of created is invalid. It has to be an integer").__str__()
+
+        if created > time.time():
+            return CustomException("Created must not be in the future").__str__()
+
+        if last_login is None:
+            return CustomException("Last login must not be None").__str__()
+        
+        if type(last_login) is not float:
+            return CustomException("The time format of last login is invalid. It has to be an integer").__str__()
+
+
+        if last_login > time.time():
+            return CustomException("Last login must not be in the future").__str__()
+            
+        if last_login < created:
+            return CustomException("Last login has to be equal/greater then created").__str__()
+
         if user_id is None:
-            raise CustomException("No information was given regarding the users userid")
+            return CustomException("No information was given regarding the users userid").__str__()
         # test case username not None
         if name is None:
-            raise CustomException("No information was given regarding the users username")
+            return CustomException("No information was given regarding the users username").__str__()
 
         # test case only letters
         if name.isalpha() is False:
-            raise CustomException('The username can only contain alphabetical letters')
+             return CustomException('The username can only contain alphabetical letters').__str__()
 
      
         if User.objects(u_id=user_id):
@@ -34,10 +64,15 @@ class AuthenticationRepository():
 
         
         if user_id is None:
-            raise CustomException("Invalid information was given regarding the users userid")
+            return CustomException("Invalid information was given regarding the users userid").__str__()
 
+        try:
+            uuid.UUID(str(user_id))
+        except ValueError:
+            return CustomException("Invalid information was given regarding the users userid").__str__()    
+        
         if not User.objects(u_id=user_id):
-            raise CustomException("No user was retrieved with the userid %s" % (user_id))
+            return CustomException("No user was retrieved with the userid %s" % (user_id)).__str__()
         
         try:
             User.objects(u_id=user_id).first().update(set__last_login=time.time())

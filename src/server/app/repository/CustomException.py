@@ -1,7 +1,8 @@
-class CustomException(Exception):
+
+class CustomException():
     def __init__(self, message):
         self.message = message
-        super().__init__(self.message)
 
     def __str__(self):
+        print(self.message)
         return self.message
