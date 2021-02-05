@@ -242,6 +242,27 @@ $(document).click(function (event) {
     }
 });
 
+
+// open shortcut popup
+$('#content-navigation-fifth-box-shortcut').click(function () {
+    $('#shortcutPopup').css('display', 'flex');
+    $('#shortcutPopup-inner-popup').css('display', 'flex');
+    $('#shortcutPopup-inner-popup').animate({
+        margin: "1.5vh 1vw",
+        opacity: 1.0
+    }, 100);
+});
+
+// close shortcut popup
+$(document).click(function (event) {
+    if (!$(event.target).closest("#shortcutPopup-inner-popup, #content-navigation-fifth-box-shortcut").length) {
+        $('#shortcutPopup-inner-popup').css('display', 'none');
+        $('#shortcutPopup').css('display', 'none');
+        $('#shortcutPopup-inner-popup').css('margin', '0vh 1.5vh');
+        $('#shortcutPopup-inner-popup').css('opacity', '0.0');
+    }
+});
+
 //Navigation
 
 $('body').on('click', '.ed_bt_arrow_click', function(){

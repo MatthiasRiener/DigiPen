@@ -209,13 +209,19 @@
 }
 
 #content-navigation-fifth-box-play,
-#content-navigation-fifth-box-down {
+#content-navigation-fifth-box-down{
     font-size: 2rem;
     color: var(--dark-grey);
 }
 
+#content-navigation-fifth-box-shortcut{
+    font-size: 1.5rem;
+    color: var(--dark-grey);
+}
+
 #content-navigation-fifth-box-play:hover,
-#content-navigation-fifth-box-down:hover {
+#content-navigation-fifth-box-down:hover,
+#content-navigation-fifth-box-shortcut:hover {
     cursor: pointer;
 }
 
@@ -1413,6 +1419,7 @@
     width: 100%;
     height: 90%;
     background-color: #16171A;
+    border-radius: 10px;
 }
 
 #settingsPopup-inner-bottom-picture {
@@ -1977,4 +1984,79 @@
 
 .img-removeColor-slider-img, .img-brightness-slider-img, .img-opacity-slider-img {
     margin: 0 0.5vw;
+}
+
+
+/*shortcut Popup*/
+
+#shortcutPopup {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 200 !important;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#shortcutPopup-inner {
+    width: 100%;
+    height: 20;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+#shortcutPopup-inner-popup {
+    width: 30vw;
+    height: 60vh;
+    z-index: 300 !important;
+    display: none;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    background-color: var(--white);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin: 0vh 1vw;
+    opacity: 0;
+    padding-left: 1vw;
+    transition: all 0.1s;
+}
+
+#shortcutPopup-inner-popup-headline {
+    width: 80%;
+    height: 20%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    font-weight: bold;
+}
+
+#shortcutPopup-inner-popup-start {
+    width: 80%;
+    height: 28%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding-left: 0.8vw;
+}
+
+#shortcutPopup-inner-popup-current {
+    width: 80%;
+    height: 28%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding-left: 0.8vw;
+}
+
+#shortcutPopup-inner-popup-start:hover,
+#shortcutPopup-inner-popup-current:hover {
+    cursor: pointer;
 }

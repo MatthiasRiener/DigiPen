@@ -1,6 +1,7 @@
 // This is where all events are handled
 
 let questionCount = 1;
+var arr;
 
 $(".quiz").click(function (e) {
     var count = Math.floor((Math.random() * 9999));
@@ -74,8 +75,10 @@ addQuestion();
 function addQuestion() {
     $(".QuestionCount").eq(questionCount - 1).html('Question ' + questionCount)
     $("#loadPattern").append($("#Questionpattern").html())
+    
     questionCount++;
 }
+
 
 $("#saveQuiz").click(function () {
     let wasInput = true;
