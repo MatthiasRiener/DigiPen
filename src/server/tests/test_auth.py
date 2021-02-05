@@ -27,6 +27,8 @@ def app():
 keycloakid = str(uuid.uuid4())
 lastlogin = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
 
+# last login, created nochmal überprüfen (datetime.today() -> time.time())
+
 @pytest.mark.parametrize('user_id, name, img, last_login, result', [
     (keycloakid, "Max", None, lastlogin, "User %s was successfully inserted." % (keycloakid)),
     (keycloakid, "Max", None, None, "Last login must not be None"),

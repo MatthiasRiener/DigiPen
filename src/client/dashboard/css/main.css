@@ -19,9 +19,9 @@ p {
     background-position: 10px 12px;
     background-repeat: no-repeat;
     width: 100%;
-    font-size: 16px;
+    font-size: small;
     padding: 0 20px 0 50px;
-    height: 45px;
+    height: 35px;
     outline: none;
     border: none;
     background: #F6F4F9;
@@ -60,11 +60,12 @@ p {
 
 .input-icons i {
     position: absolute;
+    font-size: small;
 }
 
 .input-icons {
     width: 50px;
-    height: 45px;
+    height: 35px;
     position: absolute;
     display: flex;
     justify-content: center;
@@ -93,7 +94,8 @@ p {
 }
 
 .searchbox {
-    width: 45%;
+    width: 75%;
+    margin-top: 10px;
     position: relative;
 }
 
@@ -334,8 +336,8 @@ p {
 }
 
 .profile img {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     margin-right: 1vh;
     border: solid 2px black;
     border-radius: 100%;
@@ -351,11 +353,11 @@ p {
 }
 
 .shareview h2, .controlls h2 {
-    font-size: larger;
+    font-size: medium;
 }
 
 .shareview h3, .controlls h3 {
-    font-size: large;
+    font-size: small;
     color: #383838;
     margin-top: 1vh;
 }
@@ -416,6 +418,7 @@ p {
     font-weight: bolder;
     font-size: small;
     color: #C6C6C6;
+    margin: 7px 0 7px 0;
 }
 
 .keywords {
