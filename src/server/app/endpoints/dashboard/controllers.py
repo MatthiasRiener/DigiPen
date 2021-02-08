@@ -26,9 +26,12 @@ def index():
 def createPresentation():
     data = request.form
 
+    print(data)
+
     p_name = data['name']
     p_created = time.time()
+    p_keywords = data.getlist('keywords[]')
     p_id = get_jwt_identity()
 
 
-    return json.dumps({"p_name": p_name, "created": p_created, "user_id": p_id})
+    return json.dumps({"p_name": p_name, "created": p_created, "user_id": p_id, "keywords": p_keywords})
