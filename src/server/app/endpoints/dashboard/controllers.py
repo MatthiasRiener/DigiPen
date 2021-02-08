@@ -7,7 +7,7 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
                                 set_refresh_cookies, unset_jwt_cookies, decode_token)
 
 
-
+import json
 
 dashboard = Blueprint("dashboard", __name__,
                     static_folder="static", template_folder="templates")
@@ -17,3 +17,12 @@ dashboard = Blueprint("dashboard", __name__,
 @dashboard.route('/', methods=["GET"])
 def index():
     return render_template('/dashboard/index.html')
+
+
+@dashboard.route('/createPresentation', methods=["POST"])
+@jwt_required
+def createPresentation():
+    data = request.form
+    p_name = data['name']
+    
+    return json.dumps({"p_name": p_name})
