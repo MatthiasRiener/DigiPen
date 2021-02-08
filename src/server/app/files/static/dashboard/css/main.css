@@ -485,6 +485,7 @@ p {
     margin-bottom: 0;
     vertical-align: bottom;
     float: right;
+    text-align: center;
 }
 
 #submitcontrolls:hover {
