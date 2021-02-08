@@ -9,6 +9,8 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
 
 import json
 
+import time
+
 dashboard = Blueprint("dashboard", __name__,
                     static_folder="static", template_folder="templates")
 
@@ -23,6 +25,10 @@ def index():
 @jwt_required
 def createPresentation():
     data = request.form
+
     p_name = data['name']
-        
-    return json.dumps({"p_name": p_name})
+    p_created = time.time()
+    p_id = get_jwt_identity()
+
+
+    return json.dumps({"p_name": p_name, "created": p_created, "user_id": p_id})
