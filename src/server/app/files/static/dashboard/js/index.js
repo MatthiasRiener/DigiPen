@@ -1,22 +1,22 @@
 let templates = [
-    { name: "Planner", image: 'https://www.clipartkey.com/mpngs/m/184-1845555_img-simpsons-dr-nick-riviera.png', slides: 13, downloads: 12343, created: '28.12.2020' },
-    { name: "Science", image: 'https://www.clipartkey.com/mpngs/m/184-1845555_img-simpsons-dr-nick-riviera.png', slides: 13, downloads: 12343, created: '28.12.2020' },
-    { name: "School", image: 'https://www.clipartkey.com/mpngs/m/184-1845555_img-simpsons-dr-nick-riviera.png', slides: 13, downloads: 12343, created: '28.12.2020' },
-    { name: "Politics", image: 'https://www.clipartkey.com/mpngs/m/184-1845555_img-simpsons-dr-nick-riviera.png', slides: 13, downloads: 12343, created: '28.12.2020' },
-    { name: "Christmas", image: 'https://www.clipartkey.com/mpngs/m/184-1845555_img-simpsons-dr-nick-riviera.png', slides: 13, downloads: 12343, created: '28.12.2020' },
-    { name: "Winter", image: 'https://www.clipartkey.com/mpngs/m/184-1845555_img-simpsons-dr-nick-riviera.png', slides: 13, downloads: 12343, created: '28.12.2020' },
-    { name: "Planner", image: 'https://www.clipartkey.com/mpngs/m/184-1845555_img-simpsons-dr-nick-riviera.png', slides: 13, downloads: 12343, created: '28.12.2020' },
-    { name: "Creative", image: 'https://www.clipartkey.com/mpngs/m/184-1845555_img-simpsons-dr-nick-riviera.png', slides: 13, downloads: 12343, created: '28.12.2020' },
-    { name: "Nature", image: 'https://www.clipartkey.com/mpngs/m/184-1845555_img-simpsons-dr-nick-riviera.png', slides: 13, downloads: 12343, created: '28.12.2020' },
-    { name: "Food", image: 'https://www.clipartkey.com/mpngs/m/184-1845555_img-simpsons-dr-nick-riviera.png', slides: 13, downloads: 12343, created: '28.12.2020' },
-    { name: "Portfolio", image: 'https://www.clipartkey.com/mpngs/m/184-1845555_img-simpsons-dr-nick-riviera.png', slides: 13, downloads: 12343, created: '28.12.2020' },
-    { name: "Sport", image: 'https://www.clipartkey.com/mpngs/m/184-1845555_img-simpsons-dr-nick-riviera.png', slides: 13, downloads: 12343, created: '28.12.2020' },
-    { name: "Health", image: 'https://www.clipartkey.com/mpngs/m/184-1845555_img-simpsons-dr-nick-riviera.png', slides: 13, downloads: 12343, created: '28.12.2020' }
+    { name: "Planner", image: 'https://picsum.photos/200/300', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Science", image: 'https://picsum.photos/200/300', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "School", image: 'https://picsum.photos/200/300', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Politics", image: 'https://picsum.photos/200/300', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Christmas", image: 'https://picsum.photos/200/300', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Winter", image: 'https://picsum.photos/200/300', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Planner", image: 'https://picsum.photos/200/300', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Creative", image: 'https://picsum.photos/200/300', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Nature", image: 'https://picsum.photos/200/300', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Food", image: 'https://picsum.photos/200/300', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Portfolio", image: 'https://picsum.photos/200/300', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Sport", image: 'https://picsum.photos/200/300', slides: 13, downloads: 12343, created: '28.12.2020' },
+    { name: "Health", image: 'https://picsum.photos/300/100', slides: 13, downloads: 12343, created: '28.12.2020' }
 ],
     yourPresentations = [
-        { name: "British Tea Tips", image: 'https://www.clipartkey.com/mpngs/m/184-1845555_img-simpsons-dr-nick-riviera.png', slides: 13, downloads: 12343, created: '28.12.2020' },
-        { name: "Austrian History", image: 'https://www.clipartkey.com/mpngs/m/184-1845555_img-simpsons-dr-nick-riviera.png', slides: 22, downloads: 12343, created: '28.12.2020' },
-        { name: "Government Work", image: 'https://www.clipartkey.com/mpngs/m/184-1845555_img-simpsons-dr-nick-riviera.png', slides: 47, downloads: 12343, created: '28.12.2020' },
+        { name: "British Tea Tips", image: 'https://picsum.photos/200/300', slides: 13, downloads: 12343, created: '28.12.2020' },
+        { name: "Austrian History", image: 'https://picsum.photos/200/300', slides: 22, downloads: 12343, created: '28.12.2020' },
+        { name: "Government Work", image: 'https://picsum.photos/200/300', slides: 47, downloads: 12343, created: '28.12.2020' },
     ],
     i = 0;
 
@@ -61,7 +61,6 @@ function dynamicDisplay() {
         }
         $(".searchitem_yourPresentation")[i].innerText = e.name;
         $(".template_yourPresentation")[i].style.backgroundImage = "url('" + templates[i].image + "')";
-        console.log("loading img")
         $(".amoutofslides")[i].innerText = e.slides + " Slides";
         i++;
     });
@@ -108,6 +107,7 @@ $(".myUl li").click(function (e) {
     $("#usetemplatebox").css('display', 'flex')
     $("#template_title").text(title);
 
+    sizetoimg();
     [yourPresentations, templates].forEach((e) => {
         e.forEach((templates) => {
             if (templates.name == title) {
@@ -125,6 +125,7 @@ $("#usetemplatebox").click(function (e) {
         $(this).css('display', 'none')
         $("#template_big, #template_scroll, #usetemplate").css('display', 'flex');
         $(".controllsandshareview").css('display', 'none');
+        sizetoimg();
     }
 })
 
@@ -143,14 +144,24 @@ function sizetoimg() {
         $("#usetemplateboxheader, #template_scroll").css('width', img_width);
     } else {
         $("#usetemplateboxheader").css('width', $(".controllsandshareview").width() - parseFloat($("#template_small_img").css('marginLeft')) * 2);
+        $("#usetemplateboxheader").css('margin-left', parseFloat($("#template_small_img").css('marginLeft')) + $(".fa-chevron-right").eq(1).width());
         $(".shareview").css('width', $("#template_small_img").width())
     }
+
+    $("#template_big_img").css('width', $("#template_big_img").height() * 16 / 9);
+    [...$("#template_scroll img")].forEach((e) => {
+        e.style.width = $("#template_scroll img").height() * 16 / 9 + 'px';
+    })
+
+    $("#template_small_img").css('width', $("#template_small_img").height() * 16 / 9);
 };
 
-$('body').on('click', '.createPresentation', function(){
+$('body').on('click', '.createPresentation', function () {
     window.location = "../../src/editor/view/index.html"
 });
 
-$('body').on('click', '#submitcontrolls', function(){
+/*
+$('body').on('click', '#submitcontrolls', function () {
     window.location = "../../../src/editor/view/index.html"
 });
+*/
