@@ -5,7 +5,7 @@ $('#submitcontrolls').click(function () {
         name: $('#template_title').text()
     }
 
-    sendRequestToServer({type: "POST", url: "/dashboard/createPresentation", presentation}).then(data => {
+    sendRequestToServer({type: "POST", url: "/dashboard/createPresentation", data: presentation}).then(data => {
         console.log(data);
     });
 });
