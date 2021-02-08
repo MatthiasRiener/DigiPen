@@ -24,5 +24,5 @@ def index():
 def createPresentation():
     data = request.form
     p_name = data['name']
-    
+        
     return json.dumps({"p_name": p_name})
