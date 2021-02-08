@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from flask_socketio import SocketIO
 from app.endpoints.auth.controllers import auth
 from app.endpoints.error.controllers import pagenotfound
 from app.endpoints.profile.controllers import profile
@@ -42,7 +43,7 @@ app.config['MONGODB_CONNECT'] = False
 db.init_app(app)
 oidc.init_app(app)
 jwt.init_app(app)
-
+socketio = SocketIO(app)
 
 app.register_blueprint(auth, url_prefix="/auth")
 app.register_blueprint(profile, url_prefix="/profile")
