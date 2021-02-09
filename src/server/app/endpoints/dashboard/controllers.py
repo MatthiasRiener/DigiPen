@@ -46,17 +46,16 @@ def createPresentation():
 def searchUser():
     data = request.form
 
-    s_email = data['email']
+   
 
-    users = authRepo.retrieveUsersByMail(s_email)
-
-    print(users)
-    return json.dumps(users)
     # img, name, email
 
 
 # websockets
-@socketio.on("my event")
+@socketio.on("searchUser")
 def handle_search_user(json):
-    print("moin!! :D", json)
-    emit('message', json)
+
+    
+    s_email = json['data'] 
+    users = authRepo.retrieveUsersByMail(s_email)
+    emit('searchUser', users)
