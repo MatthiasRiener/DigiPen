@@ -192,6 +192,25 @@
                         <input type="text" id="myInput_search" placeholder="Search" title="Type in  name"
                             autocomplete="off">
                     </div>
+                    <div class="searchbox">
+                        <h3>Search</h3>
+                        <div class="profile">
+                            <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
+                                alt="">
+                            <div class="info">
+                                <p class="name">Lucki Zucki</p>
+                                <p class="role">Member</p>
+                            </div>
+                        </div>
+                        <div class="profile">
+                            <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
+                                alt="">
+                            <div class="info">
+                                <p class="name">David Hauser</p>
+                                <p class="role">Member</p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="acceptedbox">
                         <h3>Accepted</h3>
                         <div class="profile">
@@ -257,6 +276,7 @@
     </div>
 
     <script src={{ url_for('static', filename="dashboard/js/index.js") }} type="text/javascript" defer></script>
+    <script src={{ url_for('static', filename="dashboard/js/sockets.js") }} type="text/javascript" defer></script>
     <script type="text/javascript">
         var workspace = document.getElementById('workspace-comp');
         var sideBar = document.getElementById('sidebar-comp');
@@ -264,19 +284,6 @@
         sideBar.addEventListener('animWorkSpace', e => {
             workspace.animateWorkspace();
         })
-    </script>
-
-    <script type="text/javascript" charset="utf-8">
-        var socket = io();
-        socket.on('connect', function() {
-            socket.emit('my event', {data: 'Im connected!'});
-        });
-
-        socket.on('message', function(data) {
-            console.log('on message: ' + data);
-        });
-
-        
     </script>
 
 </body>
