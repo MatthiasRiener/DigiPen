@@ -12,7 +12,7 @@ let users = [];
 
 $('#myInput_search').keypress(function (e) {
     if (e.which == 13 && !users.includes($('#myInput_search').val())) {
-        sendRequestToServer({type: "POST", url: "/dashboard/addUser", data: {email: $('#myInput_search').val()}}).then(data => {
+        sendRequestToServer({type: "POST", url: "/dashboard/searchUser", data: {email: $('#myInput_search').val()}}).then(data => {
             users.push($('#myInput_search').val());
 
             $('.pendingbox').append(
