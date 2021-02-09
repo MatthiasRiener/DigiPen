@@ -85,6 +85,12 @@ class AuthenticationRepository():
         user = User.objects(mail=user_mail).first()        
         return user
 
+    def retrieveUsersByMail(self, user_mail):
+        regex = re.compile('.*' + user_mail + '.*')
+        users = [ob.to_mongo() for ob in User.objects(mail=regex)]
+
+        return users
+        
     def getUserIds(self, users):
         userIds = []
         for user in users:

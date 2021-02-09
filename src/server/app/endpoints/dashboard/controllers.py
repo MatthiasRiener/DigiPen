@@ -6,6 +6,9 @@ from flask_socketio import emit
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt, set_access_cookies, get_jti,
                                 set_refresh_cookies, unset_jwt_cookies, decode_token)
 
+from ...repository.AuthenticationRepository import AuthenticationRepository
+
+
 
 import json
 
@@ -14,7 +17,7 @@ import time
 dashboard = Blueprint("dashboard", __name__,
                     static_folder="static", template_folder="templates")
 
-
+authRepo = AuthenticationRepository(testing=False)
 
 @dashboard.route('/', methods=["GET"])
 def index():
@@ -35,6 +38,21 @@ def createPresentation():
 
 
     return json.dumps({"p_name": p_name, "created": p_created, "user_id": p_id, "keywords": p_keywords})
+
+
+
+@dashboard.route('/searchUser', methods=['POST'])
+@jwt_required
+def searchUser():
+    data = request.form
+
+    s_email = data['email']
+
+    users = authRepo.retrieveUsersByMail(s_email)
+
+    print(users)
+    return json.dumps(users)
+    # img, name, email
 
 
 # websockets
