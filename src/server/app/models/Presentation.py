@@ -1,8 +1,10 @@
 from ..db.settings import db
 import json
+import uuid
 
 class Presentation(db.Document):
-    p_id = db.StringField(primary_key=True, required=True)
+    p_id = db.StringField(primary_key=True,  required=True)
     name = db.StringField(required=True)
-    canvas_id = db.StringField()
+    canvas_id = db.StringField(default=uuid.uuid4())
+    creator= db.StringField(required=True)
     created = db.IntField()

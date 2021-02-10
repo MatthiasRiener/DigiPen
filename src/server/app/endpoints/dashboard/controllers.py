@@ -7,7 +7,7 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
                                 set_refresh_cookies, unset_jwt_cookies, decode_token)
 
 from ...repository.AuthenticationRepository import AuthenticationRepository
-
+from ...repository.PresentationRepository import PresentationRepository
 
 
 import json
@@ -18,11 +18,18 @@ dashboard = Blueprint("dashboard", __name__,
                     static_folder="static", template_folder="templates")
 
 authRepo = AuthenticationRepository(testing=False)
+presRepo = PresentationRepository(testing=False)
 
 @dashboard.route('/', methods=["GET"])
 def index():
     return render_template('/dashboard/index.html')
 
+
+@dashboard.route('/requestPresentation', methods=["GET", "POST"])
+@jwt_required
+def requestPresentation():
+    u_id = get_jwt_identity()
+    return presRepo.requestPresentation(u_id=u_id)
 
 @dashboard.route('/createPresentation', methods=["POST"])
 @jwt_required
