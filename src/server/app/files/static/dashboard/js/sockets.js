@@ -19,10 +19,31 @@ socket.on('disconnect', function(data) {
 });
 
 socket.on('searchUser', function (data) {
+    if(data === undefined) {
+        return;
+    }
     console.log('searchUser Event: ' + data);
+
+    $('.searchOutput').empty();
+
+    data.forEach(user => {
+        $('.searchOutput').append(
+            `<div class="profile">
+                <img src="${user.img}"
+                    alt="">
+                <div class="info">
+                    <p class="name">${user.name}</p>
+                    <p class="role">${user.mail}</p>
+                </div>
+            </div>`);
+    });
 })
 
-$('#myInput_search').keypress(function (e) {
+$('#myInput_search').keyup(function (e) {
+    if($('#myInput_search').val() == '') {
+        $('.searchOutput').empty();
+        return;
+    }
 
     socket.emit('searchUser', {data: $('#myInput_search').val()});
 
@@ -30,16 +51,6 @@ $('#myInput_search').keypress(function (e) {
         sendRequestToServer({type: "POST", url: "/dashboard/searchUser", data: {email: $('#myInput_search').val()}}).then(data => {
             console.log("User: " + data);
             users.push($('#myInput_search').val());
-
-            $('.searchbox').append(
-            `<div class="profile">
-                <img src="${data.img}"
-                    alt="">
-                <div class="info">
-                    <p class="name">${data.name}</p>
-                    <p class="role">${data.email}</p>
-                </div>
-            </div>`);
 
             $('#myInput_search').val('');
         });*/

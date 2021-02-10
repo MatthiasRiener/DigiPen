@@ -16,3 +16,11 @@ $('#submitcontrolls').click(function () {
         keywords: keywords
     }
 });
+
+
+
+function createPresentation() {
+    sendRequestToServer({type: "POST", url: "dashboard/requestPresentation", data: "Hallo Matti!"}).then(data => {
+        console.log("Requested Presentation: " + data);
+    });
+}

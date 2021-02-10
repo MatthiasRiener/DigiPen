@@ -134,6 +134,7 @@ $("#usetemplate").click(function (e) {
     $("#template_big, #template_scroll").css('display', 'none');
     $(".controllsandshareview").css('display', 'flex');
     sizetoimg();
+    createPresentation();    
 });
 
 $(window).resize(sizetoimg);
@@ -157,7 +158,7 @@ function sizetoimg() {
 };
 
 $('body').on('click', '.createPresentation', function () {
-    window.location = "../../src/editor/view/index.html"
+    //window.location = "../../src/editor/view/index.html"
 });
 
 /*
