@@ -37,8 +37,9 @@ $.getJSON("ajax/shortcuts.json", function (data) {
 
         $("#bindings .keybindinginput").eq(optionscount).click(function (event) {
             infoOuter = this;
-            this.style.backgroundColor = 'rgba(100, 198, 237, 1)';
-            if (oldInfo != this && oldInfo != null) {
+            if (this.dataset.dublicate != "true")
+                this.style.backgroundColor = 'rgba(100, 198, 237, 1)';
+            if (oldInfo != this && oldInfo != null && oldInfo.dataset.dublicate != "true") {
                 oldInfo.style.backgroundColor = 'rgba(100, 198, 237, .7)';
             }
             oldInfo = this;
@@ -68,11 +69,21 @@ window.onkeydown = async function (event) {
 
     if (findDuplicates(keysPushed).length !== 0) {
         dublicate = true;
-        infoOuter.style.backgroundColor = "red";
     } else {
         dublicate = false;
         infoOuter.style.backgroundColor = 'rgba(100, 198, 237, 1)';
     }
+
+    [...$(".keybindinginput")].forEach(keybindingelem => {
+        if (keybindingelem.innerText === [...new Set(findDuplicates(keysPushed))].toString()) {
+            keybindingelem.style.backgroundColor = "red"
+            keybindingelem.dataset.dublicate = "true";
+        } else {
+            keybindingelem.style.backgroundColor = "rgba(100, 198, 237, .7)"
+            keybindingelem.dataset.dublicate = "false";
+        }
+    });
+
     keysPushed = [];
 
     jsondataelem.keys = heldKeys;
@@ -81,8 +92,6 @@ window.onkeydown = async function (event) {
         if (n.name === jsondataelem.name && !dublicate)
             n = jsondataelem
     });
-
-    console.log(jsondata)
 };
 
 window.onkeyup = function (event) {
