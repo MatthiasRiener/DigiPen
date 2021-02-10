@@ -15,10 +15,11 @@ import json
 import time
 
 dashboard = Blueprint("dashboard", __name__,
-                    static_folder="static", template_folder="templates")
+                      static_folder="static", template_folder="templates")
 
 authRepo = AuthenticationRepository(testing=False)
 presRepo = PresentationRepository(testing=False)
+
 
 @dashboard.route('/', methods=["GET"])
 def index():
@@ -31,29 +32,18 @@ def requestPresentation():
     u_id = get_jwt_identity()
     return presRepo.requestPresentation(u_id=u_id)
 
+
 @dashboard.route('/createPresentation', methods=["POST"])
 @jwt_required
 def createPresentation():
     data = request.form
-
-    print(data)
-
-    p_name = data['name']
-    p_created = time.time()
-    p_keywords = data.getlist('keywords[]')
-    p_id = get_jwt_identity()
-
-
-    return json.dumps({"p_name": p_name, "created": p_created, "user_id": p_id, "keywords": p_keywords})
-
+    return presRepo.createPresentation(user_id=get_jwt_identity(), data=data)
 
 
 @dashboard.route('/searchUser', methods=['POST'])
 @jwt_required
 def searchUser():
     data = request.form
-
-   
 
     # img, name, email
 
@@ -62,7 +52,6 @@ def searchUser():
 @socketio.on("searchUser")
 def handle_search_user(json):
 
-    
-    s_email = json['data'] 
+    s_email = json['data']
     users = authRepo.retrieveUsersByMail(s_email)
     emit('searchUser', users)

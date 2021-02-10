@@ -8,3 +8,6 @@ class Presentation(db.Document):
     canvas_id = db.StringField(default=uuid.uuid4())
     creator= db.StringField(required=True)
     created = db.IntField()
+    export = db.BooleanField(default=False)
+    timeline = db.BooleanField(default=False)
+    keywords = db.ListField(default=None)
