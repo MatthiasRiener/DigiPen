@@ -9,8 +9,9 @@ class PresentationRepository():
 
     def requestPresentation(self, u_id):
         p_id = str(uuid.uuid4())
-        pres = Presentation(p_id=p_id, name='Spicy Cakes', canvas_id=str(uuid.uuid4()), creator=u_id, created=time.time()).save()
-        return json.dumps({"status": 1, "id": p_id})
+        p_name = "Spicy Cakes and horny Dogs"
+        pres = Presentation(p_id=p_id, name=p_name, canvas_id=str(uuid.uuid4()), creator=u_id, created=time.time()).save()
+        return json.dumps({"status": 1, "id": p_id, "name": p_name})
 
     def createPresentation(self, user_id):
         return ''
