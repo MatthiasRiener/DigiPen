@@ -73,7 +73,7 @@ window.onkeydown = async function (event) {
     let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index);
 
     [...$(".keybindinginput")].forEach(keybindingelem => {
-        if (keybindingelem.innerText === [...new Set(findDuplicates(keysPushed))].toString()) {
+        if (findDuplicates(keysPushed).indexOf(keybindingelem.innerText) !== -1) {
             keybindingelem.style.backgroundColor = dublicateColor;
             keybindingelem.dataset.dublicate = "true";
         } else {
@@ -81,6 +81,8 @@ window.onkeydown = async function (event) {
             keybindingelem.dataset.dublicate = "false";
         }
     });
+
+    console.log(findDuplicates(keysPushed))
 
     if (findDuplicates(keysPushed).length !== 0) {
         dublicate = true;
