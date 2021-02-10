@@ -13,15 +13,24 @@ $('#submitcontrolls').click(function () {
 
     let presentation = {
         name: $('#template_title').text(),
-        keywords: keywords
+        timeline: $('#timelinecheck').prop('checked'),
+        keywords: keywords,
+        export: $('#exportcheck').prop('checked')
     }
+
+    sendRequestToServer({type: "POST", url: "/dashboard/createPresentation", data: presentation}).then(data => {
+        console.log("Created Presentation: " + data);
+        if(data.status) {
+            console.log("Redirecting to editor!");
+        }
+    });
 });
-
-
 
 function createPresentation() {
     console.log("creating presentation");
     sendRequestToServer({type: "POST", url: "/dashboard/requestPresentation", data: "Hallo Matti!"}).then(data => {
         console.log("Requested Presentation: " + data);
+        setCustomStorage("p_id", data.id);
+        $('#template_title').text(data.name);
     });
 }

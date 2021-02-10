@@ -134,7 +134,6 @@ $("#usetemplate").click(function (e) {
     $("#template_big, #template_scroll").css('display', 'none');
     $(".controllsandshareview").css('display', 'flex');
     sizetoimg();
-    createPresentation();    
 });
 
 $(window).resize(sizetoimg);
@@ -157,8 +156,20 @@ function sizetoimg() {
     $("#template_small_img").css('width', $("#template_small_img").height() * 16 / 9);
 };
 
-$('body').on('click', '.createPresentation', function () {
-    //window.location = "../../src/editor/view/index.html"
+/*$('body').on('click', '.createPresentation', function () {
+    window.location = "../../src/editor/view/index.html"
+});*/
+
+/**** Neuer code */
+$(".createPresentation").click(async function () {
+    $("#usetemplatebox").css('display', 'flex');
+    $("#template_title").text("Create Presentation");
+    $("#template_small_img").attr("src", "https://dogemuchwow.com/wp-content/uploads/2019/09/cursed-cat-image-163325.jpg");
+    $("#template_big, #template_scroll").css('display', 'none');
+    $(".controllsandshareview").css('display', 'flex');
+    sizetoimg();
+    sizetoimg();
+    createPresentation();    
 });
 
 /*

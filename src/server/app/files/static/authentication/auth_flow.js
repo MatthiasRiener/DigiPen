@@ -94,3 +94,11 @@ function silentLogin(r_token, callback, args, resolve, reject) {
  function unsetRToken() {
     localStorage.removeItem("r_token");
  }
+
+ function setCustomStorage(key, value) {
+    localStorage.setItem(key, value);
+ }
+
+ function getCustomStorage(key) {
+    return localStorage.getItem(key);
+ }
