@@ -1,4 +1,5 @@
 let keywords = [];
+let template = false;
 
 $('#addkeyword').keypress(function (e) {
     if (e.which == 13 && !keywords.includes($('#addkeyword').val())) {
@@ -16,7 +17,8 @@ $('#submitcontrolls').click(function () {
         name: $('#template_title').text(),
         timeline: $('#timelinecheck').prop('checked'),
         keywords: keywords,
-        export: $('#exportcheck').prop('checked')
+        export: $('#exportcheck').prop('checked'),
+        template: template
     }
 
     sendRequestToServer({type: "POST", url: "/dashboard/createPresentation", data: presentation}).then(data => {
@@ -33,5 +35,6 @@ function createPresentation() {
         console.log("Requested Presentation: " + data);
         setCustomStorage("p_id", data.id);
         $('#template_title').text(data.name);
+        template = false;
     });
 }
