@@ -2,14 +2,15 @@
 
 let optionscount = 0,
     oldval,
-    jsondata,
-    dublicate = false;
+    jsondata;
 var infoOuter;
 var info, oldInfo = null;
 
 var lastEvent;
 var heldKeys = [];
 let jsondataelem;
+let keysPushed = [];
+let dublicate = false;
 
 $.getJSON("ajax/shortcuts.json", function (data) {
     jsondata = data;
@@ -48,7 +49,7 @@ $.getJSON("ajax/shortcuts.json", function (data) {
     });
 });
 
-window.onkeydown = function (event) {
+window.onkeydown = async function (event) {
     if (lastEvent && lastEvent.keyCode == event.keyCode || heldKeys.length >= 3) {
         return;
     }
@@ -59,41 +60,37 @@ window.onkeydown = function (event) {
     info = infoOuter.appendChild(document.createTextNode(''));
     lastEvent = event;
     heldKeys.push(event.code);
+    info.data = heldKeys.join(' + ').replace('Key', '').replace(/([A-Z])/g, ' $1').trim();
+    [...$(".keybindinginput")].forEach(element => {
+        keysPushed.push(element.innerText)
+    });
+    let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
+
+    if (findDuplicates(keysPushed).length !== 0) {
+        dublicate = true;
+        infoOuter.style.backgroundColor = "red";
+    } else {
+        dublicate = false;
+        infoOuter.style.backgroundColor = 'rgba(100, 198, 237, 1)';
+    }
+    keysPushed = [];
+
+    jsondataelem.keys = heldKeys;
 
     $.grep(jsondata, function (n, i) {
-        if (JSON.stringify(n.keys) === JSON.stringify(heldKeys) && n.name !== jsondataelem.name) {
-            dublicate = true;
-        } else {
-            if (dublicate) return;
-            infoOuter.style.backgroundColor = "rgba(100, 198, 237, 1)";
-            info.data = heldKeys.join(' + ').replace('Key', '').replace(/([A-Z])/g, ' $1').trim();
-            if (n.name === jsondataelem.name)
-                n = jsondataelem
-
-            console.log(jsondataelem)
-        }
+        if (n.name === jsondataelem.name && !dublicate)
+            n = jsondataelem
     });
 
-    // jsondataelem.keys = heldKeys;
-
-
+    console.log(jsondata)
 };
 
 window.onkeyup = function (event) {
     lastEvent = null;
     heldKeys = [];
-
-    if (dublicate)
-        $.grep(jsondata, function (n, i) {
-            if (n.name === jsondataelem.name) {
-                infoOuter.style.backgroundColor = "rgba(100, 198, 237, 1)";
-                info.data = n.keys.join(' + ').replace('Key', '').replace(/([A-Z])/g, ' $1').trim()
-            }
-        });
-
-    dublicate = false;
 };
 
 $("#safe").click(function () {
+    if (dublicate) return;
     alert(jsondata)
 });
