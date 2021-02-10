@@ -12,6 +12,7 @@ $('#submitcontrolls').click(function () {
     console.log(keywords);
 
     let presentation = {
+        id: getCustomStorage("p_id"),
         name: $('#template_title').text(),
         timeline: $('#timelinecheck').prop('checked'),
         keywords: keywords,
