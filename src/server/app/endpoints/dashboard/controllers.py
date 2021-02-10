@@ -9,7 +9,6 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
 from ...repository.AuthenticationRepository import AuthenticationRepository
 from ...repository.PresentationRepository import PresentationRepository
 
-
 import json
 
 import time
@@ -19,7 +18,6 @@ dashboard = Blueprint("dashboard", __name__,
 
 authRepo = AuthenticationRepository(testing=False)
 presRepo = PresentationRepository(testing=False)
-
 
 @dashboard.route('/', methods=["GET"])
 def index():
