@@ -1,5 +1,49 @@
 * {
-    background: var(--dark-grey);
+    padding: 0;
+    margin: 0;
     font-family: 'Karla';
-    color: var(--light-grey);
+    outline: none;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 100vw;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+#template {
+    display: none;
+}
+
+.keybindinginput {
+    background-color: rgba(100, 198, 237, 0.7);
+    border: none;
+    caret-color: transparent;
+    padding: 0.7vw;
+    text-align: center;
+    text-transform: capitalize;
+    width: 25vw;
+    color: white;
+}
+
+.displayname {
+    width: 50vw;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0.7vw 2vw;
+}
+
+.keybindingdisplay, .displayname {
+    color: white;
+    font-size: medium;
+}
+
+.bindingsbox {
+    display: flex;
+}
+
+.bindingsbox div {
+    margin: 3px;
 }
