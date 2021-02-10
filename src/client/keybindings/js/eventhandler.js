@@ -2,7 +2,8 @@
 
 let optionscount = 0,
     oldval,
-    jsondata;
+    jsondata,
+    dublicate = false;
 var infoOuter;
 var info, oldInfo = null;
 
@@ -58,19 +59,39 @@ window.onkeydown = function (event) {
     info = infoOuter.appendChild(document.createTextNode(''));
     lastEvent = event;
     heldKeys.push(event.code);
-    info.data = heldKeys.join(' + ').replace('Key', '').replace(/([A-Z])/g, ' $1').trim();
-
-    jsondataelem.keys = heldKeys;
 
     $.grep(jsondata, function (n, i) {
-        if (n.name === jsondataelem.name)
-            n = jsondataelem
+        if (JSON.stringify(n.keys) === JSON.stringify(heldKeys) && n.name !== jsondataelem.name) {
+            dublicate = true;
+        } else {
+            if (dublicate) return;
+            infoOuter.style.backgroundColor = "rgba(100, 198, 237, 1)";
+            info.data = heldKeys.join(' + ').replace('Key', '').replace(/([A-Z])/g, ' $1').trim();
+            if (n.name === jsondataelem.name)
+                n = jsondataelem
+
+            console.log(jsondataelem)
+        }
     });
+
+    // jsondataelem.keys = heldKeys;
+
+
 };
 
 window.onkeyup = function (event) {
     lastEvent = null;
     heldKeys = [];
+
+    if (dublicate)
+        $.grep(jsondata, function (n, i) {
+            if (n.name === jsondataelem.name) {
+                infoOuter.style.backgroundColor = "rgba(100, 198, 237, 1)";
+                info.data = n.keys.join(' + ').replace('Key', '').replace(/([A-Z])/g, ' $1').trim()
+            }
+        });
+
+    dublicate = false;
 };
 
 $("#safe").click(function () {
