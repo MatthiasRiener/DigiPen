@@ -65,14 +65,7 @@ window.onkeydown = async function (event) {
     [...$(".keybindinginput")].forEach(element => {
         keysPushed.push(element.innerText)
     });
-    let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
-
-    if (findDuplicates(keysPushed).length !== 0) {
-        dublicate = true;
-    } else {
-        dublicate = false;
-        infoOuter.style.backgroundColor = 'rgba(100, 198, 237, 1)';
-    }
+    let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index);
 
     [...$(".keybindinginput")].forEach(keybindingelem => {
         if (keybindingelem.innerText === [...new Set(findDuplicates(keysPushed))].toString()) {
@@ -83,6 +76,13 @@ window.onkeydown = async function (event) {
             keybindingelem.dataset.dublicate = "false";
         }
     });
+
+    if (findDuplicates(keysPushed).length !== 0) {
+        dublicate = true;
+    } else {
+        dublicate = false;
+        infoOuter.style.backgroundColor = 'rgba(100, 198, 237, 1)';
+    }
 
     keysPushed = [];
 
