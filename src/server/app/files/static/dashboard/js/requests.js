@@ -20,7 +20,8 @@ $('#submitcontrolls').click(function () {
 
 
 function createPresentation() {
-    sendRequestToServer({type: "POST", url: "dashboard/requestPresentation", data: "Hallo Matti!"}).then(data => {
+    console.log("creating presentation");
+    sendRequestToServer({type: "POST", url: "/dashboard/requestPresentation", data: "Hallo Matti!"}).then(data => {
         console.log("Requested Presentation: " + data);
     });
 }
