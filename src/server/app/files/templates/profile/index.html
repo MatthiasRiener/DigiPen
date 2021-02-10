@@ -25,6 +25,11 @@
     </script>
     
     <script src={{ url_for('static', filename="profile/js/requests.js") }} type="text/javascript" defer></script>
+
+    <script src={{ url_for('static', filename="components/check-notifications/Notifications.js") }} type="module"></script>
+
+    <script src={{ url_for('static', filename="components/side-bar/customEvents.js") }} type="module"></script>
+
 </head>
 
 <body>
@@ -32,8 +37,8 @@
     <side-bar id="sidebar-comp"   style="width: 0%; height: 100%; background-color: #F8F7F9;" class="sidenavW3"></side-bar>
     <create-workspace id="workspace-comp" ></create-workspace>
 
-
-
+    <check-notifications id="notifications-comp"></check-notifications>
+    
     <div id="openCloseNav">
         <div id="burger-top"></div>
         <div id="burger-middle"></div>
@@ -41,8 +46,6 @@
     </div>
 
     <div id="fullpage">
-
-
         <div class="section" id="section1">
             <content class="intro">
                 <h1 class="pp_bt_logo_click">SLIDEA</h1>
@@ -317,16 +320,6 @@
 
         });
     </script>
-
-<script type="text/javascript">
-    var workspace = document.getElementById('workspace-comp');
-    var sideBar = document.getElementById('sidebar-comp');
-    
-     sideBar.addEventListener('animWorkSpace', e => {                   
-        workspace.animateWorkspace();
-    })
-</script>
-
 </body>
 
 </html>

@@ -134,6 +134,7 @@ $("#usetemplate").click(function (e) {
     $("#template_big, #template_scroll").css('display', 'none');
     $(".controllsandshareview").css('display', 'flex');
     sizetoimg();
+    template = true;
 });
 
 $(window).resize(sizetoimg);

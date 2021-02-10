@@ -48,7 +48,10 @@
             ></ion-icon>
           </div>
 
-        
+          <div class="nav-bar-element notification-item" id="notification">
+            <ion-icon name="notifications-outline" class="icon-navbar"></ion-icon>
+            <p>Notifications</p>
+          </div>
 
           <div class="nav-bar-element-subtask profile-item">
             <ion-icon name="person-outline" class="icon-navbar"></ion-icon>

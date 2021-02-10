@@ -25,6 +25,7 @@ $('#submitcontrolls').click(function () {
         console.log("Created Presentation: " + data);
         if(data.status) {
             console.log("Redirecting to editor!");
+            setCustomStorage("p_id", data.p_id);
         }
     });
 });

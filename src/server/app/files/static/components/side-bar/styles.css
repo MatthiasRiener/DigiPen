@@ -117,3 +117,7 @@
 .logout-item:hover {
     cursor: pointer;
 }
+
+.notification-item:hover {
+    cursor: pointer;
+}

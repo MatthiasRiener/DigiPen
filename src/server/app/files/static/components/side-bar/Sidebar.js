@@ -22,6 +22,7 @@
         this.profileBtn = this.shadowRoot.querySelector('.profile-item');
         this.quizBtn = this.shadowRoot.querySelector('.quiz-item');
         this.logoutBtn = this.shadowRoot.querySelector('.logout-item');
+        this.notificationBtn = this.shadowRoot.querySelector('.notification-item');
 
 
         this.initializeEvents();
@@ -29,6 +30,7 @@
       initializeEvents() {
 
           this.workSpaceBtn.addEventListener('click', e => {this.addWorkSpace() });
+          this.notificationBtn.addEventListener('click', e => {this.checkNotifications()})
 
           // event listeners
           this.dashboardBtn.addEventListener('click', e => {console.log(window.location.href = baseURL + `/dashboard`)})
@@ -42,8 +44,12 @@
         this.dispatchEvent(new CustomEvent('animWorkSpace', {}));
       }
 
+      checkNotifications() {
+        this.dispatchEvent(new CustomEvent('animNotifications', {}));
+        console.log("opening!")
+      }
+
       loadCss(path) {
-        
           fetch(baseURL + `/static/components/side-bar/styles.css`)
           .then(response => response.text())
               .then(data => {
@@ -55,9 +61,7 @@
       }
     connectedCallback() {
 
-
     }
-
 
       calculateWorkspaceWidth() {
         var workSpace = this.shadowRoot.querySelector('.cur-workspace');
