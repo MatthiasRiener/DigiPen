@@ -6,7 +6,7 @@ from app.endpoints.taskmanagement.controllers import man
 from app.endpoints.workspace.controllers import workspace
 from app.endpoints.dashboard.controllers import dashboard
 from app.endpoints.landing_page.controllers import landing_page
-from app.db.settings import db, oidc, jwt, socketio
+from app.db.settings import db, oidc, jwt, socketio, mongoclient
 
 
 app = Flask(__name__, template_folder="./app/files/templates",
@@ -23,7 +23,7 @@ app.config.update({
     'OIDC_OPENID_REALM': 'flask-demo',
     'OIDC_SCOPES': ['openid', 'email', 'profile'],
     'OIDC_INTROSPECTION_AUTH_METHOD': 'client_secret_post',
-    'MONGO_URI': "mongodb://root:rootpassword@localhost:27017/slideadb/?authSource=admin",
+    'MONGO_URI': "mongodb://root:rootpassword@localhost:27017/slideadb?authSource=admin",
     'JWT_SECRET_KEY': 'jwt-secret-string'
 })
 
@@ -43,6 +43,7 @@ db.init_app(app)
 oidc.init_app(app)
 jwt.init_app(app)
 socketio.init_app(app)
+mongoclient.init_app(app)
 
 app.register_blueprint(auth, url_prefix="/auth")
 app.register_blueprint(profile, url_prefix="/profile")
