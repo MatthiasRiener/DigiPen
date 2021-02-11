@@ -19,7 +19,27 @@ $('body').on('click', '.task-item', function () {
     taskPositonLeft = ($(this).offset().left / $(window).width()) * 100;
 
     $('#taskPopup').css('display', 'flex');
-    //alert(taskPositionTop);
+    $('#taskPopup').css('top', (taskPositionTop - 36) + "vh");
+    $('#taskPopup').css('left', (taskPositonLeft + taskWidth - 2) + "vw");
+    $('#taskPopup').animate({
+        opacity: 1.0
+    }, 100);
+
+   closeAllSubPopups();
+});
+
+$('#addTask').click(function () {
+    $('#taskPopup').css('opacity', '0.0');
+    $('#taskPopup').css('display', 'none');
+
+    taskWidth = ($(this).width() / $(window).width()) * 100;
+    taskHeight = ($(this).height() / $(window).height()) * 100;
+    taskPositionTop = (($(this).offset().top / $(window).height()) * 100) + 36;
+    taskPositonLeft = (($(this).offset().left / $(window).width()) * 100) - 14;
+
+    $('#taskPopup-second-headline').text('Taskname...');
+
+    $('#taskPopup').css('display', 'flex');
     $('#taskPopup').css('top', (taskPositionTop - 36) + "vh");
     $('#taskPopup').css('left', (taskPositonLeft + taskWidth - 2) + "vw");
     $('#taskPopup').animate({

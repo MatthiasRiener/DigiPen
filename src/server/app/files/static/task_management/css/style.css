@@ -986,3 +986,11 @@ body {
     background-color: var(--light-grey);
     border-radius: 100%;
 }
+
+#addTask {
+    z-index: 300;
+}
+
+#addTask:hover {
+    cursor: pointer;
+}
