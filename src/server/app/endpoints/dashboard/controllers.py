@@ -38,12 +38,9 @@ def createPresentation():
     return presRepo.createPresentation(user_id=get_jwt_identity(), data=data)
 
 
-@dashboard.route('/searchUser', methods=['POST'])
-@jwt_required
-def searchUser():
-    data = request.form
-
-    # img, name, email
+@dashboard.route('/getTemplates', methods=["GET"])
+def getTemplates():
+    return presRepo.getTemplates()
 
 
 # websockets

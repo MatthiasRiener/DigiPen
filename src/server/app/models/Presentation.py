@@ -10,3 +10,4 @@ class Presentation(db.Document):
     export = db.BooleanField(default=False)
     timeline = db.BooleanField(default=False)
     keywords = db.ListField(default=None)
+    public = db.BooleanField(default=False)

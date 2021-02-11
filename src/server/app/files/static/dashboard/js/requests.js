@@ -18,6 +18,7 @@ $('#submitcontrolls').click(function () {
         timeline: $('#timelinecheck').prop('checked'),
         keywords: keywords,
         export: $('#exportcheck').prop('checked'),
+        public: $('#publiccheck').prop('checked'),
         template: template
     }
 
