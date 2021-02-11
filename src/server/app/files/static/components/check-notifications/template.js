@@ -4,6 +4,7 @@
     <div class="notifications-container">
       <div class="top">
         <h1>Notifications</h1>
+        <ion-icon class="closePopups" name="close-circle"></ion-icon>
       </div>
       <div class="bottom">
         <div class="noti-row">

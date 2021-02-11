@@ -16,6 +16,10 @@
         this.shadowRoot.appendChild(this.temp.content.cloneNode(true));
         this.loadCss(this.getAttribute("path"));
         this.container = this.shadowRoot.querySelector('.notifications-container');
+        this.closeBtn = this.shadowRoot.querySelector('.closePopups');
+        this.closeBtn.addEventListener('click', e => {
+          this.closePopups();
+        });
 
         //this.shadowRoot.querySelector('.btn-create-ws').addEventListener('click', e => {this.createWorkspace()});
     }
@@ -38,12 +42,19 @@
     disconnectedCallback() {
 
     }
+
     animateNotifications() {
         console.log("animation notis");
         this.classList.remove('hidden');
         this.classList.add('visible');
 
         this.container.classList.add('popTransition');
+    }
+
+    closePopups() {
+      this.classList.remove('visible');
+      this.classList.add('hidden');
+      this.container.classList.remove('popTransition');
     }
 
     /*createWorkspace() {
