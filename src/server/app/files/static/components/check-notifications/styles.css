@@ -3,10 +3,9 @@
     width: 100%;
     height: 100%;
     z-index: 10;
-    background: rgba(0,0,0,0.4);
-    justify-content: center;
     display: flex;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-end;
 }
 
 :host(.hidden) {
@@ -20,13 +19,16 @@
 
 
 .notifications-container {
-    width: 37%;
-    height: 46%;
+    width: 30%;
+    height: 40%;
     background: white;
     box-shadow: 0px 0px 20px #00000030;
     display: flex;
     flex-direction: row;
-    border-radius: 30px;
+    border-radius: 5px;
+    margin: 0 0 7vh 14vw;
+    display: flex;
+    flex-direction: column;
 }
 
 
@@ -39,4 +41,137 @@
 
 .notifications-container.popTransition {
     animation: popup 0.2s ease-in forwards;
+}
+
+.top {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1.6vw;
+}
+
+.bottom {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.noti-row {
+    width: 86%;
+    height: 5vh;
+    background-color: #cccccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.5vw;
+}
+
+.noti-row:hover {
+    cursor: pointer;
+}
+
+.noti-row-text {
+    font-size: 16px;
+}
+
+.noti-row-arrow {
+    font-size: 20px;
+}
+
+.invites-container {
+    width: 20%;
+    height: 40%;
+    background: white;
+    box-shadow: 0px 0px 20px #00000030;
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    margin: 7vh 1vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.invites-row {
+    width: 86%;
+    height: 4vh;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1.6vh;
+}
+
+.invites-row-left {
+    width: 14%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invites-picture {
+    width: 2vw;
+    height: 2vw;
+    border-radius: 100%;
+    background: black;
+}
+
+.invites-row-middle {
+    width: 46%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 0.3vw;
+}
+
+.invites-presentation {
+    width: 100%;
+    height: 55%;
+    font-size: 16px;
+    margin-top: 0.8vh;
+}
+
+.invites-owner {
+    width: 100%;
+    height: 45%;
+    font-size: 10px;
+    margin-top: -1.4vh;
+}
+
+.invites-row-right {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.invites-accept {
+    width: 35%;
+    height: 60%;
+    border: none;
+    background-color: red;
+    border-radius: 5px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invites-decline {
+    width: 35%;
+    height: 60%;
+    border: none;
+    background-color: green;
+    border-radius: 5px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
