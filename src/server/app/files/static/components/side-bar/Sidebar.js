@@ -34,7 +34,7 @@
 
           // event listeners
           this.dashboardBtn.addEventListener('click', e => {console.log(window.location.href = baseURL + `/dashboard`)})
-          this.taskBtn.addEventListener('click', e => {console.log(window.location = `${this.path}/task-management/index.html`)})
+          this.taskBtn.addEventListener('click', e => {console.log(window.location = baseURL + `/task`)})
           this.profileBtn.addEventListener('click', e => {console.log(window.location = `${this.path}/profilseite/index.html`)})
           this.quizBtn.addEventListener('click', e => {console.log(window.location = `${this.path}/quiz/index.html`)})
           this.logoutBtn.addEventListener('click', e => {logOut()})

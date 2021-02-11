@@ -38,6 +38,11 @@
             <p>Quiz</p>
           </div>
 
+          <div class="nav-bar-element notification-item" id="notification">
+          <ion-icon name="notifications-outline" class="icon-navbar"></ion-icon>
+          <p>Notifications</p>
+        </div>
+
           <div class="nav-bar-element">
             <ion-icon name="cog-outline" class="icon-navbar"></ion-icon>
             <p>Settings</p>
@@ -46,11 +51,6 @@
               style="margin-left: auto; margin-right: 15px"
               class="icon-navbar"
             ></ion-icon>
-          </div>
-
-          <div class="nav-bar-element notification-item" id="notification">
-            <ion-icon name="notifications-outline" class="icon-navbar"></ion-icon>
-            <p>Notifications</p>
           </div>
 
           <div class="nav-bar-element-subtask profile-item">

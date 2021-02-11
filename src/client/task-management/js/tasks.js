@@ -5,8 +5,8 @@ const tasks = [{
         taskColor: "#F02700",
         tasks: [{
                 taskName: "Schaut Österreich wie ein Schnitzel aus?",
-                start: "01/03/2021",
-                end: "01/04/2021",
+                start: "02/03/2021",
+                end: "02/12/2021",
                 finished: true,
             },
             {
