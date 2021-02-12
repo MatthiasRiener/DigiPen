@@ -1,7 +1,7 @@
 
  import { template } from './template.js';
 
-  class Workspace extends HTMLElement {
+  class Notification extends HTMLElement {
     constructor() {
       super();
 
@@ -74,7 +74,7 @@
           console.log(presentation);
 
           this.invitesOutput.innerHTML += (`
-            <div class="invites-row">
+            <div class="invites-row" data-presentation="${presentation._id}">
               <div class="invites-row-left">
                 <div class="invites-picture" style="background: url('${presentation.creator.img}')"></div>
               </div>
@@ -97,6 +97,11 @@
         });
       });
     }
+
+    deleteEntry(data) {
+      console.log(this.shadowRoot.querySelector(`.invites-row[data-presentation="${data.p_id}"]`))
+      this.shadowRoot.querySelector(`.invites-row[data-presentation="${data.p_id}"]`).remove();
+    }
   }
 
-window.customElements.define('check-notifications', Workspace);
+window.customElements.define('check-notifications', Notification);

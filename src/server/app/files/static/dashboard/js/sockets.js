@@ -67,7 +67,10 @@ socket.on('inviteUser', function (data) {
 });
 
 socket.on('handleInvite', function (data) {
-    console.log("invite response: " + data);
+        //$(`.invitesOutput .invites-row[data-presentation="${data.p_id}"]`).remove();
+    console.log("if..")
+    notification = document.getElementById('notifications-comp');
+    notification.deleteEntry(data);
 })
 
 $('#myInput_search').keyup(function (e) {
