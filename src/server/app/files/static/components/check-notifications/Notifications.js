@@ -16,8 +16,16 @@
         this.shadowRoot.appendChild(this.temp.content.cloneNode(true));
         this.loadCss(this.getAttribute("path"));
         this.container = this.shadowRoot.querySelector('.notifications-container');
+        this.closeBtn = this.shadowRoot.querySelector('.closePopups');
+        this.closeBtn.addEventListener('click', e => {
+          this.closePopups();
+        });
 
-        //this.shadowRoot.querySelector('.btn-create-ws').addEventListener('click', e => {this.createWorkspace()});
+        this.invitesContainer = this.shadowRoot.querySelector('.invites-container');
+        this.openInvitesBtn = this.shadowRoot.querySelector('.openInvites');
+        this.openInvitesBtn.addEventListener('click', e => {
+          this.openInvites();
+        });
     }
 
       loadCss(path) {
@@ -38,32 +46,28 @@
     disconnectedCallback() {
 
     }
+
     animateNotifications() {
-        console.log("animation notis");
         this.classList.remove('hidden');
         this.classList.add('visible');
 
         this.container.classList.add('popTransition');
+        this.invitesContainer.classList.add('slideTransition');
     }
 
-    /*createWorkspace() {
-        this.classList.remove('visible');
-        this.classList.add('hidden');
-        this.container.classList.remove('popTransition');
+    closePopups() {
+      this.classList.remove('visible');
+      this.classList.add('hidden');
+      this.container.classList.remove('popTransition');
+      this.invitesContainer.classList.remove('slideTransition');
+    }
 
-        let workspaceName = this.shadowRoot.querySelector('#workspaceName').value;
-        let workspaceUsers = this.shadowRoot.querySelector('#workspaceUsers').value.split(';');
+    openInvites() {
+      this.invitesContainer.remove('hidden');
+      this.invitesContainer.add('visible');
 
-        let workspace = {
-          name: workspaceName,
-          users: workspaceUsers,
-          image: 'https://www.ruhr24.de/bilder/2020/01/30/13511554/547564660-haben-macher-die-simpsons-coronavirus-schon-vorhergesehen-Mn1zvMk6Lec.jpg'
-        }
-
-        sendRequestToServer({type: "POST", url: "/workspace/createWorkspace", data: workspace}).then(data => {
-          $('#workspaceCount').text(data.workspaces);
-        });
-    }*/
+      this.invitesContainer.classList.add('slideTransition');
+    }
   }
 
 window.customElements.define('check-notifications', Workspace);
