@@ -84,12 +84,12 @@
               </div>
               <div class="invites-row-right">
                 <button class="invites-accept inviteBtn"
-                  onClick="handleInvite($(this).data('type'))"
-                  data-type="decline"><ion-icon name="close-outline"></ion-icon>
+                  onClick="handleInvite($(this).data('type'), $(this).data('presentation'))"
+                  data-type="decline" data-presentation="${presentation._id}"><ion-icon name="close-outline"></ion-icon>
                 </button>
                 <button class="invites-decline inviteBtn"
-                  onClick="handleInvite($(this).data('type'))"
-                  data-type="accepted"><ion-icon name="checkmark-outline"></ion-icon>
+                  onClick="handleInvite($(this).data('type'), $(this).data('presentation'))"
+                  data-type="accepted" data-presentation="${presentation._id}"><ion-icon name="checkmark-outline"></ion-icon>
                 </button>
               </div>
             </div>
