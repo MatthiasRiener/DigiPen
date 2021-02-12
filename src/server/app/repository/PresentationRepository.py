@@ -7,13 +7,14 @@ import json
 from bson import json_util
 from .TaskRepository import TaskRepository
 from .CanvasRepository import CanvasRepository
-
+from .AuthenticationRepository import AuthenticationRepository
 
 class PresentationRepository():
     def __init__(self, testing):
         self.testing = testing
         self.taskRepo = TaskRepository(testing=False)
         self.canvasRepo = CanvasRepository(testing=False)
+        self.authRepo = AuthenticationRepository(testing=False)
 
     def requestPresentation(self, u_id):
         p_id = str(uuid.uuid4())
@@ -83,6 +84,8 @@ class PresentationRepository():
         presentations = tuple()
         pres = Presentation.objects(__raw__={"users": {"$in": [{"status": "pending", "u_id": user_id}]}})
         for index, p in enumerate(pres):
+            present = p.to_mongo()
+            present["creator"] = json.loads(json_util.dumps(self.authRepo.retrieveUser(user_id=p.creator)))
             presentations = presentations + (p.to_mongo(), )
 
         return json.dumps({"count": len(presentations) ,"res": presentations})
