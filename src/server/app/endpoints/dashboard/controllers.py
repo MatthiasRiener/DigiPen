@@ -1,7 +1,7 @@
 from ...db.settings import db, oidc, socketio
 from flask import Flask, Blueprint, render_template, abort, g, request
 from oauth2client.client import OAuth2Credentials
-from flask_socketio import emit
+from flask_socketio import emit, join_room, leave_room, send
 
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt, set_access_cookies, get_jti,
                                 set_refresh_cookies, unset_jwt_cookies, decode_token)
@@ -29,7 +29,10 @@ def index():
 @jwt_required
 def requestPresentation():
     u_id = get_jwt_identity()
-    return presRepo.requestPresentation(u_id=u_id)
+
+    response, p_id = presRepo.requestPresentation(u_id=u_id)
+    
+    return response
 
 
 @dashboard.route('/createPresentation', methods=["POST"])
@@ -50,10 +53,16 @@ def getInvites():
     return presRepo.getInvites(user_id=user_id)
 
 
+
+
+@socketio.on('connectUser')
+def connect(json):
+    u_id = json['user_id']
+    join_room(u_id)
+    send(u_id + " has joined the room", room=u_id)
 # websockets
 @socketio.on("searchUser")
 def handle_search_user(json):
-
     s_email = json['email']
     p_id = json['p_id']
     users = authRepo.retrieveUsersByMail(s_email)
@@ -68,8 +77,28 @@ def handle_invite_user(json):
 
     user = authRepo.retrieveUserByMail(s_email)
     pres = presRepo.inviteUser(user_id=user.u_id, p_id=p_id)
-    
+
     pres_res = authRepo.getUsersForPresentation(pres=pres)
     
-
+    sendInviteMessage(p_id=p_id, u_id=user.u_id)
+    broadCastPresentation(pres_res)
+    
     return emit('inviteUser', pres_res.to_mongo())
+
+@socketio.on("handleInvite")
+def handle_invite_pressed(json):
+    status = json['status']
+    print(status)
+
+def sendInviteMessage(p_id, u_id):
+    send("You have been invited to join the presentation %s. " % (p_id), room=u_id)
+
+def broadCastPresentation(pres):
+    print(pres.to_mongo())
+    print("====")
+    print(pres.users)
+    
+    for user in pres.users:
+        if user['status'] == 'accepted':
+            send("New user was invited to your lobby", room=user["_id"])
+    

@@ -1,7 +1,10 @@
 var socket = io();
         
 socket.on('connect', function() {
-    socket.emit('my event', {data: 'Im connected!'});
+    sendRequestToServer({type: "GET", url: "/auth/getUserID"}).then(data => {
+        console.log(data)
+        socket.emit('connectUser', {user_id: data.u_id});
+    });
 });
 
 socket.on('message', function(data) {

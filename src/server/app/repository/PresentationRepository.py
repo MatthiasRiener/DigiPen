@@ -21,7 +21,7 @@ class PresentationRepository():
         p_name = "Spicy Cakes and horny Dogs"
         pres = Presentation(p_id=p_id, name=p_name,
                             creator=u_id, created=time.time(), users=[{"status": "accepted", "u_id":u_id}]).save()
-        return json.dumps({"status": 1, "id": p_id, "name": p_name})
+        return json.dumps({"status": 1, "id": p_id, "name": p_name}), p_id
 
     def createPresentation(self, user_id, data):
         print(data)

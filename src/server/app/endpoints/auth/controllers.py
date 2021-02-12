@@ -82,3 +82,7 @@ def refresh():
 def redirectProfile():
     return redirect(url_for('profile.index'))
 
+@auth.route('/getUserID')
+@jwt_required
+def getUserID():
+    return json.dumps({"u_id": get_jwt_identity()})
