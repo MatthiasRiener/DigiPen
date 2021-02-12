@@ -19,7 +19,7 @@ class PresentationRepository():
         p_id = str(uuid.uuid4())
         p_name = "Spicy Cakes and horny Dogs"
         pres = Presentation(p_id=p_id, name=p_name,
-                            creator=u_id, created=time.time(), users=[u_id]).save()
+                            creator=u_id, created=time.time(), users=[{"status": "accepted", "u_id":u_id}]).save()
         return json.dumps({"status": 1, "id": p_id, "name": p_name})
 
     def createPresentation(self, user_id, data):
@@ -58,7 +58,11 @@ class PresentationRepository():
         return presentations
 
     def inviteUser(self, user_id, p_id):
-        Presentation.objects(p_id=p_id).first().update(add_to_set__users=[user_id])
+        user = dict()
+        user['status'] = 'pending'
+        user['u_id'] = user_id
+
+        Presentation.objects(p_id=p_id).first().update(add_to_set__users=[user])
         
         return self.getPresentation(p_id=p_id)
     def getPresentation(self, p_id):

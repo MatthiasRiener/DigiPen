@@ -103,9 +103,12 @@ class AuthenticationRepository():
         return User.objects().count()
 
     def getUsersForPresentation(self, pres):
-        for index, user_id in enumerate(pres.users):
-            pres.users[index] = self.retrieveUser(user_id)
-            if pres.creator == user_id:
+        for index, user_obj in enumerate(pres.users):
+            print(user_obj['u_id'])
+            pres.users[index] = self.retrieveUser(user_obj['u_id'])
+
+            pres.users[index]['status'] = user_obj['status']
+            if pres.creator == user_obj['u_id']:
                 pres.users[index]['role'] = 'Owner'
             else:
                 pres.users[index]['role'] = 'Member'
