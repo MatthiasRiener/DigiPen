@@ -63,6 +63,7 @@ class PresentationRepository():
         return self.getPresentation(p_id=p_id)
     def getPresentation(self, p_id):
         return Presentation.objects(p_id=p_id).first()
+    
     def dropAll(self):
         if self.testing:
             Presentation.objects().delete()

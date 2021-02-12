@@ -59,6 +59,8 @@ def handle_invite_user(json):
 
     user = authRepo.retrieveUserByMail(s_email)
     pres = presRepo.inviteUser(user_id=user.u_id, p_id=p_id)
+    
+    pres_res = authRepo.getUsersForPresentation(pres=pres)
+    
 
-
-    return emit('inviteUser', pres.to_mongo())
+    return emit('inviteUser', pres_res.to_mongo())

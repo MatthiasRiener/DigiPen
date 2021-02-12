@@ -102,6 +102,15 @@ class AuthenticationRepository():
     def getUserCount(self):
         return User.objects().count()
 
+    def getUsersForPresentation(self, pres):
+        for index, user_id in enumerate(pres.users):
+            pres.users[index] = self.retrieveUser(user_id)
+            if pres.creator == user_id:
+                pres.users[index]['role'] = 'Owner'
+            else:
+                pres.users[index]['role'] = 'Member'
+
+        return pres
     def deleteAll(self):
         if self.testing:
             User.objects().delete()
