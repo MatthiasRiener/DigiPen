@@ -28,7 +28,7 @@ socket.on('searchUser', function (data) {
 
     data.forEach(user => {
         $('.searchOutput').append(
-            `<div class="profile">
+            `<div data-email="${user.mail}" data-type="search" class="profile">
                 <img src="${user.img}"
                     alt="">
                 <div class="info">
@@ -46,12 +46,13 @@ $('#myInput_search').keyup(function (e) {
     }
 
     socket.emit('searchUser', {data: $('#myInput_search').val()});
+});
 
-    /*
-        sendRequestToServer({type: "POST", url: "/dashboard/searchUser", data: {email: $('#myInput_search').val()}}).then(data => {
-            console.log("User: " + data);
-            users.push($('#myInput_search').val());
+$('body').on('click', '.profile', function () {
+    const type = $(this).data('type');
 
-            $('#myInput_search').val('');
-        });*/
+    if(type == 'search') {
+        console.log($(this).data('email'));
+        socket.emit('inviteUser', {email: $(this).data('email'), p_id: getCustomStorage('p_id')});
+    }
 });
