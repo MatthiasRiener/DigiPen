@@ -41,6 +41,19 @@ socket.on('searchUser', function (data) {
 
 socket.on('inviteUser', function (data) {
     console.log(data);
+    data.users.forEach(user => {
+        if(user.status == 'pending') {
+            $('.pendingOutput').append(
+                `<div data-email="${user.mail}" data-type="pending" class="profile">
+                    <img src="${user.img}"
+                        alt="">
+                    <div class="info">
+                        <p class="name">${user.name}</p>
+                        <p class="role">${user.mail}</p>
+                    </div>
+                </div>`);
+        }
+    });
 });
 
 $('#myInput_search').keyup(function (e) {
@@ -49,7 +62,7 @@ $('#myInput_search').keyup(function (e) {
         return;
     }
 
-    socket.emit('searchUser', {data: $('#myInput_search').val()});
+    socket.emit('searchUser', {email: $('#myInput_search').val(), p_id: getCustomStorage('p_id')});
 });
 
 $('body').on('click', '.profile', function () {
