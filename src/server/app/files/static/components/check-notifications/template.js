@@ -7,7 +7,7 @@
         <ion-icon class="closePopups" name="close-circle"></ion-icon>
       </div>
       <div class="bottom">
-        <div class="noti-row">
+        <div class="noti-row openInvites">
           <h2 class="noti-row-text">2 new invites</h2>
           <ion-icon id="noti-row-arrow" name="chevron-forward-outline"></ion-icon>
         </div>

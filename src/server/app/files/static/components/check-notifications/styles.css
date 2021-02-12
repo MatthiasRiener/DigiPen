@@ -106,6 +106,15 @@
     flex-direction: column;
 }
 
+@keyframes slide {
+    0% {margin: 7vh 0;}
+    100% {margin: 7vh 1vw;};
+}
+
+.invites-container.slideTransition {
+    animation: slide 0.1s ease-in forwards;
+}
+
 .invites-row {
     width: 86%;
     height: 4vh;
