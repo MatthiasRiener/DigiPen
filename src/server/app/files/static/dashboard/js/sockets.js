@@ -41,6 +41,9 @@ socket.on('searchUser', function (data) {
 
 socket.on('inviteUser', function (data) {
     console.log(data);
+
+    $('.pendingOutput').empty();
+
     data.users.forEach(user => {
         if(user.status == 'pending') {
             $('.pendingOutput').append(
@@ -52,6 +55,10 @@ socket.on('inviteUser', function (data) {
                         <p class="role">${user.mail}</p>
                     </div>
                 </div>`);
+
+            if($(`.searchOutput .profile[data-email="${user.mail}"]`).length > 0) {
+                $(`.searchOutput .profile[data-email="${user.mail}"]`).remove();
+            }
         }
     });
 });

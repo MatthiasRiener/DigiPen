@@ -63,10 +63,14 @@
     }
 
     openInvites() {
-      this.invitesContainer.remove('hidden');
-      this.invitesContainer.add('visible');
+      //this.invitesContainer.remove('hidden');
+      //this.invitesContainer.add('visible');
 
-      this.invitesContainer.classList.add('slideTransition');
+      //this.invitesContainer.classList.add('slideTransition');
+
+      sendRequestToServer({type: "GET", url: "/dashboard/getInvites"}).then(data => {
+        console.log("invites: " + data);
+      });
     }
   }
 
