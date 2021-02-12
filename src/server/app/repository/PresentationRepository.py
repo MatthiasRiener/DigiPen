@@ -86,7 +86,7 @@ class PresentationRepository():
         for index, p in enumerate(pres):
             present = p.to_mongo()
             present["creator"] = json.loads(json_util.dumps(self.authRepo.retrieveUser(user_id=p.creator)))
-            presentations = presentations + (p.to_mongo(), )
+            presentations = presentations + (present, )
 
         return json.dumps({"count": len(presentations) ,"res": presentations})
 
