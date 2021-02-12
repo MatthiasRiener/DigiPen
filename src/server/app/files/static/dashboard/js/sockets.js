@@ -39,6 +39,10 @@ socket.on('searchUser', function (data) {
     });
 })
 
+socket.on('inviteUser', function (data) {
+    console.log(data);
+});
+
 $('#myInput_search').keyup(function (e) {
     if($('#myInput_search').val() == '') {
         $('.searchOutput').empty();
