@@ -87,11 +87,21 @@ def handle_invite_user(json):
 
 @socketio.on("handleInvite")
 def handle_invite_pressed(json):
+    print(json['status'])
     status = json['status']
-    print(status)
+    p_id = json['p_id']
+    user_id = json['u_id']
+    
+    msg = presRepo.handleInvitePressed(status, p_id, user_id)
+    broadCastMessage(p_id, msg)
 
 def sendInviteMessage(p_id, u_id):
     send("You have been invited to join the presentation %s. " % (p_id), room=u_id)
+
+def broadCastMessage(pres_id, msg):
+    for user in presRepo.getPresentation(pres_id).users:
+        if user['status'] == 'accepted':
+            send(msg, room=user["u_id"])
 
 def broadCastPresentation(pres):
     print(pres.to_mongo())

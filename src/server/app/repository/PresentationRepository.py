@@ -5,6 +5,7 @@ import uuid
 import json
 
 from bson import json_util
+from ..db.settings import mongoclient
 from .TaskRepository import TaskRepository
 from .CanvasRepository import CanvasRepository
 from .AuthenticationRepository import AuthenticationRepository
@@ -89,6 +90,18 @@ class PresentationRepository():
             presentations = presentations + (present, )
 
         return json.dumps({"count": len(presentations) ,"res": presentations})
+
+    def handleInvitePressed(self, status, p_id, user_id):
+        
+        
+        if status == 'accepted':
+            pres = mongoclient.db['presentation'].update({"_id":p_id, "users.u_id": user_id}, {"$set": {"users.$.status": "accepted"}}, False, True)
+            status = 1
+        elif status == 'declined':
+            pres = mongoclient.db['presentation'].update({"_id":p_id}, {"$pull": {"users": {"u_id": user_id }}})
+            status = 0
+       
+        return json.dumps({"status": status, "p_id": p_id, "user": self.authRepo.retrieveUser(user_id) })
 
     def dropAll(self):
         if self.testing:
