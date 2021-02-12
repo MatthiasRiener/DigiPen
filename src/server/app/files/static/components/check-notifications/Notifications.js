@@ -26,6 +26,8 @@
         this.openInvitesBtn.addEventListener('click', e => {
           this.openInvites();
         });
+
+        this.invitesOutput = this.shadowRoot.querySelector('.invitesOutput');
     }
 
       loadCss(path) {
@@ -67,9 +69,32 @@
       //this.invitesContainer.add('visible');
 
       //this.invitesContainer.classList.add('slideTransition');
-      console.log("openingsss")
       sendRequestToServer({type: "GET", url: "/dashboard/getInvites"}).then(data => {
-        console.log(data)
+        data.res.forEach(presentation => {
+          console.log(presentation);
+
+          this.invitesOutput.innerHTML += (`
+            <div class="invites-row">
+              <div class="invites-row-left">
+                <div class="invites-picture" style="background: url('${presentation.creator.img}')"></div>
+              </div>
+              <div class="invites-row-middle">
+                <h2 class="invites-presentation">${presentation.name}</h2>
+                <h2 class="invites-owner">${presentation.creator.name}</h2>
+              </div>
+              <div class="invites-row-right">
+                <button class="invites-accept inviteBtn"
+                  onClick="handleInvite($(this).data('type'))"
+                  data-type="decline"><ion-icon name="close-outline"></ion-icon>
+                </button>
+                <button class="invites-decline inviteBtn"
+                  onClick="handleInvite($(this).data('type'))"
+                  data-type="accepted"><ion-icon name="checkmark-outline"></ion-icon>
+                </button>
+              </div>
+            </div>
+          `);
+        });
       });
     }
   }

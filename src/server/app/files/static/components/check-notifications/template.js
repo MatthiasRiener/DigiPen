@@ -18,34 +18,8 @@
       <div class="top">
         <h1>Invites</h1>
       </div>
-      <div class="bottom">
-        <div class="invites-row">
-          <div class="invites-row-left">
-            <div class="invites-picture"></div>
-          </div>
-          <div class="invites-row-middle">
-            <h2 class="invites-presentation">Presentation</h2>
-            <h2 class="invites-owner">Lukas Friesenecker</h2>
-          </div>
-          <div class="invites-row-right">
-            <button class="invites-accept"><ion-icon name="close-outline"></ion-icon></button>
-            <button class="invites-decline"><ion-icon name="checkmark-outline"></ion-icon></button>
-          </div>
-        </div>
+      <div class="bottom invitesOutput">
 
-        <div class="invites-row">
-          <div class="invites-row-left">
-            <div class="invites-picture"></div>
-          </div>
-          <div class="invites-row-middle">
-            <h2 class="invites-presentation">Presentation</h2>
-            <h2 class="invites-owner">Lukas Friesenecker</h2>
-          </div>
-          <div class="invites-row-right">
-            <button class="invites-accept"><ion-icon name="close-outline"></ion-icon></button>
-            <button class="invites-decline"><ion-icon name="checkmark-outline"></ion-icon></button>
-          </div>
-        </div>
       </div>
     </div>
     `;

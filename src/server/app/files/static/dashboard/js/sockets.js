@@ -63,6 +63,10 @@ socket.on('inviteUser', function (data) {
     });
 });
 
+socket.on('handleInvite', function (data) {
+    console.log("invite response: " + data);
+})
+
 $('#myInput_search').keyup(function (e) {
     if($('#myInput_search').val() == '') {
         $('.searchOutput').empty();
@@ -80,3 +84,7 @@ $('body').on('click', '.profile', function () {
         socket.emit('inviteUser', {email: $(this).data('email'), p_id: getCustomStorage('p_id')});
     }
 });
+
+function handleInvite(status) {
+    socket.emit('handleInvite', {status: $(this).data('type'), p_id: getCustomStorage('p_id')});
+}
