@@ -4,7 +4,7 @@ import time
 import uuid
 import json
 
-from jsonmerge import merge
+from bson import json_util
 from .TaskRepository import TaskRepository
 from .CanvasRepository import CanvasRepository
 
@@ -39,14 +39,23 @@ class PresentationRepository():
         return json.dumps({'status': 1, 'p_id': p_id})
 
     def getTemplates(self):
+        presentations = tuple()
+
+        for index, pres in enumerate(Presentation.objects(public=True)):
+            
+            res = pres.to_mongo()
+            #res['lol'] = self.canvasRepo.getCanvas(p_id=pres.p_id)
+            res['canvas'] = json.loads(json_util.dumps(self.canvasRepo.getCanvas(p_id=pres.p_id)))
+            presentations = presentations + (res, )
+        return json.dumps({"res": presentations})
+
+    def getOwnPresentation(self, user_id):
         presentations = []
 
-        for pres in Presentation.objects(public=True):
-            res = pres.to_mongo()
-            res['canvas'] = self.canvasRepo.getCanvas(p_id=pres.p_id)
-            print(res)
-        return ''
-
+        for pres in Presentation.objects(creator=user_id):
+            presentations.append(pres.to_mongo())
+        
+        return presentations
     def dropAll(self):
         if self.testing:
             Presentation.objects().delete()

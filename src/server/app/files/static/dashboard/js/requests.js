@@ -40,3 +40,9 @@ function createPresentation() {
         template = false;
     });
 }
+
+sendRequestToServer({type: "GET", url: "/dashboard/getTemplates"}).then(data => {
+    data.forEach(element => {
+        console.log(element)
+    });
+});
