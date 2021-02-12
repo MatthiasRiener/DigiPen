@@ -67,9 +67,9 @@
       //this.invitesContainer.add('visible');
 
       //this.invitesContainer.classList.add('slideTransition');
-
+      console.log("openingsss")
       sendRequestToServer({type: "GET", url: "/dashboard/getInvites"}).then(data => {
-        console.log("invites: " + data);
+        console.log(data)
       });
     }
   }

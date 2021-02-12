@@ -79,6 +79,14 @@ class PresentationRepository():
                 dummy_users.append(user)
         return dummy_users
 
+    def getInvites(self, user_id):
+        presentations = tuple()
+        pres = Presentation.objects(__raw__={"users": {"$in": [{"status": "pending", "u_id": user_id}]}})
+        for index, p in enumerate(pres):
+            presentations = presentations + (p.to_mongo(), )
+
+        return json.dumps({"count": presentations.count() ,"res": presentations})
+
     def dropAll(self):
         if self.testing:
             Presentation.objects().delete()

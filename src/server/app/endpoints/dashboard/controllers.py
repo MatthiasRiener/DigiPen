@@ -43,6 +43,12 @@ def createPresentation():
 def getTemplates():
     return presRepo.getTemplates()
 
+@dashboard.route('/getInvites', methods=["GET"])
+@jwt_required
+def getInvites():
+    user_id = get_jwt_identity()
+    return presRepo.getInvites(user_id=user_id)
+
 
 # websockets
 @socketio.on("searchUser")
