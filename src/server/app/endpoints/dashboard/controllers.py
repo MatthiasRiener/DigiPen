@@ -12,6 +12,7 @@ from ...repository.PresentationRepository import PresentationRepository
 import json
 
 import time
+from bson import json_util
 
 dashboard = Blueprint("dashboard", __name__,
                       static_folder="static", template_folder="templates")
@@ -49,4 +50,15 @@ def handle_search_user(json):
 
     s_email = json['data']
     users = authRepo.retrieveUsersByMail(s_email)
-    emit('searchUser', users)
+    return emit('searchUser', users)
+
+@socketio.on("inviteUser")
+def handle_invite_user(json):
+    s_email = json['email']
+    p_id = json['p_id']
+
+    user = authRepo.retrieveUserByMail(s_email)
+    pres = presRepo.inviteUser(user_id=user.u_id, p_id=p_id)
+
+
+    return emit('inviteUser', pres.to_mongo())

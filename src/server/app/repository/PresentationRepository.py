@@ -19,7 +19,7 @@ class PresentationRepository():
         p_id = str(uuid.uuid4())
         p_name = "Spicy Cakes and horny Dogs"
         pres = Presentation(p_id=p_id, name=p_name,
-                            creator=u_id, created=time.time()).save()
+                            creator=u_id, created=time.time(), users=[u_id]).save()
         return json.dumps({"status": 1, "id": p_id, "name": p_name})
 
     def createPresentation(self, user_id, data):
@@ -56,6 +56,13 @@ class PresentationRepository():
             presentations.append(pres.to_mongo())
         
         return presentations
+
+    def inviteUser(self, user_id, p_id):
+        Presentation.objects(p_id=p_id).first().update(add_to_set__users=[user_id])
+        
+        return self.getPresentation(p_id=p_id)
+    def getPresentation(self, p_id):
+        return Presentation.objects(p_id=p_id).first()
     def dropAll(self):
         if self.testing:
             Presentation.objects().delete()

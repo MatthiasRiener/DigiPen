@@ -11,3 +11,4 @@ class Presentation(db.Document):
     timeline = db.BooleanField(default=False)
     keywords = db.ListField(default=None)
     public = db.BooleanField(default=False)
+    users = db.ListField(default=[])
