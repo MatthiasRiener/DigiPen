@@ -1,10 +1,7 @@
 var socket = io();
         
 socket.on('connect', function() {
-    sendRequestToServer({type: "GET", url: "/auth/getUserID"}).then(data => {
-        console.log(data)
-        socket.emit('connectUser', {user_id: data.u_id});
-    });
+    socket.emit('my event', {data: 'Im connected!'});
 });
 
 socket.on('message', function(data) {
@@ -88,6 +85,6 @@ $('body').on('click', '.profile', function () {
     }
 });
 
-function handleInvite(status) {
-    socket.emit('handleInvite', {status: $(this).data('type'), p_id: getCustomStorage('p_id')});
+function handleInvite(status, p_id) {
+    socket.emit('handleInvite', {status: status, p_id: p_id});
 }
