@@ -48,9 +48,12 @@ def getTemplates():
 @socketio.on("searchUser")
 def handle_search_user(json):
 
-    s_email = json['data']
+    s_email = json['email']
+    p_id = json['p_id']
     users = authRepo.retrieveUsersByMail(s_email)
-    return emit('searchUser', users)
+    new_users = presRepo.getNotInvitedUsers(p_id=p_id, users=users)
+
+    return emit('searchUser', new_users)
 
 @socketio.on("inviteUser")
 def handle_invite_user(json):

@@ -68,6 +68,17 @@ class PresentationRepository():
     def getPresentation(self, p_id):
         return Presentation.objects(p_id=p_id).first()
     
+    def getNotInvitedUsers(self, p_id, users):
+        pres = self.getPresentation(p_id=p_id)
+        dummy_users = []
+
+        print(pres.to_mongo()["users"])
+        for user in users:
+            isExisting = any(x["u_id"] == user['_id'] for x in pres.to_mongo()["users"])
+            if not isExisting:
+                dummy_users.append(user)
+        return dummy_users
+
     def dropAll(self):
         if self.testing:
             Presentation.objects().delete()
