@@ -96,12 +96,12 @@ def handle_invite_pressed(json):
     broadCastMessage(p_id, msg)
 
 def sendInviteMessage(p_id, u_id):
-    send("You have been invited to join the presentation %s. " % (p_id), room=u_id)
+    emit( "You have been invited to join the presentation %s. " % (p_id), room=u_id)
 
 def broadCastMessage(pres_id, msg):
     for user in presRepo.getPresentation(pres_id).users:
         if user['status'] == 'accepted':
-            send(msg, room=user["u_id"])
+            emit("handleInvite", msg, room=user["u_id"])
 
 def broadCastPresentation(pres):
     print(pres.to_mongo())
@@ -110,5 +110,5 @@ def broadCastPresentation(pres):
     
     for user in pres.users:
         if user['status'] == 'accepted':
-            send("New user was invited to your lobby", room=user["_id"])
+            emit("New user was invited to your lobby", room=user["_id"])
     
