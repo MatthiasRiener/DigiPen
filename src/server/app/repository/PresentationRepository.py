@@ -85,7 +85,7 @@ class PresentationRepository():
         for index, p in enumerate(pres):
             presentations = presentations + (p.to_mongo(), )
 
-        return json.dumps({"count": presentations.count() ,"res": presentations})
+        return json.dumps({"count": len(presentations) ,"res": presentations})
 
     def dropAll(self):
         if self.testing:
