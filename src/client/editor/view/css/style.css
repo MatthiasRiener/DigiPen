@@ -1993,25 +1993,25 @@
     width: 100vw;
     height: 100vh;
     position: absolute;
-    right: 0;
     top: 0;
+    left: 0;
     z-index: 200 !important;
     display: none;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    align-items: flex-start;
 }
 
 #shortcutPopup-inner {
     width: 100%;
-    height: 20;
+    height: 20vh;
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
 }
 
 #shortcutPopup-inner-popup {
-    width: 30vw;
-    height: 60vh;
+    width: 12vw;
+    height: 13vh;
     z-index: 300 !important;
     display: none;
     flex-direction: column;
@@ -2034,7 +2034,7 @@
     font-weight: bold;
 }
 
-#shortcutPopup-inner-popup-start {
+#shortcutPopup-inner-popup-change {
     width: 80%;
     height: 28%;
     display: flex;
@@ -2045,18 +2045,7 @@
     padding-left: 0.8vw;
 }
 
-#shortcutPopup-inner-popup-current {
-    width: 80%;
-    height: 28%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    border-radius: 10px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    padding-left: 0.8vw;
-}
 
-#shortcutPopup-inner-popup-start:hover,
-#shortcutPopup-inner-popup-current:hover {
+#shortcutPopup-inner-popup-change:hover {
     cursor: pointer;
 }

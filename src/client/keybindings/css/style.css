@@ -27,11 +27,12 @@ body {
     text-transform: capitalize;
     width: 25vw;
     color: white;
+    border: none;
 }
 
 .displayname {
     width: 50vw;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(124, 124, 124, 0.8);
     padding: 0.7vw 2vw;
 }
 
@@ -45,5 +46,6 @@ body {
 }
 
 .bindingsbox div {
-    margin: 3px;
+    margin: 0.25vh;
 }
+
