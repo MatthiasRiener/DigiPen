@@ -99,7 +99,7 @@
     }
 
     deleteEntry(data) {
-      console.log(this.shadowRoot.querySelector(`.invites-row[data-presentation="${data.p_id}"]`))
+      data = JSON.parse(data)
       this.shadowRoot.querySelector(`.invites-row[data-presentation="${data.p_id}"]`).remove();
     }
   }
