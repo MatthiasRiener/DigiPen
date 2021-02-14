@@ -23,9 +23,7 @@ class TaskRepository():
         pres = presRepo.getUsersPresentation(user_id=u_id)
         
         for p in pres:
-            print(p["_id"])
             color = self.getColor(p["_id"])
-            print(color)
             p["color"] = color
         return json.dumps({"res": pres})
 
