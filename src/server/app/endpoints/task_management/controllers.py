@@ -6,6 +6,8 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
 
 from ...repository.TaskRepository import TaskRepository
 
+import json
+
 task_m = Blueprint("task_management", __name__,
                     static_folder="static", template_folder="templates")
 
@@ -35,5 +37,5 @@ def getPresentationRoute():
 def getUsersRoute():
     data = request.form
     p_id = data["p_id"]
-    print(p_id)
-    return ''
+    res = taskRepo.getUsersFromPresentation(p_id=p_id)
+    return json.dumps({"res": res})

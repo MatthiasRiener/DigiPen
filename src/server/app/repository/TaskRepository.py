@@ -39,6 +39,8 @@ class TaskRepository():
 
         print(presentation)
         return json.dumps({"pres": presentation})
+    def getUsersFromPresentation(self, p_id):
+        return presRepo.getUsersFromPresentation(p_id=p_id)
     def deleteAllTasks(self):
         if self.testing:
             Task.objects().delete()
