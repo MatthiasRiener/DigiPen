@@ -38,7 +38,8 @@ def getPresentationRoute():
 def checkForUser():
     data = request.form
     user_id = data["u_id"]
-    return authRepo.retrieveUser(user_id)
+    user = authRepo.retrieveUser(user_id)
+    return json.dumps({"res": user})
     
 
 @task_m.route('/getUsers', methods=["POST"])
