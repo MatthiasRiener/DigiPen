@@ -1,9 +1,12 @@
 from ..models.TaskList import TaskList
 from ..models.Task import Task
+from ..models.Subtask import SubTask
 import uuid
 from ..db.settings import mongoclient
+from dateutil import parser
 
 import json
+import datetime
 
 from .PresentationRepository import PresentationRepository
 
@@ -41,6 +44,19 @@ class TaskRepository():
         return json.dumps({"pres": presentation})
     def getUsersFromPresentation(self, p_id):
         return presRepo.getUsersFromPresentation(p_id=p_id)
+
+    def createTask(self, p_id, name, end_date, u_id, assignee, subtasks):
+        task_id = str(uuid.uuid4())
+        tasks = list()
+        for i in range(0, len(subtasks) - 1):
+            if not i % 2:
+                tasks.append({"name": subtasks[i - 1], "status": subtasks[i]})
+
+        for subtask in tasks:
+            SubTask(parent_id=task_id, name=subtask["name"], status=subtask["status"]).save()
+        Task(p_id=p_id, task_id=task_id, name=name, start=datetime.datetime.now(), end=parser.parse(end_date), finished=True, creator=u_id, assignee=assignee).save()
+        return ''
+
     def deleteAllTasks(self):
         if self.testing:
             Task.objects().delete()
