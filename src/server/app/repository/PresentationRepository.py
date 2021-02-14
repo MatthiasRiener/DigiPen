@@ -69,6 +69,11 @@ class PresentationRepository():
             presentations.append(pres.to_mongo())
 
         return presentations
+    def getUsersFromPresentation(self, p_id):
+        users = []
+        for user in Presentation.objects(p_id=p_id).first().users:
+            users.append(authRepo.retrieveUser(user_id=user))
+        return users;
 
     def getUsersPresentation(self, user_id):
         presentations = []

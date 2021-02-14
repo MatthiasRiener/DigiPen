@@ -33,6 +33,12 @@ class TaskRepository():
         if taskList is None:
             return '#555555'
         return taskList.t_color
+    def checkUser(self, user_id, p_id):
+        presentation = presRepo.getPresentation(p_id=p_id).to_mongo()
+        presentation["color"] = self.getColor(p_id)
+
+        print(presentation)
+        return json.dumps({"pres": presentation})
     def deleteAllTasks(self):
         if self.testing:
             Task.objects().delete()
