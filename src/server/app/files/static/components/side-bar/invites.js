@@ -22,14 +22,12 @@ socket.on('disconnect', function(data) {
 });
 
 socket.on('invitePressed', function (data) {
-    //$(`.invitesOutput .invites-row[data-presentation="${data.p_id}"]`).remove();
     console.log("if..")
     notification = document.getElementById('notifications-comp');
     notification.deleteEntry(data);
 })
 
 socket.on('handleInvite', function (data) {
-    //$(`.invitesOutput .invites-row[data-presentation="${data.p_id}"]`).remove();
     console.log("handling invite...", data)
 })
 
