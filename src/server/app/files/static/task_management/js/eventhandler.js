@@ -163,6 +163,8 @@ $('#subTaskPopup-bottom-add').click(function () {
     </div>
     `);
 
+    createSubTask(0, $('#subTaskPopup-bottom-input').val());
+
     $('#subTaskPopup').css('display', 'none');
     $('#subTaskPopup').css('opacity', '0');
     $('#subTaskPopup').css('margin-left', '2vw');
@@ -174,6 +176,5 @@ $('body').on('click', '.presentationPopup-bottom-presentations', function () {
 })
 
 $('body').on('click', '.personPopup-bottom-persons', function () {
-    $('.currentUser').text($(this).text());
-    $('.currentUser').data('user');
+    checkUser($(this).data('user'));
 })

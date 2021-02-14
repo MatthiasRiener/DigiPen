@@ -20,22 +20,44 @@ function checkPresentation(id) {
 }
 
 function getUsers() {
-    console.log("id: " + $('#currentPresentation').data('presentation'));
     sendRequestToServer({type: "POST", url: "/task/getUsers", data: {p_id: $('#currentPresentation').data('presentation')}}).then(data => {
-        data.forEach(user => {
+        console.log(data.res);
+        data.res.forEach(user => {
             $('#userOutput').append(`
-                <div class="personPopup-bottom-persons" data-user="${user.u_id}"><div class="personPopup-bottom-persons-image"></div>${user.name}</div>
+                <div class="personPopup-bottom-persons" data-user="${user._id}"><div class="personPopup-bottom-persons-image" style="background: url('${user.img}')"></div>${user.name}</div>
             `);
         });
     });
 }
 
+function checkUser(id) {
+    sendRequestToServer({type: "POST", url: "/task/checkUser", data: {u_id: id}}).then(data => {
+        $('#currentUser').text(data.res.name);
+        $('#currentUser').data('user', data.res._id);
+        $('#personPopup-top-current-image').css('background', 'url(' + data.res.img + ')');
+    
+        $('#popupCurrentUser').text(data.res.name);
+        $('#popupCurrentUser').data('user', data.res._id);
+        $('#taskPopup-fourth-left-image').css('background', 'url(' + data.res.img + ')');
+    });
+}
+
+let subtasks = [];
+
+function createSubTask(status, name) {
+    subtasks.push({status: status, name: name});
+}
+
 function sendTaskData() {
     let task = {
-        presentation: $('.currentPresentation').data('presentation'),
+        presentation: $('#currentPresentation').data('presentation'),
         name: $('#taskPopup-second-headline').text(),
-        user: $('.currentUser').data('user')
+        user: $('#currentUser').data('user'),
+        date: $('#taskPopup-fifth-date-input').val(),
+        subtasks: subtasks
     }
 
-    console.log(task);
+    sendRequestToServer({type: "POST", url: "/task/addTask", data: task}).then(data => {
+        console.log("created task: " + data);
+    });
 }
