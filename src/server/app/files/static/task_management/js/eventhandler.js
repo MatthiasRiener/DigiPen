@@ -77,6 +77,9 @@ $('#taskPopup-top-left-icon').click(function () {
         $('#presentationPopup').css('margin-left', '2vw');
         $('#presentationPopup').css('display', 'none');
     }
+
+    let presentations = getPresentations();
+    console.log("get presentations: " + presentations);
 });
 
 $('#taskPopup-fourth-right-icon').click(function () {
