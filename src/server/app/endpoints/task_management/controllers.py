@@ -50,3 +50,19 @@ def getUsersRoute():
     print(p_id)
     res = taskRepo.getUsersFromPresentation(p_id=p_id)
     return json.dumps({"res": res})
+
+
+@task_m.route('/addTask', methods=["POST"])
+@jwt_required
+def createTaskRoute():
+    data = request.form
+    p_id = data['presentation']
+    task_name = data["name"]
+    task_assignee = data['user']
+    subtasks = data.getlist("subtasks[]")
+    end_date = data['end_date']
+    print(subtasks)
+    print(data)
+    res = taskRepo.createTask(p_id=p_id, name=task_name, end_date=end_date, u_id=get_jwt_identity(), assignee=task_assignee, subtasks=subtasks )
+
+    return json.dumps({"res": 'res'})

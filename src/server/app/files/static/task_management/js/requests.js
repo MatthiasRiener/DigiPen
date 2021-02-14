@@ -45,7 +45,8 @@ function checkUser(id) {
 let subtasks = [];
 
 function createSubTask(status, name) {
-    subtasks.push({status: status, name: name});
+    subtasks.push(status);
+    subtasks.push(name)
 }
 
 function sendTaskData() {
