@@ -6,16 +6,25 @@ import json
 
 from bson import json_util
 from ..db.settings import mongoclient
-from .TaskRepository import TaskRepository
+
+#from .TaskRepository import TaskRepository
 from .CanvasRepository import CanvasRepository
 from .AuthenticationRepository import AuthenticationRepository
+
+from .repository import TaskRepositoryInstance, CanvasRepositoryInstance, AuthenticationRepositoryInstance
+
+
+
+
+taskRepo = TaskRepositoryInstance()
+canvasRepo = CanvasRepositoryInstance()
+authRepo = AuthenticationRepositoryInstance()
+
 
 class PresentationRepository():
     def __init__(self, testing):
         self.testing = testing
-        self.taskRepo = TaskRepository(testing=False)
-        self.canvasRepo = CanvasRepository(testing=False)
-        self.authRepo = AuthenticationRepository(testing=False)
+
 
     def requestPresentation(self, u_id):
         p_id = str(uuid.uuid4())
@@ -36,8 +45,9 @@ class PresentationRepository():
 
         Presentation.objects(p_id=p_id).first().update(set__name=p_name, set__export=p_export,
                                                        set__timeline=p_timeline, set__keywords=p_keywords, set__public=p_visibility)
-        self.taskRepo.createTaskList(p_id=p_id)
-        self.canvasRepo.createCanvas(p_id=p_id)
+        taskRepo.repo.createTaskList(p_id=p_id)
+        canvasRepo.repo.createCanvas(p_id=p_id)
+
         return json.dumps({'status': 1, 'p_id': p_id})
 
     def getTemplates(self):
@@ -46,8 +56,8 @@ class PresentationRepository():
         for index, pres in enumerate(Presentation.objects(public=True)):
             
             res = pres.to_mongo()
-            #res['lol'] = self.canvasRepo.getCanvas(p_id=pres.p_id)
-            res['canvas'] = json.loads(json_util.dumps(self.canvasRepo.getCanvas(p_id=pres.p_id)))
+            #res['lol'] = canvasRepo.getCanvas(p_id=pres.p_id)
+            res['canvas'] = json.loads(json_util.dumps(canvasRepo.repo.getCanvas(p_id=pres.p_id)))
             presentations = presentations + (res, )
         return json.dumps({"res": presentations})
 
@@ -86,7 +96,7 @@ class PresentationRepository():
         pres = Presentation.objects(__raw__={"users": {"$in": [{"status": "pending", "u_id": user_id}]}})
         for index, p in enumerate(pres):
             present = p.to_mongo()
-            present["creator"] = json.loads(json_util.dumps(self.authRepo.retrieveUser(user_id=p.creator)))
+            present["creator"] = json.loads(json_util.dumps(authRepo.repo.retrieveUser(user_id=p.creator)))
             presentations = presentations + (present, )
 
         return json.dumps({"count": len(presentations) ,"res": presentations})
@@ -101,7 +111,7 @@ class PresentationRepository():
             pres = mongoclient.db['presentation'].update({"_id":p_id}, {"$pull": {"users": {"u_id": user_id }}})
             status = 0
        
-        return json.dumps({"status": status, "p_id": p_id, "user": self.authRepo.retrieveUser(user_id) })
+        return json.dumps({"status": status, "p_id": p_id, "user": authRepo.repo.retrieveUser(user_id) })
 
     def dropAll(self):
         if self.testing:

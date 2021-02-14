@@ -3,6 +3,7 @@ from ..models.Task import Task
 import uuid
 from ..db.settings import mongoclient
 
+from .repository import PresentationRepositoryInstace
 
 class TaskRepository():
     def __init__(self, testing):
