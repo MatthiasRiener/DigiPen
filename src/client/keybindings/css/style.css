@@ -34,6 +34,8 @@ h1{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-image: url("../images/background.png");
+    background-size: cover;
 }
 
 .content{
@@ -84,7 +86,7 @@ h1{
     width: 10vw;
     height: 5vh;
     background: rgba(124, 124, 124, 0.8);
-    border: 1px solid white;
+    border: 1px solid rgba(124, 124, 124, 0.8);
     border-radius: 0.15vh;
 }
 

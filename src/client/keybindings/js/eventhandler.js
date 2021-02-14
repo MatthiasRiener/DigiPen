@@ -110,3 +110,4 @@ $("#safe").click(function () {
     if (dublicate) return;
     alert(jsondata)
 });
+

@@ -268,3 +268,7 @@ $(document).click(function (event) {
 $('body').on('click', '.ed_bt_arrow_click', function(){
     window.location = "../../../src/dashboard/index.html"
 })
+
+$('body').on('click', '#shortcutPopup-inner-popup-change', function(){
+    window.location = "../../../src/keybindings/index.html"
+})
