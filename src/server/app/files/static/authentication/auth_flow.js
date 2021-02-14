@@ -72,6 +72,9 @@ function silentLogin(r_token, callback, args, resolve, reject) {
 }
 
  function setAToken(token) {
+    if(token == null || token == undefined || token === '') {
+        return;
+    }
     localStorage.setItem("a_token", token);
 }
 
@@ -84,6 +87,9 @@ function silentLogin(r_token, callback, args, resolve, reject) {
  }
 
  function setRToken(token) {
+    if(token == null || token == undefined || token === '') {
+        return;
+    }
     localStorage.setItem("r_token", token);
  }
 
