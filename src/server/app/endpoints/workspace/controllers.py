@@ -9,6 +9,7 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
 
 from ...models.User import User
 from ...repository.WorkspaceRepository import WorkspaceRepository
+from ...repository.AuthenticationRepository import AuthenticationRepository
 
 import json
 
@@ -16,16 +17,17 @@ import json
 workspace = Blueprint("workspace", __name__,
                     static_folder="static", template_folder="templates")
 
-repo = WorkspaceRepository(testing=False)
+wRepo = WorkspaceRepository(testing=False)
+aRepo = AuthenticationRepository(testing=False)
 
 @workspace.route('/createWorkspace', methods=["POST"])
 @jwt_required
 def createWorkspace():
     data = request.form
     w_name = data['name']
-    w_users = data.getlist('users[]')
+    w_users = aRepo.getUserIds(users=data.getlist('users[]'))
     w_image = data['image']
-    msg = repo.createWorkspace(name=w_name, img=w_image, users=w_users, creator=get_jwt_identity())
+    msg = wRepo.createWorkspace(name=w_name, img=w_image, users=w_users, creator=get_jwt_identity())
 
 
     return msg

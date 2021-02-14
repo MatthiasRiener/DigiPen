@@ -59,6 +59,8 @@ $('#taskPopup-last-bottom-right-inner').click(function () {
     $('#taskPopup').css('opacity', '0.0');
     $('#taskPopup').css('display', 'none');
     closeAllSubPopups();
+
+    sendTaskData();
 });
 
 $('#taskPopup-top-left-icon').click(function () {
@@ -72,6 +74,7 @@ $('#taskPopup-top-left-icon').click(function () {
             opacity: 1.0,
             margin: 0
         }, 100);
+        getPresentations();
     }else {
         $('#presentationPopup').css('opacity', '0');
         $('#presentationPopup').css('margin-left', '2vw');
@@ -89,6 +92,7 @@ $('#taskPopup-fourth-right-icon').click(function () {
             opacity: 1.0,
             margin: 0
         }, 100);
+        getUsers();
     }else {
         $('#personPopup').css('opacity', '0');
         $('#personPopup').css('margin-left', '2vw');
@@ -159,8 +163,18 @@ $('#subTaskPopup-bottom-add').click(function () {
     </div>
     `);
 
+    createSubTask(0, $('#subTaskPopup-bottom-input').val());
+
     $('#subTaskPopup').css('display', 'none');
     $('#subTaskPopup').css('opacity', '0');
     $('#subTaskPopup').css('margin-left', '2vw');
     $('#subTaskPopup-bottom-input').val("");
 });
+
+$('body').on('click', '.presentationPopup-bottom-presentations', function () {
+    checkPresentation($(this).data('presentation'));
+})
+
+$('body').on('click', '.personPopup-bottom-persons', function () {
+    checkUser($(this).data('user'));
+})

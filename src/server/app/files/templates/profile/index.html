@@ -30,6 +30,8 @@
 
     <script src={{ url_for('static', filename="components/side-bar/customEvents.js") }} type="module"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js" integrity="sha512-oFOCo2/3DtjrJG4N27BjSLQWoiBv171sK6a+JiWjp/7agxC2nCUP358AqzxkBUb5jX8g6CYLPdSKQTbC0weCwA==" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -259,6 +261,7 @@
     <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/fullpage.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/main.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/popup.js') }}" ></script>
+    <script src={{ url_for('static', filename="components/side-bar/invites.js") }} type="text/javascript" defer></script>
     <script type="text/javascript">
         var myFullpage = new fullpage('#fullpage', {
             sectionsColor: ['#fff', '#fff'],

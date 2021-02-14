@@ -50,26 +50,32 @@
     }
 
     animateNotifications() {
-        this.classList.remove('hidden');
-        this.classList.add('visible');
+      console.log("animation");
+        this.container.classList.remove('hidden');
+        this.container.classList.add('visible');
 
         this.container.classList.add('popTransition');
-        this.invitesContainer.classList.add('slideTransition');
     }
 
     closePopups() {
-      this.classList.remove('visible');
-      this.classList.add('hidden');
+      this.container.classList.remove('visible');
+      this.container.classList.add('hidden');
       this.container.classList.remove('popTransition');
+
+      this.invitesContainer.classList.remove('visible');
+      this.invitesContainer.classList.add('hidden');
       this.invitesContainer.classList.remove('slideTransition');
     }
 
     openInvites() {
-      //this.invitesContainer.remove('hidden');
-      //this.invitesContainer.add('visible');
+      this.invitesContainer.classList.remove('hidden');
+      this.invitesContainer.classList.add('visible');
 
-      //this.invitesContainer.classList.add('slideTransition');
+      this.invitesContainer.classList.add('slideTransition');
+
       sendRequestToServer({type: "GET", url: "/dashboard/getInvites"}).then(data => {
+        this.invitesOutput.innerHTML = '';
+
         data.res.forEach(presentation => {
           console.log(presentation);
 
@@ -99,7 +105,7 @@
     }
 
     deleteEntry(data) {
-      console.log(this.shadowRoot.querySelector(`.invites-row[data-presentation="${data.p_id}"]`))
+      data = JSON.parse(data)
       this.shadowRoot.querySelector(`.invites-row[data-presentation="${data.p_id}"]`).remove();
     }
   }

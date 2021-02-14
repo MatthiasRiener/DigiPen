@@ -29,11 +29,15 @@
 
     <script src={{ url_for('static', filename="components/side-bar/customEvents.js") }} type="module"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js" integrity="sha512-oFOCo2/3DtjrJG4N27BjSLQWoiBv171sK6a+JiWjp/7agxC2nCUP358AqzxkBUb5jX8g6CYLPdSKQTbC0weCwA==" crossorigin="anonymous"></script>
+
   </head>
   <body>
 
 
     <create-workspace id="workspace-comp" path="../components/create-workspace/styles.css"></create-workspace>
+
+    <check-notifications id="notifications-comp"></check-notifications>
 
 <top-nb
          img="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
@@ -117,7 +121,7 @@
 
     <div id="taskPopup">
       <div id="taskPopup-top">
-        <div id="taskPopup-top-left">Austrian History<ion-icon id="taskPopup-top-left-icon" name="chevron-down"></ion-icon></div>
+        <div id="taskPopup-top-left"><span id="currentPresentation">Autrian History</span><ion-icon id="taskPopup-top-left-icon" name="chevron-down"></ion-icon></div>
         <div id="taskPopup-top-right">
           <ion-icon id="taskPopup-top-right-exit" name="close-circle"></ion-icon>
         </div>
@@ -135,7 +139,7 @@
         <div id="taskPopup-fourth-left">
           <div id="taskPopup-fourth-left-image"></div>
         </div>
-        <div id="taskPopup-fourth-middle">Thomas Schlierenzauer</div>
+        <div id="taskPopup-fourth-middle"><span id="currentUser">Thomas Schlierenzauer</span></div>
         <div id="taskPopup-fourth-right">
           <ion-icon id="taskPopup-fourth-right-icon" name="chevron-down"></ion-icon>
         </div>
@@ -185,24 +189,26 @@
     <div id="presentationPopup">
       <div id="presentationPopup-top">
         <div id="presentationPopup-top-headline">Add to Presentation</div>
-        <div id="presentationPopup-top-current">Austrian History</div>
+        <div id="presentationPopup-top-current">Autrian History</div>
       </div>
       <div id="presentationPopup-bottom">
         <div id="presentationPopup-bottom-search"><input id="presentationPopup-bottom-search-input" type="text" placeholder="Search"></div>
-        <div class="presentationPopup-bottom-presentations">British Tea Tips</div>
-        <div class="presentationPopup-bottom-presentations">Government Work</div>
+        <div id="presentationOutput">
+
+        </div>
       </div>
     </div>
 
     <div id="personPopup">
       <div id="personPopup-top">
         <div id="personPopup-top-headline">Assign Task</div>
-        <div id="personPopup-top-current"><div id="personPopup-top-current-image"></div>Thomas Schlierenzauer</div>
+        <div id="personPopup-top-current"><div id="personPopup-top-current-image"></div><span id="popupCurrentUser">Thomasaa Schlierenzauer</span></div>
       </div>
       <div id="personPopup-bottom">
         <div id="personPopup-bottom-search"><input id="personPopup-bottom-search-input" type="text" placeholder="Search"></div>
-        <div class="personPopup-bottom-persons"><div class="personPopup-bottom-persons-image"></div>Gregor Deschwanden</div>
-        <div class="personPopup-bottom-persons"><div class="personPopup-bottom-persons-image"></div>Maria Kellys</div>
+        <div id="userOutput">
+
+        </div>
       </div>
     </div>
 
@@ -226,6 +232,7 @@
     <script src={{ url_for('static', filename="task_management/js/checkOverlaping.js") }} type="text/javascript" defer></script>
     <script src={{ url_for('static', filename="task_management/js/tasks.js") }} type="text/javascript" defer></script>
     <script src={{ url_for('static', filename="task_management/js/eventhandler.js") }} type="text/javascript" defer></script>
+    <script src={{ url_for('static', filename="components/side-bar/invites.js") }} type="text/javascript" defer></script>
 
   </body>
 </html>

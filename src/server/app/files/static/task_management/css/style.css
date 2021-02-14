@@ -711,7 +711,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    overflow: auto;
 }
 
 #presentationPopup-bottom::-webkit-scrollbar {
@@ -725,6 +724,15 @@ body {
     border-radius: 10px;
     margin: 0.1vh 0 1vh 1vw;
     background-color: var(--light-grey);
+}
+
+#presentationOutput {
+    width: 100%;
+    height: 76%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: auto;
 }
 
 #presentationPopup-bottom-search-input {
@@ -749,7 +757,7 @@ body {
 
 .presentationPopup-bottom-presentations {
     width: 74%;
-    min-height: 24%;
+    min-height: 30%;
     font-size: 0.8rem;
     font-weight: bold;
     background-color: var(--white);
@@ -823,6 +831,12 @@ body {
     margin-right: 0.4vw;
 }
 
+.currentUser {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 #personPopup-bottom {
     width: 100%;
     height: 60%;
@@ -830,7 +844,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    overflow: auto;
 }
 
 #personPopup-bottom::-webkit-scrollbar {
@@ -866,9 +879,18 @@ body {
     opacity: 0.7;
 }
 
+#userOutput {
+    width: 100%;
+    height: 76%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: auto;
+}
+
 .personPopup-bottom-persons {
     width: 74%;
-    min-height: 24%;
+    min-height: 30%;
     font-size: 0.8rem;
     font-weight: bold;
     background-color: var(--white);
