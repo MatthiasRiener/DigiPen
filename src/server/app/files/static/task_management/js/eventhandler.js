@@ -170,7 +170,7 @@ $('#subTaskPopup-bottom-add').click(function () {
 });
 
 $('body').on('click', '.presentationPopup-bottom-presentations', function () {
-    checkPresentation();
+    checkPresentation($(this).data('presentation'));
 })
 
 $('body').on('click', '.personPopup-bottom-persons', function () {

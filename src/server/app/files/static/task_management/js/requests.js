@@ -9,8 +9,9 @@ function getPresentations() {
     });
 }
 
-function checkPresentation() {
-    sendRequestToServer({type: "POST", url: "/task/checkPresentation", data: {p_id: $(this).data('presentation')}}).then(data => {
+function checkPresentation(id) {
+    console.log("id!!: " + id);
+    sendRequestToServer({type: "POST", url: "/task/checkPresentation", data: {p_id: id}}).then(data => {
         $('#currentPresentation').text('presentation', data.name);
         $('#currentPresentation').data(data._id);
     
