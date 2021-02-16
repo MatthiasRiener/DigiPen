@@ -16,6 +16,7 @@ let highlightColor = 'rgba(100, 198, 237, 1)';
 let outoffocusColor = 'rgba(100, 198, 237, 0.7)';
 let emptyslotColor = 'rgba(100, 198, 237, 0.4)';
 let dublicateColor = 'rgba(255,0,0,0.7)';
+let dublicateoutoffocusColorColor = 'rgba(255,80,80,0.7)';
 
 $.getJSON("ajax/shortcuts.json", function (data) {
     jsondata = data;
@@ -44,8 +45,13 @@ $.getJSON("ajax/shortcuts.json", function (data) {
             infoOuter = this;
             if (this.dataset.dublicate != "true")
                 this.style.backgroundColor = highlightColor;
+            else
+                this.style.backgroundColor = dublicateColor;
             if (oldInfo != this && oldInfo != null && oldInfo.dataset.dublicate != "true") {
                 oldInfo.style.backgroundColor = outoffocusColor;
+            }
+            if (oldInfo != this && oldInfo != null && oldInfo.dataset.dublicate == "true") {
+                oldInfo.style.backgroundColor = dublicateoutoffocusColorColor;
             }
             oldInfo = this;
             jsondataelem = element;
@@ -74,7 +80,9 @@ window.onkeydown = async function (event) {
 
     [...$(".keybindinginput")].forEach(keybindingelem => {
         if (findDuplicates(keysPushed).indexOf(keybindingelem.innerText) !== -1) {
-            keybindingelem.style.backgroundColor = dublicateColor;
+            keybindingelem.style.backgroundColor = dublicateoutoffocusColorColor;
+            if (keybindingelem == infoOuter)
+                keybindingelem.style.backgroundColor = dublicateColor;
             keybindingelem.dataset.dublicate = "true";
         } else {
             keybindingelem.style.backgroundColor = "rgba(100, 198, 237, .7)"
@@ -82,7 +90,6 @@ window.onkeydown = async function (event) {
         }
     });
 
-    console.log(findDuplicates(keysPushed))
 
     if (findDuplicates(keysPushed).length !== 0) {
         dublicate = true;
