@@ -15,7 +15,7 @@ let dublicate = false;
 let highlightColor = 'rgba(100, 198, 237, 1)';
 let outoffocusColor = 'rgba(100, 198, 237, 0.7)';
 let emptyslotColor = 'rgba(100, 198, 237, 0.4)';
-let dublicateColor = 'rgba(255,0,0,0.7)';
+let dublicateColor = 'rgba(255,50,50,1)';
 let dublicateoutoffocusColorColor = 'rgba(255,80,80,0.7)';
 
 $.getJSON("ajax/shortcuts.json", function (data) {
