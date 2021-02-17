@@ -63,9 +63,10 @@ def createTaskRoute():
     task_assignee = data['user']
     subtasks = data.getlist("subtasks[]")
     end_date = data['end_date']
+    start_date = data["start_date"]
     print(subtasks)
     print(data)
-    res = taskRepo.createTask(p_id=p_id, name=task_name, end_date=end_date, u_id=get_jwt_identity(), assignee=task_assignee, subtasks=subtasks )
+    res = taskRepo.createTask(p_id=p_id, name=task_name, end_date=end_date, start_date=start_date, u_id=get_jwt_identity(), assignee=task_assignee, subtasks=subtasks )
 
     return json.dumps({"res": 'res'})
 

@@ -47,7 +47,7 @@ class TaskRepository():
     def getUsersFromPresentation(self, p_id):
         return presRepo.getUsersFromPresentation(p_id=p_id)
 
-    def createTask(self, p_id, name, end_date, u_id, assignee, subtasks):
+    def createTask(self, p_id, name, end_date, start_date, u_id, assignee, subtasks):
         task_id = str(uuid.uuid4())
         tasks = list()
         for i in range(0, len(subtasks) - 1):
@@ -57,7 +57,7 @@ class TaskRepository():
         for subtask in tasks:
             SubTask(parent_id=task_id,
                     name=subtask["name"], status=subtask["status"]).save()
-        Task(p_id=p_id, task_id=task_id, name=name, start=datetime.date.today(), end=parser.parse(end_date), finished=True, creator=u_id, assignee=assignee).save()
+        Task(p_id=p_id, task_id=task_id, name=name, start=parser.parse(start_date), end=parser.parse(end_date), finished=True, creator=u_id, assignee=assignee).save()
         return ''
 
     def getTasks(self, u_id):
