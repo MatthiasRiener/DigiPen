@@ -4,5 +4,5 @@ import json
 
 
 class TaskList(db.Document):
-    p_id = db.StringField(required=True)
+    p_id = db.StringField(required=True, primary_key=True)
     t_color = db.StringField(default="#ff0000")

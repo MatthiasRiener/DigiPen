@@ -136,7 +136,7 @@ class PresentationRepository():
                 {"_id": p_id}, {"$pull": {"users": {"u_id": user_id}}})
             status = 0
 
-        return json.dumps({"status": status, "p_id": p_id, "user": authRepo.repo.retrieveUser(user_id)})
+        return json.dumps({"status": status, "p_id": p_id, "user": authRepo.retrieveUser(user_id)})
 
     def dropAll(self):
         if self.testing:

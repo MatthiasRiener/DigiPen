@@ -13,11 +13,13 @@ task_m = Blueprint("task_management", __name__,
 
 taskRepo = TaskRepository(testing=False)
 authRepo = AuthenticationRepository(testing=False)
+
+
 @task_m.route('/', methods=["GET"])
 def index():
     return render_template('/task_management/index.html')
 
-@task_m.route('/getTasks', methods=["GET"])
+@task_m.route('/getPresentations', methods=["GET"])
 @jwt_required
 def getTasksRoute():
     user_id = get_jwt_identity()
@@ -66,3 +68,11 @@ def createTaskRoute():
     res = taskRepo.createTask(p_id=p_id, name=task_name, end_date=end_date, u_id=get_jwt_identity(), assignee=task_assignee, subtasks=subtasks )
 
     return json.dumps({"res": 'res'})
+
+@task_m.route('/getTasks', methods=["POST", "GET"])
+@jwt_required
+def getUsersTasksRoute():
+    
+    user_id = get_jwt_identity()
+    res = taskRepo.getTasks(u_id=user_id)
+    return json.dumps({"res": res})

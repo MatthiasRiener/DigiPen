@@ -6,6 +6,7 @@ $( document ).ready(function() {
 function getTasks() {
     sendRequestToServer({type: "GET", url: "/task/getTasks"}).then(data => {
         console.log("get tasks: " + data);
+        console.log(data)
     });
 }
 

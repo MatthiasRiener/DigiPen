@@ -2,7 +2,6 @@ from flask import Flask, render_template
 from app.endpoints.auth.controllers import auth
 from app.endpoints.error.controllers import pagenotfound
 from app.endpoints.profile.controllers import profile
-from app.endpoints.taskmanagement.controllers import man
 from app.endpoints.workspace.controllers import workspace
 from app.endpoints.dashboard.controllers import dashboard
 from app.endpoints.landing_page.controllers import landing_page
@@ -49,7 +48,6 @@ mongoclient.init_app(app)
 
 app.register_blueprint(auth, url_prefix="/auth")
 app.register_blueprint(profile, url_prefix="/profile")
-app.register_blueprint(man, url_prefix="/task")
 app.register_blueprint(workspace, url_prefix="/workspace")
 app.register_blueprint(dashboard, url_prefix="/dashboard")
 app.register_blueprint(task_m, url_prefix="/task")
