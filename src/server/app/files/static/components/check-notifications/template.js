@@ -8,7 +8,7 @@
       </div>
       <div class="bottom">
         <div class="noti-row openInvites">
-          <h2 class="noti-row-text">2 new invites</h2>
+          <h2 class="noti-row-text">Invitations</h2>
           <ion-icon id="noti-row-arrow" name="chevron-forward-outline"></ion-icon>
         </div>
       </div>

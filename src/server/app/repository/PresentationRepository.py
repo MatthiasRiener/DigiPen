@@ -21,7 +21,7 @@ class PresentationRepository():
 
     def requestPresentation(self, u_id):
         p_id = str(uuid.uuid4())
-        p_name = "Spicy Cakes and horny Dogs"
+        p_name = "Untitled"
         pres = Presentation(p_id=p_id, name=p_name,
                             creator=u_id, created=time.time(), users=[{"status": "accepted", "u_id": u_id}]).save()
         return json.dumps({"status": 1, "id": p_id, "name": p_name}), p_id
@@ -40,7 +40,7 @@ class PresentationRepository():
                                                        set__timeline=p_timeline, set__keywords=p_keywords, set__public=p_visibility)
 
         from .TaskRepository import TaskRepository
-        from.CanvasRepository import CanvasRepository
+        from .CanvasRepository import CanvasRepository
 
         taskRepo = TaskRepository(testing=False)
         canvasRepo = CanvasRepository(testing=False)
@@ -51,6 +51,9 @@ class PresentationRepository():
         return json.dumps({'status': 1, 'p_id': p_id})
 
     def getTemplates(self):
+        from .CanvasRepository import CanvasRepository
+        canvasRepo = CanvasRepository(testing=False)
+
         presentations = tuple()
 
         for index, pres in enumerate(Presentation.objects(public=True)):
@@ -58,7 +61,7 @@ class PresentationRepository():
             res = pres.to_mongo()
             # res['lol'] = canvasRepo.getCanvas(p_id=pres.p_id)
             res['canvas'] = json.loads(json_util.dumps(
-                canvasRepo.repo.getCanvas(p_id=pres.p_id)))
+                canvasRepo.getCanvas(p_id=pres.p_id)))
             presentations = presentations + (res, )
         return json.dumps({"res": presentations})
 
@@ -117,7 +120,7 @@ class PresentationRepository():
         for index, p in enumerate(pres):
             present = p.to_mongo()
             present["creator"] = json.loads(json_util.dumps(
-                authRepo.repo.retrieveUser(user_id=p.creator)))
+                authRepo.retrieveUser(user_id=p.creator)))
             presentations = presentations + (present, )
 
         return json.dumps({"count": len(presentations), "res": presentations})

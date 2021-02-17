@@ -18,7 +18,7 @@ class TaskRepository():
         self.testing = testing
 
     def createTaskList(self, p_id):
-        TaskList(p_id=p_id, t_id=str(uuid.uuid4())).save()
+        TaskList(p_id=p_id).save()
 
         print("task created!!! :D")
 
