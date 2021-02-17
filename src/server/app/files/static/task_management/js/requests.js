@@ -1,5 +1,16 @@
-function getPresentations() {
+$( document ).ready(function() {
+    console.log(tasks);
+    getTasks();
+});
+
+function getTasks() {
     sendRequestToServer({type: "GET", url: "/task/getTasks"}).then(data => {
+        console.log("get tasks: " + data);
+    });
+}
+
+function getPresentations() {
+    sendRequestToServer({type: "GET", url: "/task/getPresentations"}).then(data => {
         data.res.forEach(presentation => {
             $('#presentationOutput').append(`
                 <div class="presentationPopup-bottom-presentations" data-presentation="${presentation._id}">${presentation.name}</div>
