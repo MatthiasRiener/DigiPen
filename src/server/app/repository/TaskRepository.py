@@ -57,8 +57,7 @@ class TaskRepository():
         for subtask in tasks:
             SubTask(parent_id=task_id,
                     name=subtask["name"], status=subtask["status"]).save()
-        Task(p_id=p_id, task_id=task_id, name=name, start=datetime.datetime.now(
-        ), end=parser.parse(end_date), finished=True, creator=u_id, assignee=assignee).save()
+        Task(p_id=p_id, task_id=task_id, name=name, start=datetime.date.today(), end=parser.parse(end_date), finished=True, creator=u_id, assignee=assignee).save()
         return ''
 
     def getTasks(self, u_id):
