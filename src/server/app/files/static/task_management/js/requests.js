@@ -72,7 +72,8 @@ function sendTaskData() {
         presentation: $('#currentPresentation').data('presentation'),
         name: $('#taskPopup-second-headline').text(),
         user: $('#currentUser').data('user'),
-        end_date: $('#taskPopup-fifth-date-input').val(),
+        start_date: $('#taskPopup-fifth-date-start').val(),
+        end_date: $('#taskPopup-fifth-date-end').val(),
         subtasks: subtasks
     }
 
