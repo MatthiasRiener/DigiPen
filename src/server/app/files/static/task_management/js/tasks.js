@@ -1,61 +1,8 @@
-const tasks = [{
-        id: "6123125",
-        name: "Friesi und die ITP Gruppe",
-        members: 4,
-        taskColor: "#F02700",
-        tasks: [{
-                taskName: "Schaut Österreich wie ein Schnitzel aus?",
-                start: "01/03/2021",
-                end: "02/12/2021",
-                finished: true,
-            },
-            {
-                taskName: "Sollte d zu Österreich gehören?",
-                start: "01/19/2021",
-                end: "01/25/2021",
-                finished: false,
-            },
-            {
-                taskName: "Sollte Südtirol zu Österreich gehören?",
-                start: "01/23/2021",
-                end: "01/22/2021",
-                finished: true,
-            },
-        ]
-    },
-
-    {
-        id: "432561123",
-        name: "Austrian Governmet",
-        members: 2,
-        taskColor: "#079992",
-        tasks: [{
-                taskName: "How to eat Cookies with Heroin?",
-                start: "01/02/2021",
-                end: "01/07/2021",
-                finished: false,
-            },
-            {
-                taskName: "How to eat Cookies with Crack?",
-                start: "01/01/2021",
-                end: "01/06/2021",
-                finished: true,
-            }
-        ]
-    },
-];
-
 window.onload = function () {
-    initializeContainers();
-    loadCalendar()
 
-    initializePresentationContainers();
-
-    loadBackgroundGrid();
-    positionCursor();
 }
 
-function initializePresentationContainers() {
+function initializePresentationContainers(tasks) {
     tasks.forEach((pres) => {
         $('.task-of-presentations').eq(0).append(`
          <div data-presentation-id="${pres.id}"  class="presentation-section">

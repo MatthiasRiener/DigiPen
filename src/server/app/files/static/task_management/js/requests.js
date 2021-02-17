@@ -1,12 +1,18 @@
 $( document ).ready(function() {
-    console.log(tasks);
     getTasks();
 });
 
 function getTasks() {
     sendRequestToServer({type: "GET", url: "/task/getTasks"}).then(data => {
-        console.log("get tasks: " + data);
         console.log(data)
+
+        initializeContainers();
+        loadCalendar()
+    
+        initializePresentationContainers(data.res);
+    
+        loadBackgroundGrid();
+        positionCursor();
     });
 }
 
