@@ -9,9 +9,9 @@
 'use strict';
 
 // const videoElement = document.querySelector('video');
-const audioInputSelect = document.querySelector('select#audioSource');
-const audioOutputSelect = document.querySelector('select#audioOutput');
-const videoSelect = document.querySelector('select#videoSource');
+const audioInputSelect = document.querySelector('#micPopup-inner-popup-top-main');
+const audioOutputSelect = document.querySelector('#micPopup-inner-popup-bottom-main');
+const videoSelect = document.querySelector('#camPopup-inner-popup-top-main');
 const selectors = [audioInputSelect, audioOutputSelect, videoSelect];
 
 audioOutputSelect.disabled = !('sinkId' in HTMLMediaElement.prototype);
@@ -26,17 +26,24 @@ function gotDevices(deviceInfos) {
     });
     for (let i = 0; i !== deviceInfos.length; ++i) {
         const deviceInfo = deviceInfos[i];
-        const option = document.createElement('option');
-        option.value = deviceInfo.deviceId;
+        const option = document.createElement('div');
+        option.dataset.deviceinfo = deviceInfo.deviceId;
         if (deviceInfo.kind === 'audioinput') {
-            option.text = deviceInfo.label || `microphone ${audioInputSelect.length + 1}`;
-            audioInputSelect.appendChild(option);
+            option.setAttribute('class', 'micPopup-inner-popup-top-main-row');
+            option.innerHTML = document.getElementById('micPopup-input-layout').innerHTML;
+            option.getElementsByClassName('micPopup-inner-popup-top-main-row-left').innerText = deviceInfo.label || `microphone ${audioInputSelect.length + 1}`;
+            // IMPORTANT WTF
+            audioInputSelect.querySelectorAll('.micPopup-inner-popup-top-main')[0].prepend(option);
         } else if (deviceInfo.kind === 'audiooutput') {
-            option.text = deviceInfo.label || `speaker ${audioOutputSelect.length + 1}`;
-            audioOutputSelect.appendChild(option);
+            option.setAttribute('class', 'micPopup-inner-popup-bottom-main-row');
+            option.innerHTML = document.getElementById('micPopup-output-layout').innerHTML;
+            option.getElementsByClassName('micPopup-inner-popup-bottom-main-row-left').innerText = deviceInfo.label || `speaker ${audioOutputSelect.length + 1}`;
+            audioOutputSelect.querySelectorAll('.micPopup-inner-popup-bottom-main')[0].prepend(option);
         } else if (deviceInfo.kind === 'videoinput') {
-            option.text = deviceInfo.label || `camera ${videoSelect.length + 1}`;
-            videoSelect.appendChild(option);
+            option.setAttribute('class', 'camPopup-inner-popup-top-main-row');
+            option.innerHTML = document.getElementById('camPopup-layout').innerHTML;
+            option.getElementsByClassName('camPopup-inner-popup-top-main-row-left').innerText = deviceInfo.label || `camera ${videoSelect.length + 1}`;
+            videoSelect.querySelectorAll('.camPopup-inner-popup-top-main-row')[0].prepend(option);
         } else {
             console.log('Some other kind of source/device: ', deviceInfo);
         }
