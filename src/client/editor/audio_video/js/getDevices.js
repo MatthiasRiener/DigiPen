@@ -8,7 +8,7 @@
 
 'use strict';
 
-// const videoElement = document.querySelector('video');
+const videoElement = document.querySelector('video');
 const audioInputSelect = document.querySelector('select#audioSource');
 const audioOutputSelect = document.querySelector('select#audioOutput');
 const videoSelect = document.querySelector('select#videoSource');
@@ -49,7 +49,7 @@ function gotDevices(deviceInfos) {
 }
 
 navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
-/*
+
 // Attach audio output device to video element using device/sink ID.
 // unnecessary but coolio
 function attachSinkId(element, sinkId) {
@@ -83,11 +83,11 @@ function gotStream(stream) {
     // Refresh button list in case labels have become available
     return navigator.mediaDevices.enumerateDevices();
 }
-*/
+
 function handleError(error) {
     console.log('navigator.MediaDevices.getUserMedia error: ', error.message, error.name);
 }
-/*
+
 function start() {
     if (window.stream) {
         window.stream.getTracks().forEach(track => {
@@ -108,4 +108,4 @@ audioOutputSelect.onchange = changeAudioDestination;
 
 videoSelect.onchange = start;
 
-start();*/
+start();

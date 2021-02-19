@@ -55,10 +55,10 @@ function gotDevices(deviceInfos) {
 }
 
 navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
-/*
+
 // Attach audio output device to video element using device/sink ID.
 // unnecessary but coolio
-function attachSinkId(element, sinkId) {
+/*function attachSinkId(element, sinkId) {
     if (typeof element.sinkId !== 'undefined') {
         element.setSinkId(sinkId)
             .then(() => {
@@ -81,7 +81,7 @@ function attachSinkId(element, sinkId) {
 function changeAudioDestination() {
     const audioDestination = audioOutputSelect.value;
     // attachSinkId(videoElement, audioDestination);
-}
+}*/
 
 function gotStream(stream) {
     window.stream = stream; // make stream available to console
@@ -89,11 +89,11 @@ function gotStream(stream) {
     // Refresh button list in case labels have become available
     return navigator.mediaDevices.enumerateDevices();
 }
-*/
+
 function handleError(error) {
     console.log('navigator.MediaDevices.getUserMedia error: ', error.message, error.name);
 }
-/*
+
 function start() {
     if (window.stream) {
         window.stream.getTracks().forEach(track => {
@@ -109,9 +109,9 @@ function start() {
     navigator.mediaDevices.getUserMedia(constraints).then(gotStream).then(gotDevices).catch(handleError);
 }
 
-audioInputSelect.onchange = start;
-audioOutputSelect.onchange = changeAudioDestination;
+// audioInputSelect.onchange = start;
+// audioOutputSelect.onchange = changeAudioDestination;
 
-videoSelect.onchange = start;
+// videoSelect.onchange = start;
 
-start();*/
+start();
