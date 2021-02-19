@@ -6,6 +6,7 @@ from ..db.settings import mongoclient
 from dateutil import parser
 
 import json
+from bson import json_util
 import datetime
 
 from .PresentationRepository import PresentationRepository
@@ -89,11 +90,26 @@ class TaskRepository():
             
             for t in tasks:
                 if t is not None:
+                    
                     dummyTask = dict()
+                    dummyTask["subtasks"] = list()
+                    subtasks = SubTask.objects(parent_id=t["task_id"])
+
+
+                    for sub in subtasks:
+                        subtaskDummy = dict()
+                        subtaskDummy["name"] = sub["name"]
+                        subtaskDummy["finished"] = sub["status"]
+
+                        dummyTask["subtasks"].append(subtaskDummy)
+                        
+
                     dummyTask["taskName"] = t["name"]
                     dummyTask["start"] = str(t["start"])
                     dummyTask["end"] = str(t["end"])
                     dummyTask["finished"] = t["finished"]
+
+
                     dummy["tasks"].append(dummyTask)
 
             print(tasks)
