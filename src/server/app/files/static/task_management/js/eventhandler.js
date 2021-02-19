@@ -173,8 +173,18 @@ $('#subTaskPopup-bottom-add').click(function () {
 
 $('body').on('click', '.presentationPopup-bottom-presentations', function () {
     checkPresentation($(this).data('presentation'));
-})
+});
 
 $('body').on('click', '.personPopup-bottom-persons', function () {
     checkUser($(this).data('user'));
-})
+});
+
+$('#presentationPopup-bottom-search-input').on('keyup', function () {
+    $('.presentationPopup-bottom-presentations').each(function () {
+        if($(this).text().toUpperCase().includes($('#presentationPopup-bottom-search-input').val().toUpperCase())) {
+            $(this).css('display', 'flex');
+        } else {
+            $(this).css('display', 'none');
+        }
+    });
+});
