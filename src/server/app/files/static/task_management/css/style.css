@@ -299,7 +299,7 @@ body {
 }
 
 #taskPopup {
-    width: 16vw;
+    width: 19vw;
     height: 40vh;
     position: absolute;
     display: none;
@@ -336,6 +336,13 @@ body {
     padding: 0 0.3vw;
 }
 
+#currentPresentation {
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 #taskPopup-top-left-icon {
     font-size: 1.3rem;
     color: var(--white);
@@ -351,7 +358,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     color: var(--dark-grey);
 }
 
@@ -415,6 +422,8 @@ body {
     height: 1.6vw;
     border-radius: 100%;
     background-color: var(--dark-grey);
+    background-position: center;
+    background-size: cover;
 }
 
 #taskPopup-fourth-middle {
@@ -446,13 +455,11 @@ body {
     width: 96%;
     height: 18%;
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 #taskPopup-fifth-headline {
-    width: 100%;
+    width: 50%;
     height: 30%;
     font-size: 0.9rem;
     font-weight: bold;
@@ -463,19 +470,19 @@ body {
 }
 
 #taskPopup-fifth-date {
-    width: 100%;
+    width: 50%;
     height: 70%;
 }
 
-#taskPopup-fifth-date-input {
-    width: 40%;
+#taskPopup-fifth-date-start, #taskPopup-fifth-date-end {
+    width: 80%;
     height: 50%;
     border-radius: 10px;
     padding: 5px;
     outline: none;
 }
 
-#taskPopup-fifth-date-input:hover {
+#taskPopup-fifth-date-start:hover, #taskPopup-fifth-date-end:hover {
     cursor: pointer;
 }
 
@@ -531,7 +538,7 @@ body {
 
 .taskPopup-sixth-bottom-row {
     width: 90%;
-    height: 4.6vh;
+    height: 4vh;
     background-color: var(--white);
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-radius: 10px;
@@ -637,15 +644,15 @@ body {
 }
 
 #taskPopup-last-bottom-right-inner {
-    width: 1.6vw;
-    height: 1.6vw;
+    width: 2vw;
+    height: 2vw;
     background-color: var(--dark-grey);
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
     color: var(--white);
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: bold;
 }
 

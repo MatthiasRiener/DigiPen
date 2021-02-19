@@ -42,7 +42,7 @@ function getUsers() {
         console.log(data.res);
         data.res.forEach(user => {
             $('#userOutput').append(`
-                <div class="personPopup-bottom-persons" data-user="${user._id}"><div class="personPopup-bottom-persons-image" style="background: url('${user.img}')"></div>${user.name}</div>
+                <div class="personPopup-bottom-persons" data-user="${user._id}"><div class="personPopup-bottom-persons-image" style="background: url('${user.img}'); background-position: center; background-size: cover"></div>${user.name}</div>
             `);
         });
     });
@@ -53,10 +53,14 @@ function checkUser(id) {
         $('#currentUser').text(data.res.name);
         $('#currentUser').data('user', data.res._id);
         $('#personPopup-top-current-image').css('background', 'url(' + data.res.img + ')');
+        $('#personPopup-top-current-image').css('background-size', 'cover');
+        $('#personPopup-top-current-image').css('background-position', 'center');
     
         $('#popupCurrentUser').text(data.res.name);
         $('#popupCurrentUser').data('user', data.res._id);
         $('#taskPopup-fourth-left-image').css('background', 'url(' + data.res.img + ')');
+        $('#taskPopup-fourth-left-image').css('background-size', 'cover');
+        $('#taskPopup-fourth-left-image').css('background-position', 'center');
     });
 }
 
