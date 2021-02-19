@@ -31,19 +31,18 @@ function gotDevices(deviceInfos) {
         if (deviceInfo.kind === 'audioinput') {
             option.setAttribute('class', 'micPopup-inner-popup-top-main-row');
             option.innerHTML = document.getElementById('micPopup-input-layout').innerHTML;
-            option.getElementsByClassName('micPopup-inner-popup-top-main-row-left').innerText = deviceInfo.label || `microphone ${audioInputSelect.length + 1}`;
-            // IMPORTANT WTF
-            audioInputSelect.querySelectorAll('.micPopup-inner-popup-top-main')[0].prepend(option);
+            option.getElementsByClassName('micPopup-inner-popup-top-main-row-left')[0].innerHTML = deviceInfo.label || `microphone ${audioInputSelect.length + 1}`;
+            audioInputSelect.appendChild(option);
         } else if (deviceInfo.kind === 'audiooutput') {
             option.setAttribute('class', 'micPopup-inner-popup-bottom-main-row');
             option.innerHTML = document.getElementById('micPopup-output-layout').innerHTML;
-            option.getElementsByClassName('micPopup-inner-popup-bottom-main-row-left').innerText = deviceInfo.label || `speaker ${audioOutputSelect.length + 1}`;
-            audioOutputSelect.querySelectorAll('.micPopup-inner-popup-bottom-main')[0].prepend(option);
+            option.getElementsByClassName('micPopup-inner-popup-bottom-main-row-left')[0].innerHTML = deviceInfo.label || `speaker ${audioOutputSelect.length + 1}`;
+            audioOutputSelect.appendChild(option);
         } else if (deviceInfo.kind === 'videoinput') {
             option.setAttribute('class', 'camPopup-inner-popup-top-main-row');
             option.innerHTML = document.getElementById('camPopup-layout').innerHTML;
-            option.getElementsByClassName('camPopup-inner-popup-top-main-row-left').innerText = deviceInfo.label || `camera ${videoSelect.length + 1}`;
-            videoSelect.querySelectorAll('.camPopup-inner-popup-top-main-row')[0].prepend(option);
+            option.getElementsByClassName('camPopup-inner-popup-top-main-row-left')[0].innerHTML = deviceInfo.label || `camera ${videoSelect.length + 1}`;
+            videoSelect.appendChild(option);
         } else {
             console.log('Some other kind of source/device: ', deviceInfo);
         }
