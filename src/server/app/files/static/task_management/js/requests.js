@@ -73,6 +73,7 @@ function createSubTask(status, name) {
 
 function sendTaskData() {
     let task = {
+        id: $('#taskPopup').data('task'),
         presentation: $('#currentPresentation').data('presentation'),
         name: $('#taskPopup-second-headline').text(),
         user: $('#currentUser').data('user'),
@@ -95,6 +96,7 @@ function sendTaskData() {
 
 function getTaskInfo(id) {
     sendRequestToServer({type: "POST", url: "/task/getTaskInfo", data: {id: id}}).then(data => {
+        console.log(data);
         let start = data.res.task.start.split(" ");
         let end = data.res.task.end.split(" ");
 
@@ -110,6 +112,8 @@ function getTaskInfo(id) {
         $('#taskPopup-fifth-date-end').val(end[0]);
         $('#taskPopup-sixth-bottom').empty();
         data.res.subtasks.forEach(subtasks => {
+            createSubTask(subtasks.finished, subtasks.name)
+
             $('#taskPopup-sixth-bottom').append(`
             <div class="taskPopup-sixth-bottom-row">
                 <div class="taskPopup-sixth-bottom-row-left">
@@ -121,5 +125,6 @@ function getTaskInfo(id) {
         });
 
         $('#taskPopup').data('update', 1);
+        $('#taskPopup').data('task', data.res.task._id);
     });
 }
