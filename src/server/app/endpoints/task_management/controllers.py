@@ -77,3 +77,13 @@ def getUsersTasksRoute():
     user_id = get_jwt_identity()
     res = taskRepo.getTasks(u_id=user_id)
     return json.dumps({"res": res})
+
+@task_m.route('/getTaskInfo', methods=["POST"])
+@jwt_required
+def getTaskInfoRoute():
+    data = request.form
+    t_id = data["id"]
+
+    response = taskRepo.getTask(task_id=t_id)
+
+    return json.dumps({"res": response})

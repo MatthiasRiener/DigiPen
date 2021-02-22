@@ -20,9 +20,10 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
-    username = request.get_json(force=True).get('username')
+    #username = request.get_json(force=True).get('username')
+    username = "Matthias"
     if not username:
         abort(401)
 

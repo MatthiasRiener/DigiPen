@@ -58,8 +58,30 @@ class TaskRepository():
         for subtask in tasks:
             SubTask(parent_id=task_id,
                     name=subtask["name"], status=subtask["status"]).save()
-        Task(p_id=p_id, task_id=task_id, name=name, start=parser.parse(start_date), end=parser.parse(end_date), finished=True, creator=u_id, assignee=assignee).save()
+        Task(p_id=p_id, task_id=task_id, name=name, start=parser.parse(start_date),
+             end=parser.parse(end_date), finished=True, creator=u_id, assignee=assignee).save()
         return ''
+
+    def getTask(self, task_id):
+
+        print("task_id", task_id)
+        response = dict()
+
+        task = Task.objects(task_id=task_id).first()
+        subtasks = SubTask.objects(parent_id=task_id)
+
+        response["task"] = task.to_mongo()
+        response["task"]["start"] = str(response["task"]["start"])
+        response["task"]["end"] = str(response["task"]["end"])
+
+        response["subtasks"] = list()
+        for sub in subtasks:
+            subtaskDummy = dict()
+            subtaskDummy["name"] = sub["name"]
+            subtaskDummy["finished"] = sub["status"]
+            response["subtasks"].append(subtaskDummy)
+
+        return response
 
     def getTasks(self, u_id):
         # Step 1 => Alle Presentationen in denen der Benutzer mit u_id vorhanden ist
@@ -69,7 +91,7 @@ class TaskRepository():
         # Step 2 => alle Tasklisten bekommen, die zur Präsentation gehören
 
         for pres in presentations:
-            
+
             dummy = dict()
 
             dummy["id"] = pres["_id"]
@@ -80,21 +102,20 @@ class TaskRepository():
             taskList = TaskList.objects(p_id=pres["_id"]).first()
 
             if taskList is not None:
-                dummy["taskColor"] =  taskList["t_color"]
+                dummy["taskColor"] = taskList["t_color"]
             else:
                 dummy["taskColor"] = "nicht vorhanden LOL! :D"
-            
+
             # Step 3 => alle Tasks mit der p_id
 
             tasks = Task.objects(p_id=pres["_id"])
-            
+
             for t in tasks:
                 if t is not None:
-                    
+
                     dummyTask = dict()
                     dummyTask["subtasks"] = list()
                     subtasks = SubTask.objects(parent_id=t["task_id"])
-
 
                     for sub in subtasks:
                         subtaskDummy = dict()
@@ -102,13 +123,12 @@ class TaskRepository():
                         subtaskDummy["finished"] = sub["status"]
 
                         dummyTask["subtasks"].append(subtaskDummy)
-                        
 
                     dummyTask["taskName"] = t["name"]
                     dummyTask["start"] = str(t["start"])
                     dummyTask["end"] = str(t["end"])
                     dummyTask["finished"] = t["finished"]
-
+                    dummyTask["t_id"] = t["task_id"]
 
                     dummy["tasks"].append(dummyTask)
 
