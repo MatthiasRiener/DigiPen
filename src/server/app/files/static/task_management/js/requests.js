@@ -81,7 +81,45 @@ function sendTaskData() {
         subtasks: subtasks
     }
 
-    sendRequestToServer({type: "POST", url: "/task/addTask", data: task}).then(data => {
-        console.log("created task: " + data);
+    if($('#taskPopup').data('update')) {
+        console.log(task);
+        sendRequestToServer({type: "POST", url: "/task/updateTask", data: task}).then(data => {
+            console.log("update task: " + data);
+        });
+    } else{
+        sendRequestToServer({type: "POST", url: "/task/addTask", data: task}).then(data => {
+            console.log("created task: " + data);
+        });
+    }
+}
+
+function getTaskInfo(id) {
+    sendRequestToServer({type: "POST", url: "/task/getTaskInfo", data: {id: id}}).then(data => {
+        let start = data.res.task.start.split(" ");
+        let end = data.res.task.end.split(" ");
+
+        $('#currentPresentation').text(data.res.task.presentation.name);
+        $('#currentPresentation').data('presentation', data.res.task.presentation._id);
+        $('#taskPopup-second-headline').text(data.res.task.name);
+        $('#taskPopup-fourth-left-image').css('background', 'url("' + data.res.task.assignee.img + '")');
+        $('#taskPopup-fourth-left-image').css('background-size', 'cover');
+        $('#taskPopup-fourth-left-image').css('background-position', 'center');
+        $('#currentUser').text(data.res.task.assignee.name);
+        $('#currentUser').data('user', data.res.task.assignee._id);
+        $('#taskPopup-fifth-date-start').val(start[0]);
+        $('#taskPopup-fifth-date-end').val(end[0]);
+        $('#taskPopup-sixth-bottom').empty();
+        data.res.subtasks.forEach(subtasks => {
+            $('#taskPopup-sixth-bottom').append(`
+            <div class="taskPopup-sixth-bottom-row">
+                <div class="taskPopup-sixth-bottom-row-left">
+                    <input class="taskPopup-sixth-bottom-row-left-input" type="checkbox">
+                </div>
+                <div class="taskPopup-sixth-bottom-row-right">${subtasks.name}</div>
+            </div>
+            `);
+        });
+
+        $('#taskPopup').data('update', 1);
     });
 }
