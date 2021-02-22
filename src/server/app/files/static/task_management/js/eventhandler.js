@@ -10,6 +10,17 @@ let taskHeight;
 
 /* open task popup */
 $('body').on('click', '.task-item', function () {
+    console.log($(this).data('task'));
+    sendRequestToServer({type: "POST", url: "/task/getTaskInfo", data: {id: $(this).data('task')}}).then(data => {
+        console.log(data);
+        $('#currentPresentation').text(data.pres.name);
+        $('#taskPopup-second-headline').text();
+        $('currentUser').text();
+        $('#taskPopup-fifth-date-start').val();
+        $('#taskPopup-fifth-date-end').val();
+
+    });
+
     $('#taskPopup').css('opacity', '0.0');
     $('#taskPopup').css('display', 'none');
 
