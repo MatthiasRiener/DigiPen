@@ -10,9 +10,10 @@ from bson import json_util
 import datetime
 
 from .PresentationRepository import PresentationRepository
+from .AuthenticationRepository import AuthenticationRepository
 
-presRepo = PresentationRepository(testing=True)
-
+presRepo = PresentationRepository(testing=False)
+authRepo = AuthenticationRepository(testing=False)
 
 class TaskRepository():
     def __init__(self, testing):
@@ -73,6 +74,9 @@ class TaskRepository():
         response["task"] = task.to_mongo()
         response["task"]["start"] = str(response["task"]["start"])
         response["task"]["end"] = str(response["task"]["end"])
+
+        response["task"]["assignee"] = authRepo.retrieveUser(user_id=task["assignee"])
+        response["task"]["presentation"] = presRepo.getPresentation(p_id=task["p_id"]).to_mongo()
 
         response["subtasks"] = list()
         for sub in subtasks:
