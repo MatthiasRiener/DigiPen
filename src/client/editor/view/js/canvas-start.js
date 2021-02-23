@@ -1150,7 +1150,7 @@ chartEditor['visible'] = false;
 
 /*------------------------RESIZE-CANVAS------------------------*/
 
-let originalSize;
+let originalSize, maxwidth;
 
 window.onload = function () {
     let width = $('#content-main-inner-spacing-middle').width();
@@ -1161,9 +1161,12 @@ window.onload = function () {
 }
 
 $(window).resize(function () {
+    if ($('#content-main-inner-spacing-bottom').position().top > $("#content-main").height()) {
+        return;
+    }
+    maxwidth = $("#content-main").width()
     let width = $('#content-main-inner-spacing-middle').width();
     let height = $('#content-main-inner-spacing-middle').height();
-
     resizeCanvas(width, height);
 });
 
