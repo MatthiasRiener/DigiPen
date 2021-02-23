@@ -68,10 +68,13 @@ class TaskRepository():
         tasks = list()
         for i in range(0, len(subtasks) - 1):
             if not i % 3:
+                print(subtasks)
+                print("====")
+                print(subtasks[i])
                 tasks.append({"id": subtasks[i - 3], "name": subtasks[i - 2], "status": bool(subtasks[i - 1])})
 
         for subtask in tasks:
-            if not SubTask.objects(sub_id=subtask["id"]):
+            if not SubTask.objects(sub_id=subtask["id"]) or subtask["id"] == "not defined":
                 SubTask(sub_id=str(uuid.uuid4()) , parent_id=t_id,
                     name=subtask["name"], status=subtask["status"]).save()
             else:
