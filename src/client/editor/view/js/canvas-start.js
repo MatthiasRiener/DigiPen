@@ -136,7 +136,7 @@ function init() {
     canvas.setHeight($('#content-main-inner-spacing-middle').height());
 
     canvas.on({
-        'object:moving': (e) => {},
+        'object:moving': (e) => { },
         'object:modified': (e) => {
             const selectedObject = e.target;
             // don't allow delete inside text
@@ -223,7 +223,7 @@ function addVideo() {
     });
 
     //extend(fabricVideo, `video${randomId()}`)
-    
+
     canvas.add(fabricVideo);
     fabricVideo.getElement().play();
 }
@@ -332,7 +332,7 @@ $('body').keydown(function (event) {
     curKeys = [];
     var keycode = (event.keycode ? event.keycode : event.which);
     curKeys.push(event.code);
-   
+
 
     if (event.ctrlKey && event.code != "ControlLeft") {
         curKeys.push("ControlLeft");
@@ -557,7 +557,7 @@ $('body').on('input', '.img-opacity-slider-img', function () {
 });
 
 
-$(window).resize(function() {
+/*$(window).resize(function() {
     var width = $('#content-main-inner-spacing-middle').width();
     var height = $('#content-main-inner-spacing-middle').height();
 
@@ -565,10 +565,10 @@ $(window).resize(function() {
     resizeCanvas(width, height);
     originalSize = canvas.width;
 
-});
+});*/
 
 /*------------------------Helper Functions------------------------*/
-let originalSize;
+/*let originalSize;
 
 function resizeCanvas(width, height) {
 
@@ -577,10 +577,10 @@ function resizeCanvas(width, height) {
         canvas.setZoom(val);
     }
 
-    canvas.setWidth(width * 0.8);
-    canvas.setHeight(width * 0.45);
+    canvas.setWidth(width);
+    canvas.setHeight(height);
     canvas.renderAll();
-}
+}*/
 
 function move(params) {
     var dir = params[0];
@@ -1132,18 +1132,59 @@ var CustomNGIf = function (element, callback, propertyName) {
 /*------------------------EDITOR-WINDOWS------------------------*/
 
 var textEditorContainer = document.getElementById('text-editor');
-var textEditor = new CustomNGIf(textEditorContainer, function () {}, 'visible');
+var textEditor = new CustomNGIf(textEditorContainer, function () { }, 'visible');
 
 textEditor['visible'] = false;
 
 
 var imageEditorContainer = document.getElementById('image-editor');
-var imageEditor = new CustomNGIf(imageEditorContainer, function () {}, 'visible');
+var imageEditor = new CustomNGIf(imageEditorContainer, function () { }, 'visible');
 
 imageEditor['visible'] = false;
 
 
 var chartEditorContainer = document.getElementById('chart-editor');
-var chartEditor = new CustomNGIf(chartEditorContainer, function () {}, 'visible');
+var chartEditor = new CustomNGIf(chartEditorContainer, function () { }, 'visible');
 
 chartEditor['visible'] = false;
+
+/*------------------------RESIZE-CANVAS------------------------*/
+
+let originalSize;
+
+window.onload = function () {
+    let width = $('#content-main-inner-spacing-middle').width();
+    let height = $('#content-main-inner-spacing-middle').height();
+
+    resizeCanvas(width, height);
+    originalSize = canvas.width;
+}
+
+$(window).resize(function () {
+    let width = $('#content-main-inner-spacing-middle').width();
+    let height = $('#content-main-inner-spacing-middle').height();
+
+    resizeCanvas(width, height);
+});
+
+function resizeCanvas(width, height) {
+    if (originalSize) {
+        val = canvas.width / originalSize;
+        canvas.setZoom(val);
+    }
+    canvas.setWidth(width);
+    canvas.setHeight(height);
+    cC = $(".canvas-container");
+    cC.css('width', width + 'px');
+    cC.css('height', height + 'px');
+    lC = $(".lower-canvas");
+    lC.css('width', width + 'px');
+    lC.css('height', height + 'px');
+    lC.attr('width', width);
+    lC.attr('height', height);
+    uC = $(".upper-canvas");
+    uC.css('width', width + 'px');
+    uC.css('height', height + 'px');
+    uC.attr('width', width);
+    uC.attr('height', height);
+}
