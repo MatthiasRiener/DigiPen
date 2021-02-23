@@ -146,6 +146,7 @@ class TaskRepository():
                         subtaskDummy = dict()
                         subtaskDummy["name"] = sub["name"]
                         subtaskDummy["finished"] = sub["status"]
+                        subtaskDummy["id"] = sub["sub_id"]
 
                         dummyTask["subtasks"].append(subtaskDummy)
 
