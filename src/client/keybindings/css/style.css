@@ -8,8 +8,11 @@
 body {
     min-width: 100vw;
     min-height: 100vh;
+    position:absolute;
+    width:100%; 
+    height:100%; 
     background-image: url("../images/background.png");
-    background-size: cover;
+    background-size: center;
     overflow-x: hidden;
 }
 
@@ -26,13 +29,19 @@ h1{
     text-align: center;
 }
 
+#bindings{
+    height: 80%;
+    width: 100%;
+    overflow: auto;
+}
+
 #template {
     display: none;
 }
 
 .mainContent{
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
