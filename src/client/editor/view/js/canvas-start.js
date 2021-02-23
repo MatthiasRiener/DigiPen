@@ -557,22 +557,29 @@ $('body').on('input', '.img-opacity-slider-img', function () {
 });
 
 
-/*$(window).resize(function() {
+/*------------------------Helper Functions------------------------*/
+window.onload = function () {
+    let width = $('#content-main-inner-spacing-middle').width();
+    let height = $('#content-main-inner-spacing-middle').height();
+
+    resizeCanvas(width, height);
+    originalSize = canvas.width;
+}
+
+$(window).resize(function () {
     var width = $('#content-main-inner-spacing-middle').width();
     var height = $('#content-main-inner-spacing-middle').height();
 
 
     resizeCanvas(width, height);
-    originalSize = canvas.width;
 
-});*/
+});
 
-/*------------------------Helper Functions------------------------*/
-/*let originalSize;
+let originalSize;
 
 function resizeCanvas(width, height) {
 
-    if(originalSize) {
+    if (originalSize) {
         val = canvas.width / originalSize;
         canvas.setZoom(val);
     }
@@ -580,7 +587,7 @@ function resizeCanvas(width, height) {
     canvas.setWidth(width);
     canvas.setHeight(height);
     canvas.renderAll();
-}*/
+}
 
 function move(params) {
     var dir = params[0];
@@ -1147,47 +1154,3 @@ var chartEditorContainer = document.getElementById('chart-editor');
 var chartEditor = new CustomNGIf(chartEditorContainer, function () { }, 'visible');
 
 chartEditor['visible'] = false;
-
-/*------------------------RESIZE-CANVAS------------------------*/
-
-let originalSize, maxwidth;
-
-window.onload = function () {
-    let width = $('#content-main-inner-spacing-middle').width();
-    let height = $('#content-main-inner-spacing-middle').height();
-
-    resizeCanvas(width, height);
-    originalSize = canvas.width;
-}
-
-$(window).resize(function () {
-    if ($('#content-main-inner-spacing-bottom').position().top > $("#content-main").height()) {
-        return;
-    }
-    maxwidth = $("#content-main").width()
-    let width = $('#content-main-inner-spacing-middle').width();
-    let height = $('#content-main-inner-spacing-middle').height();
-    resizeCanvas(width, height);
-});
-
-function resizeCanvas(width, height) {
-    if (originalSize) {
-        val = canvas.width / originalSize;
-        canvas.setZoom(val);
-    }
-    canvas.setWidth(width);
-    canvas.setHeight(height);
-    cC = $(".canvas-container");
-    cC.css('width', width + 'px');
-    cC.css('height', height + 'px');
-    lC = $(".lower-canvas");
-    lC.css('width', width + 'px');
-    lC.css('height', height + 'px');
-    lC.attr('width', width);
-    lC.attr('height', height);
-    uC = $(".upper-canvas");
-    uC.css('width', width + 'px');
-    uC.css('height', height + 'px');
-    uC.attr('width', width);
-    uC.attr('height', height);
-}
