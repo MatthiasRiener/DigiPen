@@ -57,11 +57,31 @@ class TaskRepository():
                 tasks.append({"name": subtasks[i - 1], "status": subtasks[i]})
 
         for subtask in tasks:
-            SubTask(parent_id=task_id,
+            SubTask(sub_id=str(uuid.uuid4()) , parent_id=task_id,
                     name=subtask["name"], status=subtask["status"]).save()
         Task(p_id=p_id, task_id=task_id, name=name, start=parser.parse(start_date),
              end=parser.parse(end_date), finished=True, creator=u_id, assignee=assignee).save()
         return ''
+    
+    def updateTask(self, t_id, p_id, name, end_date, start_date, assignee, subtasks):
+       
+        for i in range(0, len(subtasks) - 1):
+            if not i % 3:
+                tasks.append({"id": subtasks[i - 2], "name": subtasks[i - 1], "status": subtasks[i]})
+
+        for subtask in tasks:
+            if not SubTask.objects(sub_id=subtask["id"]):
+                SubTask(sub_id=str(uuid.uuid4()) , parent_id=t_id,
+                    name=subtask["name"], status=subtask["status"]).save()
+            else:
+                SubTask.objects(sub_id=subtask["id"]).update(
+                    set__name=subtask["name"], set__status=subtask["status"])
+
+
+        Task.objects(task_id=t_id).first().update(set__p_id=p_id, set__name=name, set__start=parser.parse(start_date),
+             set__end=parser.parse(end_date), set__finished=True,  set__assignee=assignee)
+        return 'updated'
+    
 
     def getTask(self, task_id):
 
@@ -81,6 +101,7 @@ class TaskRepository():
         response["subtasks"] = list()
         for sub in subtasks:
             subtaskDummy = dict()
+            subtaskDummy["id"] = sub["sub_id"]
             subtaskDummy["name"] = sub["name"]
             subtaskDummy["finished"] = sub["status"]
             response["subtasks"].append(subtaskDummy)

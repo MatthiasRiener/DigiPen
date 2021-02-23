@@ -87,3 +87,18 @@ def getTaskInfoRoute():
     response = taskRepo.getTask(task_id=t_id)
 
     return json.dumps({"res": response})
+
+@task_m.route('/updateTask', methods=["POST"])
+@jwt_required
+def updateTaskRoute():
+    data = request.form
+    p_id = data['presentation']
+    t_id = data["id"]
+    task_name = data["name"]
+    task_assignee = data['user']
+    subtasks = data.getlist("subtasks[]")
+    end_date = data['end_date']
+    start_date = data["start_date"]
+
+    res = taskRepo.updateTask(t_id=t_id, p_id=p_id, name=task_name, end_date=end_date, start_date=start_date,  assignee=task_assignee, subtasks=subtasks )
+    return json.dumps({"res": 'updated'})
