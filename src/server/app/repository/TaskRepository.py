@@ -64,10 +64,11 @@ class TaskRepository():
         return ''
     
     def updateTask(self, t_id, p_id, name, end_date, start_date, assignee, subtasks):
+        print(subtasks)
         tasks = list()
         for i in range(0, len(subtasks) - 1):
             if not i % 3:
-                tasks.append({"id": subtasks[i - 2], "name": subtasks[i - 1], "status": subtasks[i]})
+                tasks.append({"id": subtasks[i - 2], "name": subtasks[i - 1], "status": bool(subtasks[i])})
 
         for subtask in tasks:
             if not SubTask.objects(sub_id=subtask["id"]):
