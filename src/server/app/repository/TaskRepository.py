@@ -70,8 +70,8 @@ class TaskRepository():
             if not i % 3:
                 print(subtasks)
                 print("====")
-                print(subtasks[i])
-                tasks.append({"id": subtasks[i - 3], "name": subtasks[i - 2], "status": bool(subtasks[i - 1])})
+                print(subtasks[i - 1])
+                tasks.append({"id": subtasks[i - 1], "name": subtasks[i - 2], "status": bool(subtasks[i])})
 
         for subtask in tasks:
             if not SubTask.objects(sub_id=subtask["id"]) or subtask["id"] == "not defined":
