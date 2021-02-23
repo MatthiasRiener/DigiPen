@@ -67,9 +67,10 @@ function checkUser(id) {
 let subtasks = [];
 
 function createSubTask(status, name, id) {
+    console.log(status + name + id)
     subtasks.push(status);
     subtasks.push(name);
-    subtasks.push(id);
+    subtasks.push(id || "not defined");
 }
 
 function sendTaskData() {
@@ -84,6 +85,7 @@ function sendTaskData() {
     }
 
     if($('#taskPopup').data('update')) {
+        console.log("Task: ");
         console.log(task);
         sendRequestToServer({type: "POST", url: "/task/updateTask", data: task}).then(data => {
             console.log("update task: " + data);
