@@ -68,7 +68,7 @@ class TaskRepository():
         tasks = list()
         for i in range(0, len(subtasks) - 1):
             if not i % 3:
-                tasks.append({"id": subtasks[i - 2], "name": subtasks[i - 1], "status": bool(subtasks[i])})
+                tasks.append({"id": subtasks[i - 3], "name": subtasks[i - 2], "status": bool(subtasks[i - 1])})
 
         for subtask in tasks:
             if not SubTask.objects(sub_id=subtask["id"]):
