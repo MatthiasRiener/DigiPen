@@ -66,9 +66,10 @@ function checkUser(id) {
 
 let subtasks = [];
 
-function createSubTask(status, name) {
+function createSubTask(status, name, id) {
     subtasks.push(status);
-    subtasks.push(name)
+    subtasks.push(name);
+    subtasks.push(id);
 }
 
 function sendTaskData() {
@@ -111,15 +112,16 @@ function getTaskInfo(id) {
         $('#taskPopup-fifth-date-start').val(start[0]);
         $('#taskPopup-fifth-date-end').val(end[0]);
         $('#taskPopup-sixth-bottom').empty();
-        data.res.subtasks.forEach(subtasks => {
-            createSubTask(subtasks.finished, subtasks.name)
+        subtasks.length = 0;
+        data.res.subtasks.forEach(subtask => {
+            createSubTask(subtask.finished, subtask.name, subtask.id);
 
             $('#taskPopup-sixth-bottom').append(`
-            <div class="taskPopup-sixth-bottom-row">
+            <div class="taskPopup-sixth-bottom-row" data-subtask="${subtask.id}">
                 <div class="taskPopup-sixth-bottom-row-left">
                     <input class="taskPopup-sixth-bottom-row-left-input" type="checkbox">
                 </div>
-                <div class="taskPopup-sixth-bottom-row-right">${subtasks.name}</div>
+                <div class="taskPopup-sixth-bottom-row-right">${subtask.name}</div>
             </div>
             `);
         });
