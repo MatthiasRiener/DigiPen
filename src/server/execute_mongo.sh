@@ -1,0 +1,1 @@
+mongo -u root -p rootpassword < mongo_config.js
