@@ -15,6 +15,7 @@ from .AuthenticationRepository import AuthenticationRepository
 presRepo = PresentationRepository(testing=False)
 authRepo = AuthenticationRepository(testing=False)
 
+
 class TaskRepository():
     def __init__(self, testing):
         self.testing = testing
@@ -57,12 +58,12 @@ class TaskRepository():
                 tasks.append({"name": subtasks[i - 1], "status": subtasks[i]})
 
         for subtask in tasks:
-            SubTask(sub_id=str(uuid.uuid4()) , parent_id=task_id,
+            SubTask(sub_id=str(uuid.uuid4()), parent_id=task_id,
                     name=subtask["name"], status=subtask["status"]).save()
         Task(p_id=p_id, task_id=task_id, name=name, start=parser.parse(start_date),
              end=parser.parse(end_date), finished=True, creator=u_id, assignee=assignee).save()
         return ''
-    
+
     def updateTask(self, t_id, p_id, name, end_date, start_date, assignee, subtasks):
         print(subtasks)
         tasks = list()
@@ -71,13 +72,17 @@ class TaskRepository():
                 print(subtasks)
                 print("====")
                 print(subtasks[i - 1])
-                tasks.append({"id": subtasks[i - 1], "name": subtasks[i - 2], "status": bool(subtasks[i])})
+                tasks.append(
+                    {"id": subtasks[i - 1], "name": subtasks[i - 2], "status": bool(subtasks[i])})
 
         for subtask in tasks:
-            if not SubTask.objects(sub_id=subtask["id"]) or subtask["id"] == "not defined":
+            if not SubTask.objects(sub_id=subtask["id"]) and subtask["id"] == "not defined":
+                print("creating task...", subtask["name"])
+
                 SubTask(sub_id=str(uuid.uuid4()) , parent_id=t_id,
                     name=subtask["name"], status=subtask["status"]).save()
             else:
+                print("updating task...", subtask["name"])
                 SubTask.objects(sub_id=subtask["id"]).update(
                     set__name=subtask["name"], set__status=subtask["status"])
 
