@@ -559,6 +559,12 @@ $('body').on('input', '.img-opacity-slider-img', function () {
 
 /*------------------------Helper Functions------------------------*/
 window.onload = function () {
+    if (checkResponsiveness()) {
+        makeResponsive();
+        return;
+    }
+    restoreResponsiveness();
+
     let width = $('#content-main-inner-spacing-middle').width();
     let height = $('#content-main-inner-spacing-middle').height();
 
@@ -567,18 +573,21 @@ window.onload = function () {
 }
 
 $(window).resize(function () {
+    if (checkResponsiveness()) {
+        makeResponsive();
+        return;
+    }
+    restoreResponsiveness();
+
     var width = $('#content-main-inner-spacing-middle').width();
     var height = $('#content-main-inner-spacing-middle').height();
 
-
     resizeCanvas(width, height);
-
 });
 
-let originalSize;
+let originalSize, oldWidth, oldHeight;
 
 function resizeCanvas(width, height) {
-
     if (originalSize) {
         val = canvas.width / originalSize;
         canvas.setZoom(val);
@@ -587,6 +596,29 @@ function resizeCanvas(width, height) {
     canvas.setWidth(width);
     canvas.setHeight(height);
     canvas.renderAll();
+}
+
+function checkResponsiveness() {
+    let isresponsive = false;
+
+    if ($("#content-main-inner-spacing-bottom").position().top + 25 > $("#content-main-inner").height())
+        isresponsive = true;
+    else {
+        oldWidth = $("#content-main-inner-spacing-middle").width();
+        oldHeight = $("#content-main-inner-spacing-middle").height();
+    }
+
+    return isresponsive;
+}
+
+function makeResponsive() {
+    $("#content-main-inner-spacing-middle").css('width', oldWidth);
+    $("#content-main-inner-spacing-middle").css('height', oldHeight);
+}
+
+function restoreResponsiveness() {
+    $("#content-main-inner-spacing-middle").css('width', '');
+    $("#content-main-inner-spacing-middle").css('height', '');
 }
 
 function move(params) {
