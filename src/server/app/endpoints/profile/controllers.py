@@ -9,6 +9,8 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
 from ...models.User import User
 from ...repository.AuthenticationRepository import AuthenticationRepository
 from ...repository.WorkspaceRepository import WorkspaceRepository
+from ...repository.TaskRepository import TaskRepository
+from ...repository.PresentationRepository import PresentationRepository
 
 import json
 
@@ -17,6 +19,9 @@ profile = Blueprint("profile", __name__,
 
 repo = AuthenticationRepository(testing=False)
 wRepo = WorkspaceRepository(testing=False)
+taskRepo = TaskRepository(testing=False)
+presRepo = PresentationRepository(testing=False)
+
 @profile.route('/')
 def index():
     return render_template('/profile/index.html')
@@ -30,4 +35,27 @@ def getUserData():
     user.update({"workspaces": wRepo.getRepoCounter(u_id=cur_user)})
     return json.dumps(user)
 
+@profile.route('/getUpComingTasks')
+@jwt_required
+def getUsersTasksRoute():
+    u_id = get_jwt_identity()
+    res = taskRepo.getUsersTasks(u_id=u_id)
 
+    return json.dumps({"res": res})
+
+
+@profile.route('/getPresentationCount')
+@jwt_required
+def getUsersPresentationCountRoute():
+    u_id = get_jwt_identity()
+    response = presRepo.getPresentationCount(user_id=u_id)
+    return json.dumps({"res": response})
+
+
+
+@profile.route('/getWorkspaces')
+@jwt_required
+def getUsersWorkspacesRoute():
+    u_id = get_jwt_identity()
+    response = wRepo.getWorkspaces(u_id=u_id)
+    return json.dumps({"res": response})
