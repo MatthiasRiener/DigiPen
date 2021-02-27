@@ -558,34 +558,31 @@ $('body').on('input', '.img-opacity-slider-img', function () {
 
 
 /*------------------------Helper Functions------------------------*/
+
+let originalSize, oldWidth, oldHeight;
+
 window.onload = function () {
     if (checkResponsiveness()) {
-        makeResponsive();
         return;
+    } else {
+        let width = $('#content-main-inner-spacing-middle').width();
+        let height = $('#content-main-inner-spacing-middle').height();
+
+        resizeCanvas(width, height);
+        originalSize = canvas.width;
     }
-    restoreResponsiveness();
-
-    let width = $('#content-main-inner-spacing-middle').width();
-    let height = $('#content-main-inner-spacing-middle').height();
-
-    resizeCanvas(width, height);
-    originalSize = canvas.width;
 }
 
 $(window).resize(function () {
     if (checkResponsiveness()) {
-        makeResponsive();
         return;
+    } else {
+        var width = $('#content-main-inner-spacing-middle').width();
+        var height = $('#content-main-inner-spacing-middle').height();
+
+        resizeCanvas(width, height);
     }
-    restoreResponsiveness();
-
-    var width = $('#content-main-inner-spacing-middle').width();
-    var height = $('#content-main-inner-spacing-middle').height();
-
-    resizeCanvas(width, height);
 });
-
-let originalSize, oldWidth, oldHeight;
 
 function resizeCanvas(width, height) {
     if (originalSize) {
@@ -598,27 +595,27 @@ function resizeCanvas(width, height) {
     canvas.renderAll();
 }
 
-function checkResponsiveness() {
-    let isresponsive = false;
+let isresponsive;
 
-    if ($("#content-main-inner-spacing-bottom").position().top + 25 > $("#content-main-inner").height())
+function checkResponsiveness() {
+    isresponsive = false;
+
+    if ($("#content-main-inner-spacing-bottom").position().top + 25 <= $("#content-main-inner").height()) {
+        $("#content-main-inner-spacing-middle").css('width', '58vw');
+        $("#content-main-inner-spacing-middle").css('height', '32.625vw');
+    }
+
+    if ($("#content-main-inner-spacing-bottom").position().top + 25 > $("#content-main-inner").height()) {
         isresponsive = true;
+        $("#content-main-inner-spacing-middle").css('width', oldWidth);
+        $("#content-main-inner-spacing-middle").css('height', oldHeight);
+    }
     else {
         oldWidth = $("#content-main-inner-spacing-middle").width();
         oldHeight = $("#content-main-inner-spacing-middle").height();
     }
 
     return isresponsive;
-}
-
-function makeResponsive() {
-    $("#content-main-inner-spacing-middle").css('width', oldWidth);
-    $("#content-main-inner-spacing-middle").css('height', oldHeight);
-}
-
-function restoreResponsiveness() {
-    $("#content-main-inner-spacing-middle").css('width', '');
-    $("#content-main-inner-spacing-middle").css('height', '');
 }
 
 function move(params) {
