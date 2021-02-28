@@ -680,7 +680,7 @@ function move(params) {
 }
 
 function loadCanvasFromJson(json) {
-    canvas.loadFromJson(json, function () {
+    canvas.loadFromJSON(json, function () {
         canvas.renderAll();
     }, function (o, object) {
         console.log("Canvas loaded!")
