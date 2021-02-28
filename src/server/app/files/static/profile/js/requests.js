@@ -2,16 +2,12 @@ sendRequestToServer({
     type: "GET",
     url: "/profile/user"
 }).then(data => {
-    // Insert name
     $('#insert-username').text(data.name);
 
-    // Insert profile picture
     $('#PP').attr('src', data.img);
 
-    // Insert workspace count
     $('#workspaceCount').text(data.workspaces);
 
-    // Insert created date
     let date = new Date(data.created * 1000).toLocaleDateString("en-US", {
         month: "long",
         day: "2-digit",
@@ -25,7 +21,19 @@ sendRequestToServer({
     type: "GET",
     url: "/profile/getUpComingTasks"
 }).then(data => {
-    console.log("Upcoming Tasks:" + data);
+    console.log(data);
+    data.res.forEach(task => {
+        console.log(task);
+        $('#taskOutput').append(`
+            <div class="Task">
+                <p>${task.p_id}</p>
+                <h2>${task.name}</h2>
+                <div class="contribuer">
+                    <img id="PPc" src={{ url_for("static", filename="/profile/img/cat.jpg") }} alt="Profile Picture">
+                </div>
+            </div>
+        `);
+    });
 })
 
 sendRequestToServer({
@@ -33,6 +41,7 @@ sendRequestToServer({
     url: "/profile/getPresentationCount"
 }).then(data => {
     console.log("Presentationen: " + data)
+    $('#presentationCount').text(data.res);
 })
 
 sendRequestToServer({
