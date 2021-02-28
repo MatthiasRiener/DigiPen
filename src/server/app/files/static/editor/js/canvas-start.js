@@ -689,6 +689,7 @@ function loadCanvasFromJson(json) {
 
 function saveCanvasToJson() {
     const json = canvas.toJSON();
+    saveCanvas(json);
     console.log(json)
 }
 
