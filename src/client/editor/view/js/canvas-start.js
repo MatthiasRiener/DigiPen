@@ -645,6 +645,7 @@ function move(params) {
 
 function saveCanvasToJson() {
     const json = canvas.toJSON();
+    console.log(json)
 }
 
 function rasterizeSVG() {

@@ -171,6 +171,15 @@ class TaskRepository():
             response.append(dummy)
         return response
 
+
+    def getUsersTasks(self, u_id):
+        tasks = Task.objects(assignee=u_id).order_by('-end')
+        response = list()
+
+        for t in tasks:
+            response.append(json.loads(t.to_json()))
+        return response
+
     def deleteAllTasks(self):
         if self.testing:
             Task.objects().delete()

@@ -88,6 +88,8 @@ class PresentationRepository():
             presentations.append(p)
         return presentations
 
+    def getPresentationCount(self, user_id):
+        return len(self.getUsersPresentation(user_id=user_id))
     def inviteUser(self, user_id, p_id):
         user = dict()
         user['status'] = 'pending'
