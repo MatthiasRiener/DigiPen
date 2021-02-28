@@ -7,7 +7,9 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
                                 set_refresh_cookies, unset_jwt_cookies, decode_token)
 
 
+from ...repository.EditorRepository import EditorRepository
 
+editorRepo = EditorRepository(testing=False)
 
 editor = Blueprint("editor", __name__,
                     static_folder="static", template_folder="templates")
@@ -16,3 +18,12 @@ editor = Blueprint("editor", __name__,
 @editor.route('/')
 def index():
     return render_template('/editor/index.html')
+
+@editor.route('/getPresentationInfo', methods=["POST"])
+@jwt_required
+def getPresentationRoute():
+    data = request.form
+    p_id = data['p_id']
+    u_id = get_jwt_identity()
+
+    return editorRepo.retrieveData(p_id=p_id, u_id=u_id)

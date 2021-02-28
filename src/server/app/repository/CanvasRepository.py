@@ -13,6 +13,7 @@ class CanvasRepository():
 
     def getCanvas(self, p_id):
         return mongoclient.db['canvas'].find_one({"p_id": p_id})
+    
     def deleteAll(self):
         if self.testing:
             Canvas.objects().delete()

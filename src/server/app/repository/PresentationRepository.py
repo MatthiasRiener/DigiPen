@@ -84,6 +84,8 @@ class PresentationRepository():
             users.append(authRepo.retrieveUser(user_id=user["u_id"]))
         return users;
 
+    
+
     def getUsersPresentation(self, user_id):
         presentations = []
         print(user_id)
