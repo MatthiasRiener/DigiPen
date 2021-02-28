@@ -20,6 +20,7 @@ dashboard = Blueprint("dashboard", __name__,
 authRepo = AuthenticationRepository(testing=False)
 presRepo = PresentationRepository(testing=False)
 
+
 @dashboard.route('/', methods=["GET"])
 def index():
     return render_template('/dashboard/index.html')
@@ -31,7 +32,7 @@ def requestPresentation():
     u_id = get_jwt_identity()
 
     response, p_id = presRepo.requestPresentation(u_id=u_id)
-    
+
     return response
 
 
@@ -45,6 +46,14 @@ def createPresentation():
 @dashboard.route('/getTemplates', methods=["GET"])
 def getTemplates():
     return presRepo.getTemplates()
+
+
+@dashboard.route('/getOwnPresentations', methods=["GET"])
+@jwt_required
+def getPresentationsRoute():
+    u_id = get_jwt_identity()
+    return presRepo.getPresentationsForDashboard(user_id=u_id)
+
 
 @dashboard.route('/deleteRequested', methods=["POST"])
 @jwt_required
@@ -61,14 +70,14 @@ def getInvites():
     return presRepo.getInvites(user_id=user_id)
 
 
-
-
 @socketio.on('connectUser')
 def connect(json):
     u_id = json['user_id']
     join_room(u_id)
     send(u_id + " has joined the room", room=u_id)
 # websockets
+
+
 @socketio.on("searchUser")
 def handle_search_user(json):
     s_email = json['email']
@@ -77,6 +86,7 @@ def handle_search_user(json):
     new_users = presRepo.getNotInvitedUsers(p_id=p_id, users=users)
 
     return emit('searchUser', new_users)
+
 
 @socketio.on("inviteUser")
 def handle_invite_user(json):
@@ -87,11 +97,12 @@ def handle_invite_user(json):
     pres = presRepo.inviteUser(user_id=user.u_id, p_id=p_id)
 
     pres_res = authRepo.getUsersForPresentation(pres=pres)
-    
+
     sendInviteMessage(p_id=p_id, u_id=user.u_id)
     broadCastPresentation(pres_res)
-    
+
     return emit('inviteUser', pres_res.to_mongo())
+
 
 @socketio.on("handleInvite")
 def handle_invite_pressed(json):
@@ -99,29 +110,37 @@ def handle_invite_pressed(json):
     status = json['status']
     p_id = json['p_id']
     user_id = json['u_id']
-    
+
     msg = presRepo.handleInvitePressed(status, p_id, user_id)
 
     sendMessageToClient("invitePressed", msg, user_id)
     sendMessageToCreator("handleInvite", msg, p_id)
+
+
 def sendInviteMessage(p_id, u_id):
-    emit( "You have been invited to join the presentation %s. " % (p_id), room=u_id)
+    emit("You have been invited to join the presentation %s. " % (p_id), room=u_id)
+
 
 def sendMessageToCreator(event, msg, pres_id):
     u_id = presRepo.getPresentation(p_id=pres_id).creator
     emit(event, msg, room=u_id)
+
+
 def broadCastMessage(event, pres_id, msg):
     for user in presRepo.getPresentation(pres_id).users:
         if user['status'] == 'accepted':
             emit(event, msg, room=user["u_id"])
+
+
 def sendMessageToClient(event, msg, client):
     emit(event, msg, room=client)
+
+
 def broadCastPresentation(pres):
     print(pres.to_mongo())
     print("====")
     print(pres.users)
-    
+
     for user in pres.users:
         if user['status'] == 'accepted':
             emit("New user was invited to your lobby", room=user["_id"])
-    

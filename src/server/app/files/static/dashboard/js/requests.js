@@ -22,9 +22,13 @@ $('#submitcontrolls').click(function () {
         template: template
     }
 
-    sendRequestToServer({type: "POST", url: "/dashboard/createPresentation", data: presentation}).then(data => {
+    sendRequestToServer({
+        type: "POST",
+        url: "/dashboard/createPresentation",
+        data: presentation
+    }).then(data => {
         console.log("Created Presentation: " + data);
-        if(data.status) {
+        if (data.status) {
             setCustomStorage("p_id", data.p_id);
             window.location.href = baseURL + "/editor"
         }
@@ -33,7 +37,11 @@ $('#submitcontrolls').click(function () {
 
 function createPresentation() {
     console.log("creating presentation");
-    sendRequestToServer({type: "POST", url: "/dashboard/requestPresentation", data: "Hallo Matti!"}).then(data => {
+    sendRequestToServer({
+        type: "POST",
+        url: "/dashboard/requestPresentation",
+        data: "Hallo Matti!"
+    }).then(data => {
         console.log("Requested Presentation: " + data);
         setCustomStorage("p_id", data.id);
         $('#template_title').text(data.name);
@@ -42,13 +50,30 @@ function createPresentation() {
 }
 
 function deletePlaceholder() {
-    sendRequestToServer({type: "POST", url: "/dashboard/deleteRequested", data: {p_id: getCustomStorage("p_id")}}).then(data => {
+    sendRequestToServer({
+        type: "POST",
+        url: "/dashboard/deleteRequested",
+        data: {
+            p_id: getCustomStorage("p_id")
+        }
+    }).then(data => {
         console.log("Delete Requested: " + data);
     });
 }
 
-sendRequestToServer({type: "GET", url: "/dashboard/getTemplates"}).then(data => {
-    data.forEach(element => {
-        console.log(element)
-    });
+sendRequestToServer({
+    type: "GET",
+    url: "/dashboard/getTemplates"
+}).then(data => {
+    
+});
+
+
+sendRequestToServer({
+    type: "GET",
+    url: "/dashboard/getOwnPresentations"
+}).then(data => {
+
+    console.warn("========");
+    console.log(data)
 });

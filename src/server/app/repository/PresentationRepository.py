@@ -84,7 +84,7 @@ class PresentationRepository():
             users.append(authRepo.retrieveUser(user_id=user["u_id"]))
         return users;
 
-    
+
 
     def getUsersPresentation(self, user_id):
         presentations = []
@@ -94,6 +94,23 @@ class PresentationRepository():
         for p in pres:
             presentations.append(p)
         return presentations
+
+    def getPresentationsForDashboard(self, user_id):
+        presentations = list()
+        print(user_id)
+        from .CanvasRepository import CanvasRepository
+        canvasRepo = CanvasRepository(testing=False)
+
+        pres = mongoclient.db['presentation'].find({"users": {"$elemMatch": {"u_id": user_id}}})
+
+        for p in pres:
+            print("soos")
+            print(p["_id"])
+            canvas = canvasRepo.getCanvas(p_id=p["_id"])
+            p["canvas"] = json.loads(json_util.dumps(canvas))
+            presentations.append(p)
+
+        return json.dumps({"res": presentations})
 
     def getPresentationCount(self, user_id):
         return len(self.getUsersPresentation(user_id=user_id))
