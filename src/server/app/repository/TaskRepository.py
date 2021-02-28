@@ -173,7 +173,7 @@ class TaskRepository():
 
 
     def getUsersTasks(self, u_id):
-        tasks = Task.objects(assignee=u_id).order_by('-end')
+        tasks = Task.objects(assignee=u_id).order_by('end')
         response = list()
 
         for t in tasks:
