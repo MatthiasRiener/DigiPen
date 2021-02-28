@@ -265,10 +265,10 @@ $(document).click(function (event) {
 
 //Navigation
 
-$('body').on('click', '.ed_bt_arrow_click', function(){
+$('body').on('click', '.ed_bt_arrow_click', function () {
     window.location = "../../../src/dashboard/index.html"
 })
 
-$('body').on('click', '#shortcutPopup-inner-popup-change', function(){
+$('body').on('click', '#shortcutPopup-inner-popup-change', function () {
     window.location = "../../../src/keybindings/index.html"
 })
