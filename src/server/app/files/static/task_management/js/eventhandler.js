@@ -34,6 +34,17 @@ $('#addTask').click(function () {
     $('#taskPopup').css('opacity', '0.0');
     $('#taskPopup').css('display', 'none');
 
+    $('#currentPresentation').text("select presentation");
+    $('#presentationPopup-top-current').text("no selection");
+    $('#taskPopup-second-headline').text("Taskname...")
+    $('#taskPopup-fourth-left-image').css('background', '#383838');
+    $('#currentUser').text("select user");
+    $('#personPopup-top-current-image').css('background', '#383838');
+    $('#popupCurrentUser').text("no selection");
+    $('#taskPopup-fifth-date-start').val("YYYY-MM-DD")
+    $('#taskPopup-fifth-date-end').val("YYYY-MM-DD")
+    $('#taskPopup-sixth-bottom').empty();
+
     taskWidth = ($(this).width() / $(window).width()) * 100;
     taskHeight = ($(this).height() / $(window).height()) * 100;
     taskPositionTop = (($(this).offset().top / $(window).height()) * 100) + 36;

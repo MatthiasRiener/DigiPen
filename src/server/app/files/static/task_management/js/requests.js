@@ -74,6 +74,8 @@ function createSubTask(status, name, id) {
 }
 
 function sendTaskData() {
+    console.log("Subtasks: ")
+    console.log(subtasks);
     let task = {
         id: $('#taskPopup').data('task'),
         presentation: $('#currentPresentation').data('presentation'),
