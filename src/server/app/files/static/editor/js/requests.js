@@ -5,6 +5,21 @@ $(document).ready(function () {
         $('#content-navigation-first-left-text-h2').text(data.pres.name);
         $('#content-navigation-first-left-text-h3').text(data.ownUser.name);
 
+        data.users.forEach(user => {
+            
+        });
+
+        /*$('.content-navigation-fourth-position-circle').each(function (index) {
+            if(index < 4) {
+                $(this).css('background', 'url("' + data.users[index].img + '")')
+            }
+
+            $('#content-navigation-fourth-position-fifthCircle').text("+" + (index - 3));
+        });
+
+        $('.content-navigation-fourth-position-circle').css('background-position', 'center');
+        $('.content-navigation-fourth-position-circle').css('background-size', 'cover');*/
+
         loadCanvasFromJson(data.canvas.canvas);
     });
 });

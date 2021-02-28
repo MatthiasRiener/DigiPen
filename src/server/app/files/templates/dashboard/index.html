@@ -26,6 +26,8 @@
 
     <script src={{ url_for('static', filename="components/side-bar/customEvents.js") }} type="module"></script>
 
+    <script src={{ url_for('static', filename="editor/js/fabric.min.js") }} type="text/javascript" defer></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js" integrity="sha512-oFOCo2/3DtjrJG4N27BjSLQWoiBv171sK6a+JiWjp/7agxC2nCUP358AqzxkBUb5jX8g6CYLPdSKQTbC0weCwA==" crossorigin="anonymous"></script>
 </head>
 
@@ -120,22 +122,8 @@
                     <h1>Your presentations</h1>
                 </div>
             </div>
-            <ul class="myUl">
-                <li>
-                    <div class="template_yourPresentation"><i class="fas fa-eye"></i></div>
-                    <p class="searchitem_yourPresentation"></p>
-                    <p class="amoutofslides"></p>
-                </li>
-                <li>
-                    <div class="template_yourPresentation"><i class="fas fa-eye"></i></div>
-                    <p class="searchitem_yourPresentation"></p>
-                    <p class="amoutofslides"></p>
-                </li>
-                <li>
-                    <div class="template_yourPresentation"><i class="fas fa-eye"></i></div>
-                    <p class="searchitem_yourPresentation"></p>
-                    <p class="amoutofslides"></p>
-                </li>
+            <ul class="myUl" id="ownPresentations">
+
             </ul>
         </div>
     </div>
@@ -274,6 +262,8 @@
             </div>
         </div>
     </div>
+
+    <div id="invisibleCanvas"><canvas id="canvas"></canvas></div>
 
     <script src={{ url_for('static', filename="dashboard/js/index.js") }} type="text/javascript" defer></script>
     <script src={{ url_for('static', filename="components/side-bar/invites.js") }} type="text/javascript" defer></script>

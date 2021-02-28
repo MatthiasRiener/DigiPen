@@ -76,4 +76,42 @@ sendRequestToServer({
 
     console.warn("========");
     console.log(data)
+
+    //var canvas = new fabric.Canvas("canvas");
+    var canvas = new fabric.StaticCanvas(null, { width: 1920, height: 1080 });
+    canvas.enableGLFiltering = false;
+
+    //canvas.setWidth($('#invisibleCanvas').width());
+    //canvas.setHeight($('#invisibleCanvas').height());
+
+    data.res.forEach(presentation => {
+        if(presentation.canvas == null) {
+            return;
+        }
+
+        console.log("PRESENTATIONS: ");
+        console.log(JSON.parse(presentation.canvas.canvas));
+
+        canvas.clear();
+
+        canvas.loadFromJSON(presentation.canvas.canvas, function () {
+            canvas.renderAll();
+            $('#ownPresentations').append(`
+            <li data-presentation="${presentation._id}">
+                <div class="template_yourPresentation" style="background: url('${'data:image/svg+xml;utf8,' + encodeURIComponent(canvas.toSVG())}'); background-size: cover; background-position: center; background-repeat: no-repeat"><i class="fas fa-eye"></i></div>
+                <p class="searchitem_yourPresentation">${presentation.name}</p>
+                <p class="amoutofslides">1 Slide</p>
+            </li>
+        `);
+        }, function (o, object) {
+            console.log("Canvas loaded!")
+        })
+    });
 });
+
+
+$('body').on('click', '#ownPresentations li', function () {
+    console.log("IDDDDD: " + $(this).data("presentation"));
+    setCustomStorage("p_id", $(this).data("presentation"));
+    window.location.href = baseURL + "/editor";
+})

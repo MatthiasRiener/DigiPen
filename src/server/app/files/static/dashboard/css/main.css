@@ -491,3 +491,20 @@ p {
 #submitcontrolls:hover {
     background: rgba(0, 0, 0, 0.89);
 }
+
+#invisibleCanvas {
+    width: 1600px;
+    height: 900px;
+    background: red;
+    position: absolute;
+}
+
+#invisibleCanvas canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.canvas-container {
+    width: 100% !important;
+    height: 100% !important;
+}

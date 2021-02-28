@@ -177,7 +177,7 @@
 }
 
 #content-navigation-fourth-position-fifthCircle {
-    background-color: purple;
+    background-color: var(--dark-grey);
     z-index: 1;
     font-size: 0.8rem;
     font-weight: bold;

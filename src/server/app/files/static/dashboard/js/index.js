@@ -97,7 +97,7 @@ $(".fa-angle-down, .fa-angle-up").click(function (e) {
 });
 
 $(".myUl li").click(function (e) {
-    title = "";
+    /*title = "";
     if (["searchitem_yourPresentation", "searchitem"].includes(e.target.parentElement.parentElement.children[1].classList.value)) {
         title = e.target.parentElement.parentElement.children[1].innerText;
     } else if (["searchitem_yourPresentation", "searchitem"].includes(e.target.parentElement.children[1].classList.value)) {
@@ -117,7 +117,8 @@ $(".myUl li").click(function (e) {
             }
         })
     })
-    sizetoimg();
+    sizetoimg();*/
+
 });
 
 $("#usetemplatebox").click(function (e) {
