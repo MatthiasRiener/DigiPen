@@ -562,15 +562,13 @@ $('body').on('input', '.img-opacity-slider-img', function () {
 let originalSize, oldWidth, oldHeight;
 
 window.onload = function () {
-    if (checkResponsiveness()) {
-        return;
-    } else {
-        let width = $('#content-main-inner-spacing-middle').width();
-        let height = $('#content-main-inner-spacing-middle').height();
+    let width = oldWidth = $('#content-main').height() * 3 / 5 * 16 / 9;
+    let height = oldHeight = $('#content-main').height() * 3 / 5;
+    $("#content-main-inner-spacing-middle").css('width', width);
+    $("#content-main-inner-spacing-middle").css('height', height);
 
-        resizeCanvas(width, height);
-        originalSize = canvas.width;
-    }
+    resizeCanvas(width, height);
+    originalSize = canvas.width;
 }
 
 $(window).resize(function () {
