@@ -12,7 +12,7 @@ var selected;
 var canDeleteText = true;
 
 var propsText = {
-    canvasFill: '#ffffff',
+    canvasFill: $(".canvas-fill-color").val(),
     canvasImage: '',
     id: null,
     opacity: null,
@@ -115,7 +115,6 @@ var propsImage = {
 
 
 var figureEditor = false;
-
 
 $(document).ready(function () {
     init();
@@ -562,15 +561,17 @@ $('body').on('input', '.img-opacity-slider-img', function () {
 let originalSize, oldWidth, oldHeight;
 
 window.onload = function () {
-    if (checkResponsiveness()) {
-        return;
-    } else {
-        let width = $('#content-main-inner-spacing-middle').width();
-        let height = $('#content-main-inner-spacing-middle').height();
+    let width = oldWidth = $('#content-main').height() * 3 / 5 * 16 / 9;
+    let height = oldHeight = $('#content-main').height() * 3 / 5;
+    $("#content-main-inner-spacing-middle").css('width', width);
+    $("#content-main-inner-spacing-middle").css('height', height);
 
-        resizeCanvas(width, height);
-        originalSize = canvas.width;
-    }
+    resizeCanvas(width, height);
+    originalSize = canvas.width;
+
+    $(".canvas-fill-color").val(rgbToHex($("#content-main-inner-spacing-middle").css("background-color")))
+    propsText.canvasFill = $(".canvas-fill-color").val();
+    setCanvasFill();
 }
 
 $(window).resize(function () {
@@ -616,6 +617,33 @@ function checkResponsiveness() {
     }
 
     return isresponsive;
+}
+
+function rgbToHex(rgbString) {
+    rgbObj = getRGB(rgbString);
+
+    r = rgbObj.r.toString(16);
+    g = rgbObj.g.toString(16);
+    b = rgbObj.b.toString(16);
+
+    if (r.length == 1)
+        r = "0" + r;
+    if (g.length == 1)
+        g = "0" + g;
+    if (b.length == 1)
+        b = "0" + b;
+
+    let hexString = "#" + r + g + b;
+    return hexString;
+}
+
+function getRGB(str) {
+    var match = str.match(/rgba?\((\d{1,3}), ?(\d{1,3}), ?(\d{1,3})\)?(?:, ?(\d(?:\.\d?))\))?/);
+    return match ? {
+        r: parseInt(match[1]),
+        g: parseInt(match[2]),
+        b: parseInt(match[3])
+    } : {};
 }
 
 function move(params) {
