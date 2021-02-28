@@ -121,6 +121,10 @@ $(".myUl li").click(function (e) {
 });
 
 $("#usetemplatebox").click(function (e) {
+    // !SECTION Changes done
+    if (e.target.classList.contains("closeicon")) console.warn(e.target)
+    // !ENDSECTION
+
     if (e.target.id == "usetemplatebox" || e.target.classList.contains("closeicon")) {
         $(this).css('display', 'none')
         $("#template_big, #template_scroll, #usetemplate").css('display', 'flex');
@@ -164,11 +168,6 @@ $('body').on('click', '#submitcontrolls', function () {
     window.location = "../../../src/editor/view/index.html"
 });
 
-
-
-
-
-/**** Neuer code */
 $(".createPresentation").click(async function () {
     $("#usetemplatebox").css('display', 'flex');
     $("#template_title").text("Create Presentation");
