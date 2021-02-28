@@ -135,7 +135,7 @@ function init() {
     canvas.setHeight($('#content-main-inner-spacing-middle').height());
 
     canvas.on({
-        'object:moving': (e) => { },
+        'object:moving': (e) => {},
         'object:modified': (e) => {
             const selectedObject = e.target;
             // don't allow delete inside text
@@ -617,8 +617,7 @@ function checkResponsiveness() {
         isresponsive = true;
         $("#content-main-inner-spacing-middle").css('width', oldWidth);
         $("#content-main-inner-spacing-middle").css('height', oldHeight);
-    }
-    else {
+    } else {
         oldWidth = $("#content-main-inner-spacing-middle").width();
         oldHeight = $("#content-main-inner-spacing-middle").height();
     }
@@ -678,6 +677,14 @@ function move(params) {
             break;
     }
     canvas.renderAll();
+}
+
+function loadCanvasFromJson(json) {
+    canvas.loadFromJson(json, function () {
+        canvas.renderAll();
+    }, function (o, object) {
+        console.log("Canvas loaded!")
+    })
 }
 
 function saveCanvasToJson() {
@@ -1204,18 +1211,18 @@ var CustomNGIf = function (element, callback, propertyName) {
 /*------------------------EDITOR-WINDOWS------------------------*/
 
 var textEditorContainer = document.getElementById('text-editor');
-var textEditor = new CustomNGIf(textEditorContainer, function () { }, 'visible');
+var textEditor = new CustomNGIf(textEditorContainer, function () {}, 'visible');
 
 textEditor['visible'] = false;
 
 
 var imageEditorContainer = document.getElementById('image-editor');
-var imageEditor = new CustomNGIf(imageEditorContainer, function () { }, 'visible');
+var imageEditor = new CustomNGIf(imageEditorContainer, function () {}, 'visible');
 
 imageEditor['visible'] = false;
 
 
 var chartEditorContainer = document.getElementById('chart-editor');
-var chartEditor = new CustomNGIf(chartEditorContainer, function () { }, 'visible');
+var chartEditor = new CustomNGIf(chartEditorContainer, function () {}, 'visible');
 
 chartEditor['visible'] = false;
