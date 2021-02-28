@@ -177,7 +177,9 @@ class TaskRepository():
         response = list()
 
         for t in tasks:
-            response.append(json.loads(t.to_json()))
+            obj = json.loads(t.to_json())
+            obj["pres_name"] = presRepo.getPresentation(p_id=t["p_id"])["name"]
+            response.append(obj)
         return response
 
     def deleteAllTasks(self):
