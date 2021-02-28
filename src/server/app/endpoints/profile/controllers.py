@@ -53,9 +53,3 @@ def getUsersPresentationCountRoute():
 
 
 
-@profile.route('/getWorkspaces')
-@jwt_required
-def getUsersWorkspacesRoute():
-    u_id = get_jwt_identity()
-    response = wRepo.getWorkspaces(u_id=u_id)
-    return json.dumps({"res": response})
