@@ -35,6 +35,8 @@
     background: #5765FF;
     margin: 3%;
     border-radius: 15px;
+    background-size: cover;
+    background-position: center;
 }
 
 #workspace-text {

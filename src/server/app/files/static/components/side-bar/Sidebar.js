@@ -24,6 +24,10 @@
         this.logoutBtn = this.shadowRoot.querySelector('.logout-item');
         this.notificationBtn = this.shadowRoot.querySelector('.notification-item');
 
+        this.workspaceText = this.shadowRoot.querySelector('#workspace-text');
+        this.workspaceIMG = this.shadowRoot.querySelector('.cur-workspace');
+
+        this.getWorkspaces();
 
         this.initializeEvents();
     }
@@ -70,6 +74,19 @@
 
     disconnectedCallback() {
 
+    }
+
+    getWorkspaces() {
+      sendRequestToServer({
+        type: "GET",
+        url: "/workspace/getWorkspaces"
+      }).then(data => {
+          data.res.forEach(workspace => {
+            console.log(workspace)
+            this.workspaceText.innerHTML = workspace.w_name + "<br/> Workspace";
+            this.workspaceIMG.style.backgroundImage = `url('${workspace.w_img}')`;
+          });
+      })
     }
   }
 

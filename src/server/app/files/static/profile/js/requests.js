@@ -26,13 +26,13 @@ sendRequestToServer({
         console.log(task);
         $('#taskOutput').append(`
             <div class="Task">
-                <p>${task.p_id}</p>
+                <p>${task.pres_name}</p>
                 <h2>${task.name}</h2>
-                <div class="contribuer">
-                    <img id="PPc" src={{ url_for("static", filename="/profile/img/cat.jpg") }} alt="Profile Picture">
-                </div>
+                <p>${convertTimestampToDate(task.end.$date)}</p>
             </div>
         `);
+
+        $('#currentDate').text(convertTimestampToDate(Date.now()));
     });
 })
 
@@ -44,9 +44,10 @@ sendRequestToServer({
     $('#presentationCount').text(data.res);
 })
 
-sendRequestToServer({
-    type: "GET",
-    url: "/profile/getWorkspaces"
-}).then(data => {
-    console.log(data)
-})
+function convertTimestampToDate(timestamp) {
+    return new Date(timestamp).toLocaleDateString("en-US", {
+        month: "long",
+        day: "2-digit",
+        year: "numeric"
+    })
+}
