@@ -121,6 +121,11 @@ $(".myUl li").click(function (e) {
 });
 
 $("#usetemplatebox").click(function (e) {
+    if (e.target.classList.contains("closeicon")) {
+        deletePlaceholder();
+    }
+
+
     if (e.target.id == "usetemplatebox" || e.target.classList.contains("closeicon")) {
         $(this).css('display', 'none')
         $("#template_big, #template_scroll, #usetemplate").css('display', 'flex');

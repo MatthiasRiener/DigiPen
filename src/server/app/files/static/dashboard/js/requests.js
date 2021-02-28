@@ -25,8 +25,8 @@ $('#submitcontrolls').click(function () {
     sendRequestToServer({type: "POST", url: "/dashboard/createPresentation", data: presentation}).then(data => {
         console.log("Created Presentation: " + data);
         if(data.status) {
-            console.log("Redirecting to editor!");
             setCustomStorage("p_id", data.p_id);
+            window.location.href = baseURL + "/editor"
         }
     });
 });
@@ -38,6 +38,12 @@ function createPresentation() {
         setCustomStorage("p_id", data.id);
         $('#template_title').text(data.name);
         template = false;
+    });
+}
+
+function deletePlaceholder() {
+    sendRequestToServer({type: "POST", url: "/dashboard/deleteRequested", data: {p_id: getCustomStorage("p_id")}}).then(data => {
+        console.log("Delete Requested: " + data);
     });
 }
 
