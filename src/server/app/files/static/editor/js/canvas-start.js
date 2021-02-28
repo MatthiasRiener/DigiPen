@@ -688,9 +688,11 @@ function loadCanvasFromJson(json) {
 }
 
 function saveCanvasToJson() {
+
     const json = canvas.toJSON();
-    saveCanvas(json);
-    console.log(json)
+    saveCanvas(json, canvas.width, canvas.height)
+
+
 }
 
 function rasterizeSVG() {

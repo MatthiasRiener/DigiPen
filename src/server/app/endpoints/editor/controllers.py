@@ -35,7 +35,9 @@ def updateCanvasRoute():
     data = request.form
     p_id = data['p_id']
     canvas = data['canvas']
+    width = data['width']
+    height = data['height']
 
     u_id = get_jwt_identity()
 
-    return editorRepo.updateCanvas(p_id=p_id, canvas=canvas)
+    return editorRepo.updateCanvas(p_id=p_id, canvas=canvas, width=width, height=height)

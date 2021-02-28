@@ -24,9 +24,9 @@ $(document).ready(function () {
     });
 });
 
-function saveCanvas(canvas) {
+function saveCanvas(canvas, width, height) {
     console.log(JSON.stringify(canvas));
-    sendRequestToServer({type: "POST", url: "/editor/updateCanvas", data: {p_id: getCustomStorage("p_id"), canvas: JSON.stringify(canvas)}}).then(data => {
+    sendRequestToServer({type: "POST", url: "/editor/updateCanvas", data: {p_id: getCustomStorage("p_id"), width: width, height: height, canvas: JSON.stringify(canvas)}}).then(data => {
         console.log("Save Canvas");
         console.log(data);
     });

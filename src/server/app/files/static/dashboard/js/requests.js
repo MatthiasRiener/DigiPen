@@ -65,7 +65,7 @@ sendRequestToServer({
     type: "GET",
     url: "/dashboard/getTemplates"
 }).then(data => {
-    
+
 });
 
 
@@ -76,23 +76,24 @@ sendRequestToServer({
 
     console.warn("========");
     console.log(data)
-
-    //var canvas = new fabric.Canvas("canvas");
-    var canvas = new fabric.StaticCanvas(null, { width: 1920, height: 1080 });
+    var canvas = new fabric.Canvas();
     canvas.enableGLFiltering = false;
 
     //canvas.setWidth($('#invisibleCanvas').width());
     //canvas.setHeight($('#invisibleCanvas').height());
 
     data.res.forEach(presentation => {
-        if(presentation.canvas == null) {
+        if (presentation.canvas == null) {
             return;
         }
 
-        console.log("PRESENTATIONS: ");
-        console.log(JSON.parse(presentation.canvas.canvas));
 
         canvas.clear();
+
+        canvas.setDimensions({width: presentation.canvas.latestWidth, height: presentation.canvas.latestHeight})
+
+
+      
 
         canvas.loadFromJSON(presentation.canvas.canvas, function () {
             canvas.renderAll();
@@ -103,6 +104,8 @@ sendRequestToServer({
                 <p class="amoutofslides">1 Slide</p>
             </li>
         `);
+
+
         }, function (o, object) {
             console.log("Canvas loaded!")
         })
@@ -115,3 +118,23 @@ $('body').on('click', '#ownPresentations li', function () {
     setCustomStorage("p_id", $(this).data("presentation"));
     window.location.href = baseURL + "/editor";
 })
+
+function getImage(idx) {
+
+    var width = 343;
+    var height = 300;
+
+    var resizedCanvas = document.createElement("canvas");
+    var resizedContext = resizedCanvas.getContext("2d");
+
+    resizedCanvas.width = "" + width;
+    resizedCanvas.height = "" + height;
+
+    var canvas = document.getElementById("canvas"+idx);
+
+    resizedContext.drawImage(canvas, 0, 0, width, height);
+    var myResizedData = resizedCanvas.toDataURL();
+
+    return $('<img>').attr("src", myResizedData);
+
+}
