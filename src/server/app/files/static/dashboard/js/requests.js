@@ -90,7 +90,7 @@ sendRequestToServer({
 
         canvas.clear();
 
-        canvas.setDimensions({width: presentation.canvas.latestWidth, height: presentation.canvas.latestHeight})
+        canvas.setDimensions({width: 1920, height: 1080})
 
 
       

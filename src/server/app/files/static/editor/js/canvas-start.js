@@ -595,11 +595,14 @@ function fixSize() {
 function resizeCanvas(width, height) {
     if (originalSize) {
         val = canvas.width / originalSize;
+        console.log("setting zoom...", val)
         canvas.setZoom(val);
     }
 
     canvas.setWidth(width);
     canvas.setHeight(height);
+    console.log(width)
+    console.log("wtf")
     canvas.renderAll();
 }
 
@@ -681,19 +684,82 @@ function move(params) {
 
 function loadCanvasFromJson(json) {
     canvas.loadFromJSON(json, function () {
+        console.log("width:" , $("#content-main-inner-spacing-middle").width())
+        loadCanvasFrom1920($('#content-main').height() * 3 / 5 * 16 / 9)
         canvas.renderAll();
     }, function (o, object) {
         console.log("Canvas loaded!")
+
     })
 }
 
 function saveCanvasToJson() {
 
+    
+    var width = canvas.width;
+
+    GetCanvasAtResoution(1920)
+
     const json = canvas.toJSON();
-    saveCanvas(json, canvas.width, canvas.height)
-
-
+    saveCanvas(json, 10, 109)
+    
+    GetCanvasAtResoution(width)
 }
+
+function GetCanvasAtResoution(newWidth)
+    {
+        if (canvas.width != newWidth) {
+            var scaleMultiplier = newWidth / canvas.width;
+            var objects = canvas.getObjects();
+            for (var i in objects) {
+                objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
+                objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
+                objects[i].left = objects[i].left * scaleMultiplier;
+                objects[i].top = objects[i].top * scaleMultiplier;
+                objects[i].setCoords();
+            }
+            var obj = canvas.backgroundImage;
+            if(obj){
+                obj.scaleX = obj.scaleX * scaleMultiplier;
+                obj.scaleY = obj.scaleY * scaleMultiplier;
+            }
+
+            canvas.discardActiveObject();
+            canvas.setWidth(canvas.getWidth() * scaleMultiplier);
+            canvas.setHeight(canvas.getHeight() * scaleMultiplier);
+            canvas.renderAll();
+            canvas.calcOffset();
+        }           
+    }
+
+
+
+    function loadCanvasFrom1920(newWidth)
+    {
+        if (1920 != newWidth) {
+            var scaleMultiplier = newWidth / 1920;
+            var objects = canvas.getObjects();
+            for (var i in objects) {
+                objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
+                objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
+                objects[i].left = objects[i].left * scaleMultiplier;
+                objects[i].top = objects[i].top * scaleMultiplier;
+                objects[i].setCoords();
+            }
+            var obj = canvas.backgroundImage;
+            if(obj){
+                obj.scaleX = obj.scaleX * scaleMultiplier;
+                obj.scaleY = obj.scaleY * scaleMultiplier;
+            }
+
+            canvas.discardActiveObject();
+            canvas.setWidth(canvas.getWidth() * scaleMultiplier);
+            canvas.setHeight(canvas.getHeight() * scaleMultiplier);
+            canvas.renderAll();
+            canvas.calcOffset();
+        }           
+    }
+
 
 function rasterizeSVG() {
     const w = window.open('')
