@@ -14,6 +14,10 @@ class CanvasRepository():
     def getCanvas(self, p_id):
         return mongoclient.db['canvas'].find_one({"p_id": p_id})
     
+    def updateCanvas(self, p_id, canvas):
+        mongoclient.db['canvas'].update({"p_id": p_id}, {"$set": {"canvas": canvas }})
+        return "updated canvas"
+        
     def deleteAll(self):
         if self.testing:
             Canvas.objects().delete()

@@ -27,3 +27,15 @@ def getPresentationRoute():
     u_id = get_jwt_identity()
 
     return editorRepo.retrieveData(p_id=p_id, u_id=u_id)
+
+
+@editor.route('/updateCanvas', methods=["POST"])
+@jwt_required
+def updateCanvasRoute():
+    data = request.form
+    p_id = data['p_id']
+    canvas = data['canvas']
+
+    u_id = get_jwt_identity()
+
+    return editorRepo.updateCanvas(p_id=p_id, canvas=canvas)
