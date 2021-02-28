@@ -48,7 +48,7 @@ def getTemplates():
 
 @dashboard.route('/deleteRequested', methods=["POST"])
 @jwt_required
-def getTemplates():
+def deleteRequestedRoute():
     data = request.form
     p_id = data['p_id']
     return presRepo.deleteRequestedPresentation(p_id=p_id)
