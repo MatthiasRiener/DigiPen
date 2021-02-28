@@ -46,6 +46,14 @@ def createPresentation():
 def getTemplates():
     return presRepo.getTemplates()
 
+@dashboard.route('/deleteRequested', methods=["POST"])
+@jwt_required
+def getTemplates():
+    data = request.form
+    p_id = data['p_id']
+    return presRepo.deleteRequestedPresentation(p_id=p_id)
+
+
 @dashboard.route('/getInvites', methods=["GET"])
 @jwt_required
 def getInvites():

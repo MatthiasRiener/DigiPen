@@ -26,6 +26,11 @@ class PresentationRepository():
                             creator=u_id, created=time.time(), users=[{"status": "accepted", "u_id": u_id}]).save()
         return json.dumps({"status": 1, "id": p_id, "name": p_name}), p_id
 
+    def deleteRequestedPresentation(self, p_id):
+        Presentation.objects(p_id=p_id).delete()
+        print("presentation deleted...")
+        return json.dumps({"deleted": 1})
+
     def createPresentation(self, user_id, data):
         print(data)
         p_id = data['id']
