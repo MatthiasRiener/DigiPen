@@ -563,8 +563,12 @@ let originalSize, oldWidth, oldHeight;
 window.onload = function () {
     this.setTimeout(() => {
         fixSize();
-
+        this.setTimeout(() => {
+            this.console.log("setting zoom...")
+            originalSize = canvas.width;
+        }, 500);
     }, 500)
+   
 
 
 }
@@ -578,6 +582,12 @@ $(window).resize(async function () {
 
         resizeCanvas(width, height);
     }
+
+
+    console.log("o-size", originalSize)
+
+
+
     setTimeout(() => {
         toggleVisibility(trackingIndex);
     }, 100);
@@ -602,7 +612,7 @@ function fixSize() {
 function resizeCanvas(width, height) {
     if (originalSize) {
         val = canvas.width / originalSize;
-        GetCanvasAtResoution(canvas.width, true)
+        GetCanvasAtResoution($('#content-main-inner-spacing-middle').width(), true)
     }
 
     canvas.setWidth(width);
@@ -703,7 +713,6 @@ function saveCanvasToJson() {
 
 
     var width = canvas.width;
-
     GetCanvasAtResoution(1920, false)
 
     const json = canvas.toJSON();
@@ -732,7 +741,8 @@ function GetCanvasAtResoution(newWidth, first) {
         canvas.discardActiveObject();
         canvas.setWidth(canvas.getWidth() * scaleMultiplier);
         canvas.setHeight(canvas.getHeight() * scaleMultiplier);
-
+        
+        
 
      
 
@@ -741,7 +751,9 @@ function GetCanvasAtResoution(newWidth, first) {
 
         if(first) {
             console.log(canvas.width / 1920)
-            canvas.setZoom(0.01)
+            console.log("changing... size")
+            canvas.setZoom(scaleMultiplier)
+
         }
     }
 }
