@@ -561,11 +561,12 @@ $('body').on('input', '.img-opacity-slider-img', function () {
 let originalSize, oldWidth, oldHeight;
 
 window.onload = function () {
-    fixSize();
+    this.setTimeout(() => {
+        fixSize();
 
-    $(".canvas-fill-color").val(rgbToHex($("#content-main-inner-spacing-middle").css("background-color")))
-    propsText.canvasFill = $(".canvas-fill-color").val();
-    setCanvasFill();
+    }, 500)
+
+
 }
 
 $(window).resize(async function () {
@@ -583,20 +584,25 @@ $(window).resize(async function () {
 });
 
 function fixSize() {
-    let width = oldWidth = $('#content-main').height() * 3 / 5 * 16 / 9;
-    let height = oldHeight = $('#content-main').height() * 3 / 5;
-    $("#content-main-inner-spacing-middle").css('width', width);
-    $("#content-main-inner-spacing-middle").css('height', height);
+    if ($('#content-main').height() < $('#content-main').width()) {
+        let vh = $('#content-main').height() * 3 / 5;
+        $("#content-main-inner-spacing-middle").css('width', vh * 16 / 9);
+        $("#content-main-inner-spacing-middle").css('height', vh);
+    }
 
+    var width = oldWidth = $('#content-main-inner-spacing-middle').width();
+    var height = oldHeight = $('#content-main-inner-spacing-middle').height();
+
+
+    console.log(width)
     resizeCanvas(width, height);
-    originalSize = canvas.width;
+    GetCanvasAtResoution(width, true)
 }
 
 function resizeCanvas(width, height) {
     if (originalSize) {
         val = canvas.width / originalSize;
-        console.log("setting zoom...", val)
-        canvas.setZoom(val);
+        GetCanvasAtResoution(canvas.width, true)
     }
 
     canvas.setWidth(width);
@@ -684,8 +690,8 @@ function move(params) {
 
 function loadCanvasFromJson(json) {
     canvas.loadFromJSON(json, function () {
-        console.log("width:" , $("#content-main-inner-spacing-middle").width())
-        loadCanvasFrom1920($('#content-main').height() * 3 / 5 * 16 / 9)
+        console.log("width:", $("#content-main-inner-spacing-middle").width())
+        loadCanvasFrom1920($("#content-main-inner-spacing-middle").width())
         canvas.renderAll();
     }, function (o, object) {
         console.log("Canvas loaded!")
@@ -695,70 +701,77 @@ function loadCanvasFromJson(json) {
 
 function saveCanvasToJson() {
 
-    
+
     var width = canvas.width;
 
-    GetCanvasAtResoution(1920)
+    GetCanvasAtResoution(1920, false)
 
     const json = canvas.toJSON();
     saveCanvas(json, 10, 109)
-    
-    GetCanvasAtResoution(width)
+
+    GetCanvasAtResoution(width, false)
 }
 
-function GetCanvasAtResoution(newWidth)
-    {
-        if (canvas.width != newWidth) {
-            var scaleMultiplier = newWidth / canvas.width;
-            var objects = canvas.getObjects();
-            for (var i in objects) {
-                objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
-                objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
-                objects[i].left = objects[i].left * scaleMultiplier;
-                objects[i].top = objects[i].top * scaleMultiplier;
-                objects[i].setCoords();
-            }
-            var obj = canvas.backgroundImage;
-            if(obj){
-                obj.scaleX = obj.scaleX * scaleMultiplier;
-                obj.scaleY = obj.scaleY * scaleMultiplier;
-            }
+function GetCanvasAtResoution(newWidth, first) {
+    if (canvas.width != newWidth) {
+        var scaleMultiplier = newWidth / canvas.width;
+        var objects = canvas.getObjects();
+        for (var i in objects) {
+            objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
+            objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
+            objects[i].left = objects[i].left * scaleMultiplier;
+            objects[i].top = objects[i].top * scaleMultiplier;
+            objects[i].setCoords();
+        }
+        var obj = canvas.backgroundImage;
+        if (obj) {
+            obj.scaleX = obj.scaleX * scaleMultiplier;
+            obj.scaleY = obj.scaleY * scaleMultiplier;
+        }
 
-            canvas.discardActiveObject();
-            canvas.setWidth(canvas.getWidth() * scaleMultiplier);
-            canvas.setHeight(canvas.getHeight() * scaleMultiplier);
-            canvas.renderAll();
-            canvas.calcOffset();
-        }           
+        canvas.discardActiveObject();
+        canvas.setWidth(canvas.getWidth() * scaleMultiplier);
+        canvas.setHeight(canvas.getHeight() * scaleMultiplier);
+
+
+     
+
+        canvas.renderAll();
+        canvas.calcOffset();
+
+        if(first) {
+            console.log(canvas.width / 1920)
+            canvas.setZoom(0.01)
+        }
     }
+}
 
 
 
-    function loadCanvasFrom1920(newWidth)
-    {
-        if (1920 != newWidth) {
-            var scaleMultiplier = newWidth / 1920;
-            var objects = canvas.getObjects();
-            for (var i in objects) {
-                objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
-                objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
-                objects[i].left = objects[i].left * scaleMultiplier;
-                objects[i].top = objects[i].top * scaleMultiplier;
-                objects[i].setCoords();
-            }
-            var obj = canvas.backgroundImage;
-            if(obj){
-                obj.scaleX = obj.scaleX * scaleMultiplier;
-                obj.scaleY = obj.scaleY * scaleMultiplier;
-            }
+function loadCanvasFrom1920(newWidth) {
+    if (1920 != newWidth) {
+        var scaleMultiplier = newWidth / 1920;
+        var objects = canvas.getObjects();
+        for (var i in objects) {
+            objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
+            objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
+            objects[i].left = objects[i].left * scaleMultiplier;
+            objects[i].top = objects[i].top * scaleMultiplier;
+            objects[i].setCoords();
+        }
+        var obj = canvas.backgroundImage;
+        if (obj) {
+            obj.scaleX = obj.scaleX * scaleMultiplier;
+            obj.scaleY = obj.scaleY * scaleMultiplier;
+        }
 
-            canvas.discardActiveObject();
-            canvas.setWidth(canvas.getWidth() * scaleMultiplier);
-            canvas.setHeight(canvas.getHeight() * scaleMultiplier);
-            canvas.renderAll();
-            canvas.calcOffset();
-        }           
+        canvas.discardActiveObject();
+        canvas.setWidth(canvas.getWidth() * scaleMultiplier);
+        canvas.setHeight(canvas.getHeight() * scaleMultiplier);
+        canvas.renderAll();
+        canvas.calcOffset();
     }
+}
 
 
 function rasterizeSVG() {
