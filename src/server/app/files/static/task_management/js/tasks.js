@@ -92,16 +92,18 @@ function calculateTasks(pres) {
 }
 
 function insertTasks(tasks, pres) {
+    
     if (tasks[0].length > 0) {
         tasks.forEach((row, rIndex) => {
             $(`.presentation-section[data-presentation-id=${pres.id}]`).append(`<div class="task-row"></div>`);
             row.forEach((task) => {
+                console.log(task)
                 console.log("inserting task", task)
                 const distance = $('.calendar-day').width();
                 const cWidth = $('.calendar-row-days').eq(0).width();
                 const startPos = dateDiffInDays(new Date($('.calendar-day').eq(0).data("date")), new Date(task.start)) * distance;
                 const diff = dateDiffInDays(new Date(task.start), new Date(task.end))
-                $(`.presentation-section[data-presentation-id=${pres.id}] .task-row`).eq(rIndex).append(`<div class="task-item" data-task="${task.t_id}" style="background-color:${ task.finished ? pres.taskColor.concat("80") : pres.taskColor};width:${(distance * diff) / cWidth * 100 - 0.2}%; left: ${startPos / cWidth * 100 + 0.2}%"><div class="user-task" style="background-image: url('./img/user_${randomNumber(1,14)}.png')"></div><p>${task.taskName}</p></div>`)
+                $(`.presentation-section[data-presentation-id=${pres.id}] .task-row`).eq(rIndex).append(`<div class="task-item" data-task="${task.t_id}" style="background-color:${ !task.isOwn ? pres.taskColor.concat("80") : pres.taskColor};width:${(distance * diff) / cWidth * 100 - 0.2}%; left: ${startPos / cWidth * 100 + 0.2}%"><div class="user-task" style="background-image: url('${task.assignee.img}')"></div><p>${task.taskName}</p></div>`)
             });
         });
     }

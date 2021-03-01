@@ -164,7 +164,12 @@ class TaskRepository():
                     dummyTask["end"] = str(t["end"])
                     dummyTask["finished"] = t["finished"]
                     dummyTask["t_id"] = t["task_id"]
+                    dummyTask["assignee"] = authRepo.retrieveUser(user_id=t["assignee"])
 
+                    if t["assignee"] == u_id:
+                        dummyTask["isOwn"] = True
+                    else:
+                        dummyTask["isOwn"] = False
                     dummy["tasks"].append(dummyTask)
 
             print(tasks)
