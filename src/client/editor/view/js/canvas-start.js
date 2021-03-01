@@ -560,6 +560,31 @@ $('body').on('input', '.img-opacity-slider-img', function () {
 
 let originalSize, oldWidth, oldHeight;
 
+
+let isresponsive;
+
+function checkResponsiveness() {
+    isresponsive = false;
+
+    if ($("#content-main-inner-spacing-bottom").position().top + 25 <= $("#content-main-inner").height()) {
+        $("#content-main-inner-spacing-middle").css('width', '58vw');
+        $("#content-main-inner-spacing-middle").css('height', '32.625vw');
+    }
+
+    if ($("#content-main-inner-spacing-bottom").position().top + 25 > $("#content-main-inner").height()) {
+        isresponsive = true;
+        $("#content-main-inner-spacing-middle").css('width', oldWidth);
+        $("#content-main-inner-spacing-middle").css('height', oldHeight);
+    }
+    else {
+        oldWidth = $("#content-main-inner-spacing-middle").width();
+        oldHeight = $("#content-main-inner-spacing-middle").height();
+    }
+
+    return isresponsive;
+}
+
+
 window.onload = function () {
     fixSize();
 
@@ -601,29 +626,6 @@ function resizeCanvas(width, height) {
     canvas.setWidth(width);
     canvas.setHeight(height);
     canvas.renderAll();
-}
-
-let isresponsive;
-
-function checkResponsiveness() {
-    isresponsive = false;
-
-    if ($("#content-main-inner-spacing-bottom").position().top + 25 <= $("#content-main-inner").height()) {
-        $("#content-main-inner-spacing-middle").css('width', '58vw');
-        $("#content-main-inner-spacing-middle").css('height', '32.625vw');
-    }
-
-    if ($("#content-main-inner-spacing-bottom").position().top + 25 > $("#content-main-inner").height()) {
-        isresponsive = true;
-        $("#content-main-inner-spacing-middle").css('width', oldWidth);
-        $("#content-main-inner-spacing-middle").css('height', oldHeight);
-    }
-    else {
-        oldWidth = $("#content-main-inner-spacing-middle").width();
-        oldHeight = $("#content-main-inner-spacing-middle").height();
-    }
-
-    return isresponsive;
 }
 
 function rgbToHex(rgbString) {
