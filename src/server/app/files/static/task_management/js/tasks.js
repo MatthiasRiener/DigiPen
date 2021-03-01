@@ -39,6 +39,8 @@ function calculateTasks(pres) {
     ];
 
     pres.tasks.forEach((task) => {
+        console.log("task")
+        console.log(task)
         arr.forEach((curArray, index) => {
             var dummyArray = curArray.map(({
                 taskName,
@@ -49,7 +51,8 @@ function calculateTasks(pres) {
                     end: new Date(keep.end)
                 }
             });
-
+            console.warn(dummyArray);
+            console.log(dummyArray)
             dummyArray.push({
                 start: new Date(task.start),
                 end: new Date(task.end)
@@ -73,20 +76,22 @@ function calculateTasks(pres) {
 
 
             if (checkDateRange.overlap) {
+                console.log("overlapping:" , checkDateRange)
                 if (!overflow.overlap) {
                     curArray.push(task);
-                } else if (curArray.length - 1 == index) {
+                } else if (arr.length - 1 == index) {
                     arr.push([task]);
                 }
             }
 
         });
     });
+    console.log("inserting taskss");
+    console.error(arr)
     insertTasks(arr, pres);
 }
 
 function insertTasks(tasks, pres) {
-    console.log(tasks[0].length)
     if (tasks[0].length > 0) {
         tasks.forEach((row, rIndex) => {
             $(`.presentation-section[data-presentation-id=${pres.id}]`).append(`<div class="task-row"></div>`);
