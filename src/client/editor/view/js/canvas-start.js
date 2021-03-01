@@ -608,10 +608,14 @@ $(window).resize(async function () {
 });
 
 function fixSize() {
-    let width = oldWidth = $('#content-main').height() * 3 / 5 * 16 / 9;
-    let height = oldHeight = $('#content-main').height() * 3 / 5;
-    $("#content-main-inner-spacing-middle").css('width', width);
-    $("#content-main-inner-spacing-middle").css('height', height);
+    if ($('#content-main').height() < $('#content-main').width()) {
+        let vh = $('#content-main').height() * 3 / 5;
+        $("#content-main-inner-spacing-middle").css('width', vh * 16 / 9);
+        $("#content-main-inner-spacing-middle").css('height', vh);
+    }
+
+    var width = oldWidth = $('#content-main-inner-spacing-middle').width();
+    var height = oldHeight = $('#content-main-inner-spacing-middle').height();
 
     resizeCanvas(width, height);
     originalSize = canvas.width;
