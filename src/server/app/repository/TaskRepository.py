@@ -54,8 +54,9 @@ class TaskRepository():
         task_id = str(uuid.uuid4())
         tasks = list()
         for i in range(0, len(subtasks) - 1):
-            if not i % 2:
-                tasks.append({"name": subtasks[i - 1], "status": subtasks[i]})
+            if not i % 3:
+                tasks.append(
+                    {"id": subtasks[i - 1], "name": subtasks[i - 2], "status": bool(subtasks[i])})
 
         for subtask in tasks:
             SubTask(sub_id=str(uuid.uuid4()), parent_id=task_id,
