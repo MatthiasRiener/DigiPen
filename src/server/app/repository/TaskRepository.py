@@ -53,6 +53,10 @@ class TaskRepository():
     def createTask(self, p_id, name, end_date, start_date, u_id, assignee, subtasks):
         task_id = str(uuid.uuid4())
         tasks = list()
+
+        Task(p_id=p_id, task_id=task_id, name=name, start=parser.parse(start_date),
+             end=parser.parse(end_date), finished=True, creator=u_id, assignee=assignee).save()
+
         for i in range(0, len(subtasks) - 1):
             if not i % 3:
                 tasks.append(
@@ -61,8 +65,7 @@ class TaskRepository():
         for subtask in tasks:
             SubTask(sub_id=str(uuid.uuid4()), parent_id=task_id,
                     name=subtask["name"], status=subtask["status"]).save()
-        Task(p_id=p_id, task_id=task_id, name=name, start=parser.parse(start_date),
-             end=parser.parse(end_date), finished=True, creator=u_id, assignee=assignee).save()
+        
         return ''
 
     def updateTask(self, t_id, p_id, name, end_date, start_date, assignee, subtasks):
