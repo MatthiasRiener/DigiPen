@@ -13,6 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build all Containers
+      working-directory: ./src/docker
       run: docker-compose up -d
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
