@@ -26,9 +26,16 @@ $('body').on('click', '.task-item', function () {
     taskPositionTop = ($(this).offset().top / $(window).height()) * 100;
     taskPositonLeft = ($(this).offset().left / $(window).width()) * 100;
 
+    taskPositionTop = taskPositionTop - 36;
+    taskPositonLeft = taskPositonLeft + taskWidth - 2
+
+    if(taskPositonLeft > 80) {
+        taskPositonLeft = taskPositonLeft - taskWidth - 15;
+    }
+
     $('#taskPopup').css('display', 'flex');
-    $('#taskPopup').css('top', (taskPositionTop - 36) + "vh");
-    $('#taskPopup').css('left', (taskPositonLeft + taskWidth - 2) + "vw");
+    $('#taskPopup').css('top', taskPositionTop + "vh");
+    $('#taskPopup').css('left', taskPositonLeft + "vw");
     $('#taskPopup').animate({
         opacity: 1.0
     }, 100);
