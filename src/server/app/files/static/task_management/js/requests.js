@@ -34,6 +34,8 @@ function checkPresentation(id) {
     
         $('#presentationPopup-top-current').text(data.pres.name);
         $('#presentationPopup-top-current').data('presentation', data.pres._id);
+
+        closeAllSubPopups();
     });
 }
 
@@ -52,6 +54,7 @@ function checkUser(id) {
     sendRequestToServer({type: "POST", url: "/task/checkUser", data: {u_id: id}}).then(data => {
         $('#currentUser').text(data.res.name);
         $('#currentUser').data('user', data.res._id);
+        $('#currentUser').css("color", "#383838");
         $('#personPopup-top-current-image').css('background', 'url(' + data.res.img + ')');
         $('#personPopup-top-current-image').css('background-size', 'cover');
         $('#personPopup-top-current-image').css('background-position', 'center');
@@ -61,6 +64,8 @@ function checkUser(id) {
         $('#taskPopup-fourth-left-image').css('background', 'url(' + data.res.img + ')');
         $('#taskPopup-fourth-left-image').css('background-size', 'cover');
         $('#taskPopup-fourth-left-image').css('background-position', 'center');
+
+        closeAllSubPopups();
     });
 }
 
@@ -71,6 +76,8 @@ function createSubTask(status, name, id) {
     subtasks.push(status);
     subtasks.push(name);
     subtasks.push(id || "not defined");
+
+    closeAllSubPopups();
 }
 
 function sendTaskData() {
