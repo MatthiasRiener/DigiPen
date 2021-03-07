@@ -15,6 +15,12 @@ $('body').on('click', '.task-item', function () {
     $('#taskPopup').css('opacity', '0.0');
     $('#taskPopup').css('display', 'none');
 
+    $('#taskPopup-top-left').css('border', 'none');
+    $('#taskPopup-second-headline').css('color', '#383838');
+    $('#currentUser').css("color", "#383838");
+    $('#taskPopup-fifth-date-start').css('border-color', '#383838');
+    $('#taskPopup-fifth-date-end').css('border-color', '#383838');
+
     taskWidth = ($(this).width() / $(window).width()) * 100;
     taskHeight = ($(this).height() / $(window).height()) * 100;
     taskPositionTop = ($(this).offset().top / $(window).height()) * 100;
@@ -35,6 +41,7 @@ $('#addTask').click(function () {
     $('#taskPopup').css('display', 'none');
 
     $('#currentPresentation').text("select presentation");
+    $('#taskPopup-top-left').css('background', '#383838');
     $('#presentationPopup-top-current').text("no selection");
     $('#taskPopup-second-headline').text("Taskname...")
     $('#taskPopup-fourth-left-image').css('background', '#383838');
@@ -45,12 +52,19 @@ $('#addTask').click(function () {
     $('#taskPopup-fifth-date-end').val("YYYY-MM-DD")
     $('#taskPopup-sixth-bottom').empty();
 
+    $('#taskPopup-top-left').css('border', 'none');
+    $('#taskPopup-second-headline').css('color', '#383838');
+    $('#currentUser').css("color", "#383838");
+    $('#taskPopup-fifth-date-start').css('border-color', '#383838');
+    $('#taskPopup-fifth-date-end').css('border-color', '#383838');
+
     taskWidth = ($(this).width() / $(window).width()) * 100;
     taskHeight = ($(this).height() / $(window).height()) * 100;
     taskPositionTop = (($(this).offset().top / $(window).height()) * 100) + 36;
     taskPositonLeft = (($(this).offset().left / $(window).width()) * 100) - 14;
 
     $('#taskPopup-second-headline').text('Taskname...');
+    subtasks.length = 0;
 
     $('#taskPopup').css('display', 'flex');
     $('#taskPopup').css('top', (taskPositionTop - 36) + "vh");
@@ -69,11 +83,13 @@ $('#taskPopup-top-right').click(function () {
 });
 
 $('#taskPopup-last-bottom-right-inner').click(function () {
-    $('#taskPopup').css('opacity', '0.0');
-    $('#taskPopup').css('display', 'none');
     closeAllSubPopups();
+    if(checkTaskInputs()) {
+        $('#taskPopup').css('opacity', '0.0');
+        $('#taskPopup').css('display', 'none');
 
-    sendTaskData();
+        sendTaskData();
+    }
 });
 
 $('#taskPopup-top-left-icon').click(function () {
@@ -195,6 +211,16 @@ $('body').on('click', '.personPopup-bottom-persons', function () {
 $('#presentationPopup-bottom-search-input').on('keyup', function () {
     $('.presentationPopup-bottom-presentations').each(function () {
         if($(this).text().toUpperCase().includes($('#presentationPopup-bottom-search-input').val().toUpperCase())) {
+            $(this).css('display', 'flex');
+        } else {
+            $(this).css('display', 'none');
+        }
+    });
+});
+
+$('#personPopup-bottom-search-input').on('keyup', function () {
+    $('.personPopup-bottom-persons').each(function () {
+        if($(this).text().toUpperCase().includes($('#personPopup-bottom-search-input').val().toUpperCase())) {
             $(this).css('display', 'flex');
         } else {
             $(this).css('display', 'none');
