@@ -8,6 +8,7 @@ keybinding = Blueprint("keybinding", __name__,
                     static_folder="static", template_folder="templates")
 
 from ...repository.KeybindingRepository import KeybindingRepository
+import json
 
 keyRepo = KeybindingRepository(testing=False)
 
