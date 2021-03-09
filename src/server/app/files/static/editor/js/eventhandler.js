@@ -270,5 +270,5 @@ $('body').on('click', '.ed_bt_arrow_click', function () {
 })
 
 $('body').on('click', '#shortcutPopup-inner-popup-change', function () {
-    window.location = baseURL + "/keybindings"
+    window.location = baseURL + "/keybinding"
 })

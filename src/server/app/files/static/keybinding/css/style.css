@@ -1,0 +1,109 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Karla';
+    outline: none;
+}
+
+body {
+    min-width: 100vw;
+    min-height: 100vh;
+    position:absolute;
+    width:100%; 
+    height:100%; 
+    background-image: url("../images/background.png");
+    background-position: center;
+    overflow-x: hidden;
+}
+
+.buttons{
+    width: 75vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+h1{
+    margin-bottom: 2vh;
+    text-align: center;
+}
+
+#bindings{
+    height: 80%;
+    width: 100%;
+    overflow: auto;
+}
+
+#template {
+    display: none;
+}
+
+.mainContent{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.keybindinginput {
+    background-color: rgba(100, 198, 237, 0.7);
+    border: none;
+    caret-color: transparent;
+    padding: 0.7vw;
+    text-align: center;
+    text-transform: capitalize;
+    width: 25vw;
+    color: white;
+    border-radius: 0.15vh;
+    margin: 0.25vh;
+    border: 1px solid  rgba(100, 198, 237, 0.7);
+}
+
+.displayname {
+    width: 50vw;
+    background: rgba(124, 124, 124, 0.8);
+    padding: 0.7vw 1.75vw;
+    border-radius: 0.15vh;
+    border: 1px solid rgba(124, 124, 124, 0.6)
+}
+
+.keybindingdisplay, .displayname, #safe, .keybindinginput, .back{
+    color: white;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.bindingsbox {
+    display: flex;
+}
+
+.bindingsbox div {
+    margin: 0.25vh;
+}
+
+#safe, .back{
+    margin-top: 2vh;
+    width: 10vw;
+    height: 5vh;
+    background: rgba(124, 124, 124, 0.8);
+    border: 1px solid rgba(124, 124, 124, 0.8);
+    border-radius: 0.15vh;
+}
+
+.back{
+    margin-right: 2vh;
+}
+
+#safe:hover, .back:hover{
+    cursor: pointer;
+}
