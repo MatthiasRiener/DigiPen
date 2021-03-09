@@ -1,6 +1,7 @@
 from ..db.settings import mongoclient
 import json
 import os
+from bson import json_util
 
 class KeybindingRepository():
 
@@ -14,7 +15,7 @@ class KeybindingRepository():
 
     def getKeybindings(self, u_id):
         res = mongoclient.db['keybinding'].find_one({"u_id": u_id})
-        return json.loads(json.dumps(res))
+        return json.loads(json_util.dumps(res))
     def readJson(self):
         __location__ = os.path.realpath(
             os.path.join(os.getcwd(), os.path.dirname(__file__)))
