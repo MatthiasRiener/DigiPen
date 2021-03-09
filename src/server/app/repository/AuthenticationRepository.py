@@ -56,7 +56,12 @@ class AuthenticationRepository():
         if User.objects(u_id=user_id):
             return self.retrieveUser(user_id=user_id)
         else: 
+            from .KeybindingRepository import KeybindingRepository
+            keyRepo = KeybindingRepository(testing=False)
+
             user = User(u_id=str(user_id), name=name, mail=email, img=img, last_login=last_login, created=time.time()).save()
+            keyRepo.createKeybindings(user_id)
+
             return self.retrieveUser(user_id=user_id)
         return "User %s was successfully inserted." % (user_id)
 
