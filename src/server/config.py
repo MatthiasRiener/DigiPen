@@ -7,6 +7,7 @@ from app.endpoints.dashboard.controllers import dashboard
 from app.endpoints.landing_page.controllers import landing_page
 from app.endpoints.task_management.controllers import task_m
 from app.endpoints.editor.controllers import editor
+from app.endpoints.keybindings.controllers import keybinding
 
 from app.db.settings import db, oidc, jwt, socketio, mongoclient
 
@@ -53,6 +54,7 @@ app.register_blueprint(workspace, url_prefix="/workspace")
 app.register_blueprint(dashboard, url_prefix="/dashboard")
 app.register_blueprint(task_m, url_prefix="/task")
 app.register_blueprint(editor, url_prefix="/editor")
+app.register_blueprint(keybinding, url_prefix="/keybinding")
 app.register_blueprint(landing_page)
 
 app.register_error_handler(404, pagenotfound)

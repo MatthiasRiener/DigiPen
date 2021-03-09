@@ -12,6 +12,9 @@ class KeybindingRepository():
         mongoclient.db['keybinding'].insert_one(
             {'u_id': u_id, 'bindings': keybindings})
 
+    def getKeybindings(self, u_id):
+        res = mongoclient.db['keybinding'].find_one({"u_id": u_id})
+        return res
     def readJson(self):
         __location__ = os.path.realpath(
             os.path.join(os.getcwd(), os.path.dirname(__file__)))
