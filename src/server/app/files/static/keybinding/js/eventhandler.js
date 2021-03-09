@@ -119,7 +119,11 @@ $("#safe").click(function () {
     sendRequestToServer({type: "POST", url: "/keybinding/saveKeybinding", data: {keybinding: jsondata}}).then(data => {
         console.log("Save Keybindings");
         console.log(data);
-        //window.location = baseURL + "/keybinding"
+        window.location = baseURL + "/keybinding"
     });
+});
+
+$('.back').click(function () {
+   window.location = baseURL + "/editor"; 
 });
 
