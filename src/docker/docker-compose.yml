@@ -8,8 +8,6 @@ volumes:
   mongodb_data_container:    
 
 services:
-  mysql:
-      network_mode: "host"
       image: mysql:5.7
       volumes:
         - mysql_data:/var/lib/mysql
@@ -19,7 +17,8 @@ services:
         MYSQL_USER: keycloak
         MYSQL_PASSWORD: password
   keycloak_test:
-    network_mode: "host"
+    ports:
+      - 8080:8080
     build: 
       context: .
       dockerfile: Dockerfile
@@ -30,7 +29,8 @@ services:
       - mysql
   dbmongo:
     image: mongo:latest
-    network_mode: "host"
+    ports:
+      - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: rootpassword
