@@ -18,22 +18,22 @@ services:
         MYSQL_USER: keycloak
         MYSQL_PASSWORD: password
   keycloak_test:
-    ports:
-      - 8080:8080
     build: 
       context: .
       dockerfile: Dockerfile
     volumes:
       - ./imports/cache_reload/disable-theme-cache.cli:/opt/jboss/startup-scripts/disable-theme-cache.cli
       - ./imports/themes/custom/:/opt/jboss/keycloak/themes/custom-theme/
+    ports:
+      - 8080:8080
     depends_on: 
       - mysql
   dbmongo:
     image: mongo:latest
-    ports:
-      - 27017:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - 27017:27017
     volumes: 
       - mongodb_data_container:/data/db  
