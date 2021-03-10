@@ -79,22 +79,6 @@ def test_retrieveUser(user_id, result):
         auth.retrieveUser(user_id)) is object
 
 
-regex_email = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
-
-
-@pytest.mark.parametrize('user_mail, result', [
-    (None, "No information was given regarding the users email"),
-    ("@gmail.com", "Invalid information was given regarding the users email"),
-    ("ankitrai326gmail.com", "Invalid information was given regarding the users email"),
-    ("ankitrai326@gmail", "Invalid information was given regarding the users email"),
-    ("ankitrai326@gmail@com", "Invalid information was given regarding the users email"),
-    ("ankitrai326@gmail.", "Invalid information was given regarding the users email")
-])
-def test_retrieveUserByMail(user_mail, result):
-    if(re.search(regex_email, user_mail)):
-        assert type(auth.retrieveUserByMail(user_mail)) is object
-    else:
-        assert auth.retrieveUserByMail(user_mail) == result
 
 
 @pytest.mark.parametrize('x, y, result', [
