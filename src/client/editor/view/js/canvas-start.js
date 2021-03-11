@@ -587,6 +587,7 @@ function checkResponsiveness() {
 
 window.onload = function () {
     fixSize();
+    originalSize = canvas.width;
 
     $(".canvas-fill-color").val(rgbToHex($("#content-main-inner-spacing-middle").css("background-color")))
     propsText.canvasFill = $(".canvas-fill-color").val();
@@ -618,7 +619,6 @@ function fixSize() {
     var height = oldHeight = $('#content-main-inner-spacing-middle').height();
 
     resizeCanvas(width, height);
-    originalSize = canvas.width;
 }
 
 function resizeCanvas(width, height) {
