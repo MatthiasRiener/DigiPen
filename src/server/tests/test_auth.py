@@ -29,7 +29,6 @@ keycloakid = str(uuid.uuid4())
 # lastlogin = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
 lastlogin = time.time()
 
-
 @pytest.mark.parametrize('user_id, name, email, img, last_login, created, result', [
     (keycloakid, "Max", "max@mustermail.at", None, lastlogin, lastlogin, 1),
     (str(uuid.uuid4()), "Max", "max@mustermail.at",None, None, lastlogin, "Last login must not be None"),
@@ -59,8 +58,37 @@ dummyid = str(uuid.uuid4())
     (None, "Invalid information was given regarding the users userid")
 ])
 def test_retrieveUser(user_id, result):
-    assert auth.retrieveUser(user_id) == result or type(result) is object
+    assert auth.retrieveUser(user_id=user_id) == result or type(result) is object
 
+
+email = "j.himmetsberger2@gmail.com"
+
+@pytest.mark.parametrize('user_mail, result', [
+    ("@gmail.com", "Invalid information was given regarding the users email"),
+    (None, "Email must not be none"),
+    (email, "No user was retrieved with the email %s" % (email)),
+    (123, "Email has to be a string"),
+    (" ", "String must not be empty"),
+])
+def test_retrieveUserByMail(user_mail, result):
+    assert auth.retrieveUserByMail(user_mail=user_mail) == result or type(result) is object
+    
+    # IMPORTANT createdUser gibt fehler
+#createdUser = auth.retrieveUser(user_id=keycloakid)
+
+@pytest.mark.parametrize('users, result', [
+    #  ([createdUser], [keycloakid]),
+    # IMPORTANT none is not iterable
+    (None, "No users-array was given"),
+    (["123"], "Users has to be an array of Object type user"),
+    ([], "No userIds were returned")
+])
+def test_getUserIds(users, result):
+    assert auth.getUserIds(users=users) == result
+
+# TODO
+# retrieveUsersByMail matthi fragen was die funktion macht
+# was soll ich bei getUserCount, getUsersForPresentation testen
 
 @pytest.mark.parametrize('x, y, result', [
     (10, 10, 20),
