@@ -18,6 +18,7 @@ function getTasks() {
 
 function getPresentations() {
     sendRequestToServer({type: "GET", url: "/task/getPresentations"}).then(data => {
+        $('#presentationOutput').empty();
         data.res.forEach(presentation => {
             $('#presentationOutput').append(`
                 <div class="presentationPopup-bottom-presentations" data-presentation="${presentation._id}">${presentation.name}</div>
@@ -43,6 +44,7 @@ function getUsers() {
     sendRequestToServer({type: "POST", url: "/task/getUsers", data: {p_id: $('#currentPresentation').data('presentation')}}).then(data => {
         console.log(data.res);
         data.res.forEach(user => {
+            $('#userOutput').empty();
             $('#userOutput').append(`
                 <div class="personPopup-bottom-persons" data-user="${user._id}"><div class="personPopup-bottom-persons-image" style="background: url('${user.img}'); background-position: center; background-size: cover"></div>${user.name}</div>
             `);
