@@ -794,9 +794,11 @@ function rasterizeSVG() {
 }
 
 function initializeShortcuts() {
-    $.getJSON(baseURL + "/static/editor/js/shortcuts.json", function (data) {
-        shortcuts = [...data];
+    sendRequestToServer({type: "GET", url: "/keybinding/getKeybinding"}).then(data => {
+        shortcuts = [...data.res.bindings];
     });
+        
+    
 }
 
 function removeSelected() {

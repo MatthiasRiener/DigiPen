@@ -16,6 +16,9 @@ class KeybindingRepository():
     def getKeybindings(self, u_id):
         res = mongoclient.db['keybinding'].find_one({"u_id": u_id})
         return json.loads(json_util.dumps(res))
+    def updateKeybinds(self, keybinds, u_id):
+        mongoclient.db['keybinding'].update({"u_id": u_id},  { "$set": { "bindings": keybinds }})
+        return 1
     def readJson(self):
         __location__ = os.path.realpath(
             os.path.join(os.getcwd(), os.path.dirname(__file__)))

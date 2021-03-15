@@ -185,10 +185,13 @@ class TaskRepository():
         tasks = Task.objects(assignee=u_id).order_by('end')
         response = list()
 
+        index = 0
         for t in tasks:
-            obj = json.loads(t.to_json())
-            obj["pres_name"] = presRepo.getPresentation(p_id=t["p_id"])["name"]
-            response.append(obj)
+            if index < 5:
+                obj = json.loads(t.to_json())
+                obj["pres_name"] = presRepo.getPresentation(p_id=t["p_id"])["name"]
+                response.append(obj)
+            index = index + 1
         return response
 
     def deleteAllTasks(self):

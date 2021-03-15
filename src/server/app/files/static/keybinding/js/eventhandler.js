@@ -115,11 +115,12 @@ window.onkeyup = function (event) {
 
 $("#safe").click(function () {
     if (dublicate) return;
-    console.log(jsondata)
-    sendRequestToServer({type: "POST", url: "/keybinding/saveKeybinding", data: {keybinding: jsondata}}).then(data => {
+ 
+    
+    sendRequestToServer({type: "POST", url: "/keybinding/saveKeybinding", data: {keybinding: JSON.stringify(jsondata.res.bindings)}}).then(data => {
         console.log("Save Keybindings");
         console.log(data);
-        window.location = baseURL + "/keybinding"
+      
     });
 });
 
