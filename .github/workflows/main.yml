@@ -45,9 +45,9 @@ jobs:
     - name: Execute server startup script
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.REMOTE_HOST }}
+        host: ${{ secrets.REMOTE_TARGET }}
         username: ${{ secrets.REMOTE_USER }}
-        password: ${{ secrets.REMOTE_PASSWORD }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
           cd $HOME/test/server
           sudo bash server_startup.sh
