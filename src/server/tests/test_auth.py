@@ -134,18 +134,18 @@ def test_getUserCount():
     assert auth.getUserCount() == 2
 
 
-@pytest.mark.parametrize('pres, result', [
-    (["max@mustermail.at", "susi@sonne.at"], "")
-])
-def test_getUsersForPresentation(pres, result):
-    users = []
-    for user in pres:
-        rUser = auth.retrieveUsersByMail(user_mail=user)
-        if rUser is not None:
-            users.append(rUser)
-    print(users)
-    # assert 1 == 2
-    assert auth.getUsersForPresentation(pres=pres) == result
+# @pytest.mark.parametrize('pres, result', [
+#     (["max@mustermail.at", "susi@sonne.at"], "")
+# ])
+# def test_getUsersForPresentation(pres, result):
+#     users = []
+#     for user in pres:
+#         rUser = auth.retrieveUsersByMail(user_mail=user)
+#         if rUser is not None:
+#             users.append(rUser)
+#     print(users)
+#     # assert 1 == 2
+#     assert auth.getUsersForPresentation(pres=pres) == result
 
 
 # TODO
