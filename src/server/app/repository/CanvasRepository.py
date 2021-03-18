@@ -11,13 +11,46 @@ class CanvasRepository():
         self.testing = testing
 
     def createCanvas(self, p_id):
-        canvasObj = self.readCanvasJson()
+        """canvasObj = self.readCanvasJson()
         pidJSON = {"p_id": p_id}
         canvasObj[0].update(pidJSON)
 
-        print(canvasObj[0])
+        print(canvasObj[0])"""
 
-        mongoclient.db['canvas'].insert_one(canvasObj[0])
+        mongoclient.db['canvas'].insert_one({
+            "p_id": p_id,
+            "canvas": {
+                "objects": [
+                    {
+                        "type": "rect",
+                        "left": 50,
+                        "top": 50,
+                        "width": 20,
+                        "height": 20,
+                        "fill": "green",
+                        "overlayFill": null,
+                        "stroke": null,
+                        "strokeWidth": 1,
+                        "strokeDashArray": null,
+                        "scaleX": 1,
+                        "scaleY": 1,
+                        "angle": 0,
+                        "flipX": false,
+                        "flipY": false,
+                        "opacity": 1,
+                        "selectable": true,
+                        "hasControls": true,
+                        "hasBorders": true,
+                        "hasRotatingPoint": false,
+                        "transparentCorners": true,
+                        "perPixelTargetFind": false,
+                        "rx": 0,
+                        "ry": 0
+                    }
+                ],
+                "background": "rgba(0, 0, 0, 0)"
+            }
+        })
         print("Canvas created... :D")
 
     def getCanvas(self, p_id):
@@ -35,10 +68,10 @@ class CanvasRepository():
         else:
             return 'You do not have the permission to do that.'
 
-    def readCanvasJson(self):
+    """def readCanvasJson(self):
         __location__ = os.path.realpath(
             os.path.join(os.getcwd(), os.path.dirname(__file__)))
-        with open(os.path.join(__location__, 'shortcuts.json')) as json_file:
+        with open(os.path.join(__location__, 'canvasObj.json')) as json_file:
             data = json.load(json_file)
 
-        return data
+        return data"""
