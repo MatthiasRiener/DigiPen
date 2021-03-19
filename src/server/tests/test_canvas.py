@@ -1,9 +1,10 @@
 import pytest
 from ..app.repository.CanvasRepository import CanvasRepository
 
+from mongoengine import disconnect, connect
 import uuid
 
-from mongoengine import disconnect, connect
+
 # from datetime import datetime, timedelta
 
 canvasRepo = CanvasRepository(testing=True)
@@ -34,9 +35,9 @@ canvasRepo_createCanvas()
 
 
 @pytest.mark.parametrize('p_id, result', [
-    (1, "")
+    ("1", "")
 ])
-def test_createCanvas(p_id, result):
-    print(canvasRepo.getCanvas(p_id=canvasid))
+def test_getCanvas(p_id, result):
+    print()
     assert canvasRepo.getCanvas(
-        p_id=p_id) == result
+        p_id=p_id) == canvasRepo.getCanvas(p_id=canvasid)
