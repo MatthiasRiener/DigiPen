@@ -1,5 +1,23 @@
 * {
-    background: var(--dark-grey);
     font-family: 'Karla';
-    color: var(--light-grey);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    font-size: 14px;
+    font-family: sans-serif;
+    color: #000;
+    overflow: hidden;
+    background: var(--dark-grey);
+}
+
+#canvas {
+    background-color: white;
+    border: 1px solid #ff0000;
 }
