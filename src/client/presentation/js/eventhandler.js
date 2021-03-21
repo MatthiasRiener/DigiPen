@@ -13,7 +13,7 @@ window.onload = function () {
 $(window).resize(function () {
     if (window.innerHeight < window.outerHeight) {
         $("#startFromBeginning").data("clicked", false);
-        toggleLaser()
+        toggleLaser(false);
     }
     let display = window.innerHeight >= window.outerHeight && $("#startFromBeginning").data("clicked") == true ? "flex" : "none";
     $("#presi").css('display', display);
@@ -89,12 +89,12 @@ $('div#iconbox').one("animationend webkitAnimationEnd oAnimationEnd MSAnimationE
 
 // laser icon click
 $("#laser").click(function () {
-    toggleLaser()
+    toggleLaser(true)
 });
 
 // laserpointer ein/aus
-function toggleLaser() {
-    if ($("#laser").data("clicked") != true) {
+function toggleLaser(param) {
+    if ($("#laser").data("clicked") != true && param) {
         $("#laser").data("clicked", true);
         $("#laser").css("color", "white");
         $("#laser").css("border-color", "white");
