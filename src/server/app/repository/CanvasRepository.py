@@ -34,9 +34,10 @@ class CanvasRepository():
 
     def updateCanvas(self, p_id, canvas, cid,  width, height):
         print("updating canvas!",cid)
+        print(p_id)
         print("====")
         print(canvas)
-        mongoclient.db['canvas'].update({"p_id": p_id, "s_id": cid}, {
+        mongoclient.db['canvas'].update_one({"p_id": p_id, "s_id": cid}, {
                                         "$set": {"canvas": canvas, 'latestWidth': width, 'latestHeight': height}})
         return "updated canvas"
 
