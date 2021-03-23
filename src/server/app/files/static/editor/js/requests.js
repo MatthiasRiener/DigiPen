@@ -6,7 +6,8 @@ $(document).ready(function () {
         $('#content-navigation-first-left-text-h3').text(data.ownUser.name);
 
         loadCanvasFromJson(data.canvas[0].canvas);
-        setCanvasID(data.canvas[0].s_id);
+        console.log("setting id")
+        setCanvasID(data.canvas[0]._id.$oid);
     });
 });
 

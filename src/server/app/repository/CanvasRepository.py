@@ -5,6 +5,8 @@ import json
 import os
 from bson import json_util
 
+from bson.objectid import ObjectId
+
 
 class CanvasRepository():
     def __init__(self, testing):
@@ -40,14 +42,8 @@ class CanvasRepository():
 
         print("========")
 
-    
-        mongoclient.db["canvas"].update_one(
-                {"p_id": p_id, "s_id": cid},
-                {"$set": {"canvas": canvas, 'latestWidth': width, 'latestHeight': height}}
-            )
-#
- #       mongoclient.db['canvas'].update_one({"p_id": p_id, "s_id": cid}, {
-  #                                      "$set": {"canvas": canvas, 'latestWidth': width, 'latestHeight': height}})
+        mongoclient.db['canvas'].update_one({"_id": ObjectId(cid)}, 
+       {"$set": {"canvas": canvas, 'latestWidth': width, 'latestHeight': height}})
         return "updated canvas"
 
     def deleteAll(self):
