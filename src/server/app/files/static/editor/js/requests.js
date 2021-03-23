@@ -5,29 +5,19 @@ $(document).ready(function () {
         $('#content-navigation-first-left-text-h2').text(data.pres.name);
         $('#content-navigation-first-left-text-h3').text(data.ownUser.name);
 
-        data.users.forEach(user => {
-            
-        });
-
-        /*$('.content-navigation-fourth-position-circle').each(function (index) {
-            if(index < 4) {
-                $(this).css('background', 'url("' + data.users[index].img + '")')
-            }
-
-            $('#content-navigation-fourth-position-fifthCircle').text("+" + (index - 3));
-        });
-
-        $('.content-navigation-fourth-position-circle').css('background-position', 'center');
-        $('.content-navigation-fourth-position-circle').css('background-size', 'cover');*/
-
-        loadCanvasFromJson(data.canvas.canvas);
+        loadCanvasFromJson(data.canvas[0].canvas);
+        setCanvasID(data.canvas[0].s_id);
     });
 });
 
 function saveCanvas(canvas, width, height) {
-    console.log(JSON.stringify(canvas));
-    sendRequestToServer({type: "POST", url: "/editor/updateCanvas", data: {p_id: getCustomStorage("p_id"), width: width, height: height, canvas: JSON.stringify(canvas)}}).then(data => {
+    console.log(canvas);
+    sendRequestToServer({type: "POST", url: "/editor/updateCanvas", data: {p_id: getCustomStorage("p_id"), s_id: getCanvasID(), width: width, height: height, canvas: JSON.stringify(canvas)}}).then(data => {
         console.log("Save Canvas");
         console.log(data);
     });
+}
+
+function createSlide() {
+    console.log("Slide added")
 }

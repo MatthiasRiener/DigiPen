@@ -21,10 +21,14 @@ function addSlide() {
     <div class="content-leftSlides-slidesContent-slide">
         <div class="content-leftSlides-slidesContent-slide-leftBar ${slides.length == 0 ? 'activeSlide' : ''}" style="height: ${height}vw;"></div>
         <div class="content-leftSlides-slidesContent-slide-middleBar" style="height: ${height}vw;">${slides.length + 1}</div>
-        <div class="content-leftSlides-slidesContent-slide-content" style="height: ${height}vw; ${slides.length == 0 ? 'transform: scale(0.95);' : ''}" onclick="toggleVisibility(${slides.length})"></div>
+        <div class="content-leftSlides-slidesContent-slide-content" style="position: relative; z-index: 2; height: ${height}vw; ${slides.length == 0 ? 'transform: scale(0.95);' : ''}" onclick="toggleVisibility(${slides.length})">
+            <div class="content-leftSlides-slidesContent-slide-content-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;"></div>
+            <canvas class="content-leftSlides-slidesContent-slide-content-canvas" style="position: absolute; z-index: 1; width: 100%; height: 100%;"></canvas>
+        </div>
     </div>`);
 
     $('#content-leftSlides-slidesContent-animatedBar').height(height + 'vw');
+    createSlide();
 }
 
 function toggleVisibility(index) {
@@ -272,3 +276,11 @@ $('body').on('click', '.ed_bt_arrow_click', function () {
 $('body').on('click', '#shortcutPopup-inner-popup-change', function () {
     window.location = baseURL + "/keybinding"
 })
+
+function setCanvasID(id) {
+    $('#content-main-inner-spacing-middle').data('canvasID', id);
+}
+
+function getCanvasID() {
+    return $('#content-main-inner-spacing-middle').data('canvasID');
+}
