@@ -39,6 +39,8 @@ body {
     width: fit-content;
     height: fit-content;
     opacity: 0;
+    position: absolute;
+    bottom: 0;
 }
 
 .fadeout {

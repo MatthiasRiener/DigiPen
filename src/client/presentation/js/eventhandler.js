@@ -1,4 +1,3 @@
-// in canvasarray werden die verschiedenen fabric canvasse gespeichert
 let canvasArr = [],
     index = 0,
     currCanvas,
@@ -8,7 +7,7 @@ let canvasArr = [],
 // sodass er responsiv ist
 window.onload = function () {
     createCanvas();
-    loadCanvas('start');
+    loadCanvas(0);
     resizeCanvas()
 }
 
@@ -71,13 +70,13 @@ function createCanvas() {
     canvasArr.push(canvas1);
     canvasArr.push(canvas2);
     canvasArr.push(canvas3);
+
+
 }
 
 function loadCanvas(whereStart) {
-    if (whereStart == 'start')
-        currCanvas = canvasArr[0];
-    else currCanvas = canvasArr[whereStart];
-    if (!originalSize)
+    currCanvas = canvasArr[whereStart];
+    if (originalSize == undefined)
         originalSize = currCanvas.getWidth();
     resizeCanvas();
 }
@@ -85,22 +84,23 @@ function loadCanvas(whereStart) {
 function resizeCanvas() {
     let w = $("body").width()
     let h = $("body").height()
+    canvasArr.forEach(element => {
+        element.setWidth(h * 16 / 9);
+        element.setHeight(h);
 
-
-    currCanvas.setWidth(h * 16 / 9);
-    currCanvas.setHeight(h);
-
-    // wenn das seitenverhältnis breite:höhe kleiner als 16:9 ist
-    if (w / h < 16 / 9) {
-        currCanvas.setWidth(w);
-        currCanvas.setHeight(w * 9 / 16);
-    }
+        // wenn das seitenverhältnis breite:höhe kleiner als 16:9 ist
+        if (w / h < 16 / 9) {
+            element.setWidth(w);
+            element.setHeight(w * 9 / 16);
+        }
+        // setzoom
+        if (originalSize) {
+            val = element.width / originalSize;
+            element.setZoom(val);
+        }
+        element.renderAll();
+    });
     currCanvas.renderAll();
-    // setzoom
-    if (originalSize) {
-        val = currCanvas.width / originalSize;
-        currCanvas.setZoom(val);
-    }
 }
 
 let mouseismoving = false;
@@ -152,6 +152,7 @@ function toggleLaser(param) {
 $("#startFromBeginning").click(function () {
     toggleFullScreen(document.body);
     index = 0;
+    loadCanvas(index)
     // wenn man in den fullscreen gegangen ist ohne auf den präsentationsbutton geklickt zu haben
     // sollte man ja nicht in die präsentationsansicht kommen
     let clicked = $(this).data("clicked") != true ? true : false;
@@ -168,20 +169,18 @@ $("#exit").click(function () {
     $("div#iconbox").removeClass('fadeout');
 });
 
-$("#next").click(function (e) {
-    console.log(e.target);
+$("#next").click(function () {
     if (index + 1 < canvasArr.length) {
         index++;
         loadCanvas(index);
     }
 });
 
-$("#previous").click(function (e) {
+$("#previous").click(function () {
     if (index - 1 >= 0) {
         index--;
         loadCanvas(index);
     }
-
 });
 
 function toggleFullScreen(elem) {
