@@ -16,7 +16,11 @@ class EditorRepository():
         pres = json.loads(presRepo.getPresentation(p_id=p_id).to_json())
         presUsers = presRepo.getUsersFromPresentation(p_id=p_id)
         ownUser = authRepo.retrieveUser(user_id=u_id)
+
+
         canvas = json.loads(json_util.dumps(canvasRepo.getCanvas(p_id=p_id)))
+
+        
         print(canvas)
         return json.dumps({"pres": pres, "users": presUsers, "ownUser": ownUser, "canvas": canvas})
     

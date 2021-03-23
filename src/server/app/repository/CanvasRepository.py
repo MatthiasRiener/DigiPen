@@ -10,19 +10,19 @@ class CanvasRepository():
     def __init__(self, testing):
         self.testing = testing
 
-    def createCanvas(self, p_id):
+    def createCanvas(self, p_id, s_id):
         """canvasObj = self.readCanvasJson()
         pidJSON = {"p_id": p_id}
         canvasObj[0].update(pidJSON)
 
         print(canvasObj[0])"""
 
-        mongoclient.db['canvas'].insert_one({"p_id": p_id, "canvas": {"objects": [{"type": "rect", "left": 50, "top": 50, "width": 20, "height": 20, "fill": "green", "overlayFill": None, "stroke": None, "strokeWidth": 1, "strokeDashArray": None, "scaleX": 1, "scaleY": 1,
+        mongoclient.db['canvas'].insert_one({"p_id": p_id, "s_id": s_id, "canvas": {"objects": [{"type": "rect", "left": 50, "top": 50, "width": 20, "height": 20, "fill": "green", "overlayFill": None, "stroke": None, "strokeWidth": 1, "strokeDashArray": None, "scaleX": 1, "scaleY": 1,
                                                                                    "angle": 0, "flipX": False, "flipY": False, "opacity": 1, "selectable": True, "hasControls": True, "hasBorders": True, "hasRotatingPoint": False, "transparentCorners": True, "perPixelTargetFind": False, "rx": 0, "ry": 0}], "background": "rgba(0, 0, 0, 0)"}})
         print("Canvas created... :D")
 
     def getCanvas(self, p_id):
-        return mongoclient.db['canvas'].find_one({"p_id": p_id})
+        return mongoclient.db['canvas'].find({"p_id": p_id})
 
     def updateCanvas(self, p_id, canvas, width, height):
         mongoclient.db['canvas'].update({"p_id": p_id}, {
