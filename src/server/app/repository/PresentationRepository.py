@@ -51,7 +51,7 @@ class PresentationRepository():
         canvasRepo = CanvasRepository(testing=False)
 
         taskRepo.createTaskList(p_id=p_id)
-        canvasRepo.createCanvas(p_id=p_id, s_id=0)
+        canvasRepo.createCanvas(p_id=p_id)
 
         return json.dumps({'status': 1, 'p_id': p_id})
 
