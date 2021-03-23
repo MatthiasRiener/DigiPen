@@ -1,11 +1,14 @@
-let canvas,
+// in canvasarray werden die verschiedenen fabric canvasse gespeichert
+let canvasArr = [],
+    index = 0,
+    currCanvas,
     originalSize;
 
 // onload erzeugt einen neuen fabric canvas und resized diesen
 // sodass er responsiv ist
 window.onload = function () {
     createCanvas();
-    originalSize = canvas.getWidth();
+    loadCanvas('start');
     resizeCanvas()
 }
 
@@ -15,7 +18,13 @@ $(window).resize(function () {
         $("#startFromBeginning").data("clicked", false);
         toggleLaser(false);
     }
-    let display = window.innerHeight >= window.outerHeight && $("#startFromBeginning").data("clicked") == true ? "flex" : "none";
+    let display = "flex"
+    if ($("#presi").css('display') != 'flex')
+        display = window.innerHeight >= window.outerHeight && $("#startFromBeginning").data("clicked") == true ? "flex" : "none";
+    if (window.innerHeight < window.outerHeight) {
+        display = "none";
+        index = 0;
+    }
     $("#presi").css('display', display);
     if (display == "flex")
         setTimeout(() => {
@@ -27,18 +36,50 @@ $(window).resize(function () {
 function createCanvas() {
     const fabric = window.fabric;
     // create `Canvas` object using `<canvas>` DOM node
-    canvas = new fabric.Canvas('canvas');
+    canvas1 = new fabric.Canvas('canvas');
+    canvas2 = new fabric.Canvas('canvas');
+    canvas3 = new fabric.Canvas('canvas');
     // create a rectangle object
-    var rect = new fabric.Rect({
+    var rect1 = new fabric.Rect({
         left: 100,
         top: 100,
         fill: 'red',
         width: 20,
         height: 20
     });
+
+    var rect2 = new fabric.Rect({
+        left: 100,
+        top: 100,
+        fill: 'blue',
+        width: 20,
+        height: 20
+    });
+
+    var rect3 = new fabric.Rect({
+        left: 100,
+        top: 100,
+        fill: 'green',
+        width: 20,
+        height: 20
+    });
     // "add" rectangle onto canvas
-    canvas.add(rect);
-    canvas.renderAll();
+    canvas1.add(rect1);
+    canvas2.add(rect2);
+    canvas3.add(rect3);
+
+    canvasArr.push(canvas1);
+    canvasArr.push(canvas2);
+    canvasArr.push(canvas3);
+}
+
+function loadCanvas(whereStart) {
+    if (whereStart == 'start')
+        currCanvas = canvasArr[0];
+    else currCanvas = canvasArr[whereStart];
+    if (!originalSize)
+        originalSize = currCanvas.getWidth();
+    resizeCanvas();
 }
 
 function resizeCanvas() {
@@ -46,19 +87,19 @@ function resizeCanvas() {
     let h = $("body").height()
 
 
-    canvas.setWidth(h * 16 / 9);
-    canvas.setHeight(h);
+    currCanvas.setWidth(h * 16 / 9);
+    currCanvas.setHeight(h);
 
     // wenn das seitenverhältnis breite:höhe kleiner als 16:9 ist
     if (w / h < 16 / 9) {
-        canvas.setWidth(w);
-        canvas.setHeight(w * 9 / 16);
+        currCanvas.setWidth(w);
+        currCanvas.setHeight(w * 9 / 16);
     }
-    canvas.renderAll();
+    currCanvas.renderAll();
     // setzoom
     if (originalSize) {
-        val = canvas.width / originalSize;
-        canvas.setZoom(val);
+        val = currCanvas.width / originalSize;
+        currCanvas.setZoom(val);
     }
 }
 
@@ -84,7 +125,7 @@ $("body").mousemove(function (event) {
 $('div#iconbox').one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function () {
     $(this).css('opacity', '0');
     $(this).css('userselect', 'none');
-    $(this).removeClass('fadeout')
+    $(this).removeClass('fadeout');
 });
 
 // laser icon click
@@ -110,10 +151,37 @@ function toggleLaser(param) {
 
 $("#startFromBeginning").click(function () {
     toggleFullScreen(document.body);
+    index = 0;
     // wenn man in den fullscreen gegangen ist ohne auf den präsentationsbutton geklickt zu haben
     // sollte man ja nicht in die präsentationsansicht kommen
     let clicked = $(this).data("clicked") != true ? true : false;
     $(this).data("clicked", clicked);
+    setTimeout(() => {
+        let display = window.innerHeight >= window.outerHeight ? "flex" : "none";
+        $("#presi").css('display', display);
+        resizeCanvas()
+    }, 100);
+});
+
+$("#exit").click(function () {
+    toggleFullScreen(document.body);
+    $("div#iconbox").removeClass('fadeout');
+});
+
+$("#next").click(function (e) {
+    console.log(e.target);
+    if (index + 1 < canvasArr.length) {
+        index++;
+        loadCanvas(index);
+    }
+});
+
+$("#previous").click(function (e) {
+    if (index - 1 >= 0) {
+        index--;
+        loadCanvas(index);
+    }
+
 });
 
 function toggleFullScreen(elem) {
