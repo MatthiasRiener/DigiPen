@@ -38,9 +38,12 @@ class CanvasRepository():
         print("====")
         print(canvas)
 
+        print("========")
+        
+        doc = mongoclient.db["canvas"].find_one({"p_id": p_id, "c_id": cid})       
 
-       
 
+        print(doc)
         mongoclient.db["canvas"].find_one_and_update(
                 {"p_id": p_id, "c_id": cid},
                 {"$set": {"canvas": canvas, 'latestWidth': width, 'latestHeight': height}},
