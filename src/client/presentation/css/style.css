@@ -68,3 +68,7 @@ body {
 .cursortolaser {
     cursor: url('../img/cursor.cur'), default !important;
 }
+
+.nocursor {
+    cursor: none !important;
+}

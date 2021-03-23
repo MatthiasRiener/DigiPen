@@ -112,6 +112,7 @@ $("body").mousemove(function (event) {
         $("#iconbox").css('opacity', '1');
         $("#iconbox").css('userselect', 'auto');
     }
+    $("body, canvas, div").removeClass('nocursor');
 
     // mousemove end
     clearTimeout(timer);
@@ -126,12 +127,15 @@ $('div#iconbox').one("animationend webkitAnimationEnd oAnimationEnd MSAnimationE
     $(this).css('opacity', '0');
     $(this).css('userselect', 'none');
     $(this).removeClass('fadeout');
+    $("body, canvas, div").addClass('nocursor');
 });
 
 // laser icon click
 $("#laser").click(function () {
     toggleLaser(true)
 });
+
+let islaser = false;
 
 // laserpointer ein/aus
 function toggleLaser(param) {
@@ -141,11 +145,13 @@ function toggleLaser(param) {
         $("#laser").css("border-color", "white");
         // class cursortolaser macht den cursor zu einem roten punkt
         $('body, canvas, div').addClass('cursortolaser');
+        islaser = true;
     } else {
         $("#laser").data("clicked", false);
         $("#laser").css("color", "rgba(255,255,255,.5)");
         $("#laser").css("border-color", "rgba(255,255,255,.5)");
         $('body, canvas, div').removeClass('cursortolaser');
+        islaser = false;
     }
 }
 
@@ -164,17 +170,46 @@ $("#startFromBeginning").click(function () {
     }, 100);
 });
 
-$("#exit").click(function () {
+$("#startFromCurrent").click(function () {
     toggleFullScreen(document.body);
-    $("div#iconbox").removeClass('fadeout');
+    index = 1;
+    loadCanvas(index)
+    // wenn man in den fullscreen gegangen ist ohne auf den präsentationsbutton geklickt zu haben
+    // sollte man ja nicht in die präsentationsansicht kommen
+    let clicked = $("#startFromBeginning").data("clicked") != true ? true : false;
+    $("#startFromBeginning").data("clicked", clicked);
+    setTimeout(() => {
+        let display = window.innerHeight >= window.outerHeight ? "flex" : "none";
+        $("#presi").css('display', display);
+        resizeCanvas()
+    }, 100);
 });
 
-$("#next").click(function () {
-    if (index + 1 < canvasArr.length) {
+$("#next").click(function (e) {
+    next();
+});
+
+$("body").click(function (e) {
+    console.log('gag');
+    if (e.target.id == 'exit') {
+        toggleFullScreen(document.body);
+        $("#presi").css('display', 'none');
+        $("#startFromBeginning").data("clicked", false);
+        $("div#iconbox").removeClass('fadeout');
+        toggleLaser(false);
+    }
+    if (['previous', 'next', 'startFromBeginning', 'startFromCurrent', 'exit', 'laser', 'iconbox'].indexOf(e.target.id) == -1)
+        next();
+});
+
+function next() {
+    if (window.innerHeight >= window.outerHeight &&
+        $("#startFromBeginning").data("clicked") == true &&
+        index + 1 < canvasArr.length) {
         index++;
         loadCanvas(index);
     }
-});
+}
 
 $("#previous").click(function () {
     if (index - 1 >= 0) {
