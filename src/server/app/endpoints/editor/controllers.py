@@ -41,4 +41,4 @@ def updateCanvasRoute():
 
     u_id = get_jwt_identity()
 
-    return editorRepo.updateCanvas(p_id=p_id, canvas=canvas, canvas_id=c_id, width=width, height=height)
+    return editorRepo.updateCanvas(p_id=p_id, canvas=canvas, c_id=c_id, width=width, height=height)

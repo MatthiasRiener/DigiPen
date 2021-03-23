@@ -20,11 +20,11 @@ class EditorRepository():
 
         canvas = json.loads(json_util.dumps(canvasRepo.getCanvas(p_id=p_id)))
 
-        
+
         print(canvas)
         return json.dumps({"pres": pres, "users": presUsers, "ownUser": ownUser, "canvas": canvas})
     
-    def updateCanvas(self, p_id, canvas, width, height):
-        canvasRepo.updateCanvas(p_id, canvas, width, height)
+    def updateCanvas(self, p_id, canvas, c_id, width, height):
+        canvasRepo.updateCanvas(p_id, canvas, c_id,  width, height)
 
         return json.dumps({"updated": 1})
