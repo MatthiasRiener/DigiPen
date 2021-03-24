@@ -2,8 +2,6 @@ let trackingIndex = 0;
 
 $(document).ready(function () {
     console.log('Document loaded.');
-    getSlides();
-    toggleVisibility(0);
 });
 
 /* --------------- SLides-Menu --------------- */
@@ -19,9 +17,6 @@ function addSlide(slide) {
 
     sideC = insertSlide(slide);
 
-
-    
-
     sideC.loadFromJSON(slide.canvas, function () {
         sideC.renderAll();
 
@@ -29,7 +24,7 @@ function addSlide(slide) {
     <div class="content-leftSlides-slidesContent-slide" data-slide="${slide._id.$oid}">
         <div class="content-leftSlides-slidesContent-slide-leftBar ${slides.length == 0 ? 'activeSlide' : ''}" style="height: ${height}vw;"></div>
         <div class="content-leftSlides-slidesContent-slide-middleBar" style="height: ${height}vw;">${slides.length + 1}</div>
-        <div class="content-leftSlides-slidesContent-slide-content" style="position: relative; z-index: 2; height: ${height}vw; ${slides.length == 0 ? 'transform: scale(0.95);' : ''}" onclick="toggleVisibility(${slides.length})">
+        <div class="content-leftSlides-slidesContent-slide-content" data-slide="${slide._id.$oid}" data-length="${slides.length}" style="position: relative; z-index: 2; height: ${height}vw; ${slides.length == 0 ? 'transform: scale(0.95);' : ''}">
             <div class="content-leftSlides-slidesContent-slide-content-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; background: url('${'data:image/svg+xml;utf8,' + encodeURIComponent(sideC.toSVG())}'); background-size: cover; background-position: center; background-repeat: no-repeat"></div>
             <canvas class="content-leftSlides-slidesContent-slide-content-canvas" id="${slide._id.$oid}" style="position: absolute; z-index: 1; width: 100%; height: 100%;"></canvas>
         </div>
@@ -55,16 +50,18 @@ function insertSlide(slide) {
     return dummyC;
 }
 
+$('body').on('click', '.content-leftSlides-slidesContent-slide-content', function () {
+    toggleVisibility($(this).data("slide"), $(this).data("length"));
+});
 
-
-function toggleVisibility(index) {
+function toggleVisibility(slideID, index) {
     trackingIndex = index;
     $('#content-leftSlides-slidesContent-animatedBar').css({
         'top': `${$("#content-leftSlides-slidesContent-animatedBar").position().top}`
     }).animate({
         "top": `${$('.content-leftSlides-slidesContent-slide-leftBar').eq(trackingIndex).position().top}px`
     }, "slow");
-    switchSlide();
+    switchSlide(slideID);
 }
 
 $('#content-leftSlides-slidesContent').scroll(function () {

@@ -27,7 +27,7 @@ function createSlide() {
     sendRequestToServer({type: "POST", url: "/editor/createSlide", data: {p_id: getCustomStorage("p_id")}}).then(data => {
         console.log("Created Slide!");
         console.log(data);
-        addSlide();
+        addSlide(data.res);
         loadCanvasFromJson(data.res.canvas);
         setCanvasID(data.res._id.$oid);
         canvas.setWidth($('#content-main-inner-spacing-middle').width());
@@ -35,6 +35,14 @@ function createSlide() {
     });
 }
 
-function switchSlide() {
-    console.log("Switching Slide");
+function switchSlide(id) {
+    console.log("IDDDD: " + id);
+    sendRequestToServer({type: "POST", url: "/editor/getSpecificSlide", data: {s_id: id}}).then(data => {
+        console.log("Switching Slide");
+        console.log(data);
+        loadCanvasFromJson(data.res.canvas);
+        setCanvasID(data.res._id.$oid);
+        canvas.setWidth($('#content-main-inner-spacing-middle').width());
+        canvas.setHeight($('#content-main-inner-spacing-middle').height());
+    });
 }
