@@ -2080,4 +2080,16 @@ Presentation Event
     left: 0;
     top: 0;
     z-index: 1000;
+    mix-blend-mode: difference;
+}
+
+#timer {
+    user-select: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: rgba(255, 255, 255, 1);
+    margin: 2vw;
+    mix-blend-mode: difference;
+    z-index: 2000;
 }

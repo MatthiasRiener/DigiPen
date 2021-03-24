@@ -320,6 +320,10 @@ $(window).resize(function () {
             setTimeout(() => {
                 resizeCanvas()
             }, 100);
+        else {
+            totalSeconds = 0;
+            clearInterval(timertimer)
+        }
     }, 500);
 });
 
@@ -414,18 +418,18 @@ $("body").mousemove(function (event) {
     // mousemove end
     let removeFadeout;
     clearTimeout(timer);
+    clearTimeout(removeFadeout);
     timer = setTimeout(() => {
-        clearTimeout(removeFadeout);
         mouseismoving = false;
         if ($("#presi").css('display') == "flex" && !$("div#iconbox").prop("classList").contains("fadeout")) {
             $("div#iconbox").addClass('fadeout')
-            removeFadeout = setTimeout(() => {
-                $('div#iconbox').css('opacity', '0');
-                $('div#iconbox').css('userselect', 'none');
-                $('div#iconbox').removeClass('fadeout');
-                $("body, canvas, div").addClass('nocursor');
-            }, 4000);
-        }
+
+        } removeFadeout = setTimeout(() => {
+            $('div#iconbox').css('opacity', '0');
+            $('div#iconbox').css('userselect', 'none');
+            $('div#iconbox').removeClass('fadeout');
+            $("body, canvas, div").addClass('nocursor');
+        }, 4000);
     }, 300);
 });
 
@@ -461,6 +465,28 @@ function toggleLaser(param) {
     }
 }
 
+let minutesLabel = document.getElementById("minutes");
+let secondsLabel = document.getElementById("seconds");
+let hoursLabel = document.getElementById("hours");
+let totalSeconds = 0;
+let timertimer;
+
+function setTime() {
+    ++totalSeconds;
+    secondsLabel.innerHTML = pad(totalSeconds % 60);
+    minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+    hoursLabel.innerHTML = pad(parseInt(totalSeconds / 3600));
+}
+
+function pad(val) {
+    let valString = val + "";
+    if (valString.length < 2) {
+        return "0" + valString;
+    } else {
+        return valString;
+    }
+}
+
 $("#" + startFromBeginningButtonId).click(function () {
     toggleFullScreen(document.body);
     index = 0;
@@ -492,7 +518,13 @@ $("#" + startFromCurrentButtonId).click(function () {
     }, 100);
 });
 
+$("#" + startFromBeginningButtonId + ", #" + startFromCurrentButtonId).click(function () {
+    totalSeconds = 0;
+    setInterval(setTime, 1000);
+});
+
 /* IMPORTANT Popupwindow closes fullscreen
+
 $("#" + startFromBeginningButtonId + ", #" + startFromCurrentButtonId).click(function () {
     centeredPopup('http:\/\/localhost:5501\/src\/client\/presentation\/popup.html', 'myWindow', '700', '300', 'yes')
 });
