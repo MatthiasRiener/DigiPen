@@ -13,22 +13,25 @@ window.onload = function () {
 
 // wenn sich die größe des fensters ändert
 $(window).resize(function () {
-    if (window.innerHeight < window.outerHeight) {
-        $("#startFromBeginning").data("clicked", false);
-        toggleLaser(false);
-    }
-    let display = "flex"
-    if ($("#presi").css('display') != 'flex')
-        display = window.innerHeight >= window.outerHeight && $("#startFromBeginning").data("clicked") == true ? "flex" : "none";
-    if (window.innerHeight < window.outerHeight) {
-        display = "none";
-        index = 0;
-    }
-    $("#presi").css('display', display);
-    if (display == "flex")
-        setTimeout(() => {
-            resizeCanvas()
-        }, 100);
+    setTimeout(() => {
+        if (window.innerHeight < window.outerHeight) {
+            $("#startFromBeginning").data("clicked", false);
+            toggleLaser(false);
+        }
+
+        let display = "flex"
+        if ($("#presi").css('display') != 'flex')
+            display = window.innerHeight >= window.outerHeight && $("#startFromBeginning").data("clicked") == true ? "flex" : "none";
+        if (window.innerHeight < window.outerHeight) {
+            display = "none";
+            index = 0;
+        }
+        $("#presi").css('display', display);
+        if (display == "flex")
+            setTimeout(() => {
+                resizeCanvas()
+            }, 100);
+    }, 500);
 });
 
 // IMPORTANT canvas hintergrund ist mit css gefüllt
@@ -178,6 +181,7 @@ $("#startFromCurrent").click(function () {
     // sollte man ja nicht in die präsentationsansicht kommen
     let clicked = $("#startFromBeginning").data("clicked") != true ? true : false;
     $("#startFromBeginning").data("clicked", clicked);
+
     setTimeout(() => {
         let display = window.innerHeight >= window.outerHeight ? "flex" : "none";
         $("#presi").css('display', display);
@@ -190,7 +194,6 @@ $("#next").click(function (e) {
 });
 
 $("body").click(function (e) {
-    console.log('gag');
     if (e.target.id == 'exit') {
         toggleFullScreen(document.body);
         $("#presi").css('display', 'none');
