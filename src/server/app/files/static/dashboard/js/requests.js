@@ -92,10 +92,10 @@ sendRequestToServer({
 
         canvas.setDimensions({width: 1920, height: 1080})
 
-
+        console.log("loading canvas")
       
 
-        canvas.loadFromJSON(presentation.canvas.canvas, function () {
+        canvas.loadFromJSON(presentation.canvas[0].canvas, function () {
             canvas.renderAll();
             $('#ownPresentations').append(`
             <li data-presentation="${presentation._id}">
