@@ -42,3 +42,10 @@ def updateCanvasRoute():
     u_id = get_jwt_identity()
 
     return editorRepo.updateCanvas(p_id=p_id, canvas=canvas, c_id=c_id, width=width, height=height)
+
+@editor.route('/createSlide', methods=["POST"])
+@jwt_required
+def createSlideRoute():
+    data= request.form
+    p_id = data['p_id']
+    return editorRepo.addSlide(p_id=p_id)
