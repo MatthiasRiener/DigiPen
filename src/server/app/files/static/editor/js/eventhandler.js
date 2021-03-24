@@ -9,7 +9,7 @@ $(document).ready(function () {
 /* --------------- SLides-Menu --------------- */
 
 $('#content-leftSlides-topBar-plus').click(function () {
-    addSlide();
+    createSlide();
 });
 
 function addSlide() {
@@ -28,7 +28,6 @@ function addSlide() {
     </div>`);
 
     $('#content-leftSlides-slidesContent-animatedBar').height(height + 'vw');
-    createSlide();
 }
 
 function toggleVisibility(index) {
@@ -38,6 +37,7 @@ function toggleVisibility(index) {
     }).animate({
         "top": `${$('.content-leftSlides-slidesContent-slide-leftBar').eq(trackingIndex).position().top}px`
     }, "slow");
+    switchSlide();
 }
 
 $('#content-leftSlides-slidesContent').scroll(function () {

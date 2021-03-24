@@ -20,5 +20,13 @@ function saveCanvas(canvas, width, height) {
 }
 
 function createSlide() {
-    console.log("Slide added")
+    sendRequestToServer({type: "POST", url: "/editor/createSlide", data: {p_id: getCustomStorage("p_id")}}).then(data => {
+        console.log("Created Slide!");
+        console.log(data);
+        addSlide();
+    });
+}
+
+function switchSlide() {
+    console.log("Switching Slide");
 }
