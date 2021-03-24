@@ -28,7 +28,7 @@ body {
     flex-direction: column;
 }
 
-#canvas {
+#presCanvas {
     background-color: white;
 }
 

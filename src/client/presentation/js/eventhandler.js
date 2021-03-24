@@ -1,7 +1,11 @@
 let canvasArr = [],
     index = 0,
+    curretSlide = 1,
+    presCanvasId = 'presCanvas',
+    startFromBeginningButtonId = 'startFromBeginning',
+    startFromCurrentButtonId = 'startFromCurrent',
     currCanvas,
-    originalSize;
+    origSizePresCanvas;
 
 // onload erzeugt einen neuen fabric canvas und resized diesen
 // sodass er responsiv ist
@@ -15,13 +19,13 @@ window.onload = function () {
 $(window).resize(function () {
     setTimeout(() => {
         if (window.innerHeight < window.outerHeight) {
-            $("#startFromBeginning").data("clicked", false);
+            $("#" + startFromBeginningButtonId).data("clicked", false);
             toggleLaser(false);
         }
 
         let display = "flex"
         if ($("#presi").css('display') != 'flex')
-            display = window.innerHeight >= window.outerHeight && $("#startFromBeginning").data("clicked") == true ? "flex" : "none";
+            display = window.innerHeight >= window.outerHeight && $("#" + startFromBeginningButtonId).data("clicked") == true ? "flex" : "none";
         if (window.innerHeight < window.outerHeight) {
             display = "none";
             index = 0;
@@ -38,9 +42,9 @@ $(window).resize(function () {
 function createCanvas() {
     const fabric = window.fabric;
     // create `Canvas` object using `<canvas>` DOM node
-    canvas1 = new fabric.Canvas('canvas');
-    canvas2 = new fabric.Canvas('canvas');
-    canvas3 = new fabric.Canvas('canvas');
+    canvas1 = new fabric.Canvas(presCanvasId);
+    canvas2 = new fabric.Canvas(presCanvasId);
+    canvas3 = new fabric.Canvas(presCanvasId);
     // create a rectangle object
     var rect1 = new fabric.Rect({
         left: 100,
@@ -79,8 +83,8 @@ function createCanvas() {
 
 function loadCanvas(whereStart) {
     currCanvas = canvasArr[whereStart];
-    if (originalSize == undefined)
-        originalSize = currCanvas.getWidth();
+    if (origSizePresCanvas == undefined)
+        origSizePresCanvas = currCanvas.getWidth();
     resizeCanvas();
 }
 
@@ -97,8 +101,8 @@ function resizeCanvas() {
             element.setHeight(w * 9 / 16);
         }
         // setzoom
-        if (originalSize) {
-            val = element.width / originalSize;
+        if (origSizePresCanvas) {
+            val = element.width / origSizePresCanvas;
             element.setZoom(val);
         }
         element.renderAll();
@@ -158,7 +162,7 @@ function toggleLaser(param) {
     }
 }
 
-$("#startFromBeginning").click(function () {
+$("#" + startFromBeginningButtonId).click(function () {
     toggleFullScreen(document.body);
     index = 0;
     loadCanvas(index)
@@ -173,14 +177,14 @@ $("#startFromBeginning").click(function () {
     }, 100);
 });
 
-$("#startFromCurrent").click(function () {
+$("#" + startFromCurrentButtonId).click(function () {
     toggleFullScreen(document.body);
-    index = 1;
+    index = curretSlide;
     loadCanvas(index)
     // wenn man in den fullscreen gegangen ist ohne auf den präsentationsbutton geklickt zu haben
     // sollte man ja nicht in die präsentationsansicht kommen
-    let clicked = $("#startFromBeginning").data("clicked") != true ? true : false;
-    $("#startFromBeginning").data("clicked", clicked);
+    let clicked = $("#" + startFromBeginningButtonId).data("clicked") != true ? true : false;
+    $("#" + startFromBeginningButtonId).data("clicked", clicked);
 
     setTimeout(() => {
         let display = window.innerHeight >= window.outerHeight ? "flex" : "none";
@@ -197,17 +201,17 @@ $("body").click(function (e) {
     if (e.target.id == 'exit') {
         toggleFullScreen(document.body);
         $("#presi").css('display', 'none');
-        $("#startFromBeginning").data("clicked", false);
+        $("#" + startFromBeginningButtonId).data("clicked", false);
         $("div#iconbox").removeClass('fadeout');
         toggleLaser(false);
     }
-    if (['previous', 'next', 'startFromBeginning', 'startFromCurrent', 'exit', 'laser', 'iconbox'].indexOf(e.target.id) == -1)
+    if (['editblock'].indexOf(e.target.id) >= 0)
         next();
 });
 
 function next() {
     if (window.innerHeight >= window.outerHeight &&
-        $("#startFromBeginning").data("clicked") == true &&
+        $("#" + startFromBeginningButtonId).data("clicked") == true &&
         index + 1 < canvasArr.length) {
         index++;
         loadCanvas(index);
