@@ -474,7 +474,7 @@ let timertimer;
 function setTime() {
     ++totalSeconds;
     secondsLabel.innerHTML = pad(totalSeconds % 60);
-    minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+    minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60) % 60);
     hoursLabel.innerHTML = pad(parseInt(totalSeconds / 3600));
 }
 
@@ -520,7 +520,7 @@ $("#" + startFromCurrentButtonId).click(function () {
 
 $("#" + startFromBeginningButtonId + ", #" + startFromCurrentButtonId).click(function () {
     totalSeconds = 0;
-    setInterval(setTime, 1000);
+    timertimer = setInterval(setTime, 1000);
 });
 
 /* IMPORTANT Popupwindow closes fullscreen
