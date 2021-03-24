@@ -313,6 +313,7 @@ $(window).resize(function () {
         if (window.innerHeight < window.outerHeight) {
             display = "none";
             index = 0;
+            // popupWindow = null;
         }
         $("#presi").css('display', display);
         if (display == "flex")
@@ -490,6 +491,19 @@ $("#" + startFromCurrentButtonId).click(function () {
         resizeCanvas()
     }, 100);
 });
+
+/* IMPORTANT Popupwindow closes fullscreen
+$("#" + startFromBeginningButtonId + ", #" + startFromCurrentButtonId).click(function () {
+    centeredPopup('http:\/\/localhost:5501\/src\/client\/presentation\/popup.html', 'myWindow', '700', '300', 'yes')
+});
+let popupWindow = null;
+function centeredPopup(url, winName, w, h, scroll) {
+    LeftPosition = (screen.width) ? (screen.width - w) / 2 : 0;
+    TopPosition = (screen.height) ? (screen.height - h) / 2 : 0;
+    settings =
+        'height=' + h + ',width=' + w + ',top=' + TopPosition + ',left=' + LeftPosition + ',scrollbars=' + scroll + ',resizable'
+    popupWindow = window.open(url, winName, settings)
+}*/
 
 $("#next").click(function (e) {
     next();

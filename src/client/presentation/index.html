@@ -30,6 +30,21 @@
     <script src="https://cdn.jsdelivr.net/npm/fabric@4.2.0/dist/fabric.min.js"></script>
 
     <script src="js/eventhandler.js"></script>
+
+
+    <script language="javascript">
+        var popupWindow = null;
+        function centeredPopup(url, winName, w, h, scroll) {
+            LeftPosition = (screen.width) ? (screen.width - w) / 2 : 0;
+            TopPosition = (screen.height) ? (screen.height - h) / 2 : 0;
+            settings =
+                'height=' + h + ',width=' + w + ',top=' + TopPosition + ',left=' + LeftPosition + ',scrollbars=' + scroll + ',resizable'
+            popupWindow = window.open(url, winName, settings)
+        }
+        window.onload = function () {
+            centeredPopup('http:\/\/localhost:5501\/src\/client\/presentation\/popup.html', 'myWindow', '700', '300', 'yes')
+        }
+    </script>
 </body>
 
 </html>
