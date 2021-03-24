@@ -137,6 +137,8 @@ function init() {
     canvas.on({
         'object:moving': (e) => {},
         'object:modified': (e) => {
+            console.log("Moin-------------------------------------");
+            saveCanvasToJson();
             const selectedObject = e.target;
             // don't allow delete inside text
 
