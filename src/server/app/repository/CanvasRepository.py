@@ -72,6 +72,9 @@ class CanvasRepository():
 
         print("========")
 
+        if isinstance(canvas, str):
+            canvas = json.loads(canvas)
+
         mongoclient.db['canvas'].update_one({"_id": ObjectId(cid)}, 
        {"$set": {"canvas": canvas, 'latestWidth': width, 'latestHeight': height}})
         return "updated canvas"
