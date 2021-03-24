@@ -26,8 +26,11 @@ class CanvasRepository():
          
         s_id += 1
 
-        res = mongoclient.db['canvas'].insert_one({"p_id": p_id, "s_id": s_id, "canvas": {"objects": [{"type": "rect", "left": 50, "top": 50, "width": 20, "height": 20, "fill": "green", "overlayFill": None, "stroke": None, "strokeWidth": 1, "strokeDashArray": None, "scaleX": 1, "scaleY": 1,
-                                                                                   "angle": 0, "flipX": False, "flipY": False, "opacity": 1, "selectable": True, "hasControls": True, "hasBorders": True, "hasRotatingPoint": False, "transparentCorners": True, "perPixelTargetFind": False, "rx": 0, "ry": 0}], "background": "rgba(0, 0, 0, 0)"}})
+        __location__ = os.path.realpath(
+            os.path.join(os.getcwd(), os.path.dirname(__file__)))
+        with open(os.path.join(__location__, 'canvasObj.json')) as json_file:
+            data = json.load(json_file)
+            res = mongoclient.db['canvas'].insert_one({"p_id": p_id, "s_id": s_id, "canvas": data})
         return self.getCanvas(p_id=p_id)
 
 
@@ -47,8 +50,11 @@ class CanvasRepository():
         if s_id != 0:
             s_id += 1
 
-        res = mongoclient.db['canvas'].insert_one({"p_id": p_id, "s_id": s_id, "canvas": {"objects": [{"type": "rect", "left": 50, "top": 50, "width": 20, "height": 20, "fill": "green", "overlayFill": None, "stroke": None, "strokeWidth": 1, "strokeDashArray": None, "scaleX": 1, "scaleY": 1,
-                                                                                   "angle": 0, "flipX": False, "flipY": False, "opacity": 1, "selectable": True, "hasControls": True, "hasBorders": True, "hasRotatingPoint": False, "transparentCorners": True, "perPixelTargetFind": False, "rx": 0, "ry": 0}], "background": "rgba(0, 0, 0, 0)"}})
+        __location__ = os.path.realpath(
+            os.path.join(os.getcwd(), os.path.dirname(__file__)))
+        with open(os.path.join(__location__, 'canvasObj.json')) as json_file:
+            data = json.load(json_file)
+            res = mongoclient.db['canvas'].insert_one({"p_id": p_id, "s_id": s_id, "canvas": data})
         return self.getSpecificSlide(object_id=res.inserted_id)
 
     def getSpecificSlide(self, object_id):
