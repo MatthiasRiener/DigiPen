@@ -30,4 +30,4 @@ class EditorRepository():
         return json.dumps({"updated": 1})
 
     def addSlide(self, p_id):
-        return canvasRepo.createCanvas(p_id=p_id)
+        return canvasRepo.createSlide(p_id=p_id)

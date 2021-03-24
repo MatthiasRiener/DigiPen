@@ -50,4 +50,4 @@ def updateCanvasRoute():
 def createSlideRoute():
     data= request.form
     p_id = data['p_id']
-    return editorRepo.addSlide(p_id=p_id)
+    return json.dumps({"res": editorRepo.addSlide(p_id=p_id)})

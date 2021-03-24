@@ -29,10 +29,32 @@ class CanvasRepository():
 
         res = mongoclient.db['canvas'].insert_one({"p_id": p_id, "s_id": s_id, "canvas": {"objects": [{"type": "rect", "left": 50, "top": 50, "width": 20, "height": 20, "fill": "green", "overlayFill": None, "stroke": None, "strokeWidth": 1, "strokeDashArray": None, "scaleX": 1, "scaleY": 1,
                                                                                    "angle": 0, "flipX": False, "flipY": False, "opacity": 1, "selectable": True, "hasControls": True, "hasBorders": True, "hasRotatingPoint": False, "transparentCorners": True, "perPixelTargetFind": False, "rx": 0, "ry": 0}], "background": "rgba(0, 0, 0, 0)"}})
+        return self.getCanvas(p_id=p_id)
+
+
+
+    def createSlide(self, p_id):
+        """canvasObj = self.readCanvasJson()
+        pidJSON = {"p_id": p_id}
+        canvasObj[0].update(pidJSON)
+
+        print(canvasObj[0])"""
+
+        canvas = self.getCanvas(p_id)
+
+        print(canvas.count())
+        s_id = canvas.count()
+
+        if s_id != 0:
+            s_id += 1
+
+        res = mongoclient.db['canvas'].insert_one({"p_id": p_id, "s_id": s_id, "canvas": {"objects": [{"type": "rect", "left": 50, "top": 50, "width": 20, "height": 20, "fill": "green", "overlayFill": None, "stroke": None, "strokeWidth": 1, "strokeDashArray": None, "scaleX": 1, "scaleY": 1,
+                                                                                   "angle": 0, "flipX": False, "flipY": False, "opacity": 1, "selectable": True, "hasControls": True, "hasBorders": True, "hasRotatingPoint": False, "transparentCorners": True, "perPixelTargetFind": False, "rx": 0, "ry": 0}], "background": "rgba(0, 0, 0, 0)"}})
         return self.getSpecificSlide(object_id=res.inserted_id)
 
     def getSpecificSlide(self, object_id):
-        return json.dumps(json.loads(mongoclient.db["canvas"].find_one({"_id": ObjectId(object_id)})))
+        print(object_id)
+        return json.loads(json_util.dumps(mongoclient.db["canvas"].find_one({"_id": ObjectId(object_id)})))
 
     def getCanvas(self, p_id):
         return mongoclient.db['canvas'].find({"p_id": p_id})
