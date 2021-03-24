@@ -32,7 +32,7 @@ class CanvasRepository():
         return self.getSpecificSlide(object_id=res.inserted_id)
 
     def getSpecificSlide(self, object_id):
-        return mongoclient.db["canvas"].find_one({"_id": ObjectId(object_id)})
+        return json.dumps(json.loads(mongoclient.db["canvas"].find_one({"_id": ObjectId(object_id)})))
 
     def getCanvas(self, p_id):
         return mongoclient.db['canvas'].find({"p_id": p_id})
