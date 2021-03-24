@@ -2,7 +2,7 @@ let trackingIndex = 0;
 
 $(document).ready(function () {
     console.log('Document loaded.');
-    addSlide();
+    getSlides();
     toggleVisibility(0);
 });
 
@@ -12,22 +12,65 @@ $('#content-leftSlides-topBar-plus').click(function () {
     createSlide();
 });
 
-function addSlide() {
+function addSlide(slide) {
     let slides = $('.content-leftSlides-slidesContent-slide');
     let width = 10;
     let height = width / (16 / 9);
 
     $('#content-leftSlides-slidesContent').append(`
-    <div class="content-leftSlides-slidesContent-slide">
+    <div class="content-leftSlides-slidesContent-slide" data-slide="${slide._id.$oid}">
         <div class="content-leftSlides-slidesContent-slide-leftBar ${slides.length == 0 ? 'activeSlide' : ''}" style="height: ${height}vw;"></div>
         <div class="content-leftSlides-slidesContent-slide-middleBar" style="height: ${height}vw;">${slides.length + 1}</div>
         <div class="content-leftSlides-slidesContent-slide-content" style="position: relative; z-index: 2; height: ${height}vw; ${slides.length == 0 ? 'transform: scale(0.95);' : ''}" onclick="toggleVisibility(${slides.length})">
-            <div class="content-leftSlides-slidesContent-slide-content-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;"></div>
-            <canvas class="content-leftSlides-slidesContent-slide-content-canvas" style="position: absolute; z-index: 1; width: 100%; height: 100%;"></canvas>
+            <div class="content-leftSlides-slidesContent-slide-content-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; background: url('${'data:image/svg+xml;utf8,' + encodeURIComponent(canvas.toSVG())}'); background-size: cover; background-position: center; background-repeat: no-repeat"></div>
+            <canvas class="content-leftSlides-slidesContent-slide-content-canvas" id="${slide._id.$oid}" style="position: absolute; z-index: 1; width: 100%; height: 100%;"></canvas>
         </div>
     </div>`);
 
     $('#content-leftSlides-slidesContent-animatedBar').height(height + 'vw');
+
+    insertSlide(slide);
+}
+
+function insertSlide(slide) {
+    var canvas = new fabric.Canvas(slide._id.$oid, {
+        hoverCursor: 'pointer',
+        selection: true,
+        selectionBorderColor: 'blue',
+    });
+
+    canvas.loadFromJSON(slide.canvas, function () {
+        console.log("width:", ($(window).width() / 10))
+        loadSmallCanvasFrom1920(1000, canvas)
+        canvas.renderAll();
+    }, function (o, object) {
+        console.log("Canvas loaded!")
+    })
+}
+
+function loadSmallCanvasFrom1920(newWidth, c) {
+    if (1920 != newWidth) {
+        var scaleMultiplier = newWidth / 1920;
+        var objects = c.getObjects();
+        for (var i in objects) {
+            objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
+            objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
+            objects[i].left = objects[i].left * scaleMultiplier;
+            objects[i].top = objects[i].top * scaleMultiplier;
+            objects[i].setCoords();
+        }
+        var obj = c.backgroundImage;
+        if (obj) {
+            obj.scaleX = obj.scaleX * scaleMultiplier;
+            obj.scaleY = obj.scaleY * scaleMultiplier;
+        }
+
+        c.discardActiveObject();
+        c.setWidth(c.getWidth() * scaleMultiplier);
+        c.setHeight(c.getHeight() * scaleMultiplier);
+        c.renderAll();
+        c.calcOffset();
+    }
 }
 
 function toggleVisibility(index) {

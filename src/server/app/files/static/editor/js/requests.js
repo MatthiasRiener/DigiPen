@@ -6,8 +6,12 @@ $(document).ready(function () {
         $('#content-navigation-first-left-text-h3').text(data.ownUser.name);
 
         loadCanvasFromJson(data.canvas[0].canvas);
-        console.log("setting id")
         setCanvasID(data.canvas[0]._id.$oid);
+
+        data.canvas.forEach(slide => {
+            console.log(slide);
+            addSlide(slide);
+        });
     });
 });
 
@@ -24,6 +28,10 @@ function createSlide() {
         console.log("Created Slide!");
         console.log(data);
         addSlide();
+        loadCanvasFromJson(data.res.canvas);
+        setCanvasID(data.res._id.$oid);
+        canvas.setWidth($('#content-main-inner-spacing-middle').width());
+        canvas.setHeight($('#content-main-inner-spacing-middle').height());
     });
 }
 
