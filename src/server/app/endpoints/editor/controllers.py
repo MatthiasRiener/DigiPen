@@ -9,6 +9,8 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
 
 from ...repository.EditorRepository import EditorRepository
 
+import json
+
 editorRepo = EditorRepository(testing=False)
 
 editor = Blueprint("editor", __name__,
