@@ -398,7 +398,6 @@ function loadPresentationCanvas(whereStart) {
 
 function loadSpecificSlide(whereStart) {
     currCanvas = canvasArr[whereStart];
-        console.log(canvasArr);
         if (origSizePresCanvas == undefined)
             origSizePresCanvas = currCanvas.getWidth();
         resizePresentationCanvas();
@@ -408,26 +407,25 @@ function resizePresentationCanvas() {
     let w = $("body").width()
     let h = $("body").height()
     let canvasBody = $("#presi .canvas-container");
-    canvasArr.forEach(element => {
-        element.setWidth(h * 16 / 9);
-        element.setHeight(h);
+    
+        currCanvas.setWidth(h * 16 / 9);
+        currCanvas.setHeight(h);
         canvasBody.addClass('wtohbigger');
         canvasBody.removeClass('wtohsmaller');
 
         // wenn das seitenverhältnis breite:höhe kleiner als 16:9 ist
         if (w / h < 16 / 9) {
-            element.setWidth(w);
-            element.setHeight(w * 9 / 16);
+            currCanvas.setWidth(w);
+            currCanvas.setHeight(w * 9 / 16);
             canvasBody.addClass('wtohsmaller');
             canvasBody.removeClass('wtohbigger');
         }
         // setzoom
         if (origSizePresCanvas) {
-            val = element.width / origSizePresCanvas;
-            element.setZoom(val);
+            val = currCanvas.width / origSizePresCanvas;
+            currCanvas.setZoom(val);
         }
-        element.renderAll();
-    });
+     
     currCanvas.renderAll();
 }
 
