@@ -280,16 +280,23 @@ $('body').on('click', '#shortcutPopup-inner-popup-change', function () {
 
 /***
  * Presentation Event
+ *
+ * tocopy:
+ * cursor img: '../img/cursor.cur'
+ * index.html: Zeile 724-737
+ * style.css: Zeile 2001-unten
+ * eventhandler.js: 292-unten
  */
 
-let canvasArr = [],
-    index = 0,
-    curretSlide = 1,
-    presCanvasId = 'presCanvas',
-    startFromBeginningButtonId = 'presentationModePopup-inner-popup-start',
-    startFromCurrentButtonId = 'presentationModePopup-inner-popup-current',
-    currCanvas,
-    origSizePresCanvas;
+
+let canvasArr = [], // Array von Canvasen sie in der Präsentation sichtbar sind
+    index = 0, // index = Bei welcher Folie bin ich?
+    curretSlide = 1, // bei welcher Folie soll die Präsentation starten, wenn man auf "From current slide" clickt
+    presCanvasId = 'presCanvas', // Canvas html id, wo die fabric objekte hineingeladen werden
+    startFromBeginningButtonId = 'presentationModePopup-inner-popup-start', // button-id für "From start"
+    startFromCurrentButtonId = 'presentationModePopup-inner-popup-current', // button-id für "From current slide"
+    currCanvas, // currCanvas = welcher canvas wird gerade angezeigt?
+    origSizePresCanvas; // ist wichtig für den zoom-wert (responsive n' shit)
 
 // onload erzeugt einen neuen fabric canvas und resized diesen
 // sodass er responsiv ist
