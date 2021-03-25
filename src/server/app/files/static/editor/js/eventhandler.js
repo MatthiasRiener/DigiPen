@@ -408,11 +408,19 @@ function resizePresentationCanvas() {
     let h = $("body").height()
     let canvasBody = $("#presi .canvas-container");
     
-        currCanvas.setWidth(h * 16 / 9);
-        currCanvas.setHeight(h);
+       
         canvasBody.addClass('wtohbigger');
         canvasBody.removeClass('wtohsmaller');
+    console.log(canvasBody.width(), currCanvas.width)
 
+        if(Math.round(canvasBody.width()) == Math.round(currCanvas.width)) {
+            return;
+        } else {
+            console.log("chaning Size!")
+        }
+
+        currCanvas.setWidth(h * 16 / 9);
+        currCanvas.setHeight(h);
         // wenn das seitenverhältnis breite:höhe kleiner als 16:9 ist
         if (w / h < 16 / 9) {
             currCanvas.setWidth(w);
@@ -421,12 +429,33 @@ function resizePresentationCanvas() {
             canvasBody.removeClass('wtohbigger');
         }
         // setzoom
+
+        console.log(origSizePresCanvas)
         if (origSizePresCanvas) {
+
+            console.log("setting zoom...")
             val = currCanvas.width / origSizePresCanvas;
+            scaleMultiplier = currCanvas.width / 1920;
+
+            var objects = currCanvas.getObjects();
+            for (var i in objects) {
+                objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
+                objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
+                objects[i].left = objects[i].left * scaleMultiplier;
+                objects[i].top = objects[i].top * scaleMultiplier;
+                objects[i].setCoords();
+            }
+            var obj = currCanvas.backgroundImage;
+            if (obj) {
+                obj.scaleX = obj.scaleX * scaleMultiplier;
+                obj.scaleY = obj.scaleY * scaleMultiplier;
+            }
+    
+
             currCanvas.setZoom(val);
         }
-     
-    currCanvas.renderAll();
+        currCanvas.renderAll();
+   
 }
 
 let mouseismoving = false;
