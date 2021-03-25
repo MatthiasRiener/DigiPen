@@ -60,6 +60,7 @@ function getSlides(whereStart) {
         if (origSizePresCanvas == undefined)
             origSizePresCanvas = currCanvas.getWidth();
         resizePresentationCanvas();
+        $('#pagecount').text(`Slide ${whereStart + 1}/${canvasArr.length}`);
     });
 }
 
