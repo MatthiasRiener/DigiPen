@@ -441,9 +441,7 @@ function resizePresentationCanvas() {
     if (originalSize) {
 
         // console.log("setting zoom...")
-        let ori = originalSize;
-        val = currCanvas.width / (ori * 5 / 2);
-        // scaleMultiplier = currCanvas.width / 1920;
+        let zooooooooooooooom = scaleMultiplier = currCanvas.width / 1920;
 
         // var objects = currCanvas.getObjects();
         // for (var i in objects) {
@@ -460,8 +458,7 @@ function resizePresentationCanvas() {
         // }
 
 
-        currCanvas.setZoom(val);
-        console.log('lolololololol', originalSize);
+        currCanvas.setZoom(zooooooooooooooom);
     }
     currCanvas.renderAll();
 }
