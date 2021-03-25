@@ -59,3 +59,10 @@ def getSpecificSlide():
     data = request.form
     s_id = data["s_id"]
     return json.dumps({"res": editorRepo.getSpecificSlide(s_id=s_id)})
+
+@editor.route('/getSlides', methods=["POST"])
+@jwt_required
+def getSlidesRoute():
+    data = request.form
+    p_id = data["p_id"]
+    return json.dumps({"res": editorRepo.getSlides(p_id=p_id)})
