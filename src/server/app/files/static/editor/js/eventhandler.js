@@ -408,11 +408,6 @@ function resizePresentationCanvas() {
     let h = $("body").height()
     let canvasBody = $("#presi .canvas-container canvas");
     let canvasContainer = $("#presi .canvas-container");
-    // $("#presi .canvas-container").css('position', 'absolute');
-    // $("#presi .canvas-container").css('display', 'flex');
-    // $("#presi .canvas-container").css('justify-content', 'center');
-    // $("#presi .canvas-container").css('align-items', 'center');
-    // canvasBody.css('position', 'absolute');
 
 
     canvasBody.addClass('wtohbigger');
@@ -422,11 +417,11 @@ function resizePresentationCanvas() {
 
     // console.log(canvasBody.width(), currCanvas.width)
 
-    if (Math.round(canvasBody.width()) == Math.round(currCanvas.width)) {
-        return;
-    } else {
-        // console.log("chaning Size!")
-    }
+    // if (Math.round(canvasBody.width()) == Math.round(currCanvas.width)) {
+    //     return;
+    // } else {
+    //     // console.log("chaning Size!")
+    // }
 
     currCanvas.setWidth(h * 16 / 9);
     currCanvas.setHeight(h);
@@ -439,6 +434,7 @@ function resizePresentationCanvas() {
         canvasContainer.addClass('wtohsmaller');
         canvasContainer.removeClass('wtohbigger');
     }
+
     // setzoom
 
     // console.log(origSizePresCanvas)
