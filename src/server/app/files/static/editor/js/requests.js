@@ -46,3 +46,31 @@ function switchSlide(id) {
         canvas.setHeight($('#content-main-inner-spacing-middle').height());
     });
 }
+
+function getSlides(whereStart) {
+    sendRequestToServer({type: "POST", url: "/editor/getSlides", data: {p_id: getCustomStorage("p_id")}}).then(data => {
+        //canvasArr.push(canvas1);
+        console.log(data);
+        data.res.forEach(slide => {
+            newCanvas = loadPresentationCanvasFromJson(slide.canvas);
+            canvasArr.push(newCanvas);
+        });
+        console.log("BITTE NED AFURUFEN")
+        currCanvas = canvasArr[whereStart];
+        console.log(canvasArr);
+        if (origSizePresCanvas == undefined)
+            origSizePresCanvas = currCanvas.getWidth();
+        resizePresentationCanvas();
+    });
+}
+
+function loadPresentationCanvasFromJson(json) {
+    newCanvas = new fabric.Canvas(presCanvasId);
+
+    newCanvas.loadFromJSON(json, function () {
+
+    }, function (o, object) {
+        console.log("Canvas loaded!")
+        return newCanvas;
+    })
+}

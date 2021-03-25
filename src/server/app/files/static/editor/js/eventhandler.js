@@ -23,7 +23,7 @@ function addSlide(slide) {
     $('#content-leftSlides-slidesContent').append(`
     <div class="content-leftSlides-slidesContent-slide" data-slide="${slide._id.$oid}">
         <div class="content-leftSlides-slidesContent-slide-leftBar ${slides.length == 0 ? 'activeSlide' : ''}" style="height: ${height}vw;"></div>
-        <div class="content-leftSlides-slidesContent-slide-middleBar" style="height: ${height}vw;">${slides.length + 1}</div>
+        <div class="content-leftSlides-slidesContent-slide-middleBar" style="height: ${height}vw;">${slide.s_id}</div>
         <div class="content-leftSlides-slidesContent-slide-content" data-slide="${slide._id.$oid}" data-length="${slides.length}" style="position: relative; z-index: 2; height: ${height}vw; ${slides.length == 0 ? 'transform: scale(0.95);' : ''}">
             <div class="content-leftSlides-slidesContent-slide-content-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; background: url('${'data:image/svg+xml;utf8,' + encodeURIComponent(sideC.toSVG())}'); background-size: cover; background-position: center; background-repeat: no-repeat"></div>
             <canvas class="content-leftSlides-slidesContent-slide-content-canvas" id="${slide._id.$oid}" style="position: absolute; z-index: 1; width: 100%; height: 100%;"></canvas>
@@ -307,4 +307,308 @@ function setCanvasID(id) {
 
 function getCanvasID() {
     return $('#content-main-inner-spacing-middle').data('canvasID');
+}
+
+let canvasArr = [], // Array von Canvasen sie in der Präsentation sichtbar sind
+    index = 0, // index = Bei welcher Folie bin ich?
+    curretSlide = 1, // bei welcher Folie soll die Präsentation starten, wenn man auf "From current slide" clickt
+    presCanvasId = 'presCanvas', // Canvas html id, wo die fabric objekte hineingeladen werden
+    startFromBeginningButtonId = 'presentationModePopup-inner-popup-start', // button-id für "From start"
+    startFromCurrentButtonId = 'presentationModePopup-inner-popup-current', // button-id für "From current slide"
+    currCanvas, // currCanvas = welcher canvas wird gerade angezeigt?
+    origSizePresCanvas; // ist wichtig für den zoom-wert (responsive n' shit)
+
+// onload erzeugt einen neuen fabric canvas und resized diesen
+// sodass er responsiv ist
+
+// wenn sich die größe des fensters ändert
+$(window).resize(function () {
+    setTimeout(() => {
+        if (window.innerHeight < window.outerHeight) {
+            $("#" + startFromBeginningButtonId).data("clicked", false);
+            toggleLaser(false);
+        }
+
+        let display = "flex"
+        if ($("#presi").css('display') != 'flex')
+            display = window.innerHeight >= window.outerHeight && $("#" + startFromBeginningButtonId).data("clicked") == true ? "flex" : "none";
+        if (window.innerHeight < window.outerHeight) {
+            display = "none";
+            index = 0;
+            // popupWindow = null;
+        }
+        $("#presi").css('display', display);
+        if (display == "flex")
+            setTimeout(() => {
+                resizePresentationCanvas()
+            }, 100);
+        else {
+            totalSeconds = 0;
+            clearInterval(timertimer)
+        }
+    }, 500);
+});
+
+// IMPORTANT canvas hintergrund ist mit css gefüllt
+function createCanvas(whereStart) {
+    const fabric = window.fabric;
+    // create `Canvas` object using `<canvas>` DOM node
+    /*canvas1 = new fabric.Canvas(presCanvasId);
+    canvas2 = new fabric.Canvas(presCanvasId);
+    canvas3 = new fabric.Canvas(presCanvasId);
+    // create a rectangle object
+    var rect1 = new fabric.Rect({
+        left: 100,
+        top: 100,
+        fill: 'red',
+        width: 20,
+        height: 20
+    });
+
+    var rect2 = new fabric.Rect({
+        left: 100,
+        top: 100,
+        fill: 'blue',
+        width: 20,
+        height: 20
+    });
+
+    var rect3 = new fabric.Rect({
+        left: 100,
+        top: 100,
+        fill: 'green',
+        width: 20,
+        height: 20
+    });
+    // "add" rectangle onto canvas
+    canvas1.add(rect1);
+    canvas2.add(rect2);
+    canvas3.add(rect3);
+
+    canvasArr.push(canvas1);
+    canvasArr.push(canvas2);
+    canvasArr.push(canvas3);*/
+
+    getSlides(whereStart);
+}
+
+function loadPresentationCanvas(whereStart) {
+    createCanvas(whereStart);
+}
+
+function resizePresentationCanvas() {
+    let w = $("body").width()
+    let h = $("body").height()
+    let canvasBody = $("#presi .canvas-container");
+    canvasArr.forEach(element => {
+        element.setWidth(h * 16 / 9);
+        element.setHeight(h);
+        canvasBody.addClass('wtohbigger');
+        canvasBody.removeClass('wtohsmaller');
+
+        // wenn das seitenverhältnis breite:höhe kleiner als 16:9 ist
+        if (w / h < 16 / 9) {
+            element.setWidth(w);
+            element.setHeight(w * 9 / 16);
+            canvasBody.addClass('wtohsmaller');
+            canvasBody.removeClass('wtohbigger');
+        }
+        // setzoom
+        if (origSizePresCanvas) {
+            val = element.width / origSizePresCanvas;
+            element.setZoom(val);
+        }
+        element.renderAll();
+    });
+    currCanvas.renderAll();
+}
+
+let mouseismoving = false;
+let timer;
+$("body").mousemove(function (event) {
+    mouseismoving = true;
+    if ($("#presi").css('display') == "flex") {
+        $("div#iconbox").removeClass('fadeout')
+        $("#iconbox").css('opacity', '1');
+        $("#iconbox").css('userselect', 'auto');
+    }
+    $("body, canvas, div").removeClass('nocursor');
+
+    // mousemove end
+    let removeFadeout;
+    clearTimeout(timer);
+    clearTimeout(removeFadeout);
+    timer = setTimeout(() => {
+        mouseismoving = false;
+        if ($("#presi").css('display') == "flex" && !$("div#iconbox").prop("classList").contains("fadeout")) {
+            $("div#iconbox").addClass('fadeout')
+
+        } removeFadeout = setTimeout(() => {
+            $('div#iconbox').css('opacity', '0');
+            $('div#iconbox').css('userselect', 'none');
+            $('div#iconbox').removeClass('fadeout');
+            $("body, canvas, div").addClass('nocursor');
+        }, 4000);
+    }, 300);
+});
+
+$('div#iconbox').one("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function () {
+    $(this).css('opacity', '0');
+    $(this).css('userselect', 'none');
+    $(this).removeClass('fadeout');
+    $("body, canvas, div").addClass('nocursor');
+});
+
+// laser icon click
+$("#laser").click(function () {
+    toggleLaser(true)
+});
+
+let islaser = false;
+
+// laserpointer ein/aus
+function toggleLaser(param) {
+    if ($("#laser").data("clicked") != true && param) {
+        $("#laser").data("clicked", true);
+        $("#laser").css("color", "white");
+        $("#laser").css("border-color", "white");
+        // class cursortolaser macht den cursor zu einem roten punkt
+        $('body, canvas, div').addClass('cursortolaser');
+        islaser = true;
+    } else {
+        $("#laser").data("clicked", false);
+        $("#laser").css("color", "rgba(255,255,255,.5)");
+        $("#laser").css("border-color", "rgba(255,255,255,.5)");
+        $('body, canvas, div').removeClass('cursortolaser');
+        islaser = false;
+    }
+}
+
+let minutesLabel = document.getElementById("minutes");
+let secondsLabel = document.getElementById("seconds");
+let hoursLabel = document.getElementById("hours");
+let totalSeconds = 0;
+let timertimer;
+
+function setTime() {
+    ++totalSeconds;
+    secondsLabel.innerHTML = pad(totalSeconds % 60);
+    minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60) % 60);
+    hoursLabel.innerHTML = pad(parseInt(totalSeconds / 3600));
+}
+
+function pad(val) {
+    let valString = val + "";
+    if (valString.length < 2) {
+        return "0" + valString;
+    } else {
+        return valString;
+    }
+}
+
+$("#" + startFromBeginningButtonId).click(function () {
+    toggleFullScreen(document.body);
+    index = 0;
+    loadPresentationCanvas(index)
+    // wenn man in den fullscreen gegangen ist ohne auf den präsentationsbutton geklickt zu haben
+    // sollte man ja nicht in die präsentationsansicht kommen
+    let clicked = $(this).data("clicked") != true ? true : false;
+    $(this).data("clicked", clicked);
+    setTimeout(() => {
+        let display = window.innerHeight >= window.outerHeight ? "flex" : "none";
+        $("#presi").css('display', display);
+        resizePresentationCanvas()
+    }, 100);
+});
+
+$("#" + startFromCurrentButtonId).click(function () {
+    toggleFullScreen(document.body);
+    index = curretSlide;
+    loadPresentationCanvas(index)
+    // wenn man in den fullscreen gegangen ist ohne auf den präsentationsbutton geklickt zu haben
+    // sollte man ja nicht in die präsentationsansicht kommen
+    let clicked = $("#" + startFromBeginningButtonId).data("clicked") != true ? true : false;
+    $("#" + startFromBeginningButtonId).data("clicked", clicked);
+
+    setTimeout(() => {
+        let display = window.innerHeight >= window.outerHeight ? "flex" : "none";
+        $("#presi").css('display', display);
+        resizePresentationCanvas()
+    }, 100);
+});
+
+$("#" + startFromBeginningButtonId + ", #" + startFromCurrentButtonId).click(function () {
+    totalSeconds = 0;
+    timertimer = setInterval(setTime, 1000);
+});
+
+/* IMPORTANT Popupwindow closes fullscreen
+
+$("#" + startFromBeginningButtonId + ", #" + startFromCurrentButtonId).click(function () {
+    centeredPopup('http:\/\/localhost:5501\/src\/client\/presentation\/popup.html', 'myWindow', '700', '300', 'yes')
+});
+let popupWindow = null;
+function centeredPopup(url, winName, w, h, scroll) {
+    LeftPosition = (screen.width) ? (screen.width - w) / 2 : 0;
+    TopPosition = (screen.height) ? (screen.height - h) / 2 : 0;
+    settings =
+        'height=' + h + ',width=' + w + ',top=' + TopPosition + ',left=' + LeftPosition + ',scrollbars=' + scroll + ',resizable'
+    popupWindow = window.open(url, winName, settings)
+}*/
+
+$("#next").click(function (e) {
+    next();
+});
+
+$("body").click(function (e) {
+    if (e.target.id == 'exit') {
+        toggleFullScreen(document.body);
+        $("#presi").css('display', 'none');
+        $("#" + startFromBeginningButtonId).data("clicked", false);
+        $("div#iconbox").removeClass('fadeout');
+        toggleLaser(false);
+    }
+    if (['editblock'].indexOf(e.target.id) >= 0)
+        next();
+});
+
+function next() {
+    if (window.innerHeight >= window.outerHeight &&
+        $("#" + startFromBeginningButtonId).data("clicked") == true &&
+        index + 1 < canvasArr.length) {
+        index++;
+        loadPresentationCanvas(index);
+    }
+}
+
+$("#previous").click(function () {
+    if (index - 1 >= 0) {
+        index--;
+        loadPresentationCanvas(index);
+    }
+});
+
+function toggleFullScreen(elem) {
+    // ## The below if statement seems to work better ## if ((document.fullScreenElement && document.fullScreenElement !== null) || (document.msfullscreenElement && document.msfullscreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+    if ((document.fullScreenElement !== undefined && document.fullScreenElement === null) || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null) || (document.mozFullScreen !== undefined && !document.mozFullScreen) || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
+        if (elem.requestFullScreen) {
+            elem.requestFullScreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullScreen) {
+            elem.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+    } else {
+        if (document.cancelFullScreen) {
+            document.cancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    }
 }

@@ -720,6 +720,22 @@
         </div>
     </div>
 
+        <!-- Presentation Event -->
+        <div id="presi">
+            <div id="editblock">
+                <div id="timer">
+                    <label id="hours">00</label>:<label id="minutes">00</label>:<label id="seconds">00</label>
+                </div>
+            </div>
+            <canvas id="presCanvas" width="800" height="500"></canvas>
+            <div id="iconbox">
+                <ion-icon name="arrow-undo-outline" id="previous"></ion-icon>
+                <ion-icon name="arrow-redo-outline" id="next"></ion-icon>
+                <ion-icon name="color-wand-outline" id="laser"></ion-icon>
+                <ion-icon name="log-out-outline" id="exit"></ion-icon>
+            </div>
+        </div>
+
     <script src={{ url_for('static', filename="editor/js/canvas-start.js") }} type="text/javascript" defer></script>
     <script src={{ url_for('static', filename="editor/js/eventhandler.js") }} type="text/javascript" defer></script>
     <script src={{ url_for('static', filename="editor/js/getDevices.js") }} type="text/javascript" defer></script>

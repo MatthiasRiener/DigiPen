@@ -285,7 +285,7 @@ function chartLoaded() {
 }
 
 function addImage(customurl, isChart) {
-    const url = customurl || "https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg";
+    const url = customurl || 'https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg';
 
     if (url) {
         const img = fabric.Image.fromURL(url, (image) => {
