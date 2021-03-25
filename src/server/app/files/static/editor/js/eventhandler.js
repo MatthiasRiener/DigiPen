@@ -396,6 +396,14 @@ function loadPresentationCanvas(whereStart) {
     createCanvas(whereStart);
 }
 
+function loadSpecificSlide(whereStart) {
+    currCanvas = canvasArr[whereStart];
+        console.log(canvasArr);
+        if (origSizePresCanvas == undefined)
+            origSizePresCanvas = currCanvas.getWidth();
+        resizePresentationCanvas();
+}
+
 function resizePresentationCanvas() {
     let w = $("body").width()
     let h = $("body").height()
@@ -577,14 +585,14 @@ function next() {
         $("#" + startFromBeginningButtonId).data("clicked") == true &&
         index + 1 < canvasArr.length) {
         index++;
-        loadPresentationCanvas(index);
+        loadSpecificSlide(index);
     }
 }
 
 $("#previous").click(function () {
     if (index - 1 >= 0) {
         index--;
-        loadPresentationCanvas(index);
+        loadSpecificSlide(index);
     }
 });
 

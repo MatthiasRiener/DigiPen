@@ -52,10 +52,9 @@ function getSlides(whereStart) {
         //canvasArr.push(canvas1);
         console.log(data);
         data.res.forEach(slide => {
-            newCanvas = loadPresentationCanvasFromJson(slide.canvas);
-            canvasArr.push(newCanvas);
+            loadPresentationCanvasFromJson(slide.canvas);
         });
-        console.log("BITTE NED AFURUFEN")
+
         currCanvas = canvasArr[whereStart];
         console.log(canvasArr);
         if (origSizePresCanvas == undefined)
@@ -66,11 +65,13 @@ function getSlides(whereStart) {
 
 function loadPresentationCanvasFromJson(json) {
     newCanvas = new fabric.Canvas(presCanvasId);
-
+    console.log(json)
     newCanvas.loadFromJSON(json, function () {
-
-    }, function (o, object) {
         console.log("Canvas loaded!")
-        return newCanvas;
+        console.warn(newCanvas)
+        newCanvas.renderAll();
+        canvasArr.push(newCanvas)
+    }, function (o, object) {
+   
     })
 }
