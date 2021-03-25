@@ -33,7 +33,7 @@ class EditorRepository():
         return canvasRepo.createSlide(p_id=p_id)
 
     def getSlides(self, p_id):
-        return canvasRepo.getCanvas(p_id=p_id)
+        return canvasRepo.getSlides(p_id=p_id)
 
     def getSpecificSlide(self, s_id):
         return canvasRepo.getSpecificSlide(object_id=s_id)

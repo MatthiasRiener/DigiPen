@@ -64,6 +64,8 @@ class CanvasRepository():
     def getCanvas(self, p_id):
         return mongoclient.db['canvas'].find({"p_id": p_id})
 
+    def getSlides(self, p_id):
+        return list(self.getCanvas(p_id=p_id))
     def updateCanvas(self, p_id, canvas, cid,  width, height):
         print("updating canvas!",cid)
         print(p_id)
