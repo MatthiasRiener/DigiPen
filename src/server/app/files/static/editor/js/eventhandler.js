@@ -437,32 +437,33 @@ function resizePresentationCanvas() {
 
     // setzoom
 
-    // console.log(origSizePresCanvas)
-    if (origSizePresCanvas) {
+    // console.log('orisiz:', origSizePresCanvas)
+    if (originalSize) {
 
         // console.log("setting zoom...")
-        val = currCanvas.width / origSizePresCanvas;
-        scaleMultiplier = currCanvas.width / 1920;
+        let ori = originalSize;
+        val = currCanvas.width / (ori * 5 / 2);
+        // scaleMultiplier = currCanvas.width / 1920;
 
-        var objects = currCanvas.getObjects();
-        for (var i in objects) {
-            objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
-            objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
-            objects[i].left = objects[i].left * scaleMultiplier;
-            objects[i].top = objects[i].top * scaleMultiplier;
-            objects[i].setCoords();
-        }
-        var obj = currCanvas.backgroundImage;
-        if (obj) {
-            obj.scaleX = obj.scaleX * scaleMultiplier;
-            obj.scaleY = obj.scaleY * scaleMultiplier;
-        }
+        // var objects = currCanvas.getObjects();
+        // for (var i in objects) {
+        //     objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
+        //     objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
+        //     objects[i].left = objects[i].left * scaleMultiplier;
+        //     objects[i].top = objects[i].top * scaleMultiplier;
+        //     objects[i].setCoords();
+        // }
+        // var obj = currCanvas.backgroundImage;
+        // if (obj) {
+        //     obj.scaleX = obj.scaleX * scaleMultiplier;
+        //     obj.scaleY = obj.scaleY * scaleMultiplier;
+        // }
 
 
         currCanvas.setZoom(val);
+        console.log('lolololololol', originalSize);
     }
     currCanvas.renderAll();
-
 }
 
 let mouseismoving = false;
