@@ -45,8 +45,8 @@
                     <ion-icon id="content-navigation-first-left-icon" name="chevron-back-outline"
                         class="ed_bt_arrow_click"></ion-icon>
                     <div id="content-navigation-first-left-text">
-                        <h2 id="content-navigation-first-left-text-h2" contenteditable="true">Cute Stickers</h2>
-                        <h3 id="content-navigation-first-left-text-h3">Matthias Riener</h3>
+                        <h2 id="content-navigation-first-left-text-h2" contenteditable="true"></h2>
+                        <h3 id="content-navigation-first-left-text-h3"></h3>
                     </div>
                 </div>
                 <ion-icon id="content-navigation-first-right-icon" name="add-outline"></ion-icon>
@@ -60,7 +60,7 @@
             <div id="content-navigation-third">
                 <div id="content-navigation-third-box">
                     <h2 id="content-navigation-third-box-live">Live</h2>
-                    <div id="content-navigation-third-box-counter">3</div>
+                    <div id="content-navigation-third-box-counter">1</div>
                 </div>
             </div>
             <div id="content-navigation-fourth">
@@ -101,32 +101,8 @@
             <div id="content-main-inner">
                 <div id="content-main-inner-spacing-top">
                     <div class="content-main-inner-spacing-top-profile">
-                        <div class="content-main-inner-spacing-top-profile-image"></div>
-                        <h2 class="content-main-inner-spacing-top-profile-text">Matthäus R.</h2>
-                    </div>
-                    <div class="content-main-inner-spacing-top-profile">
-                        <div class="content-main-inner-spacing-top-profile-image"></div>
-                        <h2 class="content-main-inner-spacing-top-profile-text">Matthäus R.</h2>
-                    </div>
-                    <div class="content-main-inner-spacing-top-profile">
-                        <div class="content-main-inner-spacing-top-profile-image"></div>
-                        <h2 class="content-main-inner-spacing-top-profile-text">Matthäus R.</h2>
-                    </div>
-                    <div class="content-main-inner-spacing-top-profile">
-                        <div class="content-main-inner-spacing-top-profile-image"></div>
-                        <h2 class="content-main-inner-spacing-top-profile-text">Matthäus R.</h2>
-                    </div>
-                    <div class="content-main-inner-spacing-top-profile">
-                        <div class="content-main-inner-spacing-top-profile-image"></div>
-                        <h2 class="content-main-inner-spacing-top-profile-text">Matthäus R.</h2>
-                    </div>
-                    <div class="content-main-inner-spacing-top-profile">
-                        <div class="content-main-inner-spacing-top-profile-image"></div>
-                        <h2 class="content-main-inner-spacing-top-profile-text">Matthäus R.</h2>
-                    </div>
-                    <div class="content-main-inner-spacing-top-profile">
-                        <div class="content-main-inner-spacing-top-profile-image"></div>
-                        <h2 class="content-main-inner-spacing-top-profile-text">Matthäus R.</h2>
+                        <div class="content-main-inner-spacing-top-profile-image" id="localVideo"></div>
+                        <h2 class="content-main-inner-spacing-top-profile-text" id="localVideoText"></h2>
                     </div>
                 </div>
                 <div id="content-main-inner-spacing">
@@ -742,6 +718,8 @@
     <script src={{ url_for('static', filename="editor/js/canvas-start.js") }} type="text/javascript" defer></script>
     <script src={{ url_for('static', filename="editor/js/eventhandler.js") }} type="text/javascript" defer></script>
     <script src={{ url_for('static', filename="editor/js/getDevices.js") }} type="text/javascript" defer></script>
+    <script src="//media.twiliocdn.com/sdk/js/video/releases/2.3.0/twilio-video.min.js"></script>
+    <script src={{ url_for('static', filename="editor/js/video.js") }} type="text/javascript" defer></script>
 </body>
 
 </html>
