@@ -338,7 +338,7 @@ $(window).resize(function () {
 function createCanvas() {
     const fabric = window.fabric;
     // create `Canvas` object using `<canvas>` DOM node
-    /*canvas1 = new fabric.Canvas(presCanvasId);
+    canvas1 = new fabric.Canvas(presCanvasId);
     canvas2 = new fabric.Canvas(presCanvasId);
     canvas3 = new fabric.Canvas(presCanvasId);
     // create a rectangle object

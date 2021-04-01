@@ -20,7 +20,7 @@ function addSlide(slide) {
     sideC.loadFromJSON(slide.canvas, function () {
         sideC.renderAll();
 
-    $('#content-leftSlides-slidesContent').append(`
+        $('#content-leftSlides-slidesContent').append(`
     <div class="content-leftSlides-slidesContent-slide" data-slide="${slide._id.$oid}">
         <div class="content-leftSlides-slidesContent-slide-leftBar ${slides.length == 0 ? 'activeSlide' : ''}" style="height: ${height}vw;"></div>
         <div class="content-leftSlides-slidesContent-slide-middleBar" style="height: ${height}vw;">${slide.s_id}</div>
@@ -30,13 +30,13 @@ function addSlide(slide) {
         </div>
     </div>`);
 
-    $('#content-leftSlides-slidesContent-animatedBar').height(height + 'vw');
+        $('#content-leftSlides-slidesContent-animatedBar').height(height + 'vw');
 
 
 
-        }, function (o, object) {
-            console.log("Canvas loaded!")
-        })
+    }, function (o, object) {
+        console.log("Canvas loaded!")
+    })
 }
 
 function insertSlide(slide) {
@@ -45,7 +45,7 @@ function insertSlide(slide) {
 
     dummyC.clear();
 
-    dummyC.setDimensions({width: 1920, height: 1080})
+    dummyC.setDimensions({ width: 1920, height: 1080 })
 
     return dummyC;
 }
@@ -398,64 +398,70 @@ function loadPresentationCanvas(whereStart) {
 
 function loadSpecificSlide(whereStart) {
     currCanvas = canvasArr[whereStart];
-        if (origSizePresCanvas == undefined)
-            origSizePresCanvas = currCanvas.getWidth();
-        resizePresentationCanvas();
+    if (origSizePresCanvas == undefined)
+        origSizePresCanvas = currCanvas.getWidth();
+    resizePresentationCanvas();
+    $('#pagecount').text(`Slide ${whereStart + 1}/${canvasArr.length}`);
 }
 
 function resizePresentationCanvas() {
     let w = $("body").width()
     let h = $("body").height()
-    let canvasBody = $("#presi .canvas-container");
-    
-       
-        canvasBody.addClass('wtohbigger');
-        canvasBody.removeClass('wtohsmaller');
-    console.log(canvasBody.width(), currCanvas.width)
+    let canvasBody = $("#presi .canvas-container canvas");
+    let canvasContainer = $("#presi .canvas-container");
 
-        if(Math.round(canvasBody.width()) == Math.round(currCanvas.width)) {
-            return;
-        } else {
-            console.log("chaning Size!")
-        }
 
-        currCanvas.setWidth(h * 16 / 9);
-        currCanvas.setHeight(h);
-        // wenn das seitenverhältnis breite:höhe kleiner als 16:9 ist
-        if (w / h < 16 / 9) {
-            currCanvas.setWidth(w);
-            currCanvas.setHeight(w * 9 / 16);
-            canvasBody.addClass('wtohsmaller');
-            canvasBody.removeClass('wtohbigger');
-        }
-        // setzoom
+    canvasBody.addClass('wtohbigger');
+    canvasBody.removeClass('wtohsmaller');
+    canvasContainer.addClass('wtohbigger');
+    canvasContainer.removeClass('wtohsmaller');
 
-        console.log(origSizePresCanvas)
-        if (origSizePresCanvas) {
+    // console.log(canvasBody.width(), currCanvas.width)
 
-            console.log("setting zoom...")
-            val = currCanvas.width / origSizePresCanvas;
-            scaleMultiplier = currCanvas.width / 1920;
+    // if (Math.round(canvasBody.width()) == Math.round(currCanvas.width)) {
+    //     return;
+    // } else {
+    //     // console.log("chaning Size!")
+    // }
 
-            var objects = currCanvas.getObjects();
-            for (var i in objects) {
-                objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
-                objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
-                objects[i].left = objects[i].left * scaleMultiplier;
-                objects[i].top = objects[i].top * scaleMultiplier;
-                objects[i].setCoords();
-            }
-            var obj = currCanvas.backgroundImage;
-            if (obj) {
-                obj.scaleX = obj.scaleX * scaleMultiplier;
-                obj.scaleY = obj.scaleY * scaleMultiplier;
-            }
-    
+    currCanvas.setWidth(h * 16 / 9);
+    currCanvas.setHeight(h);
+    // wenn das seitenverhältnis breite:höhe kleiner als 16:9 ist
+    if (w / h < 16 / 9) {
+        currCanvas.setWidth(w);
+        currCanvas.setHeight(w * 9 / 16);
+        canvasBody.addClass('wtohsmaller');
+        canvasBody.removeClass('wtohbigger');
+        canvasContainer.addClass('wtohsmaller');
+        canvasContainer.removeClass('wtohbigger');
+    }
 
-            currCanvas.setZoom(val);
-        }
-        currCanvas.renderAll();
-   
+    // setzoom
+
+    // console.log('orisiz:', origSizePresCanvas)
+    if (originalSize) {
+
+        // console.log("setting zoom...")
+        let zooooooooooooooom = scaleMultiplier = currCanvas.width / 1920;
+
+        // var objects = currCanvas.getObjects();
+        // for (var i in objects) {
+        //     objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
+        //     objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
+        //     objects[i].left = objects[i].left * scaleMultiplier;
+        //     objects[i].top = objects[i].top * scaleMultiplier;
+        //     objects[i].setCoords();
+        // }
+        // var obj = currCanvas.backgroundImage;
+        // if (obj) {
+        //     obj.scaleX = obj.scaleX * scaleMultiplier;
+        //     obj.scaleY = obj.scaleY * scaleMultiplier;
+        // }
+
+
+        currCanvas.setZoom(zooooooooooooooom);
+    }
+    currCanvas.renderAll();
 }
 
 let mouseismoving = false;
@@ -647,3 +653,5 @@ function toggleFullScreen(elem) {
         }
     }
 }
+
+//$('#settingsPopup-inner-bottom-button-join').click();
