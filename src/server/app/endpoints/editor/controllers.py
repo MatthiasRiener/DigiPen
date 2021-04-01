@@ -11,6 +11,17 @@ from ...repository.EditorRepository import EditorRepository
 
 import json
 
+# video chat imports
+from flask import Flask, render_template, request, abort
+from twilio.jwt.access_token import AccessToken
+from twilio.jwt.access_token.grants import VideoGrant
+
+
+
+twilio_account_sid = "AC5f961ea052b5bbdde0ec5b73942b0eb3"
+twilio_api_key_sid = "SKbf33ebca337a7e32451e4c7344c94a69"
+twilio_api_key_secret = "J4rFopujtBdZgRLpzLVwNkAEs0Ll1KwB"
+
 editorRepo = EditorRepository(testing=False)
 
 editor = Blueprint("editor", __name__,
@@ -66,3 +77,23 @@ def getSlidesRoute():
     data = request.form
     p_id = data["p_id"]
     return json.dumps({"res": editorRepo.getSlides(p_id=p_id)})
+
+
+# video chat route
+@editor.route('/connectToVideoChat', methods=['POST', 'GET'])
+@jwt_required
+def connectVideoChatRoute():
+    u_id = get_jwt_identity()
+    data = request.form
+    p_id = data["p_id"]
+
+    if not u_id:
+        abort(401)
+
+    print(u_id) 
+
+    token = AccessToken(twilio_account_sid, twilio_api_key_sid,
+                        twilio_api_key_secret, identity=u_id)
+    token.add_grant(VideoGrant(room=str(p_id)))
+
+    return {'vt': token.to_jwt().decode()}
