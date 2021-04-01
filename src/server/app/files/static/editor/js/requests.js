@@ -49,7 +49,7 @@ function switchSlide(id) {
 
 function getSlides(whereStart) {
     sendRequestToServer({type: "POST", url: "/editor/getSlides", data: {p_id: getCustomStorage("p_id")}}).then(data => {
-        //canvasArr.push(canvas1);
+        canvasArr.length = 0;
         console.log(data);
         data.res.forEach(slide => {
             loadPresentationCanvasFromJson(slide.canvas);

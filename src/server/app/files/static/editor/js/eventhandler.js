@@ -653,3 +653,5 @@ function toggleFullScreen(elem) {
         }
     }
 }
+
+//$('#settingsPopup-inner-bottom-button-join').click();
