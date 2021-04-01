@@ -99,4 +99,4 @@ def connectVideoChatRoute():
                         twilio_api_key_secret, identity=username)
     token.add_grant(VideoGrant(room=str(p_id)))
 
-    return json.dumps({'vt': token.to_jwt().decode()})
+    return json.dumps({'vt': token.to_jwt().decode(), 'faggot': username})
