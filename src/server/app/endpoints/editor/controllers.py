@@ -8,6 +8,7 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
 
 
 from ...repository.EditorRepository import EditorRepository
+from ...repository.AuthenticationRepository import AuthenticationRepository
 
 import json
 
@@ -23,6 +24,7 @@ twilio_api_key_sid = "SKbf33ebca337a7e32451e4c7344c94a69"
 twilio_api_key_secret = "J4rFopujtBdZgRLpzLVwNkAEs0Ll1KwB"
 
 editorRepo = EditorRepository(testing=False)
+authRepo = AuthenticationRepository(testing=False)
 
 editor = Blueprint("editor", __name__,
                     static_folder="static", template_folder="templates")
@@ -90,10 +92,11 @@ def connectVideoChatRoute():
     if not u_id:
         abort(401)
 
-    print(u_id) 
+    user = authRepo.retrieveUser(user_id=u_id)
+    username = user["name"]
 
     token = AccessToken(twilio_account_sid, twilio_api_key_sid,
-                        twilio_api_key_secret, identity=u_id)
+                        twilio_api_key_secret, identity=username)
     token.add_grant(VideoGrant(room=str(p_id)))
 
     return json.dumps({'vt': token.to_jwt().decode()})
