@@ -82,7 +82,7 @@ class CanvasRepository():
 
         mongoclient.db['canvas'].update_one({"_id": ObjectId(cid)}, 
        {"$set": {"canvas": canvas, 'latestWidth': width, 'latestHeight': height}})
-        return "updated canvas"
+        return self.getSpecificSlide(object_id=cid)
 
     def deleteAll(self):
         if self.testing:
