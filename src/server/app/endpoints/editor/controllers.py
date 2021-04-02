@@ -124,7 +124,14 @@ def updateSlideSocket(json):
     p_id = json["p_id"]
     s_id = json["s_id"]
 
-    broadCastMessage("slideUpdateNotify", p_id, json_util.dumps({"u_id": u_id, "p_id": p_id, "s_id": s_id}))
+    broadCastMessageExceptOwn("slideUpdateNotify", p_id, json_util.dumps({"u_id": u_id, "p_id": p_id, "s_id": s_id}), sender_id=u_id)
+
+
+def broadCastMessageExceptOwn(event, pres_id, msg, sender_id):
+    for user in presRepo.getPresentation(pres_id).users:
+        print("Sending to user....")
+        if user['status'] == 'accepted' and user["u_id"] != sender_id:
+            emit(event, msg, room=user["u_id"])
 
 def broadCastMessage(event, pres_id, msg):
     for user in presRepo.getPresentation(pres_id).users:
