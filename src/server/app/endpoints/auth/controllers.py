@@ -6,6 +6,8 @@ from ...db.settings import db, oidc
 
 from ..profile.controllers import profile
 
+from ...models.Statistic import Statistic
+
 import json
 import datetime
 import time
@@ -38,6 +40,9 @@ def login():
     user = repo.createUser(user_id=user_id, name=user_name, email=user_mail, img=None, last_login=time.time(), created=time.time())
 
     print("user", user)
+
+    # insert new interaction
+    Statistic(name="login", date=time.time()).save()
 
 
     access_token = create_access_token(identity=user_id, expires_delta=datetime.timedelta(seconds=10))

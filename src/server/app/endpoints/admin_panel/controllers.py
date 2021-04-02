@@ -48,3 +48,10 @@ def getTotalPresentationsRoute():
     end = data["end"]
     return adminPanel.getPresentationCount(start=start, end=end)
 
+@panel.route('/getUserInteractions', methods=["POST"])
+@jwt_required
+def getUserInteractions():
+    data = request.form
+    start = data["start"]
+    end = data["end"]
+    return json.dumps({"res": adminPanel.getUserInteractions(start=start, end=end)})
