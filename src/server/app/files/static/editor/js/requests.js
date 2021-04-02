@@ -20,6 +20,17 @@ function saveCanvas(canvas, width, height) {
     sendRequestToServer({type: "POST", url: "/editor/updateCanvas", data: {p_id: getCustomStorage("p_id"), s_id: getCanvasID(), width: width, height: height, canvas: JSON.stringify(canvas)}}).then(data => {
         console.log("Save Canvas");
         console.log(data);
+        sideC = insertSlide("MATTI IS SUPA");
+
+        sideC.loadFromJSON(data.res.canvas, function () {
+            sideC.renderAll();
+
+            const box = $(`.content-leftSlides-slidesContent-slide-content-overlay[data-slideId="${data.res._id.$oid}"]`);
+            console.warn(box);
+            box.css('background', `url('${'data:image/svg+xml;utf8,' + encodeURIComponent(sideC.toSVG())}')`);
+            box.css('background-position', 'center');
+            box.css('background-size', 'cover');
+        });
     });
 }
 

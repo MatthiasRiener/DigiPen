@@ -721,6 +721,8 @@ function saveCanvasToJson() {
     saveCanvas(json, 10, 109)
 
     GetCanvasAtResoution(width, false)
+
+    notifyForUpdate();
 }
 
 function GetCanvasAtResoution(newWidth, first) {
