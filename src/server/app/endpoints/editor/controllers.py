@@ -11,6 +11,8 @@ from flask_socketio import emit, join_room, leave_room, send
 
 from ...repository.EditorRepository import EditorRepository
 from ...repository.AuthenticationRepository import AuthenticationRepository
+from ...repository.PresentationRepository import PresentationRepository
+
 
 import json
 
@@ -27,6 +29,7 @@ twilio_api_key_secret = "J4rFopujtBdZgRLpzLVwNkAEs0Ll1KwB"
 
 editorRepo = EditorRepository(testing=False)
 authRepo = AuthenticationRepository(testing=False)
+presRepo = PresentationRepository(testing=False)
 
 editor = Blueprint("editor", __name__,
                     static_folder="static", template_folder="templates")
@@ -112,3 +115,17 @@ def connect(json):
     u_id = json['user_id']
     join_room(u_id)
     send("Welcome to the faggot channel. You're a faggot.", room=u_id)
+
+
+@socket.io('updateSlide')
+def updateSlideSocket(json):
+    u_id = json["user_id"]
+    p_id = json["p_id"]
+    s_id = json["s_id"]
+
+    broadCastMessage("slideUpdateNotify", p_id, "The slide was updated you fucking idiot.")
+
+def broadCastMessage(event, pres_id, msg):
+    for user in presRepo.getPresentation(pres_id).users:
+        if user['status'] == 'accepted':
+            emit(event, msg, room=user["u_id"])
