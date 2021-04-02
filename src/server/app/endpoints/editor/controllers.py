@@ -123,11 +123,10 @@ def updateSlideSocket(json):
     p_id = json["p_id"]
     s_id = json["s_id"]
 
-    broadCastMessage("slideUpdateNotify", p_id, "The slide was updated you fucking idiot.")
+    broadCastMessage("slideUpdateNotify", p_id, json.dumps({"u_id": u_id, "p_id": p_id, "s_id": s_id}))
 
 def broadCastMessage(event, pres_id, msg):
     for user in presRepo.getPresentation(pres_id).users:
         print("Sending to user....")
-        print(user["u_id"])
         if user['status'] == 'accepted':
             emit(event, msg, room=user["u_id"])
