@@ -110,5 +110,5 @@ def connectVideoChatRoute():
 @socketio.on('connectUser')
 def connect(json):
     u_id = json['user_id']
-    
+    join_room(u_id)
     send("Welcome to the faggot channel. You're a faggot.", room=u_id)
