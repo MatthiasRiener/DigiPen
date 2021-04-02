@@ -109,7 +109,7 @@ class AuthenticationRepository():
         return User.objects().count()
 
     def getNewUsersInRange(self, start, end):
-        raw_query = {'created': {'$gt': start, '$lt': end}}
+        raw_query = {'created': {'$gt': int(start), '$lt': int(end)}}
         return User.objects(__raw__=raw_query).count()
 
     def getUsersForPresentation(self, pres):
