@@ -42,7 +42,7 @@ def getTotalInteractionsRoute():
 
 @panel.route('/getTotalPresentations', methods=["POST"])
 @jwt_required
-def getTotalInteractionsRoute():
+def getTotalPresentationsRoute():
     data = request.form
     start = data["start"]
     end = data["end"]
