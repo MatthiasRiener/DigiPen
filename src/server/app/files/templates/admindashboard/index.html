@@ -25,6 +25,10 @@
     <script src={{ url_for('static', filename="components/check-notifications/Notifications.js") }} type="module"></script>
 
     <script src={{ url_for('static', filename="components/side-bar/customEvents.js") }} type="module"></script>
+
+        <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
 </head>
 
 <body>
@@ -81,13 +85,13 @@
                     </div>
                     <div id="dashboardMain-left-bottom">
                         <div id="dashboardMain-left-bottom-inner" class="box">
-                        
+
                         </div>
                     </div>
                 </div>
                 <div id="dashboardMain-right">
                     <div id="dashboardMain-right-inner" class="box">
-
+                        User Login Reihenfolge
                     </div>
                 </div>
             </div>
@@ -96,24 +100,24 @@
                     <div id="dashboardBottom-left-left">
                         <div id="dashboardBottom-left-left-top">
                             <div id="dashboardBottom-left-left-top-inner" class="box">
-                    
+                                Akitve User
                             </div>
                         </div>
                         <div id="dashboardBottom-left-left-bottom">
                             <div id="dashboardBottom-left-left-bottom-inner" class="box">
-                    
+                                Daily Goal (300 Benutzer) Hintergrundfarbe je nach progress
                             </div>
                         </div>
                     </div>
                     <div id="dashboardBottom-left-right">
                         <div id="dashboardBottom-left-right-inner" class="box">
-                    
+                            reportete Bugs
                         </div>
                     </div>
                 </div>
                 <div id="dashboardBottom-right">
                     <div id="dashboardBottom-right-inner" class="box">
-
+                        Map mit Userherkünften
                     </div>
                 </div>
             </div>
@@ -123,6 +127,7 @@
 
     <script src={{ url_for('static', filename="admindashboard/js/eventhandler.js") }} type="text/javascript" defer></script>
     <script src={{ url_for('static', filename="components/side-bar/invites.js") }} type="text/javascript" defer></script>
+    <script src={{ url_for('static', filename="admindashboard/js/charts.js") }} type="text/javascript" defer></script>
 </body>
 
 </html>

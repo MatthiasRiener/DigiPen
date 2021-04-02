@@ -14,6 +14,7 @@ function getData() {
     getTotalUsers();
     getTotalInteractions();
     getTotalPresentation();
+    getDailyLogins();
 }
 
 function getTotalUsers() {
@@ -60,4 +61,11 @@ function getSign(num, container)  {
         container.classList.add("minus");
         return "- ";
    } 
+}
+
+function getDailyLogins() {
+    sendRequestToServer({type: "POST", url: "/admin/getUserInteractions", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {
+        console.warn(data);
+        printDailyLogins(data.res);
+    });
 }
