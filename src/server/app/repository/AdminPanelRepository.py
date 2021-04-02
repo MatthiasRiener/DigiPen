@@ -6,6 +6,9 @@ from ..models.Statistic import Statistic
 authRepo = AuthenticationRepository(testing=False)
 presRepo = PresentationRepository(testing=False)
 
+import time
+import datetime
+
 import json
 import os
 from bson import json_util
@@ -32,11 +35,19 @@ class AdminPanelRepository():
         return json.dumps({"total_presentations": pCount, "new_presentations": pNCount})
 
     def getUserInteractions(self, start, end):
-        response = list()
+        response = dict()
         elements = mongoclient.db["statistic"].find({"name": "login", "date": {"$gt": int(start), "$lt": int(end)} })
         
         for el in elements:
-            response.append(json.loads(json_util.dumps(el)))
+            timeOfEntry = el["date"]
+            dt = time.strftime('%Y-%m-%d', time.localtime(timeOfEntry))
+            element = datetime.datetime.strptime(dt, '%Y-%m-%d')
+            timestamp = time.mktime(element.timetuple())
+
+            if (timestamp in response.keys()):
+                response[timestamp] += 1
+            else:
+                response[timestamp] = 1
         
         return response
 
