@@ -117,7 +117,7 @@ def connect(json):
     send("Welcome to the faggot channel. You're a faggot.", room=u_id)
 
 
-@socketio.io('updateSlide')
+@socketio.on('updateSlide')
 def updateSlideSocket(json):
     u_id = json["user_id"]
     p_id = json["p_id"]
