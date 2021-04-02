@@ -120,7 +120,7 @@ class PresentationRepository():
 
     def getNewTotalPresentations(self, start, end):
         raw_query = {'created': {'$gt': int(start), '$lt': int(end)}}
-        return Presentations.objects(__raw__=raw_query).count()
+        return Presentation.objects(__raw__=raw_query).count()
     def inviteUser(self, user_id, p_id):
         user = dict()
         user['status'] = 'pending'
