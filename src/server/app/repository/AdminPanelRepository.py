@@ -1,8 +1,10 @@
 from ..db.settings import mongoclient
 from ..repository.AuthenticationRepository import AuthenticationRepository
+from ..repository.PresentationRepository import PresentationRepository
 from ..models.Statistic import Statistic
 
 authRepo = AuthenticationRepository(testing=False)
+presRepo = PresentationRepository(testing=False)
 
 import json
 import os
@@ -20,11 +22,11 @@ class AdminPanelRepository():
         return json.dumps({"total_users": uCount, "new_users": nCount})
     def getInteractions(self, start, end):
         iCount = Statistic.objects(name="interaction").count()
-        print(start)
-        print(end)
         nCount = mongoclient.db["statistic"].find({"name": "interaction", "date": {"$gt": int(start), "$lt": int(end)} }).count()
-        print("Interaction Count", nCount)
         return json.dumps({"total_interactions": iCount, "new_interactions": nCount})
-
+    def getPresentationCount(self, start, end):
+        pCount = presRepo.getTotalPresentations()
+        pNCount = presRepo.getNewTotalPresentations(start, end)
+        return json.dumps({"total_presentations": pCount, "new_presentations": pNCount})
 
     
