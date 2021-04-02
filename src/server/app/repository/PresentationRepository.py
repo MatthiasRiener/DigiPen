@@ -115,8 +115,9 @@ class PresentationRepository():
     def getPresentationCount(self, user_id):
         return len(self.getUsersPresentation(user_id=user_id))
     
-    def getTotalPresentations(self):
-        return Presentation.objects().count()
+    def getTotalPresentations(self, end):
+        raw_query = {'created': {'$lt': int(end)}}
+        return Presentation.objects(__raw__=raw_query).count()
 
     def getNewTotalPresentations(self, start, end):
         raw_query = {'created': {'$gt': int(start), '$lt': int(end)}}

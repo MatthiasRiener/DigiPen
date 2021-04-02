@@ -17,15 +17,15 @@ class AdminPanelRepository():
     def __init__(self, testing):
         self.testing = testing
     def getUserCount(self, start, end):
-        uCount = authRepo.getUserCount()
+        uCount = authRepo.getUserCountDashboard(end=end)
         nCount = authRepo.getNewUsersInRange(start, end)
         return json.dumps({"total_users": uCount, "new_users": nCount})
     def getInteractions(self, start, end):
-        iCount = Statistic.objects(name="interaction").count()
+        iCount = mongoclient.db["statistic"].find({"name": "interaction", "date": {"$lt": int(end)} }).count()
         nCount = mongoclient.db["statistic"].find({"name": "interaction", "date": {"$gt": int(start), "$lt": int(end)} }).count()
         return json.dumps({"total_interactions": iCount, "new_interactions": nCount})
     def getPresentationCount(self, start, end):
-        pCount = presRepo.getTotalPresentations()
+        pCount = presRepo.getTotalPresentations(end=end)
         pNCount = presRepo.getNewTotalPresentations(start, end)
         return json.dumps({"total_presentations": pCount, "new_presentations": pNCount})
 
