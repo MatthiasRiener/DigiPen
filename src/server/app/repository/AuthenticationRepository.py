@@ -3,6 +3,7 @@ import re
 import time
 from .CustomException import CustomException
 import uuid
+from ..db.settings import mongoclient
 
 class AuthenticationRepository():
 
@@ -106,6 +107,10 @@ class AuthenticationRepository():
 
     def getUserCount(self):
         return User.objects().count()
+
+    def getNewUsersInRange(self, start, end):
+        raw_query = {'date': {'$gte': start, '$lt': end}}
+        return User.objects(__raw__=raw_query).count()
 
     def getUsersForPresentation(self, pres):
         for index, user_obj in enumerate(pres.users):
