@@ -20,8 +20,9 @@ class AdminPanelRepository():
         return json.dumps({"total_users": uCount, "new_users": nCount})
     def getInteractions(self, start, end):
         iCount = Statistic.objects(name="interaction").count()
-        raw_query = {'date': {'$gt': start, '$lt': end}, "name": "interaction"}
-        nCount = Statistic.objects(__raw__=raw_query).count()
+        print(start)
+        print(end)
+        nCount = mongoclient.db["statistic"].find({"name": "interaction"}).count()
         return json.dumps({"total_interactions": iCount, "new_interactions": nCount})
 
 
