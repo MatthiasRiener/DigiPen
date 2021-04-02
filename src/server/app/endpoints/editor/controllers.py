@@ -15,6 +15,7 @@ from ...repository.PresentationRepository import PresentationRepository
 
 
 import json
+from bson import json_util
 
 # video chat imports
 from flask import Flask, render_template, request, abort
@@ -123,7 +124,7 @@ def updateSlideSocket(json):
     p_id = json["p_id"]
     s_id = json["s_id"]
 
-    broadCastMessage("slideUpdateNotify", p_id, json.dumps({"u_id": u_id, "p_id": p_id, "s_id": s_id}))
+    broadCastMessage("slideUpdateNotify", p_id, json_util.dumps({"u_id": u_id, "p_id": p_id, "s_id": s_id}))
 
 def broadCastMessage(event, pres_id, msg):
     for user in presRepo.getPresentation(pres_id).users:
