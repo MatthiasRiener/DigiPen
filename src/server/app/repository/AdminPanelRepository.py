@@ -22,7 +22,7 @@ class AdminPanelRepository():
         iCount = Statistic.objects(name="interaction").count()
         print(start)
         print(end)
-        nCount = mongoclient.db["statistic"].find({"name": "interaction", "date": {"$gt": 0, "$lt": 9000000000} }).count()
+        nCount = mongoclient.db["statistic"].find({"name": "interaction", "date": {"$gt": int(start), "$lt": int(end)} }).count()
         print("Interaction Count", nCount)
         return json.dumps({"total_interactions": iCount, "new_interactions": nCount})
 
