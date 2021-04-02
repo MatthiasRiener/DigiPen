@@ -38,7 +38,7 @@ class AdminPanelRepository():
         for el in elements:
             response.append(json.loads(json_util.dumps(el)))
         
-        return el
+        return response
 
 
     
