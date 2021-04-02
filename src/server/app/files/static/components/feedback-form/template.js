@@ -24,7 +24,7 @@ export const template =
 
             <p>By submitting this form you agree to our terms and conditions and our Privacy Policy which explains how
                 we may collect, use and disclose your personalinformation including to third parties.</p>
-
+            <p>* Required</p>
             <input type="submit" value="Submit">
         </form>
     </div>
