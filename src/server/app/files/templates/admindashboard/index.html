@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Structure</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla">
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/admindashboard/css/style.css') }}" />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <script src={{ url_for('static', filename="components/side-bar/Sidebar.js") }} type="module"></script>
+    <script src={{ url_for('static', filename="components/nav/Navigation.js") }} type="module"></script>
+    <script src={{ url_for('static', filename="components/create-workspace/Workspace.js") }} type="module"></script>
+    <script src={{ url_for('static', filename="authentication/auth_flow.js") }} type="text/javascript"></script>
+    <script src={{ url_for('static', filename="admindashboard/js/requests.js") }} type="text/javascript" defer></script>
+
+    <script src={{ url_for('static', filename="components/check-notifications/Notifications.js") }} type="module"></script>
+
+    <script src={{ url_for('static', filename="components/side-bar/customEvents.js") }} type="module"></script>
+</head>
+
+<body>
+
+    <create-workspace id="workspace-comp"></create-workspace>
+
+    <check-notifications id="notifications-comp"></check-notifications>
+
+    <top-nb id="zNav"></top-nb>
+
+    <div class="navandcontent">
+        <side-bar id="sidebar-comp" path="../components/side-bar/styles.css"
+            style="width: 17%; height: 100%; background-color: #F8F7F9;">
+        </side-bar>
+
+        <div id="contentbox">
+            <div id="dashboardHeader">
+                <div id="dashboardHeader-left">Overview</div>
+                <div id="dashboardHeader-right">
+                    <input id="dashboardStart" type="date">
+                    <input id="dashboardEnd" type="date">
+                </div>
+            </div>
+            <div id="dashboardMain">
+                <div id="dashboardMain-left">
+                    <div id="dashboardMain-left-top">
+                        <div id="dashboardMain-left-top-first" class="smallBox box">
+
+                        </div>
+                        <div id="dashboardMain-left-top-second" class="smallBox box">
+
+                        </div>
+                        <div id="dashboardMain-left-top-third" class="smallBox box">
+
+                        </div>
+                    </div>
+                    <div id="dashboardMain-left-bottom">
+                        <div id="dashboardMain-left-bottom-inner" class="box">
+                        
+                        </div>
+                    </div>
+                </div>
+                <div id="dashboardMain-right">
+                    <div id="dashboardMain-right-inner" class="box">
+
+                    </div>
+                </div>
+            </div>
+            <div id="dashboardBottom">
+                <div id="dashboardBottom-left">
+                    <div id="dashboardBottom-left-left">
+                        <div id="dashboardBottom-left-left-top">
+                            <div id="dashboardBottom-left-left-top-inner" class="box">
+                    
+                            </div>
+                        </div>
+                        <div id="dashboardBottom-left-left-bottom">
+                            <div id="dashboardBottom-left-left-bottom-inner" class="box">
+                    
+                            </div>
+                        </div>
+                    </div>
+                    <div id="dashboardBottom-left-right">
+                        <div id="dashboardBottom-left-right-inner" class="box">
+                    
+                        </div>
+                    </div>
+                </div>
+                <div id="dashboardBottom-right">
+                    <div id="dashboardBottom-right-inner" class="box">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src={{ url_for('static', filename="admindashboard/js/eventhandler.js") }} type="text/javascript" defer></script>
+    <script src={{ url_for('static', filename="components/side-bar/invites.js") }} type="text/javascript" defer></script>
+</body>
+
+</html>
