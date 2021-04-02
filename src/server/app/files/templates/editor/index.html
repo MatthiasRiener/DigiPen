@@ -27,6 +27,8 @@
 
     <script src={{ url_for('static', filename="editor/js/requests.js") }} type="text/javascript" defer></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js" integrity="sha512-oFOCo2/3DtjrJG4N27BjSLQWoiBv171sK6a+JiWjp/7agxC2nCUP358AqzxkBUb5jX8g6CYLPdSKQTbC0weCwA==" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/editor/css/style.css') }}"" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/editor/css/variables.css') }}" />
 </head>
@@ -720,6 +722,7 @@
     <script src={{ url_for('static', filename="editor/js/getDevices.js") }} type="text/javascript" defer></script>
     <script src="//media.twiliocdn.com/sdk/js/video/releases/2.3.0/twilio-video.min.js"></script>
     <script src={{ url_for('static', filename="editor/js/video.js") }} type="text/javascript" defer></script>
+    <script src={{ url_for('static', filename="editor/js/sockets.js") }} type="text/javascript" defer></script>
 </body>
 
 </html>
