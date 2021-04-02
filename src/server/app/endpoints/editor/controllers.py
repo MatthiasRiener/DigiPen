@@ -1,10 +1,12 @@
-from ...db.settings import db, oidc
+from ...db.settings import db, oidc, socketio
 from flask import Flask, Blueprint, render_template, abort, g, request
 from oauth2client.client import OAuth2Credentials
 
 
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt, set_access_cookies, get_jti,
                                 set_refresh_cookies, unset_jwt_cookies, decode_token)
+
+from flask_socketio import emit, join_room, leave_room, send
 
 
 from ...repository.EditorRepository import EditorRepository
@@ -100,3 +102,13 @@ def connectVideoChatRoute():
     token.add_grant(VideoGrant(room=str(p_id)))
 
     return json.dumps({'vt': token.to_jwt().decode(), 'faggot': username})
+
+
+
+# realtime support
+
+@socketio.on('connectUser')
+def connect(json):
+    u_id = json['user_id']
+    
+    send("Welcome to the faggot channel. You're a faggot.", room=u_id)
