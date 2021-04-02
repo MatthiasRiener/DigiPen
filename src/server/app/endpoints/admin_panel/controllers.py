@@ -31,3 +31,11 @@ def getTotalUsersRoute():
     start = data["start"]
     end = data["end"]
     return adminPanel.getUserCount(start=start, end=end)
+
+@panel.route('/getTotalInteractions', methods=["POST"])
+@jwt_required
+def getTotalInteractionsRoute():
+    data = request.form
+    start = data["start"]
+    end = data["end"]
+    return adminPanel.getInteractions(start=start, end=end)
