@@ -1,6 +1,6 @@
 from ...db.settings import db, oidc
 from flask import Flask, Blueprint, render_template, abort, g, request
-from ..models.Statistic import Statistic
+from ...models.Statistic import Statistic
 
 import json
 
