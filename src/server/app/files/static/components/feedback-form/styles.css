@@ -41,7 +41,6 @@
     border-radius: 4px;
     box-sizing: border-box;
     margin-top: 6px;
-    margin-bottom: 16px;
     resize: none;
 }
 
@@ -84,4 +83,13 @@
     100% {
         transform: scale(1);
     }
+}
+
+.outerBox form label {
+    margin-top: 16px;
+}
+
+.corr {
+    color: red;
+    display: none;
 }

@@ -31,7 +31,6 @@ class FeedbackForm extends HTMLElement {
   }
 
   disconnectedCallback() {
-
   }
 }
 
