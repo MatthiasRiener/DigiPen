@@ -20,6 +20,10 @@ panel = Blueprint("adminpanel", __name__,
 
 adminPanel = AdminPanelRepository(testing=False)
 
+
+usersConnected = dict()
+
+
 @panel.route('/', methods=["GET"])
 def index():
     return render_template('/admindashboard/index.html')
@@ -66,4 +70,27 @@ def getActiveUsersOverTimeRoute():
     
     return json.dumps({"res": adminPanel.getActiveUsersOverTime(start=start, end=end)})
     
+@panel.route('/getCurrentOnlineUsers', methods=["GET"])
+@jwt_required
+def getCurrentOnlineUsersRoute():
+    return json.dumps({"res": len(usersConnected)})
 
+
+
+@socketio.on('connectUser')
+def userHasConnected(json):
+
+    print("User has connected!!!!")
+    usersConnected[json["user_id"]] = request.sid
+    emit('notifyUserCount', len(usersConnected), broadcast=True)
+
+
+@socketio.on('disconnect')
+def userHasDisconnected():
+    print("User has disconnected!!!")
+    for el in list(usersConnected):
+        if usersConnected[el] == request.sid:
+            usersConnected.pop(el)
+    print("Count:",  len(usersConnected))
+    emit('notifyUserCount', len(usersConnected), broadcast=True)
+        

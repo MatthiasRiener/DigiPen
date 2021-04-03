@@ -12,6 +12,7 @@ import datetime
 import json
 import os
 from bson import json_util
+import collections
 
 from bson.objectid import ObjectId
 
@@ -49,7 +50,7 @@ class AdminPanelRepository():
             else:
                 response[timestamp] = 1
         
-        return response
+        return collections.OrderedDict(sorted(response.items()))
 
     def getActiveUsersOverTime(self, start, end):
         response = dict()

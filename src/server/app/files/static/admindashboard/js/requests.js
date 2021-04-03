@@ -45,6 +45,7 @@ function getTotalPresentation() {
 function getTotalActiveUsers() {
     sendRequestToServer({type: "POST", url: "/admin/getActiveUsersOverTime", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {
        printDailyActiveUsers(data.res)
+       getCurrentUserCount();
     });
 }
 
