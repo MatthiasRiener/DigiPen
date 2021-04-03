@@ -1,6 +1,6 @@
-let form = document.querySelector(".outerBox form");
+let form = document.getElementById("feedbackForm");
 
-form.onsubmit = function (e) {
+form.addEventListener('checkForm', e => {
     let validImputs = true;
     document.querySelectorAll(".corr").forEach(element => {
         element.style.display = "none";
@@ -32,7 +32,7 @@ form.onsubmit = function (e) {
 
     if (!validImputs)
         e.preventDefault();
-}
+});
 
 function validateEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

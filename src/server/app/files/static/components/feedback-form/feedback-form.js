@@ -15,6 +15,18 @@ class FeedbackForm extends HTMLElement {
 
     this.shadowRoot.appendChild(this.temp.content.cloneNode(true));
     this.loadCss(this.getAttribute("path"));
+
+    this.form = this.shadowRoot.querySelector('#feedbackForm');
+
+    this.initializeEvents();
+  }
+
+  initializeEvents() {
+    this.form.addEventListener('submit', e => { this.checkForm() });
+  }
+
+  checkForm() {
+    this.dispatchEvent(new CustomEvent('checkForm', {}));
   }
 
   loadCss(path) {
