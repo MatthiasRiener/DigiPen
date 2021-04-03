@@ -86,7 +86,8 @@ class AuthenticationRepository():
             return user
         except Exception as e:
             return "Error occured while retrieving user: %s" % (e)
-
+    def retrieveUserWithOutTimeChange(self, user_id):
+        return User.objects(u_id=user_id).first().to_mongo()
     def retrieveUserByMail(self, user_mail):
         user = User.objects(mail=user_mail).first()        
         return user
@@ -120,7 +121,7 @@ class AuthenticationRepository():
     def getUsersForPresentation(self, pres):
         for index, user_obj in enumerate(pres.users):
             print(user_obj['u_id'])
-            pres.users[index] = self.retrieveUser(user_obj['u_id'])
+            pres.users[index] = self.retrieveUserWithOutTimeChange(user_obj['u_id'])
 
             pres.users[index]['status'] = user_obj['status']
             if pres.creator == user_obj['u_id']:

@@ -98,7 +98,7 @@ def connectVideoChatRoute():
     if not u_id:
         abort(401)
 
-    user = authRepo.retrieveUser(user_id=u_id)
+    user = authRepo.retrieveUserWithOutTimeChange(user_id=u_id)
     username = user["name"]
 
     token = AccessToken(twilio_account_sid, twilio_api_key_sid,

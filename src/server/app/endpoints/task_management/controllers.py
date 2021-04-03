@@ -40,7 +40,7 @@ def getPresentationRoute():
 def checkForUser():
     data = request.form
     user_id = data["u_id"]
-    user = authRepo.retrieveUser(user_id)
+    user = authRepo.retrieveUserWithOutTimeChange(user_id)
     return json.dumps({"res": user})
     
 

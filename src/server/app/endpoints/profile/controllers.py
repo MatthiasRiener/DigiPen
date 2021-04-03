@@ -31,7 +31,7 @@ def index():
 @jwt_required
 def getUserData():
     cur_user = get_jwt_identity()
-    user = repo.retrieveUser(user_id=cur_user)
+    user = repo.retrieveUserWithOutTimeChange(user_id=cur_user)
     user.update({"workspaces": wRepo.getRepoCounter(u_id=cur_user)})
     return json.dumps(user)
 

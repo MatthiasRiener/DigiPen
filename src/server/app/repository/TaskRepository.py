@@ -108,7 +108,7 @@ class TaskRepository():
         response["task"]["start"] = str(response["task"]["start"])
         response["task"]["end"] = str(response["task"]["end"])
 
-        response["task"]["assignee"] = authRepo.retrieveUser(user_id=task["assignee"])
+        response["task"]["assignee"] = authRepo.retrieveUserWithOutTimeChange(user_id=task["assignee"])
         response["task"]["presentation"] = presRepo.getPresentation(p_id=task["p_id"]).to_mongo()
 
         response["subtasks"] = list()
@@ -168,7 +168,7 @@ class TaskRepository():
                     dummyTask["end"] = str(t["end"])
                     dummyTask["finished"] = t["finished"]
                     dummyTask["t_id"] = t["task_id"]
-                    dummyTask["assignee"] = authRepo.retrieveUser(user_id=t["assignee"])
+                    dummyTask["assignee"] = authRepo.retrieveUserWithOutTimeChange(user_id=t["assignee"])
 
                     if t["assignee"] == u_id:
                         dummyTask["isOwn"] = True

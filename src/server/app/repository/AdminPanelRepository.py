@@ -71,3 +71,11 @@ class AdminPanelRepository():
 
         print(response)
         return response
+
+    def getOnlineUsers(self, users):
+        userResponse = list()
+
+        for u in users.keys():
+            userResponse.append(authRepo.retrieveUserWithOutTimeChange(user_id=u))
+        print("Data was retrieved...")
+        return userResponse

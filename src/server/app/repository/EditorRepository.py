@@ -15,7 +15,7 @@ class EditorRepository():
     def retrieveData(self, p_id, u_id):
         pres = json.loads(presRepo.getPresentation(p_id=p_id).to_json())
         presUsers = presRepo.getUsersFromPresentation(p_id=p_id)
-        ownUser = authRepo.retrieveUser(user_id=u_id)
+        ownUser = authRepo.retrieveUserWithOutTimeChange(user_id=u_id)
 
 
         canvas = json.loads(json_util.dumps(canvasRepo.getCanvas(p_id=p_id)))

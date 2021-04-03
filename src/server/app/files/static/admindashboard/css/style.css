@@ -135,7 +135,70 @@
 #dashboardMain-right-inner {
     margin: 1vh;
     flex: 1;
+    
 }
+
+.title-section-user-login {
+    width: 100%;
+    height: 12%;
+
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid rgba(149, 157, 165, 0.4);
+}
+
+.title-section-user-login p {
+    font-size: 21px;
+    color: #383838;
+    font-weight: bold;
+    padding: 5%;
+}
+
+#dashboardMain-right-inner-user-list {
+    width: 100%;
+    height: 88%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.currently-active-user-item {
+    width: 100%;
+    height: 7vh;
+    background: white;
+    border-bottom: 1px solid rgba(149, 157, 165, 0.4);
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+.currently-active-user-profile-pic {
+    width: 40px;
+    height: 40px;
+    background: url('https://static.dw.com/image/40552609_303.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    margin-left: 5%;
+}
+
+.currently-active-user-username {
+    color: #383838;
+    font-weight: 500;
+    margin-left: 5%;
+    font-size: 17px;
+}
+
+.currently-active-user-time-online {
+    font-weight: 600;
+    margin-left: auto;
+    margin-right: 5%;
+    color: #383838;
+    font-size: 17px;
+}
+
 
 #dashboardBottom {
     width: 100%;

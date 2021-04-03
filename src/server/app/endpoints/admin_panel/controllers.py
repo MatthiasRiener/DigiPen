@@ -10,6 +10,7 @@ from ...repository.AdminPanelRepository import AdminPanelRepository
 
 
 import json
+import threading
 
 import time
 from bson import json_util
@@ -79,18 +80,27 @@ def getCurrentOnlineUsersRoute():
 
 @socketio.on('connectUser')
 def userHasConnected(json):
-
     print("User has connected!!!!")
     usersConnected[json["user_id"]] = request.sid
-    emit('notifyUserCount', len(usersConnected), broadcast=True)
-
+    thread = threading.Thread(target=handleConnect, kwargs=dict(user_id=json["user_id"]))
+    thread.start()
 
 @socketio.on('disconnect')
 def userHasDisconnected():
     print("User has disconnected!!!")
+    thread = threading.Thread(target=handleDisconnect, kwargs=dict(user_id=request.sid))
+    thread.start()
+
+def handleConnect(user_id):
+    socketio.emit('notifyOnlineUsers', json_util.dumps({"res": adminPanel.getOnlineUsers(users=usersConnected)}), broadCast=True)
+    socketio.emit('notifyUserCount', len(usersConnected), broadcast=True)
+    print("Notifying users!")
+
+def handleDisconnect(user_id):
     for el in list(usersConnected):
-        if usersConnected[el] == request.sid:
+        if usersConnected[el] == user_id:
             usersConnected.pop(el)
     print("Count:",  len(usersConnected))
-    emit('notifyUserCount', len(usersConnected), broadcast=True)
-        
+    socketio.emit('notifyOnlineUsers', json_util.dumps({"res": adminPanel.getOnlineUsers(users=usersConnected)}), broadCast=True)
+    socketio.emit('notifyUserCount', len(usersConnected), broadcast=True)
+    print("Notifying Users!!!!!")

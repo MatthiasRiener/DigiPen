@@ -44,7 +44,7 @@ function getTotalPresentation() {
 
 function getTotalActiveUsers() {
     sendRequestToServer({type: "POST", url: "/admin/getActiveUsersOverTime", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {
-       printDailyActiveUsers(data.res)
+       showDailyActiveUsers(data.res)
        getCurrentUserCount();
     });
 }
@@ -74,6 +74,6 @@ function getSign(num, container)  {
 function getDailyLogins() {
     sendRequestToServer({type: "POST", url: "/admin/getUserInteractions", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {
         console.warn(data);
-        printDailyLogins(data.res);
+        showDailyLogins(data.res);
     });
 }

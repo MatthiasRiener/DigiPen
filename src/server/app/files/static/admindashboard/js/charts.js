@@ -1,4 +1,4 @@
-function printDailyLogins(dailyData) {
+function showDailyLogins(dailyData) {
 
     // Themes begin
     am4core.useTheme(am4themes_animated);
@@ -13,7 +13,7 @@ function printDailyLogins(dailyData) {
 
     var data = [];
 
-    print(dailyData)
+    
     for (const [key, value] of Object.entries(dailyData)) {
         data.push({ date: key * 1000, value: value });
     }
@@ -57,7 +57,10 @@ function printDailyLogins(dailyData) {
 
 // Title for current users
 var axisUserCount;
-function printDailyActiveUsers(dailyData) {
+
+
+
+function showDailyActiveUsers(dailyData) {
 
     // Create chart instance
     var chart = am4core.create("dashboardBottom-left-left-top-inner", am4charts.XYChart);
@@ -143,13 +146,17 @@ function printDailyActiveUsers(dailyData) {
 
 }
 
+
 function changeCurrentUserCount(num) {
     axisUserCount.text = num;
+    $('#currently-active-users-count').html(num);
+
 }
 
 
 function getCurrentUserCount() {
     sendRequestToServer({type: "GET", url: "/admin/getCurrentOnlineUsers"}).then(data => {
         axisUserCount.text = data.res;
+        $('#currently-active-users-count').html(data.res);
      });
 }

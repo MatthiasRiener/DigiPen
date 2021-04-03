@@ -81,7 +81,7 @@ class PresentationRepository():
         users = []
         for user in Presentation.objects(p_id=p_id).first().users:
             print(user["u_id"])
-            users.append(authRepo.retrieveUser(user_id=user["u_id"]))
+            users.append(authRepo.retrieveUserWithOutTimeChange(user_id=user["u_id"]))
         return users;
 
 
@@ -154,7 +154,7 @@ class PresentationRepository():
         for index, p in enumerate(pres):
             present = p.to_mongo()
             present["creator"] = json.loads(json_util.dumps(
-                authRepo.retrieveUser(user_id=p.creator)))
+                authRepo.retrieveUserWithOutTimeChange(user_id=p.creator)))
             presentations = presentations + (present, )
 
         return json.dumps({"count": len(presentations), "res": presentations})
@@ -170,7 +170,7 @@ class PresentationRepository():
                 {"_id": p_id}, {"$pull": {"users": {"u_id": user_id}}})
             status = 0
 
-        return json.dumps({"status": status, "p_id": p_id, "user": authRepo.retrieveUser(user_id)})
+        return json.dumps({"status": status, "p_id": p_id, "user": authRepo.retrieveUserWithOutTimeChange(user_id)})
 
     def dropAll(self):
         if self.testing:

@@ -7,5 +7,5 @@ from flask_pymongo import PyMongo
 jwt = JWTManager()
 db = MongoEngine()
 oidc = OpenIDConnect()
-socketio = SocketIO()
+socketio = SocketIO(async_mode='threading')
 mongoclient = PyMongo()
