@@ -17,17 +17,60 @@ class FeedbackForm extends HTMLElement {
     this.loadCss(this.getAttribute("path"));
 
     this.form = this.shadowRoot.querySelector('#feedbackForm');
+    this.corr = this.shadowRoot.querySelectorAll('.corr');
+    this.title = this.shadowRoot.querySelector("#title");
+    this.email = this.shadowRoot.querySelector("#email");
+    this.category = this.shadowRoot.querySelector("#category");
+    this.description = this.shadowRoot.querySelector("#description");
 
     this.initializeEvents();
   }
 
   initializeEvents() {
-    this.form.addEventListener('submit', e => { this.checkForm() });
+    let corr = this.corr;
+
+    this.form.onsubmit = function (e) {
+      e.preventDefault();
+
+      let validImputs = true;
+      corr.forEach(element => {
+        element.style.display = "none";
+      });
+
+      let title = this.title.value;
+      if (title.trim().length == 0) {
+        validImputs = false;
+        corr[0].style.display = "block";
+      }
+
+      let email = this.email.value;
+      if (!validateEmail(email.trim())) {
+        validImputs = false;
+        corr[1].style.display = "block";
+      }
+
+      let category = this.category.value;
+      if (category.length == 0) {
+        validImputs = false;
+        corr[2].style.display = "block";
+      }
+
+      let description = this.description.value;
+      if (description.trim().length == 0) {
+        validImputs = false;
+        corr[3].style.display = "block";
+      }
+
+      if (!validImputs)
+        e.preventDefault();
+    }
+
+    function validateEmail(email) {
+      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    }
   }
 
-  checkForm() {
-    this.dispatchEvent(new CustomEvent('checkForm', {}));
-  }
 
   loadCss(path) {
     fetch('http://localhost:5000/static/components/feedback-form/styles.css')
