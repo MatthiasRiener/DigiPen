@@ -42,10 +42,7 @@ def login():
     print("user", user)
 
     # insert new interaction
-    Statistic(name="login", date=time.time()).save()
-    Statistic(name="login", date=(time.time() - 120000)).save()
-    Statistic(name="login", date=(time.time() - 23420000)).save()
-    Statistic(name="login", date=(time.time() - 238482348)).save()
+    Statistic(name="login", date=time.time(), user=user_id).save()
 
 
     access_token = create_access_token(identity=user_id, expires_delta=datetime.timedelta(seconds=10))

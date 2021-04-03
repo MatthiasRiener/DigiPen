@@ -15,6 +15,7 @@ function getData() {
     getTotalInteractions();
     getTotalPresentation();
     getDailyLogins();
+    getTotalActiveUsers();
 }
 
 function getTotalUsers() {
@@ -38,6 +39,12 @@ function getTotalPresentation() {
         $('#presentationCount').text(data.total_presentations);
         $('#presentationCountPlus').text(getSign(data.new_presentations, document.getElementById('presentationCountPlus')) + data.new_presentations);
         console.log(data);
+    });
+}
+
+function getTotalActiveUsers() {
+    sendRequestToServer({type: "POST", url: "/admin/getActiveUsersOverTime", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {
+       printDailyActiveUsers(data.res)
     });
 }
 

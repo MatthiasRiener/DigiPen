@@ -51,5 +51,22 @@ class AdminPanelRepository():
         
         return response
 
+    def getActiveUsersOverTime(self, start, end):
+        response = dict()
+        elements = mongoclient.db["statistic"].find({"name": "login", "date": {"$gt": int(start), "$lt": int(end)} })
+        
+        for el in elements:
+            timeOfEntry = el["date"]
+            dt = time.strftime('%Y-%m-%d', time.localtime(timeOfEntry))
+            element = datetime.datetime.strptime(dt, '%Y-%m-%d')
+            timestamp = time.mktime(element.timetuple())
 
-    
+            if timestamp not in response:
+                response[timestamp] = list()
+                response[timestamp].append(el["user"])
+            else:
+                if el["user"] not in response[timestamp]:
+                    response[timestamp].append(el["user"])       
+
+        print(response)
+        return response

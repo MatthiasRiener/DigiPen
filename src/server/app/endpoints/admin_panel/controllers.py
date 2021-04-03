@@ -55,3 +55,15 @@ def getUserInteractions():
     start = data["start"]
     end = data["end"]
     return json.dumps({"res": adminPanel.getUserInteractions(start=start, end=end)})
+
+
+@panel.route('/getActiveUsersOverTime', methods=["POST"])
+@jwt_required
+def getActiveUsersOverTimeRoute():
+    data = request.form
+    start = data["start"]
+    end = data["end"]
+    
+    return json.dumps({"res": adminPanel.getActiveUsersOverTime(start=start, end=end)})
+    
+
