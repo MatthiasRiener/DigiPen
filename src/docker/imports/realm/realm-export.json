@@ -723,7 +723,7 @@
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
-      "secret": "**********",
+      "secret": "b2d6d486-a067-4d15-ac18-2fc5e9e69a17",
       "defaultRoles": [
         "uma_protection"
       ],
