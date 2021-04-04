@@ -24,9 +24,13 @@
         this.logoutBtn = this.shadowRoot.querySelector('.logout-item');
         this.notificationBtn = this.shadowRoot.querySelector('.notification-item');
 
+        this.adminBtn = this.shadowRoot.querySelector('.admin-item');
+
         this.workspaceText = this.shadowRoot.querySelector('#workspace-text');
         this.workspaceIMG = this.shadowRoot.querySelector('.cur-workspace');
 
+
+        this.checkIfAdmin();
         this.getWorkspaces();
 
         this.initializeEvents();
@@ -42,6 +46,8 @@
           this.profileBtn.addEventListener('click', e => {console.log(window.location = baseURL + `/profile`)})
           this.quizBtn.addEventListener('click', e => {console.log(window.location = `${this.path}/quiz/index.html`)})
           this.logoutBtn.addEventListener('click', e => {logOut()})
+
+          this.adminBtn.addEventListener('click', e => {this.navigateToAdminPanel()})
       }
 
       addWorkSpace() {
@@ -86,6 +92,32 @@
             this.workspaceText.innerHTML = workspace.w_name + "<br/> Workspace";
             this.workspaceIMG.style.backgroundImage = `url('${workspace.w_img}')`;
           });
+      })
+    }
+
+    checkIfAdmin() {
+      sendRequestToServer({
+        type: "GET",
+        url: "/auth/isAdmin"
+      }).then(data => {
+          console.log("IS ADMINISTRATOR")
+          console.log(data)
+          
+          if (!data.res) {
+            this.adminBtn.style.display = "none";
+          }
+      })
+    }
+
+
+    navigateToAdminPanel() {
+      sendRequestToServer({
+        type: "GET",
+        url: "/auth/isAdmin"
+      }).then(data => {
+        if (data.res) {
+          window.location = baseURL + `/admin` 
+        }
       })
     }
   }

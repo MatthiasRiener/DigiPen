@@ -13,6 +13,7 @@ from ...repository.EditorRepository import EditorRepository
 from ...repository.AuthenticationRepository import AuthenticationRepository
 from ...repository.PresentationRepository import PresentationRepository
 
+from functools import wraps
 
 import json
 from bson import json_util
@@ -34,6 +35,11 @@ presRepo = PresentationRepository(testing=False)
 
 editor = Blueprint("editor", __name__,
                     static_folder="static", template_folder="templates")
+
+
+
+
+
 
 
 @editor.route('/')

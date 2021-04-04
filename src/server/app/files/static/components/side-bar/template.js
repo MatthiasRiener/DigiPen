@@ -12,6 +12,13 @@
             </div>
           </div>
 
+
+          <div class="nav-bar-element admin-item">
+            <ion-icon name="albums-outline" class="icon-navbar"></ion-icon>
+            <p>Admin-Panel</p>
+          </div>
+
+
           <div class="nav-bar-element dashboard-item">
             <ion-icon name="albums-outline" class="icon-navbar"></ion-icon>
             <p>Dashboard</p>

@@ -1,13 +1,15 @@
 from ...db.settings import db, oidc, socketio
-from flask import Flask, Blueprint, render_template, abort, g, request
+from flask import Flask, Blueprint, render_template, abort, g, request, jsonify, redirect
 from oauth2client.client import OAuth2Credentials
 from flask_socketio import emit, join_room, leave_room, send
 
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt, set_access_cookies, get_jti,
-                                set_refresh_cookies, unset_jwt_cookies, decode_token)
+                                set_refresh_cookies, unset_jwt_cookies, decode_token, get_jwt_claims, verify_fresh_jwt_in_request, verify_jwt_in_request)
 
 from ...repository.AdminPanelRepository import AdminPanelRepository
 from ...repository.LocationRepository import LocationRepository
+
+from functools import wraps
 
 import json
 import threading
@@ -30,13 +32,44 @@ locationRepo = LocationRepository(testing=False)
 usersConnected = dict()
 
 
+def admin_required():
+    def wrapper(fn):
+        @wraps(fn)
+        def decorator(*args, **kwargs):
+            verify_jwt_in_request()
+            claims = get_raw_jwt()
+            print("verifying if admin....")
+            print("CLAIMS")
+            print(claims)
+            if claims["user_claims"]["is_administrator"]:
+                print("USER IS ADMIN")
+                return fn(*args, **kwargs)
+            else:
+                print("USER IS NO ADMIN")
+                return json.dumps({"permission_denied": True}), 801
+
+        return decorator
+
+    return wrapper
+
+
+
+
+
+
+
+
 @panel.route('/', methods=["GET"])
 def index():
     return render_template('/admindashboard/index.html')
 
 @panel.route('/getTotalUsers', methods=["POST"])
 @jwt_required
+@admin_required()
 def getTotalUsersRoute():
+    claims = get_jwt_claims()
+    print("CLAIMS!")
+    print(claims)
     data = request.form
     start = data["start"]
     end = data["end"]
@@ -44,6 +77,7 @@ def getTotalUsersRoute():
 
 @panel.route('/getTotalInteractions', methods=["POST"])
 @jwt_required
+@admin_required()
 def getTotalInteractionsRoute():
     data = request.form
     start = data["start"]
@@ -52,6 +86,7 @@ def getTotalInteractionsRoute():
 
 @panel.route('/getTotalPresentations', methods=["POST"])
 @jwt_required
+@admin_required()
 def getTotalPresentationsRoute():
     data = request.form
     start = data["start"]
@@ -60,6 +95,7 @@ def getTotalPresentationsRoute():
 
 @panel.route('/getUserInteractions', methods=["POST"])
 @jwt_required
+@admin_required()
 def getUserInteractions():
     data = request.form
     start = data["start"]
@@ -69,6 +105,7 @@ def getUserInteractions():
 
 @panel.route('/getActiveUsersOverTime', methods=["POST"])
 @jwt_required
+@admin_required()
 def getActiveUsersOverTimeRoute():
     data = request.form
     start = data["start"]
@@ -78,12 +115,14 @@ def getActiveUsersOverTimeRoute():
     
 @panel.route('/getCurrentOnlineUsers', methods=["GET"])
 @jwt_required
+@admin_required()
 def getCurrentOnlineUsersRoute():
     return json.dumps({"res": len(usersConnected)})
 
 
 @panel.route('/getLocation', methods=["POST"])
 @jwt_required
+@admin_required()
 def getLocationDataRoute():
     data = request.form
     start = data["start"]
@@ -92,29 +131,31 @@ def getLocationDataRoute():
 
 @panel.route('/getCreatedTasks', methods=["GET"])
 @jwt_required
+@admin_required()
 def getTodaysTasksRoute():
     return json.dumps({"res": adminPanel.getTodaysCreatedTasks()})
 
 @panel.route('/getCreatedPresentations', methods=["GET"])
 @jwt_required
+@admin_required()
 def getTodaysPresentationsRoute():
     return json.dumps({"res": adminPanel.getTodaysCreatedPresentations()})
 
 @panel.route('/getCreatedSlides', methods=["GET"])
 @jwt_required
+@admin_required()
 def getTodaysSlidesRoute():
     return json.dumps({"res": adminPanel.getTodaysCreatedSlides()})
 
 @panel.route('/getVideoChatInformation', methods=["GET"])
 @jwt_required
+@admin_required()
 def getVideoChatInformationRoute():
     client = Client(twilio_account_sid, twilio_auth_token)
     records = client.usage.records.today.list()
     duration = dict()
     for el in records:
-        print(el.category, ",", el.usage)
         if el.category == "group-rooms-participant-minutes":
-            print(el.start_date, el.end_date)
             if el.category not in duration:
                 duration[el.category] = 0
             duration[el.category] += float(el.usage)
@@ -148,3 +189,6 @@ def handleDisconnect(user_id):
     socketio.emit('notifyOnlineUsers', json_util.dumps({"res": adminPanel.getOnlineUsers(users=usersConnected)}), broadCast=True)
     socketio.emit('notifyUserCount', len(usersConnected), broadcast=True)
     print("Notifying Users!!!!!")
+
+
+

@@ -28,6 +28,10 @@ function ajaxRequest(resolve, reject, args) {
             401: function () {
                 silentLogin(getRToken(), sendRequestToServer, args, resolve, reject);
             },
+            801: function() {
+                console.log("permission denied!")
+                window.location.href = "/permission_denied";
+            }
         },
         success: function (data) {
             console.log("Return from " + args.url + ": " + data);
