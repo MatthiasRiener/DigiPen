@@ -17,6 +17,7 @@ function getData() {
     getDailyLogins();
     getTotalActiveUsers();
     getLocationDataFromUsers();
+    getDailyGoalData();
 }
 
 
@@ -25,6 +26,16 @@ function getLocationDataFromUsers() {
         createCountryChart(data.res)
     });
 }
+
+function getDailyGoalData() {
+    sendRequestToServer({type: "GET", url: "/admin/getCreatedTasks"}).then(data => {
+        var goal = 30;
+        //<p id="><span >1.860</span> / 3k Goal</p>
+        $('#current-interaction-count-daily').html(`<span>${data.res}</span> / ${goal} Goal`);
+       dailyGoalPrinter(data.res, goal);
+    });
+}
+
 
 function getTotalUsers() {
     sendRequestToServer({type: "POST", url: "/admin/getTotalUsers", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {

@@ -34,7 +34,23 @@ class AdminPanelRepository():
         pCount = presRepo.getTotalPresentations(end=end)
         pNCount = presRepo.getNewTotalPresentations(start, end)
         return json.dumps({"total_presentations": pCount, "new_presentations": pNCount})
+    def getTodaysCreatedTasks(self):
+        
+        morning, evening = self.getTodaysRange()
 
+        elements = mongoclient.db["task"].find({"created": {"$gt": int(morning), "$lt": int(evening)} })
+
+
+
+        print(morning, evening)
+        return elements.count()
+
+    def getTodaysRange(self):
+        dt = time.strftime('%Y-%m-%d', time.localtime(time.time()))
+        element = datetime.datetime.strptime(dt, '%Y-%m-%d')
+        morning = time.mktime(element.timetuple())
+        evening = morning + 60 * 60 * 24
+        return morning, evening
     def getUserInteractions(self, start, end):
         response = dict()
         elements = mongoclient.db["statistic"].find({"name": "login", "date": {"$gt": int(start), "$lt": int(end)} })

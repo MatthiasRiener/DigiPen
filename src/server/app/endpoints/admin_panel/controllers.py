@@ -85,7 +85,10 @@ def getLocationDataRoute():
     end = data["end"]
     return json.dumps({"res": locationRepo.getUsersAndLocation(start, end)})
 
-
+@panel.route('/getCreatedTasks', methods=["GET"])
+@jwt_required
+def getTodaysTasksRoute():
+    return json.dumps({"res": adminPanel.getTodaysCreatedTasks()})
 
 @socketio.on('connectUser')
 def userHasConnected(json):

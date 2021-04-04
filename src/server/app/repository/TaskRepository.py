@@ -9,6 +9,9 @@ import json
 from bson import json_util
 import datetime
 
+import time
+
+
 from .PresentationRepository import PresentationRepository
 from .AuthenticationRepository import AuthenticationRepository
 
@@ -55,7 +58,7 @@ class TaskRepository():
         tasks = list()
 
         Task(p_id=p_id, task_id=task_id, name=name, start=parser.parse(start_date),
-             end=parser.parse(end_date), finished=True, creator=u_id, assignee=assignee).save()
+             end=parser.parse(end_date), finished=True, creator=u_id, assignee=assignee, created=time.time()).save()
 
         for i in range(0, len(subtasks) - 1):
             if not i % 3:
