@@ -40,11 +40,25 @@ class AdminPanelRepository():
 
         elements = mongoclient.db["task"].find({"created": {"$gt": int(morning), "$lt": int(evening)} })
 
+        print(morning, evening)
+        return elements.count()
+    def getTodaysCreatedPresentations(self):
+        
+        morning, evening = self.getTodaysRange()
 
+        elements = mongoclient.db["presentation"].find({"created": {"$gt": int(morning), "$lt": int(evening)} })
 
         print(morning, evening)
         return elements.count()
 
+    def getTodaysCreatedSlides(self):
+            
+        morning, evening = self.getTodaysRange()
+
+        elements = mongoclient.db["canvas"].find({"created": {"$gt": int(morning), "$lt": int(evening)} })
+
+        print(morning, evening)
+        return elements.count()
     def getTodaysRange(self):
         dt = time.strftime('%Y-%m-%d', time.localtime(time.time()))
         element = datetime.datetime.strptime(dt, '%Y-%m-%d')

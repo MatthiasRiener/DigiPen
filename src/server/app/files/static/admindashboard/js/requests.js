@@ -18,6 +18,9 @@ function getData() {
     getTotalActiveUsers();
     getLocationDataFromUsers();
     getDailyGoalData();
+    getDailyGoalDataPresentations();
+    getDailyGoalDataSlides();
+    getDailyInformationVideoChat();
 }
 
 
@@ -36,6 +39,33 @@ function getDailyGoalData() {
     });
 }
 
+function getDailyGoalDataPresentations() {
+    sendRequestToServer({type: "GET", url: "/admin/getCreatedPresentations"}).then(data => {
+        var goal = 5;
+        //<p id="><span >1.860</span> / 3k Goal</p>
+        $('#current-interaction-count-daily-presentations').html(`<span>${data.res}</span> / ${goal} Goal`);
+       dailyGoalPrinterPresentations(data.res, goal);
+    });
+}
+
+function getDailyGoalDataSlides() {
+    sendRequestToServer({type: "GET", url: "/admin/getCreatedSlides"}).then(data => {
+        var goal = 5;
+        //<p id="><span >1.860</span> / 3k Goal</p>
+        $('#current-interaction-count-daily-slides').html(`<span>${data.res}</span> / ${goal} Goal`);
+       dailyGoalPrinterSlides(data.res, goal);
+    });
+}
+
+function getDailyInformationVideoChat() {
+    sendRequestToServer({type: "GET", url: "/admin/getVideoChatInformation"}).then(data => {
+        console.log(data);
+        var goal = 100;
+        //<p id="><span >1.860</span> / 3k Goal</p>
+        $('#current-interaction-count-daily-meetings').html(`<span>${data.res["group-rooms-participant-minutes"]}</span> / ${goal} Goal`);
+       dailyGoalPrinterMeetingMinutes(data.res["group-rooms-participant-minutes"], goal);
+    });
+}
 
 function getTotalUsers() {
     sendRequestToServer({type: "POST", url: "/admin/getTotalUsers", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {

@@ -14,6 +14,11 @@ import threading
 
 import time
 from bson import json_util
+from twilio.rest import Client
+
+from ..editor.controllers import twilio_account_sid
+
+twilio_auth_token = "c539e5ea6e7bd92a6c869077664ee280"
 
 panel = Blueprint("adminpanel", __name__,
                       static_folder="static", template_folder="templates")
@@ -89,6 +94,33 @@ def getLocationDataRoute():
 @jwt_required
 def getTodaysTasksRoute():
     return json.dumps({"res": adminPanel.getTodaysCreatedTasks()})
+
+@panel.route('/getCreatedPresentations', methods=["GET"])
+@jwt_required
+def getTodaysPresentationsRoute():
+    return json.dumps({"res": adminPanel.getTodaysCreatedPresentations()})
+
+@panel.route('/getCreatedSlides', methods=["GET"])
+@jwt_required
+def getTodaysSlidesRoute():
+    return json.dumps({"res": adminPanel.getTodaysCreatedSlides()})
+
+@panel.route('/getVideoChatInformation', methods=["GET"])
+@jwt_required
+def getVideoChatInformationRoute():
+    client = Client(twilio_account_sid, twilio_auth_token)
+    records = client.usage.records.today.list()
+    duration = dict()
+    for el in records:
+        print(el.category, ",", el.usage)
+        if el.category == "group-rooms-participant-minutes":
+            print(el.start_date, el.end_date)
+            if el.category not in duration:
+                duration[el.category] = 0
+            duration[el.category] += float(el.usage)
+    return json.dumps({"res": duration})
+
+
 
 @socketio.on('connectUser')
 def userHasConnected(json):

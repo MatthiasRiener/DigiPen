@@ -2,6 +2,7 @@ from ..models.Canvas import Canvas
 from ..db.settings import mongoclient
 
 import json
+import time
 import os
 from bson import json_util
 
@@ -54,7 +55,7 @@ class CanvasRepository():
             os.path.join(os.getcwd(), os.path.dirname(__file__)))
         with open(os.path.join(__location__, 'canvasObj.json')) as json_file:
             data = json.load(json_file)
-            res = mongoclient.db['canvas'].insert_one({"p_id": p_id, "s_id": s_id, "canvas": data})
+            res = mongoclient.db['canvas'].insert_one({"p_id": p_id, "s_id": s_id, "canvas": data, "created": time.time()})
         return self.getSpecificSlide(object_id=res.inserted_id)
 
     def getSpecificSlide(self, object_id):
