@@ -7,4 +7,5 @@ config.js
 .env.staging
 
 __pycache__/
+.realm-export.json
 
