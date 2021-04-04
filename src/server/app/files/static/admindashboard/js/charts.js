@@ -61,6 +61,8 @@ var axisUserCount;
 
 
 function showDailyActiveUsers(dailyData) {
+    console.clear()
+    console.log(dailyData)
 
     // Create chart instance
     var chart = am4core.create("dashboardBottom-left-left-top-inner", am4charts.XYChart);
@@ -103,8 +105,7 @@ function showDailyActiveUsers(dailyData) {
     series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
     series.columns.template.fillOpacity = .8;
 
-    categoryAxis.sortBySeries = series;
-    categoryAxis.renderer.inversed = true;
+  
 
     var topContainer = chart.chartContainer.createChild(am4core.Container);
     topContainer.layout = "absolute";
@@ -121,7 +122,6 @@ function showDailyActiveUsers(dailyData) {
     axisTitle.align = "left"
 
 
-    console.clear();
     
 
     axisUserCount = topContainer.createChild(am4core.Label);
@@ -143,6 +143,16 @@ function showDailyActiveUsers(dailyData) {
     columnTemplate.strokeWidth = 2;
     columnTemplate.strokeOpacity = 1;
 
+
+    chart.events.on("beforedatavalidated", function(ev) {
+        
+        chart.data.sort(function(a, b) {
+
+            console.log(a)
+            console.log( Date.parse(a.day) - (Date.parse(b.day)));
+          return ( Date.parse(a.day) - (Date.parse(b.day)));
+        });
+    });
 
 }
 
