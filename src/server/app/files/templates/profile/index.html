@@ -22,6 +22,11 @@
     <script type="text/javascript" defer>
         setAToken("{{ access }}");
         setRToken("{{ refresh }}");
+        if ("{{ loginSucceeded }}") {
+            console.log("Redirect from LogiN!")
+            getCurrentLocation();
+
+        }
     </script>
     
     <script src={{ url_for('static', filename="profile/js/requests.js") }} type="text/javascript" defer></script>

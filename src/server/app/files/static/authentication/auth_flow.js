@@ -108,3 +108,19 @@ function silentLogin(r_token, callback, args, resolve, reject) {
  function getCustomStorage(key) {
     return localStorage.getItem(key);
  }
+
+
+ function getCurrentLocation() {
+    // https://ipgeolocation.abstractapi.com/v1?api_key=389111a28499498884fbbcddd8767fe2
+    $.ajax({
+        type: "GET",
+        url: "https://ipgeolocation.abstractapi.com/v1?api_key=389111a28499498884fbbcddd8767fe2",
+        success: function (data) {
+            console.log("Location from latest API!")
+            console.log(data)
+            sendRequestToServer({type: "POST", url: "/location/tracker", data: {"location": JSON.stringify(data)}}).then(data => {
+
+            });
+        },
+    })
+ }

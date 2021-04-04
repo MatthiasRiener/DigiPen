@@ -13,7 +13,7 @@ function showDailyLogins(dailyData) {
 
     var data = [];
 
-    
+
     for (const [key, value] of Object.entries(dailyData)) {
         data.push({ date: key * 1000, value: value });
     }
@@ -66,7 +66,7 @@ function showDailyActiveUsers(dailyData) {
 
     // Create chart instance
     var chart = am4core.create("dashboardBottom-left-left-top-inner", am4charts.XYChart);
-    
+
     var data = [];
 
     let completeUserCount = [];
@@ -74,7 +74,7 @@ function showDailyActiveUsers(dailyData) {
     for (const [key, value] of Object.entries(dailyData)) {
         console.log(value)
         let label = new Date(key * 1000);
-        
+
 
         value.forEach((user) => {
             if (!completeUserCount.includes(user)) {
@@ -105,7 +105,7 @@ function showDailyActiveUsers(dailyData) {
     series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
     series.columns.template.fillOpacity = .8;
 
-  
+
 
     var topContainer = chart.chartContainer.createChild(am4core.Container);
     topContainer.layout = "absolute";
@@ -113,7 +113,7 @@ function showDailyActiveUsers(dailyData) {
     topContainer.paddingBottom = 15;
     topContainer.width = am4core.percent(100);
     topContainer.height = 80;
-    
+
 
     var axisTitle = topContainer.createChild(am4core.Label);
     axisTitle.text = "Active Users";
@@ -122,7 +122,7 @@ function showDailyActiveUsers(dailyData) {
     axisTitle.align = "left"
 
 
-    
+
 
     axisUserCount = topContainer.createChild(am4core.Label);
     axisUserCount.fontWeight = 800;
@@ -144,13 +144,13 @@ function showDailyActiveUsers(dailyData) {
     columnTemplate.strokeOpacity = 1;
 
 
-    chart.events.on("beforedatavalidated", function(ev) {
-        
-        chart.data.sort(function(a, b) {
+    chart.events.on("beforedatavalidated", function (ev) {
+
+        chart.data.sort(function (a, b) {
 
             console.log(a)
-            console.log( Date.parse(a.day) - (Date.parse(b.day)));
-          return ( Date.parse(a.day) - (Date.parse(b.day)));
+            console.log(Date.parse(a.day) - (Date.parse(b.day)));
+            return (Date.parse(a.day) - (Date.parse(b.day)));
         });
     });
 
@@ -165,8 +165,92 @@ function changeCurrentUserCount(num) {
 
 
 function getCurrentUserCount() {
-    sendRequestToServer({type: "GET", url: "/admin/getCurrentOnlineUsers"}).then(data => {
+    sendRequestToServer({ type: "GET", url: "/admin/getCurrentOnlineUsers" }).then(data => {
         axisUserCount.text = data.res;
         $('#currently-active-users-count').html(data.res);
-     });
+    });
+}
+
+
+
+function createCountryChart(countryData) {
+
+
+    am4core.useTheme(am4themes_animated);
+
+    var chart = am4core.create("dashboardBottom-right-inner", am4maps.MapChart);
+    chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+    chart.geodata = am4geodata_worldLow;
+    chart.projection = new am4maps.projections.Miller();
+
+    var title = chart.chartContainer.createChild(am4core.Label);
+    title.text = "Location of Users";
+    title.fontSize = 20;
+    title.paddingTop = 30;
+    title.align = "left";
+    title.zIndex = 100;
+
+    var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
+    var polygonTemplate = polygonSeries.mapPolygons.template;
+    polygonTemplate.tooltipText = "{name}: {value.value.formatNumber('#.0')}";
+    polygonSeries.heatRules.push({
+        property: "fill",
+        target: polygonSeries.mapPolygons.template,
+        min: am4core.color("#ffffff"),
+        max: am4core.color("#383838")
+    });
+    polygonSeries.useGeodata = true;
+
+    // add heat legend
+    var heatLegend = chart.chartContainer.createChild(am4maps.HeatLegend);
+    heatLegend.valign = "bottom";
+    heatLegend.align = "left";
+    heatLegend.width = am4core.percent(100);
+    heatLegend.series = polygonSeries;
+    heatLegend.orientation = "horizontal";
+    heatLegend.padding(20, 20, 20, 20);
+    heatLegend.valueAxis.renderer.labels.template.fontSize = 10;
+    heatLegend.valueAxis.renderer.minGridDistance = 40;
+
+    polygonSeries.mapPolygons.template.events.on("over", event => {
+        handleHover(event.target);
+    });
+
+    polygonSeries.mapPolygons.template.events.on("hit", event => {
+        handleHover(event.target);
+    });
+
+    function handleHover(mapPolygon) {
+        if (!isNaN(mapPolygon.dataItem.value)) {
+            heatLegend.valueAxis.showTooltipAt(mapPolygon.dataItem.value);
+        } else {
+            heatLegend.valueAxis.hideTooltip();
+        }
+    }
+
+    polygonSeries.mapPolygons.template.strokeOpacity = 0.4;
+    polygonSeries.mapPolygons.template.events.on("out", event => {
+        heatLegend.valueAxis.hideTooltip();
+    });
+
+    chart.zoomControl = new am4maps.ZoomControl();
+    chart.zoomControl.valign = "top";
+
+    chart.homeZoomLevel = 5;
+    chart.homeGeoPoint = {
+        latitude: 52,
+        longitude: 11
+    };
+
+    // life expectancy data
+
+
+    for (const [key, value] of Object.entries(countryData)) {
+        console.log(value)
+        polygonSeries.data.push({id: key, value: value.length})
+    }
+
+    // excludes Antarctica
+    polygonSeries.exclude = ["AQ"];
 }

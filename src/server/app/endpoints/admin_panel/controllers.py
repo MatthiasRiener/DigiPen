@@ -7,7 +7,7 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
                                 set_refresh_cookies, unset_jwt_cookies, decode_token)
 
 from ...repository.AdminPanelRepository import AdminPanelRepository
-
+from ...repository.LocationRepository import LocationRepository
 
 import json
 import threading
@@ -20,7 +20,7 @@ panel = Blueprint("adminpanel", __name__,
 
 
 adminPanel = AdminPanelRepository(testing=False)
-
+locationRepo = LocationRepository(testing=False)
 
 usersConnected = dict()
 
@@ -75,6 +75,15 @@ def getActiveUsersOverTimeRoute():
 @jwt_required
 def getCurrentOnlineUsersRoute():
     return json.dumps({"res": len(usersConnected)})
+
+
+@panel.route('/getLocation', methods=["POST"])
+@jwt_required
+def getLocationDataRoute():
+    data = request.form
+    start = data["start"]
+    end = data["end"]
+    return json.dumps({"res": locationRepo.getUsersAndLocation(start, end)})
 
 
 

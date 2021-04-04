@@ -49,7 +49,7 @@ def login():
     refresh_token = create_refresh_token(identity=user_id)
 
     redir = render_template('/profile/index.html',
-                            access=access_token, refresh=refresh_token)
+                            access=access_token, refresh=refresh_token, loginSucceeded=True)
     return redir
 
 

@@ -16,6 +16,14 @@ function getData() {
     getTotalPresentation();
     getDailyLogins();
     getTotalActiveUsers();
+    getLocationDataFromUsers();
+}
+
+
+function getLocationDataFromUsers() {
+    sendRequestToServer({type: "POST", url: "/admin/getLocation", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {
+        createCountryChart(data.res)
+    });
 }
 
 function getTotalUsers() {
