@@ -65,7 +65,7 @@ export const template = `
             <p>Profile</p>
           </div>
 
-          <div class="nav-bar-element report-bug-item">
+          <div class="nav-bar-element report-bug-item" id="reportBug">
             <ion-icon name="bug-outline" class="icon-navbar"></ion-icon>
             <p>Report Bug</p>
           </div>

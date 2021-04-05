@@ -16,6 +16,7 @@ class FeedbackForm extends HTMLElement {
     this.shadowRoot.appendChild(this.temp.content.cloneNode(true));
     this.loadCss(this.getAttribute("path"));
 
+    this.container = this.shadowRoot.querySelector('.outerBox');
     this.form = this.shadowRoot.querySelector('#feedbackForm');
     this.corr = this.shadowRoot.querySelectorAll('.corr');
     this.title = this.shadowRoot.querySelector("#title");
@@ -83,9 +84,18 @@ class FeedbackForm extends HTMLElement {
   }
 
   connectedCallback() {
+    // intialize start state
+    this.classList.add('hidden');
   }
 
   disconnectedCallback() {
+  }
+
+  animateReportWindow() {
+    this.classList.remove('hidden');
+    this.classList.add('visible');
+
+    this.container.classList.add('popTransition');
   }
 }
 
