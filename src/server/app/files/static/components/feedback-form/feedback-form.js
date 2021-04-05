@@ -30,6 +30,12 @@ class FeedbackForm extends HTMLElement {
 
   initializeEvents() {
     let corr = this.corr;
+    let stage = this;
+
+    this.closePopup.onclick = function (e) {
+      stage.classList.remove('visible');
+      stage.classList.add('hidden');
+    }
 
     this.form.onsubmit = function (e) {
       e.preventDefault();
