@@ -1,7 +1,7 @@
 
 export const template =
     `
-    <div class="blockclicks">   
+    <div class="blockclicks" >   
         <div class="outerBox">
             <h1>Awww.. Tell us what happened</h1>
             <form id="feedbackForm">

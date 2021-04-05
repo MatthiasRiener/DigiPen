@@ -8,6 +8,7 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
 
 from ...repository.AdminPanelRepository import AdminPanelRepository
 from ...repository.LocationRepository import LocationRepository
+from ...repository.IssueRepository import IssueRepository
 
 from functools import wraps
 
@@ -28,6 +29,7 @@ panel = Blueprint("adminpanel", __name__,
 
 adminPanel = AdminPanelRepository(testing=False)
 locationRepo = LocationRepository(testing=False)
+issueRepo = IssueRepository(testing=False)
 
 usersConnected = dict()
 
@@ -83,6 +85,16 @@ def getTotalInteractionsRoute():
     start = data["start"]
     end = data["end"]
     return adminPanel.getInteractions(start=start, end=end)
+
+@panel.route('/getIssues', methods=["POST"])
+@jwt_required
+@admin_required()
+def getTotalIssuesRoute():
+    data = request.form
+    start = data["start"]
+    end = data["end"]
+    return issueRepo.getIssues(start=start, end=end)
+
 
 @panel.route('/getTotalPresentations', methods=["POST"])
 @jwt_required

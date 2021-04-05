@@ -22,9 +22,27 @@ iss = Blueprint("issues", __name__,
 
 @iss.route('/submitIssue', methods=["POST"])
 @jwt_required
-def getTotalUsersRoute():
+def submitNewIssueRoute():
     data = request.form
     user = get_jwt_identity()
 
     status = issueRepo.createIssue(data, user)
     return json.dumps({"res": status})
+
+@iss.route('/getSpecificIssue', methods=["POST"])
+@jwt_required
+def getSpecificIssue():
+    data = request.form
+    issue_id = data["id"]
+
+    issue = issueRepo.getIssue(i_id=issue_id)
+    return json.dumps({"res": issue})
+
+@iss.route('/closeIssue', methods=["POST"])
+@jwt_required
+def closeSpecificIssue():
+    data = request.form
+    issue_id = data["id"]
+
+    issue = issueRepo.closeIssue(i_id=issue_id)
+    return json.dumps({"res": issue})

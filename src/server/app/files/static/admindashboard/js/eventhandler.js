@@ -120,17 +120,69 @@ Array.prototype.forEach.call(dotElems_country, (dotElem_country) => {
 /**
  * Datasheet Popup handler
  */
-document.querySelectorAll('.openDataSheet').forEach(element => {
-	element.addEventListener('click', function (e) {
+
+
+	$('body').on('click', '.dashboard-issues-inner-container-item', function() {
+
+		console.log("ISSUE WAS CLICKED")
+		const clickedIssue = $(this);
+		console.log(clickedIssue.data('issueid'))
+
+		sendRequestToServer({type: "POST", url: "/issues/getSpecificIssue", data: {id: clickedIssue.data('issueid')}}).then(data => {
+			console.log("data")
+			console.log(data);
+			$("#feedbackSheet").addClass("feedbackSheetVisible");
+			$("#feedbackSheet").data('issueId', data.res._id.$oid);
+			$("#feedbackSheetTitle").text(data.res.issue.title);
+			$("#feedbackSheetUser").text(data.res.u_id.name);
+			$("#feedbackSheetCategory").text(data.res.issue.cat);
+			$("#feedbackSheetDescription").text(data.res.issue.desc);
+		 });
+		/*
 		$("#feedbackSheet").addClass("feedbackSheetVisible");
 		$("#feedbackSheetTitle").text(this.dataset.title);
 		$("#feedbackSheetUser").text(this.dataset.email);
 		$("#feedbackSheetCategory").text(this.dataset.category);
 		$("#feedbackSheetDescription").text(this.dataset.description);
-	});
-});
+		*/
+	})
+
+	
+	$('.issue-finished').on('click', function() {
+		const curIssue = $("#feedbackSheet").data('issueId');
+
+		console.log("ISSUE FINISHED", curIssue)
+		sendRequestToServer({type: "POST", url: "/issues/closeIssue", data: {id: curIssue}}).then(data => {
+			$("#feedbackSheet").removeClass("feedbackSheetVisible");
+			$("#feedbackSheet").addClass("feedbackSheetHidden");
+			getReportedIssues();
+		});
+
+	})
+
 
 document.getElementById('closeFeedbackSheet').addEventListener('click', function () {
 	$("#feedbackSheet").removeClass("feedbackSheetVisible");
 	$("#feedbackSheet").addClass("feedbackSheetHidden");
 });
+
+
+function insertIssues(issues) {
+	$('.dashboard-issues-inner-container').empty();
+	 var index = 0;
+	issues.forEach((issue) => {
+		index++;
+		var d = new Date(issue.submitted * 1000)
+		$('.dashboard-issues-inner-container').append(
+			`
+			<div class="dashboard-issues-inner-container-item" data-issueId="${issue._id.$oid}">
+                <div class="dashboard-issues-inner-container-item-index">${index}.</div>
+                <div class="dashboard-issues-inner-container-item-writer">${issue.u_id.name}</div>
+                <div class="dashboard-issues-inner-container-item-title">${issue.issue.title}</div>
+                <div class="dashboard-issues-inner-container-item-category">${issue.issue.cat}</div>
+                <div class="dashboard-issues-inner-container-item-issue-date">${d.toLocaleDateString()}</div>
+            </div>
+			`
+		);
+	})
+}

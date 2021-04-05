@@ -585,3 +585,73 @@
 .feedbackSheetVisible {
     visibility: visible;
 }
+
+.dashboard-issues-container {
+    width: 100%;
+    height: 50vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1vh;
+}
+
+.dashboard-issues-inner {
+    margin: 3vh;
+    height: 100%;
+    width: 100%;
+}
+
+.dashboard-issues-inner-title {
+    width: 100%;
+    height: 16%;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid rgba(149, 157, 165, 0.4);
+
+}
+
+.dashboard-issues-inner-title p {
+    
+    color: #383838;
+    font-weight: 600;
+    font-size: 26px;
+    margin: 2vh;
+}
+.dashboard-issues-inner-container {
+    height: 84%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.dashboard-issues-inner-container-item {
+    height: 8vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 2px solid rgba(149, 157, 165, 0.4);
+    
+}
+
+.dashboard-issues-inner-container-item div {
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 19px;
+    color: #383838;
+}
+
+
+.issue-finished {
+    width: 100px;
+    height: 100px;
+    background: #383838;
+    color: white;
+}

@@ -49,7 +49,7 @@
 
     <check-notifications id="notifications-comp"></check-notifications>
 
-    <feedback-form id="reportform-comp"></feedback-form>
+    <feedback-form  id="reportform-comp"></feedback-form>
 
     <top-nb id="zNav"></top-nb>
 
@@ -65,6 +65,7 @@
             <p id="feedbackSheetCategory"></p>
             <h3>Description:</h3>
             <p id="feedbackSheetDescription"></p>
+            <button class="issue-finished">Close Issue</button>
         </div>
     </div>
     <!-- Feedback Datasheet Popup End-->
@@ -77,10 +78,7 @@
         <div id="contentbox">
             <div id="dashboardHeader">
                 <div id="dashboardHeader-left">Overview</div>
-                <button class="openDataSheet" data-title="Popup doesn't close" data-email="email@mail.com"
-                    data-category="Popup doesn't close"
-                    data-description="The workspace popup does not close. Please fix this issue. Kind regards, Your bot userThe workspace popup does not close. Please fix this issue. Kind regards, Your bot userThe workspace popup does not close. Please fix this issue. Kind regards, Your bot userThe workspace popup does not close. Please fix this issue. Kind regards, Your bot userThe workspace popup does not close. Please fix this issue. Kind regards, Your bot userThe workspace popup does not close. Please fix this issue. Kind regards, Your bot userThe workspace popup does not close. Please fix this issue. Kind regards, Your bot userThe workspace popup does not close. Please fix this issue. Kind regards, Your bot userThe workspace popup does not close. Please fix this issue. Kind regards, Your bot userThe workspace popup does not close. Please fix this issue. Kind regards, Your bot user">HI
-                    :D</button>
+                
                 <div id="dashboardHeader-right">
                     <input id="dashboardStart" type="date">
                     <input id="dashboardEnd" type="date">
@@ -341,6 +339,26 @@
 
                         </div>
 
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-issues-container">
+                <div class="dashboard-issues-inner box">
+                    <div class="dashboard-issues-inner-title">
+                        <p>
+                            Reported User Issues
+                        </p>
+                        <p style="margin-left: auto" id="issues-count">
+                            (3)
+                        </p>
+                    </div>
+
+                    <div class="dashboard-issues-inner-container">
+
+                        
+
+                       
                     </div>
                 </div>
             </div>
