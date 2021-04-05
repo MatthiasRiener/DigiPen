@@ -70,12 +70,7 @@ def getInvites():
     return presRepo.getInvites(user_id=user_id)
 
 
-@socketio.on('connectUser')
-def connect(json):
-    u_id = json['user_id']
-    join_room(u_id)
-    send(u_id + " has joined the room", room=u_id)
-# websockets
+
 
 
 @socketio.on("searchUser")

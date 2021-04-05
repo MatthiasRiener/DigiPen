@@ -42,6 +42,8 @@ function secondsToHms(d) {
     var h = Math.floor(d / 3600);
     var m = Math.floor(d % 3600 / 60);
 
- 
-    return h + ":" + m 
+    var h_r = h < 10 ? '0' + h : h;
+    var m_r = m < 10 ? '0' + m : m;
+
+    return h_r + ":" + m_r;
 }

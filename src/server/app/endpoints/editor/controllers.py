@@ -9,6 +9,8 @@ from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_r
 from flask_socketio import emit, join_room, leave_room, send
 
 
+import threading
+
 from ...repository.EditorRepository import EditorRepository
 from ...repository.AuthenticationRepository import AuthenticationRepository
 from ...repository.PresentationRepository import PresentationRepository
@@ -117,12 +119,6 @@ def connectVideoChatRoute():
 
 # realtime support
 
-@socketio.on('connectUser')
-def connect(json):
-    u_id = json['user_id']
-    join_room(u_id)
-    send("Welcome to the faggot channel. You're a faggot.", room=u_id)
-
 
 @socketio.on('updateSlide')
 def updateSlideSocket(json):
@@ -130,17 +126,18 @@ def updateSlideSocket(json):
     p_id = json["p_id"]
     s_id = json["s_id"]
 
-    broadCastMessageExceptOwn("slideUpdateNotify", p_id, json_util.dumps({"u_id": u_id, "p_id": p_id, "s_id": s_id}), sender_id=u_id)
+    thread = threading.Thread(target=broadCastMessageExceptOwn, kwargs=dict(event="slideUpdateNotify", pres_id=p_id, msg=json_util.dumps({"u_id": u_id, "p_id": p_id, "s_id": s_id}), sender_id=u_id))
+    thread.start()
 
 
 def broadCastMessageExceptOwn(event, pres_id, msg, sender_id):
     for user in presRepo.getPresentation(pres_id).users:
-        print("Sending to user....")
-        if user['status'] == 'accepted' and user["u_id"] != sender_id:
-            emit(event, msg, room=user["u_id"])
+        print("Sending to user....", sender_id)
+        if user["u_id"] != sender_id:
+            socketio.emit(event, msg, room=user["u_id"])
 
 def broadCastMessage(event, pres_id, msg):
     for user in presRepo.getPresentation(pres_id).users:
         print("Sending to user....")
         if user['status'] == 'accepted':
-            emit(event, msg, room=user["u_id"])
+            socketio.emit(event, msg, room=user["u_id"])

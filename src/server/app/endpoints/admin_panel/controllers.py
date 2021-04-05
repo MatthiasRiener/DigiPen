@@ -202,6 +202,7 @@ def getVideoChatInformationRoute():
 def userHasConnected(json):
     print("User has connected!!!!")
     usersConnected[json["user_id"]] = request.sid
+    join_room(json["user_id"])
     thread = threading.Thread(target=handleConnect, kwargs=dict(user_id=json["user_id"]))
     thread.start()
 
