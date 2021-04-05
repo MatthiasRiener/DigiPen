@@ -38,9 +38,10 @@ socket.on('slideCreatedNotify', function(data) {
 
     console.log("NEW SLIDE CREATED EVENT")
     sendRequestToServer({type: "POST", url: "/editor/getSpecificSlide", data: {s_id: data.s_id}}).then(data => {
-
+        console.log(data);
         // überprüfen ob der User auf der geänderten Folie ist
         if(data.res._id.$oid == getCanvasID()) {
+            showChangeNotification(data.res.latestChange);
             loadCanvasFromJson(data.res.canvas);
             setCanvasID(data.res._id.$oid);
             canvas.setWidth($('#content-main-inner-spacing-middle').width());
@@ -57,6 +58,7 @@ socket.on('slideUpdateNotify', function (data) {
 
         // überprüfen ob der User auf der geänderten Folie ist
         if(data.res._id.$oid == getCanvasID()) {
+            showChangeNotification(data.res.latestChange);
             loadCanvasFromJson(data.res.canvas);
             setCanvasID(data.res._id.$oid);
             canvas.setWidth($('#content-main-inner-spacing-middle').width());
@@ -76,3 +78,17 @@ socket.on('slideUpdateNotify', function (data) {
         });
     });
 })
+
+
+function showChangeNotification(username) {
+    const container = $('.notify-about-changes');
+    container.html(username + " made changes!");
+
+    if(!container.hasClass("notify-animation")) {
+        container.addClass("notify-animation");
+    }
+
+    container.on("animationend", function(){
+        container.removeClass("notify-animation");
+    });
+}

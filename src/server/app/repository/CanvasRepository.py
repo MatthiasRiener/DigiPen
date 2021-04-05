@@ -7,7 +7,9 @@ import os
 from bson import json_util
 
 from bson.objectid import ObjectId
+from ..repository.AuthenticationRepository import AuthenticationRepository
 
+aRepo = AuthenticationRepository(testing=False)
 
 class CanvasRepository():
     def __init__(self, testing):
@@ -36,7 +38,7 @@ class CanvasRepository():
 
 
 
-    def createSlide(self, p_id):
+    def createSlide(self, p_id, user):
         """canvasObj = self.readCanvasJson()
         pidJSON = {"p_id": p_id}
         canvasObj[0].update(pidJSON)
@@ -55,7 +57,7 @@ class CanvasRepository():
             os.path.join(os.getcwd(), os.path.dirname(__file__)))
         with open(os.path.join(__location__, 'canvasObj.json')) as json_file:
             data = json.load(json_file)
-            res = mongoclient.db['canvas'].insert_one({"p_id": p_id, "s_id": s_id, "canvas": data, "created": time.time()})
+            res = mongoclient.db['canvas'].insert_one({"p_id": p_id, "s_id": s_id, "canvas": data, "created": time.time(), "latestChange": aRepo.retrieveUser(user)["name"]})
         return self.getSpecificSlide(object_id=res.inserted_id)
 
     def getSpecificSlide(self, object_id):
@@ -70,7 +72,7 @@ class CanvasRepository():
         for el in self.getCanvas(p_id=p_id):
             response.append(json.loads(json_util.dumps(el)))
         return response
-    def updateCanvas(self, p_id, canvas, cid,  width, height):
+    def updateCanvas(self, p_id, canvas, cid,  width, height, user):
         print("updating canvas!",cid)
         print(p_id)
         print("====")
@@ -82,7 +84,7 @@ class CanvasRepository():
             canvas = json.loads(canvas)
 
         mongoclient.db['canvas'].update_one({"_id": ObjectId(cid)}, 
-       {"$set": {"canvas": canvas, 'latestWidth': width, 'latestHeight': height}})
+       {"$set": {"canvas": canvas, 'latestChange': aRepo.retrieveUser(user)["name"]}})
         return self.getSpecificSlide(object_id=cid)
 
     def deleteAll(self):

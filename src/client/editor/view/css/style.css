@@ -350,6 +350,7 @@
     width: 58vw;
     height: 32.625vw;
     background-color: var(--dark-grey);
+    z-index: 2;
 }
 
 #content-main-inner-spacing-bottom {

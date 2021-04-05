@@ -313,7 +313,6 @@
     height: 97%;
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
 }
 
@@ -347,6 +346,7 @@
     width: 58vw;
     height: 32.625vw;
     background-color: var(--dark-grey);
+    z-index: 2;
 }
 
 #content-main-inner-spacing-bottom {
@@ -2112,3 +2112,52 @@ video {
     width: 100%;
     height: 100%;
 }
+
+
+.notify-about-changes {
+    width: 40%;
+    height: 40px;
+    background: #383838;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 2%;
+    color: white;
+    transform: translateY(100%);
+
+}
+
+.notify-animation {
+    animation-name: fade-in-animation-notify;
+    animation-duration: 2.4s;
+    animation-timing-function: ease-in-out;
+
+
+}
+
+@keyframes fade-in-animation-notify {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    6% {
+        transform: translateY(-10%);
+        opacity: 1;
+    }
+
+    8% {
+        transform: translateY(0%);
+    }
+
+    90% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+   
+  }
