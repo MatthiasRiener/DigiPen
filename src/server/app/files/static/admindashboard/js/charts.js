@@ -61,7 +61,6 @@ var axisUserCount;
 
 
 function showDailyActiveUsers(dailyData) {
-    console.clear()
     console.log(dailyData)
 
     // Create chart instance
@@ -175,7 +174,7 @@ function createCountryChart(countryData) {
 
     am4core.useTheme(am4themes_animated);
 
-    var chart = am4core.create("dashboardBottom-right-inner", am4maps.MapChart);
+    var chart = am4core.create("country-unique-map-requests", am4maps.MapChart);
     chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
     chart.geodata = am4geodata_worldLow;
@@ -258,6 +257,107 @@ function createCountryChart(countryData) {
     // excludes Antarctica
     polygonSeries.exclude = ["AQ"];
 }
+
+
+
+
+
+
+
+function createCountryChartRequests(countryData) {
+
+
+    am4core.useTheme(am4themes_animated);
+
+    var chart = am4core.create("country-request-map", am4maps.MapChart);
+    chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+    chart.geodata = am4geodata_worldLow;
+    chart.projection = new am4maps.projections.Miller();
+
+    var title = chart.chartContainer.createChild(am4core.Label);
+    title.text = "Location of Requests";
+    title.fontSize = 24;
+    title.paddingTop = 30;
+    title.paddingLeft = 30;
+    title.align = "left";
+    title.fontWeight = 600;
+    title.zIndex = 100;
+
+    var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
+    polygonSeries.minimum = 0;
+    var polygonTemplate = polygonSeries.mapPolygons.template;
+    polygonTemplate.tooltipText = "{name}: {value.value.formatNumber('#.0')}";
+    polygonSeries.heatRules.push({
+        property: "fill",
+        target: polygonSeries.mapPolygons.template,
+        min: am4core.color("#b8b8b8"),
+        max: am4core.color("#383838")
+    });
+    polygonSeries.useGeodata = true;
+
+    // add heat legend
+    var heatLegend = chart.chartContainer.createChild(am4maps.HeatLegend);
+    heatLegend.valign = "bottom";
+    heatLegend.align = "left";
+    heatLegend.width = am4core.percent(100);
+    heatLegend.series = polygonSeries;
+    heatLegend.orientation = "horizontal";
+    heatLegend.padding(20, 20, 20, 20);
+    heatLegend.valueAxis.renderer.labels.template.fontSize = 10;
+    heatLegend.valueAxis.renderer.minGridDistance = 40;
+
+    polygonSeries.mapPolygons.template.events.on("over", event => {
+        handleHover(event.target);
+    });
+
+    polygonSeries.mapPolygons.template.events.on("hit", event => {
+        handleHover(event.target);
+    });
+
+    function handleHover(mapPolygon) {
+        if (!isNaN(mapPolygon.dataItem.value)) {
+            heatLegend.valueAxis.showTooltipAt(mapPolygon.dataItem.value);
+        } else {
+            heatLegend.valueAxis.hideTooltip();
+        }
+    }
+
+    polygonSeries.mapPolygons.template.strokeOpacity = 0.4;
+    polygonSeries.mapPolygons.template.events.on("out", event => {
+        heatLegend.valueAxis.hideTooltip();
+    });
+
+    chart.zoomControl = new am4maps.ZoomControl();
+    chart.zoomControl.valign = "top";
+
+    chart.homeZoomLevel = 5;
+    chart.homeGeoPoint = {
+        latitude: 52,
+        longitude: 11
+    };
+
+    // life expectancy data
+
+
+    for (const [key, value] of Object.entries(countryData)) {
+        console.log(value)
+        polygonSeries.data.push({ id: key, value: value.length })
+    }
+
+
+    chart.background.fill = am4core.color("#85c5e3");
+    chart.background.fillOpacity = 1;
+
+    // excludes Antarctica
+    polygonSeries.exclude = ["AQ"];
+}
+
+
+
+
+
+
 
 
 function dailyGoalPrinter(todaysNumber, goal) {

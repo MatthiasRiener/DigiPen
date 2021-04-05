@@ -21,12 +21,37 @@ function getData() {
     getDailyGoalDataPresentations();
     getDailyGoalDataSlides();
     getDailyInformationVideoChat();
+    getLocationWithCount();
+    getRequestDataWithLocation();
+    getLocationDataFromRequests();
 }
 
 
 function getLocationDataFromUsers() {
     sendRequestToServer({type: "POST", url: "/admin/getLocation", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {
         createCountryChart(data.res)
+    });
+}
+
+function getLocationDataFromRequests() {
+    sendRequestToServer({type: "POST", url: "/admin/getLocationFromRequests", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {
+        createCountryChartRequests(data.res)
+    });
+}
+
+function getLocationWithCount() {
+    sendRequestToServer({type: "POST", url: "/admin/getLocationCount", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {
+        console.log("COUNTYX DATA")
+        console.log(data);
+        insertLastLoginFromCountryList(data.res, data.total_request);
+    });
+}
+
+function getRequestDataWithLocation() {
+    sendRequestToServer({type: "POST", url: "/admin/getLocationRequestsCount", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {
+        console.log("COUNTYX DATA")
+        console.log(data);
+        insertRequestFromCountry(data.res, data.total_request);
     });
 }
 

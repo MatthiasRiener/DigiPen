@@ -20,7 +20,7 @@ from twilio.rest import Client
 
 from ..editor.controllers import twilio_account_sid
 
-twilio_auth_token = "c539e5ea6e7bd92a6c869077664ee280"
+twilio_auth_token = "a03a300a56a986d5a49badc4a35842d7"
 
 panel = Blueprint("adminpanel", __name__,
                       static_folder="static", template_folder="templates")
@@ -128,6 +128,41 @@ def getLocationDataRoute():
     start = data["start"]
     end = data["end"]
     return json.dumps({"res": locationRepo.getUsersAndLocation(start, end)})
+
+
+@panel.route('/getLocationFromRequests', methods=["POST"])
+@jwt_required
+@admin_required()
+def getLocationDataFromRequestsRoute():
+    data = request.form
+    start = data["start"]
+    end = data["end"]
+    return json.dumps({"res": locationRepo.getRequestsAndLocation(start, end)})
+
+
+
+@panel.route('/getLocationCount', methods=["POST"])
+@jwt_required
+@admin_required()
+def getLocationWithCountRoute():
+    data = request.form
+    start = data["start"]
+    end = data["end"]
+    locationData, totalRequest = locationRepo.getUserCountWithLocation(start, end)
+    return json.dumps({"res": locationData, "total_request": totalRequest})
+
+
+@panel.route('/getLocationRequestsCount', methods=["POST"])
+@jwt_required
+@admin_required()
+def getLocationRequestsCountRoute():
+    data = request.form
+    start = data["start"]
+    end = data["end"]
+    locationData, totalRequest = locationRepo.getRequestsCountWithLocation(start, end)
+    return json.dumps({"res": locationData, "total_request": totalRequest})
+
+
 
 @panel.route('/getCreatedTasks', methods=["GET"])
 @jwt_required

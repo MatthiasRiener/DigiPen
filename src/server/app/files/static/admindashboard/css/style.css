@@ -249,6 +249,51 @@
 #dashboardBottom-left-right-inner {
     margin: 1vh;
     flex: 1;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#country-list-title {
+    font-size: 24px;
+    padding: 2vh;
+    font-weight: 600;
+
+}
+
+.country-list {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.country-list-title-div {
+    width: 100%;
+    height: 7vh;
+    border-bottom: 2px solid rgba(149, 157, 165, 0.4);
+}
+
+.country-list-item {
+    height: 7vh;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+    border-bottom: 2px solid rgba(149, 157, 165, 0.4);
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.country-list-name, .country-list-total-requests, .country-list-last-request {
+    width: 20%;
+}
+
+.country-list-flag {
+    background-size: cover;
+    background-position: center;
+    width: 50px;
+    height: 34px;
 }
 
 #dashboardBottom-right {
@@ -431,3 +476,92 @@
 .slider__slide:nth-child(4) {
     background: #4086fa;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.slider_country {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.slider__slides_country {
+    position: relative;
+    width: 200%;
+    height: 100%;
+    transition: transform 0.3s cubic-bezier(0.51, 0.92, 0.24, 1);
+    will-change: transform;
+}
+.slider_country[data-pos="0"] .slider__slides_country {
+    transform: translateX(0%);
+}
+.slider_country[data-pos="1"] .slider__slides_country {
+    transform: translateX(-50%);
+}
+
+.slider__slide_country {
+    float:left;
+    width: 50%;
+    height: 100%;
+}
+
+.slide-container_country {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.slider__dots_country {
+    display: flex;
+    position: absolute;
+    bottom: 1.5em;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.slider__dot_country, .slider__indicator_country {
+    display: block;
+    margin: 0 0.5em;
+    width: 1em;
+    height: 1em;
+    background: rgba(0, 0, 0, .5);
+    border-radius: 100px;
+}
+.slider__indicator_country {
+    position: absolute;
+    background: #383838;
+}
+.slider__indicator--left_country {
+    transition: left 0.3s cubic-bezier(0.51, 0.92, 0.24, 1.15), right 0.3s 0.1s cubic-bezier(0.51, 0.92, 0.24, 1.15);
+}
+.slider__indicator--right_country {
+    transition: left 0.3s 0.1s cubic-bezier(0.51, 0.92, 0.24, 1.15), right 0.3s cubic-bezier(0.51, 0.92, 0.24, 1.15);
+}
+.slider_country[data-pos="0"] .slider__indicator_country {
+    left: 0em;
+    right: 6em;
+}
+.slider_country[data-pos="1"] .slider__indicator_country {
+    left: 2em;
+    right: 4em;
+}
+
+
+
+
+
