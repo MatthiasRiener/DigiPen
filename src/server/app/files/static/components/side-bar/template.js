@@ -1,5 +1,5 @@
 
-  export const template = `
+export const template = `
         <div class="left-side-content">
           <p id="title-nav">Navigation</p>
 
@@ -63,6 +63,11 @@
           <div class="nav-bar-element-subtask profile-item">
             <ion-icon name="person-outline" class="icon-navbar"></ion-icon>
             <p>Profile</p>
+          </div>
+
+          <div class="nav-bar-element report-bug-item">
+            <ion-icon name="bug-outline" class="icon-navbar"></ion-icon>
+            <p>Report Bug</p>
           </div>
 
           <div class="nav-bar-element logout-item" id="logout">
