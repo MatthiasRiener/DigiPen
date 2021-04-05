@@ -533,17 +533,31 @@
 /* Feedback Sheet css */
 
 #feedbackSheet {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 11;
+}
+
+#feedbackSheet div {
     display: flex;
     justify-content: center;
     /* align-items: center; */
     flex-direction: column;
     background-color: white;
-    width: fit-content;
+    width: 80%;
     height: fit-content;
+    max-height: 80%;
     padding: 2vw;
     border-radius: 10px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
-    max-width: 400px;
     position: absolute;
     z-index: 11;
     left: 50%;

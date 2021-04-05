@@ -53,6 +53,22 @@
 
     <top-nb id="zNav"></top-nb>
 
+    <!-- Feedback Datasheet Popup + button with class="openDataSheet"  -->
+    <div id="feedbackSheet" class="feedbackSheetHidden">
+        <div>
+            <ion-icon name="close-outline" id="closeFeedbackSheet"></ion-icon>
+            <h3>Title:</h3>
+            <p id="feedbackSheetTitle"></p>
+            <h3>User:</h3>
+            <p id="feedbackSheetUser"></p>
+            <h3>Category:</h3>
+            <p id="feedbackSheetCategory"></p>
+            <h3>Description:</h3>
+            <p id="feedbackSheetDescription"></p>
+        </div>
+    </div>
+    <!-- Feedback Datasheet Popup End-->
+
     <div class="navandcontent">
         <side-bar id="sidebar-comp" path="../components/side-bar/styles.css"
             style="width: 17%; height: 100%; background-color: #F8F7F9;">
@@ -70,20 +86,6 @@
                     <input id="dashboardEnd" type="date">
                 </div>
             </div>
-
-            <!-- Feedback Datasheet Popup -->
-            <div id="feedbackSheet" class="feedbackSheetHidden">
-                <ion-icon name="close-outline" id="closeFeedbackSheet"></ion-icon>
-                <h3>Title:</h3>
-                <p id="feedbackSheetTitle"></p>
-                <h3>User:</h3>
-                <p id="feedbackSheetUser"></p>
-                <h3>Category:</h3>
-                <p id="feedbackSheetCategory"></p>
-                <h3>Description:</h3>
-                <p id="feedbackSheetDescription"></p>
-            </div>
-            <!-- Feedback Datasheet Popup End-->
 
             <div id="dashboardMain">
                 <div id="dashboardMain-left">
