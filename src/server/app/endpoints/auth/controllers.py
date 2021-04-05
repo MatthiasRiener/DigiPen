@@ -36,7 +36,6 @@ def login():
     user_name = user_creds.get('preferred_username')
     user_mail = user_creds.get('email')
     # test to get user
-    user = repo.createUser(user_id=user_id, name=user_name, email=user_mail, img=None, last_login=time.time(), created=time.time())
 
     print("CREDSS")
     print(user_creds)
@@ -47,10 +46,14 @@ def login():
     if "roles" in user_creds:
         access_token = create_access_token(identity=user_id, expires_delta=datetime.timedelta(seconds=10), user_claims={"is_administrator": ("slidea_admin" in user_creds["roles"])})
         refresh_token = create_refresh_token(identity=user_id, user_claims={"is_administrator": ("slidea_admin" in user_creds["roles"])} )
+        user = repo.createUser(user_id=user_id, name=user_name, email=user_mail, img=None, last_login=time.time(), created=time.time(), is_admin=("slidea_admin" in user_creds["roles"]) )
+
 
     else:
         access_token = create_access_token(identity=user_id, expires_delta=datetime.timedelta(seconds=10), user_claims={"is_administrator": False})
         refresh_token = create_refresh_token(identity=user_id, user_claims={"is_administrator": False})
+        user = repo.createUser(user_id=user_id, name=user_name, email=user_mail, img=None, last_login=time.time(), created=time.time(), is_admin=False)
+
 
     redir = render_template('/profile/index.html',
                             access=access_token, refresh=refresh_token, loginSucceeded=True)

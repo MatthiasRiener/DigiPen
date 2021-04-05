@@ -10,7 +10,7 @@ class AuthenticationRepository():
     def __init__(self, testing):
         self.testing = testing
 
-    def createUser(self, user_id, name, email, img, last_login, created):
+    def createUser(self, user_id, name, email, img, last_login, created, is_admin):
 
 
         
@@ -55,18 +55,22 @@ class AuthenticationRepository():
 
      
         if User.objects(u_id=user_id):
-            return self.retrieveUser(user_id=user_id)
+            return self.retrieveUser(user_id=user_id, isadmin=is_admin)
         else: 
             from .KeybindingRepository import KeybindingRepository
             keyRepo = KeybindingRepository(testing=False)
 
-            user = User(u_id=str(user_id), name=name, mail=email, img=img, last_login=last_login, created=time.time()).save()
+            user = User(u_id=str(user_id), name=name, mail=email, img=img, last_login=last_login, created=time.time(), isAdmin=is_admin).save()
             keyRepo.createKeybindings(user_id)
 
-            return self.retrieveUser(user_id=user_id)
+            return self.retrieveUser(user_id=user_id, isadmin=is_admin)
         return "User %s was successfully inserted." % (user_id)
 
-    def retrieveUser(self, user_id):
+    def retrieveAllAdmins(self):
+        users = [ob.to_mongo().to_dict()["mail"] for ob in User.objects(isAdmin=True)]
+        return users
+
+    def retrieveUser(self, user_id, isadmin):
 
         
         if user_id is None:
@@ -81,7 +85,7 @@ class AuthenticationRepository():
             return CustomException("No user was retrieved with the userid %s" % (user_id)).__str__()
         
         try:
-            User.objects(u_id=user_id).first().update(set__last_login=time.time())
+            User.objects(u_id=user_id).first().update(set__last_login=time.time(), isAdmin=isadmin)
             user = User.objects(u_id=user_id).first().to_mongo()
             return user
         except Exception as e:
