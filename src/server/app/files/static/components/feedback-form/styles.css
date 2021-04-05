@@ -114,14 +114,23 @@
         transform: scale(0.9);
         border-radius: 10px;
     }
-    ;
     75% {
         transform: scale(1.1);
         border-radius: 20px;
     }
-    ;
     100% {
         border-radius: 30px;
     }
-    ;
+}
+
+.blockclicks {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }

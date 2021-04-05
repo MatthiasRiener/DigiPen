@@ -23,6 +23,7 @@ class FeedbackForm extends HTMLElement {
     this.email = this.shadowRoot.querySelector("#email");
     this.category = this.shadowRoot.querySelector("#category");
     this.description = this.shadowRoot.querySelector("#description");
+    this.closePopup = this.shadowRoot.querySelector(".blockclicks")
 
     this.initializeEvents();
   }
