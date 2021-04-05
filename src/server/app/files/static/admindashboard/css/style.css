@@ -136,13 +136,11 @@
 #dashboardMain-right-inner {
     margin: 1vh;
     flex: 1;
-    
 }
 
 .title-section-user-login {
     width: 100%;
     height: 12%;
-
     display: flex;
     align-items: center;
     border-bottom: 2px solid rgba(149, 157, 165, 0.4);
@@ -168,12 +166,10 @@
     height: 7vh;
     background: white;
     border-bottom: 1px solid rgba(149, 157, 165, 0.4);
-
     display: flex;
     align-items: center;
     flex-direction: row;
 }
-
 
 .currently-active-user-profile-pic {
     width: 40px;
@@ -199,7 +195,6 @@
     color: #383838;
     font-size: 17px;
 }
-
 
 #dashboardBottom {
     width: 100%;
@@ -238,8 +233,6 @@
     display: flex;
 }
 
-
-
 #dashboardBottom-left-right {
     width: 70%;
     height: 100%;
@@ -249,7 +242,6 @@
 #dashboardBottom-left-right-inner {
     margin: 1vh;
     flex: 1;
-
     display: flex;
     flex-direction: column;
 }
@@ -258,7 +250,6 @@
     font-size: 24px;
     padding: 2vh;
     font-weight: 600;
-
 }
 
 .country-list {
@@ -276,10 +267,8 @@
 .country-list-item {
     height: 7vh;
     width: 100%;
-
     display: flex;
     flex-direction: row;
-
     border-bottom: 2px solid rgba(149, 157, 165, 0.4);
     align-items: center;
     justify-content: space-evenly;
@@ -321,7 +310,7 @@
     color: red;
 }
 
-#chartdiv {
+#chartdiv {
     width: 100%;
     height: 100%;
 }
@@ -334,7 +323,6 @@
     flex-direction: row;
 }
 
-
 .goal-canvas-container {
     width: 45%;
     height: 100%;
@@ -346,7 +334,6 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-
     color: rgba(255, 255, 255, 0.8);
     font-size: 18px;
 }
@@ -356,36 +343,13 @@
     font-size: 24px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .slider {
     position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
 }
+
 .slider__slides {
     position: relative;
     width: 400%;
@@ -393,20 +357,25 @@
     transition: transform 0.3s cubic-bezier(0.51, 0.92, 0.24, 1);
     will-change: transform;
 }
+
 .slider[data-pos="0"] .slider__slides {
     transform: translateX(0%);
 }
+
 .slider[data-pos="1"] .slider__slides {
     transform: translateX(-25%);
 }
+
 .slider[data-pos="2"] .slider__slides {
     transform: translateX(-50%);
 }
+
 .slider[data-pos="3"] .slider__slides {
     transform: translateX(-75%);
 }
+
 .slider__slide {
-    float:left;
+    float: left;
     width: 25%;
     height: 100%;
 }
@@ -414,7 +383,6 @@
 .slide-container {
     width: 100%;
     height: 100%;
-
     display: flex;
     flex-direction: row;
 }
@@ -426,6 +394,7 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
 .slider__dot, .slider__indicator {
     display: block;
     margin: 0 0.5em;
@@ -434,64 +403,56 @@
     background: rgba(255, 255, 255, .5);
     border-radius: 100px;
 }
+
 .slider__indicator {
     position: absolute;
     background: white;
     width: auto;
 }
+
 .slider__indicator--left {
     transition: left 0.3s cubic-bezier(0.51, 0.92, 0.24, 1.15), right 0.3s 0.1s cubic-bezier(0.51, 0.92, 0.24, 1.15);
 }
+
 .slider__indicator--right {
     transition: left 0.3s 0.1s cubic-bezier(0.51, 0.92, 0.24, 1.15), right 0.3s cubic-bezier(0.51, 0.92, 0.24, 1.15);
 }
+
 .slider[data-pos="0"] .slider__indicator {
     left: 0em;
     right: 6em;
 }
+
 .slider[data-pos="1"] .slider__indicator {
     left: 2em;
     right: 4em;
 }
+
 .slider[data-pos="2"] .slider__indicator {
     left: 4em;
     right: 2em;
 }
+
 .slider[data-pos="3"] .slider__indicator {
     left: 6em;
     right: 0em;
 }
 
-
-
 .slider__slide:nth-child(1) {
     background: #383838;
 }
+
 .slider__slide:nth-child(2) {
     background: #ffbd3c;
 }
+
 .slider__slide:nth-child(3) {
     background: #f8593e;
 }
+
 .slider__slide:nth-child(4) {
     background: #4086fa;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .slider_country {
     position: relative;
@@ -499,6 +460,7 @@
     height: 100%;
     overflow: hidden;
 }
+
 .slider__slides_country {
     position: relative;
     width: 200%;
@@ -506,15 +468,17 @@
     transition: transform 0.3s cubic-bezier(0.51, 0.92, 0.24, 1);
     will-change: transform;
 }
+
 .slider_country[data-pos="0"] .slider__slides_country {
     transform: translateX(0%);
 }
+
 .slider_country[data-pos="1"] .slider__slides_country {
     transform: translateX(-50%);
 }
 
 .slider__slide_country {
-    float:left;
+    float: left;
     width: 50%;
     height: 100%;
 }
@@ -522,7 +486,6 @@
 .slide-container_country {
     width: 100%;
     height: 100%;
-
     display: flex;
     flex-direction: column;
 }
@@ -534,6 +497,7 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
 .slider__dot_country, .slider__indicator_country {
     display: block;
     margin: 0 0.5em;
@@ -542,26 +506,68 @@
     background: rgba(0, 0, 0, .5);
     border-radius: 100px;
 }
+
 .slider__indicator_country {
     position: absolute;
     background: #383838;
 }
+
 .slider__indicator--left_country {
     transition: left 0.3s cubic-bezier(0.51, 0.92, 0.24, 1.15), right 0.3s 0.1s cubic-bezier(0.51, 0.92, 0.24, 1.15);
 }
+
 .slider__indicator--right_country {
     transition: left 0.3s 0.1s cubic-bezier(0.51, 0.92, 0.24, 1.15), right 0.3s cubic-bezier(0.51, 0.92, 0.24, 1.15);
 }
+
 .slider_country[data-pos="0"] .slider__indicator_country {
     left: 0em;
     right: 6em;
 }
+
 .slider_country[data-pos="1"] .slider__indicator_country {
     left: 2em;
     right: 4em;
 }
 
+/* Feedback Sheet css */
 
+#feedbackSheet {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+    background-color: white;
+    width: fit-content;
+    height: fit-content;
+    padding: 2vw;
+    border-radius: 10px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    max-width: 400px;
+    position: absolute;
+    z-index: 11;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
 
+#closeFeedbackSheet {
+    right: 2vw;
+    top: 2vw;
+    position: absolute;
+    font-size: x-large;
+}
 
+#feedbackSheet p {
+    margin-bottom: 10px;
+    max-height: 20vh;
+    overflow: auto;
+}
 
+.feedbackSheetHidden {
+    visibility: hidden;
+}
+
+.feedbackSheetVisible {
+    visibility: visible;
+}

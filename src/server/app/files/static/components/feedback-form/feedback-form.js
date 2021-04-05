@@ -33,6 +33,7 @@ class FeedbackForm extends HTMLElement {
     let stage = this;
 
     this.closePopup.onclick = function (e) {
+      if (!e.target.classList.contains("blockclicks")) return;
       stage.classList.remove('visible');
       stage.classList.add('hidden');
     }
