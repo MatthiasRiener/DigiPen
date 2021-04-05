@@ -9,9 +9,7 @@ export const template =
                 <input type="text" id="title" autocomplete="off" name="title" placeholder="Title of Review...">
                 <span id="titleCorr" class="corr">Title must not be empty</span>
 
-                <label for="email">Email *</label>
-                <input type="text" id="email" autocomplete="off" name="email" placeholder="Enter email...">
-                <span id="emailCorr" class="corr">Email must be written correctly</span>
+               
 
                 <label for="category">Category *</label>
                 <select id="category" name="category">

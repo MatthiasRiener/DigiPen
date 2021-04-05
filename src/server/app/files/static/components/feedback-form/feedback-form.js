@@ -28,6 +28,18 @@ class FeedbackForm extends HTMLElement {
     this.initializeEvents();
   }
 
+
+  submitIssueToServer(info) {
+    sendRequestToServer({
+      type: "POST",
+      url: "/issues/submitIssue",
+      data: info
+    }).then(data => {
+        stage.classList.remove('visible');
+        stage.classList.add('hidden');
+    })
+  }
+
   initializeEvents() {
     let corr = this.corr;
     let stage = this;
@@ -52,11 +64,7 @@ class FeedbackForm extends HTMLElement {
         corr[0].style.display = "block";
       }
 
-      let email = this.email.value;
-      if (!validateEmail(email.trim())) {
-        validImputs = false;
-        corr[1].style.display = "block";
-      }
+     
 
       let category = this.category.value;
       if (category.length == 0) {
@@ -70,15 +78,31 @@ class FeedbackForm extends HTMLElement {
         corr[3].style.display = "block";
       }
 
-      if (!validImputs)
+      if (!validImputs) {
         e.preventDefault();
+      } else {
+        console.log("FORM WAS SUBMITTED");
+        var obj = {};
+        obj["title"] = title;
+        obj["cat"] = category;
+        obj["desc"] = description;
+
+        sendRequestToServer({
+          type: "POST",
+          url: "/issues/submitIssue",
+          data: obj
+        }).then(data => {
+            stage.classList.remove('visible');
+            stage.classList.add('hidden');
+        })
+      }
+
     }
 
-    function validateEmail(email) {
-      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(String(email).toLowerCase());
-    }
+    
   }
+
+ 
 
 
   loadCss(path) {
