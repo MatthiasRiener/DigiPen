@@ -33,6 +33,24 @@ function notifyForUpdate() {
     });
 }
 
+socket.on('slideCreatedNotify', function(data) {
+    data = JSON.parse(data);
+
+    console.log("NEW SLIDE CREATED EVENT")
+    sendRequestToServer({type: "POST", url: "/editor/getSpecificSlide", data: {s_id: data.s_id}}).then(data => {
+
+        // überprüfen ob der User auf der geänderten Folie ist
+        if(data.res._id.$oid == getCanvasID()) {
+            loadCanvasFromJson(data.res.canvas);
+            setCanvasID(data.res._id.$oid);
+            canvas.setWidth($('#content-main-inner-spacing-middle').width());
+            canvas.setHeight($('#content-main-inner-spacing-middle').height());
+        }
+
+        addSlide(data.res);
+    });
+})
+
 socket.on('slideUpdateNotify', function (data) {
     data = JSON.parse(data);
     sendRequestToServer({type: "POST", url: "/editor/getSpecificSlide", data: {s_id: data.s_id}}).then(data => {

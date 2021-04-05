@@ -43,6 +43,15 @@ function createSlide() {
         setCanvasID(data.res._id.$oid);
         canvas.setWidth($('#content-main-inner-spacing-middle').width());
         canvas.setHeight($('#content-main-inner-spacing-middle').height());
+
+        const newlyCreatedCanvas = data.res._id.$oid;
+
+        sendRequestToServer({type: "GET", url: "/auth/getUserID"}).then(data => {
+            console.log("TRYING TO CREATE NEW SLIDE")
+            console.log(newlyCreatedCanvas, data)
+
+            socket.emit('slideCreated', {s_id: newlyCreatedCanvas, p_id: getCustomStorage("p_id"), user_id: data.u_id});
+        });
     });
 }
 

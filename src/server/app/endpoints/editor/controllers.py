@@ -129,6 +129,12 @@ def updateSlideSocket(json):
     thread = threading.Thread(target=broadCastMessageExceptOwn, kwargs=dict(event="slideUpdateNotify", pres_id=p_id, msg=json_util.dumps({"u_id": u_id, "p_id": p_id, "s_id": s_id}), sender_id=u_id))
     thread.start()
 
+@socketio.on('slideCreated')
+def createSlideSocket(json):
+    u_id = json["user_id"]
+    print("SLIDE CREATED... SENNDING TO CLIENTS")
+    thread = threading.Thread(target=broadCastMessageExceptOwn, kwargs=dict(event="slideCreatedNotify", pres_id=json["p_id"], msg=json_util.dumps({"u_id": u_id, "p_id": json["p_id"], "s_id": json["s_id"]}), sender_id=u_id))
+    thread.start()
 
 def broadCastMessageExceptOwn(event, pres_id, msg, sender_id):
     for user in presRepo.getPresentation(pres_id).users:
