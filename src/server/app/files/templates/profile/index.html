@@ -7,17 +7,18 @@
     <title>Slidea</title>
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/profile/css/fullpage.css') }}"" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/profile/css/main.css') }}" />
+    <link rel=" stylesheet" type="text/css" href="{{ url_for('static', filename='/profile/css/main.css') }}" />
 
-    
+
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
-    <script src={{ url_for('static', filename="components/side-bar/Sidebar.js") }} type="module"></script>
-    <script src={{ url_for('static', filename="components/create-workspace/Workspace.js") }} type="module"></script>
-    <script src={{ url_for('static', filename="authentication/auth_flow.js") }} type="text/javascript"></script>
+    <script src={{ url_for('static', filename="components/side-bar/Sidebar.js" ) }} type="module"></script>
+    <script src={{ url_for('static', filename="components/create-workspace/Workspace.js" ) }} type="module"></script>
+    <script src={{ url_for('static', filename="components/feedback-form/feedback-form.js" ) }} type="module"></script>
+    <script src={{ url_for('static', filename="authentication/auth_flow.js" ) }} type="text/javascript"></script>
 
     <script type="text/javascript" defer>
         setAToken("{{ access }}");
@@ -28,24 +29,30 @@
 
         }
     </script>
-    
-    <script src={{ url_for('static', filename="profile/js/requests.js") }} type="text/javascript" defer></script>
 
-    <script src={{ url_for('static', filename="components/check-notifications/Notifications.js") }} type="module"></script>
+    <script src={{ url_for('static', filename="profile/js/requests.js" ) }} type="text/javascript" defer></script>
 
-    <script src={{ url_for('static', filename="components/side-bar/customEvents.js") }} type="module"></script>
+    <script src={{ url_for('static', filename="components/check-notifications/Notifications.js" ) }}
+        type="module"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js" integrity="sha512-oFOCo2/3DtjrJG4N27BjSLQWoiBv171sK6a+JiWjp/7agxC2nCUP358AqzxkBUb5jX8g6CYLPdSKQTbC0weCwA==" crossorigin="anonymous"></script>
+    <script src={{ url_for('static', filename="components/side-bar/customEvents.js" ) }} type="module"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js"
+        integrity="sha512-oFOCo2/3DtjrJG4N27BjSLQWoiBv171sK6a+JiWjp/7agxC2nCUP358AqzxkBUb5jX8g6CYLPdSKQTbC0weCwA=="
+        crossorigin="anonymous"></script>
 
 </head>
 
 <body>
-    
-    <side-bar id="sidebar-comp"   style="width: 0%; height: 100%; background-color: #F8F7F9;" class="sidenavW3"></side-bar>
-    <create-workspace id="workspace-comp" ></create-workspace>
+
+    <side-bar id="sidebar-comp" style="width: 0%; height: 100%; background-color: #F8F7F9;" class="sidenavW3">
+    </side-bar>
+    <create-workspace id="workspace-comp"></create-workspace>
 
     <check-notifications id="notifications-comp"></check-notifications>
-    
+
+    <feedback-form id="reportform-comp"></feedback-form>
+
     <div id="openCloseNav">
         <div id="burger-top"></div>
         <div id="burger-middle"></div>
@@ -57,13 +64,13 @@
             <content class="intro">
                 <h1 class="pp_bt_logo_click">SLIDEA</h1>
                 <content id="name">
-                    
+
                     <p id="insert-username"></p>
 
-                    
+
                 </content>
                 <div id="ppContainer">
-                    <img id="PP" src={{ url_for("static", filename="/profile/img/cat.jpg") }} alt="Profile Picture">
+                    <img id="PP" src={{ url_for("static", filename="/profile/img/cat.jpg" ) }} alt="Profile Picture">
                 </div>
                 <div id="yut">
                     <div id="header">
@@ -102,7 +109,8 @@
                 <div id="Profile">
                     <div class="whoami">
                         <div id="secppContainer">
-                            <img id="secPP" src={{ url_for("static", filename="/profile/img/cat.jpg") }} alt="Profile Picture">
+                            <img id="secPP" src={{ url_for("static", filename="/profile/img/cat.jpg" ) }}
+                                alt="Profile Picture">
                         </div>
                         <p>Gregor <br>
                             Deschwanden</p>
@@ -237,8 +245,9 @@
 
     <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/fullpage.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/main.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/popup.js') }}" ></script>
-    <script src={{ url_for('static', filename="components/side-bar/invites.js") }} type="text/javascript" defer></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/popup.js') }}"></script>
+    <script src={{ url_for('static', filename="components/side-bar/invites.js" ) }} type="text/javascript"
+        defer></script>
     <script type="text/javascript">
         var myFullpage = new fullpage('#fullpage', {
             sectionsColor: ['#fff', '#fff'],
