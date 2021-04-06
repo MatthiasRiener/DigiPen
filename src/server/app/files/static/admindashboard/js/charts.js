@@ -42,7 +42,8 @@ function showDailyLogins(dailyData) {
     chart.cursor.snapToSeries = series;
     chart.cursor.xAxis = dateAxis;
 
-
+    series.tooltip.getFillFromObject = false;
+    series.tooltip.background.fill = am4core.color("#383838");
 
 
     //chart.scrollbarY = new am4core.Scrollbar();

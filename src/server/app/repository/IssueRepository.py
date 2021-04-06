@@ -21,7 +21,7 @@ class IssueRepository():
         mongoclient.db["issue"].insert_one(
             {'u_id': user, 'issue': data, "status": 0, 'submitted': time.time()})
 
-        self.sendMailToAdmins()
+        self.sendMailToAdmins('New Issue on Slidea.com!', 'Hello Slidea-Admin, someone reported a new issue.')
         return 1
 
     def getIssue(self, i_id):
@@ -32,6 +32,8 @@ class IssueRepository():
     def closeIssue(self, i_id):
         mongoclient.db['issue'].update_one({"_id": ObjectId(i_id)}, 
         {"$set": {"status": 1}})
+        self.sendMailToAdmins('Issue was closed on Slidea.com!', 'Hello Slidea-Admin, someone just closed an issue.')
+
         return json.dumps({"res": "issue-closed!"})
 
     def getIssues(self, start, end):
@@ -42,15 +44,15 @@ class IssueRepository():
             response.append(json.loads(json_util.dumps(el)))
         return json.dumps({"res": response})
 
-    def sendMailToAdmins(self):
+    def sendMailToAdmins(self, subject, content):
         print(aRepo.retrieveAllAdmins())
         message = Mail(
         from_email='slidea.projects@gmail.com',
         to_emails=aRepo.retrieveAllAdmins(),
-        subject='New Issue on Slidea.com!' ,
-        html_content='Hello Lukas, someone reported a new issue.')
+        subject=subject ,
+        html_content=content)
             
-        sg = SendGridAPIClient("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")
+        sg = SendGridAPIClient("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")
         response = sg.send(message)
         print(response.status_code)
         print(response.body)

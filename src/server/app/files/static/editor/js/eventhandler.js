@@ -613,13 +613,27 @@ $("body").click(function (e) {
         next();
 });
 
+let lastSlide = false;
+
 function next() {
     if (window.innerHeight >= window.outerHeight &&
         $("#" + startFromBeginningButtonId).data("clicked") == true &&
         index + 1 < canvasArr.length) {
         index++;
         loadSpecificSlide(index);
+        lastSlide = false;
+    } else if (index == canvasArr.length - 1) {
+
+        if (lastSlide) {
+            console.log("Last slide was reaached!")
+            toggleFullScreen(document.body);
+        }
+
+        lastSlide = true;
     }
+
+    
+
 }
 
 $("#previous").click(function () {

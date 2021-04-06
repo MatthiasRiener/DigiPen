@@ -65,7 +65,7 @@ function insertRequestFromCountry(countries, requests) {
 				<p class="country-list-item-index">${index}.</p>
 				<div class="country-list-flag" style="background-image: url('${country.flag}')"></div>
 				<div class="country-list-name">${country.name}</div>
-				<div class="country-list-total-requests">${country.users.length} Visitors</div>
+				<div class="country-list-total-requests">${country.users.length} Visits</div>
 				<div class="country-list-request-average">${Math.round(country.users.length / requests * 100)}% </div>
 			</div>	
 			`
@@ -131,12 +131,21 @@ Array.prototype.forEach.call(dotElems_country, (dotElem_country) => {
 		sendRequestToServer({type: "POST", url: "/issues/getSpecificIssue", data: {id: clickedIssue.data('issueid')}}).then(data => {
 			console.log("data")
 			console.log(data);
+
+			const date1 = new Date(data.res.submitted * 1000);
+			const date2 = new Date();
+			const diffTime = Math.abs(date2 - date1);
+			const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) - 1; 
+
 			$("#feedbackSheet").addClass("feedbackSheetVisible");
 			$("#feedbackSheet").data('issueId', data.res._id.$oid);
 			$("#feedbackSheetTitle").text(data.res.issue.title);
-			$("#feedbackSheetUser").text(data.res.u_id.name);
+			$("#feedbackSheetUser").text(data.res.u_id.name + " (" + data.res.u_id.mail + ")");
 			$("#feedbackSheetCategory").text(data.res.issue.cat);
 			$("#feedbackSheetDescription").text(data.res.issue.desc);
+			$("#feedbackSheetStatus").text(data.res.status ? 'finished' : 'open');
+			$("#feedbackSheetDate").text(new Date(data.res.submitted * 1000).toLocaleDateString() + " (" + diffDays + " days ago.)");
+
 		 });
 		/*
 		$("#feedbackSheet").addClass("feedbackSheetVisible");

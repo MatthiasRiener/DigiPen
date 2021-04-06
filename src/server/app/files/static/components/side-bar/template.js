@@ -14,7 +14,7 @@ export const template = `
 
 
           <div class="nav-bar-element admin-item">
-            <ion-icon name="albums-outline" class="icon-navbar"></ion-icon>
+            <ion-icon name="analytics-outline" class="icon-navbar"></ion-icon>
             <p>Admin-Panel</p>
           </div>
 

@@ -84,7 +84,7 @@ class CanvasRepository():
             canvas = json.loads(canvas)
 
         mongoclient.db['canvas'].update_one({"_id": ObjectId(cid)}, 
-       {"$set": {"canvas": canvas, 'latestChange': aRepo.retrieveUser(user)["name"]}})
+       {"$set": {"canvas": canvas, 'latestChange': aRepo.retrieveUserWithOutTimeChange(user)["name"]}})
         return self.getSpecificSlide(object_id=cid)
 
     def deleteAll(self):

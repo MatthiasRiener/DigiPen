@@ -650,8 +650,19 @@
 
 
 .issue-finished {
-    width: 100px;
-    height: 100px;
+    width: 8vw;
+    height: 6vh;
     background: #383838;
     color: white;
+    border: none;
+    border-radius: 15px;
+    box-shadow: rgba(149, 157, 165, 0.4) 0px 0px 12px;
+
+}
+
+#feedback-issues-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: 2vh;
+    margin-bottom: 3vh;
 }
