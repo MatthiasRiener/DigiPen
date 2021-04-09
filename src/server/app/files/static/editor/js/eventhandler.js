@@ -578,10 +578,34 @@ $("#" + startFromCurrentButtonId).click(function () {
     }, 100);
 });
 
+let w, mainOutput;
+
 $("#" + startFromBeginningButtonId + ", #" + startFromCurrentButtonId).click(function () {
     totalSeconds = 0;
     timertimer = setInterval(setTime, 1000);
+
+    openPopupWindow();
 });
+
+function openPopupWindow() {
+    w = window.open("http://localhost:5000/static/editor/reference/winpop.html", 'TheNewpop', 'height=315,width=625');
+    w.document.close();
+    w.focus();
+
+
+
+    // wait for pupup to be ready
+    window.addEventListener('message', function (e) {
+        // send the variable
+        if (e.data == 'inited') {
+            w.postMessage('How is it going', '*');
+        }
+        else {
+            mainOutput += e.data;
+            console.log(mainOutput);
+        }
+    })
+}
 
 /* IMPORTANT Popupwindow closes fullscreen
 
@@ -599,6 +623,7 @@ function centeredPopup(url, winName, w, h, scroll) {
 
 $("#next").click(function (e) {
     next();
+    w.postMessage(true, '*');
 });
 
 $("body").click(function (e) {
@@ -632,7 +657,7 @@ function next() {
         lastSlide = true;
     }
 
-    
+
 
 }
 
