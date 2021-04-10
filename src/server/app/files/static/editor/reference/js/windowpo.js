@@ -14,3 +14,9 @@ $("#previous").click(function () {
 
 // tell the opener we are waiting
 window.opener.postMessage('inited', '*');
+
+window.addEventListener("beforeunload", function (e) {
+    // Do something
+    window.opener.postMessage('stfu', '*');
+    window = null;
+}, false);

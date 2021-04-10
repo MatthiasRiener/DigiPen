@@ -588,36 +588,38 @@ $("#" + startFromBeginningButtonId + ", #" + startFromCurrentButtonId).click(fun
 
 $("#openPopup").click(function () {
     isPopup = true;
-    $("#openPopup").prop('disabled', true);
-    openPopupWindow();
+    openPopupWindow()
 });
 
-async function openPopupWindow() {
-    if (w) return;
+w.onbeforeunload = function () {
+    w = null;
+    console.warn('gugugugugu')
+}
+
+function openPopupWindow() {
+    if (w) w.close();
+    w = null;
     w = window.open("http://localhost:5000/static/editor/reference/winpop.html", 'TheNewpop', 'height=315,width=625');
     w.document.close();
-    //w.focus();
 
-
-    // wait for pupup to be ready
-    window.addEventListener('message', function (e) {
-        console.log(e.data);
+    window.onmessage = function promiseFnkt(event) {
+        console.log(event.data);
         // send the variable
         if (!isPopup) return;
-        if (e.data == 'inited') {
+        if (event.data == 'inited') {
             w.postMessage('How is it going', '*');
         }
-        if (e.data == 'previous') {
+        if (event.data == 'previous') {
             previous();
             w.postMessage('previous', '*');
         }
-        if (e.data == 'next') {
+        if (event.data == 'next') {
             next();
             w.postMessage('next', '*');
         }
-    });
-    toggleFullScreen(document.body);
+    }
 
+    w.focus();
 }
 
 /* IMPORTANT Popupwindow closes fullscreen
@@ -643,7 +645,7 @@ $("body").click(function (e) {
     if (e.target.id == 'exit') {
         exitPresi();
     }
-    if (['editblock'].indexOf(e.target.id) >= 0)
+    if (['pageblock'].indexOf(e.target.id) >= 0)
         next();
 });
 
@@ -656,11 +658,10 @@ function exitPresi() {
     $("#" + startFromBeginningButtonId).data("clicked", false);
     $("div#iconbox").removeClass('fadeout');
     toggleLaser(false);
-    $("#openPopup").prop('disabled', false);
+    if (w) w.close();
 }
 
 function next() {
-    console.warn('next clicked');
     if (index + 1 < canvasArr.length) {
         index++;
         loadSpecificSlide(index);
