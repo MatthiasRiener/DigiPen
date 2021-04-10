@@ -331,8 +331,8 @@ $(window).resize(function () {
 
         let display = "flex"
         if ($("#presi").css('display') != 'flex')
-            display = window.innerHeight >= window.outerHeight && $("#" + startFromBeginningButtonId).data("clicked") == true ? "flex" : "none";
-        if (window.innerHeight < window.outerHeight) {
+            display = window.innerHeight >= window.outerHeight && $("#" + startFromBeginningButtonId).data("clicked") == true && !isPopup ? "flex" : "none";
+        if (window.innerHeight < window.outerHeight && !isPopup) {
             display = "none";
             index = 0;
             // popupWindow = null;
@@ -530,6 +530,7 @@ let secondsLabel = document.getElementById("seconds");
 let hoursLabel = document.getElementById("hours");
 let totalSeconds = 0;
 let timertimer;
+let isPopup = false;
 
 function setTime() {
     ++totalSeconds;
@@ -583,7 +584,10 @@ let w, mainOutput;
 $("#" + startFromBeginningButtonId + ", #" + startFromCurrentButtonId).click(function () {
     totalSeconds = 0;
     timertimer = setInterval(setTime, 1000);
+});
 
+$("#openPopup").click(function () {
+    isPopup = true;
     openPopupWindow();
 });
 
