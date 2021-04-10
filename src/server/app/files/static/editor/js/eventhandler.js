@@ -579,7 +579,7 @@ $("#" + startFromCurrentButtonId).click(function () {
     }, 100);
 });
 
-let w, mainOutput;
+let w;
 
 $("#" + startFromBeginningButtonId + ", #" + startFromCurrentButtonId).click(function () {
     totalSeconds = 0;
@@ -588,27 +588,36 @@ $("#" + startFromBeginningButtonId + ", #" + startFromCurrentButtonId).click(fun
 
 $("#openPopup").click(function () {
     isPopup = true;
+    $("#openPopup").prop('disabled', true);
     openPopupWindow();
 });
 
-function openPopupWindow() {
+async function openPopupWindow() {
+    if (w) return;
     w = window.open("http://localhost:5000/static/editor/reference/winpop.html", 'TheNewpop', 'height=315,width=625');
     w.document.close();
-    w.focus();
-
+    //w.focus();
 
 
     // wait for pupup to be ready
     window.addEventListener('message', function (e) {
+        console.log(e.data);
         // send the variable
+        if (!isPopup) return;
         if (e.data == 'inited') {
             w.postMessage('How is it going', '*');
         }
-        else {
-            mainOutput += e.data;
-            console.log(mainOutput);
+        if (e.data == 'previous') {
+            previous();
+            w.postMessage('previous', '*');
         }
-    })
+        if (e.data == 'next') {
+            next();
+            w.postMessage('next', '*');
+        }
+    });
+    toggleFullScreen(document.body);
+
 }
 
 /* IMPORTANT Popupwindow closes fullscreen
@@ -632,11 +641,7 @@ $("#next").click(function (e) {
 
 $("body").click(function (e) {
     if (e.target.id == 'exit') {
-        toggleFullScreen(document.body);
-        $("#presi").css('display', 'none');
-        $("#" + startFromBeginningButtonId).data("clicked", false);
-        $("div#iconbox").removeClass('fadeout');
-        toggleLaser(false);
+        exitPresi();
     }
     if (['editblock'].indexOf(e.target.id) >= 0)
         next();
@@ -644,33 +649,42 @@ $("body").click(function (e) {
 
 let lastSlide = false;
 
+function exitPresi() {
+    isPopup = false;
+    if (window.innerHeight >= window.outerHeight) toggleFullScreen(document.body);
+    $("#presi").css('display', 'none');
+    $("#" + startFromBeginningButtonId).data("clicked", false);
+    $("div#iconbox").removeClass('fadeout');
+    toggleLaser(false);
+    $("#openPopup").prop('disabled', false);
+}
+
 function next() {
-    if (window.innerHeight >= window.outerHeight &&
-        $("#" + startFromBeginningButtonId).data("clicked") == true &&
-        index + 1 < canvasArr.length) {
+    console.warn('next clicked');
+    if (index + 1 < canvasArr.length) {
         index++;
         loadSpecificSlide(index);
         lastSlide = false;
     } else if (index == canvasArr.length - 1) {
-
         if (lastSlide) {
             console.log("Last slide was reaached!")
-            toggleFullScreen(document.body);
+            exitPresi();
+            return;
         }
-
         lastSlide = true;
     }
-
-
-
 }
 
 $("#previous").click(function () {
+    previous();
+});
+
+function previous() {
     if (index - 1 >= 0) {
         index--;
         loadSpecificSlide(index);
     }
-});
+}
 
 function toggleFullScreen(elem) {
     // ## The below if statement seems to work better ## if ((document.fullScreenElement && document.fullScreenElement !== null) || (document.msfullscreenElement && document.msfullscreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
