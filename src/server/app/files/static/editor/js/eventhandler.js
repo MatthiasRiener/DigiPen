@@ -331,8 +331,8 @@ $(window).resize(function () {
 
         let display = "flex"
         if ($("#presi").css('display') != 'flex')
-            display = window.innerHeight >= window.outerHeight && $("#" + startFromBeginningButtonId).data("clicked") == true && !isPopup ? "flex" : "none";
-        if (window.innerHeight < window.outerHeight && !isPopup) {
+            display = window.innerHeight >= window.outerHeight && $("#" + startFromBeginningButtonId).data("clicked") == true && !isPopup && !shouldVanish ? "flex" : "none";
+        if (window.innerHeight < window.outerHeight && !isPopup && shouldVanish) {
             display = "none";
             index = 0;
             // popupWindow = null;
@@ -531,6 +531,8 @@ let hoursLabel = document.getElementById("hours");
 let totalSeconds = 0;
 let timertimer;
 let isPopup = false;
+let shouldVanish = true;
+let lastSlide = false;
 
 function setTime() {
     ++totalSeconds;
@@ -591,11 +593,6 @@ $("#openPopup").click(function () {
     openPopupWindow()
 });
 
-w.onbeforeunload = function () {
-    w = null;
-    console.warn('gugugugugu')
-}
-
 function openPopupWindow() {
     if (w) w.close();
     w = null;
@@ -649,7 +646,6 @@ $("body").click(function (e) {
         next();
 });
 
-let lastSlide = false;
 
 function exitPresi() {
     isPopup = false;
@@ -686,6 +682,11 @@ function previous() {
         loadSpecificSlide(index);
     }
 }
+
+$("#toggleFull").click(function (e) {
+    shouldVanish = false;
+    toggleFullScreen(document.body)
+})
 
 function toggleFullScreen(elem) {
     // ## The below if statement seems to work better ## if ((document.fullScreenElement && document.fullScreenElement !== null) || (document.msfullscreenElement && document.msfullscreenElement !== null) || (!document.mozFullScreen && !document.webkitIsFullScreen)) {
