@@ -9,9 +9,6 @@ window.addEventListener('message', function (e) {
     // if (e.origin !== "http://localhost:5000/editor/")
     //     return;
 
-    console.log("message", e.data);
-    let output = document.getElementById("output")
-    output.innerText += e.data;
 
     if (typeof e.data.whereToStart === "number") {
         smolCanvasArrRaw = e.data.canvasArray;
@@ -19,12 +16,32 @@ window.addEventListener('message', function (e) {
 
         for (let index = 0; index < smolCanvasArrRaw.length; index++) {
             const element = JSON.parse(smolCanvasArrRaw[index]);
-            if (index == e.data.whereToStart) currCanvasSmol = element;
             loadCanvas(element, index);
             resizeCanv();
+            if (index == e.data.whereToStart) {
+                setCurr(index);
+            }
         }
     }
+    if (typeof e.data.index === "number") {
+        $("#output").text(e.data.index);
+        setCurr(e.data.index);
+    }
 });
+let nW = 200;
+let oldCanv;
+
+function setCurr(ind) {
+    currCanvasSmol = smolCanvasArr[ind];
+    if (oldCanv) {
+        let oW = currCanvasSmol.getWidth();
+        oldCanv.setWidth(oW)
+        oldCanv.setHeight(oW * 9 / 16)
+    }
+    oldCanv = currCanvasSmol;
+    currCanvasSmol.setWidth(nW)
+    currCanvasSmol.setHeight(nW * 9 / 16);
+}
 
 $("#next").click(function () {
     window.opener.postMessage('next', '*');

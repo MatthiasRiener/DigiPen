@@ -611,7 +611,6 @@ function openPopupWindow() {
     });
 
     window.onmessage = function promiseFnkt(event) {
-        console.log(event.data);
         // send the variable
         if (!isPopup) return;
         if (event.data == 'inited') {
@@ -623,11 +622,11 @@ function openPopupWindow() {
         }
         if (event.data == 'previous') {
             previous();
-            w.postMessage('previous', '*');
+            w.postMessage({ index: index }, '*');
         }
         if (event.data == 'next') {
             next();
-            w.postMessage('next', '*');
+            w.postMessage({ index: index }, '*');
         }
     }
 
