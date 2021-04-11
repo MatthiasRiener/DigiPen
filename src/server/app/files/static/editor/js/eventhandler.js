@@ -628,6 +628,14 @@ function openPopupWindow() {
             next();
             w.postMessage({ index: index }, '*');
         }
+        if (typeof event.data.specific === "number") {
+            index = event.data.specific;
+            loadSpecificSlide(index);
+            if (index == canvasArr.length - 1)
+                lastSlide = true;
+            else
+                lastSlide = false;
+        }
     }
 
     w.focus();

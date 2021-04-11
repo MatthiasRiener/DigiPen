@@ -33,6 +33,7 @@ let oldCanv;
 
 function setCurr(ind) {
     currCanvasSmol = smolCanvasArr[ind];
+    console.warn(currCanvasSmol.get('index'))
     if (oldCanv) {
         let oW = currCanvasSmol.getWidth();
         oldCanv.setWidth(oW)
@@ -60,9 +61,19 @@ function createCanvasPlaceholder() {
     }
 }
 
+
 function loadCanvas(json, index) {
     newCanvas = new fabric.Canvas(`smolcanvas${index}`);
     newCanvas.loadFromJSON(json, function () {
+        newCanvas.set('index', index);
+        newCanvas.selection = false;
+        newCanvas.forEachObject(function (object) {
+            object.selectable = false;
+        });
+        newCanvas.on('mouse:up', function () {
+            window.opener.postMessage({ specific: this.get('index') }, '*');
+            setCurr(this.get('index'))
+        });
         newCanvas.renderAll();
         smolCanvasArr.push(newCanvas)
     }, function (o, object) {
