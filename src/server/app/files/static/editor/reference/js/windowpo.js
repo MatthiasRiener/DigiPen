@@ -1,6 +1,6 @@
 let smolCanvasArr = [];
+let smolCanvasArrRaw = [];
 let smolCanvas;
-let originalWidthBog;
 let currCanvasSmol;
 
 
@@ -14,10 +14,15 @@ window.addEventListener('message', function (e) {
     output.innerText += e.data;
 
     if (typeof e.data.whereToStart === "number") {
-        currCanvasSmol = JSON.parse(e.data.currCanvas);
-        loadCanvas(currCanvasSmol);
-        originalWidthBog = e.data.originalWidth;
-        resizeCanv(originalWidthBog)
+        smolCanvasArrRaw = e.data.canvasArray;
+        createCanvasPlaceholder();
+
+        for (let index = 0; index < smolCanvasArrRaw.length; index++) {
+            const element = JSON.parse(smolCanvasArrRaw[index]);
+            if (index == e.data.whereToStart) currCanvasSmol = element;
+            loadCanvas(element, index);
+            resizeCanv();
+        }
     }
 });
 
@@ -32,8 +37,14 @@ $("#previous").click(function () {
 window.opener.postMessage('inited', '*');
 
 
-function loadCanvas(json) {
-    newCanvas = new fabric.Canvas('smolCanvas');
+function createCanvasPlaceholder() {
+    for (let index = 0; index < smolCanvasArrRaw.length; index++) {
+        $(document.body).append(`<canvas class="smolCanvases" id="smolcanvas${index}" width="177.77" height="100"></canvas>`);
+    }
+}
+
+function loadCanvas(json, index) {
+    newCanvas = new fabric.Canvas(`smolcanvas${index}`);
     newCanvas.loadFromJSON(json, function () {
         newCanvas.renderAll();
         smolCanvasArr.push(newCanvas)
@@ -42,7 +53,7 @@ function loadCanvas(json) {
     })
 }
 
-function resizeCanv(origWidth) {
-    let zOEm = $("#smolCanvas").width() / 1920;
+function resizeCanv() {
+    let zOEm = $(".smolCanvases").width() / 1920;
     newCanvas.setZoom(zOEm);
 }

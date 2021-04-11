@@ -597,17 +597,18 @@ $("#openPopup").click(function () {
     openPopupWindow()
 });
 
+let jsonArr = [];
+
 function openPopupWindow() {
     if (w) w.close();
     w = null;
     w = window.open("http://localhost:5000/static/editor/reference/winpop.html", 'TheNewpop', 'height=315,width=625');
     w.document.close();
 
-    let jsonArr = [];
+    jsonArr = [];
     canvasArr.forEach(element => {
-        jsonArr.push(JSON.stringify(currCanvas))
+        jsonArr.push(JSON.stringify(element))
     });
-    console.log(jsonArr);
 
     window.onmessage = function promiseFnkt(event) {
         console.log(event.data);
@@ -615,7 +616,7 @@ function openPopupWindow() {
         if (!isPopup) return;
         if (event.data == 'inited') {
             w.postMessage({
-                currCanvas: JSON.stringify(currCanvas),
+                canvasArray: jsonArr,
                 originalWidth: originalSize,
                 whereToStart: whereStartSend
             }, '*');
