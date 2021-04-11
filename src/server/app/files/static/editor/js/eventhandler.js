@@ -392,8 +392,11 @@ function createCanvas(whereStart) {
     getSlides(whereStart);
 }
 
+let whereStartSend;
+
 function loadPresentationCanvas(whereStart) {
     createCanvas(whereStart);
+    whereStartSend = whereStart;
 }
 
 function loadSpecificSlide(whereStart) {
@@ -402,6 +405,7 @@ function loadSpecificSlide(whereStart) {
         origSizePresCanvas = currCanvas.getWidth();
     resizePresentationCanvas();
     $('#pagecount').text(`Slide ${whereStart + 1}/${canvasArr.length}`);
+    whereStartSend = whereStart;
 }
 
 function resizePresentationCanvas() {
@@ -604,7 +608,7 @@ function openPopupWindow() {
         // send the variable
         if (!isPopup) return;
         if (event.data == 'inited') {
-            w.postMessage('How is it going', '*');
+            w.postMessage({ currCanvas: JSON.stringify(currCanvas), originalWidth: originalSize, whereToStart: whereStartSend }, '*');
         }
         if (event.data == 'previous') {
             previous();
