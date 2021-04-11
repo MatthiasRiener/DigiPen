@@ -603,12 +603,22 @@ function openPopupWindow() {
     w = window.open("http://localhost:5000/static/editor/reference/winpop.html", 'TheNewpop', 'height=315,width=625');
     w.document.close();
 
+    let jsonArr = [];
+    canvasArr.forEach(element => {
+        jsonArr.push(JSON.stringify(currCanvas))
+    });
+    console.log(jsonArr);
+
     window.onmessage = function promiseFnkt(event) {
         console.log(event.data);
         // send the variable
         if (!isPopup) return;
         if (event.data == 'inited') {
-            w.postMessage({ currCanvas: JSON.stringify(currCanvas), originalWidth: originalSize, whereToStart: whereStartSend }, '*');
+            w.postMessage({
+                currCanvas: JSON.stringify(currCanvas),
+                originalWidth: originalSize,
+                whereToStart: whereStartSend
+            }, '*');
         }
         if (event.data == 'previous') {
             previous();
