@@ -344,7 +344,7 @@ $(window).resize(function () {
             }, 100);
         else {
             totalSeconds = 0;
-            clearInterval(timertimer)
+            timerpause();
         }
     }, 500);
 });
@@ -405,6 +405,7 @@ function loadSpecificSlide(whereStart) {
         origSizePresCanvas = currCanvas.getWidth();
     resizePresentationCanvas();
     $('#pagecount').text(`Slide ${whereStart + 1}/${canvasArr.length}`);
+    w.postMessage({ index: index }, '*');
     whereStartSend = whereStart;
 }
 
@@ -589,7 +590,7 @@ let w;
 
 $("#" + startFromBeginningButtonId + ", #" + startFromCurrentButtonId).click(function () {
     totalSeconds = 0;
-    timertimer = setInterval(setTime, 1000);
+    timerplay();
 });
 
 $("#openPopup").click(function () {
@@ -617,16 +618,16 @@ function openPopupWindow() {
             w.postMessage({
                 canvasArray: jsonArr,
                 originalWidth: originalSize,
-                whereToStart: whereStartSend
+                whereToStart: whereStartSend,
+                time: totalSeconds,
+                timertimer: timertimer
             }, '*');
         }
         if (event.data == 'previous') {
             previous();
-            w.postMessage({ index: index }, '*');
         }
         if (event.data == 'next') {
             next();
-            w.postMessage({ index: index }, '*');
         }
         if (typeof event.data.specific === "number") {
             index = event.data.specific;
@@ -636,11 +637,28 @@ function openPopupWindow() {
             else
                 lastSlide = false;
         }
+        if (event.data == "timerpause") {
+            timerpause();
+        }
+        if (event.data == "timerplay") {
+            timerplay();
+        }
     }
 
     w.focus();
 }
 
+function timerpause() {
+    if (timertimer) {
+        clearInterval(timertimer)
+        timertimer = null;
+    }
+}
+
+function timerplay() {
+    if (!timertimer)
+        timertimer = setInterval(setTime, 1000);
+}
 /* IMPORTANT Popupwindow closes fullscreen
 
 $("#" + startFromBeginningButtonId + ", #" + startFromCurrentButtonId).click(function () {
