@@ -405,7 +405,8 @@ function loadSpecificSlide(whereStart) {
         origSizePresCanvas = currCanvas.getWidth();
     resizePresentationCanvas();
     $('#pagecount').text(`Slide ${whereStart + 1}/${canvasArr.length}`);
-    w.postMessage({ index: index }, '*');
+    if (w)
+        w.postMessage({ index: index }, '*');
     whereStartSend = whereStart;
 }
 
@@ -704,6 +705,7 @@ function exitPresi() {
     $("div#iconbox").removeClass('fadeout');
     toggleLaser(false);
     if (w) w.close();
+    fixSize();
 }
 
 function next() {
