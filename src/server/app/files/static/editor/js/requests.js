@@ -64,6 +64,8 @@ function switchSlide(id) {
         setCanvasID(data.res._id.$oid);
         canvas.setWidth($('#content-main-inner-spacing-middle').width());
         canvas.setHeight($('#content-main-inner-spacing-middle').height());
+
+        curretSlide = data.res.s_id;
     });
 }
 
