@@ -135,7 +135,7 @@ function init() {
     canvas.setHeight($('#content-main-inner-spacing-middle').height());
 
     canvas.on({
-        'object:moving': (e) => {},
+        'object:moving': (e) => { },
         'object:modified': (e) => {
             console.log("Moin-------------------------------------");
             saveCanvasToJson();
@@ -570,7 +570,7 @@ window.onload = function () {
             originalSize = canvas.width;
         }, 500);
     }, 500)
-   
+
 
 
 }
@@ -745,15 +745,15 @@ function GetCanvasAtResoution(newWidth, first) {
         canvas.discardActiveObject();
         canvas.setWidth(canvas.getWidth() * scaleMultiplier);
         canvas.setHeight(canvas.getHeight() * scaleMultiplier);
-        
-        
 
-     
+
+
+
 
         canvas.renderAll();
         canvas.calcOffset();
 
-        if(first) {
+        if (first) {
             console.log(canvas.width / 1920)
             console.log("changing... size")
             canvas.setZoom(scaleMultiplier)
@@ -798,11 +798,11 @@ function rasterizeSVG() {
 }
 
 function initializeShortcuts() {
-    sendRequestToServer({type: "GET", url: "/keybinding/getKeybinding"}).then(data => {
+    sendRequestToServer({ type: "GET", url: "/keybinding/getKeybinding" }).then(data => {
         shortcuts = [...data.res.bindings];
     });
-        
-    
+
+
 }
 
 function removeSelected() {
@@ -1311,18 +1311,18 @@ var CustomNGIf = function (element, callback, propertyName) {
 /*------------------------EDITOR-WINDOWS------------------------*/
 
 var textEditorContainer = document.getElementById('text-editor');
-var textEditor = new CustomNGIf(textEditorContainer, function () {}, 'visible');
+var textEditor = new CustomNGIf(textEditorContainer, function () { }, 'visible');
 
 textEditor['visible'] = false;
 
 
 var imageEditorContainer = document.getElementById('image-editor');
-var imageEditor = new CustomNGIf(imageEditorContainer, function () {}, 'visible');
+var imageEditor = new CustomNGIf(imageEditorContainer, function () { }, 'visible');
 
 imageEditor['visible'] = false;
 
 
 var chartEditorContainer = document.getElementById('chart-editor');
-var chartEditor = new CustomNGIf(chartEditorContainer, function () {}, 'visible');
+var chartEditor = new CustomNGIf(chartEditorContainer, function () { }, 'visible');
 
 chartEditor['visible'] = false;
