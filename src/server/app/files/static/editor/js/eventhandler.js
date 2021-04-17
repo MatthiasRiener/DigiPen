@@ -603,7 +603,7 @@ let jsonArr = [];
 function openPopupWindow() {
     if (w) w.close();
     w = null;
-    w = window.open("http://localhost:5000/static/editor/reference/winpop.html", 'TheNewpop', 'height=315,width=625');
+    w = window.open("http://localhost:5000/static/editor/reference/winpop.html", 'TheNewpop', 'height=500,width=625');
     w.document.close();
 
     jsonArr = [];
@@ -643,6 +643,9 @@ function openPopupWindow() {
         if (event.data == "timerplay") {
             timerplay();
         }
+        if (event.data == "timereset") {
+            timerreset();
+        }
     }
 
     w.focus();
@@ -658,6 +661,12 @@ function timerpause() {
 function timerplay() {
     if (!timertimer)
         timertimer = setInterval(setTime, 1000);
+}
+
+function timerreset() {
+    timerpause();
+    totalSeconds = 0;
+    timerplay();
 }
 /* IMPORTANT Popupwindow closes fullscreen
 

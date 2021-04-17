@@ -7,6 +7,7 @@ let minutesLabel = document.getElementById("minutes");
 let secondsLabel = document.getElementById("seconds");
 let hoursLabel = document.getElementById("hours");
 let timertimer;
+let bigSmol;
 
 
 // wait for messages from opener
@@ -18,15 +19,14 @@ window.addEventListener('message', function (e) {
     if (typeof e.data.whereToStart === "number") {
         smolCanvasArrRaw = e.data.canvasArray;
         createCanvasPlaceholder();
-        $("#output").text(`Slide ${e.data.whereToStart + 1}/${smolCanvasArrRaw.length}`);
+        $("#pagecount").text(`Slide ${e.data.whereToStart + 1}/${smolCanvasArrRaw.length}`);
         for (let index = 0; index < smolCanvasArrRaw.length; index++) {
             const element = JSON.parse(smolCanvasArrRaw[index]);
             loadCanvas(element, index);
             resizeCanv();
-            if (index == e.data.whereToStart) {
-                setCurr(index);
-            }
         }
+        createCanvas(JSON.parse(smolCanvasArrRaw[0]));
+        setCurr(e.data.whereToStart);
     }
     if (typeof e.data.time === "number") {
         totalSeconds = e.data.time;
@@ -35,7 +35,7 @@ window.addEventListener('message', function (e) {
             timertimer = setInterval(setTime, 1000);
     }
     if (typeof e.data.index === "number") {
-        $("#output").text(`Slide ${e.data.index + 1}/${smolCanvasArrRaw.length}`);
+        $("#pagecount").text(`Slide ${e.data.index + 1}/${smolCanvasArrRaw.length}`);
         setCurr(e.data.index);
     }
 });
@@ -71,6 +71,15 @@ $("#pause").click(function () {
         window.opener.postMessage('timerpause', '*');
     }
 })
+$("#timereset").click(function () {
+    if (timertimer) {
+        clearInterval(timertimer)
+        timertimer = null;
+    }
+    totalSeconds = 0;
+    timertimer = setInterval(setTime, 1000);
+    window.opener.postMessage('timereset', '*');
+})
 
 function setCurr(ind) {
     currCanvasSmol = smolCanvasArr[ind];
@@ -78,15 +87,26 @@ function setCurr(ind) {
         let oW = currCanvasSmol.getWidth();
         oldCanv.setWidth(oW)
         oldCanv.setHeight(oW * 9 / 16)
+
+        if (oldInd - 1 >= 0)
+            document.querySelectorAll('.canvas-container')[oldInd - 1].classList.remove('prevCanvContSmol')
         document.querySelectorAll('.canvas-container')[oldInd].classList.remove('currCanvContSmol')
+        if (oldInd + 1 < smolCanvasArr.length)
+            document.querySelectorAll('.canvas-container')[oldInd + 1].classList.remove('nextCanvContSmol')
     }
     oldCanv = currCanvasSmol;
     oldInd = ind;
-    console.log(document.querySelectorAll('.canvas-container')[oldInd]);
     currCanvasSmol.setWidth(nW)
     currCanvasSmol.setHeight(nW * 9 / 16);
-    document.querySelectorAll('.canvas-container')[ind].classList.add('currCanvContSmol')
 
+    var json = currCanvasSmol.toObject();
+    bigSmol.loadFromJSON(json);
+
+    if (ind - 1 >= 0)
+        document.querySelectorAll('.canvas-container')[ind - 1].classList.add('prevCanvContSmol')
+    document.querySelectorAll('.canvas-container')[ind].classList.add('currCanvContSmol')
+    if (ind + 1 < smolCanvasArr.length)
+        document.querySelectorAll('.canvas-container')[ind + 1].classList.add('nextCanvContSmol')
 }
 
 $("#next").click(function () {
@@ -102,10 +122,26 @@ window.opener.postMessage('inited', '*');
 
 function createCanvasPlaceholder() {
     for (let index = 0; index < smolCanvasArrRaw.length; index++) {
-        $(document.body).append(`<canvas class="smolCanvases" id="smolcanvas${index}" width="177.77" height="100"></canvas>`);
+        $("#canvases").append(`<canvas class="smolCanvases" id="smolcanvas${index}" width="177.77" height="100"></canvas>`);
     }
 }
 
+function createCanvas(json) {
+    bigSmol = new fabric.Canvas('bigsmol');
+    bigSmol.loadFromJSON(json, function () {
+        bigSmol.selection = false;
+        bigSmol.forEachObject(function (object) {
+            object.selectable = false;
+        });
+        bigSmol.renderAll();
+    }, function (o, object) {
+
+    })
+    bigSmol.renderAll();
+
+    let zOEm = $("#bigsmol").width() / 1920;
+    bigSmol.setZoom(zOEm);
+}
 
 function loadCanvas(json, index) {
     newCanvas = new fabric.Canvas(`smolcanvas${index}`);
@@ -127,5 +163,6 @@ function loadCanvas(json, index) {
 
 function resizeCanv() {
     let zOEm = $(".smolCanvases").width() / 1920;
+    console.log(zOEm);
     newCanvas.setZoom(zOEm);
 }
