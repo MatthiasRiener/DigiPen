@@ -1,13 +1,13 @@
 $(document).ready(function () {
-    sendRequestToServer({type: "POST", url: "/editor/getPresentationInfo", data: {p_id: getCustomStorage("p_id")}}).then(data => {
+    sendRequestToServer({ type: "POST", url: "/editor/getPresentationInfo", data: { p_id: getCustomStorage("p_id") } }).then(data => {
         console.log("Get Presentation: " + data);
         console.log(data)
         $('#content-navigation-first-left-text-h2').text(data.pres.name);
         $('#content-navigation-first-left-text-h3').text(data.ownUser.name);
 
-        loadCanvasFromJson(data.canvas[0].canvas);
-        setCanvasID(data.canvas[0]._id.$oid);
-
+        // loadCanvasFromJson(data.canvas[0].canvas);
+        // setCanvasID(data.canvas[0]._id.$oid);
+        switchSlide(data.canvas[0]._id.$oid);
         data.canvas.forEach(slide => {
             console.log(slide);
             addSlide(slide);
@@ -17,7 +17,7 @@ $(document).ready(function () {
 
 function saveCanvas(canvas, width, height) {
     console.log(canvas);
-    sendRequestToServer({type: "POST", url: "/editor/updateCanvas", data: {p_id: getCustomStorage("p_id"), s_id: getCanvasID(), width: width, height: height, canvas: JSON.stringify(canvas)}}).then(data => {
+    sendRequestToServer({ type: "POST", url: "/editor/updateCanvas", data: { p_id: getCustomStorage("p_id"), s_id: getCanvasID(), width: width, height: height, canvas: JSON.stringify(canvas) } }).then(data => {
         console.log("Save Canvas");
         console.log(data);
         sideC = insertSlide("MATTI IS SUPA");
@@ -35,7 +35,7 @@ function saveCanvas(canvas, width, height) {
 }
 
 function createSlide() {
-    sendRequestToServer({type: "POST", url: "/editor/createSlide", data: {p_id: getCustomStorage("p_id")}}).then(data => {
+    sendRequestToServer({ type: "POST", url: "/editor/createSlide", data: { p_id: getCustomStorage("p_id") } }).then(data => {
         console.log("Created Slide!");
         console.log(data);
         addSlide(data.res);
@@ -46,18 +46,18 @@ function createSlide() {
 
         const newlyCreatedCanvas = data.res._id.$oid;
 
-        sendRequestToServer({type: "GET", url: "/auth/getUserID"}).then(data => {
+        sendRequestToServer({ type: "GET", url: "/auth/getUserID" }).then(data => {
             console.log("TRYING TO CREATE NEW SLIDE")
             console.log(newlyCreatedCanvas, data)
 
-            socket.emit('slideCreated', {s_id: newlyCreatedCanvas, p_id: getCustomStorage("p_id"), user_id: data.u_id});
+            socket.emit('slideCreated', { s_id: newlyCreatedCanvas, p_id: getCustomStorage("p_id"), user_id: data.u_id });
         });
     });
 }
 
 function switchSlide(id) {
     console.log("IDDDD: " + id);
-    sendRequestToServer({type: "POST", url: "/editor/getSpecificSlide", data: {s_id: id}}).then(data => {
+    sendRequestToServer({ type: "POST", url: "/editor/getSpecificSlide", data: { s_id: id } }).then(data => {
         console.log("Switching Slide");
         console.log(data);
         loadCanvasFromJson(data.res.canvas);
@@ -70,7 +70,7 @@ function switchSlide(id) {
 }
 
 function getSlides(whereStart) {
-    sendRequestToServer({type: "POST", url: "/editor/getSlides", data: {p_id: getCustomStorage("p_id")}}).then(data => {
+    sendRequestToServer({ type: "POST", url: "/editor/getSlides", data: { p_id: getCustomStorage("p_id") } }).then(data => {
         canvasArr.length = 0;
         console.log(data);
         data.res.forEach(slide => {
@@ -95,6 +95,6 @@ function loadPresentationCanvasFromJson(json) {
         newCanvas.renderAll();
         canvasArr.push(newCanvas)
     }, function (o, object) {
-   
+
     })
 }

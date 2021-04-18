@@ -566,18 +566,14 @@ window.onload = function () {
     this.setTimeout(() => {
         fixSize();
         this.setTimeout(() => {
-            this.console.log("setting zoom...")
             originalSize = canvas.width;
+
+            canvas.setZoom($("#canvas").width() / $('#content-main-inner-spacing-middle').width())
         }, 500);
-    }, 500)
-
-
-
+    }, 500);
 }
 
 $(window).resize(async function () {
-
-
     $("#content-main-inner-spacing-middle").css('width', '58vw');
     $("#content-main-inner-spacing-middle").css('height', '32.625vw');
 
@@ -592,7 +588,7 @@ $(window).resize(async function () {
     resizeCanvas(width, height);
     GetCanvasAtResoution(width, true);
 
-    canvas.setZoom($('#content-main-inner-spacing-middle').width() / canvas.width)
+    canvas.setZoom(width / canvas.width)
 
     setTimeout(() => {
         toggleVisibility(trackingIndex);
