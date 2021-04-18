@@ -585,10 +585,7 @@ $(window).resize(async function () {
         resizeCanvas(width, height);
     }
 
-
-    console.log("o-size", originalSize)
-
-
+    canvas.setZoom($('#content-main-inner-spacing-middle').width() / canvas.width)
 
     setTimeout(() => {
         toggleVisibility(trackingIndex);
@@ -619,8 +616,7 @@ function resizeCanvas(width, height) {
 
     canvas.setWidth(width);
     canvas.setHeight(height);
-    console.log(width)
-    console.log("wtf")
+
     canvas.renderAll();
 }
 
@@ -754,10 +750,7 @@ function GetCanvasAtResoution(newWidth, first) {
         canvas.calcOffset();
 
         if (first) {
-            console.log(canvas.width / 1920)
-            console.log("changing... size")
             canvas.setZoom(scaleMultiplier)
-
         }
     }
 }
