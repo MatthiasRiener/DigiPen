@@ -2125,6 +2125,22 @@ video {
     color: white;
     transform: translateY(100%);
 
+
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    flex-direction: row;
+}
+
+.notify-changes-img {
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background: red;
+    margin-right: 2%;
+
+    background-size: cover;
+    background-position: center;
+    border: 1px solid white;
 }
 
 .notify-animation {

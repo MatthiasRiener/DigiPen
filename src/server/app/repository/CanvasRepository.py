@@ -57,7 +57,7 @@ class CanvasRepository():
             os.path.join(os.getcwd(), os.path.dirname(__file__)))
         with open(os.path.join(__location__, 'canvasObj.json')) as json_file:
             data = json.load(json_file)
-            res = mongoclient.db['canvas'].insert_one({"p_id": p_id, "s_id": s_id, "canvas": data, "created": time.time(), "latestChange": aRepo.retrieveUserWithOutTimeChange(user)["name"]})
+            res = mongoclient.db['canvas'].insert_one({"p_id": p_id, "s_id": s_id, "canvas": data, "created": time.time(), "latestChange": [aRepo.retrieveUserWithOutTimeChange(user)["name"], aRepo.retrieveUserWithOutTimeChange(user)["img"]]})
         return self.getSpecificSlide(object_id=res.inserted_id)
 
     def getSpecificSlide(self, object_id):
@@ -84,7 +84,7 @@ class CanvasRepository():
             canvas = json.loads(canvas)
 
         mongoclient.db['canvas'].update_one({"_id": ObjectId(cid)}, 
-       {"$set": {"canvas": canvas, 'latestChange': aRepo.retrieveUserWithOutTimeChange(user)["name"]}})
+       {"$set": {"canvas": canvas, 'latestChange': [aRepo.retrieveUserWithOutTimeChange(user)["name"], aRepo.retrieveUserWithOutTimeChange(user)["img"]]}})
         return self.getSpecificSlide(object_id=cid)
 
     def deleteAll(self):

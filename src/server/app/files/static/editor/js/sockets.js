@@ -1,7 +1,6 @@
 var socket = io();
         
 socket.on('connect', function() {
-    console.clear();
     sendRequestToServer({type: "GET", url: "/auth/getUserID"}).then(data => {
         console.log(data)
         console.warn(data.u_id);
@@ -80,9 +79,15 @@ socket.on('slideUpdateNotify', function (data) {
 })
 
 
-function showChangeNotification(username) {
+function showChangeNotification(data) {
     const container = $('.notify-about-changes');
-    container.html(username + " made changes!");
+    const containerText = $('.notify-about-changes p');
+    const containerImg = $('.notify-about-changes .notify-changes-img');
+
+
+    containerImg.css("background-image", "url(" + data[1] +")");  
+
+    containerText.html(data[0] + " made changes!");
 
     if(!container.hasClass("notify-animation")) {
         container.addClass("notify-animation");
