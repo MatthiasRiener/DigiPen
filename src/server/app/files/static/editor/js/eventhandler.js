@@ -712,7 +712,19 @@ function exitPresi() {
     if (w) w.close();
 
     //test
+    $("#content-main-inner-spacing-middle").css('width', '58vw');
+    $("#content-main-inner-spacing-middle").css('height', '32.625vw');
 
+    if ($("#content-main-inner-spacing-bottom").position().top + 25 > $("#content-main-inner").height()) {
+        $("#content-main-inner-spacing-middle").css('width', oldWidth);
+        $("#content-main-inner-spacing-middle").css('height', oldHeight);
+    }
+
+    var width = oldWidth = $('#content-main-inner-spacing-middle').width();
+    var height = oldHeight = $('#content-main-inner-spacing-middle').height();
+
+    resizeCanvas(width, height);
+    GetCanvasAtResoution(width, true);
 }
 
 function next() {
