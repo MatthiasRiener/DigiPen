@@ -50,13 +50,16 @@ body div.infos {
 }
 
 #currentCanvasDisplayBox {
-    width: fit-content;
-    height: fit-content;
+    width: 50vw;
+    height: 70vh;
     margin: 0 20px 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.canvas-container {
-    margin: 4px;
+#canvases .canvas-container {
+    margin: 4px 0;
     width: fit-content;
 }
 
@@ -119,10 +122,6 @@ button {
 
 #timerdisplay {
     min-width: 100px
-}
-
-#controlls {
-    /* position: absolute; */
 }
 
 #controlls button {

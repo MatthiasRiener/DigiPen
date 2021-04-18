@@ -710,7 +710,16 @@ function exitPresi() {
     $("div#iconbox").removeClass('fadeout');
     toggleLaser(false);
     if (w) w.close();
-    fixSize();
+
+    //test
+    if (checkResponsiveness()) {
+        fixSize();
+    } else {
+        var width = $('#content-main-inner-spacing-middle').width();
+        var height = $('#content-main-inner-spacing-middle').height();
+
+        resizeCanvas(width, height);
+    }
 }
 
 function next() {

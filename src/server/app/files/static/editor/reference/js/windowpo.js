@@ -88,6 +88,9 @@ function setCurr(ind) {
         oldCanv.setWidth(oW)
         oldCanv.setHeight(oW * 9 / 16)
 
+        let zOEm = oldCanv.getWidth() / 1920;
+        oldCanv.setZoom(zOEm);
+
         if (oldInd - 1 >= 0)
             document.querySelectorAll('.canvas-container')[oldInd - 1].classList.remove('prevCanvContSmol')
         document.querySelectorAll('.canvas-container')[oldInd].classList.remove('currCanvContSmol')
@@ -98,6 +101,9 @@ function setCurr(ind) {
     oldInd = ind;
     currCanvasSmol.setWidth(nW)
     currCanvasSmol.setHeight(nW * 9 / 16);
+
+    let zOEm = currCanvasSmol.getWidth() / 1920;
+    currCanvasSmol.setZoom(zOEm);
 
     var json = currCanvasSmol.toObject();
     bigSmol.loadFromJSON(json);
@@ -139,6 +145,29 @@ function createCanvas(json) {
     })
     bigSmol.renderAll();
 
+    resizeMain();
+    let zOEm = $("#bigsmol").width() / 1920;
+    bigSmol.setZoom(zOEm);
+}
+
+$(window).resize(function () {
+    resizeMain();
+});
+
+function resizeMain() {
+    let w = $("#currentCanvasDisplayBox").height() * 16 / 9;
+    let h = $("#currentCanvasDisplayBox").height();
+    let ratio = $("#currentCanvasDisplayBox").width() / $("#currentCanvasDisplayBox").height();
+    if (ratio < (16 / 9)) {
+        w = $("#currentCanvasDisplayBox").width();
+        h = $("#currentCanvasDisplayBox").width() * 9 / 16;
+        console.log("bra");
+    }
+
+    bigSmol.setWidth(w);
+    bigSmol.setHeight(h);
+
+    // set zoom
     let zOEm = $("#bigsmol").width() / 1920;
     bigSmol.setZoom(zOEm);
 }
