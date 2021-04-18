@@ -720,8 +720,8 @@ function exitPresi() {
         $("#content-main-inner-spacing-middle").css('height', oldHeight);
     }
 
-    var width = oldWidth = $('#content-main-inner-spacing-middle').width();
-    var height = oldHeight = $('#content-main-inner-spacing-middle').height();
+    var width = $('#content-main-inner-spacing-middle').width();
+    var height = $('#content-main-inner-spacing-middle').height();
 
     resizeCanvas(width, height);
     GetCanvasAtResoution(width, true);

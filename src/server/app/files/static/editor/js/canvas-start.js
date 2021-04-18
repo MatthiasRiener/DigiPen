@@ -576,14 +576,21 @@ window.onload = function () {
 }
 
 $(window).resize(async function () {
-    if (checkResponsiveness()) {
-        fixSize();
-    } else {
-        var width = $('#content-main-inner-spacing-middle').width();
-        var height = $('#content-main-inner-spacing-middle').height();
 
-        resizeCanvas(width, height);
+
+    $("#content-main-inner-spacing-middle").css('width', '58vw');
+    $("#content-main-inner-spacing-middle").css('height', '32.625vw');
+
+    if ($("#content-main-inner-spacing-bottom").position().top + 25 > $("#content-main-inner").height()) {
+        $("#content-main-inner-spacing-middle").css('width', oldWidth);
+        $("#content-main-inner-spacing-middle").css('height', oldHeight);
     }
+
+    var width = oldWidth = $('#content-main-inner-spacing-middle').width();
+    var height = oldHeight = $('#content-main-inner-spacing-middle').height();
+
+    resizeCanvas(width, height);
+    GetCanvasAtResoution(width, true);
 
     canvas.setZoom($('#content-main-inner-spacing-middle').width() / canvas.width)
 
