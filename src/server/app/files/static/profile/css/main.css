@@ -179,8 +179,12 @@
 }
 
 #ppContainer {
-    width: 20%;
+    width: 20vw;
+    height: 20vw;
     border-radius: 100%;
+
+    background-position: center;
+    background-size: cover;
 }
 
 .Task {

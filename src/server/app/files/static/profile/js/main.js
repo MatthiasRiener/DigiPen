@@ -27,7 +27,7 @@ $('#imgupload').on('change', function(evt) {
 
         sendRequestToServer({type: "POST", url: "/profile/uploadImage", data: {"img": img, "name": files[0].name, "lm": files[0].lastModified}}).then(data => {
             console.log("IMAGE WAS UPLOADED TO THE SERVER!");
-            $('#PP').attr('src', data.res.img)
+            $('#ppContainer').css('background-image', 'url("' + data.res.img + '")');
         })
     }
     
