@@ -101,7 +101,13 @@ class AuthenticationRepository():
         users = [ob.to_mongo() for ob in User.objects(mail=regex)]
 
         return users
-        
+
+    def updateUserImg(self, user_id, file_name):
+        PREFIX = "http://localhost:5000/static/profile/img/images/" + user_id + "/" + file_name
+        User.objects(u_id=user_id).update(set__img=str(PREFIX))
+        return 1
+
+
     def getUserIds(self, users):
         userIds = []
         for user in users:

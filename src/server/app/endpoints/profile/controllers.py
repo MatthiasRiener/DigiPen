@@ -1,10 +1,13 @@
 from ...db.settings import db, oidc
-from flask import Flask, Blueprint, render_template, abort, g
+from flask import Flask, Blueprint, render_template, abort, g, request
 from oauth2client.client import OAuth2Credentials
 
 from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, jwt_refresh_token_required, get_jwt_identity, get_raw_jwt, set_access_cookies, get_jti,
                                 set_refresh_cookies, unset_jwt_cookies, decode_token)
 
+import time
+
+from PIL import Image
 
 from ...models.User import User
 from ...repository.AuthenticationRepository import AuthenticationRepository
@@ -13,6 +16,12 @@ from ...repository.TaskRepository import TaskRepository
 from ...repository.PresentationRepository import PresentationRepository
 
 import json
+import string
+import re
+
+from os import path, mkdir
+
+from binascii import a2b_base64
 
 profile = Blueprint("profile", __name__,
                     static_folder="static", template_folder="templates")
@@ -52,4 +61,40 @@ def getUsersPresentationCountRoute():
     return json.dumps({"res": response})
 
 
+import urllib
+import os
+import platform
 
+@profile.route('/uploadImage', methods=["POST"])
+@jwt_required
+def uploadUserImageRoute():
+    u_id = get_jwt_identity()
+    data = request.form
+
+    name = data["name"]
+    img_data = data["img"]
+    last_modified = data["lm"]
+
+    
+    file_name = last_modified + "_" + name
+
+    ## check if directory for user exists, otherwise create
+
+    cur_dir = os.getcwd()
+
+    cur_dir = cur_dir + "/app/files/static/profile/img"
+        
+
+    if not path.exists(cur_dir + "/images/" + u_id):
+        mkdir(cur_dir + "/images/" + u_id + "/")
+
+    with open(cur_dir + "/images/" + u_id + "/" + file_name, 'wb') as img:
+        img.write(urllib.request.urlopen(img_data).file.read())
+        img.close()
+
+        print(u_id)
+        repo.updateUserImg(user_id=u_id, file_name=file_name)
+        print(img)
+
+
+    return json.dumps({"res": repo.retrieveUserWithOutTimeChange(user_id=u_id)})

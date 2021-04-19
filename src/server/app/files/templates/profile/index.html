@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slidea</title>
 
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/profile/css/fullpage.css') }}"" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/profile/css/fullpage.css') }}" />
     <link rel=" stylesheet" type="text/css" href="{{ url_for('static', filename='/profile/css/main.css') }}" />
 
 
@@ -14,6 +14,9 @@
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
 
     <script src={{ url_for('static', filename="components/side-bar/Sidebar.js" ) }} type="module"></script>
     <script src={{ url_for('static', filename="components/create-workspace/Workspace.js" ) }} type="module"></script>
@@ -44,6 +47,11 @@
 </head>
 
 <body>
+
+    <!--Image uploadert-->
+    <input type="file" id="imgupload" style="display:none"/> 
+
+
 
     <side-bar id="sidebar-comp" style="width: 0%; height: 100%; background-color: #F8F7F9;" class="sidenavW3">
     </side-bar>
