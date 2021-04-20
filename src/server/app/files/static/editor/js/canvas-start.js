@@ -797,8 +797,10 @@ function initializeShortcuts() {
     sendRequestToServer({ type: "GET", url: "/keybinding/getKeybinding" }).then(data => {
         shortcuts = [...data.res.bindings];
     });
+}
 
-
+function reloadShortcuts(keybindings) {
+    shortcuts = [...keybindings.res.bindings];
 }
 
 function removeSelected() {

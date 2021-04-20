@@ -35,4 +35,4 @@ def saveKeybindingRoute():
     keybinds = json.loads(data["keybinding"])
     print(u_id)
     keyRepo.updateKeybinds(keybinds, u_id)
-    return json.dumps({"res": u_id})
+    return json.dumps({"res": keyRepo.getKeybindings(u_id)})
