@@ -3,8 +3,10 @@ sendRequestToServer({
     url: "/profile/user"
 }).then(data => {
     $('#insert-username').text(data.name);
+    $('#Profile .whoami p').text(data.name);
 
     $('#ppContainer').css('background-image', 'url("' + data.img + '")');
+    $('#secppContainer').css('background-image', 'url("' + data.img + '")');
 
 
     $('#workspaceCount').text(data.workspaces);

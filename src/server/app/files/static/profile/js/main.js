@@ -14,6 +14,11 @@ $('#ppContainer').click(
     function () { $('#imgupload').trigger('click'); }
 );
 
+$('#secppContainer').click(
+    function () { $('#imgupload').trigger('click'); }
+);
+
+
 
 $('#imgupload').on('change', function(evt) {
     console.log(evt)
@@ -28,6 +33,8 @@ $('#imgupload').on('change', function(evt) {
         sendRequestToServer({type: "POST", url: "/profile/uploadImage", data: {"img": img, "name": files[0].name, "lm": files[0].lastModified}}).then(data => {
             console.log("IMAGE WAS UPLOADED TO THE SERVER!");
             $('#ppContainer').css('background-image', 'url("' + data.res.img + '")');
+            $('#secppContainer').css('background-image', 'url("' + data.res.img + '")');
+
         })
     }
     

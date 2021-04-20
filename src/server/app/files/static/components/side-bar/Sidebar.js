@@ -1,5 +1,5 @@
 
-import { template } from './template.js';
+import { template } from './template';
 
 class Sidebar extends HTMLElement {
   constructor() {
