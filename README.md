@@ -44,6 +44,14 @@ gesorgt.
   * Flask
 
 
+### HOW TO RUN
+
+1. git clone 
+2. open Terminal and go to src/docker
+3. docker-compose up
+4. open new Terminal and go to src/server
+5. install requirements and run python3 run.py
+
 ### Bilder
 <img src="documentation/readme_src/img_time_management.png">
 <img src="documentation/readme_src/img_webview_editor.png">
