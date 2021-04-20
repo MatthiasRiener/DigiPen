@@ -64,6 +64,10 @@ def getUsersPresentationCountRoute():
 import urllib
 import os
 import platform
+import base64
+import requests
+
+
 
 @profile.route('/uploadImage', methods=["POST"])
 @jwt_required
@@ -88,11 +92,15 @@ def uploadUserImageRoute():
     if not path.exists(cur_dir + "/images/" + u_id):
         mkdir(cur_dir + "/images/" + u_id + "/")
 
-    with open(cur_dir + "/images/" + u_id + "/" + file_name, 'wb') as img:
-        img.write(urllib.request.urlopen(img_data).file.read())
-        img.close()
 
-        print(u_id)
+
+
+    with open(cur_dir + "/images/" + u_id + "/" + file_name, 'wb') as img:
+        print(type(img_data))
+        print("=====")
+        response = urllib.request.urlopen(img_data)
+        img.write(response.file.read())
+        img.close()
         repo.updateUserImg(user_id=u_id, file_name=file_name)
         print(img)
 
