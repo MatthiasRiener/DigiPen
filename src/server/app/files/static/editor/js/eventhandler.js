@@ -298,14 +298,67 @@ $('body').on('click', '#content-navigation-fourth-share', function() {
     $('#share-presi-popup').css('opacity', '1.0');
 
 
-    $('#share-presi-inner').animate({
+    $('#share-presi-inner-first').addClass("is-currently-big");
+
+    $('#share-presi-inner-first').animate({
         opacity: 1.0,
     }, 150);
 
-    $('#share-presi-inner').toggleClass("share-presi-inner-animate");
+    $('#share-presi-inner-first').toggleClass("share-presi-inner-animate");
+
+
+    $('#share-presi-inner-second').animate({
+        opacity: 1.0,
+    }, 150);
+
+    $('#share-presi-inner-second').toggleClass("share-presi-inner-animate");
 
     
 })
+
+
+// animation between two toggles
+
+$('body').on('click', "#share-presi-inner-second", function() {
+
+    if ($(this).hasClass("is-currently-big")) return;
+
+
+    $(this).animate({
+        height: "25vh"
+    }, 150);
+
+    $("#share-presi-inner-first").animate({
+        height: "12vh"
+    }, 150);
+
+
+    $(this).addClass("is-currently-big");
+    $("#share-presi-inner-first").removeClass("is-currently-big");
+})
+
+
+
+$('body').on('click', "#share-presi-inner-first", function() {
+
+    if ($(this).hasClass("is-currently-big")) return;
+
+
+    $(this).animate({
+        height: "25vh"
+    }, 150);
+
+    $("#share-presi-inner-second").animate({
+        height: "12vh"
+    }, 150);
+
+
+    $(this).addClass("is-currently-big");
+    $("#share-presi-inner-second").removeClass("is-currently-big");
+})
+
+// end of toggle
+
 
 $('body').on('click', '.ed_bt_arrow_click', function () {
     window.location = baseURL + "/dashboard"

@@ -733,8 +733,26 @@
 
 
     <div id="share-presi-popup">
-        <div id="share-presi-inner">
-            
+        <div id="share-presi-inner-first">
+            <div id="share-presi-first-header">
+                <div id="share-presi-first-header-icon">
+                    <ion-icon name="person-add-outline" style="fill: white; font-size: 1.3rem;font-weight: bold;"></ion-icon>
+                </div>
+
+
+                <p>Für Personen und Gruppen freigeben</p>
+            </div>
+        </div>
+
+        <div id="share-presi-inner-second">
+            <div id="share-presi-first-header">
+                <div id="share-presi-first-header-icon">
+                    <ion-icon name="link-outline" style="fill: white; font-size: 1.3rem;font-weight: bold;"></ion-icon>
+                </div>
+
+
+                <p>Link abrufen</p>
+            </div>
         </div>
     </div>
 
@@ -763,7 +781,10 @@
     <script src={{ url_for('static', filename="editor/js/eventhandler.js" ) }} type="text/javascript" defer></script>
     <script src={{ url_for('static', filename="editor/js/getDevices.js" ) }} type="text/javascript" defer></script>
     <script src="//media.twiliocdn.com/sdk/js/video/releases/2.3.0/twilio-video.min.js"></script>
+
+    <!--
     <script src={{ url_for('static', filename="editor/js/video.js" ) }} type="text/javascript" defer></script>
+    -->
     <script src={{ url_for('static', filename="editor/js/sockets.js" ) }} type="text/javascript" defer></script>
 </body>
 
