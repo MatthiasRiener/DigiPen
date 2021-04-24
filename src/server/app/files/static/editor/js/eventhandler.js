@@ -293,6 +293,20 @@ $(document).click(function (event) {
 
 //Navigation
 
+$('body').on('click', '#content-navigation-fourth-share', function() {
+    $('#share-presi-popup').css('display', 'flex');
+    $('#share-presi-popup').css('opacity', '1.0');
+
+
+    $('#share-presi-inner').animate({
+        opacity: 1.0,
+    }, 150);
+
+    $('#share-presi-inner').toggleClass("share-presi-inner-animate");
+
+    
+})
+
 $('body').on('click', '.ed_bt_arrow_click', function () {
     window.location = baseURL + "/dashboard"
 })
