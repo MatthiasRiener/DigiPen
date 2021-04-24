@@ -36,7 +36,6 @@ function getLocationDataFromUsers() {
 
 function getReportedIssues() {
     sendRequestToServer({type: "POST", url: "/admin/getIssues", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {
-        console.clear();
         console.log(data);
         $('#issues-count').html(`(${data.res.length})`)
         insertIssues(data.res);

@@ -1,10 +1,14 @@
 from functools import wraps
 from flask import request
 from flask_jwt_extended import get_jwt_identity
-from app.db.settings import mongoclient
+from app.db.settings import mongoclient, socketio
 import time
 
-import requests
+import requests, threading
+
+import eventlet
+
+eventlet.monkey_patch()
 
 def dRR():
     def wrapper(fn):
@@ -21,7 +25,10 @@ def dRR():
             print(u_id)
             print("=============")
 
+            
+
             mongoclient.db['activity'].insert_one({"type": "routeRequested", "route": route,  "user": u_id, "remote_addr": ip, "time": time.time(), "location": location_data})
+            eventlet.spawn(newRequest)
 
             return fn(*args, **kwargs)
            
@@ -29,3 +36,9 @@ def dRR():
         return decorator
 
     return wrapper
+
+
+def newRequest():
+    socketio.emit('newRequestNotified', "Imma drop the nbomb", broadCast=True)
+
+    print("Was geht ab!")

@@ -5,6 +5,11 @@ socket.on('notifyUserCount', function(data) {
     changeCurrentUserCount(data);
 });
 
+socket.on('newRequestNotified', function(data) {
+    console.log("New request was made!")
+});
+
+
 socket.on('notifyOnlineUsers', function(data) {
     data = JSON.parse(data);
     console.log(data);
