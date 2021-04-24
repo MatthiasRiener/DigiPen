@@ -1,6 +1,6 @@
 from functools import wraps
 from flask import request
-from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import get_jwt_identity, jwt_required
 from app.db.settings import mongoclient, socketio
 import time
 
@@ -11,23 +11,22 @@ import eventlet
 
 eventlet.monkey_patch()
 
-
+@jwt_required
 def dRR():
 
     route = request.path
+    user = get_jwt_identity()
+
     ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
-    
-    u_id = get_jwt_identity()
+
     print("ROUTE WAS REQUESTED")
     print("==========")
     print(route)
     print(ip)
-    print(u_id)
     print("=============")
 
-   
     mongoclient.db['activity'].insert_one({"type": "routeRequested", "route": route,
-                                           "user": u_id, "remote_addr": ip, "time": time.time()})
+                                           "user": user, "remote_addr": ip, "time": time.time()})
 
     eventlet.spawn(newRequest)
 
@@ -39,9 +38,14 @@ def newRequest():
     print("Was geht ab!")
 
 
-def addBluePrint(bp):
+def addBluePrint(name, bp):
     print("ADDING BLUEPRINT")
 
     @bp.before_request
     def before_panel_request():
-        dRR()
+
+        if "/" + name + "/" == request.path:
+            print("LOADING PAGE")
+        else:
+            print("TRYINGIN TO GET USERID")
+            dRR()

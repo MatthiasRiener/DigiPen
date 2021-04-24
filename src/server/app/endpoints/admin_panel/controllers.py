@@ -38,7 +38,7 @@ usersConnected = dict()
 HEADER FOR TRACKING REQUESTS
 """
 from decorators import addBluePrint
-addBluePrint(panel)
+addBluePrint("admin", panel)
 
 
 
