@@ -20,6 +20,9 @@ workspace = Blueprint("workspace", __name__,
 wRepo = WorkspaceRepository(testing=False)
 aRepo = AuthenticationRepository(testing=False)
 
+
+
+
 @workspace.route('/createWorkspace', methods=["POST"])
 @jwt_required
 def createWorkspace():

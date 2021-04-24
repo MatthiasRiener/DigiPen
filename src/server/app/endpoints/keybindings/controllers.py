@@ -12,6 +12,9 @@ import json
 
 keyRepo = KeybindingRepository(testing=False)
 
+
+
+
 @keybinding.route('/')
 def index():
     return render_template('/keybinding/index.html')

@@ -23,7 +23,6 @@ class LocationRepository():
                 if (el["user"] not in response[el["location"]["country_code"]]):
                     response[el["location"]["country_code"]].append(el["user"])
 
-            print(el["location"]["country_code"])
         return response
     def getRequestsAndLocation(self, start, end):
         response = dict()
@@ -36,7 +35,6 @@ class LocationRepository():
             else:
                 response[el["location"]["country_code"]].append(el["user"])
 
-            print(el["location"]["country_code"])
         return response
     def getUserCountWithLocation(self, start, end):
         response = dict()
@@ -61,7 +59,6 @@ class LocationRepository():
             if el["time"] >  response[el["location"]["country_code"]]["last_login"]:
                  response[el["location"]["country_code"]]["last_login"] = el["time"]
 
-            print(el["location"])
         return response, total_requestCount
 
 
@@ -87,5 +84,4 @@ class LocationRepository():
             if el["time"] >  response[el["location"]["country_code"]]["last_login"]:
                  response[el["location"]["country_code"]]["last_login"] = el["time"]
 
-            print(el["location"])
         return response, total_requestCount

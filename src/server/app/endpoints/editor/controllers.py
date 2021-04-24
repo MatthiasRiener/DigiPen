@@ -42,18 +42,13 @@ editor = Blueprint("editor", __name__,
 
 
 
-from decorators import dRR
-
-
-
 @editor.route('/')
-@dRR()
 def index():
+    print("HELLO!")
     return render_template('/editor/index.html')
 
 @editor.route('/getPresentationInfo', methods=["POST"])
 @jwt_required
-@dRR()
 def getPresentationRoute():
     data = request.form
     p_id = data['p_id']

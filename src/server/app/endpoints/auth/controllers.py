@@ -26,6 +26,9 @@ auth = Blueprint('auth', __name__, static_folder="static",
                  template_folder="templates")
 
 
+
+
+
 @auth.route('/login')
 @oidc.require_login
 def login():

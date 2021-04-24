@@ -19,6 +19,8 @@ landing_page = Blueprint("landing_page", __name__,
 
 
 
+
+
 @landing_page.route('/', methods=["GET"])
 def index():
     # add interaction

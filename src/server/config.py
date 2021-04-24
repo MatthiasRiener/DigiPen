@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, Blueprint, blueprints
 from app.endpoints.auth.controllers import auth
 from app.endpoints.error.controllers import pagenotfound
 from app.endpoints.profile.controllers import profile
@@ -17,6 +17,10 @@ from app.db.settings import db, oidc, jwt, socketio, mongoclient
 
 app = Flask(__name__, template_folder="./app/files/templates",
             static_folder="./app/files/static")
+
+
+
+
 
 app.config.update({
     'SECRET_KEY': 'SomethingNotEntirelySecret',
@@ -67,8 +71,14 @@ app.register_blueprint(landing_page)
 app.register_error_handler(404, pagenotfound)
 
 
-from decorators import dRR
+## register before request for all blueprints
 
-@app.before_request
-def before_request_route():
-    dRR()
+
+
+
+
+
+
+
+
+    

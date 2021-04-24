@@ -20,6 +20,7 @@ iss = Blueprint("issues", __name__,
                       static_folder="static", template_folder="templates")
 
 
+
 @iss.route('/submitIssue', methods=["POST"])
 @jwt_required
 def submitNewIssueRoute():

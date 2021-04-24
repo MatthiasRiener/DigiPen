@@ -1,4 +1,4 @@
-from ...db.settings import db, oidc, socketio
+from ...db.settings import db, oidc, socketio, mongoclient
 from flask import Flask, Blueprint, render_template, abort, g, request, jsonify, redirect
 from oauth2client.client import OAuth2Credentials
 from flask_socketio import emit, join_room, leave_room, send
@@ -32,6 +32,18 @@ locationRepo = LocationRepository(testing=False)
 issueRepo = IssueRepository(testing=False)
 
 usersConnected = dict()
+
+
+""" 
+HEADER FOR TRACKING REQUESTS
+"""
+from decorators import addBluePrint
+addBluePrint(panel)
+
+
+
+
+
 
 
 def admin_required():
@@ -199,7 +211,7 @@ def getTodaysSlidesRoute():
 @admin_required()
 def getVideoChatInformationRoute():
     client = Client(twilio_account_sid, twilio_auth_token)
-    records = client.usage.records.today.list()
+    records = client.usage.records.today.list(category="group-rooms-participant-minutes")
     duration = dict()
     for el in records:
         if el.category == "group-rooms-participant-minutes":
@@ -213,7 +225,18 @@ def getVideoChatInformationRoute():
 @socketio.on('connectUser')
 def userHasConnected(json):
     print("User has connected!!!!")
-    usersConnected[json["user_id"]] = request.sid
+
+    if "session" not in usersConnected:
+        usersConnected[json["user_id"]] = dict()
+        usersConnected[json["user_id"]]["session"] = str(request.sid)[::-1]
+        usersConnected[json["user_id"]]["u_id"] = json["user_id"]
+        usersConnected[json["user_id"]]["jtime"] = time.time()
+
+        mongoclient.db["loginsTracker"].insert_one({"type": "login", "session": request.sid, "user": json["user_id"], "time": time.time()})
+
+    usersConnected[json["user_id"]]["sid"] = request.sid
+
+
     join_room(json["user_id"])
     thread = threading.Thread(target=handleConnect, kwargs=dict(user_id=json["user_id"]))
     thread.start()
@@ -227,16 +250,25 @@ def userHasDisconnected():
 def handleConnect(user_id):
     socketio.emit('notifyOnlineUsers', json_util.dumps({"res": adminPanel.getOnlineUsers(users=usersConnected)}), broadCast=True)
     socketio.emit('notifyUserCount', len(usersConnected), broadcast=True)
+    
     print("Notifying users!")
 
 def handleDisconnect(user_id):
+    poppedUser = None
+
+
     for el in list(usersConnected):
-        if usersConnected[el] == user_id:
-            usersConnected.pop(el)
-    print("Count:",  len(usersConnected))
-    socketio.emit('notifyOnlineUsers', json_util.dumps({"res": adminPanel.getOnlineUsers(users=usersConnected)}), broadCast=True)
-    socketio.emit('notifyUserCount', len(usersConnected), broadcast=True)
-    print("Notifying Users!!!!!")
+        if usersConnected[el]["sid"] == user_id:
+            poppedUser = usersConnected.pop(el)
+    
+    if poppedUser is not None:
+        print("Count:",  len(usersConnected))
+        socketio.emit('notifyOnlineUsers', json_util.dumps({"res": adminPanel.getOnlineUsers(users=usersConnected)}), broadCast=True)
+        socketio.emit('notifyUserCount', len(usersConnected), broadcast=True)
+
+        print(poppedUser)
+        mongoclient.db["loginsTracker"].insert_one({"type": "logout", "session": poppedUser["sid"], "user": poppedUser["u_id"], "time": time.time(), "duration": int(round((time.time() - poppedUser["jtime"]) / 60))})
+        print("Notifying Users!!!!!")
 
 
 
