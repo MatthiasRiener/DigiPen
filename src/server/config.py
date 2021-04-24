@@ -65,3 +65,10 @@ app.register_blueprint(iss, url_prefix="/issues")
 app.register_blueprint(landing_page)
 
 app.register_error_handler(404, pagenotfound)
+
+
+from decorators import dRR
+
+@app.before_request
+def before_request_route():
+    dRR()

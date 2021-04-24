@@ -56,11 +56,16 @@ $('body').on('click', '.content-leftSlides-slidesContent-slide-content', functio
 
 function toggleVisibility(slideID, index) {
     trackingIndex = index;
+    
+    
+
     $('#content-leftSlides-slidesContent-animatedBar').css({
         'top': `${$("#content-leftSlides-slidesContent-animatedBar").position().top}`
     }).animate({
         "top": `${$('.content-leftSlides-slidesContent-slide-leftBar').eq(trackingIndex).position().top}px`
     }, "slow");
+
+    
     switchSlide(slideID);
 }
 
