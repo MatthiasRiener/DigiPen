@@ -46,6 +46,9 @@ def addBluePrint(name, bp):
 
         if "/" + name + "/" == request.path:
             print("LOADING PAGE")
+            mongoclient.db['activity'].insert_one({"type": "siteRequested", "route": request.path,
+                                        "remote_addr": request.environ.get('HTTP_X_REAL_IP', request.remote_addr), "time": time.time()})
         else:
             print("TRYINGIN TO GET USERID")
             dRR()
+
