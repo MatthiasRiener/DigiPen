@@ -52,6 +52,12 @@ gesorgt.
 4. open new Terminal and go to src/server
 5. install requirements and run python3 run.py
 
+
+### ISSUES
+
+#### Components not loading on Windows?
+RegEdit => HKEY_CLASSES_ROOT\.js => ContentType auf text/javascript
+
 ### Bilder
 <img src="documentation/readme_src/img_time_management.png">
 <img src="documentation/readme_src/img_webview_editor.png">
