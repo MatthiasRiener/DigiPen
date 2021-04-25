@@ -342,7 +342,6 @@ function createCountryChartRequests(countryData) {
 
 
     for (const [key, value] of Object.entries(countryData)) {
-        console.log(value)
         polygonSeries.data.push({ id: key, value: value.length })
     }
 

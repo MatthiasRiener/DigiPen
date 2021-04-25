@@ -7,6 +7,7 @@ import time
 import requests
 import threading
 
+
 import eventlet
 
 eventlet.monkey_patch()
@@ -27,13 +28,12 @@ def dRR():
 
     mongoclient.db['activity'].insert_one({"type": "routeRequested", "route": route,
                                            "user": user, "remote_addr": ip, "time": time.time()})
+    eventlet.spawn(newRequest, route, user)
 
-    eventlet.spawn(newRequest)
 
+def newRequest(route, user):
 
-def newRequest():
-
-    socketio.emit('newRequestNotified', "Imma drop the nbomb", broadCast=True)
+    socketio.emit('newRequestNotified',{"route": route, "user": user}, broadCast=True)
 
     print("Was geht ab!")
 

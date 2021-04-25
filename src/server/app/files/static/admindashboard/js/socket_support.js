@@ -1,16 +1,31 @@
 console.log("Socket Support!!!!!")
 
 
-socket.on('notifyUserCount', function(data) {
+socket.on('notifyUserCount', function (data) {
     changeCurrentUserCount(data);
 });
 
-socket.on('newRequestNotified', function(data) {
-    console.log("New request was made!")
+var requestIndex = 0;
+socket.on('newRequestNotified', function (data) {
+    requestIndex += 1;
+    $('.dashboard-requests-inner-container').prepend(
+        `
+                <div class="dashboard-requests-inner-container-item" style="height: 8vh !important" >
+                    <div class="dashboard-issues-inner-container-item-writer">${requestIndex}.</div>
+
+                    <div class="dashboard-issues-inner-container-item-writer">${data.user}</div>
+                    <div class="dashboard-issues-inner-container-item-title">${data.route}</div>
+                </div>
+                `
+    );
+
+
+
+
 });
 
 
-socket.on('notifyOnlineUsers', function(data) {
+socket.on('notifyOnlineUsers', function (data) {
     data = JSON.parse(data);
     console.log(data);
 
@@ -22,7 +37,7 @@ function insertActiveUsers(users) {
     console.log(users)
     $('#dashboardMain-right-inner-user-list').empty();
 
-    users.forEach((u,index) => {
+    users.forEach((u, index) => {
         worker = new Worker(baseURL + "/static/admindashboard/js/worker.js?" + Math.random());
 
         const mainContainer = document.createElement('div');
@@ -43,19 +58,19 @@ function insertActiveUsers(users) {
 
         console.log("Last login of user: " + u.last_login);
 
-        worker.postMessage({index: u._id, time: u.last_login })
-        worker.addEventListener('message', function(event) {updateTime(event)});
+        worker.postMessage({ index: u._id, time: u.last_login })
+        worker.addEventListener('message', function (event) { updateTime(event) });
 
         mainContainer.appendChild(profileImageContainer);
         mainContainer.appendChild(usernameContainer);
         mainContainer.appendChild(timeOnline);
-        
+
 
 
 
         document.getElementById('dashboardMain-right-inner-user-list').appendChild(mainContainer);
 
-    
+
     });
 }
 
