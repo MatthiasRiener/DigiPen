@@ -15,6 +15,7 @@ from app.endpoints.issues.controller import iss
 from app.db.settings import db, oidc, jwt, socketio, mongoclient
 
 
+
 app = Flask(__name__, template_folder="./app/files/templates",
             static_folder="./app/files/static")
 

@@ -32,6 +32,7 @@ locationRepo = LocationRepository(testing=False)
 issueRepo = IssueRepository(testing=False)
 
 usersConnected = dict()
+client = Client(twilio_account_sid, twilio_auth_token)
 
 
 """ 
@@ -206,11 +207,12 @@ def getTodaysPresentationsRoute():
 def getTodaysSlidesRoute():
     return json.dumps({"res": adminPanel.getTodaysCreatedSlides()})
 
+
+
 @panel.route('/getVideoChatInformation', methods=["GET"])
 @jwt_required
 @admin_required()
 def getVideoChatInformationRoute():
-    client = Client(twilio_account_sid, twilio_auth_token)
     records = client.usage.records.today.list(category="group-rooms-participant-minutes")
     duration = dict()
     for el in records:
@@ -219,9 +221,7 @@ def getVideoChatInformationRoute():
                 duration[el.category] = 0
             duration[el.category] += float(el.usage)
     return json.dumps({"res": duration})
-
-
-
+    
 @socketio.on('connectUser')
 def userHasConnected(json):
     print("User has connected!!!!")

@@ -98,9 +98,15 @@ sendRequestToServer({
 
         canvas.loadFromJSON(presentation.canvas[0].canvas, function () {
             canvas.renderAll();
+
+            imgageTest = canvas.toDataURL({
+                format: 'png',
+                quality: 0.8
+            })
+
             $('#ownPresentations').append(`
             <li data-presentation="${presentation._id}">
-                <div class="template_yourPresentation" style="background: url('${'data:image/svg+xml;utf8,' + encodeURIComponent(canvas.toSVG())}'); background-size: cover; background-position: center; background-repeat: no-repeat"><i class="fas fa-eye"></i></div>
+                <div class="template_yourPresentation" style="background: url('${imgageTest}'); background-size: cover; background-position: center; background-repeat: no-repeat"><i class="fas fa-eye"></i></div>
                 <p class="searchitem_yourPresentation">${presentation.name}</p>
                 <p class="amoutofslides">${presentation.canvas.length} Slide</p>
             </li>

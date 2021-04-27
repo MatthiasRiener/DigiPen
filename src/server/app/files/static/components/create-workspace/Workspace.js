@@ -18,7 +18,9 @@
         this.container = this.shadowRoot.querySelector('.workspace-container');
 
         this.shadowRoot.querySelector('.btn-create-ws').addEventListener('click', e => {this.createWorkspace()});
-    }
+
+        this.shadowRoot.querySelector('#background-workspace-container').addEventListener('click', e => {this.closeWorkspace()})
+      }
 
       loadCss(path) {
           fetch(`http://localhost:5000/static/components/create-workspace/styles.css`)
@@ -53,10 +55,14 @@
 
     }
 
-    createWorkspace() {
+    closeWorkspace() {
         this.classList.remove('visible');
         this.classList.add('hidden');
         this.container.classList.remove('popTransition');
+    }
+
+    createWorkspace() {
+        this.closeWorkspace();
 
         let workspaceName = this.shadowRoot.querySelector('#workspaceName').value;
         let workspaceUsers = this.shadowRoot.querySelector('#workspaceUsers').value.split(';');

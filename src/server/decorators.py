@@ -10,7 +10,6 @@ import threading
 
 import eventlet
 
-eventlet.monkey_patch()
 
 @jwt_required
 def dRR():
@@ -33,7 +32,8 @@ def dRR():
 
 def newRequest(route, user):
 
-    socketio.emit('newRequestNotified',{"route": route, "user": user}, broadCast=True)
+    socketio.emit('newRequestNotified', {
+                  "route": route, "user": user}, broadCast=True)
 
     print("Was geht ab!")
 
@@ -47,8 +47,7 @@ def addBluePrint(name, bp):
         if "/" + name + "/" == request.path:
             print("LOADING PAGE")
             mongoclient.db['activity'].insert_one({"type": "siteRequested", "route": request.path,
-                                        "remote_addr": request.environ.get('HTTP_X_REAL_IP', request.remote_addr), "time": time.time()})
+                                                   "remote_addr": request.environ.get('HTTP_X_REAL_IP', request.remote_addr), "time": time.time()})
         else:
             print("TRYINGIN TO GET USERID")
             dRR()
-

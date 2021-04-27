@@ -38,6 +38,8 @@ presRepo = PresentationRepository(testing=False)
 editor = Blueprint("editor", __name__,
                    static_folder="static", template_folder="templates")
 
+from twilio.rest import Client
+client = Client(twilio_api_key_sid, twilio_api_key_secret)
 
 @editor.route('/')
 def index():
@@ -93,32 +95,40 @@ def getSlidesRoute():
     p_id = data["p_id"]
     return json.dumps({"res": editorRepo.getSlides(p_id=p_id)})
 
+from urllib.request import urlopen
 
 @editor.route('/getVideoChatInformation', methods=["GET"])
 def getVideoChatInformationRoute():
 
-    from twilio.rest import Client
-    client = Client(twilio_api_key_sid, twilio_api_key_secret)
+
     print("WAS GEHT AB!!!")
 
+    rooms = client.video.rooms.list()
 
-    recordings = client.video.recordings.list(
-        grouping_sid=['ParticipantSid'],
-        limit=20
-    )
 
-    for record in recordings:
-        print(record.sid)
+    for room in rooms:
+        participants_room = room.participants.list()
+        
+        for participant in participants_room:
 
+            published_tracks = participant.published_tracks.list()
+
+            for track in published_tracks:
+                print(track.url)
+                response = client.request("GET", track.url)
+                print(response)
+
+
+
+
+    
     """
-        rooms = client.video.rooms.list(
-                                status='completed',
-                                unique_name='DailyStandup',
-                                limit=20
-                            )
-        print(rooms)
+  
     """
+    
+    
     return json.dumps({"res": 1})
+    
 
 
 # video chat route
@@ -139,6 +149,16 @@ def connectVideoChatRoute():
 
     user = authRepo.retrieveUserWithOutTimeChange(user_id=u_id)
     username = user["name"]
+
+    try:
+        group_room = client.video.rooms.create(
+            unique_name=p_id,
+            type='group',
+            record_participants_on_connect=True
+        )
+
+    except:
+        print("Room already exists.")
 
     token = AccessToken(twilio_account_sid, twilio_api_key_sid,
                         twilio_api_key_secret, identity=username)
