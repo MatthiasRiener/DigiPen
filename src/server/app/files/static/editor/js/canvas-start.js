@@ -437,7 +437,9 @@ $('body').on('keypress', '.canvas-background-img', function (e) {
 
 
 $('body').on('click', '.btn-export-to-json', function () {
+    resizeOnloadSpecific();
     saveCanvasToJson();
+    resizeCanvasFunc();
 });
 
 
@@ -563,17 +565,35 @@ $('body').on('input', '.img-opacity-slider-img', function () {
 let originalSize, oldWidth, oldHeight;
 
 window.onload = function () {
-    this.setTimeout(() => {
-        fixSize();
-        this.setTimeout(() => {
-            originalSize = canvas.width;
-
-            canvas.setZoom($("#canvas").width() / $('#content-main-inner-spacing-middle').width())
-        }, 500);
-    }, 500);
+    originalSize = canvas.width;
+    // TODO Where the fuck resized der des
+    // resizeCanvasFunc();
 }
 
 $(window).resize(async function () {
+    resizeCanvasFunc();
+
+    setTimeout(() => {
+        toggleVisibility(trackingIndex);
+    }, 100);
+});
+
+function resizeOnloadSpecific() {
+    $("#content-main-inner-spacing-middle").css('width', '58vw');
+    $("#content-main-inner-spacing-middle").css('height', '32.625vw');
+
+    if ($("#content-main-inner-spacing-bottom").position().top + 25 > $("#content-main-inner").height()) {
+        $("#content-main-inner-spacing-middle").css('width', oldWidth);
+        $("#content-main-inner-spacing-middle").css('height', oldHeight);
+    }
+
+    var width = oldWidth = $('#content-main-inner-spacing-middle').width();
+    var height = oldHeight = $('#content-main-inner-spacing-middle').height();
+    canvas.setWidth(width);
+    canvas.setHeight(height);
+}
+
+function resizeCanvasFunc() {
     $("#content-main-inner-spacing-middle").css('width', '58vw');
     $("#content-main-inner-spacing-middle").css('height', '32.625vw');
 
@@ -588,12 +608,8 @@ $(window).resize(async function () {
     resizeCanvas(width, height);
     GetCanvasAtResoution(width, true);
 
-    canvas.setZoom(width / canvas.width)
-
-    setTimeout(() => {
-        toggleVisibility(trackingIndex);
-    }, 100);
-});
+    canvas.setZoom(width / canvas.width);
+}
 
 function fixSize() {
     if ($('#content-main').height() < $('#content-main').width()) {

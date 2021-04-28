@@ -24,14 +24,14 @@ function saveCanvas(canvas, width, height) {
 
         sideC.loadFromJSON(data.res.canvas, function () {
             sideC.renderAll();
-            
+
 
             imgageTest = sideC.toDataURL({
                 format: 'png',
                 quality: 0.8
             })
 
-            
+
             console.log(imgageTest)
 
             const box = $(`.content-leftSlides-slidesContent-slide-content-overlay[data-slideId="${data.res._id.$oid}"]`);
@@ -91,6 +91,7 @@ function getSlides(whereStart) {
         if (origSizePresCanvas == undefined)
             origSizePresCanvas = currCanvas.getWidth();
         resizePresentationCanvas();
+        resizeCanvasFunc();
         $('#pagecount').text(`Slide ${whereStart + 1}/${canvasArr.length}`);
     });
 }

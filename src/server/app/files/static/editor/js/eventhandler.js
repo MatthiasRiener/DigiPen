@@ -468,7 +468,6 @@ function createCanvas(whereStart) {
     canvasArr.push(canvas1);
     canvasArr.push(canvas2);
     canvasArr.push(canvas3);*/
-
     getSlides(whereStart);
 }
 
