@@ -69,9 +69,15 @@ socket.on('slideUpdateNotify', function (data) {
         sideC.loadFromJSON(data.res.canvas, function () {
             sideC.renderAll();
 
+
+            imgageTest = sideC.toDataURL({
+                format: 'png',
+                quality: 0.8
+            })
+
             const box = $(`.content-leftSlides-slidesContent-slide-content-overlay[data-slideId="${data.res._id.$oid}"]`);
             console.warn(box);
-            box.css('background', `url('${'data:image/svg+xml;utf8,' + encodeURIComponent(sideC.toSVG())}')`);
+            box.css('background', `url('${imgageTest}')`);
             box.css('background-position', 'center');
             box.css('background-size', 'cover');
         });

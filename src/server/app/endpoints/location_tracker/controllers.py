@@ -20,6 +20,7 @@ location = Blueprint("location", __name__,
 lRepo = LocationRepository(testing=False)
 
 
+
 @location.route('/tracker', methods=["POST"])
 @jwt_required
 def getLocationData():

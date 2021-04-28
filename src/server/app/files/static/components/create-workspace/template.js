@@ -1,6 +1,7 @@
 
   export const template =
     `
+    <div id="background-workspace-container"></div>
     <div class="workspace-container">
         <div class="left-side-container">
             <p id="workspace-title">Create Workspace</p>

@@ -21,6 +21,13 @@ authRepo = AuthenticationRepository(testing=False)
 presRepo = PresentationRepository(testing=False)
 
 
+""" 
+HEADER FOR TRACKING REQUESTS
+"""
+from decorators import addBluePrint
+addBluePrint("dashboard", dashboard)
+
+
 @dashboard.route('/', methods=["GET"])
 def index():
     return render_template('/dashboard/index.html')

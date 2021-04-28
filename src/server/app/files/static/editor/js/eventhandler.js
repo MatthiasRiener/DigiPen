@@ -20,12 +20,18 @@ function addSlide(slide) {
     sideC.loadFromJSON(slide.canvas, function () {
         sideC.renderAll();
 
+
+        imgageTest = canvas.toDataURL({
+            format: 'png',
+            quality: 0.8
+        })
+
         $('#content-leftSlides-slidesContent').append(`
     <div class="content-leftSlides-slidesContent-slide" data-slide="${slide._id.$oid}">
         <div class="content-leftSlides-slidesContent-slide-leftBar ${slides.length == 0 ? 'activeSlide' : ''}" style="height: ${height}vw;"></div>
         <div class="content-leftSlides-slidesContent-slide-middleBar" style="height: ${height}vw;">${slide.s_id}</div>
         <div class="content-leftSlides-slidesContent-slide-content" data-slide="${slide._id.$oid}" data-length="${slides.length}" style="position: relative; z-index: 2; height: ${height}vw; ${slides.length == 0 ? 'transform: scale(0.95);' : ''}">
-            <div class="content-leftSlides-slidesContent-slide-content-overlay" data-slideId="${slide._id.$oid}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; background: url('${'data:image/svg+xml;utf8,' + encodeURIComponent(sideC.toSVG())}'); background-size: cover; background-position: center; background-repeat: no-repeat"></div>
+            <div class="content-leftSlides-slidesContent-slide-content-overlay" data-slideId="${slide._id.$oid}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; background: url('${imgageTest}'); background-size: cover; background-position: center; background-repeat: no-repeat"></div>
             <canvas class="content-leftSlides-slidesContent-slide-content-canvas" id="${slide._id.$oid}" style="position: absolute; z-index: 1; width: 100%; height: 100%;"></canvas>
         </div>
     </div>`);
@@ -56,11 +62,16 @@ $('body').on('click', '.content-leftSlides-slidesContent-slide-content', functio
 
 function toggleVisibility(slideID, index) {
     trackingIndex = index;
+
+
+
     $('#content-leftSlides-slidesContent-animatedBar').css({
         'top': `${$("#content-leftSlides-slidesContent-animatedBar").position().top}`
     }).animate({
         "top": `${$('.content-leftSlides-slidesContent-slide-leftBar').eq(trackingIndex).position().top}px`
     }, "slow");
+
+
     switchSlide(slideID);
 }
 
@@ -292,6 +303,73 @@ $(document).click(function (event) {
 });
 
 //Navigation
+
+$('body').on('click', '#content-navigation-fourth-share', function () {
+    $('#share-presi-popup').css('display', 'flex');
+    $('#share-presi-popup').css('opacity', '1.0');
+
+
+    $('#share-presi-inner-first').addClass("is-currently-big");
+
+    $('#share-presi-inner-first').animate({
+        opacity: 1.0,
+    }, 150);
+
+    $('#share-presi-inner-first').toggleClass("share-presi-inner-animate");
+
+
+    $('#share-presi-inner-second').animate({
+        opacity: 1.0,
+    }, 150);
+
+    $('#share-presi-inner-second').toggleClass("share-presi-inner-animate");
+
+
+})
+
+
+// animation between two toggles
+
+$('body').on('click', "#share-presi-inner-second", function () {
+
+    if ($(this).hasClass("is-currently-big")) return;
+
+
+    $(this).animate({
+        height: "25vh"
+    }, 150);
+
+    $("#share-presi-inner-first").animate({
+        height: "12vh"
+    }, 150);
+
+
+    $(this).addClass("is-currently-big");
+    $("#share-presi-inner-first").removeClass("is-currently-big");
+})
+
+
+
+$('body').on('click', "#share-presi-inner-first", function () {
+
+    if ($(this).hasClass("is-currently-big")) return;
+
+
+    $(this).animate({
+        height: "25vh"
+    }, 150);
+
+    $("#share-presi-inner-second").animate({
+        height: "12vh"
+    }, 150);
+
+
+    $(this).addClass("is-currently-big");
+    $("#share-presi-inner-second").removeClass("is-currently-big");
+})
+
+// end of toggle
+
 
 $('body').on('click', '.ed_bt_arrow_click', function () {
     window.location = baseURL + "/dashboard"
@@ -805,7 +883,7 @@ let emptyslotColor = 'rgba(100, 198, 237, 0.4)';
 let dublicateColor = 'rgba(255,50,50,1)';
 let dublicateoutoffocusColorColor = 'rgba(255,80,80,0.7)';
 
-sendRequestToServer({type: "GET", url: "/keybinding/getKeybinding"}).then(data => {
+sendRequestToServer({ type: "GET", url: "/keybinding/getKeybinding" }).then(data => {
     jsondata = data;
     data.res.bindings.forEach(element => {
         $("#bindings").append($("#template").html());
@@ -902,9 +980,9 @@ window.onkeyup = function (event) {
 
 $("#safe").click(function () {
     if (dublicate) return;
- 
-    
-    sendRequestToServer({type: "POST", url: "/keybinding/saveKeybinding", data: {keybinding: JSON.stringify(jsondata.res.bindings)}}).then(data => {
+
+
+    sendRequestToServer({ type: "POST", url: "/keybinding/saveKeybinding", data: { keybinding: JSON.stringify(jsondata.res.bindings) } }).then(data => {
         console.log("Save Keybindings");
         console.log(data);
         reloadShortcuts(data)

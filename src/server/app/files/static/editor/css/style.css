@@ -128,7 +128,7 @@
 }
 
 #content-navigation-fourth {
-    width: 10%;
+    width: 12%;
     height: 70%;
     border-right: solid 2px rgb(112, 112, 112, 0.24);
     display: flex;
@@ -2278,4 +2278,85 @@ h1{
 
 #safe:hover, .back:hover{
     cursor: pointer;
+}
+
+
+#share-presi-popup {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0, 0.5);
+    z-index: 300;
+    display: none;
+    transition: all 0.1s;
+    opacity: 0.0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+#share-presi-inner-first {
+    width: 33vw;
+    height: 25vh;
+    background: white;
+    opacity: 0;
+    transform: scale(0.7);
+    transition: all 150ms;
+
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#share-presi-first-header {
+    width: 100%;
+    height: 6vh;
+    margin-top: 1vh;
+
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#share-presi-first-header p {
+    font-size: 1.4rem;
+    color: black;
+}
+
+#share-presi-first-header-icon {
+    margin-left: 5%;
+    margin-right: 3%;
+    width: 4.5vh;
+    height: 4.5vh;
+    border-radius: 50%;
+    background: lightblue;
+    color: black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#share-presi-inner-second {
+    width: 33vw;
+    height: 12vh;
+    background: white;
+    opacity: 0;
+    transform: scale(0.7);
+    transition: all 150ms;
+
+    border-radius: 15px;
+    margin-top: 3vh;
+}
+
+.share-presi-inner-animate {
+    transform: scale(1) !important;
 }
