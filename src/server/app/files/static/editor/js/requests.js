@@ -31,9 +31,6 @@ function saveCanvas(canvas, width, height) {
                 quality: 0.8
             })
 
-
-            console.log(imgageTest)
-
             const box = $(`.content-leftSlides-slidesContent-slide-content-overlay[data-slideId="${data.res._id.$oid}"]`);
             console.warn(box);
             box.css('background', `url('${imgageTest}')`);

@@ -40,6 +40,8 @@
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/editor/css/style.css') }}"" />
     <link rel=" stylesheet" type="text/css" href="{{ url_for('static', filename='/editor/css/variables.css') }}" />
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/editor/css/loader.css') }}" />
 </head>
 
 <body>
@@ -782,6 +784,22 @@
         <div id="pageblock">
             <p id="pagecount">4/4</p>
         </div>
+    </div>
+
+
+
+    <!--
+
+        Loading Screen Test
+
+    -->
+
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+     
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+     
     </div>
 
     <script src={{ url_for('static', filename="editor/js/canvas-start.js" ) }} type="text/javascript" defer></script>

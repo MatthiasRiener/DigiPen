@@ -21,6 +21,11 @@ function connectToVideo() {
 
 function updateParticipantCount() {
     document.getElementById("content-navigation-third-box-counter").innerHTML = userCounter;
+
+
+
+
+
 };
 
 function participantConnected(participant) {

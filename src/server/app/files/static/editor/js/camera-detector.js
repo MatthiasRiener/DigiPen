@@ -56,3 +56,10 @@ function getBrightness(image) {
 
     return brightness / dst.data.length * 100;
 }
+
+
+document.addEventListener("DOMContentLoaded", function(event){
+    $('body').addClass('loaded');
+    console.log("Everything loaded!")
+
+  });
