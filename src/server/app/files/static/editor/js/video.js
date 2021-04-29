@@ -24,6 +24,7 @@ function updateParticipantCount() {
 
 
 
+    $('body').addClass('loaded');
 
 
 };

@@ -72,6 +72,9 @@ function insertActiveUsers(users) {
 
 
     });
+
+
+    $('body').addClass('loaded');
 }
 
 function updateTime(event) {

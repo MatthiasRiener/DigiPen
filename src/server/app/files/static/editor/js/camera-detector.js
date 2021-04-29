@@ -13,7 +13,6 @@ function videoInitialized() {
 
     console.info("Video was initialized.");
     console.log(localVideo);
-    console.log("==============")
 
     var img = getScreenshot(localVideo);
     var brightness = getBrightness(img);
@@ -38,7 +37,6 @@ function getScreenshot(videoEl, scale) {
 
 // liefert einen wert zwischen 0 und 100
 function getBrightness(image) {
-    console.log(image)
     let src = cv.imread(image);
     let dst = new cv.Mat();
 // You can try more different parameters
@@ -59,7 +57,6 @@ function getBrightness(image) {
 
 
 document.addEventListener("DOMContentLoaded", function(event){
-    $('body').addClass('loaded');
     console.log("Everything loaded!")
 
   });
