@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basic Structure</title>
 
+
+    <script src={{ url_for('static', filename="components/loading-screen/Loader.js" ) }} type="module"></script>
+    <script src={{ url_for('static', filename="components/loading-screen/loadingEvent.js" ) }}></script>
+
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla">
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
@@ -43,21 +48,14 @@
 
 
 
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/components/loading-screen/loader.css') }}" />
 
 </head>
 
 <body>
 
 
-    
-    <div id="loader-wrapper">
-        <div id="loader"></div>
-     
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
-     
-    </div>
+    <loading-screen id="loadingScreen"></loading-screen>
+  
 
     <create-workspace id="workspace-comp"></create-workspace>
 

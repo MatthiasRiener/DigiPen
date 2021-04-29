@@ -73,8 +73,7 @@ function insertActiveUsers(users) {
 
     });
 
-
-    $('body').addClass('loaded');
+    initializeEndOfLoading();
 }
 
 function updateTime(event) {
