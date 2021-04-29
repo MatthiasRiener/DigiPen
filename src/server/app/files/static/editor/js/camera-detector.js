@@ -17,6 +17,7 @@ function videoInitialized() {
     var img = getScreenshot(localVideo);
     var brightness = getBrightness(img);
     
+    console.log(brightness);
     if (brightness < 35) {
         alert("You might wanna turn on some light u ni-");
     }

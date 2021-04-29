@@ -14,7 +14,17 @@ class LoadingScreen extends HTMLElement {
         });
 
         this.shadowRoot.appendChild(this.temp.content.cloneNode(true));
+
+        this.message = this.shadowRoot.querySelector('#loader-message');
+        this.getRandomTipp();
+
         this.loadCss();
+    }
+    getRandomTipp() {
+        sendRequestToServer({type: "GET", url: "/tipps/getTipp"}).then(data => {
+            this.message.innerHTML = "Tipp: " + data.res;
+            this.message.classList.add('loader-text-fade-in');
+          });
     }
 
     loadCss(path) {
@@ -51,6 +61,8 @@ class LoadingScreen extends HTMLElement {
         console.log("DOCUMENT WAS LOADED")
         const wrapper = this.shadowRoot.querySelector('#wrapper');
         wrapper.classList.add('loaded');
+
+        
     }
 
 

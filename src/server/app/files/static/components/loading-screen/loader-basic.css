@@ -56,6 +56,7 @@
     font-size: 18px;
     margin-top: 2vh;
     z-index: 1001;
+    opacity: 0;
 }
 
 
@@ -135,7 +136,10 @@
     }
 
     /* Loaded */
-  
+    .loader-text-fade-in {
+        opacity: 1 !important;
+        transition: all 0.2s ease-in;
+    }
     
     .loaded #loader {
         opacity: 0;
@@ -156,4 +160,9 @@
         color: #222222;
     }
 
+
+    .loaded #loader-wrapper #loader-message {
+        opacity: 0 !important;
+        transition: all 0.4s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+    }
    
