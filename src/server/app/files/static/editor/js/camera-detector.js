@@ -1,17 +1,21 @@
-console.log("CAMERA DETECTOR INTIALIZED");
 
-$('body').on('click', '#localVideo', function(){
-    videoInitialized()
-})
+
 
 function videoInitialized() {
+    worker = new Worker(baseURL + "/static/editor/js/worker.js?" + Math.random());
+
+    worker.postMessage({})
+    worker.addEventListener('message', function (event) {reloadCameras() });
+
+}
+
+function reloadCameras() {
 
 
     const videoContainer = document.getElementById('localVideo');
     const localVideo = (videoContainer.getElementsByTagName('video'))[0];
 
 
-    console.info("Video was initialized.");
     console.log(localVideo);
 
     var img = getScreenshot(localVideo);
@@ -19,7 +23,7 @@ function videoInitialized() {
     
     console.log(brightness);
     if (brightness < 35) {
-        alert("You might wanna turn on some light u ni-");
+        console.log("TURN ON THE LIGHTS NI-")
     }
 
 }
