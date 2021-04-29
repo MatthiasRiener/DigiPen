@@ -72,8 +72,6 @@ function insertActiveUsers(users) {
 
 
     });
-
-    initializeEndOfLoading();
 }
 
 function updateTime(event) {

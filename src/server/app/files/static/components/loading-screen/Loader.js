@@ -19,12 +19,38 @@ class LoadingScreen extends HTMLElement {
         this.getRandomTipp();
 
         this.loadCss();
+        this.loadJS();
     }
     getRandomTipp() {
-        sendRequestToServer({type: "GET", url: "/tipps/getTipp"}).then(data => {
+        sendRequestToServer({ type: "GET", url: "/tipps/getTipp" }).then(data => {
             this.message.innerHTML = "Tipp: " + data.res;
             this.message.classList.add('loader-text-fade-in');
-          });
+        });
+    }
+
+    loadJS() {
+        console.clear("LOADING JS FILE");
+        console.log("LOADING JS FILE")
+
+        var sc = $.getScript("http://localhost:5000/static/components/loading-screen/domObserver.js")
+            .done(function (script, textStatus) {
+               return script;
+            })
+            .fail(function (jqxhr, settings, exception) {
+                
+            });
+
+        console.log(sc);
+
+        let node = document.createElement('script');
+        node.innerHTML = sc.responseText;
+        this.shadowRoot.appendChild(node);
+      
+    }
+
+    jsLoaded() {
+        console.log("JS LOADED")
+        console.log(this.shadowRoot)
     }
 
     loadCss(path) {
@@ -48,7 +74,7 @@ class LoadingScreen extends HTMLElement {
                 node.innerHTML = data;
                 this.shadowRoot.appendChild(node);
                 //this.calculateWorkspaceWidth();
-        });
+            });
     }
     connectedCallback() {
     }
@@ -62,7 +88,7 @@ class LoadingScreen extends HTMLElement {
         const wrapper = this.shadowRoot.querySelector('#wrapper');
         wrapper.classList.add('loaded');
 
-        
+
     }
 
 

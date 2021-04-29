@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basic Structure</title>
 
-
-    <script src={{ url_for('static', filename="components/loading-screen/Loader.js" ) }} type="module"></script>
-    <script src={{ url_for('static', filename="components/loading-screen/loadingEvent.js" ) }}></script>
+    
 
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla">
@@ -49,13 +47,15 @@
 
 
 
+
 </head>
 
 <body>
 
-
-    <loading-screen id="loadingScreen"></loading-screen>
-  
+    <!--Import for Loader-->
+        <script src={{ url_for('static', filename="components/loading-screen/Loader.js" ) }} type="module"></script>
+        <loading-screen id="loadingScreen"></loading-screen>
+    <!--End of loader-->
 
     <create-workspace id="workspace-comp"></create-workspace>
 

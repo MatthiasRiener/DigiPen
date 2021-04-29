@@ -41,7 +41,6 @@
 
     -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
     animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
-
     z-index: 1001;
 
 }
@@ -115,6 +114,9 @@
         }
     }
 
+    
+    
+
     #loader-wrapper .loader-section {
         position: fixed;
         top: 0;
@@ -126,6 +128,9 @@
         -ms-transform: translateX(0);  /* IE 9 */
         transform: translateX(0);  /* Firefox 16+, IE 10+, Opera */
     }
+
+
+  
 
     #loader-wrapper .loader-section.section-left {
         left: 0;
