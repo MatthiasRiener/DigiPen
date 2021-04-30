@@ -435,15 +435,11 @@ function createCanvas(whereStart) {
 let whereStartSend;
 
 function loadPresentationCanvas(whereStart) {
-    console.log("LLLLLLLLLLLLLLLLLLLLL")
-    console.log(whereStart);
     createCanvas(whereStart);
     whereStartSend = whereStart;
 }
 
 function loadSpecificSlide(whereStart) {
-    console.log("LOADING SPEICFIC SLIDE")
-    console.log(whereStart)
     currCanvas = canvasArr[whereStart];
     if (origSizePresCanvas == undefined)
         origSizePresCanvas = currCanvas.getWidth();
@@ -461,10 +457,36 @@ $("#" + startFromBeginningButtonId).click(function () {
 });
 
 function startFromBeginning() {
-    
+
     toggleFullScreen(document.body);
     index = 0;
-    loadPresentationCanvas(index)
+
+    sendRequestToServer({ type: "POST", url: "/editor/getSlides", data: { p_id: getCustomStorage("p_id") } }).then(data => {
+        canvasArr.length = 0;
+        console.log(data);
+        data.res.forEach(slide => {
+            var localCanvas = window._canvas = new fabric.Canvas(presCanvasId);
+
+            localCanvas.loadFromJSON(
+                slide.canvas,
+                function () {
+
+                    localCanvas.renderAll.bind(localCanvas);
+                    canvasArr.push(localCanvas)
+                }
+            );
+        });
+
+        console.log(canvasArr);
+        setTimeout(() => {
+            currCanvas = canvasArr[index];
+            if (origSizePresCanvas == undefined)
+                origSizePresCanvas = currCanvas.getWidth();
+            resizePresentationCanvas();
+            resizeCanvasFunc();
+            $('#pagecount').text(`Slide ${index + 1}/${canvasArr.length}`);
+        }, 1000);
+    });
     // wenn man in den fullscreen gegangen ist ohne auf den präsentationsbutton geklickt zu haben
     // sollte man ja nicht in die präsentationsansicht kommen
     let clicked = $(this).data("clicked") != true ? true : false;
@@ -506,14 +528,6 @@ function resizePresentationCanvas() {
     canvasContainer.addClass('wtohbigger');
     canvasContainer.removeClass('wtohsmaller');
 
-    // console.log(canvasBody.width(), currCanvas.width)
-
-    // if (Math.round(canvasBody.width()) == Math.round(currCanvas.width)) {
-    //     return;
-    // } else {
-    //     // console.log("chaning Size!")
-    // }
-
     currCanvas.setWidth(h * 16 / 9);
     currCanvas.setHeight(h);
     // wenn das seitenverhältnis breite:höhe kleiner als 16:9 ist
@@ -533,21 +547,6 @@ function resizePresentationCanvas() {
 
         // console.log("setting zoom...")
         let zooooooooooooooom = scaleMultiplier = currCanvas.width / 1920;
-
-        // var objects = currCanvas.getObjects();
-        // for (var i in objects) {
-        //     objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
-        //     objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
-        //     objects[i].left = objects[i].left * scaleMultiplier;
-        //     objects[i].top = objects[i].top * scaleMultiplier;
-        //     objects[i].setCoords();
-        // }
-        // var obj = currCanvas.backgroundImage;
-        // if (obj) {
-        //     obj.scaleX = obj.scaleX * scaleMultiplier;
-        //     obj.scaleY = obj.scaleY * scaleMultiplier;
-        // }
-
 
         currCanvas.setZoom(zooooooooooooooom);
     }
