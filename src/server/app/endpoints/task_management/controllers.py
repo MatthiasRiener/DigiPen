@@ -15,6 +15,8 @@ taskRepo = TaskRepository(testing=False)
 authRepo = AuthenticationRepository(testing=False)
 
 
+
+
 @task_m.route('/', methods=["GET"])
 def index():
     return render_template('/task_management/index.html')
@@ -40,7 +42,7 @@ def getPresentationRoute():
 def checkForUser():
     data = request.form
     user_id = data["u_id"]
-    user = authRepo.retrieveUser(user_id)
+    user = authRepo.retrieveUserWithOutTimeChange(user_id)
     return json.dumps({"res": user})
     
 

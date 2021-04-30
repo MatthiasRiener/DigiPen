@@ -1,5 +1,5 @@
 
-  export const template = `
+export const template = `
         <div class="left-side-content">
           <p id="title-nav">Navigation</p>
 
@@ -11,6 +11,13 @@
               <ion-icon name="chevron-down-outline"></ion-icon>
             </div>
           </div>
+
+
+          <div class="nav-bar-element admin-item">
+            <ion-icon name="analytics-outline" class="icon-navbar"></ion-icon>
+            <p>Admin-Panel</p>
+          </div>
+
 
           <div class="nav-bar-element dashboard-item">
             <ion-icon name="albums-outline" class="icon-navbar"></ion-icon>
@@ -56,6 +63,11 @@
           <div class="nav-bar-element-subtask profile-item">
             <ion-icon name="person-outline" class="icon-navbar"></ion-icon>
             <p>Profile</p>
+          </div>
+
+          <div class="nav-bar-element report-bug-item" id="reportBug">
+            <ion-icon name="bug-outline" class="icon-navbar"></ion-icon>
+            <p>Report Bug</p>
           </div>
 
           <div class="nav-bar-element logout-item" id="logout">

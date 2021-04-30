@@ -3,6 +3,7 @@ import re
 import time
 from .CustomException import CustomException
 import uuid
+from ..db.settings import mongoclient
 
 
 class AuthenticationRepository():
@@ -10,7 +11,7 @@ class AuthenticationRepository():
     def __init__(self, testing):
         self.testing = testing
 
-    def createUser(self, user_id, name, email, img, last_login, created):
+    def createUser(self, user_id, name, email, img, last_login, created, is_admin):
 
         if email is None:
             return CustomException("Email must not be None").__str__()
@@ -50,14 +51,24 @@ class AuthenticationRepository():
             return CustomException('The username can only contain alphabetical letters').__str__()
 
         if User.objects(u_id=user_id):
-            return self.retrieveUser(user_id=user_id)
-        else:
-            user = User(u_id=str(user_id), name=name, mail=email, img=img,
-                        last_login=last_login, created=time.time()).save()
-            return self.retrieveUser(user_id=user_id)
+
+            return self.retrieveUser(user_id=user_id, isadmin=is_admin)
+        else: 
+            from .KeybindingRepository import KeybindingRepository
+            keyRepo = KeybindingRepository(testing=False)
+
+            user = User(u_id=str(user_id), name=name, mail=email, img=img, last_login=last_login, created=time.time(), isAdmin=is_admin).save()
+            keyRepo.createKeybindings(user_id)
+
+            return self.retrieveUser(user_id=user_id, isadmin=is_admin)
+
         return "User %s was successfully inserted." % (user_id)
 
-    def retrieveUser(self, user_id):
+    def retrieveAllAdmins(self):
+        users = [ob.to_mongo().to_dict()["mail"] for ob in User.objects(isAdmin=True)]
+        return users
+
+    def retrieveUser(self, user_id, isadmin):
 
         if user_id is None:
             return CustomException("Invalid information was given regarding the users userid").__str__()
@@ -71,13 +82,15 @@ class AuthenticationRepository():
             return CustomException("No user was retrieved with the userid %s" % (user_id)).__str__()
 
         try:
-            User.objects(u_id=user_id).first().update(
-                set__last_login=time.time())
+
+            User.objects(u_id=user_id).first().update(set__last_login=time.time(), isAdmin=isadmin)
+
             user = User.objects(u_id=user_id).first().to_mongo()
             return user
         except Exception as e:
             return "Error occured while retrieving user: %s" % (e)
-
+    def retrieveUserWithOutTimeChange(self, user_id):
+        return User.objects(u_id=user_id).first().to_mongo()
     def retrieveUserByMail(self, user_mail):
         if user_mail is None:
             return CustomException("Invalid information was given regarding the users userid").__str__()
@@ -88,6 +101,14 @@ class AuthenticationRepository():
         regex = re.compile('.*' + user_mail + '.*')
         users = [ob.to_mongo() for ob in User.objects(mail=regex)]
         return users
+
+
+    def updateUserImg(self, user_id, file_name):
+        PREFIX = "http://localhost:5000/static/profile/img/images/" + user_id + "/" + file_name
+        User.objects(u_id=user_id).update(set__img=str(PREFIX))
+        return 1
+
+
 
     def getUserIds(self, users):
         userIds = []
@@ -100,10 +121,19 @@ class AuthenticationRepository():
     def getUserCount(self):
         return User.objects().count()
 
+
+    def getUserCountDashboard(self,  end):
+        raw_query = {'created': {'$lt': int(end)}}
+        return User.objects(__raw__=raw_query).count()
+
+    def getNewUsersInRange(self, start, end):
+        raw_query = {'created': {'$gt': int(start), '$lt': int(end)}}
+        return User.objects(__raw__=raw_query).count()
+
     def getUsersForPresentation(self, pres):
         for index, user_obj in enumerate(pres.users):
             print(user_obj['u_id'])
-            pres.users[index] = self.retrieveUser(user_obj['u_id'])
+            pres.users[index] = self.retrieveUserWithOutTimeChange(user_obj['u_id'])
 
             pres.users[index]['status'] = user_obj['status']
             if pres.creator == user_obj['u_id']:

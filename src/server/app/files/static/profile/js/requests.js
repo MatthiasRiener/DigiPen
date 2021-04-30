@@ -3,8 +3,11 @@ sendRequestToServer({
     url: "/profile/user"
 }).then(data => {
     $('#insert-username').text(data.name);
+    $('#Profile .whoami p').text(data.name);
 
-    $('#PP').attr('src', data.img);
+    $('#ppContainer').css('background-image', 'url("' + data.img + '")');
+    $('#secppContainer').css('background-image', 'url("' + data.img + '")');
+
 
     $('#workspaceCount').text(data.workspaces);
 
@@ -32,8 +35,10 @@ sendRequestToServer({
             </div>
         `);
 
-        $('#currentDate').text(convertTimestampToDate(Date.now()));
     });
+
+    $('#currentDate').text(convertTimestampToDate(Date.now()));
+
 })
 
 sendRequestToServer({
@@ -45,9 +50,12 @@ sendRequestToServer({
 })
 
 function convertTimestampToDate(timestamp) {
-    return new Date(timestamp).toLocaleDateString("en-US", {
+    val = new Date(timestamp).toLocaleDateString("en-US", {
         month: "long",
         day: "2-digit",
         year: "numeric"
-    })
+    });
+    console.log("DATE")
+    console.log(val)
+    return val;
 }

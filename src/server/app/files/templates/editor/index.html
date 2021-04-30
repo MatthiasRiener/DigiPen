@@ -6,32 +6,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basic Structure</title>
 
+    <script src="https://cdn.rawgit.com/adriancooney/console.image/c9e6d4fd/console.image.min.js"></script>
+
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla">
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+        <!--
     <script
         src="https://raw.githubusercontent.com/dimsemenov/Magnific-Popup/master/dist/jquery.magnific-popup.js"></script>
     <script
         src="https://raw.githubusercontent.com/dimsemenov/Magnific-Popup/master/dist/jquery.magnific-popup.min.js"></script>
     <link rel="stylesheet"
         href="https://raw.githubusercontent.com/dimsemenov/Magnific-Popup/master/dist/magnific-popup.css">
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        -->
 
-    <script src={{ url_for('static', filename="editor/js/fabric.min.js") }} type="text/javascript" defer></script>
 
-    <script src={{ url_for('static', filename="editor/js/read-sheet.js") }} type="text/javascript" defer></script>
+    <script src="https://docs.opencv.org/master/opencv.js" type="text/javascript"></script>
 
-    <script src={{ url_for('static', filename="authentication/auth_flow.js") }} type="text/javascript"></script>
+    <script src={{ url_for('static', filename="editor/js/camera-detector.js" ) }} type="text/javascript" defer></script>
 
-    <script src={{ url_for('static', filename="editor/js/requests.js") }} type="text/javascript" defer></script>
+
+    <script src={{ url_for('static', filename="editor/js/fabric.min.js" ) }} type="text/javascript" defer></script>
+
+    <script src={{ url_for('static', filename="editor/js/read-sheet.js" ) }} type="text/javascript" defer></script>
+
+    <script src={{ url_for('static', filename="authentication/auth_flow.js" ) }} type="text/javascript"></script>
+
+    <script src={{ url_for('static', filename="editor/js/requests.js" ) }} type="text/javascript" defer></script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js"
+        integrity="sha512-oFOCo2/3DtjrJG4N27BjSLQWoiBv171sK6a+JiWjp/7agxC2nCUP358AqzxkBUb5jX8g6CYLPdSKQTbC0weCwA=="
+        crossorigin="anonymous"></script>
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/editor/css/style.css') }}"" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/editor/css/variables.css') }}" />
+    <link rel=" stylesheet" type="text/css" href="{{ url_for('static', filename='/editor/css/variables.css') }}" />
+
 </head>
 
 <body>
+
+
+     <!--Import for Loader-->
+     <script src={{ url_for('static', filename="components/loading-screen/Loader.js" ) }} type="module"></script>
+     <loading-screen id="loadingScreen"></loading-screen>
+ <!--End of loader-->
+
+
+    <div id="notifiy-brightness-snackbar">
+        <p>Turn on the lights. We can't see you. 😉</p>
+        <button id="skip-brightness">Okay</button>
+    </div>
 
 
     <canvas id="chart-last-config"></canvas>
@@ -45,8 +76,8 @@
                     <ion-icon id="content-navigation-first-left-icon" name="chevron-back-outline"
                         class="ed_bt_arrow_click"></ion-icon>
                     <div id="content-navigation-first-left-text">
-                        <h2 id="content-navigation-first-left-text-h2" contenteditable="true">Cute Stickers</h2>
-                        <h3 id="content-navigation-first-left-text-h3">Matthias Riener</h3>
+                        <h2 id="content-navigation-first-left-text-h2" contenteditable="true"></h2>
+                        <h3 id="content-navigation-first-left-text-h3"></h3>
                     </div>
                 </div>
                 <ion-icon id="content-navigation-first-right-icon" name="add-outline"></ion-icon>
@@ -60,7 +91,7 @@
             <div id="content-navigation-third">
                 <div id="content-navigation-third-box">
                     <h2 id="content-navigation-third-box-live">Live</h2>
-                    <div id="content-navigation-third-box-counter">3</div>
+                    <div id="content-navigation-third-box-counter">1</div>
                 </div>
             </div>
             <div id="content-navigation-fourth">
@@ -76,6 +107,10 @@
                     <div class="content-navigation-fourth-position-circle"
                         id="content-navigation-fourth-position-fifthCircle">+4</div>
                 </div>
+
+                <ion-icon id="content-navigation-fourth-share" name="share-social-outline" style="fill: #383838; margin-right: 1.5vw; font-size: 1.6rem;"></ion-icon>
+
+
             </div>
             <div id="content-navigation-fifth">
                 <div id="content-navigation-fifth-box">
@@ -101,35 +136,15 @@
             <div id="content-main-inner">
                 <div id="content-main-inner-spacing-top">
                     <div class="content-main-inner-spacing-top-profile">
-                        <div class="content-main-inner-spacing-top-profile-image"></div>
-                        <h2 class="content-main-inner-spacing-top-profile-text">Matthäus R.</h2>
-                    </div>
-                    <div class="content-main-inner-spacing-top-profile">
-                        <div class="content-main-inner-spacing-top-profile-image"></div>
-                        <h2 class="content-main-inner-spacing-top-profile-text">Matthäus R.</h2>
-                    </div>
-                    <div class="content-main-inner-spacing-top-profile">
-                        <div class="content-main-inner-spacing-top-profile-image"></div>
-                        <h2 class="content-main-inner-spacing-top-profile-text">Matthäus R.</h2>
-                    </div>
-                    <div class="content-main-inner-spacing-top-profile">
-                        <div class="content-main-inner-spacing-top-profile-image"></div>
-                        <h2 class="content-main-inner-spacing-top-profile-text">Matthäus R.</h2>
-                    </div>
-                    <div class="content-main-inner-spacing-top-profile">
-                        <div class="content-main-inner-spacing-top-profile-image"></div>
-                        <h2 class="content-main-inner-spacing-top-profile-text">Matthäus R.</h2>
-                    </div>
-                    <div class="content-main-inner-spacing-top-profile">
-                        <div class="content-main-inner-spacing-top-profile-image"></div>
-                        <h2 class="content-main-inner-spacing-top-profile-text">Matthäus R.</h2>
-                    </div>
-                    <div class="content-main-inner-spacing-top-profile">
-                        <div class="content-main-inner-spacing-top-profile-image"></div>
-                        <h2 class="content-main-inner-spacing-top-profile-text">Matthäus R.</h2>
+                        <div class="content-main-inner-spacing-top-profile-image" id="localVideo"></div>
+                        <h2 class="content-main-inner-spacing-top-profile-text" id="localVideoText"></h2>
                     </div>
                 </div>
                 <div id="content-main-inner-spacing">
+                    <div class="notify-about-changes">
+                        <div class="notify-changes-img"></div>
+                        <p>Change by Matthias</p>
+                    </div>
                     <div id="content-main-inner-spacing-middle">
                         <canvas id="canvas"></canvas>
                     </div>
@@ -720,9 +735,104 @@
         </div>
     </div>
 
-    <script src={{ url_for('static', filename="editor/js/canvas-start.js") }} type="text/javascript" defer></script>
-    <script src={{ url_for('static', filename="editor/js/eventhandler.js") }} type="text/javascript" defer></script>
-    <script src={{ url_for('static', filename="editor/js/getDevices.js") }} type="text/javascript" defer></script>
+    <div id="keybindsPopup">
+        <div class="mainContent">
+            <h1>Options</h1>
+
+            <div id="bindings"></div>
+
+
+            <div id="template">
+                <div class="content">
+                    <div class="bindingsbox">
+                        <div class="displayname">Placeholder</div>
+                        <button class="keybindinginput">Empty</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button class="back">Back</button>
+                <button id="safe">Safe</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="share-presi-popup">
+        <div id="share-presi-inner-first">
+            <div id="share-presi-first-header">
+                <div id="share-presi-first-header-icon">
+                    <ion-icon name="person-add-outline" style="fill: white; font-size: 1.3rem;font-weight: bold;"></ion-icon>
+                </div>
+
+
+                <p>Für Personen und Gruppen freigeben</p>
+            </div>
+        </div>
+
+        <div id="share-presi-inner-second">
+            <div id="share-presi-first-header">
+                <div id="share-presi-first-header-icon">
+                    <ion-icon name="link-outline" style="fill: white; font-size: 1.3rem;font-weight: bold;"></ion-icon>
+                </div>
+
+
+                <p>Link abrufen</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Presentation Event -->
+    <div id="presi">
+        <div id="editblock">
+            <div id="timer">
+                <label id="hours">00</label>:<label id="minutes">00</label>:<label id="seconds">00</label>
+            </div>
+        </div>
+        <canvas id="presCanvas" width="800" height="500"></canvas>
+        <div id="iconbox">
+            <ion-icon name="arrow-undo-outline" id="previous"></ion-icon>
+            <ion-icon name="arrow-redo-outline" id="next"></ion-icon>
+            <ion-icon name="color-wand-outline" id="laser"></ion-icon>
+            <ion-icon name="expand-outline" id="toggleFull"></ion-icon>
+            <ion-icon name="ellipsis-vertical-outline" id="openPopup"></ion-icon>
+            <ion-icon name="log-out-outline" id="exit"></ion-icon>
+        </div>
+        <div id="pageblock">
+            <p id="pagecount">4/4</p>
+        </div>
+    </div>
+
+
+
+    <!--
+
+        Loading Screen Test
+
+    -->
+
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+     
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+     
+    </div>
+    <script src={{ url_for('static', filename="editor/js/shortcut-handler.js" ) }} type="text/javascript" defer></script>
+
+    <script src={{ url_for('static', filename="editor/js/canvas-start.js" ) }} type="text/javascript" defer></script>
+    <script src={{ url_for('static', filename="editor/js/eventhandler.js" ) }} type="text/javascript" defer></script>
+    <script src={{ url_for('static', filename="editor/js/getDevices.js" ) }} type="text/javascript" defer></script>
+    <script src="//media.twiliocdn.com/sdk/js/video/releases/2.3.0/twilio-video.min.js"></script>
+
+
+    <script src={{ url_for('static', filename="editor/js/video.js" ) }} type="text/javascript" defer></script>
+    
+    <script src={{ url_for('static', filename="editor/js/sockets.js" ) }} type="text/javascript" defer></script>
+
+    <script src={{ url_for('static', filename="editor/js/easter-eggs.js" ) }} type="text/javascript" defer></script>
+
 </body>
 
 </html>

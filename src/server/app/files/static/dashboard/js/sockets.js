@@ -19,6 +19,8 @@ socket.on('searchUser', function (data) {
     });
 })
 
+
+
 socket.on('inviteUser', function (data) {
     console.log(data);
 

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Structure</title>
+
+    
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla">
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/admindashboard/css/style.css') }}" />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <script src={{ url_for('static', filename="components/side-bar/Sidebar.js" ) }} type="module"></script>
+    <script src={{ url_for('static', filename="components/nav/Navigation.js" ) }} type="module"></script>
+    <script src={{ url_for('static', filename="components/feedback-form/feedback-form.js" ) }} type="module"></script>
+    <script src={{ url_for('static', filename="components/create-workspace/Workspace.js" ) }} type="module"></script>
+    <script src={{ url_for('static', filename="authentication/auth_flow.js" ) }} type="text/javascript"></script>
+    <script src={{ url_for('static', filename="admindashboard/js/requests.js" ) }} type="text/javascript"
+        defer></script>
+
+    <script src={{ url_for('static', filename="components/check-notifications/Notifications.js" ) }}
+        type="module"></script>
+
+    <script src={{ url_for('static', filename="components/side-bar/customEvents.js" ) }} type="module"></script>
+
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+    <script src="//cdn.amcharts.com/lib/4/maps.js"></script>
+    <script src="//cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js"
+        integrity="sha512-oFOCo2/3DtjrJG4N27BjSLQWoiBv171sK6a+JiWjp/7agxC2nCUP358AqzxkBUb5jX8g6CYLPdSKQTbC0weCwA=="
+        crossorigin="anonymous"></script>
+
+
+
+
+
+
+</head>
+
+<body>
+
+    <!--Import for Loader-->
+        <script src={{ url_for('static', filename="components/loading-screen/Loader.js" ) }} type="module"></script>
+        <loading-screen id="loadingScreen"></loading-screen>
+    <!--End of loader-->
+
+    <create-workspace id="workspace-comp"></create-workspace>
+
+    <check-notifications id="notifications-comp"></check-notifications>
+
+    <feedback-form  id="reportform-comp"></feedback-form>
+
+    <top-nb id="zNav"></top-nb>
+
+    <!-- Feedback Datasheet Popup + button with class="openDataSheet"  -->
+    <div id="feedbackSheet" class="feedbackSheetHidden">
+        <div>
+            <ion-icon name="close-outline" id="closeFeedbackSheet"></ion-icon>
+            <p id="feedback-issues-title">Issue Overview</p>
+            <h3>Title:</h3>
+            <p id="feedbackSheetTitle"></p>
+            <h3>User:</h3>
+            <p id="feedbackSheetUser"></p>
+            <h3>Category:</h3>
+            <p id="feedbackSheetCategory"></p>
+            <h3>Description:</h3>
+            <p id="feedbackSheetDescription"></p>
+            <h3>Status:</h3>
+            <p id="feedbackSheetStatus"></p>
+            <h3>Day submitted:</h3>
+            <p id="feedbackSheetDate"></p>
+            <button class="issue-finished">Close Issue</button>
+        </div>
+    </div>
+    <!-- Feedback Datasheet Popup End-->
+
+    <div class="navandcontent">
+        <side-bar id="sidebar-comp" path="../components/side-bar/styles.css"
+            style="width: 17%; height: 100%; background-color: #F8F7F9;">
+        </side-bar>
+
+        <div id="contentbox">
+            <div id="dashboardHeader">
+                <div id="dashboardHeader-left">Overview</div>
+                
+                <div id="dashboardHeader-right">
+                    <input id="dashboardStart" type="date">
+                    <input id="dashboardEnd" type="date">
+                </div>
+            </div>
+
+            <div id="dashboardMain">
+                <div id="dashboardMain-left">
+                    <div id="dashboardMain-left-top">
+                        <div id="dashboardMain-left-top-first" class="smallBox box">
+                            <div id="dashboardMain-left-top-first-top">
+                                <p>Total Users</p>
+                            </div>
+                            <div id="dashboardMain-left-top-first-bottom">
+                                <p id="userCount">3.982</p>
+                                <p id="userCountPlus" class="plus">+ 67</p>
+                            </div>
+                        </div>
+                        <div id="dashboardMain-left-top-second" class="smallBox box">
+                            <div id="dashboardMain-left-top-second-top">
+                                <p>Total Interactions</p>
+                            </div>
+                            <div id="dashboardMain-left-top-second-bottom">
+                                <p id="interactionCount">14.273</p>
+                                <p id="interactionCountPlus" class="plus">+ 524</p>
+                            </div>
+                        </div>
+                        <div id="dashboardMain-left-top-third" class="smallBox box">
+                            <div id="dashboardMain-left-top-third-top">
+                                <p>Total Presentation</p>
+                            </div>
+                            <div id="dashboardMain-left-top-third-bottom">
+                                <p id="presentationCount">10.343</p>
+                                <p id="presentationCountPlus" class="plus">+ 83</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="dashboardMain-left-bottom">
+                        <div id="dashboardMain-left-bottom-inner" class="box">
+
+                        </div>
+                    </div>
+                </div>
+                <div id="dashboardMain-right">
+                    <div id="dashboardMain-right-inner" class="box">
+                        <div class="title-section-user-login">
+                            <p>Currently online users</p>
+                            <p style="margin-left: auto;" id="currently-active-users-count">-</p>
+                        </div>
+
+                        <div id="dashboardMain-right-inner-user-list">
+                            <div class="currently-active-user-item">
+                                <div class="currently-active-user-profile-pic"></div>
+                                <p class="currently-active-user-username">Leonardo Da Vinky</p>
+                                <p class="currently-active-user-time-online">04:42</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="dashboardBottom">
+                <div id="dashboardBottom-left">
+                    <div id="dashboardBottom-left-left">
+                        <div id="dashboardBottom-left-left-top">
+                            <div id="dashboardBottom-left-left-top-inner" class="box">
+                                Akitve User
+                            </div>
+                        </div>
+                        <div id="dashboardBottom-left-left-bottom">
+                            <div id="dashboardBottom-left-left-bottom-inner" class="box">
+
+                                <div class="slider" data-pos="0">
+                                    <div class="slider__slides">
+                                        <div class="slider__slide">
+                                            <div class="slide-container">
+                                                <div id="dashboardBottom-left-left-bottom-inner-canvas"
+                                                    class="goal-canvas-container"></div>
+                                                <div id="dashboardBottom-left-left-bottom-inner-text">
+                                                    <p id="current-interaction-count-daily"><span>1.860</span> / 3k Goal
+                                                    </p>
+                                                    <p>Created Tasks per day</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="slider__slide">
+                                            <div class="slide-container">
+                                                <div id="dashboardBottom-left-left-bottom-inner-canvas-daily-presentations"
+                                                    class="goal-canvas-container"></div>
+                                                <div id="dashboardBottom-left-left-bottom-inner-text">
+                                                    <p id="current-interaction-count-daily-presentations">
+                                                        <span>1.860</span> / 3k Goal
+                                                    </p>
+                                                    <p>Created Presentations per day</p>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="slider__slide">
+                                            <div class="slide-container">
+                                                <div id="dashboardBottom-left-left-bottom-inner-canvas-daily-slides"
+                                                    class="goal-canvas-container"></div>
+                                                <div id="dashboardBottom-left-left-bottom-inner-text">
+                                                    <p id="current-interaction-count-daily-slides"><span>1.860</span> /
+                                                        3k Goal</p>
+                                                    <p>Created Slides per day</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="slider__slide">
+                                            <div class="slide-container">
+                                                <div id="dashboardBottom-left-left-bottom-inner-canvas-daily-meetings"
+                                                    class="goal-canvas-container"></div>
+                                                <div id="dashboardBottom-left-left-bottom-inner-text">
+                                                    <p id="current-interaction-count-daily-meetings"><span>1.860</span>
+                                                        / 3k Goal</p>
+                                                    <p>Total minutes in meetings</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="slider__dots">
+                                        <a href="#" class="slider__indicator"></a>
+                                        <a href="#" class="slider__dot" data-pos="0"></a>
+                                        <a href="#" class="slider__dot" data-pos="1"></a>
+                                        <a href="#" class="slider__dot" data-pos="2"></a>
+                                        <a href="#" class="slider__dot" data-pos="3"></a>
+                                    </div>
+                                </div>
+
+                                <!--
+
+                                -->
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="dashboardBottom-left-right">
+                        <div id="dashboardBottom-left-right-inner" class="box">
+
+
+
+
+
+
+
+
+                            <div class="slider_country" data-pos="0">
+                                <div class="slider__slides_country">
+                                    <div class="slider__slide_country">
+                                        <div class="slide-container_country">
+
+                                            <div class="country-list-title-div">
+                                                <p id="country-list-title">Unique Visitors per Country</p>
+
+                                            </div>
+
+                                            <div class="country-list-unique">
+                                                <div class="country-list-item">
+                                                    <p class="country-list-item-index">1</p>
+                                                    <div class="country-list-flag"></div>
+                                                    <div class="country-list-name">United States</div>
+                                                    <div class="country-list-total-requests">600</div>
+                                                    <div class="country-list-last-request">46 seconds</div>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="slider__slide_country">
+                                        <div class="slide-container_country">
+
+                                            <div class="country-list-title-div">
+                                                <p id="country-list-title">Requests per Country</p>
+
+                                            </div>
+
+                                            <div class="country-list-requests">
+                                                <div class="country-list-item">
+                                                    <p class="country-list-item-index">1</p>
+                                                    <div class="country-list-flag"></div>
+                                                    <div class="country-list-name">United States</div>
+                                                    <div class="country-list-total-requests">600</div>
+                                                    <div class="country-list-last-request">46 seconds</div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                </div>
+                                <div class="slider__dots_country">
+                                    <a href="#" class="slider__indicator_country"></a>
+                                    <a href="#" class="slider__dot_country" data-pos="0"></a>
+                                    <a href="#" class="slider__dot_country" data-pos="1"></a>
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div id="dashboardBottom-right">
+                    <div id="dashboardBottom-right-inner" class="box">
+
+
+
+                        <div class="slider_country" data-pos="0">
+                            <div class="slider__slides_country">
+                                <div class="slider__slide_country">
+                                    <div class="slide-container_country" id="country-unique-map-requests">
+
+
+
+
+                                    </div>
+
+                                </div>
+                                <div class="slider__slide_country">
+                                    <div class="slide-container_country" id="country-request-map">
+
+
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                            <!--
+                            <div class="slider__dots_country">
+                                <a href="#" class="slider__indicator_country"></a>
+                                <a href="#" class="slider__dot_country" data-pos="0"></a>
+                                <a href="#" class="slider__dot_country" data-pos="1"></a>
+                                
+                            </div>
+                            -->
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-liverequests-container">
+                <div class="dashboard-liverequests-inner box">
+                    <div class="dashboard-issues-inner-title">
+                        <p>
+                           Current Requests Live-Viewer
+                        </p>
+                       
+                    </div>
+
+                    <div class="dashboard-requests-inner-container">
+
+                        
+
+                       
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="dashboard-issues-container">
+                <div class="dashboard-issues-inner box">
+                    <div class="dashboard-issues-inner-title">
+                        <p>
+                            Reported User Issues
+                        </p>
+                        <p style="margin-left: auto" id="issues-count">
+                            (3)
+                        </p>
+                    </div>
+
+                    <div class="dashboard-issues-inner-container">
+
+                        
+
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src={{ url_for('static', filename="admindashboard/js/eventhandler.js" ) }} type="text/javascript"
+        defer></script>
+    <script src={{ url_for('static', filename="components/side-bar/invites.js" ) }} type="text/javascript"
+        defer></script>
+    <script src={{ url_for('static', filename="admindashboard/js/charts.js" ) }} type="text/javascript" defer></script>
+    <script src={{ url_for('static', filename="admindashboard/js/socket_support.js" ) }} type="text/javascript"
+        defer></script>
+
+</body>
+
+</html>

@@ -6,11 +6,11 @@ from twilio.jwt.access_token import AccessToken
 from twilio.jwt.access_token.grants import VideoGrant
 import json
 
-dotenv_path = join(dirname(__file__),  '.env')
-load_dotenv(dotenv_path)
+
+
 twilio_account_sid = "AC5f961ea052b5bbdde0ec5b73942b0eb3"
-twilio_api_key_sid = "SKbad2fdd246b00d078b6d2ffbd9b95ad5"
-twilio_api_key_secret = "JFtF6R5WgBekF4nbOZsOrKPnYl9WtkkW"
+twilio_api_key_sid = "SKbf33ebca337a7e32451e4c7344c94a69"
+twilio_api_key_secret = "J4rFopujtBdZgRLpzLVwNkAEs0Ll1KwB"
 
 app = Flask(__name__)
 
@@ -23,7 +23,7 @@ def index():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     #username = request.get_json(force=True).get('username')
-    username = "Matthias"
+    username = request.get_json(force=True).get('username')
     if not username:
         abort(401)
 
@@ -33,6 +33,5 @@ def login():
                         twilio_api_key_secret, identity=username)
     token.add_grant(VideoGrant(room='My Room'))
 
-    print("this is still working...", token.to_jwt())
-    token = token.to_jwt()
-    return json.dumps({"token": str(token)})
+    print("this is still working...")
+    return {'token': token.to_jwt().decode()}

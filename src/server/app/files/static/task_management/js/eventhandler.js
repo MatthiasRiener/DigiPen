@@ -34,8 +34,11 @@ $('body').on('click', '.task-item', function () {
     }
 
     $('#taskPopup').css('display', 'flex');
-    $('#taskPopup').css('top', taskPositionTop + "vh");
-    $('#taskPopup').css('left', taskPositonLeft + "vw");
+
+    $('#taskPopup').css('top', (taskPositionTop - 36) + "vh");
+    $('#taskPopup').css('left', (taskPositonLeft + taskWidth - 2) + "vw");
+    
+
     $('#taskPopup').animate({
         opacity: 1.0
     }, 100);

@@ -6,7 +6,6 @@ var canvas = this.__canvas = new fabric.Canvas('canvas', {
 
 canvas.enableGLFiltering = false;
 
-let shortcuts = [];
 
 var selected;
 var canDeleteText = true;
@@ -135,8 +134,10 @@ function init() {
     canvas.setHeight($('#content-main-inner-spacing-middle').height());
 
     canvas.on({
-        'object:moving': (e) => {},
+        'object:moving': (e) => { },
         'object:modified': (e) => {
+            console.log("Moin-------------------------------------");
+            saveCanvasToJson();
             const selectedObject = e.target;
             // don't allow delete inside text
 
@@ -283,7 +284,7 @@ function chartLoaded() {
 }
 
 function addImage(customurl, isChart) {
-    const url = customurl || "https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg";
+    const url = customurl || 'https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg';
 
     if (url) {
         const img = fabric.Image.fromURL(url, (image) => {
@@ -325,37 +326,6 @@ $('body').on('input', '.background-color-picker', function () {
     setBackground();
 });
 
-var curKeys = [];
-
-$('body').keydown(function (event) {
-    curKeys = [];
-    var keycode = (event.keycode ? event.keycode : event.which);
-    curKeys.push(event.code);
-
-
-    if (event.ctrlKey && event.code != "ControlLeft") {
-        curKeys.push("ControlLeft");
-    }
-
-    if (event.shiftKey && event.code != "ShiftLeft") {
-        curKeys.push("ShiftLeft");
-    }
-
-    try {
-        const [index, val] = Object.entries(shortcuts).find(([i, e]) => JSON.stringify(e.keys.sort()) === JSON.stringify(curKeys.sort()));
-        if (val.params) {
-
-            window[val.callback](val.params);
-        } else {
-
-            window[val.callback]();
-        }
-    } catch (e) {
-
-    }
-
-    curKeys = [];
-});
 
 
 $('body').on('input', '.text-opacity-slider', function () {
@@ -435,7 +405,9 @@ $('body').on('keypress', '.canvas-background-img', function (e) {
 
 
 $('body').on('click', '.btn-export-to-json', function () {
+    resizeOnloadSpecific();
     saveCanvasToJson();
+    resizeCanvasFunc();
 });
 
 
@@ -555,43 +527,59 @@ $('body').on('input', '.img-opacity-slider-img', function () {
     setImgOpacity();
 });
 
+$('#content-navigation-fifth-box-play').click(function () {
+    startFromBeginning();
+});
+
 
 /*------------------------Helper Functions------------------------*/
 
 let originalSize, oldWidth, oldHeight;
 
 window.onload = function () {
-    this.setTimeout(() => {
-        fixSize();
-        this.setTimeout(() => {
-            this.console.log("setting zoom...")
-            originalSize = canvas.width;
-        }, 500);
-    }, 500)
-   
-
-
+    originalSize = canvas.width;
 }
 
 $(window).resize(async function () {
-    if (checkResponsiveness()) {
-        fixSize();
-    } else {
-        var width = $('#content-main-inner-spacing-middle').width();
-        var height = $('#content-main-inner-spacing-middle').height();
-
-        resizeCanvas(width, height);
-    }
-
-
-    console.log("o-size", originalSize)
-
-
+    resizeCanvasFunc();
 
     setTimeout(() => {
         toggleVisibility(trackingIndex);
     }, 100);
 });
+
+function resizeOnloadSpecific() {
+    $("#content-main-inner-spacing-middle").css('width', '58vw');
+    $("#content-main-inner-spacing-middle").css('height', '32.625vw');
+
+    if ($("#content-main-inner-spacing-bottom").position().top + 25 > $("#content-main-inner").height()) {
+        $("#content-main-inner-spacing-middle").css('width', oldWidth);
+        $("#content-main-inner-spacing-middle").css('height', oldHeight);
+    }
+
+    var width = oldWidth = $('#content-main-inner-spacing-middle').width();
+    var height = oldHeight = $('#content-main-inner-spacing-middle').height();
+    canvas.setWidth(width);
+    canvas.setHeight(height);
+}
+
+function resizeCanvasFunc() {
+    $("#content-main-inner-spacing-middle").css('width', '58vw');
+    $("#content-main-inner-spacing-middle").css('height', '32.625vw');
+
+    if ($("#content-main-inner-spacing-bottom").position().top + 25 > $("#content-main-inner").height()) {
+        $("#content-main-inner-spacing-middle").css('width', oldWidth);
+        $("#content-main-inner-spacing-middle").css('height', oldHeight);
+    }
+
+    var width = oldWidth = $('#content-main-inner-spacing-middle').width();
+    var height = oldHeight = $('#content-main-inner-spacing-middle').height();
+
+    resizeCanvas(width, height);
+    GetCanvasAtResoution(width, true);
+
+    canvas.setZoom(width / canvas.width);
+}
 
 function fixSize() {
     if ($('#content-main').height() < $('#content-main').width()) {
@@ -617,8 +605,7 @@ function resizeCanvas(width, height) {
 
     canvas.setWidth(width);
     canvas.setHeight(height);
-    console.log(width)
-    console.log("wtf")
+
     canvas.renderAll();
 }
 
@@ -700,12 +687,10 @@ function move(params) {
 
 function loadCanvasFromJson(json) {
     canvas.loadFromJSON(json, function () {
-        console.log("width:", $("#content-main-inner-spacing-middle").width())
         loadCanvasFrom1920($("#content-main-inner-spacing-middle").width())
+        resizeOnloadSpecific();
         canvas.renderAll();
     }, function (o, object) {
-        console.log("Canvas loaded!")
-
     })
 }
 
@@ -719,6 +704,8 @@ function saveCanvasToJson() {
     saveCanvas(json, 10, 109)
 
     GetCanvasAtResoution(width, false)
+
+    notifyForUpdate();
 }
 
 function GetCanvasAtResoution(newWidth, first) {
@@ -741,19 +728,12 @@ function GetCanvasAtResoution(newWidth, first) {
         canvas.discardActiveObject();
         canvas.setWidth(canvas.getWidth() * scaleMultiplier);
         canvas.setHeight(canvas.getHeight() * scaleMultiplier);
-        
-        
-
-     
 
         canvas.renderAll();
         canvas.calcOffset();
 
-        if(first) {
-            console.log(canvas.width / 1920)
-            console.log("changing... size")
+        if (first) {
             canvas.setZoom(scaleMultiplier)
-
         }
     }
 }
@@ -794,10 +774,42 @@ function rasterizeSVG() {
 }
 
 function initializeShortcuts() {
-    $.getJSON(baseURL + "/static/editor/js/shortcuts.json", function (data) {
-        shortcuts = [...data];
+    sendRequestToServer({ type: "GET", url: "/keybinding/getKeybinding" }).then(data => {
+
+        data.res.bindings.forEach((binding) => {
+            shortcuts.push(binding);
+        })
     });
 }
+
+function reloadShortcuts(keybindings) {
+
+    console.log("RELOADING KEYBINDINGD!")
+    console.log(keybindings)
+    keybindings.res.bindings.forEach((binding) => {
+        var counter = 0;
+        var changedCounter = 0;
+        var isExisting = false;
+        shortcuts.forEach((el) => {
+            if (el.name == binding.name) {
+                isExisting = true;
+                changedCounter = counter;
+            } 
+            counter++;
+        })
+
+        if (isExisting) {
+            shortcuts[changedCounter] = binding;
+        } else {
+            shortcuts.push(binding);
+        }
+    });
+
+    console.log("=======")
+    console.log(shortcuts)
+}
+
+
 
 function removeSelected() {
     const activeObject = canvas.getActiveObject();
@@ -1305,18 +1317,18 @@ var CustomNGIf = function (element, callback, propertyName) {
 /*------------------------EDITOR-WINDOWS------------------------*/
 
 var textEditorContainer = document.getElementById('text-editor');
-var textEditor = new CustomNGIf(textEditorContainer, function () {}, 'visible');
+var textEditor = new CustomNGIf(textEditorContainer, function () { }, 'visible');
 
 textEditor['visible'] = false;
 
 
 var imageEditorContainer = document.getElementById('image-editor');
-var imageEditor = new CustomNGIf(imageEditorContainer, function () {}, 'visible');
+var imageEditor = new CustomNGIf(imageEditorContainer, function () { }, 'visible');
 
 imageEditor['visible'] = false;
 
 
 var chartEditorContainer = document.getElementById('chart-editor');
-var chartEditor = new CustomNGIf(chartEditorContainer, function () {}, 'visible');
+var chartEditor = new CustomNGIf(chartEditorContainer, function () { }, 'visible');
 
 chartEditor['visible'] = false;

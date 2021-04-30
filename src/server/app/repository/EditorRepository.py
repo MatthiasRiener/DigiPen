@@ -15,12 +15,25 @@ class EditorRepository():
     def retrieveData(self, p_id, u_id):
         pres = json.loads(presRepo.getPresentation(p_id=p_id).to_json())
         presUsers = presRepo.getUsersFromPresentation(p_id=p_id)
-        ownUser = authRepo.retrieveUser(user_id=u_id)
+        ownUser = authRepo.retrieveUserWithOutTimeChange(user_id=u_id)
+
+
         canvas = json.loads(json_util.dumps(canvasRepo.getCanvas(p_id=p_id)))
+
+
         print(canvas)
         return json.dumps({"pres": pres, "users": presUsers, "ownUser": ownUser, "canvas": canvas})
     
-    def updateCanvas(self, p_id, canvas, width, height):
-        canvasRepo.updateCanvas(p_id, canvas, width, height)
+    def updateCanvas(self, p_id, canvas, c_id, width, height, user):
+        res = canvasRepo.updateCanvas(p_id, canvas, c_id,  width, height, user)
 
-        return json.dumps({"updated": 1})
+        return json.dumps({"res": res})
+
+    def addSlide(self, p_id, user):
+        return canvasRepo.createSlide(p_id=p_id, user=user)
+
+    def getSlides(self, p_id):
+        return canvasRepo.getSlides(p_id=p_id)
+
+    def getSpecificSlide(self, s_id):
+        return canvasRepo.getSpecificSlide(object_id=s_id)

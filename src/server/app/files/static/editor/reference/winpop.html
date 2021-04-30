@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="http://localhost:5000/static/editor/js/fabric.min.js" type="text/javascript" defer></script>
+    <link rel="stylesheet" href="http://localhost:5000/static/editor/reference/css/windowpopcss.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla">
+</head>
+
+<body>
+    <div class="infos" id="timer">
+        <div id="timerdisplay">
+            <label id="hours">00</label>:<label id="minutes">00</label>:<label id="seconds">00</label>
+        </div>
+        <button id="pause">❚❚</button>
+        <button id="play">▶</button>
+        <button id="timereset">⟳</button>
+    </div>
+    <div id="canvasesoverflow">
+        <div class="center">
+            <div id="currentCanvasDisplayBox">
+                <canvas id="bigsmol" width="300" height="168.75"></canvas>
+            </div>
+            <div class="infos" id="controlls">
+                <p id="output"></p>
+                <button id="previous">❮</button>
+                <p id="pagecount"></p>
+                <button id="next">❯</button>
+            </div>
+        </div>
+        <div id="canvases">
+        </div>
+    </div>
+    <script src="http://localhost:5000/static/editor/reference/js/windowpo.js"></script>
+</body>
+
+</html>

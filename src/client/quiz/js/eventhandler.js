@@ -73,10 +73,11 @@ $("#dublicate").click(function () {
 addQuestion();
 
 function addQuestion() {
-    $(".QuestionCount").eq(questionCount - 1).html('Question ' + questionCount)
     $("#loadPattern").append($("#Questionpattern").html())
-    
+    console.log(questionCount)
     questionCount++;
+    closebtnadd();
+    renameQuestioncount();
 }
 
 
@@ -97,3 +98,23 @@ $("#saveQuiz").click(function () {
     $(".quizTitle").val("");
     changeDisplay();
 });
+
+// new code
+// changes done in addQuestion()
+function closebtnadd() {
+    $(".bt_close_click").click(function () {
+        console.log("bruh")
+        if (this.parentElement.parentElement.parentElement)
+            this.parentElement.parentElement.parentElement.removeChild(this.parentElement.parentElement);
+        questionCount--;
+        renameQuestioncount();
+    });
+}
+
+function renameQuestioncount() {
+    let index = 0;
+    [...$(".QuestionCount")].forEach(element => {
+        index++;
+        element.innerText = 'Question ' + index;
+    });
+}

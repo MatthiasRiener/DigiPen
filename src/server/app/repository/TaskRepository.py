@@ -9,6 +9,9 @@ import json
 from bson import json_util
 import datetime
 
+import time
+
+
 from .PresentationRepository import PresentationRepository
 from .AuthenticationRepository import AuthenticationRepository
 
@@ -55,7 +58,7 @@ class TaskRepository():
         tasks = list()
 
         Task(p_id=p_id, task_id=task_id, name=name, start=parser.parse(start_date),
-             end=parser.parse(end_date), finished=True, creator=u_id, assignee=assignee).save()
+             end=parser.parse(end_date), finished=True, creator=u_id, assignee=assignee, created=time.time()).save()
 
         for i in range(0, len(subtasks) - 1):
             if not i % 3:
@@ -108,7 +111,7 @@ class TaskRepository():
         response["task"]["start"] = str(response["task"]["start"])
         response["task"]["end"] = str(response["task"]["end"])
 
-        response["task"]["assignee"] = authRepo.retrieveUser(user_id=task["assignee"])
+        response["task"]["assignee"] = authRepo.retrieveUserWithOutTimeChange(user_id=task["assignee"])
         response["task"]["presentation"] = presRepo.getPresentation(p_id=task["p_id"]).to_mongo()
 
         response["subtasks"] = list()
@@ -168,7 +171,7 @@ class TaskRepository():
                     dummyTask["end"] = str(t["end"])
                     dummyTask["finished"] = t["finished"]
                     dummyTask["t_id"] = t["task_id"]
-                    dummyTask["assignee"] = authRepo.retrieveUser(user_id=t["assignee"])
+                    dummyTask["assignee"] = authRepo.retrieveUserWithOutTimeChange(user_id=t["assignee"])
 
                     if t["assignee"] == u_id:
                         dummyTask["isOwn"] = True
@@ -185,10 +188,13 @@ class TaskRepository():
         tasks = Task.objects(assignee=u_id).order_by('end')
         response = list()
 
+        index = 0
         for t in tasks:
-            obj = json.loads(t.to_json())
-            obj["pres_name"] = presRepo.getPresentation(p_id=t["p_id"])["name"]
-            response.append(obj)
+            if index < 5:
+                obj = json.loads(t.to_json())
+                obj["pres_name"] = presRepo.getPresentation(p_id=t["p_id"])["name"]
+                response.append(obj)
+            index = index + 1
         return response
 
     def deleteAllTasks(self):

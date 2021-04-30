@@ -1,0 +1,12 @@
+.loaded #loader-wrapper .section-left {
+    transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */
+    transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+
+}
+
+
+.loaded #loader-wrapper .section-right {
+    transform: translateY(100%);  /* Firefox 16+, IE 10+, Opera */
+    transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  
+}
