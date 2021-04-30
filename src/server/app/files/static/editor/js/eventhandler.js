@@ -17,32 +17,82 @@ function addSlide(slide) {
 
     sideC = insertSlide(slide);
 
-    sideC.loadFromJSON(slide.canvas, function () {
-        sideC.renderAll();
 
 
-        imgageTest = canvas.toDataURL({
-            format: 'png',
-            quality: 0.8
-        })
 
-        $('#content-leftSlides-slidesContent').append(`
+    $('#content-leftSlides-slidesContent').append(`
     <div class="content-leftSlides-slidesContent-slide" data-slide="${slide._id.$oid}">
         <div class="content-leftSlides-slidesContent-slide-leftBar ${slides.length == 0 ? 'activeSlide' : ''}" style="height: ${height}vw;"></div>
         <div class="content-leftSlides-slidesContent-slide-middleBar" style="height: ${height}vw;">${slide.s_id}</div>
         <div class="content-leftSlides-slidesContent-slide-content" data-slide="${slide._id.$oid}" data-length="${slides.length}" style="position: relative; z-index: 2; height: ${height}vw; ${slides.length == 0 ? 'transform: scale(0.95);' : ''}">
-            <div class="content-leftSlides-slidesContent-slide-content-overlay" data-slideId="${slide._id.$oid}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; background: url('${imgageTest}'); background-size: cover; background-position: center; background-repeat: no-repeat"></div>
+            <div class="content-leftSlides-slidesContent-slide-content-overlay" data-slideId="${slide._id.$oid}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;"></div>
             <canvas class="content-leftSlides-slidesContent-slide-content-canvas" id="${slide._id.$oid}" style="position: absolute; z-index: 1; width: 100%; height: 100%;"></canvas>
         </div>
     </div>`);
 
-        $('#content-leftSlides-slidesContent-animatedBar').height(height + 'vw');
+    $('#content-leftSlides-slidesContent-animatedBar').height(height + 'vw');
 
 
 
-    }, function (o, object) {
-        console.log("Canvas loaded!")
+
+}
+
+
+function loadContentOfSideSlides(slides) {
+
+    $.when.apply($, $.map(slides, function (img, i) {
+
+        return new $.Deferred(function (dfd) {
+
+            let slides = $('.content-leftSlides-slidesContent-slide');
+            let width = 10;
+            let height = width / (16 / 9);
+
+            sideC = insertSlide(img);
+
+
+
+
+            $('#content-leftSlides-slidesContent').append(`
+            <div class="content-leftSlides-slidesContent-slide" data-slide="${img._id.$oid}">
+                <div class="content-leftSlides-slidesContent-slide-leftBar ${slides.length == 0 ? 'activeSlide' : ''}" style="height: ${height}vw;"></div>
+                <div class="content-leftSlides-slidesContent-slide-middleBar" style="height: ${height}vw;">${img.s_id}</div>
+                <div class="content-leftSlides-slidesContent-slide-content" data-slide="${img._id.$oid}" data-length="${slides.length}" style="position: relative; z-index: 2; height: ${height}vw; ${slides.length == 0 ? 'transform: scale(0.95);' : ''}">
+                    <div class="content-leftSlides-slidesContent-slide-content-overlay" data-slideId="${img._id.$oid}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;"></div>
+                    <canvas class="content-leftSlides-slidesContent-slide-content-canvas" id="${img._id.$oid}" style="position: absolute; z-index: 1; width: 100%; height: 100%;"></canvas>
+                </div>
+            </div>`);
+
+            var sideC = insertSlide(img);
+
+            sideC.loadFromJSON(img.canvas, function () {
+                sideC.renderAll();
+
+                imgageTest = sideC.toDataURL({
+                    format: 'png',
+                    quality: 0.8
+                })
+
+                const box = $(`.content-leftSlides-slidesContent-slide-content-overlay[data-slideId="${img._id.$oid}"]`);
+                console.warn(box);
+                box.css('background', `url('${imgageTest}')`);
+                box.css('background-position', 'center');
+                box.css('background-size', 'cover');
+
+                $('#content-leftSlides-slidesContent-animatedBar').height(height + 'vw');
+
+            });
+
+
+            dfd.resolve()
+            URL.revokeObjectURL(this.src);
+        });
+
+
     })
+    );
+
+
 }
 
 function insertSlide(slide) {
@@ -462,7 +512,7 @@ $("#" + startFromBeginningButtonId).click(function () {
 });
 
 function startFromBeginning() {
-    
+
     toggleFullScreen(document.body);
     index = 0;
 
@@ -470,28 +520,34 @@ function startFromBeginning() {
     sendRequestToServer({ type: "POST", url: "/editor/getSlides", data: { p_id: getCustomStorage("p_id") } }).then(data => {
         canvasArr.length = 0;
         console.log(data);
-        data.res.forEach(slide => {
-            var localCanvas = window._canvas = new fabric.Canvas(presCanvasId);
+
+
+
+        canvasArr = data.res.map((el) => {
+            var localCanvas = new fabric.Canvas(presCanvasId);
 
             localCanvas.loadFromJSON(
-                slide.canvas,
+                el.canvas,
                 function () {
 
                     localCanvas.renderAll.bind(localCanvas);
-                    canvasArr.push(localCanvas)
                 }
             );
+
+            return localCanvas;
         });
 
-        console.log(canvasArr);
-        setTimeout(() => {
-            currCanvas = canvasArr[index];
-            if (origSizePresCanvas == undefined)
-                origSizePresCanvas = currCanvas.getWidth();
-            resizePresentationCanvas();
-            resizeCanvasFunc();
-            $('#pagecount').text(`Slide ${index + 1}/${canvasArr.length}`);
-        }, 1000);
+
+
+
+
+        currCanvas = canvasArr[index];
+        if (origSizePresCanvas == undefined)
+            origSizePresCanvas = currCanvas.getWidth();
+        resizePresentationCanvas();
+        resizeCanvasFunc();
+        $('#pagecount').text(`Slide ${index + 1}/${canvasArr.length}`);
+        
     });
 
     //loadPresentationCanvas(index)

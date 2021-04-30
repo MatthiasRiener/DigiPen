@@ -47,7 +47,7 @@ socket.on('slideCreatedNotify', function(data) {
             canvas.setHeight($('#content-main-inner-spacing-middle').height());
         }
 
-        addSlide(data.res);
+        addSlide([...data.res]);
     });
 })
 

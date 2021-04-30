@@ -65,11 +65,12 @@ class CanvasRepository():
         return json.loads(json_util.dumps(mongoclient.db["canvas"].find_one({"_id": ObjectId(object_id)})))
 
     def getCanvas(self, p_id):
-        return mongoclient.db['canvas'].find({"p_id": p_id})
+        return mongoclient.db['canvas'].find({"p_id": p_id}).sort("s_id")
 
     def getSlides(self, p_id):
         response = list()
         for el in self.getCanvas(p_id=p_id):
+
             response.append(json.loads(json_util.dumps(el)))
         return response
     def updateCanvas(self, p_id, canvas, cid,  width, height, user):

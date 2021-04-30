@@ -6,9 +6,11 @@ $(document).ready(function () {
         // loadCanvasFromJson(data.canvas[0].canvas);
         // setCanvasID(data.canvas[0]._id.$oid);
         switchSlide(data.canvas[0]._id.$oid);
-        data.canvas.forEach(slide => {
-            addSlide(slide);
-        });
+        loadContentOfSideSlides(data.canvas);
+
+        
+            
+                
     });
 });
 

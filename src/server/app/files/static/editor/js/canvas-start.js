@@ -766,6 +766,9 @@ function loadCanvasFrom1920(newWidth) {
 }
 
 
+
+
+
 function rasterizeSVG() {
     const w = window.open('')
     w.document.write(canvas.toSVG());
