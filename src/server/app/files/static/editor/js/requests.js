@@ -66,17 +66,18 @@ function switchSlide(id) {
 function getSlides(whereStart) {
     sendRequestToServer({ type: "POST", url: "/editor/getSlides", data: { p_id: getCustomStorage("p_id") } }).then(data => {
         canvasArr.length = 0;
-        console.log(data);
+
         data.res.forEach(slide => {
             loadPresentationCanvasFromJson(slide.canvas);
         });
-
-        currCanvas = canvasArr[whereStart];
-        if (origSizePresCanvas == undefined)
-            origSizePresCanvas = currCanvas.getWidth();
-        resizePresentationCanvas();
-        resizeCanvasFunc();
-        $('#pagecount').text(`Slide ${whereStart + 1}/${canvasArr.length}`);
+        setTimeout(() => {
+            currCanvas = canvasArr[whereStart];
+            if (origSizePresCanvas == undefined)
+                origSizePresCanvas = currCanvas.getWidth();
+            resizePresentationCanvas();
+            resizeCanvasFunc();
+            $('#pagecount').text(`Slide ${whereStart + 1}/${canvasArr.length}`);
+        }, 1000);
     });
 }
 
