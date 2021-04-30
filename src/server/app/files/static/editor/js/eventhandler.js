@@ -435,11 +435,15 @@ function createCanvas(whereStart) {
 let whereStartSend;
 
 function loadPresentationCanvas(whereStart) {
+    console.log("LLLLLLLLLLLLLLLLLLLLL")
+    console.log(whereStart);
     createCanvas(whereStart);
     whereStartSend = whereStart;
 }
 
 function loadSpecificSlide(whereStart) {
+    console.log("LOADING SPEICFIC SLIDE")
+    console.log(whereStart)
     currCanvas = canvasArr[whereStart];
     if (origSizePresCanvas == undefined)
         origSizePresCanvas = currCanvas.getWidth();
@@ -449,6 +453,46 @@ function loadSpecificSlide(whereStart) {
         w.postMessage({ index: index }, '*');
     whereStartSend = whereStart;
 }
+
+
+
+$("#" + startFromBeginningButtonId).click(function () {
+    startFromBeginning();
+});
+
+function startFromBeginning() {
+    
+    toggleFullScreen(document.body);
+    index = 0;
+    loadPresentationCanvas(index)
+    // wenn man in den fullscreen gegangen ist ohne auf den präsentationsbutton geklickt zu haben
+    // sollte man ja nicht in die präsentationsansicht kommen
+    let clicked = $(this).data("clicked") != true ? true : false;
+    $(this).data("clicked", clicked);
+    setTimeout(() => {
+        let display = window.innerHeight >= window.outerHeight ? "flex" : "none";
+        $("#presi").css('display', display);
+        resizePresentationCanvas();
+    }, 100);
+}
+
+$("#" + startFromCurrentButtonId).click(function () {
+
+    index = curretSlide - 1;
+
+    toggleFullScreen(document.body);
+    loadPresentationCanvas(index)
+    // wenn man in den fullscreen gegangen ist ohne auf den präsentationsbutton geklickt zu haben
+    // sollte man ja nicht in die präsentationsansicht kommen
+    let clicked = $("#" + startFromBeginningButtonId).data("clicked") != true ? true : false;
+    $("#" + startFromBeginningButtonId).data("clicked", clicked);
+
+    setTimeout(() => {
+        let display = window.innerHeight >= window.outerHeight ? "flex" : "none";
+        $("#presi").css('display', display);
+        resizePresentationCanvas()
+    }, 100);
+});
 
 function resizePresentationCanvas() {
     let w = $("body").width()
@@ -596,42 +640,6 @@ function pad(val) {
     }
 }
 
-$("#" + startFromBeginningButtonId).click(function () {
-    startFromBeginning();
-});
-
-function startFromBeginning() {
-    toggleFullScreen(document.body);
-    index = 0;
-    loadPresentationCanvas(index)
-    // wenn man in den fullscreen gegangen ist ohne auf den präsentationsbutton geklickt zu haben
-    // sollte man ja nicht in die präsentationsansicht kommen
-    let clicked = $(this).data("clicked") != true ? true : false;
-    $(this).data("clicked", clicked);
-    setTimeout(() => {
-        let display = window.innerHeight >= window.outerHeight ? "flex" : "none";
-        $("#presi").css('display', display);
-        resizePresentationCanvas();
-    }, 100);
-}
-
-$("#" + startFromCurrentButtonId).click(function () {
-
-    index = curretSlide - 1;
-
-    toggleFullScreen(document.body);
-    loadPresentationCanvas(index)
-    // wenn man in den fullscreen gegangen ist ohne auf den präsentationsbutton geklickt zu haben
-    // sollte man ja nicht in die präsentationsansicht kommen
-    let clicked = $("#" + startFromBeginningButtonId).data("clicked") != true ? true : false;
-    $("#" + startFromBeginningButtonId).data("clicked", clicked);
-
-    setTimeout(() => {
-        let display = window.innerHeight >= window.outerHeight ? "flex" : "none";
-        $("#presi").css('display', display);
-        resizePresentationCanvas()
-    }, 100);
-});
 
 let w;
 
@@ -654,7 +662,9 @@ function openPopupWindow() {
     w.document.close();
 
     jsonArr = [];
+    console.log("WASS GEHT AB!")
     canvasArr.forEach(element => {
+        console.log(jsonArr)
         jsonArr.push(JSON.stringify(element))
     });
 

@@ -180,6 +180,7 @@ function resizeMain() {
 }
 
 function loadCanvas(json, index) {
+    console.log(json);
     newCanvas = new fabric.Canvas(`smolcanvas${index}`);
     newCanvas.loadFromJSON(json, function () {
         newCanvas.set('index', index);

@@ -66,10 +66,12 @@ function switchSlide(id) {
 function getSlides(whereStart) {
     sendRequestToServer({ type: "POST", url: "/editor/getSlides", data: { p_id: getCustomStorage("p_id") } }).then(data => {
         canvasArr.length = 0;
-
+        console.log(data);
         data.res.forEach(slide => {
             loadPresentationCanvasFromJson(slide.canvas);
         });
+
+        console.log(canvasArr);
         setTimeout(() => {
             currCanvas = canvasArr[whereStart];
             if (origSizePresCanvas == undefined)
@@ -82,12 +84,15 @@ function getSlides(whereStart) {
 }
 
 function loadPresentationCanvasFromJson(json) {
-    newCanvas = new fabric.Canvas(presCanvasId);
 
-    newCanvas.loadFromJSON(json, function () {
-        newCanvas.renderAll();
-        canvasArr.push(newCanvas)
-    }, function (o, object) {
+    var localCanvas = window._canvas = new fabric.Canvas('c');
 
-    })
+    localCanvas.loadFromJSON(
+        json, 
+        function() {
+              
+            localCanvas.renderAll.bind(localCanvas);
+            canvasArr.push(localCanvas)
+        }
+    );
 }
