@@ -559,6 +559,10 @@ $('body').on('input', '.img-opacity-slider-img', function () {
     setImgOpacity();
 });
 
+$('#content-navigation-fifth-box-play').click(function () {
+    startFromBeginning();
+});
+
 
 /*------------------------Helper Functions------------------------*/
 
@@ -566,8 +570,6 @@ let originalSize, oldWidth, oldHeight;
 
 window.onload = function () {
     originalSize = canvas.width;
-    // TODO Where the fuck resized der des
-    // resizeCanvasFunc();
 }
 
 $(window).resize(async function () {
@@ -717,12 +719,10 @@ function move(params) {
 
 function loadCanvasFromJson(json) {
     canvas.loadFromJSON(json, function () {
-        console.log("width:", $("#content-main-inner-spacing-middle").width())
         loadCanvasFrom1920($("#content-main-inner-spacing-middle").width())
+        resizeOnloadSpecific();
         canvas.renderAll();
     }, function (o, object) {
-        console.log("Canvas loaded!")
-
     })
 }
 
@@ -760,10 +760,6 @@ function GetCanvasAtResoution(newWidth, first) {
         canvas.discardActiveObject();
         canvas.setWidth(canvas.getWidth() * scaleMultiplier);
         canvas.setHeight(canvas.getHeight() * scaleMultiplier);
-
-
-
-
 
         canvas.renderAll();
         canvas.calcOffset();

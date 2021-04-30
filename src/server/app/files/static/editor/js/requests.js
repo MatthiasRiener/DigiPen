@@ -1,7 +1,5 @@
 $(document).ready(function () {
     sendRequestToServer({ type: "POST", url: "/editor/getPresentationInfo", data: { p_id: getCustomStorage("p_id") } }).then(data => {
-        console.log("Get Presentation: " + data);
-        console.log(data)
         $('#content-navigation-first-left-text-h2').text(data.pres.name);
         $('#content-navigation-first-left-text-h3').text(data.ownUser.name);
 
@@ -9,7 +7,6 @@ $(document).ready(function () {
         // setCanvasID(data.canvas[0]._id.$oid);
         switchSlide(data.canvas[0]._id.$oid);
         data.canvas.forEach(slide => {
-            console.log(slide);
             addSlide(slide);
         });
     });
@@ -18,8 +15,6 @@ $(document).ready(function () {
 function saveCanvas(canvas, width, height) {
     console.log(canvas);
     sendRequestToServer({ type: "POST", url: "/editor/updateCanvas", data: { p_id: getCustomStorage("p_id"), s_id: getCanvasID(), width: width, height: height, canvas: JSON.stringify(canvas) } }).then(data => {
-        console.log("Save Canvas");
-        console.log(data);
         sideC = insertSlide("MATTI IS SUPA");
 
         sideC.loadFromJSON(data.res.canvas, function () {
@@ -32,7 +27,7 @@ function saveCanvas(canvas, width, height) {
             })
 
             const box = $(`.content-leftSlides-slidesContent-slide-content-overlay[data-slideId="${data.res._id.$oid}"]`);
-            console.warn(box);
+
             box.css('background', `url('${imgageTest}')`);
             box.css('background-position', 'center');
             box.css('background-size', 'cover');
@@ -64,8 +59,6 @@ function createSlide() {
 function switchSlide(id) {
     console.log("IDDDD: " + id);
     sendRequestToServer({ type: "POST", url: "/editor/getSpecificSlide", data: { s_id: id } }).then(data => {
-        console.log("Switching Slide");
-        console.log(data);
         loadCanvasFromJson(data.res.canvas);
         setCanvasID(data.res._id.$oid);
         canvas.setWidth($('#content-main-inner-spacing-middle').width());
@@ -84,7 +77,6 @@ function getSlides(whereStart) {
         });
 
         currCanvas = canvasArr[whereStart];
-        console.log(canvasArr);
         if (origSizePresCanvas == undefined)
             origSizePresCanvas = currCanvas.getWidth();
         resizePresentationCanvas();
@@ -95,10 +87,8 @@ function getSlides(whereStart) {
 
 function loadPresentationCanvasFromJson(json) {
     newCanvas = new fabric.Canvas(presCanvasId);
-    console.log(json)
+
     newCanvas.loadFromJSON(json, function () {
-        console.log("Canvas loaded!")
-        console.warn(newCanvas)
         newCanvas.renderAll();
         canvasArr.push(newCanvas)
     }, function (o, object) {

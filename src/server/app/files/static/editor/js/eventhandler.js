@@ -398,9 +398,6 @@ let canvasArr = [], // Array von Canvasen sie in der Präsentation sichtbar sind
     currCanvas, // currCanvas = welcher canvas wird gerade angezeigt?
     origSizePresCanvas; // ist wichtig für den zoom-wert (responsive n' shit)
 
-// onload erzeugt einen neuen fabric canvas und resized diesen
-// sodass er responsiv ist
-
 // wenn sich die größe des fensters ändert
 $(window).resize(function () {
     setTimeout(() => {
@@ -636,6 +633,10 @@ function pad(val) {
 }
 
 $("#" + startFromBeginningButtonId).click(function () {
+    startFromBeginning();
+});
+
+function startFromBeginning() {
     toggleFullScreen(document.body);
     index = 0;
     loadPresentationCanvas(index)
@@ -648,7 +649,7 @@ $("#" + startFromBeginningButtonId).click(function () {
         $("#presi").css('display', display);
         resizePresentationCanvas()
     }, 100);
-});
+}
 
 $("#" + startFromCurrentButtonId).click(function () {
 
