@@ -26,7 +26,9 @@ window.addEventListener('message', function (e) {
             resizeCanv();
         }
         createCanvas(JSON.parse(smolCanvasArrRaw[0]));
-        setCurr(e.data.whereToStart);
+        setTimeout(() => {
+            setCurr(e.data.whereToStart);
+        }, 500);
     }
     if (typeof e.data.time === "number") {
         totalSeconds = e.data.time;

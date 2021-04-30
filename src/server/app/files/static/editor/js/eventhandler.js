@@ -619,9 +619,6 @@ $("#" + startFromCurrentButtonId).click(function () {
 
     index = curretSlide - 1;
 
-    console.clear()
-    console.log(index)
-
     toggleFullScreen(document.body);
     loadPresentationCanvas(index)
     // wenn man in den fullscreen gegangen ist ohne auf den präsentationsbutton geklickt zu haben
