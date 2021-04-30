@@ -647,7 +647,7 @@ function startFromBeginning() {
     setTimeout(() => {
         let display = window.innerHeight >= window.outerHeight ? "flex" : "none";
         $("#presi").css('display', display);
-        resizePresentationCanvas()
+        resizePresentationCanvas();
     }, 100);
 }
 

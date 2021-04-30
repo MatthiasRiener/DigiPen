@@ -102,6 +102,12 @@ function setCurr(ind) {
     currCanvasSmol.setWidth(nW)
     currCanvasSmol.setHeight(nW * 9 / 16);
 
+
+    currCanvasSmol.selection = false;
+    currCanvasSmol.forEachObject(function (object) {
+        object.selectable = false;
+    });
+
     let zOEm = currCanvasSmol.getWidth() / 1920;
     currCanvasSmol.setZoom(zOEm);
 
@@ -161,7 +167,6 @@ function resizeMain() {
     if (ratio < (16 / 9)) {
         w = $("#currentCanvasDisplayBox").width();
         h = $("#currentCanvasDisplayBox").width() * 9 / 16;
-        console.log("bra");
     }
 
     bigSmol.setWidth(w);
@@ -192,6 +197,5 @@ function loadCanvas(json, index) {
 
 function resizeCanv() {
     let zOEm = $(".smolCanvases").width() / 1920;
-    console.log(zOEm);
     newCanvas.setZoom(zOEm);
 }

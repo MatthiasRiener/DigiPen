@@ -37,8 +37,6 @@ function saveCanvas(canvas, width, height) {
 
 function createSlide() {
     sendRequestToServer({ type: "POST", url: "/editor/createSlide", data: { p_id: getCustomStorage("p_id") } }).then(data => {
-        console.log("Created Slide!");
-        console.log(data);
         addSlide(data.res);
         loadCanvasFromJson(data.res.canvas);
         setCanvasID(data.res._id.$oid);
@@ -48,9 +46,6 @@ function createSlide() {
         const newlyCreatedCanvas = data.res._id.$oid;
 
         sendRequestToServer({ type: "GET", url: "/auth/getUserID" }).then(data => {
-            console.log("TRYING TO CREATE NEW SLIDE")
-            console.log(newlyCreatedCanvas, data)
-
             socket.emit('slideCreated', { s_id: newlyCreatedCanvas, p_id: getCustomStorage("p_id"), user_id: data.u_id });
         });
     });
