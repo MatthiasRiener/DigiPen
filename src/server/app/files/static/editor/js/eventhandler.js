@@ -490,12 +490,6 @@ function loadPresentationCanvas(whereStart) {
 }
 
 function loadSpecificSlide(whereStart) {
-<<<<<<< HEAD
-=======
-
-    console.log("LOADING SPEICFIC SLIDE")
-    console.log(whereStart)
->>>>>>> 4472bff25227fd18ed10076e8101142ea1b83d07
     currCanvas = canvasArr[whereStart];
     if (origSizePresCanvas == undefined)
         origSizePresCanvas = currCanvas.getWidth();
@@ -512,20 +506,10 @@ $("#" + startFromBeginningButtonId).click(function () {
     startFromBeginning();
 });
 
-function startFromBeginning() {
 
-    toggleFullScreen(document.body);
-    index = 0;
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 4472bff25227fd18ed10076e8101142ea1b83d07
+function loadCurrentCanvas() {
     sendRequestToServer({ type: "POST", url: "/editor/getSlides", data: { p_id: getCustomStorage("p_id") } }).then(data => {
         canvasArr.length = 0;
-        console.log(data);
-
-
 
         canvasArr = data.res.map((el) => {
             var localCanvas = new fabric.Canvas(presCanvasId);
@@ -541,10 +525,6 @@ function startFromBeginning() {
             return localCanvas;
         });
 
-
-
-
-
         currCanvas = canvasArr[index];
         if (origSizePresCanvas == undefined)
             origSizePresCanvas = currCanvas.getWidth();
@@ -553,11 +533,15 @@ function startFromBeginning() {
         $('#pagecount').text(`Slide ${index + 1}/${canvasArr.length}`);
         
     });
-<<<<<<< HEAD
-=======
+}
 
-    //loadPresentationCanvas(index)
->>>>>>> 4472bff25227fd18ed10076e8101142ea1b83d07
+function startFromBeginning() {
+
+    toggleFullScreen(document.body);
+    index = 0;
+
+    loadCurrentCanvas();
+
     // wenn man in den fullscreen gegangen ist ohne auf den präsentationsbutton geklickt zu haben
     // sollte man ja nicht in die präsentationsansicht kommen
     let clicked = $(this).data("clicked") != true ? true : false;
@@ -575,6 +559,11 @@ $("#" + startFromCurrentButtonId).click(function () {
 
     toggleFullScreen(document.body);
     loadPresentationCanvas(index)
+
+
+    loadCurrentCanvas();
+
+
     // wenn man in den fullscreen gegangen ist ohne auf den präsentationsbutton geklickt zu haben
     // sollte man ja nicht in die präsentationsansicht kommen
     let clicked = $("#" + startFromBeginningButtonId).data("clicked") != true ? true : false;
@@ -584,7 +573,7 @@ $("#" + startFromCurrentButtonId).click(function () {
         let display = window.innerHeight >= window.outerHeight ? "flex" : "none";
         $("#presi").css('display', display);
         resizePresentationCanvas()
-    }, 100);
+    }, 500);
 });
 
 function resizePresentationCanvas() {
@@ -728,15 +717,13 @@ let jsonArr = [];
 function openPopupWindow() {
     if (w) w.close();
     w = null;
-    w = window.open("http://localhost:5000/static/editor/reference/winpop.html", 'TheNewpop', 'height=500,width=625');
+    w = window.open(`http://localhost:5000/static/editor/reference/winpop.html?d=${Math.random()}`, 'TheNewpop', 'height=500,width=625');
     w.document.close();
 
     jsonArr = [];
-    console.log("WASS GEHT AB!")
-    canvasArr.forEach(element => {
-        console.log(jsonArr)
-        jsonArr.push(JSON.stringify(element))
-    });
+    
+
+    jsonArr = canvasArr.map((el) => JSON.stringify(el));
 
     window.onmessage = function promiseFnkt(event) {
         // send the variable
@@ -745,7 +732,7 @@ function openPopupWindow() {
             w.postMessage({
                 canvasArray: jsonArr,
                 originalWidth: originalSize,
-                whereToStart: whereStartSend,
+                whereToStart: index,
                 time: totalSeconds,
                 timertimer: timertimer
             }, '*');

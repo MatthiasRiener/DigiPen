@@ -15,6 +15,9 @@ window.addEventListener('message', function (e) {
     // if (e.origin !== "http://localhost:5000/editor/")
     //     return;
 
+    smolCanvasArr = e.data.canvasArray.map((el) => JSON.parse(el));
+    console.log("SMOL")
+    console.log(smolCanvasArr)
 
     if (typeof e.data.whereToStart === "number") {
         smolCanvasArrRaw = e.data.canvasArray;
@@ -26,9 +29,7 @@ window.addEventListener('message', function (e) {
             resizeCanv();
         }
         createCanvas(JSON.parse(smolCanvasArrRaw[0]));
-        setTimeout(() => {
-            setCurr(e.data.whereToStart);
-        }, 500);
+        setCurr(e.data.whereToStart);
     }
     if (typeof e.data.time === "number") {
         totalSeconds = e.data.time;
@@ -180,7 +181,6 @@ function resizeMain() {
 }
 
 function loadCanvas(json, index) {
-    console.log(json);
     newCanvas = new fabric.Canvas(`smolcanvas${index}`);
     newCanvas.loadFromJSON(json, function () {
         newCanvas.set('index', index);
