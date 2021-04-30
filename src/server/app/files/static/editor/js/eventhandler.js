@@ -485,16 +485,17 @@ function createCanvas(whereStart) {
 let whereStartSend;
 
 function loadPresentationCanvas(whereStart) {
-    console.log("LLLLLLLLLLLLLLLLLLLLL")
-    console.log(whereStart);
     createCanvas(whereStart);
     whereStartSend = whereStart;
 }
 
 function loadSpecificSlide(whereStart) {
+<<<<<<< HEAD
+=======
 
     console.log("LOADING SPEICFIC SLIDE")
     console.log(whereStart)
+>>>>>>> 4472bff25227fd18ed10076e8101142ea1b83d07
     currCanvas = canvasArr[whereStart];
     if (origSizePresCanvas == undefined)
         origSizePresCanvas = currCanvas.getWidth();
@@ -516,7 +517,10 @@ function startFromBeginning() {
     toggleFullScreen(document.body);
     index = 0;
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 4472bff25227fd18ed10076e8101142ea1b83d07
     sendRequestToServer({ type: "POST", url: "/editor/getSlides", data: { p_id: getCustomStorage("p_id") } }).then(data => {
         canvasArr.length = 0;
         console.log(data);
@@ -549,8 +553,11 @@ function startFromBeginning() {
         $('#pagecount').text(`Slide ${index + 1}/${canvasArr.length}`);
         
     });
+<<<<<<< HEAD
+=======
 
     //loadPresentationCanvas(index)
+>>>>>>> 4472bff25227fd18ed10076e8101142ea1b83d07
     // wenn man in den fullscreen gegangen ist ohne auf den präsentationsbutton geklickt zu haben
     // sollte man ja nicht in die präsentationsansicht kommen
     let clicked = $(this).data("clicked") != true ? true : false;
@@ -592,14 +599,6 @@ function resizePresentationCanvas() {
     canvasContainer.addClass('wtohbigger');
     canvasContainer.removeClass('wtohsmaller');
 
-    // console.log(canvasBody.width(), currCanvas.width)
-
-    // if (Math.round(canvasBody.width()) == Math.round(currCanvas.width)) {
-    //     return;
-    // } else {
-    //     // console.log("chaning Size!")
-    // }
-
     currCanvas.setWidth(h * 16 / 9);
     currCanvas.setHeight(h);
     // wenn das seitenverhältnis breite:höhe kleiner als 16:9 ist
@@ -619,21 +618,6 @@ function resizePresentationCanvas() {
 
         // console.log("setting zoom...")
         let zooooooooooooooom = scaleMultiplier = currCanvas.width / 1920;
-
-        // var objects = currCanvas.getObjects();
-        // for (var i in objects) {
-        //     objects[i].scaleX = objects[i].scaleX * scaleMultiplier;
-        //     objects[i].scaleY = objects[i].scaleY * scaleMultiplier;
-        //     objects[i].left = objects[i].left * scaleMultiplier;
-        //     objects[i].top = objects[i].top * scaleMultiplier;
-        //     objects[i].setCoords();
-        // }
-        // var obj = currCanvas.backgroundImage;
-        // if (obj) {
-        //     obj.scaleX = obj.scaleX * scaleMultiplier;
-        //     obj.scaleY = obj.scaleY * scaleMultiplier;
-        // }
-
 
         currCanvas.setZoom(zooooooooooooooom);
     }
