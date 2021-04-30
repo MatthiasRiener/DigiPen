@@ -429,42 +429,6 @@ $(window).resize(function () {
 // IMPORTANT canvas hintergrund ist mit css gefüllt
 function createCanvas(whereStart) {
     const fabric = window.fabric;
-    // create `Canvas` object using `<canvas>` DOM node
-    /*canvas1 = new fabric.Canvas(presCanvasId);
-    canvas2 = new fabric.Canvas(presCanvasId);
-    canvas3 = new fabric.Canvas(presCanvasId);
-    // create a rectangle object
-    var rect1 = new fabric.Rect({
-        left: 100,
-        top: 100,
-        fill: 'red',
-        width: 20,
-        height: 20
-    });
-
-    var rect2 = new fabric.Rect({
-        left: 100,
-        top: 100,
-        fill: 'blue',
-        width: 20,
-        height: 20
-    });
-
-    var rect3 = new fabric.Rect({
-        left: 100,
-        top: 100,
-        fill: 'green',
-        width: 20,
-        height: 20
-    });
-    // "add" rectangle onto canvas
-    canvas1.add(rect1);
-    canvas2.add(rect2);
-    canvas3.add(rect3);
-
-    canvasArr.push(canvas1);
-    canvasArr.push(canvas2);
-    canvasArr.push(canvas3);*/
     getSlides(whereStart);
 }
 
