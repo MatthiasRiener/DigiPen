@@ -34,8 +34,10 @@ lastlogin = time.time()
 
 @pytest.mark.parametrize('user_id, name, email, img, last_login, created, result', [
     (keycloakid, "Max", "max@mustermail.at", None, lastlogin, lastlogin, 1),
+
     (keycloakid_secondUser, "Susi", "susi@sonne.at",
      None, lastlogin, lastlogin, "User %s was successfully inserted." % (keycloakid_secondUser)),
+
     (str(uuid.uuid4()), "Max", "max@mustermail.at", None,
      None, lastlogin, "Last login must not be None"),
     (str(uuid.uuid4()), "Max", "max@mustermail.at", None, lastlogin,
@@ -78,6 +80,7 @@ dummyid = str(uuid.uuid4())
     (None, "Invalid information was given regarding the users userid")
 ])
 def test_retrieveUser(user_id, result):
+
     assert auth.retrieveUser(
         user_id=user_id) == result or type(result) is object
 
@@ -150,6 +153,7 @@ def test_getUserCount():
 
 # TODO
 # was soll ich bei getUsersForPresentation testen
+
 
 
 @pytest.mark.parametrize('x, y, result', [

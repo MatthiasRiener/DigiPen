@@ -58,7 +58,7 @@ jwt.init_app(app)
 socketio.init_app(app)
 mongoclient.init_app(app)
 
-app.register_blueprint(auth, url_prefix="/auth")
+app.register_blueprint(auth, url_prefix="/security")
 app.register_blueprint(profile, url_prefix="/profile")
 app.register_blueprint(workspace, url_prefix="/workspace")
 app.register_blueprint(dashboard, url_prefix="/dashboard")

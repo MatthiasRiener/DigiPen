@@ -24,6 +24,8 @@ services:
     volumes:
       - ./imports/cache_reload/disable-theme-cache.cli:/opt/jboss/startup-scripts/disable-theme-cache.cli
       - ./imports/themes/custom/:/opt/jboss/keycloak/themes/custom-theme/
+    environment:
+      - PROXY_ADDRESS_FORWARDING=true
     ports:
       - 8080:8080
     depends_on: 

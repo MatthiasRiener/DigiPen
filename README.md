@@ -2,7 +2,7 @@
 
 
 
-
+<!--
 
 [![Github contributors][github-contributors-svg]][contributors-url]
 [![Github Issues][github-issues-svg]][issues-url]
@@ -10,6 +10,7 @@
 [![Last Commit][github-last-commit-svg]][last-commit-url]
 ![Languages][github-languages-svg]
 
+-->
 
 **ITP-Projekt**<br>
 **Klasse:** 4BHITM<br>
