@@ -465,7 +465,36 @@ function startFromBeginning() {
     
     toggleFullScreen(document.body);
     index = 0;
-    loadPresentationCanvas(index)
+
+
+    sendRequestToServer({ type: "POST", url: "/editor/getSlides", data: { p_id: getCustomStorage("p_id") } }).then(data => {
+        canvasArr.length = 0;
+        console.log(data);
+        data.res.forEach(slide => {
+            var localCanvas = window._canvas = new fabric.Canvas(presCanvasId);
+
+            localCanvas.loadFromJSON(
+                slide.canvas,
+                function () {
+
+                    localCanvas.renderAll.bind(localCanvas);
+                    canvasArr.push(localCanvas)
+                }
+            );
+        });
+
+        console.log(canvasArr);
+        setTimeout(() => {
+            currCanvas = canvasArr[index];
+            if (origSizePresCanvas == undefined)
+                origSizePresCanvas = currCanvas.getWidth();
+            resizePresentationCanvas();
+            resizeCanvasFunc();
+            $('#pagecount').text(`Slide ${index + 1}/${canvasArr.length}`);
+        }, 1000);
+    });
+
+    //loadPresentationCanvas(index)
     // wenn man in den fullscreen gegangen ist ohne auf den präsentationsbutton geklickt zu haben
     // sollte man ja nicht in die präsentationsansicht kommen
     let clicked = $(this).data("clicked") != true ? true : false;
@@ -474,7 +503,7 @@ function startFromBeginning() {
         let display = window.innerHeight >= window.outerHeight ? "flex" : "none";
         $("#presi").css('display', display);
         resizePresentationCanvas();
-    }, 100);
+    }, 500);
 }
 
 $("#" + startFromCurrentButtonId).click(function () {
