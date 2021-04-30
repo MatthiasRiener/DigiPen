@@ -1,6 +1,6 @@
 console.log('Authentification JavaSript loaded!');
 
-const baseURL = "https://slidea.htl-leonding.ac.at";
+const baseURL = "http://localhost:5000";
 
 function sendRequestToServer(args) {
 
