@@ -442,6 +442,7 @@ function loadPresentationCanvas(whereStart) {
 }
 
 function loadSpecificSlide(whereStart) {
+
     console.log("LOADING SPEICFIC SLIDE")
     console.log(whereStart)
     currCanvas = canvasArr[whereStart];
