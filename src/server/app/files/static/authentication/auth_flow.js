@@ -114,6 +114,7 @@ function silentLogin(r_token, callback, args, resolve, reject) {
  }
 
 
+
  function getCurrentLocation() {
     // https://ipgeolocation.abstractapi.com/v1?api_key=389111a28499498884fbbcddd8767fe2
     $.ajax({
@@ -128,3 +129,4 @@ function silentLogin(r_token, callback, args, resolve, reject) {
         },
     })
  }
+

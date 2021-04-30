@@ -440,6 +440,12 @@ function loadPresentationCanvas(whereStart) {
 }
 
 function loadSpecificSlide(whereStart) {
+<<<<<<< HEAD
+=======
+
+    console.log("LOADING SPEICFIC SLIDE")
+    console.log(whereStart)
+>>>>>>> 4472bff25227fd18ed10076e8101142ea1b83d07
     currCanvas = canvasArr[whereStart];
     if (origSizePresCanvas == undefined)
         origSizePresCanvas = currCanvas.getWidth();
@@ -461,6 +467,10 @@ function startFromBeginning() {
     toggleFullScreen(document.body);
     index = 0;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4472bff25227fd18ed10076e8101142ea1b83d07
     sendRequestToServer({ type: "POST", url: "/editor/getSlides", data: { p_id: getCustomStorage("p_id") } }).then(data => {
         canvasArr.length = 0;
         console.log(data);
@@ -487,6 +497,11 @@ function startFromBeginning() {
             $('#pagecount').text(`Slide ${index + 1}/${canvasArr.length}`);
         }, 1000);
     });
+<<<<<<< HEAD
+=======
+
+    //loadPresentationCanvas(index)
+>>>>>>> 4472bff25227fd18ed10076e8101142ea1b83d07
     // wenn man in den fullscreen gegangen ist ohne auf den präsentationsbutton geklickt zu haben
     // sollte man ja nicht in die präsentationsansicht kommen
     let clicked = $(this).data("clicked") != true ? true : false;
@@ -495,7 +510,7 @@ function startFromBeginning() {
         let display = window.innerHeight >= window.outerHeight ? "flex" : "none";
         $("#presi").css('display', display);
         resizePresentationCanvas();
-    }, 100);
+    }, 500);
 }
 
 $("#" + startFromCurrentButtonId).click(function () {
