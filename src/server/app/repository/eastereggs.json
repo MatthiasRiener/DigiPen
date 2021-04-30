@@ -1,0 +1,11 @@
+[
+    {
+        "name": "loadSpaceInvader",
+        "keys": [
+            "KeyC",
+            "KeyU",
+            "KeyM"
+        ],
+        "callback": "createSpaceInvader"
+    }
+]

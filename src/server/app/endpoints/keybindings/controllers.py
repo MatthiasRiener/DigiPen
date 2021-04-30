@@ -29,6 +29,15 @@ def getKeybindingRoute():
     return json.dumps({"res": res})
 
 
+@keybinding.route('/getEasterEggs')
+@jwt_required
+def getEasterEggsKeybinding():
+    u_id = get_jwt_identity()
+
+    res = keyRepo.loadEasterEggs()
+    return json.dumps({"res": res})
+
+
 @keybinding.route('/saveKeybinding', methods=["POST"])
 @jwt_required
 def saveKeybindingRoute():

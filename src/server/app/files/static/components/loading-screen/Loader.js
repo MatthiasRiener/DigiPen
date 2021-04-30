@@ -29,8 +29,6 @@ class LoadingScreen extends HTMLElement {
     }
 
     loadJS() {
-        console.clear("LOADING JS FILE");
-        console.log("LOADING JS FILE")
 
         var sc = $.getScript("http://localhost:5000/static/components/loading-screen/domObserver.js")
             .done(function (script, textStatus) {

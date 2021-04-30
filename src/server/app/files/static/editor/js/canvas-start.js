@@ -6,7 +6,6 @@ var canvas = this.__canvas = new fabric.Canvas('canvas', {
 
 canvas.enableGLFiltering = false;
 
-let shortcuts = [];
 
 var selected;
 var canDeleteText = true;
@@ -327,37 +326,6 @@ $('body').on('input', '.background-color-picker', function () {
     setBackground();
 });
 
-var curKeys = [];
-
-$('body').keydown(function (event) {
-    curKeys = [];
-    var keycode = (event.keycode ? event.keycode : event.which);
-    curKeys.push(event.code);
-
-
-    if (event.ctrlKey && event.code != "ControlLeft") {
-        curKeys.push("ControlLeft");
-    }
-
-    if (event.shiftKey && event.code != "ShiftLeft") {
-        curKeys.push("ShiftLeft");
-    }
-
-    try {
-        const [index, val] = Object.entries(shortcuts).find(([i, e]) => JSON.stringify(e.keys.sort()) === JSON.stringify(curKeys.sort()));
-        if (val.params) {
-
-            window[val.callback](val.params);
-        } else {
-
-            window[val.callback]();
-        }
-    } catch (e) {
-
-    }
-
-    curKeys = [];
-});
 
 
 $('body').on('input', '.text-opacity-slider', function () {
@@ -807,13 +775,41 @@ function rasterizeSVG() {
 
 function initializeShortcuts() {
     sendRequestToServer({ type: "GET", url: "/keybinding/getKeybinding" }).then(data => {
-        shortcuts = [...data.res.bindings];
+
+        data.res.bindings.forEach((binding) => {
+            shortcuts.push(binding);
+        })
     });
 }
 
 function reloadShortcuts(keybindings) {
-    shortcuts = [...keybindings.res.bindings];
+
+    console.log("RELOADING KEYBINDINGD!")
+    console.log(keybindings)
+    keybindings.res.bindings.forEach((binding) => {
+        var counter = 0;
+        var changedCounter = 0;
+        var isExisting = false;
+        shortcuts.forEach((el) => {
+            if (el.name == binding.name) {
+                isExisting = true;
+                changedCounter = counter;
+            } 
+            counter++;
+        })
+
+        if (isExisting) {
+            shortcuts[changedCounter] = binding;
+        } else {
+            shortcuts.push(binding);
+        }
+    });
+
+    console.log("=======")
+    console.log(shortcuts)
 }
+
+
 
 function removeSelected() {
     const activeObject = canvas.getActiveObject();

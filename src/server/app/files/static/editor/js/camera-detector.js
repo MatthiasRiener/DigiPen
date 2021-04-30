@@ -16,12 +16,9 @@ function reloadCameras() {
     const localVideo = (videoContainer.getElementsByTagName('video'))[0];
 
 
-    console.log(localVideo);
-
     var img = getScreenshot(localVideo);
     var brightness = getBrightness(img);
 
-    console.log(brightness);
     if (brightness < 35 && !hasClickedBrightness) {
         showBrightnessSnackbar();
     }

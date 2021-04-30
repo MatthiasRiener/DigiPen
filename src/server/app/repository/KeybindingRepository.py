@@ -10,10 +10,11 @@ class KeybindingRepository():
         self.testing = testing
 
     def createKeybindings(self, u_id):
-        keybindings = self.readJson()
+        keybindings = self.readJson("shortcuts.json")
         mongoclient.db['keybinding'].insert_one(
             {'u_id': u_id, 'bindings': keybindings})
-
+    def loadEasterEggs(self):
+        return self.readJson("eastereggs.json")
     def getKeybindings(self, u_id):
         res = mongoclient.db['keybinding'].find_one({"u_id": u_id})
         return json.loads(json_util.dumps(res))
@@ -23,10 +24,10 @@ class KeybindingRepository():
             {"u_id": u_id},  {"$set": {"bindings": keybinds}})
         return 1
 
-    def readJson(self):
+    def readJson(self, jsonfile_path):
         __location__ = os.path.realpath(
             os.path.join(os.getcwd(), os.path.dirname(__file__)))
-        with open(os.path.join(__location__, 'shortcuts.json')) as json_file:
+        with open(os.path.join(__location__, jsonfile_path)) as json_file:
             data = json.load(json_file)
 
             res = list()
