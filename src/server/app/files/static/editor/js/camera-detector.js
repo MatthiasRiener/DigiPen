@@ -5,7 +5,7 @@ function videoInitialized() {
     worker = new Worker(baseURL + "/static/editor/js/worker.js?" + Math.random());
 
     worker.postMessage({})
-    worker.addEventListener('message', function (event) {reloadCameras() });
+    worker.addEventListener('message', function (event) { reloadCameras() });
 
 }
 
@@ -20,10 +20,10 @@ function reloadCameras() {
 
     var img = getScreenshot(localVideo);
     var brightness = getBrightness(img);
-    
+
     console.log(brightness);
-    if (brightness < 35) {
-        console.log("TURN ON THE LIGHTS NI-")
+    if (brightness < 35 && !hasClickedBrightness) {
+        showBrightnessSnackbar();
     }
 
 }
@@ -44,7 +44,7 @@ function getScreenshot(videoEl, scale) {
 function getBrightness(image) {
     let src = cv.imread(image);
     let dst = new cv.Mat();
-// You can try more different parameters
+    // You can try more different parameters
     cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY, 0);
 
 
@@ -61,7 +61,28 @@ function getBrightness(image) {
 }
 
 
-document.addEventListener("DOMContentLoaded", function(event){
+document.addEventListener("DOMContentLoaded", function (event) {
     console.log("Everything loaded!")
 
-  });
+});
+
+var x = document.getElementById("notifiy-brightness-snackbar")
+var hasClickedBrightness = false;
+
+
+function showBrightnessSnackbar() {
+    // Get the snackbar DIV
+
+
+    if (x.classList.contains("show")) {
+        return;
+    }
+
+    // Add the "show" class to DIV
+    x.className = "show";
+}
+
+$('body').on('click', "#skip-brightness", function () {
+    x.className = x.className.replace("show", "hidden");
+    hasClickedBrightness = true;
+})

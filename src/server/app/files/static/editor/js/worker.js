@@ -11,5 +11,5 @@ function reLoop() {
 
     setInterval(function() {
         self.postMessage({})
-    }, 2000)
+    }, 5000)
 }

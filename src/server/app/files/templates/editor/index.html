@@ -46,6 +46,18 @@
 <body>
 
 
+     <!--Import for Loader-->
+     <script src={{ url_for('static', filename="components/loading-screen/Loader.js" ) }} type="module"></script>
+     <loading-screen id="loadingScreen"></loading-screen>
+ <!--End of loader-->
+
+
+    <div id="notifiy-brightness-snackbar">
+        <p>Turn on the lights. We can't see you. 😉</p>
+        <button id="skip-brightness">Okay</button>
+    </div>
+
+
     <canvas id="chart-last-config"></canvas>
 
 
