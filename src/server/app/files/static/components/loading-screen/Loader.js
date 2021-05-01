@@ -89,6 +89,17 @@ class LoadingScreen extends HTMLElement {
 
     }
 
+    relightLoader(msg) {
+        console.log("I WAS CALLED")
+        const wrapper = this.shadowRoot.querySelector('#wrapper');
+        wrapper.classList.remove('loaded');
+        this.message.innerHTML = msg;
+    }
+
+    changeMessage(msg) {
+        this.message.innerHTML = msg;
+    }
+
 
 
 

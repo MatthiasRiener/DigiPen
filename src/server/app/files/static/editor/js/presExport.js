@@ -1,4 +1,10 @@
 $('#presentationModePopup-inner-popup-export').click(function () {
+
+    const loader = document.getElementById('loadingScreen');
+    loader.style.display = "flex";
+    loader.relightLoader("Exporting Presentation to PDF...");
+
+
     sendRequestToServer({ type: "POST", url: "/editor/getPresentationInfo", data: { p_id: getCustomStorage("p_id") } }).then(data => {
         console.clear();
         console.log(data);
@@ -28,16 +34,10 @@ $('#presentationModePopup-inner-popup-export').click(function () {
                         format: 'png',
                         quality: 0.8
                     });
-
-
-                    
-                    
-
-                    console.log("HELLO NEW IMAGE")
-                    
+      
                     doc.setPage(i + 1)
-
                     doc.addImage(imgageTest, 'PNG', 0, 0, 0, 0)
+                    loader.changeMessage("Exporting Presentation to PDF... " + (docCounter / data.canvas.length) * 100  + "%")
 
 
                     console.log(i, data.canvas.length)
@@ -45,6 +45,11 @@ $('#presentationModePopup-inner-popup-export').click(function () {
                     if (docCounter == data.canvas.length) {
                         console.log("ALL IMAGES LOADED")
                         doc.save(data.pres.name);
+                        loader.documentLoaded();
+
+                        setTimeout(() => {
+                            loader.style.display = "none";
+                        }, 700)
                     }
 
                     docCounter++;
