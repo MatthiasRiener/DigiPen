@@ -17,12 +17,12 @@ function addSlide(slide) {
 
     sideC = insertSlide(slide);
 
-
+    console.log("INSERTING SLIDE", slide.s_id)
 
 
     $('#content-leftSlides-slidesContent').append(`
     <div class="content-leftSlides-slidesContent-slide" data-slide="${slide._id.$oid}">
-        <div class="content-leftSlides-slidesContent-slide-leftBar ${slides.length == 0 ? 'activeSlide' : ''}" style="height: ${height}vw;"></div>
+        <div class="content-leftSlides-slidesContent-slide-leftBar ${slides.length == 0 ? 'activeSlide' : ''}" id="trackingIndexForSideBar_${slide.s_id}" style="height: ${height}vw;"></div>
         <div class="content-leftSlides-slidesContent-slide-middleBar" style="height: ${height}vw;">${slide.s_id}</div>
         <div class="content-leftSlides-slidesContent-slide-content" data-slide="${slide._id.$oid}" data-length="${slides.length}" style="position: relative; z-index: 2; height: ${height}vw; ${slides.length == 0 ? 'transform: scale(0.95);' : ''}">
             <div class="content-leftSlides-slidesContent-slide-content-overlay" data-slideId="${slide._id.$oid}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;"></div>
@@ -55,7 +55,7 @@ function loadContentOfSideSlides(slides) {
 
             $('#content-leftSlides-slidesContent').append(`
             <div class="content-leftSlides-slidesContent-slide" data-slide="${img._id.$oid}">
-                <div class="content-leftSlides-slidesContent-slide-leftBar ${slides.length == 0 ? 'activeSlide' : ''}" style="height: ${height}vw;"></div>
+                <div class="content-leftSlides-slidesContent-slide-leftBar ${slides.length == 0 ? 'activeSlide' : ''}" id="trackingIndexForSideBar_${img.s_id}" style="height: ${height}vw;"></div>
                 <div class="content-leftSlides-slidesContent-slide-middleBar" style="height: ${height}vw;">${img.s_id}</div>
                 <div class="content-leftSlides-slidesContent-slide-content" data-slide="${img._id.$oid}" data-length="${slides.length}" style="position: relative; z-index: 2; height: ${height}vw; ${slides.length == 0 ? 'transform: scale(0.95);' : ''}">
                     <div class="content-leftSlides-slidesContent-slide-content-overlay" data-slideId="${img._id.$oid}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;"></div>
@@ -111,14 +111,14 @@ $('body').on('click', '.content-leftSlides-slidesContent-slide-content', functio
 });
 
 function toggleVisibility(slideID, index) {
-    trackingIndex = index;
+    trackingIndex = index + 1;
 
-
+    console.log(trackingIndex);
 
     $('#content-leftSlides-slidesContent-animatedBar').css({
         'top': `${$("#content-leftSlides-slidesContent-animatedBar").position().top}`
     }).animate({
-        "top": `${$('.content-leftSlides-slidesContent-slide-leftBar').eq(trackingIndex).position().top}px`
+        "top": `${$(`#trackingIndexForSideBar_${trackingIndex}`).position().top}px`
     }, "slow");
 
 
@@ -126,7 +126,7 @@ function toggleVisibility(slideID, index) {
 }
 
 $('#content-leftSlides-slidesContent').scroll(function () {
-    $('#content-leftSlides-slidesContent-animatedBar').css("top", `${$('.content-leftSlides-slidesContent-slide-leftBar').eq(trackingIndex).position().top}px`);
+    $('#content-leftSlides-slidesContent-animatedBar').css("top", `${$(`#trackingIndexForSideBar_${trackingIndex}`).position().top}px`);
 });
 
 /* --------------- POPUPS --------------- */
