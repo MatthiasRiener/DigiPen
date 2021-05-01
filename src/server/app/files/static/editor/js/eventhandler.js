@@ -724,6 +724,7 @@ function openPopupWindow() {
     
 
     jsonArr = canvasArr.map((el) => JSON.stringify(el));
+    console.log(jsonArr)
 
     window.onmessage = function promiseFnkt(event) {
         // send the variable

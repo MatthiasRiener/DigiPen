@@ -14,21 +14,38 @@ let bigSmol;
 window.addEventListener('message', function (e) {
     // if (e.origin !== "http://localhost:5000/editor/")
     //     return;
-
-    smolCanvasArr = e.data.canvasArray.map((el) => JSON.parse(el));
-    console.log("SMOL")
-    console.log(smolCanvasArr)
+   
 
     if (typeof e.data.whereToStart === "number") {
-        smolCanvasArrRaw = e.data.canvasArray;
-        createCanvasPlaceholder();
+        
+
+
+        smolCanvasArrRaw.length = 0;
+        smolCanvasArrRaw = e.data.canvasArray.map((el, index) => {
+            $("#canvases").append(`
+            <div class="smol-canvas-overlay" style="position: relative; z-index: 2; height:100; width: 177.77;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;" ></div>
+                <canvas class="smolCanvases" id="smolcanvas${index}" width="177.77" height="100"></canvas>
+            </div>
+            `
+            );
+            return JSON.parse(el);
+        })
+        
+
+        smolCanvasArr = e.data.canvasArray.map((el, index) => {
+            c = loadCanvas(el, index);
+            resizeCanv(c);
+            return c;
+        })
+
+
+        console.log(smolCanvasArr);
+
         $("#pagecount").text(`Slide ${e.data.whereToStart + 1}/${smolCanvasArrRaw.length}`);
-        for (let index = 0; index < smolCanvasArrRaw.length; index++) {
-            const element = JSON.parse(smolCanvasArrRaw[index]);
-            loadCanvas(element, index);
-            resizeCanv();
-        }
-        createCanvas(JSON.parse(smolCanvasArrRaw[0]));
+
+       
+        createCanvas(smolCanvasArrRaw[e.data.whereToStart]);
         setCurr(e.data.whereToStart);
     }
     if (typeof e.data.time === "number") {
@@ -38,6 +55,8 @@ window.addEventListener('message', function (e) {
             timertimer = setInterval(setTime, 1000);
     }
     if (typeof e.data.index === "number") {
+        console.log("setting index!!!!")
+        console.log(e.data.index);
         $("#pagecount").text(`Slide ${e.data.index + 1}/${smolCanvasArrRaw.length}`);
         setCurr(e.data.index);
     }
@@ -86,6 +105,9 @@ $("#timereset").click(function () {
 
 function setCurr(ind) {
     currCanvasSmol = smolCanvasArr[ind];
+    console.log(currCanvasSmol)
+
+
     if (oldCanv && typeof oldInd === "number") {
         let oW = currCanvasSmol.getWidth();
         oldCanv.setWidth(oW)
@@ -135,11 +157,7 @@ $("#previous").click(function () {
 window.opener.postMessage('inited', '*');
 
 
-function createCanvasPlaceholder() {
-    for (let index = 0; index < smolCanvasArrRaw.length; index++) {
-        $("#canvases").append(`<canvas class="smolCanvases" id="smolcanvas${index}" width="177.77" height="100"></canvas>`);
-    }
-}
+
 
 function createCanvas(json) {
     bigSmol = new fabric.Canvas('bigsmol');
@@ -192,13 +210,14 @@ function loadCanvas(json, index) {
             window.opener.postMessage({ specific: this.get('index') }, '*');
         });
         newCanvas.renderAll();
-        smolCanvasArr.push(newCanvas)
     }, function (o, object) {
 
     })
+
+    return newCanvas;
 }
 
-function resizeCanv() {
+function resizeCanv(paramCanvas) {
     let zOEm = $(".smolCanvases").width() / 1920;
-    newCanvas.setZoom(zOEm);
+    paramCanvas.setZoom(zOEm);
 }
