@@ -722,6 +722,9 @@ function openPopupWindow() {
     console.log(jsonArr)
 
     window.onmessage = function promiseFnkt(event) {
+
+        console.log("RECEIVED EVENT")
+        console.log(event)
         // send the variable
         if (!isPopup) return;
         if (event.data == 'inited') {

@@ -221,3 +221,14 @@ function resizeCanv(paramCanvas) {
     let zOEm = $(".smolCanvases").width() / 1920;
     paramCanvas.setZoom(zOEm);
 }
+
+
+$('body').on('click', '.smol-canvas-overlay', function() {
+    const container = $(this);
+    const child = container.find(".smolCanvases");
+    var index = parseInt(child.attr("id").replace("smolcanvas", ""));
+    setCurr(index);
+    window.opener.postMessage({'specific': index}, "*");
+
+    
+})
