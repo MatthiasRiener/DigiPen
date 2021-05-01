@@ -88,6 +88,52 @@ def getSpecificSlide():
     return json.dumps({"res": editorRepo.getSpecificSlide(s_id=s_id)})
 
 
+import time, os
+from os import path, mkdir
+import urllib
+import requests, mimetypes
+
+@editor.route('/proxyImage', methods=["POST"])
+@jwt_required
+def proxyImageToLoad():
+    data = request.form
+    url = data["url"]
+    p_id = data["p_id"]
+    print(url)
+
+
+    response = requests.get(url, stream=True)
+    content_type = response.headers['content-type']
+    extension = mimetypes.guess_extension(content_type)
+
+    last_modified = str(time.time())
+
+    
+    file_name = last_modified + "_" + p_id + "_" + extension
+
+    ## check if directory for user exists, otherwise create
+
+    cur_dir = os.getcwd()
+
+    cur_dir = cur_dir + "/app/files/static/editor/img"
+        
+
+    if not path.exists(cur_dir + "/images/" + p_id):
+        mkdir(cur_dir + "/images/" + p_id + "/")
+
+
+    user_agent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.7) Gecko/2009021910 Firefox/3.0.7'
+    headers={'User-Agent':user_agent,} 
+
+
+    with open(cur_dir + "/images/" + p_id + "/" + file_name, 'wb') as img:
+        
+        img.write(response.content)
+        img.close()
+
+
+    return json.dumps({"res": file_name})
+
 @editor.route('/getSlides', methods=["POST"])
 @jwt_required
 def getSlidesRoute():

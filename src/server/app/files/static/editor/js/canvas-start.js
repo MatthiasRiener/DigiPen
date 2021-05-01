@@ -284,29 +284,34 @@ function chartLoaded() {
 }
 
 function addImage(customurl, isChart) {
-    const url = customurl || 'https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg';
+    var url = customurl || 'https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg';
 
-    if (url) {
-        const img = fabric.Image.fromURL(url, (image) => {
-            image.set({
-                left: 10,
-                top: 10,
-                angle: 0,
-                padding: 10,
-                cornerSize: 10,
-                strokeWidth: 0,
-                stroke: '#000000',
-                hasRotationPoint: true,
+    sendRequestToServer({type: "POST", url: "/editor/proxyImage", data: {"url": url, "p_id": getCustomStorage("p_id")}}).then(data => {
+        url = baseURL + `/static/editor/img/images/${getCustomStorage("p_id")}/${data.res}`;
+        if (url) {
+            const img = fabric.Image.fromURL(url, (image) => {
+                image.set({
+                    left: 10,
+                    top: 10,
+                    angle: 0,
+                    padding: 10,
+                    cornerSize: 10,
+                    strokeWidth: 0,
+                    stroke: '#000000',
+                    hasRotationPoint: true,
+                });
+                image.scaleToWidth(200);
+                image.scaleToHeight(200);
+                extend(image, isChart ? `chart_${randomId()}` : randomId());
+                canvas.add(image);
+                selectItemAfterAdded(image);
+            }, {
+                crossOrigin: 'Anonymous'
             });
-            image.scaleToWidth(200);
-            image.scaleToHeight(200);
-            extend(image, isChart ? `chart_${randomId()}` : randomId());
-            canvas.add(image);
-            selectItemAfterAdded(image);
-        }, {
-            crossOrigin: 'Anonymous'
-        });
-    }
+        }
+    });
+
+   
 }
 
 fabric.util.requestAnimFrame(function render() {
@@ -1050,6 +1055,9 @@ async function paste() {
 
     if (isImg) {
         console.log('link is a img');
+        console.log(obj)
+        addImage(obj);
+        //addImage()
     } else {
         // if link is not a image create new text
 
