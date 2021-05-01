@@ -2054,6 +2054,15 @@
     animation: fade 2s linear 1s;
 }
 
+#my-video-track {
+    position: absolute;
+    width: 16vw;
+    height: 9vw;
+    background: red;
+    top: 10px;
+    left: 10px;
+}
+
 @keyframes fade {
     0% {
         opacity: 1;

@@ -83,6 +83,10 @@ function addLocalVideo() {
     Twilio.Video.createLocalVideoTrack().then(track => {
         let video = document.getElementById('localVideo');
         video.appendChild(track.attach());
+
+        let presi_vid = document.getElementById('my-video-track');
+        presi_vid.appendChild(track.attach());
+
         videoInitialized()
 
     });

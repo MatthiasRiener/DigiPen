@@ -11,29 +11,55 @@ $('#content-leftSlides-topBar-plus').click(function () {
 });
 
 function addSlide(slide) {
-    let slides = $('.content-leftSlides-slidesContent-slide');
-    let width = 10;
-    let height = width / (16 / 9);
+    addSingSlide(slide);
+}
 
-    sideC = insertSlide(slide);
+function addSingSlide(img) {
+    return new $.Deferred(function (dfd) {
 
-    console.log("INSERTING SLIDE", slide.s_id)
+        let slides = $('.content-leftSlides-slidesContent-slide');
+        let width = 10;
+        let height = width / (16 / 9);
 
-
-    $('#content-leftSlides-slidesContent').append(`
-    <div class="content-leftSlides-slidesContent-slide" data-slide="${slide._id.$oid}">
-        <div class="content-leftSlides-slidesContent-slide-leftBar ${slides.length == 0 ? 'activeSlide' : ''}" id="trackingIndexForSideBar_${slide.s_id}" style="height: ${height}vw;"></div>
-        <div class="content-leftSlides-slidesContent-slide-middleBar" style="height: ${height}vw;">${slide.s_id}</div>
-        <div class="content-leftSlides-slidesContent-slide-content" data-slide="${slide._id.$oid}" data-length="${slides.length}" style="position: relative; z-index: 2; height: ${height}vw; ${slides.length == 0 ? 'transform: scale(0.95);' : ''}">
-            <div class="content-leftSlides-slidesContent-slide-content-overlay" data-slideId="${slide._id.$oid}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;"></div>
-            <canvas class="content-leftSlides-slidesContent-slide-content-canvas" id="${slide._id.$oid}" style="position: absolute; z-index: 1; width: 100%; height: 100%;"></canvas>
-        </div>
-    </div>`);
-
-    $('#content-leftSlides-slidesContent-animatedBar').height(height + 'vw');
+        sideC = insertSlide(img);
 
 
 
+
+        $('#content-leftSlides-slidesContent').append(`
+        <div class="content-leftSlides-slidesContent-slide" data-slide="${img._id.$oid}">
+            <div class="content-leftSlides-slidesContent-slide-leftBar ${slides.length == 0 ? 'activeSlide' : ''}" id="trackingIndexForSideBar_${img.s_id}" style="height: ${height}vw;"></div>
+            <div class="content-leftSlides-slidesContent-slide-middleBar" style="height: ${height}vw;">${img.s_id}</div>
+            <div class="content-leftSlides-slidesContent-slide-content" data-slide="${img._id.$oid}" data-length="${slides.length}" style="position: relative; z-index: 2; height: ${height}vw; ${slides.length == 0 ? 'transform: scale(0.95);' : ''}">
+                <div class="content-leftSlides-slidesContent-slide-content-overlay" data-slideId="${img._id.$oid}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;"></div>
+                <canvas class="content-leftSlides-slidesContent-slide-content-canvas" id="${img._id.$oid}" style="position: absolute; z-index: 1; width: 100%; height: 100%;"></canvas>
+            </div>
+        </div>`);
+
+        var sideC = insertSlide(img);
+
+        sideC.loadFromJSON(img.canvas, function () {
+            sideC.renderAll();
+
+            imgageTest = sideC.toDataURL({
+                format: 'png',
+                quality: 0.8
+            })
+
+            const box = $(`.content-leftSlides-slidesContent-slide-content-overlay[data-slideId="${img._id.$oid}"]`);
+            console.warn(box);
+            box.css('background', `url('${imgageTest}')`);
+            box.css('background-position', 'center');
+            box.css('background-size', 'cover');
+
+            $('#content-leftSlides-slidesContent-animatedBar').height(height + 'vw');
+
+        });
+
+
+        dfd.resolve()
+        URL.revokeObjectURL(this.src);
+    });
 
 }
 
@@ -42,52 +68,7 @@ function loadContentOfSideSlides(slides) {
 
     $.when.apply($, $.map(slides, function (img, i) {
 
-        return new $.Deferred(function (dfd) {
-
-            let slides = $('.content-leftSlides-slidesContent-slide');
-            let width = 10;
-            let height = width / (16 / 9);
-
-            sideC = insertSlide(img);
-
-
-
-
-            $('#content-leftSlides-slidesContent').append(`
-            <div class="content-leftSlides-slidesContent-slide" data-slide="${img._id.$oid}">
-                <div class="content-leftSlides-slidesContent-slide-leftBar ${slides.length == 0 ? 'activeSlide' : ''}" id="trackingIndexForSideBar_${img.s_id}" style="height: ${height}vw;"></div>
-                <div class="content-leftSlides-slidesContent-slide-middleBar" style="height: ${height}vw;">${img.s_id}</div>
-                <div class="content-leftSlides-slidesContent-slide-content" data-slide="${img._id.$oid}" data-length="${slides.length}" style="position: relative; z-index: 2; height: ${height}vw; ${slides.length == 0 ? 'transform: scale(0.95);' : ''}">
-                    <div class="content-leftSlides-slidesContent-slide-content-overlay" data-slideId="${img._id.$oid}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;"></div>
-                    <canvas class="content-leftSlides-slidesContent-slide-content-canvas" id="${img._id.$oid}" style="position: absolute; z-index: 1; width: 100%; height: 100%;"></canvas>
-                </div>
-            </div>`);
-
-            var sideC = insertSlide(img);
-
-            sideC.loadFromJSON(img.canvas, function () {
-                sideC.renderAll();
-
-                imgageTest = sideC.toDataURL({
-                    format: 'png',
-                    quality: 0.8
-                })
-
-                const box = $(`.content-leftSlides-slidesContent-slide-content-overlay[data-slideId="${img._id.$oid}"]`);
-                console.warn(box);
-                box.css('background', `url('${imgageTest}')`);
-                box.css('background-position', 'center');
-                box.css('background-size', 'cover');
-
-                $('#content-leftSlides-slidesContent-animatedBar').height(height + 'vw');
-
-            });
-
-
-            dfd.resolve()
-            URL.revokeObjectURL(this.src);
-        });
-
+        addSingSlide(img);
 
     })
     );
@@ -531,7 +512,7 @@ function loadCurrentCanvas() {
         resizePresentationCanvas();
         resizeCanvasFunc();
         $('#pagecount').text(`Slide ${index + 1}/${canvasArr.length}`);
-        
+
     });
 }
 
@@ -655,6 +636,20 @@ $("#laser").click(function () {
 });
 
 let islaser = false;
+let isVideo = true;
+
+$("body").on("click", "#toggleCameraPresi", function() {
+    isVideo = !isVideo;
+    console.log("WHAT THE FUCK!")
+    var videoContainer = $('#my-video-track');
+
+    if (isVideo) {
+        videoContainer.css("visibility", "visible");
+    } else {
+        videoContainer.css("visibility", "hidden");
+    }})
+
+
 
 // laserpointer ein/aus
 function toggleLaser(param) {
@@ -721,7 +716,7 @@ function openPopupWindow() {
     w.document.close();
 
     jsonArr = [];
-    
+
 
     jsonArr = canvasArr.map((el) => JSON.stringify(el));
     console.log(jsonArr)

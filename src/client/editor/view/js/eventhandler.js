@@ -454,6 +454,24 @@ $("#laser").click(function () {
 
 let islaser = false;
 
+let isVideo = true;
+
+$("body").on("click", "#toggleCameraPresi", function() {
+    console.log("HELL YEHA!Q")
+})
+
+$("#toggleCameraPresi").click(function() {
+    isVideo = !isVideo;
+    console.log("WHAT THE FUCK!")
+    var videoContainer = $('#my-video-track');
+
+    if (isVideo) {
+        videoContainer.css("visbility", "visible");
+    } else {
+        videoContainer.css("visbility", "hidden");
+    }
+})
+
 // laserpointer ein/aus
 function toggleLaser(param) {
     if ($("#laser").data("clicked") != true && param) {
