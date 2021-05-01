@@ -1207,7 +1207,7 @@
 
 #presentationModePopup-inner {
     width: 100%;
-    height: 20vh;
+    height: 24vh;
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
@@ -1215,7 +1215,7 @@
 
 #presentationModePopup-inner-popup {
     width: 12vw;
-    height: 16vh;
+    height: 24vh;
     z-index: 300 !important;
     display: none;
     flex-direction: column;
@@ -1231,7 +1231,7 @@
 
 #presentationModePopup-inner-popup-headline {
     width: 80%;
-    height: 20%;
+    height: 3vh;
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
@@ -1240,7 +1240,7 @@
 
 #presentationModePopup-inner-popup-start {
     width: 80%;
-    height: 28%;
+    height: 5vh;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -1251,7 +1251,7 @@
 
 #presentationModePopup-inner-popup-current {
     width: 80%;
-    height: 28%;
+    height:  5vh;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -1260,9 +1260,24 @@
     padding-left: 0.8vw;
 }
 
-#presentationModePopup-inner-popup-start:hover, #presentationModePopup-inner-popup-current:hover {
+#presentationModePopup-inner-popup-start:hover, #presentationModePopup-inner-popup-current:hover, #presentationModePopup-inner-popup-export {
     cursor: pointer;
 }
+
+
+#presentationModePopup-inner-popup-export {
+    width: 80%;
+    height: 5vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding-left: 0.8vw;
+}
+
+
+
 
 #chartsPopup {
     width: 100vw;

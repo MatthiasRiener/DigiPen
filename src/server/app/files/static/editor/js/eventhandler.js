@@ -23,9 +23,6 @@ function addSingSlide(img) {
 
         sideC = insertSlide(img);
 
-
-
-
         $('#content-leftSlides-slidesContent').append(`
         <div class="content-leftSlides-slidesContent-slide" data-slide="${img._id.$oid}">
             <div class="content-leftSlides-slidesContent-slide-leftBar ${slides.length == 0 ? 'activeSlide' : ''}" id="trackingIndexForSideBar_${img.s_id}" style="height: ${height}vw;"></div>
