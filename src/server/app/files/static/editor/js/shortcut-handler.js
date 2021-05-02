@@ -42,7 +42,7 @@ $('body').keydown(function (event) {
             window[val.callback]();
         }
     } catch (e) {
-        console.error("Keybinding was not found.")
+
     }
 
 });
