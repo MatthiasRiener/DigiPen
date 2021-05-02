@@ -23,7 +23,9 @@ tippsBlue = Blueprint("tipps", __name__,
 tipps = [
     "You can change your user information on the profile page.",
     "You can use keybindings to become a master at creating presentations",
-    "View your tasks on the Task Management Page."
+    "View your tasks on the Task Management Page.",
+    "Hey Queen. Wanna have some fun? :D"
+
 ]
 
 

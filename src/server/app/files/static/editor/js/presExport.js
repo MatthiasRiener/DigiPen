@@ -31,13 +31,13 @@ $('#presentationModePopup-inner-popup-export').click(function () {
                     sideC.renderAll();
 
                     imgageTest = sideC.toDataURL({
-                        format: 'png',
-                        quality: 0.8
+                        format: 'JPEG',
+                        quality: 1
                     });
       
                     doc.setPage(i + 1)
-                    doc.addImage(imgageTest, 'PNG', 0, 0, 0, 0)
-                    loader.changeMessage("Exporting Presentation to PDF... " + (docCounter / data.canvas.length) * 100  + "%")
+                    doc.addImage(imgageTest, 'JPEG', 0, 0, 0, 0)
+                    loader.changeMessage("Exporting Presentation to PDF... " + Math.floor((docCounter / data.canvas.length) * 100)  + "%")
 
 
                     console.log(i, data.canvas.length)
