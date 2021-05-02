@@ -81,7 +81,6 @@ class FeedbackForm extends HTMLElement {
       if (!validImputs) {
         e.preventDefault();
       } else {
-        console.log("FORM WAS SUBMITTED");
         var obj = {};
         obj["title"] = title;
         obj["cat"] = category;

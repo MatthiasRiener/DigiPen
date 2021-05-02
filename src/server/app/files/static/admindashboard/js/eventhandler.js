@@ -27,7 +27,6 @@ function insertLastLoginFromCountryList(countries, requests) {
 
 
 	const countrySort = new Map([...Object.entries(countries)].sort((a, b) => b[1].users.length - a[1].users.length));
-	console.log(countrySort)
 	var index = 0;
 	countrySort.forEach((country) => {
 		index++;
@@ -55,7 +54,6 @@ function insertRequestFromCountry(countries, requests) {
 
 
 	const countrySort = new Map([...Object.entries(countries)].sort((a, b) => b[1].users.length - a[1].users.length));
-	console.log(countrySort)
 	var index = 0;
 	countrySort.forEach((country) => {
 		index++;
@@ -84,7 +82,6 @@ let sliderElem_country = document.getElementsByClassName('slider_country')
 let dotElems_country = document.getElementsByClassName('slider__dot_country')
 let indicatorElem_country = document.getElementsByClassName('slider__indicator_country')
 
-console.log(indicatorElem_country)
 
 
 Array.prototype.forEach.call(dotElems_country, (dotElem_country) => {
@@ -124,13 +121,10 @@ Array.prototype.forEach.call(dotElems_country, (dotElem_country) => {
 
 	$('body').on('click', '.dashboard-issues-inner-container-item', function() {
 
-		console.log("ISSUE WAS CLICKED")
 		const clickedIssue = $(this);
-		console.log(clickedIssue.data('issueid'))
 
 		sendRequestToServer({type: "POST", url: "/issues/getSpecificIssue", data: {id: clickedIssue.data('issueid')}}).then(data => {
-			console.log("data")
-			console.log(data);
+
 
 			const date1 = new Date(data.res.submitted * 1000);
 			const date2 = new Date();
@@ -160,7 +154,6 @@ Array.prototype.forEach.call(dotElems_country, (dotElem_country) => {
 	$('.issue-finished').on('click', function() {
 		const curIssue = $("#feedbackSheet").data('issueId');
 
-		console.log("ISSUE FINISHED", curIssue)
 		sendRequestToServer({type: "POST", url: "/issues/closeIssue", data: {id: curIssue}}).then(data => {
 			$("#feedbackSheet").removeClass("feedbackSheetVisible");
 			$("#feedbackSheet").addClass("feedbackSheetHidden");

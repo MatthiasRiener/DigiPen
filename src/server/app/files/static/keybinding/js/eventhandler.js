@@ -118,8 +118,7 @@ $("#safe").click(function () {
  
     
     sendRequestToServer({type: "POST", url: "/keybinding/saveKeybinding", data: {keybinding: JSON.stringify(jsondata.res.bindings)}}).then(data => {
-        console.log("Save Keybindings");
-        console.log(data);
+
       
     });
 });

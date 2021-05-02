@@ -36,7 +36,6 @@ function getLocationDataFromUsers() {
 
 function getReportedIssues() {
     sendRequestToServer({type: "POST", url: "/admin/getIssues", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {
-        console.log(data);
         $('#issues-count').html(`(${data.res.length})`)
         insertIssues(data.res);
     });
@@ -49,17 +48,13 @@ function getLocationDataFromRequests() {
 }
 
 function getLocationWithCount() {
-    sendRequestToServer({type: "POST", url: "/admin/getLocationCount", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {
-        console.log("COUNTYX DATA")
-        console.log(data);
+    sendRequestToServer({type: "POST", url: "/admin/getLocationCount", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {;
         insertLastLoginFromCountryList(data.res, data.total_request);
     });
 }
 
 function getRequestDataWithLocation() {
     sendRequestToServer({type: "POST", url: "/admin/getLocationRequestsCount", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {
-        console.log("COUNTYX DATA")
-        console.log(data);
         insertRequestFromCountry(data.res, data.total_request);
     });
 }
@@ -93,7 +88,6 @@ function getDailyGoalDataSlides() {
 
 function getDailyInformationVideoChat() {
     sendRequestToServer({type: "GET", url: "/admin/getVideoChatInformation"}).then(data => {
-        console.log(data);
         var goal = 100;
         //<p id="><span >1.860</span> / 3k Goal</p>
         $('#current-interaction-count-daily-meetings').html(`<span>${data.res["group-rooms-participant-minutes"]}</span> / ${goal} Goal`);
@@ -105,7 +99,6 @@ function getTotalUsers() {
     sendRequestToServer({type: "POST", url: "/admin/getTotalUsers", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {
         $('#userCount').text(data.total_users);
         $('#userCountPlus').text(getSign(data.new_users, document.getElementById('userCountPlus')) + data.new_users);
-        console.log(data);
     });
 }
 
@@ -113,7 +106,6 @@ function getTotalInteractions() {
     sendRequestToServer({type: "POST", url: "/admin/getTotalInteractions", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {
         $('#interactionCount').text(data.total_interactions);
         $('#interactionCountPlus').text(getSign(data.new_interactions, document.getElementById('interactionCountPlus')) + data.new_interactions);
-        console.log(data);
     });
 }
 
@@ -121,7 +113,6 @@ function getTotalPresentation() {
     sendRequestToServer({type: "POST", url: "/admin/getTotalPresentations", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {
         $('#presentationCount').text(data.total_presentations);
         $('#presentationCountPlus').text(getSign(data.new_presentations, document.getElementById('presentationCountPlus')) + data.new_presentations);
-        console.log(data);
     });
 }
 
@@ -156,7 +147,6 @@ function getSign(num, container)  {
 
 function getDailyLogins() {
     sendRequestToServer({type: "POST", url: "/admin/getUserInteractions", data: {start: getStartTimestamp(), end: getEndTimestamp()}}).then(data => {
-        console.warn(data);
         showDailyLogins(data.res);
     });
 }

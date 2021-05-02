@@ -24,9 +24,7 @@ sendRequestToServer({
     type: "GET",
     url: "/profile/getUpComingTasks"
 }).then(data => {
-    console.log(data);
     data.res.forEach(task => {
-        console.log(task);
         $('#taskOutput').append(`
             <div class="Task">
                 <p>${task.pres_name}</p>
@@ -45,7 +43,6 @@ sendRequestToServer({
     type: "GET",
     url: "/profile/getPresentationCount"
 }).then(data => {
-    console.log("Presentationen: " + data)
     $('#presentationCount').text(data.res);
 })
 
@@ -55,7 +52,6 @@ function convertTimestampToDate(timestamp) {
         day: "2-digit",
         year: "numeric"
     });
-    console.log("DATE")
-    console.log(val)
+
     return val;
 }

@@ -122,7 +122,7 @@ $(".myUl li").click(function (e) {
 
 $("#usetemplatebox").click(function (e) {
     // !SECTION Changes done
-    if (e.target.classList.contains("closeicon")) console.warn(e.target)
+    //if (e.target.classList.contains("closeicon")) 
     // !ENDSECTION
 
     if (e.target.id == "usetemplatebox" || e.target.classList.contains("closeicon")) {

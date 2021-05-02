@@ -6,8 +6,7 @@ $('#presentationModePopup-inner-popup-export').click(function () {
 
 
     sendRequestToServer({ type: "POST", url: "/editor/getPresentationInfo", data: { p_id: getCustomStorage("p_id") } }).then(data => {
-        console.clear();
-        console.log(data);
+
         var images = [];
 
         // format is in points... pixel to points => * 72 / 96
@@ -40,10 +39,8 @@ $('#presentationModePopup-inner-popup-export').click(function () {
                     loader.changeMessage("Exporting Presentation to PDF... " + Math.floor((docCounter / data.canvas.length) * 100)  + "%")
 
 
-                    console.log(i, data.canvas.length)
 
                     if (docCounter == data.canvas.length) {
-                        console.log("ALL IMAGES LOADED")
                         doc.save(data.pres.name);
                         loader.documentLoaded();
 

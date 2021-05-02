@@ -3,20 +3,19 @@ let container = document.getElementById("content-main-inner-spacing-top");
 let userCounter = 1;
 
 function connectToVideo() {
-    console.warn("--------sdad");
     sendRequestToServer({ type: "POST", url: "/editor/connectToVideoChat", data: { p_id: getCustomStorage("p_id") } }).then(data => {
         document.getElementById("localVideoText").innerHTML = data.faggot;
         return Twilio.Video.connect(data.vt);
     }).then(_room => {
-        console.warn("--------");
-        console.log(_room);
         room = _room;
         room.participants.forEach(participantConnected);
         room.on('participantConnected', participantConnected);
         room.on('participantDisconnected', participantDisconnected);
         connected = true;
         updateParticipantCount();
-    });
+    }).catch((err) => {
+        
+    });;
 }
 
 function updateParticipantCount() {
@@ -88,6 +87,8 @@ function addLocalVideo() {
         presi_vid.appendChild(track.attach());
 
         videoInitialized()
+
+    }).catch((err) => {
 
     });
 };

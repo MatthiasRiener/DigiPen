@@ -58,11 +58,6 @@ function getBrightness(image) {
 }
 
 
-document.addEventListener("DOMContentLoaded", function (event) {
-    console.log("Everything loaded!")
-
-});
-
 var x = document.getElementById("notifiy-brightness-snackbar")
 var hasClickedBrightness = false;
 

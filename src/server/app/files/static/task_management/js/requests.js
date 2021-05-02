@@ -4,7 +4,6 @@ $( document ).ready(function() {
 
 function getTasks() {
     sendRequestToServer({type: "GET", url: "/task/getTasks"}).then(data => {
-        console.log(data)
 
         initializeContainers();
         loadCalendar()
@@ -42,7 +41,6 @@ function checkPresentation(id) {
 
 function getUsers() {
     sendRequestToServer({type: "POST", url: "/task/getUsers", data: {p_id: $('#currentPresentation').data('presentation')}}).then(data => {
-        console.log(data.res);
         data.res.forEach(user => {
             $('#userOutput').empty();
             $('#userOutput').append(`
@@ -74,7 +72,6 @@ function checkUser(id) {
 let subtasks = [];
 
 function createSubTask(status, name, id) {
-    console.log(status + name + id)
     subtasks.push(status);
     subtasks.push(name);
     subtasks.push(id || "not defined");
@@ -83,8 +80,7 @@ function createSubTask(status, name, id) {
 }
 
 function sendTaskData() {
-    console.log("Subtasks: ")
-    console.log(subtasks);
+
     let task = {
         id: $('#taskPopup').data('task'),
         presentation: $('#currentPresentation').data('presentation'),
@@ -96,21 +92,18 @@ function sendTaskData() {
     }
 
     if($('#taskPopup').data('update')) {
-        console.log("Task: ");
-        console.log(task);
+
         sendRequestToServer({type: "POST", url: "/task/updateTask", data: task}).then(data => {
-            console.log("update task: " + data);
+
         });
     } else{
         sendRequestToServer({type: "POST", url: "/task/addTask", data: task}).then(data => {
-            console.log("created task: " + data);
         });
     }
 }
 
 function getTaskInfo(id) {
     sendRequestToServer({type: "POST", url: "/task/getTaskInfo", data: {id: id}}).then(data => {
-        console.log(data);
         let start = data.res.task.start.split(" ");
         let end = data.res.task.end.split(" ");
 

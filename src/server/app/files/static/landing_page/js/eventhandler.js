@@ -67,7 +67,6 @@ const PICTURECOUNT = 16;
 
 function insertUsers() {
     for (let i = 1; i <= 15; i++) {
-        console.log(Math.ceil(i / 5) - 1);
         $('.flex-container').eq(Math.ceil(i / 5) - 1).append(`<div class="flex-item" style="background-image: url(img/users/user_${i}.png)"></div>`)
         users[i] = i;
     }
@@ -79,14 +78,11 @@ function updateUsers() {
         index = Math.floor(Math.random() * users.length) + 1;
         picture = Math.floor(Math.random() * PICTURECOUNT) + 1;
         counter++;
-        console.log("break: " + counter)
         if (counter == 200) {
             break;
         }
     } while (users.includes(picture));
 
-    console.log("index:" + index);
-    console.log("picture:" + picture);
     users[index] = picture;
     $(`.flex-item:eq(${index - 1})`).css('background-image', `url(img/users/user_${picture}.png)`);
 }

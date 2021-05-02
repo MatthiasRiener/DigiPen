@@ -4,7 +4,6 @@ let shortcuts = [];
 
 
 $('body').keyup(function(event) {
-    console.log(event.code + " was raised.")
     const index = curKeys.indexOf(event.code);
     if (index > -1) {
         curKeys.splice(index, 1);
@@ -50,12 +49,10 @@ $('body').keydown(function (event) {
 
 
 function addToShortcuts(keybindings) {
-    console.log("SHORTCUTS");
-    console.log(keybindings)
+
 
     keybindings.res.forEach((binding) => {
-        console.log("ADDING SHORTCUT")
-        console.log(binding)
+
         shortcuts.push(binding);
     })
 }

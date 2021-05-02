@@ -2,7 +2,6 @@ socket.on('searchUser', function (data) {
     if(data === undefined) {
         return;
     }
-    console.log('searchUser Event: ' + data);
 
     $('.searchOutput').empty();
 
@@ -22,7 +21,6 @@ socket.on('searchUser', function (data) {
 
 
 socket.on('inviteUser', function (data) {
-    console.log(data);
 
     $('.pendingOutput').empty();
 
@@ -58,7 +56,6 @@ $('body').on('click', '.profile', function () {
     const type = $(this).data('type');
 
     if(type == 'search') {
-        console.log($(this).data('email'));
         socket.emit('inviteUser', {email: $(this).data('email'), p_id: getCustomStorage('p_id')});
     }
 });

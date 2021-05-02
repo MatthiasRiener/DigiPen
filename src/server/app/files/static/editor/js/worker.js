@@ -1,6 +1,5 @@
 let data;
 self.addEventListener("message", function(event) {
-    console.log("NEW WORKER INTIAUZED")
 
     reLoop();
 

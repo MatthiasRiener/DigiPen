@@ -1,7 +1,9 @@
 let trackingIndex = 0;
+let currentTrackingIndex = 1;
+let currenTrackingID = "";
 
 $(document).ready(function () {
-    console.log('Document loaded.');
+
 });
 
 /* --------------- SLides-Menu --------------- */
@@ -27,7 +29,7 @@ function addSingSlide(img) {
         <div class="content-leftSlides-slidesContent-slide" data-slide="${img._id.$oid}">
             <div class="content-leftSlides-slidesContent-slide-leftBar ${slides.length == 0 ? 'activeSlide' : ''}" id="trackingIndexForSideBar_${img.s_id}" style="height: ${height}vw;"></div>
             <div class="content-leftSlides-slidesContent-slide-middleBar" style="height: ${height}vw;">${img.s_id}</div>
-            <div class="content-leftSlides-slidesContent-slide-content" data-slide="${img._id.$oid}" data-length="${slides.length}" style="position: relative; z-index: 2; height: ${height}vw; ${slides.length == 0 ? 'transform: scale(0.95);' : ''}">
+            <div class="content-leftSlides-slidesContent-slide-content" data-slide="${img._id.$oid}" data-curSlideIndex="${img.s_id}" data-length="${slides.length}" style="position: relative; z-index: 2; height: ${height}vw; ${slides.length == 0 ? 'transform: scale(0.95);' : ''}">
                 <div class="content-leftSlides-slidesContent-slide-content-overlay" data-slideId="${img._id.$oid}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;"></div>
                 <canvas class="content-leftSlides-slidesContent-slide-content-canvas" id="${img._id.$oid}" style="position: absolute; z-index: 1; width: 100%; height: 100%;"></canvas>
             </div>
@@ -44,7 +46,6 @@ function addSingSlide(img) {
             })
 
             const box = $(`.content-leftSlides-slidesContent-slide-content-overlay[data-slideId="${img._id.$oid}"]`);
-            console.warn(box);
             box.css('background', `url('${imgageTest}')`);
             box.css('background-position', 'center');
             box.css('background-size', 'cover');
@@ -85,26 +86,29 @@ function insertSlide(slide) {
 }
 
 $('body').on('click', '.content-leftSlides-slidesContent-slide-content', function () {
-    toggleVisibility($(this).data("slide"), $(this).data("length"));
+    
+    currentTrackingIndex = $(this).data("curslideindex");
+    currenTrackingID = $(this).data("slide");
+    toggleVisibility(currentTrackingIndex);
 });
 
-function toggleVisibility(slideID, index) {
-    trackingIndex = index + 1;
+function toggleVisibility(slideID) {
+    if (slideID == null || slideID == undefined) {
+        slideID = currentTrackingIndex;
+        $('#content-leftSlides-slidesContent-animatedBar').css("top", `${$(`#trackingIndexForSideBar_${currentTrackingIndex}`).position().top}px`);
 
-    console.log(trackingIndex);
-
-    $('#content-leftSlides-slidesContent-animatedBar').css({
-        'top': `${$("#content-leftSlides-slidesContent-animatedBar").position().top}`
-    }).animate({
-        "top": `${$(`#trackingIndexForSideBar_${trackingIndex}`).position().top}px`
-    }, "slow");
-
-
-    switchSlide(slideID);
+    } else {
+        switchSlide(currenTrackingID);
+        $('#content-leftSlides-slidesContent-animatedBar').css({
+            'top': `${$("#content-leftSlides-slidesContent-animatedBar").position().top}`
+        }).animate({
+            "top": `${$(`#trackingIndexForSideBar_${slideID}`).position().top}px`
+        }, "slow");
+    }
 }
 
 $('#content-leftSlides-slidesContent').scroll(function () {
-    $('#content-leftSlides-slidesContent-animatedBar').css("top", `${$(`#trackingIndexForSideBar_${trackingIndex}`).position().top}px`);
+    $('#content-leftSlides-slidesContent-animatedBar').css("top", `${$(`#trackingIndexForSideBar_${currentTrackingIndex}`).position().top}px`);
 });
 
 /* --------------- POPUPS --------------- */
@@ -580,10 +584,8 @@ function resizePresentationCanvas() {
 
     // setzoom
 
-    // console.log('orisiz:', origSizePresCanvas)
     if (originalSize) {
 
-        // console.log("setting zoom...")
         let zooooooooooooooom = scaleMultiplier = currCanvas.width / 1920;
 
         currCanvas.setZoom(zooooooooooooooom);
@@ -637,7 +639,6 @@ let isVideo = true;
 
 $("body").on("click", "#toggleCameraPresi", function() {
     isVideo = !isVideo;
-    console.log("WHAT THE FUCK!")
     var videoContainer = $('#my-video-track');
 
     if (isVideo) {
@@ -716,12 +717,10 @@ function openPopupWindow() {
 
 
     jsonArr = canvasArr.map((el) => JSON.stringify(el));
-    console.log(jsonArr)
 
     window.onmessage = function promiseFnkt(event) {
 
-        console.log("RECEIVED EVENT")
-        console.log(event)
+
         // send the variable
         if (!isPopup) return;
         if (event.data == 'inited') {
@@ -838,7 +837,6 @@ function next() {
         lastSlide = false;
     } else if (index == canvasArr.length - 1) {
         if (lastSlide) {
-            console.log("Last slide was reaached!")
             exitPresi();
             return;
         }

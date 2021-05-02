@@ -38,7 +38,6 @@ class LoadingScreen extends HTMLElement {
                 
             });
 
-        console.log(sc);
 
         let node = document.createElement('script');
         node.innerHTML = sc.responseText;
@@ -47,8 +46,8 @@ class LoadingScreen extends HTMLElement {
     }
 
     jsLoaded() {
-        console.log("JS LOADED")
-        console.log(this.shadowRoot)
+
+        
     }
 
     loadCss(path) {
@@ -82,7 +81,6 @@ class LoadingScreen extends HTMLElement {
 
     documentLoaded() {
 
-        console.log("DOCUMENT WAS LOADED")
         const wrapper = this.shadowRoot.querySelector('#wrapper');
         wrapper.classList.add('loaded');
 
@@ -90,7 +88,6 @@ class LoadingScreen extends HTMLElement {
     }
 
     relightLoader(msg) {
-        console.log("I WAS CALLED")
         const wrapper = this.shadowRoot.querySelector('#wrapper');
         wrapper.classList.remove('loaded');
         this.message.innerHTML = msg;

@@ -40,7 +40,6 @@ window.addEventListener('message', function (e) {
         })
 
 
-        console.log(smolCanvasArr);
 
         $("#pagecount").text(`Slide ${e.data.whereToStart + 1}/${smolCanvasArrRaw.length}`);
 
@@ -55,8 +54,7 @@ window.addEventListener('message', function (e) {
             timertimer = setInterval(setTime, 1000);
     }
     if (typeof e.data.index === "number") {
-        console.log("setting index!!!!")
-        console.log(e.data.index);
+
         $("#pagecount").text(`Slide ${e.data.index + 1}/${smolCanvasArrRaw.length}`);
         setCurr(e.data.index);
     }
@@ -105,7 +103,6 @@ $("#timereset").click(function () {
 
 function setCurr(ind) {
     currCanvasSmol = smolCanvasArr[ind];
-    console.log(currCanvasSmol)
 
 
     if (oldCanv && typeof oldInd === "number") {

@@ -62,7 +62,6 @@ var axisUserCount;
 
 
 function showDailyActiveUsers(dailyData) {
-    console.log(dailyData)
 
     // Create chart instance
     var chart = am4core.create("dashboardBottom-left-left-top-inner", am4charts.XYChart);
@@ -71,7 +70,6 @@ function showDailyActiveUsers(dailyData) {
 
 
     for (const [key, value] of Object.entries(dailyData)) {
-        console.log(value)
         let label = new Date(key * 1000);
 
 
@@ -144,9 +142,6 @@ function showDailyActiveUsers(dailyData) {
     chart.events.on("beforedatavalidated", function (ev) {
 
         chart.data.sort(function (a, b) {
-
-            console.log(a)
-            console.log(Date.parse(a.day) - (Date.parse(b.day)));
             return (Date.parse(a.day) - (Date.parse(b.day)));
         });
     });
@@ -247,7 +242,6 @@ function createCountryChart(countryData) {
 
 
     for (const [key, value] of Object.entries(countryData)) {
-        console.log(value)
         polygonSeries.data.push({ id: key, value: value.length })
     }
 

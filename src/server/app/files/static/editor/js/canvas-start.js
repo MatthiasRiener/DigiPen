@@ -136,7 +136,6 @@ function init() {
     canvas.on({
         'object:moving': (e) => { },
         'object:modified': (e) => {
-            console.log("Moin-------------------------------------");
             saveCanvasToJson();
             const selectedObject = e.target;
             // don't allow delete inside text
@@ -352,13 +351,11 @@ $('body').on('input', '.font-size-text', function () {
 
 $('body').on('change', '.text-isbold', function () {
     propsText.fontWeight = !propsText.fontWeight;
-    console.log(propsText.fontWeight)
     setBold();
 });
 
 $('body').on('change', '.text-isitalic', function () {
     propsText.fontStyle = !propsText.fontStyle;
-    console.log(propsText.fontStyle)
     setItalic();
 });
 
@@ -380,7 +377,6 @@ $('body').on('input', '.text-line-height', function () {
 
 $('body').on('click', '.btn-text-style', function () {
     var val = $(this).data("val");
-    console.log(val)
     setTextDecoration(val);
 });
 
@@ -499,7 +495,6 @@ $('body').on('click', '.img-removeColor-img', function () {
     propsImage.remove_color.active = !propsImage.remove_color.active;
     propsImage.remove_color.distance = parseInt($('.img-removeColor-slider-img').val(), 10) / 100;
     propsImage.remove_color.color = $('.img-removeColor-color-img').val();
-    console.log(propsImage.remove_color);
     setImgRemoveColor();
 });
 
@@ -547,10 +542,8 @@ window.onload = function () {
 
 $(window).resize(async function () {
     resizeCanvasFunc();
-
-    setTimeout(() => {
-        toggleVisibility(trackingIndex);
-    }, 100);
+    toggleVisibility(null);
+    
 });
 
 function resizeOnloadSpecific() {
@@ -597,7 +590,6 @@ function fixSize() {
     var height = oldHeight = $('#content-main-inner-spacing-middle').height();
 
 
-    console.log(width)
     resizeCanvas(width, height);
     GetCanvasAtResoution(width, true)
 }
@@ -667,7 +659,6 @@ function move(params) {
     var dir = params[0];
     var mode = params[1];
 
-    console.log(dir, mode)
 
     var obj = canvas.getActiveObject();
 
@@ -792,8 +783,7 @@ function initializeShortcuts() {
 
 function reloadShortcuts(keybindings) {
 
-    console.log("RELOADING KEYBINDINGD!")
-    console.log(keybindings)
+
     keybindings.res.bindings.forEach((binding) => {
         var counter = 0;
         var changedCounter = 0;
@@ -813,8 +803,6 @@ function reloadShortcuts(keybindings) {
         }
     });
 
-    console.log("=======")
-    console.log(shortcuts)
 }
 
 
@@ -893,7 +881,7 @@ function setActiveImgFilter(filterName, filter, operation, obj) {
     var index = Object.keys(propsImage).indexOf(filterName);
 
     if (index === -1) {
-        console.log('kein Filter gefunden.');
+
     }
 
     var object = obj || canvas.getActiveObject();
@@ -911,7 +899,6 @@ function setActiveImgFilter(filterName, filter, operation, obj) {
 function setFilterValue(index, prop, value, status, obj) {
     var obj = obj || canvas.getActiveObject();
     var index = Object.keys(propsImage).indexOf(index);
-    console.log(index);
 
     obj.filters[index][prop] = null;
 
@@ -935,7 +922,6 @@ function getActiveProp(name) {
 
 function setActiveStyle(styleName, value, object) {
     object = object || this.canvas.getActiveObject();
-    console.log(this.canvas.getActiveObject());
     if (!object) {
         return;
     }
@@ -1012,11 +998,9 @@ async function paste() {
         clipBoard = text;
     });
     var obj = canvas.getActiveObject() || clipBoard;
-    console.log(canvas.getActiveObject());
 
     if (canvas.getActiveObject() != null) {
         const activeObject = canvas.getActiveObject();
-        console.log(activeObject);
 
         if (activeObject) {
             let clone;
@@ -1051,18 +1035,15 @@ async function paste() {
 
     var isImg = obj.match(/\.(jpeg|jpg|gif|png)$/) != null;
 
-    console.log(canvas.getActiveObject());
 
     if (isImg) {
-        console.log('link is a img');
-        console.log(obj)
+
         addImage(obj);
         //addImage()
     } else {
         // if link is not a image create new text
 
         addText(obj);
-        console.log('link is not a img');
     }
     // show image popup
 }

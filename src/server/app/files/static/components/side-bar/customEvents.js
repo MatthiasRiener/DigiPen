@@ -8,7 +8,6 @@ sideBar.addEventListener('animWorkSpace', e => {
 })
 
 sideBar.addEventListener('animNotifications', e => {
-    console.log("animation 1");
     notifications.animateNotifications();
 })
 

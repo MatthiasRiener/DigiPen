@@ -33,11 +33,13 @@ function domHasChanged() {
     last = now;
 
 
+    if (myTimeOut == undefined) {
 
+    } else {
+        clearTimeout(myTimeOut);
+    }
 
-    myTimeOut == undefined ? console.log("first change") : clearTimeout(myTimeOut);
     myTimeOut = setTimeout(() => {
-        console.log("DOM HAS NOT CHANGED")
         const loader = document.getElementById('loadingScreen');
         loader.documentLoaded();
         setTimeout(() => {

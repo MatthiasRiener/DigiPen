@@ -1,4 +1,3 @@
-console.log("Socket Support!!!!!")
 
 
 socket.on('notifyUserCount', function (data) {
@@ -27,14 +26,12 @@ socket.on('newRequestNotified', function (data) {
 
 socket.on('notifyOnlineUsers', function (data) {
     data = JSON.parse(data);
-    console.log(data);
 
     insertActiveUsers(data.res);
 })
 
 function insertActiveUsers(users) {
-    console.log("users")
-    console.log(users)
+
     $('#dashboardMain-right-inner-user-list').empty();
 
     users.forEach((u, index) => {
@@ -56,7 +53,6 @@ function insertActiveUsers(users) {
         timeOnline.classList.add("currently-active-user-time-online");
         timeOnline.dataset.user_id = u._id;
 
-        console.log("Last login of user: " + u.last_login);
 
         worker.postMessage({ index: u._id, time: u.last_login })
         worker.addEventListener('message', function (event) { updateTime(event) });
@@ -75,9 +71,6 @@ function insertActiveUsers(users) {
 }
 
 function updateTime(event) {
-    console.log("Moin!")
-    console.log(event)
     var container = $(".currently-active-user-time-online[data-user_id='" + event.data.id + "']");
-    console.log(container);
     container.html(event.data.time);
 }

@@ -15,7 +15,6 @@ $(document).ready(function () {
 });
 
 function saveCanvas(canvas, width, height) {
-    console.log(canvas);
     sendRequestToServer({ type: "POST", url: "/editor/updateCanvas", data: { p_id: getCustomStorage("p_id"), s_id: getCanvasID(), width: width, height: height, canvas: JSON.stringify(canvas) } }).then(data => {
         sideC = insertSlide("MATTI IS SUPA");
 
@@ -54,7 +53,6 @@ function createSlide() {
 }
 
 function switchSlide(id) {
-    console.log("IDDDD: " + id);
     sendRequestToServer({ type: "POST", url: "/editor/getSpecificSlide", data: { s_id: id } }).then(data => {
         loadCanvasFromJson(data.res.canvas);
         setCanvasID(data.res._id.$oid);
@@ -68,12 +66,10 @@ function switchSlide(id) {
 function getSlides(whereStart) {
     sendRequestToServer({ type: "POST", url: "/editor/getSlides", data: { p_id: getCustomStorage("p_id") } }).then(data => {
         canvasArr.length = 0;
-        console.log(data);
         data.res.forEach(slide => {
             loadPresentationCanvasFromJson(slide.canvas);
         });
 
-        console.log(canvasArr);
         setTimeout(() => {
             currCanvas = canvasArr[whereStart];
             if (origSizePresCanvas == undefined)

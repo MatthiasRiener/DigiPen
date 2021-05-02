@@ -43,10 +43,10 @@ class Sidebar extends HTMLElement {
     this.reportBugBtn.addEventListener('click', e => { this.openReportWindow() })
 
     // event listeners
-    this.dashboardBtn.addEventListener('click', e => { console.log(window.location.href = baseURL + `/dashboard`) })
-    this.taskBtn.addEventListener('click', e => { console.log(window.location = baseURL + `/task`) })
-    this.profileBtn.addEventListener('click', e => { console.log(window.location = baseURL + `/profile`) })
-    this.quizBtn.addEventListener('click', e => { console.log(window.location = `${this.path}/quiz/index.html`) })
+    this.dashboardBtn.addEventListener('click', e => { window.location.href = baseURL + `/dashboard` })
+    this.taskBtn.addEventListener('click', e => { window.location = baseURL + `/task` })
+    this.profileBtn.addEventListener('click', e => { window.location = baseURL + `/profile` })
+    this.quizBtn.addEventListener('click', e => { window.location = `${this.path}/quiz/index.html` })
     this.logoutBtn.addEventListener('click', e => { logOut() })
 
 
@@ -59,7 +59,6 @@ class Sidebar extends HTMLElement {
 
   checkNotifications() {
     this.dispatchEvent(new CustomEvent('animNotifications', {}));
-    console.log("opening!")
   }
 
   openReportWindow() {
@@ -95,7 +94,6 @@ class Sidebar extends HTMLElement {
       url: "/workspace/getWorkspaces"
     }).then(data => {
       data.res.forEach(workspace => {
-        console.log(workspace)
         this.workspaceText.innerHTML = workspace.w_name + "<br/> Workspace";
         this.workspaceIMG.style.backgroundImage = `url('${workspace.w_img}')`;
       });
@@ -107,9 +105,6 @@ class Sidebar extends HTMLElement {
       type: "GET",
       url: "/auth/isAdmin"
     }).then(data => {
-      console.log("IS ADMINISTRATOR")
-      console.log(data)
-
       if (!data.res) {
         this.adminBtn.style.display = "none";
       }

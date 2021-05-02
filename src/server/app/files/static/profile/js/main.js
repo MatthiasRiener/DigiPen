@@ -21,17 +21,14 @@ $('#secppContainer').click(
 
 
 $('#imgupload').on('change', function(evt) {
-    console.log(evt)
     var files = evt.target.files;
     var reader = new FileReader();
 
     reader.onload = function(fileData) {
         var img = fileData.target.result;
-        console.log("IMG")
-        console.log(files[0])
+
 
         sendRequestToServer({type: "POST", url: "/profile/uploadImage", data: {"img": img, "name": files[0].name, "lm": files[0].lastModified}}).then(data => {
-            console.log("IMAGE WAS UPLOADED TO THE SERVER!");
             $('#ppContainer').css('background-image', 'url("' + data.res.img + '")');
             $('#secppContainer').css('background-image', 'url("' + data.res.img + '")');
 
@@ -43,15 +40,3 @@ $('#imgupload').on('change', function(evt) {
 })
 
 
-
-/*
-    sendRequestToServer({
-        type: "POST",
-        url: "/profile/uploadImage",
-        data: {"img": data}
-    }).then(data => {
-        console.log("IMAGE WAS UPLOADED TO THE SERVER")
-    })
-})
-
-*/

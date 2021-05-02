@@ -31,7 +31,6 @@ class CookieContainer extends HTMLElement {
 
     connectedCallback() {
         this.agree.addEventListener('click', (e) => {
-            console.warn('Cookies saved!');
         });
     }
 

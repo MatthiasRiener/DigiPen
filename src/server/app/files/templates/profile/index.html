@@ -27,7 +27,6 @@
         setAToken("{{ access }}");
         setRToken("{{ refresh }}");
         if ("{{ loginSucceeded }}") {
-            console.log("Redirect from LogiN!")
             getCurrentLocation();
 
         }
@@ -285,7 +284,6 @@
 
         $("#openCloseNav").click(function () {
             openNav();
-            console.log("hallo")
         });
 
         $(document).ready(function () {
