@@ -102,7 +102,7 @@ sendRequestToServer({
             <li data-presentation="${presentation._id}">
                 <div class="template_yourPresentation" style="background: url('${imgageTest}'); background-size: cover; background-position: center; background-repeat: no-repeat"><i class="fas fa-eye"></i></div>
                 <p class="searchitem_yourPresentation">${presentation.name}</p>
-                <p class="amoutofslides">${presentation.canvas.length} Slide</p>
+                <p class="amoutofslides">${presentation.canvas.length} Slides</p>
             </li>
         `);
 

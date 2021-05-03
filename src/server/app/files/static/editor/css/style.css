@@ -62,10 +62,12 @@
 
 #content-navigation-first-left-text-h2 {
     font-size: 1.2rem;
+    width: 100%;
 }
 
 #content-navigation-first-left-text-h3 {
     font-size: 0.9rem;
+    width: 100%;
 }
 
 #content-navigation-first-right-icon {
@@ -2072,10 +2074,15 @@
 #my-video-track {
     position: absolute;
     width: 16vw;
-    height: 9vw;
-    background: red;
+    height: 12vw;
+    background: transparent;
+    z-index: 10;
     top: 10px;
     left: 10px;
+}
+
+#my-video-track  video {
+    object-fit: cover;
 }
 
 @keyframes fade {

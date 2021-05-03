@@ -34,6 +34,9 @@ $('body').keydown(function (event) {
     }
     try {
         const [index, val] = Object.entries(shortcuts).find(([i, e]) => JSON.stringify(e.keys.sort()) === JSON.stringify(curKeys.sort()));
+
+        
+        
         if (val.params) {
 
             window[val.callback](val.params);

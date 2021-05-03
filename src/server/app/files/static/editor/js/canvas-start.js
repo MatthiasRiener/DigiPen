@@ -808,6 +808,7 @@ function reloadShortcuts(keybindings) {
 
 
 function removeSelected() {
+
     const activeObject = canvas.getActiveObject();
     const activeGroup = canvas.getActiveObjects();
 
@@ -1185,12 +1186,12 @@ function setCanvasFill() {
 
 function setCanvasImage() {
     if (propsText.canvasImage) {
-        this.canvas.setBackgroundColor({
-            source: propsText.canvasImage,
-            repeat: 'repeat'
-        }, function () {
-            canvas.renderAll();
-        })
+        var img = new Image();
+        img.src = propsText.canvasImage;
+        canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
+            scaleX: canvas.width / img.width,
+            scaleY: canvas.height / img.height
+         });
     }
 }
 
@@ -1305,6 +1306,8 @@ var CustomNGIf = function (element, callback, propertyName) {
         callback && callback();
     }
 }
+
+
 
 /*------------------------EDITOR-WINDOWS------------------------*/
 
