@@ -1034,6 +1034,20 @@ async function paste() {
         return;
     }
 
+    // FRIESI BITTE POPUP
+    var isLink = obj.match(/(https?:\/\/[^\s]+)/g) != null;
+
+    if (isLink) {
+        console.log("PASTE IS A LINK")
+        console.log("Wanna create QR Code?")
+        var wantsQR = prompt("Want to create a QR Code? yes/no?");
+
+        if (wantsQR == "yes") {
+            addQRCode();
+        }
+    }
+
+
     var isImg = obj.match(/\.(jpeg|jpg|gif|png)$/) != null;
 
 
@@ -1050,6 +1064,13 @@ async function paste() {
 }
 
 /*------------------------Styles Functions------------------------*/
+
+function addQRCode() {
+    var qrCodeUrl = "https://chart.googleapis.com/chart?cht=qr&choe=UTF-8&chld=L|0&chs=400x400&chl=" + obj;
+    addImage(qrCodeUrl)
+    return;
+}
+
 
 function centerObj() {
     const obj = canvas.getActiveObject();
