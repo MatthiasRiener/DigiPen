@@ -1,0 +1,141 @@
+:host {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 12;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+* {
+    z-index: 400;
+}
+
+:host(.hidden) {
+    visibility: hidden;
+}
+
+:host(.visible) {
+    visibility: visible;
+}
+
+.outerBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    width: fit-content;
+    height: fit-content;
+    padding: 2vw;
+    border-radius: 10px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    max-width: 700px;
+}
+
+.outerBox * {
+    outline: none;
+}
+
+.outerBox form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+}
+
+.outerBox form input[type=text], input[type=email], input[type=submit], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    resize: none;
+}
+
+.outerBox form input[type=text]:focus, input[type=email]:focus, select:focus, textarea:focus {
+    border: 1px solid rgb(148, 148, 148);
+}
+
+.outerBox form select:first-child {
+    color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.outerBox form p {
+    font-size: small;
+}
+
+.outerBox form input[type=submit] {
+    width: 40%;
+    margin: auto;
+    margin-bottom: 16px;
+    color: white;
+    background-color: rgb(255, 176, 29);
+    border: none;
+}
+
+.outerBox form input[type=submit]:hover {
+    background-color: orange;
+}
+
+.outerBox form input[type=submit]:focus {
+    animation: .75s short-press forwards;
+}
+
+@keyframes short-press {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.outerBox form label {
+    margin-top: 16px;
+}
+
+.corr {
+    color: red;
+    display: none;
+}
+
+.popTransition {
+    animation: popup 0.2s ease-in forwards;
+}
+
+@keyframes popup {
+    0% {
+        border-radius: 0px;
+    }
+    25% {
+        transform: scale(0.9);
+        border-radius: 10px;
+    }
+    75% {
+        transform: scale(1.1);
+        border-radius: 20px;
+    }
+    100% {
+        border-radius: 30px;
+    }
+}
+
+.blockclicks {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    z-index: 11;
+}

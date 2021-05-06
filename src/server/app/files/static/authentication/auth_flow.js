@@ -1,6 +1,6 @@
-console.log('Authentification JavaSript loaded!');
 
-const baseURL = "https://slidea.htl-leonding.ac.at";
+const baseURL = "http://localhost:5000";
+
 
 function sendRequestToServer(args) {
 
@@ -28,9 +28,11 @@ function ajaxRequest(resolve, reject, args) {
             401: function () {
                 silentLogin(getRToken(), sendRequestToServer, args, resolve, reject);
             },
+            801: function() {
+                window.location.href = "/permission_denied";
+            }
         },
         success: function (data) {
-            console.log("Return from " + args.url + ": " + data);
             resolve(JSON.parse(data));
         },
     })
@@ -52,7 +54,6 @@ function silentLogin(r_token, callback, args, resolve, reject) {
         },
         },
         success: function (data) {
-            console.log("Token refreshed", args);
             args["isCallback"] = true;
             args['resolve'] = resolve;
             args['reject'] = reject;
@@ -64,7 +65,6 @@ function silentLogin(r_token, callback, args, resolve, reject) {
 
  function logOut() {
     sendRequestToServer({type: "GET", url: "/auth/logout"}).then(data => {
-        console.log("logged out");
         unsetAToken();
         unsetRToken();
         window.location.href = baseURL + "/auth/login";
@@ -108,3 +108,19 @@ function silentLogin(r_token, callback, args, resolve, reject) {
  function getCustomStorage(key) {
     return localStorage.getItem(key);
  }
+
+
+
+ function getCurrentLocation() {
+    // https://ipgeolocation.abstractapi.com/v1?api_key=389111a28499498884fbbcddd8767fe2
+    $.ajax({
+        type: "GET",
+        url: "https://ipgeolocation.abstractapi.com/v1?api_key=389111a28499498884fbbcddd8767fe2",
+        success: function (data) {
+            sendRequestToServer({type: "POST", url: "/location/tracker", data: {"location": JSON.stringify(data)}}).then(data => {
+
+            });
+        },
+    })
+ }
+

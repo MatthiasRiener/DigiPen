@@ -13,12 +13,10 @@ function overlap(dateRanges) {
         }
         var previous = arr[idx - 1];
 
-        console.log(previous, current)
         // check for any overlap
         var previousEnd = previous.end.getTime();
         var currentStart = current.start.getTime();
         var overlap = (previousEnd > currentStart);
-        console.log(overlap)
         // store the result
         if (overlap) {
             // yes, there is overlap

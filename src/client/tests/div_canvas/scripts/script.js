@@ -15,7 +15,6 @@ function calcSize() {
     $('#content').css('width', `${width}px`);
     $('#content').css('height', `${height}px`);
 
-    console.warn('size calculated!', width, height);
 }
 
 

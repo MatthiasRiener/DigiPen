@@ -50,7 +50,6 @@
     }
 
     animateNotifications() {
-      console.log("animation");
         this.container.classList.remove('hidden');
         this.container.classList.add('visible');
 
@@ -77,7 +76,6 @@
         this.invitesOutput.innerHTML = '';
 
         data.res.forEach(presentation => {
-          console.log(presentation);
 
           this.invitesOutput.innerHTML += (`
             <div class="invites-row" data-presentation="${presentation._id}">

@@ -10,7 +10,6 @@ $('#addkeyword').keypress(function (e) {
 });
 
 $('#submitcontrolls').click(function () {
-    console.log(keywords);
 
     let presentation = {
         id: getCustomStorage("p_id"),
@@ -27,7 +26,6 @@ $('#submitcontrolls').click(function () {
         url: "/dashboard/createPresentation",
         data: presentation
     }).then(data => {
-        console.log("Created Presentation: " + data);
         if (data.status) {
             setCustomStorage("p_id", data.p_id);
             window.location.href = baseURL + "/editor"
@@ -36,13 +34,11 @@ $('#submitcontrolls').click(function () {
 });
 
 function createPresentation() {
-    console.log("creating presentation");
     sendRequestToServer({
         type: "POST",
         url: "/dashboard/requestPresentation",
         data: "Hallo Matti!"
     }).then(data => {
-        console.log("Requested Presentation: " + data);
         setCustomStorage("p_id", data.id);
         $('#template_title').text(data.name);
         template = false;
@@ -57,7 +53,7 @@ function deletePlaceholder() {
             p_id: getCustomStorage("p_id")
         }
     }).then(data => {
-        console.log("Delete Requested: " + data);
+
     });
 }
 
@@ -74,8 +70,8 @@ sendRequestToServer({
     url: "/dashboard/getOwnPresentations"
 }).then(data => {
 
-    console.warn("========");
-    console.log(data)
+
+    
     var canvas = new fabric.Canvas();
     canvas.enableGLFiltering = false;
 
@@ -92,29 +88,32 @@ sendRequestToServer({
 
         canvas.setDimensions({width: 1920, height: 1080})
 
-
       
 
-        canvas.loadFromJSON(presentation.canvas.canvas, function () {
+        canvas.loadFromJSON(presentation.canvas[0].canvas, function () {
             canvas.renderAll();
+
+            imgageTest = canvas.toDataURL({
+                format: 'png',
+                quality: 0.8
+            })
+
             $('#ownPresentations').append(`
             <li data-presentation="${presentation._id}">
-                <div class="template_yourPresentation" style="background: url('${'data:image/svg+xml;utf8,' + encodeURIComponent(canvas.toSVG())}'); background-size: cover; background-position: center; background-repeat: no-repeat"><i class="fas fa-eye"></i></div>
+                <div class="template_yourPresentation" style="background: url('${imgageTest}'); background-size: cover; background-position: center; background-repeat: no-repeat"><i class="fas fa-eye"></i></div>
                 <p class="searchitem_yourPresentation">${presentation.name}</p>
-                <p class="amoutofslides">1 Slide</p>
+                <p class="amoutofslides">${presentation.canvas.length} Slides</p>
             </li>
         `);
 
 
         }, function (o, object) {
-            console.log("Canvas loaded!")
         })
     });
 });
 
 
 $('body').on('click', '#ownPresentations li', function () {
-    console.log("IDDDDD: " + $(this).data("presentation"));
     setCustomStorage("p_id", $(this).data("presentation"));
     window.location.href = baseURL + "/editor";
 })

@@ -37,12 +37,12 @@ class TopNavigation extends HTMLElement {
 
     connectedCallback() {
         this.logo.addEventListener('click', (e) => {
-            window.location = "../../../src/landing_page/index.html";
+            window.location = "/";
         });
 
 
         this.userImg.addEventListener('click', (e) => {
-            window.location = "../../../src/profilseite/index.html";
+            window.location = "/profile";
         });
     }
 

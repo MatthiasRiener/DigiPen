@@ -3,8 +3,11 @@ sendRequestToServer({
     url: "/profile/user"
 }).then(data => {
     $('#insert-username').text(data.name);
+    $('#Profile .whoami p').text(data.name);
 
-    $('#PP').attr('src', data.img);
+    $('#ppContainer').css('background-image', 'url("' + data.img + '")');
+    $('#secppContainer').css('background-image', 'url("' + data.img + '")');
+
 
     $('#workspaceCount').text(data.workspaces);
 
@@ -21,9 +24,7 @@ sendRequestToServer({
     type: "GET",
     url: "/profile/getUpComingTasks"
 }).then(data => {
-    console.log(data);
     data.res.forEach(task => {
-        console.log(task);
         $('#taskOutput').append(`
             <div class="Task">
                 <p>${task.pres_name}</p>
@@ -32,22 +33,25 @@ sendRequestToServer({
             </div>
         `);
 
-        $('#currentDate').text(convertTimestampToDate(Date.now()));
     });
+
+    $('#currentDate').text(convertTimestampToDate(Date.now()));
+
 })
 
 sendRequestToServer({
     type: "GET",
     url: "/profile/getPresentationCount"
 }).then(data => {
-    console.log("Presentationen: " + data)
     $('#presentationCount').text(data.res);
 })
 
 function convertTimestampToDate(timestamp) {
-    return new Date(timestamp).toLocaleDateString("en-US", {
+    val = new Date(timestamp).toLocaleDateString("en-US", {
         month: "long",
         day: "2-digit",
         year: "numeric"
-    })
+    });
+
+    return val;
 }

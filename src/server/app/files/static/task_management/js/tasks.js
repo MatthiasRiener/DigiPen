@@ -3,10 +3,8 @@ window.onload = function () {
 }
 
 function initializePresentationContainers(tasks) {
-    console.log("tasks", tasks)
 
     tasks.forEach((pres) => {
-        console.log(pres.tasks.length)
         if (pres.tasks.length > 0) {
             $('.task-of-presentations').eq(0).append(`
             <div data-presentation-id="${pres.id}"  class="presentation-section">
@@ -39,8 +37,7 @@ function calculateTasks(pres) {
     ];
 
     pres.tasks.forEach((task) => {
-        console.log("task")
-        console.log(task)
+
         arr.forEach((curArray, index) => {
             var dummyArray = curArray.map(({
                 taskName,
@@ -51,8 +48,7 @@ function calculateTasks(pres) {
                     end: new Date(keep.end)
                 }
             });
-            console.warn(dummyArray);
-            console.log(dummyArray)
+
             dummyArray.push({
                 start: new Date(task.start),
                 end: new Date(task.end)
@@ -76,7 +72,6 @@ function calculateTasks(pres) {
 
 
             if (checkDateRange.overlap) {
-                console.log("overlapping:" , checkDateRange)
                 if (!overflow.overlap) {
                     curArray.push(task);
                 } else if (arr.length - 1 == index) {
@@ -86,8 +81,7 @@ function calculateTasks(pres) {
 
         });
     });
-    console.log("inserting taskss");
-    console.error(arr)
+
     insertTasks(arr, pres);
 }
 
@@ -97,8 +91,7 @@ function insertTasks(tasks, pres) {
         tasks.forEach((row, rIndex) => {
             $(`.presentation-section[data-presentation-id=${pres.id}]`).append(`<div class="task-row"></div>`);
             row.forEach((task) => {
-                console.log(task)
-                console.log("inserting task", task)
+
                 const distance = $('.calendar-day').width();
                 const cWidth = $('.calendar-row-days').eq(0).width();
                 const startPos = dateDiffInDays(new Date($('.calendar-day').eq(0).data("date")), new Date(task.start)) * distance;

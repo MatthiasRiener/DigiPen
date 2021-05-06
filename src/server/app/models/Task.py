@@ -10,3 +10,4 @@ class Task(db.Document):
     subtasks = db.ListField(default=None)
     creator = db.StringField(required=True)
     assignee = db.StringField(required=True)
+    created = db.IntField(required=True)

@@ -68,7 +68,7 @@ function attachSinkId(element, sinkId) {
                 audioOutputSelect.selectedIndex = 0;
             });
     } else {
-        console.warn('Browser does not support output device selection.');
+        // browser doesnt support
     }
 }
 

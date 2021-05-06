@@ -7,7 +7,7 @@ window.onload = function () {
 }
 
 new fullpage('#fullpage', {
-    
+
 });
 
 function fillObjects() {
@@ -53,11 +53,11 @@ function fillObjects() {
         "top": 40,
         "left": 30
     },
-];
+    ];
 
-objects.forEach((el) => {
-    document.getElementsByClassName("header-section")[0].innerHTML +=
-        `<div class="object-header" style="width:${el.radius}px;height:${el.radius}px; top:${el.top}vh;left:${el.left}vw; background:${el.color}"></div>`;
+    objects.forEach((el) => {
+        document.getElementsByClassName("header-section")[0].innerHTML +=
+            `<div class="object-header" style="width:${el.radius}px;height:${el.radius}px; top:${el.top}vh;left:${el.left}vw; background:${el.color}"></div>`;
     })
 }
 
@@ -66,8 +66,7 @@ let index, picture;
 const PICTURECOUNT = 16;
 
 function insertUsers() {
-    for(let i = 1; i <= 15; i++) {
-        console.log(Math.ceil(i / 5) - 1);
+    for (let i = 1; i <= 15; i++) {
         $('.flex-container').eq(Math.ceil(i / 5) - 1).append(`<div class="flex-item" style="background-image: url(img/users/user_${i}.png)"></div>`)
         users[i] = i;
     }
@@ -79,14 +78,11 @@ function updateUsers() {
         index = Math.floor(Math.random() * users.length) + 1;
         picture = Math.floor(Math.random() * PICTURECOUNT) + 1;
         counter++;
-        console.log("break: " + counter)
-        if(counter == 200) {
+        if (counter == 200) {
             break;
         }
-    } while(users.includes(picture));
+    } while (users.includes(picture));
 
-    console.log("index:" + index);
-    console.log("picture:" + picture);
     users[index] = picture;
     $(`.flex-item:eq(${index - 1})`).css('background-image', `url(img/users/user_${picture}.png)`);
 }
@@ -100,26 +96,26 @@ function fillTemplates() {
 }
 
 /* Navigation */
-$('body').on('click', '#nav-bar-sign-up-div', function(){
+$('body').on('click', '#nav-bar-sign-up-div', function () {
     window.location = "../../src/login_register/pages/register.html";
 });
 
-$('body').on('click', '.nav-bar-login', function(){
+$('body').on('click', '.nav-bar-login', function () {
     window.location = "../../src/login_register/pages/login.html";
 });
 
-$('body').on('click', '.lp_bt_register_click', function(){
+$('body').on('click', '.lp_bt_register_click', function () {
     window.location = "../../src/login_register/pages/register.html";
 });
 
-$('body').on('click', '.lp_bt_here_click', function(){
+$('body').on('click', '.lp_bt_here_click', function () {
     window.location = "index.html";
 });
 
-$('body').on('click', '.lp_bt_privacy_click', function(){
+$('body').on('click', '.lp_bt_privacy_click', function () {
     window.location = "../../src/terms_of_service/index.html";
 });
 
-$('body').on('click', '.lp_bt_tos_click', function(){
+$('body').on('click', '.lp_bt_tos_click', function () {
     window.location = "../../src/terms_of_service/index.html";
 });

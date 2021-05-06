@@ -6,7 +6,6 @@ var canvas = this.__canvas = new fabric.Canvas('canvas', {
 
 canvas.enableGLFiltering = false;
 
-let shortcuts = [];
 
 var selected;
 var canDeleteText = true;
@@ -135,8 +134,9 @@ function init() {
     canvas.setHeight($('#content-main-inner-spacing-middle').height());
 
     canvas.on({
-        'object:moving': (e) => {},
+        'object:moving': (e) => { },
         'object:modified': (e) => {
+            saveCanvasToJson();
             const selectedObject = e.target;
             // don't allow delete inside text
 
@@ -283,29 +283,34 @@ function chartLoaded() {
 }
 
 function addImage(customurl, isChart) {
-    const url = customurl || "https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg";
+    var url = customurl || 'https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg';
 
-    if (url) {
-        const img = fabric.Image.fromURL(url, (image) => {
-            image.set({
-                left: 10,
-                top: 10,
-                angle: 0,
-                padding: 10,
-                cornerSize: 10,
-                strokeWidth: 0,
-                stroke: '#000000',
-                hasRotationPoint: true,
+    sendRequestToServer({type: "POST", url: "/editor/proxyImage", data: {"url": url, "p_id": getCustomStorage("p_id")}}).then(data => {
+        url = baseURL + `/static/editor/img/images/${getCustomStorage("p_id")}/${data.res}`;
+        if (url) {
+            const img = fabric.Image.fromURL(url, (image) => {
+                image.set({
+                    left: 10,
+                    top: 10,
+                    angle: 0,
+                    padding: 10,
+                    cornerSize: 10,
+                    strokeWidth: 0,
+                    stroke: '#000000',
+                    hasRotationPoint: true,
+                });
+                image.scaleToWidth(200);
+                image.scaleToHeight(200);
+                extend(image, isChart ? `chart_${randomId()}` : randomId());
+                canvas.add(image);
+                selectItemAfterAdded(image);
+            }, {
+                crossOrigin: 'Anonymous'
             });
-            image.scaleToWidth(200);
-            image.scaleToHeight(200);
-            extend(image, isChart ? `chart_${randomId()}` : randomId());
-            canvas.add(image);
-            selectItemAfterAdded(image);
-        }, {
-            crossOrigin: 'Anonymous'
-        });
-    }
+        }
+    });
+
+   
 }
 
 fabric.util.requestAnimFrame(function render() {
@@ -325,37 +330,6 @@ $('body').on('input', '.background-color-picker', function () {
     setBackground();
 });
 
-var curKeys = [];
-
-$('body').keydown(function (event) {
-    curKeys = [];
-    var keycode = (event.keycode ? event.keycode : event.which);
-    curKeys.push(event.code);
-
-
-    if (event.ctrlKey && event.code != "ControlLeft") {
-        curKeys.push("ControlLeft");
-    }
-
-    if (event.shiftKey && event.code != "ShiftLeft") {
-        curKeys.push("ShiftLeft");
-    }
-
-    try {
-        const [index, val] = Object.entries(shortcuts).find(([i, e]) => JSON.stringify(e.keys.sort()) === JSON.stringify(curKeys.sort()));
-        if (val.params) {
-
-            window[val.callback](val.params);
-        } else {
-
-            window[val.callback]();
-        }
-    } catch (e) {
-
-    }
-
-    curKeys = [];
-});
 
 
 $('body').on('input', '.text-opacity-slider', function () {
@@ -377,13 +351,11 @@ $('body').on('input', '.font-size-text', function () {
 
 $('body').on('change', '.text-isbold', function () {
     propsText.fontWeight = !propsText.fontWeight;
-    console.log(propsText.fontWeight)
     setBold();
 });
 
 $('body').on('change', '.text-isitalic', function () {
     propsText.fontStyle = !propsText.fontStyle;
-    console.log(propsText.fontStyle)
     setItalic();
 });
 
@@ -405,7 +377,6 @@ $('body').on('input', '.text-line-height', function () {
 
 $('body').on('click', '.btn-text-style', function () {
     var val = $(this).data("val");
-    console.log(val)
     setTextDecoration(val);
 });
 
@@ -435,7 +406,9 @@ $('body').on('keypress', '.canvas-background-img', function (e) {
 
 
 $('body').on('click', '.btn-export-to-json', function () {
+    resizeOnloadSpecific();
     saveCanvasToJson();
+    resizeCanvasFunc();
 });
 
 
@@ -522,7 +495,6 @@ $('body').on('click', '.img-removeColor-img', function () {
     propsImage.remove_color.active = !propsImage.remove_color.active;
     propsImage.remove_color.distance = parseInt($('.img-removeColor-slider-img').val(), 10) / 100;
     propsImage.remove_color.color = $('.img-removeColor-color-img').val();
-    console.log(propsImage.remove_color);
     setImgRemoveColor();
 });
 
@@ -555,43 +527,57 @@ $('body').on('input', '.img-opacity-slider-img', function () {
     setImgOpacity();
 });
 
+$('#content-navigation-fifth-box-play').click(function () {
+    startFromBeginning();
+});
+
 
 /*------------------------Helper Functions------------------------*/
 
 let originalSize, oldWidth, oldHeight;
 
 window.onload = function () {
-    this.setTimeout(() => {
-        fixSize();
-        this.setTimeout(() => {
-            this.console.log("setting zoom...")
-            originalSize = canvas.width;
-        }, 500);
-    }, 500)
-   
-
-
+    originalSize = canvas.width;
 }
 
 $(window).resize(async function () {
-    if (checkResponsiveness()) {
-        fixSize();
-    } else {
-        var width = $('#content-main-inner-spacing-middle').width();
-        var height = $('#content-main-inner-spacing-middle').height();
+    resizeCanvasFunc();
+    toggleVisibility(null);
+    
+});
 
-        resizeCanvas(width, height);
+function resizeOnloadSpecific() {
+    $("#content-main-inner-spacing-middle").css('width', '58vw');
+    $("#content-main-inner-spacing-middle").css('height', '32.625vw');
+
+    if ($("#content-main-inner-spacing-bottom").position().top + 25 > $("#content-main-inner").height()) {
+        $("#content-main-inner-spacing-middle").css('width', oldWidth);
+        $("#content-main-inner-spacing-middle").css('height', oldHeight);
     }
 
+    var width = oldWidth = $('#content-main-inner-spacing-middle').width();
+    var height = oldHeight = $('#content-main-inner-spacing-middle').height();
+    canvas.setWidth(width);
+    canvas.setHeight(height);
+}
 
-    console.log("o-size", originalSize)
+function resizeCanvasFunc() {
+    $("#content-main-inner-spacing-middle").css('width', '58vw');
+    $("#content-main-inner-spacing-middle").css('height', '32.625vw');
 
+    if ($("#content-main-inner-spacing-bottom").position().top + 25 > $("#content-main-inner").height()) {
+        $("#content-main-inner-spacing-middle").css('width', oldWidth);
+        $("#content-main-inner-spacing-middle").css('height', oldHeight);
+    }
 
+    var width = oldWidth = $('#content-main-inner-spacing-middle').width();
+    var height = oldHeight = $('#content-main-inner-spacing-middle').height();
 
-    setTimeout(() => {
-        toggleVisibility(trackingIndex);
-    }, 100);
-});
+    resizeCanvas(width, height);
+    GetCanvasAtResoution(width, true);
+
+    canvas.setZoom(width / canvas.width);
+}
 
 function fixSize() {
     if ($('#content-main').height() < $('#content-main').width()) {
@@ -604,7 +590,6 @@ function fixSize() {
     var height = oldHeight = $('#content-main-inner-spacing-middle').height();
 
 
-    console.log(width)
     resizeCanvas(width, height);
     GetCanvasAtResoution(width, true)
 }
@@ -617,8 +602,7 @@ function resizeCanvas(width, height) {
 
     canvas.setWidth(width);
     canvas.setHeight(height);
-    console.log(width)
-    console.log("wtf")
+
     canvas.renderAll();
 }
 
@@ -675,7 +659,6 @@ function move(params) {
     var dir = params[0];
     var mode = params[1];
 
-    console.log(dir, mode)
 
     var obj = canvas.getActiveObject();
 
@@ -700,12 +683,10 @@ function move(params) {
 
 function loadCanvasFromJson(json) {
     canvas.loadFromJSON(json, function () {
-        console.log("width:", $("#content-main-inner-spacing-middle").width())
         loadCanvasFrom1920($("#content-main-inner-spacing-middle").width())
+        resizeOnloadSpecific();
         canvas.renderAll();
     }, function (o, object) {
-        console.log("Canvas loaded!")
-
     })
 }
 
@@ -719,6 +700,8 @@ function saveCanvasToJson() {
     saveCanvas(json, 10, 109)
 
     GetCanvasAtResoution(width, false)
+
+    notifyForUpdate();
 }
 
 function GetCanvasAtResoution(newWidth, first) {
@@ -741,19 +724,12 @@ function GetCanvasAtResoution(newWidth, first) {
         canvas.discardActiveObject();
         canvas.setWidth(canvas.getWidth() * scaleMultiplier);
         canvas.setHeight(canvas.getHeight() * scaleMultiplier);
-        
-        
-
-     
 
         canvas.renderAll();
         canvas.calcOffset();
 
-        if(first) {
-            console.log(canvas.width / 1920)
-            console.log("changing... size")
+        if (first) {
             canvas.setZoom(scaleMultiplier)
-
         }
     }
 }
@@ -786,6 +762,9 @@ function loadCanvasFrom1920(newWidth) {
 }
 
 
+
+
+
 function rasterizeSVG() {
     const w = window.open('')
     w.document.write(canvas.toSVG());
@@ -794,12 +773,42 @@ function rasterizeSVG() {
 }
 
 function initializeShortcuts() {
-    $.getJSON(baseURL + "/static/editor/js/shortcuts.json", function (data) {
-        shortcuts = [...data];
+    sendRequestToServer({ type: "GET", url: "/keybinding/getKeybinding" }).then(data => {
+
+        data.res.bindings.forEach((binding) => {
+            shortcuts.push(binding);
+        })
     });
 }
 
+function reloadShortcuts(keybindings) {
+
+
+    keybindings.res.bindings.forEach((binding) => {
+        var counter = 0;
+        var changedCounter = 0;
+        var isExisting = false;
+        shortcuts.forEach((el) => {
+            if (el.name == binding.name) {
+                isExisting = true;
+                changedCounter = counter;
+            } 
+            counter++;
+        })
+
+        if (isExisting) {
+            shortcuts[changedCounter] = binding;
+        } else {
+            shortcuts.push(binding);
+        }
+    });
+
+}
+
+
+
 function removeSelected() {
+
     const activeObject = canvas.getActiveObject();
     const activeGroup = canvas.getActiveObjects();
 
@@ -873,7 +882,7 @@ function setActiveImgFilter(filterName, filter, operation, obj) {
     var index = Object.keys(propsImage).indexOf(filterName);
 
     if (index === -1) {
-        console.log('kein Filter gefunden.');
+
     }
 
     var object = obj || canvas.getActiveObject();
@@ -891,7 +900,6 @@ function setActiveImgFilter(filterName, filter, operation, obj) {
 function setFilterValue(index, prop, value, status, obj) {
     var obj = obj || canvas.getActiveObject();
     var index = Object.keys(propsImage).indexOf(index);
-    console.log(index);
 
     obj.filters[index][prop] = null;
 
@@ -915,7 +923,6 @@ function getActiveProp(name) {
 
 function setActiveStyle(styleName, value, object) {
     object = object || this.canvas.getActiveObject();
-    console.log(this.canvas.getActiveObject());
     if (!object) {
         return;
     }
@@ -992,11 +999,9 @@ async function paste() {
         clipBoard = text;
     });
     var obj = canvas.getActiveObject() || clipBoard;
-    console.log(canvas.getActiveObject());
 
     if (canvas.getActiveObject() != null) {
         const activeObject = canvas.getActiveObject();
-        console.log(activeObject);
 
         if (activeObject) {
             let clone;
@@ -1029,22 +1034,43 @@ async function paste() {
         return;
     }
 
+    // FRIESI BITTE POPUP
+    var isLink = obj.match(/(https?:\/\/[^\s]+)/g) != null;
+
+    if (isLink) {
+        console.log("PASTE IS A LINK")
+        console.log("Wanna create QR Code?")
+        var wantsQR = prompt("Want to create a QR Code? yes/no?");
+
+        if (wantsQR == "yes") {
+            addQRCode();
+        }
+    }
+
+
     var isImg = obj.match(/\.(jpeg|jpg|gif|png)$/) != null;
 
-    console.log(canvas.getActiveObject());
 
     if (isImg) {
-        console.log('link is a img');
+
+        addImage(obj);
+        //addImage()
     } else {
         // if link is not a image create new text
 
         addText(obj);
-        console.log('link is not a img');
     }
     // show image popup
 }
 
 /*------------------------Styles Functions------------------------*/
+
+function addQRCode() {
+    var qrCodeUrl = "https://chart.googleapis.com/chart?cht=qr&choe=UTF-8&chld=L|0&chs=400x400&chl=" + obj;
+    addImage(qrCodeUrl)
+    return;
+}
+
 
 function centerObj() {
     const obj = canvas.getActiveObject();
@@ -1181,12 +1207,12 @@ function setCanvasFill() {
 
 function setCanvasImage() {
     if (propsText.canvasImage) {
-        this.canvas.setBackgroundColor({
-            source: propsText.canvasImage,
-            repeat: 'repeat'
-        }, function () {
-            canvas.renderAll();
-        })
+        var img = new Image();
+        img.src = propsText.canvasImage;
+        canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
+            scaleX: canvas.width / img.width,
+            scaleY: canvas.height / img.height
+         });
     }
 }
 
@@ -1302,21 +1328,23 @@ var CustomNGIf = function (element, callback, propertyName) {
     }
 }
 
+
+
 /*------------------------EDITOR-WINDOWS------------------------*/
 
 var textEditorContainer = document.getElementById('text-editor');
-var textEditor = new CustomNGIf(textEditorContainer, function () {}, 'visible');
+var textEditor = new CustomNGIf(textEditorContainer, function () { }, 'visible');
 
 textEditor['visible'] = false;
 
 
 var imageEditorContainer = document.getElementById('image-editor');
-var imageEditor = new CustomNGIf(imageEditorContainer, function () {}, 'visible');
+var imageEditor = new CustomNGIf(imageEditorContainer, function () { }, 'visible');
 
 imageEditor['visible'] = false;
 
 
 var chartEditorContainer = document.getElementById('chart-editor');
-var chartEditor = new CustomNGIf(chartEditorContainer, function () {}, 'visible');
+var chartEditor = new CustomNGIf(chartEditorContainer, function () { }, 'visible');
 
 chartEditor['visible'] = false;

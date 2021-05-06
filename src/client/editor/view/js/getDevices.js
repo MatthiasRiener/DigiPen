@@ -74,7 +74,7 @@ navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
                 audioOutputSelect.selectedIndex = 0;
             });
     } else {
-        console.warn('Browser does not support output device selection.');
+        Browser doesnt support
     }
 }
 

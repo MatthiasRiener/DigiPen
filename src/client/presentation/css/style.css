@@ -1,0 +1,84 @@
+* {
+    font-family: 'Karla';
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: antiquewhite;
+}
+
+#presi {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    font-size: 14px;
+    font-family: sans-serif;
+    color: #000;
+    background: var(--dark-grey);
+    flex-direction: column;
+}
+
+#presCanvas {
+    background-color: white;
+}
+
+#iconbox {
+    color: rgba(255, 255, 255, .5);
+    font-size: large;
+    mix-blend-mode: difference;
+    width: fit-content;
+    height: fit-content;
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    z-index: 101;
+}
+
+.fadeout {
+    opacity: 1;
+    animation: fade 2s linear 1s;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+#iconbox ion-icon {
+    cursor: pointer;
+    margin: 1vh 2vw;
+    padding: 5px;
+    border-radius: 100%;
+    border: solid 2px rgba(255, 255, 255, .5);
+}
+
+.cursortolaser {
+    cursor: url('../img/cursor.cur'), default !important;
+}
+
+.nocursor {
+    cursor: none !important;
+}
+
+#editblock {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 100;
+}
