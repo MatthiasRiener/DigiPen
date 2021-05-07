@@ -729,7 +729,8 @@ function openPopupWindow() {
                 originalWidth: originalSize,
                 whereToStart: index,
                 time: totalSeconds,
-                timertimer: timertimer
+                timertimer: timertimer,
+                url: baseURL
             }, '*');
         }
         if (event.data == 'previous') {

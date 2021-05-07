@@ -9,7 +9,24 @@ let hoursLabel = document.getElementById("hours");
 let timertimer;
 let bigSmol;
 
+function loadScriptsAndSources(url) {
+    //     <script src="http://localhost:5000/static/editor/reference/js/windowpo.js"></script>
 
+    var script_one = document.createElement('script');
+    script_one.src = url + "/static/editor/reference/js/windowpo.js";
+    document.head.appendChild(script);
+
+    //     <script src="http://localhost:5000/static/editor/js/fabric.min.js" type="text/javascript" defer></script>
+
+    var script_two = document.createElement('script');
+    script_two.src = url + "/static/editor/js/fabric.min.js";
+    document.head.appendChild(script);
+
+    //     <link rel="stylesheet" href="http://localhost:5000/static/editor/reference/css/windowpopcss.css">
+
+    document.createStyleSheet(`${url} + "/static/editor/reference/css/windowpopcss.css`);
+
+}
 // wait for messages from opener
 window.addEventListener('message', function (e) {
     // if (e.origin !== "http://localhost:5000/editor/")
@@ -18,7 +35,7 @@ window.addEventListener('message', function (e) {
 
     if (typeof e.data.whereToStart === "number") {
         
-
+        loadScriptsAndSources(e.data.url);
 
         smolCanvasArrRaw.length = 0;
         smolCanvasArrRaw = e.data.canvasArray.map((el, index) => {
