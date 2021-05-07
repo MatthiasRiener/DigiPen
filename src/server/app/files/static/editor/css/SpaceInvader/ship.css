@@ -1,0 +1,437 @@
+#MYWEBDESTROYERIMAGE,
+#ENIDNGMESSAGE,
+#drillCreator,
+#SCOREBOARDRIGHTTOP,
+#generalMenu,
+#divMoveCreator,
+#dustBin,
+#trashcan,
+#postIT,
+#inputwrapper,
+#textarea,
+#generate,
+#cancel,
+#outputwrapper,
+#closeoutputwrapper,
+#menuWrapper,
+#closeoutputwrapperbackground,
+#timerDiv,
+#startGameBox,
+#setUp,
+#createCancelButton,
+#createStartButton,
+#createFreeplayButton,
+#secSelector,
+#minSelector,
+#ScoreSelector {
+    font-family: 'Abel', sans-serif;
+    z-index: 2147483640;
+    outline: none;
+}
+
+#MYWEBDESTROYERIMAGE {
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    transform: rotate(90deg);
+}
+
+#ENIDNGMESSAGE {
+    width: 20vh;
+    height: auto;
+    font-weight: bolder;
+    font-family: 'Courier New', Courier, monospace;
+    position: absolute;
+    top: 0;
+    left: 45vw;
+    text-align: center;
+    background: rgba(0, 0, 0, .6);
+    color: white;
+    border: solid black .2vh;
+    border-bottom-left-radius: 20%;
+    border-bottom-right-radius: 20%;
+    font-size: 1.7vh;
+}
+
+#menuWrapper {
+    bottom: 3%;
+    right: 3%;
+    width: 5vh;
+    position: fixed;
+    font-size: 2vh;
+}
+
+#drillCreator {
+    color: #e83f0c;
+    bottom: 8%;
+}
+
+#divMoveCreator {
+    color: #00e80f;
+    bottom: 3%;
+}
+
+#postIT {
+    color: #0099ff;
+    bottom: 10%;
+}
+
+#drillCreator,
+#divMoveCreator,
+#postIT {
+    font-weight: bolder;
+    outline: none;
+    display: none;
+    cursor: pointer;
+    font-size: 2vh;
+    width: 5vh;
+    height: 5vh;
+    border-radius: 100%;
+    border: none;
+    background: white;
+    text-shadow: #e0e0e0 .02vh .02vh 0;
+    box-shadow: .02vh .02vh .5vh rgba(0, 0, 0, .3);
+    /* border: solid black .1vh; */
+}
+
+.turn {
+    animation: turnAnimation .25s forwards;
+}
+
+@keyframes turnAnimation {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(-135deg);
+    }
+}
+
+.turnback {
+    animation: turnBackAnimation .25s forwards;
+}
+
+@keyframes turnBackAnimation {
+    0% {
+        transform: rotate(-135deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}
+
+#generalMenu,
+#dustBin {
+    font-weight: bolder;
+    outline: none;
+    bottom: 3%;
+    text-align: center;
+    background: white;
+    box-shadow: .02vh .02vh .5vh rgba(0, 0, 0, .3);
+}
+
+#generalMenu {
+    width: 5vh;
+    height: 5vh;
+    /* border: solid black .16vh; */
+    text-shadow: #e0e0e0 .02vh .02vh 0;
+    color: orange;
+    border: none;
+    border-radius: 100%;
+    right: 3%;
+    font-size: 3vh;
+    cursor: pointer;
+}
+
+#dustBin {
+    position: fixed;
+    background: white;
+    left: 3%;
+    font-size: 2vh;
+    cursor: no-drop;
+    border-radius: 100%;
+    width: 5vh;
+    height: 5vh;
+}
+
+#SCOREBOARDRIGHTTOP {
+    min-width: 15vh;
+    text-align: center;
+    color: white;
+    background: black;
+    position: fixed;
+    top: 3%;
+    left: 3%;
+    font-size: 3vh;
+    padding: 1%;
+}
+
+#timerDiv {
+    font-family: 'Changa', sans-serif;
+    z-index: 2147483647;
+    background: white;
+    border: solid .01vh black;
+    position: fixed;
+    top: 10%;
+    left: 3%;
+    font-size: 3vh;
+    width: 10vh;
+    padding: .2vh;
+    text-align: center;
+    color: black;
+    animation: time 2s forwards;
+}
+
+@keyframes time {
+    0% {
+        transform: scale(2);
+        top: 40%;
+        left: 45%;
+    }
+    50% {
+        transform: scale(2);
+        top: 40%;
+        left: 45%;
+    }
+    100% {
+        transform: scale(1);
+        top: 10%;
+        left: 3%;
+    }
+}
+
+
+/* .animateDescriptor {
+    animation-name: example;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes example {
+    0% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(180deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+} */
+
+#trashcan {
+    width: 5vh;
+    height: 5vh;
+    border-radius: 100%;
+    border: none;
+}
+
+
+/******************************************************* 
+
+Div Move 
+
+******************************************************/
+
+.mydivheader {
+    position: absolute;
+    cursor: move;
+    min-width: 30px;
+    min-height: 30px;
+}
+
+
+/******************************************************* 
+
+Notizzettel
+
+******************************************************/
+
+#inputwrapper {
+    display: flex;
+    position: fixed;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, .6);
+    border: none;
+}
+
+#inputwrapper button {
+    font-size: 3vh;
+    color: white;
+    background: black;
+    padding: 0 1vh;
+    border: none;
+    margin-bottom: 1vh;
+}
+
+#inputwrapper h1 {
+    font-size: 4vh;
+    color: white;
+    background: black;
+    padding: 0 1vh;
+}
+
+#textarea {
+    color: black;
+    width: 25vh;
+    height: 25vh;
+    position: relative;
+    padding: 1vh;
+    outline: none;
+    font-weight: bolder;
+    border: solid #ffee00 .3vh;
+    background: #ffee00;
+    margin: 1vh;
+    font-size: 1.5vh;
+}
+
+#outputwrapper {
+    background: white;
+    margin: 3vh;
+    position: fixed;
+    right: 0;
+    top: 6%;
+    width: 26vh;
+    max-height: 50vh;
+    min-height: 10vh;
+    overflow: auto;
+    color: black;
+    padding: 1vh;
+    font-size: 2vh;
+    border: dashed black .1vh;
+}
+
+#outputwrapper .headRow {
+    border: solid black .1vh;
+}
+
+#closeoutputwrapper {
+    color: #e83f0c;
+    background: #bababa;
+    text-shadow: black .02vh .02vh .2vh;
+    background: transparent;
+    font-size: 5vh;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    position: fixed;
+    top: 2.3%;
+    right: 4vh;
+}
+
+#closeoutputwrapperbackground {
+    width: 5vh;
+    height: 5vh;
+    background: white;
+    box-shadow: .02vh .02vh .5vh rgba(0, 0, 0, .3);
+    position: fixed;
+    top: 3%;
+    right: 3vh;
+    border-radius: 100%;
+}
+
+.shake {
+    animation: shakeAnimation .35s forwards;
+}
+
+@keyframes shakeAnimation {
+    0% {
+        left: 0;
+    }
+    25% {
+        left: .5vw;
+    }
+    50% {
+        left: -.5vw;
+    }
+    75% {
+        left: .5vw;
+    }
+    100% {
+        left: 0;
+    }
+}
+
+.notesBox {
+    cursor: pointer;
+    word-wrap: break-word;
+    width: 26vh;
+}
+
+.notesBox:hover {
+    color: red;
+}
+
+#startGameBox {
+    z-index: 2147483647;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, .6);
+}
+
+#setUp {
+    background: white;
+    padding: 3vh;
+    border: solid black .02vh;
+    display: flex;
+}
+
+#setUp button {
+    margin: 4vh;
+    border: solid black .02vh;
+    color: black;
+    cursor: pointer;
+    font-size: 4vh;
+    padding: 1vh 2vh;
+}
+
+#setUp #startButton,
+#setUp #backButton {
+    margin: 1vh 4vh;
+    outline: none;
+}
+
+#setUp #secSelector,
+#setUp #MinSelector,
+#setUp #ScoreSelector {
+    margin: 4vh;
+    color: black;
+    cursor: pointer;
+    font-size: 4vh;
+    padding: 1vh 0;
+    text-align: center;
+    outline: none;
+}
+
+#setUp #buttonTimePage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+}
+
+
+/* #setUp button:hover {
+    background: rgba(0, 0, 0, .1);
+} */
+
+.notDone {
+    background: orangered;
+}
+
+.done {
+    background: greenyellow;
+}

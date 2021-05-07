@@ -1,0 +1,383 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow: hidden;
+    background: rgb(251, 252, 247);
+}
+
+.sprite {
+    transition: all .2s ease-out;
+}
+
+#myNav {
+    font-family: 'Anton', sans-serif;
+    z-index: 4;
+}
+
+.overlay {
+    height: 0%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow-y: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: absolute;
+    width: 100%;
+    top: 35%;
+    text-align: center;
+    z-index: -1;
+}
+
+.overlay a {
+    padding: 1vh;
+    text-decoration: none;
+    font-size: 10vh;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay .overlay-content a:nth-child(1):hover,
+.overlay .overlay-content a:nth-child(1):focus {
+    color: #ffd300;
+}
+
+.overlay .overlay-content a:nth-child(2):hover,
+.overlay .overlay-content a:nth-child(2):focus {
+    color: #00e80f;
+}
+
+
+/*.overlay a:nth-child(3):hover,
+.overlay a:nth-child(3):focus {
+    color: #e83f0c;
+}
+
+.overlay a:nth-child(4):hover,
+.overlay a:nth-child(4):focus {
+    color: #0099ff;
+}*/
+
+.overlay .closebtn {
+    position: absolute;
+    top: 5vh;
+    right: 5vh;
+    font-size: 10vh;
+    color: #e83f0c;
+}
+
+.overlay .closebtn:hover {
+    color: white;
+}
+
+#dotted-nav {
+    outline: .1vh dashed black;
+    outline-offset: .7vh;
+    margin: 5vh;
+    width: 6vh;
+    height: 6vh;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    z-index: 3;
+}
+
+#dotted-nav div {
+    margin: 0 .3vh;
+    flex-grow: 1;
+    position: relative;
+    width: 1.21vh;
+    height: 1.21vh;
+    background: black;
+}
+
+#dotted-nav div:nth-child(1):hover {
+    background: #0099ff;
+}
+
+#dotted-nav div:nth-child(2):hover {
+    background: #e83f0c;
+}
+
+#dotted-nav div:nth-child(3):hover {
+    background: #ffd300;
+}
+
+#dotted-nav div:nth-child(4):hover {
+    background: #ffd300;
+}
+
+#dotted-nav div:nth-child(5):hover {
+    background: #00ff0d;
+}
+
+#dotted-nav div:nth-child(6):hover {
+    background: #c2176c;
+}
+
+#dotted-nav div:nth-child(7):hover {
+    background: #ff00ea;
+}
+
+#dotted-nav div:nth-child(8):hover {
+    background: #0099ff;
+}
+
+#dotted-nav div:nth-child(9):hover {
+    background: #e83f0c;
+}
+
+main {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+main h1 {
+    position: relative;
+    top: 15%;
+    font-family: 'Anton', sans-serif;
+    font-weight: 500;
+    color: black;
+    line-height: 11vh;
+    font-size: 10vh;
+}
+
+main h1 span:nth-child(1) {
+    color: rgb(255, 29, 86);
+}
+
+main h1 span:nth-child(3) {
+    color: #00ff0d;
+}
+
+main h1 span:nth-child(4) {
+    color: rgb(255, 245, 54);
+}
+
+#buttonInside {
+    outline: .1vh dashed black;
+    outline-offset: 1vh;
+    position: absolute;
+    width: 20vh;
+    height: 10vh;
+    font-size: 2vh;
+    font-family: 'Anton', sans-serif;
+    background: linear-gradient(45deg, rgba(255, 245, 54, 1) 0%, rgba(143, 249, 18, 1) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#buttonInside a {
+    color: black;
+    font-weight: lighter;
+    text-decoration: none;
+    padding: 15% 30%;
+}
+
+h2#onHow,
+h2#onWhat {
+    outline: .1vh dashed black;
+    outline-offset: 1vh;
+    font-size: 6vh;
+    font-family: 'Inconsolata', monospace;
+    background: rgb(255, 245, 54);
+    padding: 1vh 4vh;
+    cursor: pointer;
+    position: absolute;
+    z-index: 2;
+}
+
+.centerBox {
+    width: 65vw;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#left {
+    left: 0;
+    top: 20%;
+}
+
+#right {
+    right: 0;
+    top: 20%;
+}
+
+#buttons {
+    position: absolute;
+    display: flex;
+    top: 10%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+}
+
+#drill {
+    width: 37vh;
+    position: absolute;
+    left: 15%;
+    top: 26%;
+}
+
+#splash1 {
+    width: 100vw;
+    height: 100vh;
+    top: -25%;
+    position: absolute;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#splash1 img {
+    width: 70vh;
+}
+
+#splash2 {
+    left: 10%;
+    top: 30%;
+    position: absolute;
+    z-index: -1;
+}
+
+#splash2 img {
+    width: 40vh;
+}
+
+#splash3 {
+    width: 60vw;
+    height: 100vh;
+    right: 0;
+    top: 15vh;
+    position: absolute;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#splash3 img {
+    width: 70vh;
+}
+
+#mySidenav,
+#mySidenav2 {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 2vh;
+    box-shadow: -.5vh 0 .5vh gray;
+}
+
+#mySidenav::-webkit-scrollbar-track,
+#mySidenav2::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+#mySidenav::-webkit-scrollbar,
+#mySidenav2::-webkit-scrollbar {
+    width: .8vh;
+}
+
+#mySidenav::-webkit-scrollbar-thumb,
+#mySidenav2::-webkit-scrollbar-thumb {
+    background-color: #818181;
+}
+
+#mySidenav a,
+#mySidenav2 a {
+    z-index: 3;
+    padding: .8vh .8vh .8vh 3.2vh;
+    text-decoration: none;
+    font-size: 5vh;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+#mySidenav a:hover,
+#mySidenav2 a:hover {
+    color: rgb(255, 29, 86);
+}
+
+#mySidenav .closebtnSideNav,
+#mySidenav2 .closebtnSideNav {
+    position: absolute;
+    top: 0;
+    right: 4vh;
+    font-size: 7vh;
+    font-weight: bolder;
+    margin-left: 4vh;
+}
+
+.imgOverflow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-family: sans-serif;
+}
+
+.imgOverflow p {
+    margin: 10%;
+    font-size: 2vh;
+}
+
+.imgOverflow img {
+    position: relative;
+    width: 100%;
+}
+
+.imgOverflow h1 {
+    font-size: 5vh;
+    color: white;
+    width: 3vw;
+    text-align: center;
+    font-family: 'Anton', sans-serif;
+    margin: 10% 0 0 10%;
+}
+
+.imgOverflow h1:nth-child(1) {
+    background: #ffd300;
+}
+
+.imgOverflow h1:nth-child(5) {
+    background: #00ff0d;
+}
+
+.imgOverflow h1:nth-child(9) {
+    background: #ff00ea;
+}
