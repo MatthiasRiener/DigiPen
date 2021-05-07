@@ -35,7 +35,13 @@ window.addEventListener('message', function (e) {
 
     if (typeof e.data.whereToStart === "number") {
         
-        loadScriptsAndSources(e.data.url);
+        console.log("LOADING SCRIPTSS:..")
+
+        console.log(e.data.url, e.data);
+
+        if (e.data.url != undefined) {
+            loadScriptsAndSources(e.data.url);
+        }
 
         smolCanvasArrRaw.length = 0;
         smolCanvasArrRaw = e.data.canvasArray.map((el, index) => {
