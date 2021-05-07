@@ -1,6 +1,10 @@
+const isServer = true;
 
-const baseURL = "http://localhost:5000";
-
+if (isServer) {
+    const baseURL = "http://http://130.61.115.67:5000
+else {
+    const baseURL = "http://localhost:5000";
+}
 
 function sendRequestToServer(args) {
 
