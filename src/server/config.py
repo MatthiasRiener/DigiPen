@@ -26,7 +26,7 @@ IS_SERVER = True
 secrets_file = ""
 
 if IS_SERVER:
-    secrets_file = 'server_screts.json'
+    secrets_file = 'server_secrets.json'
 else:
     secrets_file = 'client_secrets.json'
 
