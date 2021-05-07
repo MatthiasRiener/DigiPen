@@ -244,17 +244,47 @@ $('#chartsPopup-inner-right-settings-close').click(function () {
 
 // open settings popup
 $('#content-navigation-second-settings').click(function () {
-    $('#settingsPopup').css('display', 'flex');
-    $('#settingsPopup').animate({
-        opacity: 1.0
-    }, 100);
+    openSettingsPopup();
 });
 
-// close settings popup
-$('#settingsPopup-inner-bottom-header-exit').click(function () {
+
+function openSettingsPopup() {
+
+    sendRequestToServer({ type: "POST", url: "/editor/getPresentationInfo", data: { p_id: getCustomStorage("p_id") } }).then(pres_data => {
+       
+            console.log(pres_data);
+
+            $('#settingsPopup-inner-bottom-picture-inner').css('background-image', `url(${pres_data.ownUser.img})`);
+            $('#settingsPopup-inner-top-middle-title').html(pres_data.pres.name);
+
+            $('#settingsPopup').css('display', 'flex');
+            $('#settingsPopup').animate({
+                opacity: 1.0
+            }, 100);
+             
+    });
+
+   
+}
+
+$('#settingsPopup-inner-bottom-button-join').click(function() {
+    console.log("JOINING VIDEO CONFERENCE..")
+
+    addLocalVideo();
+    connectToVideo();
+    closeSettings();
+
+});
+
+
+function closeSettings() {
     $('#settingsPopup').css('display', 'none');
     $('#settingsPopup').css('opacity', '0.0');
     $('#settingsPopup-inner-bottom-button-join').css('display', 'none');
+}
+// close settings popup
+$('#settingsPopup-inner-bottom-header-exit').click(function () {
+   closeSettings();
 });
 
 // open cam popup in settings popup

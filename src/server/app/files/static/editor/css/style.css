@@ -1427,8 +1427,10 @@
 #settingsPopup-inner-bottom-picture-inner {
     width: 18vh;
     height: 18vh;
-    background-color: blue;
     border-radius: 100%;
+
+    background-size: cover;
+    background-position: center;
 }
 
 #settingsPopup-inner-bottom-header-exit:hover {

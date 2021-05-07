@@ -16,6 +16,7 @@ function connectToVideo() {
     }).catch((err) => {
         
     });;
+
 }
 
 function updateParticipantCount() {
@@ -24,9 +25,38 @@ function updateParticipantCount() {
 
 
     $('body').addClass('loaded');
+    resetWorker();
+
 
 
 };
+
+var worker;
+
+function startWorker() {
+
+    if (userCounter == 1) {
+        worker = new Worker(baseURL + "/static/editor/js/checkConnectionsWorker.js?" + Math.random());
+
+        worker.postMessage({})
+        worker.addEventListener('message', function (event) { 
+            console.log("DISCONNECTING U FROM THE CHAT LMAO")
+            disconnect();
+            worker.terminate();
+        });
+    }
+
+}
+
+
+function resetWorker() {
+    if (userCounter == 1) {
+        startWorker();
+    } else {
+        worker.terminate();
+    }
+
+}
 
 function participantConnected(participant) {
     let participantDiv = document.createElement('div');
@@ -93,5 +123,3 @@ function addLocalVideo() {
     });
 };
 
-addLocalVideo();
-connectToVideo();
