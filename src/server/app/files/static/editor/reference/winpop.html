@@ -8,8 +8,14 @@
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script src="http://localhost:5000/static/editor/js/fabric.min.js" type="text/javascript" defer></script>
-    <link rel="stylesheet" href="http://localhost:5000/static/editor/reference/css/windowpopcss.css">
+
+    
+        <script src={{ url_for('static', filename="editor/js/fabric.min.js" ) }} type="text/javascript" defer></script>
+
+
+
+    <link rel=" stylesheet" type="text/css" href="{{ url_for('static', filename='/editor/reference/css/windowpopcss.css') }}" />
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla">
 </head>
 
@@ -39,7 +45,9 @@
         <div id="canvases">
         </div>
     </div>
-    <script src="http://localhost:5000/static/editor/reference/js/windowpo.js"></script>
+
+    <script src={{ url_for('static', filename="editor/reference/js/windowpo.js" ) }} type="text/javascript" defer></script>
+
 </body>
 
 </html>
