@@ -19,9 +19,6 @@ window.addEventListener('message', function (e) {
     if (typeof e.data.whereToStart === "number") {
         
 
-        if (e.data.url != undefined) {
-            loadScriptsAndSources(e.data.url);
-        }
 
         smolCanvasArrRaw.length = 0;
         smolCanvasArrRaw = e.data.canvasArray.map((el, index) => {
