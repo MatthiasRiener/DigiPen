@@ -30,9 +30,9 @@ jobs:
         pip install pytest
         pip install setuptools wheel twine
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Test with pytest
-      run: |
-        pytest
+   # - name: Test with pytest
+   #  run: |
+   #     pytest
     - name: Deploy to Server
       uses: easingthemes/ssh-deploy@v2.1.5
       env:
