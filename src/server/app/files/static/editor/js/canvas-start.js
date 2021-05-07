@@ -1043,7 +1043,7 @@ async function paste() {
         var wantsQR = prompt("Want to create a QR Code? yes/no?");
 
         if (wantsQR == "yes") {
-            addQRCode();
+            addQRCode(obj);
         }
     }
 
@@ -1065,7 +1065,7 @@ async function paste() {
 
 /*------------------------Styles Functions------------------------*/
 
-function addQRCode() {
+function addQRCode(obj) {
     var qrCodeUrl = "https://chart.googleapis.com/chart?cht=qr&choe=UTF-8&chld=L|0&chs=400x400&chl=" + obj;
     addImage(qrCodeUrl)
     return;
