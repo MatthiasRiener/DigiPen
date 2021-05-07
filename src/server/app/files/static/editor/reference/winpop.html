@@ -88,9 +88,9 @@
             });
 
 
-        let node = document.createElement('script');
-        node.innerHTML = sc.responseText;
-        document.appendChild(node);
+        let node_third = document.createElement('script');
+        node_third.innerHTML = sc.responseText;
+        document.appendChild(node_third);
 
 
         var script_2 = $.getScript(`${baseURL}/static/editor/reference/js/windowpo.js`)
@@ -102,9 +102,9 @@
             });
 
 
-        let node = document.createElement('script');
-        node.innerHTML = script_2.responseText;
-        document.appendChild(node);
+        let node_second = document.createElement('script');
+        node_second.innerHTML = script_2.responseText;
+        document.appendChild(node_second);
 
     </script>
 
