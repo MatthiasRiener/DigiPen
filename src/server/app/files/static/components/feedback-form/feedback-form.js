@@ -105,7 +105,7 @@ class FeedbackForm extends HTMLElement {
 
 
   loadCss(path) {
-    fetch('http://localhost:5000/static/components/feedback-form/styles.css')
+    fetch(`${baseURL}/static/components/feedback-form/styles.css`)
       .then(response => response.text())
       .then(data => {
         let node = document.createElement('style');

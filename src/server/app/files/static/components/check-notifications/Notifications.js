@@ -31,7 +31,7 @@
     }
 
       loadCss(path) {
-          fetch(`http://localhost:5000/static/components/check-notifications/styles.css`)
+          fetch(`${baseURL}/static/components/check-notifications/styles.css`)
           .then(response => response.text())
               .then(data => {
                   let node = document.createElement('style');

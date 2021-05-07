@@ -30,7 +30,7 @@ class LoadingScreen extends HTMLElement {
 
     loadJS() {
 
-        var sc = $.getScript("http://localhost:5000/static/components/loading-screen/domObserver.js")
+        var sc = $.getScript(`${baseURL}/static/components/loading-screen/domObserver.js`)
             .done(function (script, textStatus) {
                return script;
             })
@@ -51,7 +51,7 @@ class LoadingScreen extends HTMLElement {
     }
 
     loadCss(path) {
-        fetch(`http://localhost:5000/static/components/loading-screen/loader-basic.css`)
+        fetch(`${baseURL}/static/components/loading-screen/loader-basic.css`)
             .then(response => response.text())
             .then(data => {
                 let node = document.createElement('style');
@@ -64,7 +64,7 @@ class LoadingScreen extends HTMLElement {
         var item = loadingOptions[Math.floor(Math.random() * loadingOptions.length)];
 
 
-        fetch(`http://localhost:5000/static/components/loading-screen/loading-fade-out-${item}.css`)
+        fetch(`${baseURL}/static/components/loading-screen/loading-fade-out-${item}.css`)
             .then(response => response.text())
             .then(data => {
                 let node = document.createElement('style');

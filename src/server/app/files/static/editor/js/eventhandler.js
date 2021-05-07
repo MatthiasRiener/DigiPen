@@ -710,7 +710,7 @@ let jsonArr = [];
 function openPopupWindow() {
     if (w) w.close();
     w = null;
-    w = window.open(`http://localhost:5000/static/editor/reference/winpop.html?d=${Math.random()}`, 'TheNewpop', 'height=500,width=625');
+    w = window.open(`${baseURL}/static/editor/reference/winpop.html?d=${Math.random()}`, 'TheNewpop', 'height=500,width=625');
     w.document.close();
 
     jsonArr = [];

@@ -23,7 +23,7 @@
       }
 
       loadCss(path) {
-          fetch(`http://localhost:5000/static/components/create-workspace/styles.css`)
+          fetch(`${baseURL}/static/components/create-workspace/styles.css`)
           .then(response => response.text())
               .then(data => {
                   let node = document.createElement('style');
