@@ -22,14 +22,19 @@ app = Flask(__name__, template_folder="./app/files/templates",
             static_folder="./app/files/static")
 
 
+IS_SERVER = True
+secrets_file = ""
 
-
+if IS_SERVER:
+    secrets_file = 'server_screts.json'
+else:
+    secrets_file = 'client_secrets.json'
 
 app.config.update({
     'SECRET_KEY': 'SomethingNotEntirelySecret',
     'TESTING': True,
     'DEBUG': True,
-    'OIDC_CLIENT_SECRETS': 'client_secrets.json',
+    'OIDC_CLIENT_SECRETS': secrets_file,
     'OIDC_ID_TOKEN_COOKIE_SECURE': False,
     'OIDC_REQUIRE_VERIFIED_EMAIL': False,
     'OIDC_USER_INFO_ENABLED': True,
