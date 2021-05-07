@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.4.0/fabric.min.js" integrity="sha512-Ly9uI3QY88jVXCgkORH2A4Qqz5xYm1pew9jEgedgSpyEg9asvyPISK+CY7QNDN3CMftXU/KLNwQR7XUUo7Cqag==" crossorigin="anonymous"></script>
+    
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
@@ -77,20 +80,6 @@
                 //this.calculateWorkspaceWidth();
         });
 
-
-
-        var sc = $.getScript(`${baseURL}/static/editor/js/fabric.min.js`)
-            .done(function (script, textStatus) {
-               return script;
-            })
-            .fail(function (jqxhr, settings, exception) {
-                
-            });
-
-
-        let node_third = document.createElement('script');
-        node_third.innerHTML = sc.responseText;
-        document.body.appendChild(node_third);
 
 
         var script_2 = $.getScript(`${baseURL}/static/editor/reference/js/windowpo.js`)
