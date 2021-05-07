@@ -12,18 +12,18 @@
     <!--For localhost testing...-->
 
     <!--
-        <script src="http://localhost:5000/static/editor/js/fabric.min.js" type="text/javascript" defer></script>
-        <link rel="stylesheet" href="http://localhost:5000/static/editor/reference/css/windowpopcss.css">
-        <script src="http://localhost:5000/static/editor/reference/js/windowpo.js"></script>
-    -->
-    
-    <!--For server testing-->
+            <script src="http://localhost:5000/static/editor/js/fabric.min.js" type="text/javascript" defer></script>
+            <link rel="stylesheet" href="http://localhost:5000/static/editor/reference/css/windowpopcss.css">
+            <script src="http://localhost:5000/static/editor/reference/js/windowpo.js"></script>
+        -->
 
+    <!--For server testing-->
+    <!--
     
-    <script src="http://130.61.115.6:5000/static/editor/js/fabric.min.js" type="text/javascript" defer></script>
-    <link rel="stylesheet" href="http://130.61.115.6:5000/static/editor/reference/css/windowpopcss.css">
-    <script src="http://130.61.115.6:5000/static/editor/reference/js/windowpo.js"></script>
-    
+        <script src="http://130.61.115.6:5000/static/editor/js/fabric.min.js" type="text/javascript" defer></script>
+        <link rel="stylesheet" href="http://130.61.115.6:5000/static/editor/reference/css/windowpopcss.css">
+        <script src="http://130.61.115.6:5000/static/editor/reference/js/windowpo.js"></script>
+        -->
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla">
 </head>
@@ -39,8 +39,8 @@
     </div>
     <div id="canvasesoverflow">
         <div class="center">
-            <div id="currentCanvasDisplayBox" >
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;" ></div>
+            <div id="currentCanvasDisplayBox">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10;"></div>
 
                 <canvas id="bigsmol" width="300" height="168.75"></canvas>
             </div>
@@ -54,6 +54,60 @@
         <div id="canvases">
         </div>
     </div>
+
+
+    <script type="text/javascript">
+        console.log("LOL");
+        var url = window.location.href;
+        var baseURL = "";
+
+        if (url.includes("localhost")) {
+            console.log("SERVER IS ON TEST");
+            baseURL = "http://localhost:5000";
+        } else {
+            baseURL = "http://130.61.115.67:5000";
+        }
+
+        fetch(`${baseURL}/static/editor/reference/css/windowpopcss.css`)
+            .then(response => response.text())
+            .then(data => {
+                let node = document.createElement('style');
+                node.innerHTML = data;
+                document.appendChild(node);
+                //this.calculateWorkspaceWidth();
+        });
+
+
+
+        var sc = $.getScript(`${baseURL}/static/editor/js/fabric.min.js`)
+            .done(function (script, textStatus) {
+               return script;
+            })
+            .fail(function (jqxhr, settings, exception) {
+                
+            });
+
+
+        let node = document.createElement('script');
+        node.innerHTML = sc.responseText;
+        document.appendChild(node);
+
+
+        var script_2 = $.getScript(`${baseURL}/static/editor/reference/js/windowpo.js`)
+            .done(function (script, textStatus) {
+               return script;
+            })
+            .fail(function (jqxhr, settings, exception) {
+                
+            });
+
+
+        let node = document.createElement('script');
+        node.innerHTML = script_2.responseText;
+        document.appendChild(node);
+
+    </script>
+
 </body>
 
 </html>
