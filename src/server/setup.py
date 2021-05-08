@@ -1,1 +1,0 @@
-IS_SERVER = True

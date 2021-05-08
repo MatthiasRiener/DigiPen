@@ -3,7 +3,7 @@ import re
 import time
 from .CustomException import CustomException
 import uuid
-from ..db.settings import mongoclient
+from ..db.settings import mongoclient, IS_SERVER
 
 
 class AuthenticationRepository():
@@ -105,7 +105,7 @@ class AuthenticationRepository():
 
     def updateUserImg(self, user_id, file_name):
         ## IS SERVER?
-        from setup import IS_SERVER
+
 
         if IS_SERVER:
             PREFIX = "https://slidea.bastiarts.com/static/profile/img/images/" + user_id + "/" + file_name

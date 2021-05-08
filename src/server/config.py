@@ -14,7 +14,7 @@ from app.endpoints.issues.controller import iss
 from app.endpoints.slidea_tipps.controller import tippsBlue
 
 
-from app.db.settings import db, oidc, jwt, socketio, mongoclient
+from app.db.settings import db, oidc, jwt, socketio, mongoclient, IS_SERVER
 
 
 
@@ -22,7 +22,6 @@ app = Flask(__name__, template_folder="./app/files/templates",
             static_folder="./app/files/static")
 
 
-from setup import IS_SERVER
 
 secrets_file = ""
 
