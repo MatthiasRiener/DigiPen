@@ -106,7 +106,6 @@ class AuthenticationRepository():
     def updateUserImg(self, user_id, file_name):
         ## IS SERVER?
         from ...setup import IS_SERVER
-
         if IS_SERVER:
             PREFIX = "https://slidea.bastiarts.com/static/profile/img/images/" + user_id + "/" + file_name
         else:
