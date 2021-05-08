@@ -28,7 +28,7 @@ services:
     environment:
       - PROXY_ADDRESS_FORWARDING=true
     ports:
-      - 8080:8433
+      - 8080:8080
     depends_on: 
       - mysql
   dbmongo:
