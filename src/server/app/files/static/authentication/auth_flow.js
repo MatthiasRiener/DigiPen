@@ -2,7 +2,7 @@ const isServer = true;
 let baseURL;
 
 if (isServer) {
-    baseURL = "http://130.61.115.67:5000";
+    baseURL = "http://slidea.bastiarts.com";
 } else {
     baseURL = "http://localhost:5000";
 }
