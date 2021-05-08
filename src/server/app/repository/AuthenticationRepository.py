@@ -104,7 +104,13 @@ class AuthenticationRepository():
 
 
     def updateUserImg(self, user_id, file_name):
-        PREFIX = "http://localhost:5000/static/profile/img/images/" + user_id + "/" + file_name
+        ## IS SERVER?
+        from ...setup import IS_SERVER
+
+        if IS_SERVER:
+            PREFIX = "https://slidea.bastiarts.com/static/profile/img/images/" + user_id + "/" + file_name
+        else:
+            PREFIX = "http://localhost:5000/static/profile/img/images/" + user_id + "/" + file_name
         User.objects(u_id=user_id).update(set__img=str(PREFIX))
         return 1
 

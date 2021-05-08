@@ -22,7 +22,8 @@ app = Flask(__name__, template_folder="./app/files/templates",
             static_folder="./app/files/static")
 
 
-IS_SERVER = True
+from .setup import IS_SERVER
+
 secrets_file = ""
 
 if IS_SERVER:
