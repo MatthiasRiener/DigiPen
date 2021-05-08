@@ -97,19 +97,19 @@ function fillTemplates() {
 
 /* Navigation */
 $('body').on('click', '#nav-bar-sign-up-div', function () {
-    window.location = "../../src/login_register/pages/register.html";
+    window.location = "/auth/login";
 });
 
 $('body').on('click', '.nav-bar-login', function () {
-    window.location = "../../src/login_register/pages/login.html";
+    window.location = "/auth/login";
 });
 
 $('body').on('click', '.lp_bt_register_click', function () {
-    window.location = "../../src/login_register/pages/register.html";
+    window.location = "/auth/login";
 });
 
 $('body').on('click', '.lp_bt_here_click', function () {
-    window.location = "index.html";
+    window.location = "/";
 });
 
 $('body').on('click', '.lp_bt_privacy_click', function () {
