@@ -63,7 +63,7 @@ function fillObjects() {
 
 let users = [];
 let index, picture;
-const PICTURECOUNT = 16;
+const PICTURECOUNT = 15;
 
 function insertUsers() {
     for (let i = 1; i <= 15; i++) {
