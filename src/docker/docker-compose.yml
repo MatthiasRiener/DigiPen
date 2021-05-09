@@ -5,7 +5,7 @@ volumes:
       driver: local
   mysql_data:
       driver: local
-  mongodb_data_container:    
+  mongodb_data_container:
 
 services:
   mysql:
@@ -18,18 +18,22 @@ services:
         MYSQL_USER: keycloak
         MYSQL_PASSWORD: password
   keycloak_test:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
     volumes:
       - ./imports/cache_reload/disable-theme-cache.cli:/opt/jboss/startup-scripts/disable-theme-cache.cli
       - ./imports/themes/custom/:/opt/jboss/keycloak/themes/custom-theme/
-      - ./imports/standalone/standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone.xml
+      - ./imports/certs/:/etc/x509/https
+        #  - ./imports/standalone/standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone.xml
     environment:
-      - PROXY_ADDRESS_FORWARDING=true
+      KEYCLOAK_HOSTNAME: slidea.bastiarts.com
+      KEYCLOAK_HTTPS_PORT: 8443
+      KEYCLOAK_HTTP_PORT: 8080
     ports:
-      - 8080:8443
-    depends_on: 
+      - 8080:8080
+      - 8443:8443
+    depends_on:
       - mysql
   dbmongo:
     image: mongo:latest
@@ -38,5 +42,6 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: rootpassword
     ports:
       - 27017:27017
-    volumes: 
-      - mongodb_data_container:/data/db  
+    volumes:
+      - mongodb_data_container:/data/db
+~                                       
