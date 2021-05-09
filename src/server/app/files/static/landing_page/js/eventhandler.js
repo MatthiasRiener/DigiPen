@@ -84,7 +84,7 @@ function updateUsers() {
     } while (users.includes(picture));
 
     users[index] = picture;
-    $(`.flex-item:eq(${index - 1})`).css('background-image', `url(img/users/user_${picture}.png)`);
+    $(`.flex-item:eq(${index - 1})`).css('background-image', `url(${baseURL}/static/landing_page/img/users/user_${picture}.png)`);
 }
 
 setInterval(updateUsers, 3000);
