@@ -73,15 +73,21 @@ function insertUsers() {
 }
 
 function updateUsers() {
+
+    // rewriting method
+
+    
     let counter = 0;
     do {
         index = Math.floor(Math.random() * users.length) + 1;
         picture = Math.floor(Math.random() * PICTURECOUNT) + 1;
         counter++;
         if (counter == 200) {
-            break;
+            skipThis = true;
+            return;
         }
     } while (users.includes(picture));
+    
 
     users[index] = picture;
     $(`.flex-item:eq(${index - 1})`).css('background-image', `url(${baseURL}/static/landing_page/img/users/user_${picture}.png)`);
