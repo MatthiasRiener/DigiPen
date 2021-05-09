@@ -24,7 +24,6 @@ services:
     volumes:
       - ./imports/cache_reload/disable-theme-cache.cli:/opt/jboss/startup-scripts/disable-theme-cache.cli
       - ./imports/themes/custom/:/opt/jboss/keycloak/themes/custom-theme/
-      - ./imports/certs/:/etc/x509/https
       - ./imports/standalone/standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone.xml
     environment:
       - PROXY_ADDRESS_FORWARDING=true
