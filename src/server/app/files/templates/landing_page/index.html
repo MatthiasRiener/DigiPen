@@ -64,7 +64,8 @@
       <div class="section section-two">
         <div class="positionVideo">
           <div class="video-section">
-            <img src="img/img_webview_editor.png" />
+            <img src="{{ url_for('static', filename='/landing_page/img/img_webview_editor.png') }}"
+            />
           </div>
         </div>
       </div>
@@ -99,7 +100,7 @@
               <img
                 width="100%;"
                 style="border-radius: 5px"
-                src="./img/party-gif.gif"
+                src="{{ url_for('static', filename='/landing_page/img/party-gif.gif') }}"
               />
             </div>
           </div>

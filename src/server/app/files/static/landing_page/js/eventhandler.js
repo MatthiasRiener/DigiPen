@@ -67,7 +67,7 @@ const PICTURECOUNT = 16;
 
 function insertUsers() {
     for (let i = 1; i <= 15; i++) {
-        $('.flex-container').eq(Math.ceil(i / 5) - 1).append(`<div class="flex-item" style="background-image: url(img/users/user_${i}.png)"></div>`)
+        $('.flex-container').eq(Math.ceil(i / 5) - 1).append(`<div class="flex-item" style="background-image: url(${baseURL}/static/landing_page/img/users/user_${i}.png)"></div>`)
         users[i] = i;
     }
 }
@@ -91,7 +91,7 @@ setInterval(updateUsers, 3000);
 
 function fillTemplates() {
     for (let i = 1; i <= 3; i++) {
-        $('.grid-container').eq(0).append(`<div class="grid-templates" style="background-image: url(img/templates/template_${i}.png)"></div>`);
+        $('.grid-container').eq(0).append(`<div class="grid-templates" style="background-image: url(${baseURL}/static/landing_page/img/templates/template_${i}.png)"></div>`);
     }
 }
 
