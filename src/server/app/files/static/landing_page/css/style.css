@@ -4,6 +4,10 @@
     scroll-behavior: smooth;
 }
 
+.is-link {
+    cursor: pointer !important;
+}
+
 #fullpage {
     height: 540vh;
     background: var(--white);

@@ -83,7 +83,6 @@ function updateUsers() {
         picture = Math.floor(Math.random() * PICTURECOUNT) + 1;
         counter++;
         if (counter == 200) {
-            skipThis = true;
             return;
         }
     } while (users.includes(picture));
@@ -102,6 +101,8 @@ function fillTemplates() {
 }
 
 /* Navigation */
+
+
 $('body').on('click', '#nav-bar-sign-up-div', function () {
     window.location = "/auth/login";
 });
