@@ -79,7 +79,7 @@ function updateUsers() {
     
     let counter = 0;
     do {
-        index = Math.floor(Math.random() * users.length) + 1;
+        index = Math.floor(Math.random() * users.length);
         picture = Math.floor(Math.random() * PICTURECOUNT) + 1;
         counter++;
         if (counter == 200) {
