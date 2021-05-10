@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Basic Structure</title>
+    <title>Slidea</title>
 
     <link
       rel="stylesheet"
@@ -11,8 +11,8 @@
     />
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
-
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/landing_page/css/style.css') }}" />
+    <link rel="stylesheet" type="text/css" media="(max-width: 480px)  " href="{{ url_for('static', filename='/landing_page/css/mobile-version.css') }}" />
+    <link rel="stylesheet" type="text/css" media="(min-width: 481px)  " href="{{ url_for('static', filename='/landing_page/css/style.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/landing_page/css/variables.css') }}" />
 
     <script
@@ -21,152 +21,129 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="https://unpkg.com/scrollreveal"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/fullpage.js/dist/fullpage.min.css" />
 
     <script src={{ url_for('static', filename="authentication/auth_flow.js") }} type="text/javascript"></script>
     
     <script src={{ url_for('static', filename="landing_page/js/requests.js") }} type="text/javascript" defer></script>
+    <script src={{ url_for('static', filename="landing_page/js/loadCompanies.js") }} type="text/javascript" defer></script>
 
   </head>
   <body>
-    <div id="fullpage">
-
-      <div class="section header-section" id="header-section-header">
-        <div id="nav-bar">
-          <p id="nav-bar-logo">Slidea</p>
-          <p class="nav-bar-login is-link">Login</p>
-          <div id="nav-bar-sign-up-div" class="is-link"><p>Sign up</p></div>
-        </div>
-
-        <div class="headerBottom">
-        <h1>Get your slides and<br />team online</h1>
-        <p>
-          Slidea allows you to create and publish presentations quickly<br />and
-          easily by using realtime technology.
-        </p>
-
-        <div class="positionHeaderButtons">
-        <div class="header-option-container">
-          <div class="lp_bt_register_click is-link">
-            <p>Register now!</p>
-          </div>
-          <div class="watch-demo is-link">
-            <ion-icon name="play-outline"></ion-icon>
-            <p>Watch demo</p>
-          </div>
-        </div>
-        </div>
-        </div>
+    
+    <div class="top-bar">
+      <p id="logo">Slidea</p>
+      <div id="top-bar-subpoints">
+        <p class="active">Business</p>
+        <p>Pricing</p>
+        <p>Features</p>
+        <p>About</p>
       </div>
 
-      <div class="section section-two">
-        <div class="positionVideo">
-          <div class="video-section">
-            <img src="{{ url_for('static', filename='/landing_page/img/img_webview_editor.png') }}"
-            />
-          </div>
+      <div id="top-bar-section-right">
+        <div id="top-bar-login" class="right-section-container">
+          <p>Login</p>
+        </div>
+
+        <div id="top-bar-sign" class="right-section-container">
+          <p>Sign up</p>
         </div>
       </div>
+    </div>
 
-      <div class="section section-realtime">
-        <div class="section-realtime-header">
-          <p>Realtime</p>
-          <p>No need to wait for the latest news.</p>
-        </div>
-        <div class="section-realtime-main">
-          <div class="section-realtime-main-image">
-            <div class="section-realtime-main-image-container"></div>
-          </div>
 
-          <div class="section-realtime-main-messages">
-            <div class="message left-message">
-              <p>Hi Willy. We need to talk.</p>
-            </div>
-            <div class="message right-message">
-              <p>Can I call you later? I'm at an appointment.</p>
-            </div>
-            <div class="message right-message">
-              <p>Don't forget about our upcoming presentation.</p>
-            </div>
-            <div class="message left-message">
-              <p>I am breaking up with you.</p>
-            </div>
-            <div class="message right-message">
-              <p>Heard about the new Slidea update? It's great!</p>
-            </div>
-            <div class="message right-message">
-              <img
-                width="100%;"
-                style="border-radius: 5px"
-                src="{{ url_for('static', filename='/landing_page/img/party-gif.gif') }}"
-              />
-            </div>
-          </div>
+    <div id="first-section-intro">
 
-          <div
-            class="section-realtime-main-image"
-            style="justify-content: flex-end"
-          >
-            <div
-              class="section-realtime-main-image-container"
-              style="background-position-x: right"
-            ></div>
-          </div>
-        </div>
-        <div class="section-realtime-bottom">
-          <p>Bad times? We are <span class="lp_bt_here_click is-link">here</span> for you.</p>
-        </div>
+      <div class="company-element" style="left: 10%; top: 80%;"></div>
+      <div class="company-element" style="left: 19%; top: 70%;"></div>
+      <div class="company-element" style="left: 0%; top: 56%;"></div>
+      <div class="company-element" style="left: 14%; top: 50%;"></div>
+      <div class="company-element" style="left: 9%; top: 30%;"></div>
+      <div class="company-element" style="left: -1%; top: 25%;"></div>
+
+      <div class="company-element" style="right: 4%; top: 25%;"></div>
+      <div class="company-element" style="right: 18%; top: 33%;"></div>
+      <div class="company-element" style="right: 7%; top: 42%;"></div>
+      <div class="company-element" style="right: 19%; top: 58%;"></div>
+      <div class="company-element" style="right: -4%; top: 61%;"></div>
+
+      <div class="company-element" style="right: 8%; top: 71%;"></div>
+
+      <h1>Manage and create presentations with your friends <br> in realtime and with video</h1>
+      <img src={{ url_for('static', filename="landing_page/img/img_webview_editor_macbookgrey_front.png" ) }} id="first-section-img" />
+    </div>
+
+
+
+    <div id="second-section">
+      <div id="second-section-left">
+        <p id="trial">90 Days free trial</p>
+        <h1 id="second-section-title">Life Should <br> Be Easy.</h1>
+        <p style="opacity: 0.8;">create presentations remotely<br> using a electronic device such as a<br> laptop or tablet.</p>
+        <div id="get-started-button"><p>Get started</p></div>
       </div>
+      <div id="second-section-right"></div>
+    </div>
 
-      <div class="section section-users">
-        <div class="positionUsers">
-          <div class="images-section">
-            <div class="flex-container"></div>
-            <div class="flex-container"></div>
-            <div class="flex-container"></div>
+    <div class="vert-spacer"></div>
+
+
+    <div id="newsletter-section">
+      <h1>Subscribe Newsletter</h1>
+      <p>We will notify you about the latest changes of slidea.</p>
+      <div id="notify-container">
+        <input type="text" id="notify-newsletter-input" placeholder="Enter your email." />
+        <div id="subscribe-newsletter"><p>Subscribe</p></div>
+      </div>
+    </div>
+
+
+    <div id="footer-section">
+      <div id="footer-column-first">
+        <h1>Slidea</h1>
+        <p>presentations remotely<br>with videochat and realtime.</p>
+
+        <div id="social-media-buttons">
+          <div class="social-media-btn">
+            <ion-icon name="logo-facebook"></ion-icon>
+          </div>
+          <div class="social-media-btn">
+            <ion-icon name="logo-twitter"></ion-icon>
+          </div>
+          <div class="social-media-btn">
+            <ion-icon name="logo-instagram"></ion-icon>
           </div>
 
-          <div class="section-users-text">
-            <p id="usercount">4 users.</p>
-            <p>Great experience.</p>
-            <p>Excellent taste in presentation software.</p>
-          </div>
         </div>
+
+
+        <h3>Copyright © 2021 slidea.bastiarts.com</h3>
       </div>
-
-      <div class="section section-templates">
-        <div class="positionTemplates">
-        <div class="grid-container">
-          <div class="grid-templates">
-            <p>New Templates</p>
-            <p>Countless ways to<br> rearrange your Slides.</p>
-            <p>
-              Choose from the most new Templates ever, then customise them to
-              match your mood, style, or favourite activity.
-            </p>
-          </div>
-        </div>
+      <div id="footer-column-second">
+        <h2>Slidea</h2>
+        <h4>About</h4>
+        <h4>Terms of Use</h4>
+        <h4>Privacy Policy</h4>
+        <h4>How it Works</h4>
+        <h4>Contact Us</h4>
       </div>
-      <div class="footer">
-        <div class="footer-content">
-          <p>Copyright © 2020 Slidea Inc. All rights reserved. </p>
-          <p style="margin-left: auto;" class="lp_bt_privacy_click is-link">Privacy Policy</p>
-          <div class="horizontal-splitter"></div>
-          <p class="lp_bt_tos_click is-link">Terms of Service</p>
-          <p style="margin-left: auto;">Austria</p>
-        </div>
+      <div id="footer-column-third">
+        <h2>Support</h2>
+        <h4>Support Center</h4>
+        <h4>24h Service</h4>
+        <h4>Quick Chat</h4>
       </div>
-        </div>
+      <div id="footer-column-fourth">
+        <h2>Contact</h2>
+        <h4>WhatsApp</h4>
+        <h4>Mail</h4>
+        <h3 style="margin-top: auto !important">Created by <b>Slidea</b></h3>
+
       </div>
-
-    <script type="text/javascript" src="https://unpkg.com/fullpage.js/dist/fullpage.min.js"></script>
-
-    <script type="text/javascript" src="{{ url_for('static', filename='/landing_page/js/eventhandler.js') }}" ></script>
-
-
-
+    </div>
 
   </body>
 </html>

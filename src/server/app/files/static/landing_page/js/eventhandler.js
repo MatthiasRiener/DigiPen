@@ -1,7 +1,11 @@
 // This is where all events are 
 
 window.onload = function () {
-    fillObjects();
+
+    if (window.innerWidth > 480) {
+        fillObjects();
+
+    }
     insertUsers();
     fillTemplates();
 }
