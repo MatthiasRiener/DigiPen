@@ -544,11 +544,12 @@ body {
 
 #section-templates-title {
     width: 80%;
-    font-size: 2rem;
+    font-size: 2.6rem;
 }
 
 #section-templates-subtitle {
     width: 80%;
+    font-size: 1.2rem;
 }
 
 #slideshow-container {
