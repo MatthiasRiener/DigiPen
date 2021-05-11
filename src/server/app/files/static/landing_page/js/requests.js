@@ -1,3 +1,5 @@
 sendRequestToServer({type: "GET", url: "/matthiasriener"}).then(data => {
-    $('#usercount').text(data.userCount + ' users.');
+    console.log("insertingh users")
+    console.log(data);
+    $('#userCount').text(data.userCount);
 });

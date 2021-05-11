@@ -1,149 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Slidea</title>
 
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Karla"
-    />
-    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slidea</title>
 
-    <link rel="stylesheet" type="text/css" media="(max-width: 480px)  " href="{{ url_for('static', filename='/landing_page/css/mobile-version.css') }}" />
-    <link rel="stylesheet" type="text/css" media="(min-width: 481px)  " href="{{ url_for('static', filename='/landing_page/css/style.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/landing_page/css/variables.css') }}" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karla" />
+  <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.js"
-      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-      crossorigin="anonymous"
-    ></script>
+  <link rel="stylesheet" type="text/css" media="(max-width: 480px)  "
+    href="{{ url_for('static', filename='/landing_page/css/mobile-version.css') }}" />
+  <link rel="stylesheet" type="text/css" media="(min-width: 481px)  "
+    href="{{ url_for('static', filename='/landing_page/css/style.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/landing_page/css/variables.css') }}" />
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/fullpage.js/dist/fullpage.min.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap" rel="stylesheet">
 
-    <script src={{ url_for('static', filename="authentication/auth_flow.js") }} type="text/javascript"></script>
-    
-    <script src={{ url_for('static', filename="landing_page/js/requests.js") }} type="text/javascript" defer></script>
-    <script src={{ url_for('static', filename="landing_page/js/loadCompanies.js") }} type="text/javascript" defer></script>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/fullpage.js/dist/fullpage.min.css" />
 
-  </head>
-  <body>
-    
-    <div class="top-bar">
-      <p id="logo">Slidea</p>
-      <div id="top-bar-subpoints">
-        <p class="active">Business</p>
-        <p>Pricing</p>
-        <p>Features</p>
-        <p>About</p>
+  <script src={{ url_for('static', filename="authentication/auth_flow.js" ) }} type="text/javascript"></script>
+
+  <script src={{ url_for('static', filename="landing_page/js/requests.js" ) }} type="text/javascript" defer></script>
+  <script src={{ url_for('static', filename="landing_page/js/loadCompanies.js" ) }} type="text/javascript"
+    defer></script>
+
+    <script src={{ url_for('static', filename="landing_page/js/eventhandler.js" ) }} type="text/javascript"
+    defer></script>
+
+</head>
+
+<body>
+
+  <div class="top-bar">
+    <p id="logo">Slidea</p>
+    <div id="top-bar-subpoints">
+      <p class="active">Business</p>
+      <p>Pricing</p>
+      <p>Features</p>
+      <p>About</p>
+    </div>
+
+    <div id="top-bar-section-right">
+      <div id="top-bar-login" class="right-section-container">
+        <p>Login</p>
       </div>
 
-      <div id="top-bar-section-right">
-        <div id="top-bar-login" class="right-section-container">
-          <p>Login</p>
+      <div id="top-bar-sign" class="right-section-container">
+        <p>Sign up</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="first-section-intro">
+
+    <div class="company-element" style="left: 10%; top: 80%;"></div>
+    <div class="company-element" style="left: 19%; top: 70%;"></div>
+    <div class="company-element" style="left: 0%; top: 56%;"></div>
+    <div class="company-element" style="left: 14%; top: 50%;"></div>
+    <div class="company-element" style="left: 9%; top: 30%;"></div>
+    <div class="company-element" style="left: -1%; top: 25%;"></div>
+
+    <div class="company-element" style="right: 4%; top: 25%;"></div>
+    <div class="company-element" style="right: 18%; top: 33%;"></div>
+    <div class="company-element" style="right: 7%; top: 42%;"></div>
+    <div class="company-element" style="right: 19%; top: 58%;"></div>
+    <div class="company-element" style="right: -4%; top: 61%;"></div>
+
+    <div class="company-element" style="right: 8%; top: 71%;"></div>
+
+    <h1>Manage and create presentations with your friends <br> in realtime and with video</h1>
+    <img src={{ url_for('static', filename="landing_page/img/img_webview_editor_macbookgrey_front.png" ) }}
+      id="first-section-img" />
+  </div>
+
+  <div class="vert-spacer"></div>
+
+  <div id="work-with-us-section">
+    <div id="work-with-left-section">
+      <h1 id="work-with-title">Work together <br> with more than <br><b id="userCount">50,000</b> active <br>users.</h1>
+      <p>Create your presentations with your friends <br>share your slides with everyone else.</p>
+
+      <div id="work-with-buttons">
+        <div id="work-with-get-started">
+          <p>Get started</p>
         </div>
 
-        <div id="top-bar-sign" class="right-section-container">
-          <p>Sign up</p>
+        <div id="work-with-watch-demo">
+          <p>Watch demo</p>
         </div>
       </div>
     </div>
-
-
-    <div id="first-section-intro">
-
-      <div class="company-element" style="left: 10%; top: 80%;"></div>
-      <div class="company-element" style="left: 19%; top: 70%;"></div>
-      <div class="company-element" style="left: 0%; top: 56%;"></div>
-      <div class="company-element" style="left: 14%; top: 50%;"></div>
-      <div class="company-element" style="left: 9%; top: 30%;"></div>
-      <div class="company-element" style="left: -1%; top: 25%;"></div>
-
-      <div class="company-element" style="right: 4%; top: 25%;"></div>
-      <div class="company-element" style="right: 18%; top: 33%;"></div>
-      <div class="company-element" style="right: 7%; top: 42%;"></div>
-      <div class="company-element" style="right: 19%; top: 58%;"></div>
-      <div class="company-element" style="right: -4%; top: 61%;"></div>
-
-      <div class="company-element" style="right: 8%; top: 71%;"></div>
-
-      <h1>Manage and create presentations with your friends <br> in realtime and with video</h1>
-      <img src={{ url_for('static', filename="landing_page/img/img_webview_editor_macbookgrey_front.png" ) }} id="first-section-img" />
+    <div id="work-with-right-section">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+  </div>
 
+  <div class="vert-spacer"></div>
 
+  <div id="section-pricing">
+    <h1>Our pricing</h1>
+    <p>We currently offer our product in simple packages. Prices will be <b>billed annually.</b></p>
 
-    <div id="second-section">
-      <div id="second-section-left">
-        <p id="trial">90 Days free trial</p>
-        <h1 id="second-section-title">Life Should <br> Be Easy.</h1>
-        <p style="opacity: 0.8;">create presentations remotely<br> using a electronic device such as a<br> laptop or tablet.</p>
-        <div id="get-started-button"><p>Get started</p></div>
-      </div>
-      <div id="second-section-right"></div>
-    </div>
+    <div id="pricing-container">
+      <div class="pricing-sub-element" style="border-top-right-radius: 0px; border-bottom-right-radius: 0px">
+        <h3>Basic</h3>
+        <p class="pricing-price-sub">Free</p>
+        <div class="pricing-spacer"></div>
+        <p>Create up to 3 presentations</p>
+        <div class="pricing-spacer"></div>
+        <p>2 Users allowed</p>
+        <div class="pricing-spacer"></div>
+        <p>Send up to 8MB</p>
+        <div class="pricing-spacer"></div>
 
-    <div class="vert-spacer"></div>
-
-
-    <div id="newsletter-section">
-      <h1>Subscribe Newsletter</h1>
-      <p>We will notify you about the latest changes of slidea.</p>
-      <div id="notify-container">
-        <input type="text" id="notify-newsletter-input" placeholder="Enter your email." />
-        <div id="subscribe-newsletter"><p>Subscribe</p></div>
-      </div>
-    </div>
-
-
-    <div id="footer-section">
-      <div id="footer-column-first">
-        <h1>Slidea</h1>
-        <p>presentations remotely<br>with videochat and realtime.</p>
-
-        <div id="social-media-buttons">
-          <div class="social-media-btn">
-            <ion-icon name="logo-facebook"></ion-icon>
-          </div>
-          <div class="social-media-btn">
-            <ion-icon name="logo-twitter"></ion-icon>
-          </div>
-          <div class="social-media-btn">
-            <ion-icon name="logo-instagram"></ion-icon>
-          </div>
-
+        <div class="pricing-learn-more sub-pricing-button">
+          <p>Learn more</p>
         </div>
 
+      </div>
 
-        <h3>Copyright © 2021 slidea.bastiarts.com</h3>
-      </div>
-      <div id="footer-column-second">
-        <h2>Slidea</h2>
-        <h4>About</h4>
-        <h4>Terms of Use</h4>
-        <h4>Privacy Policy</h4>
-        <h4>How it Works</h4>
-        <h4>Contact Us</h4>
-      </div>
-      <div id="footer-column-third">
-        <h2>Support</h2>
-        <h4>Support Center</h4>
-        <h4>24h Service</h4>
-        <h4>Quick Chat</h4>
-      </div>
-      <div id="footer-column-fourth">
-        <h2>Contact</h2>
-        <h4>WhatsApp</h4>
-        <h4>Mail</h4>
-        <h3 style="margin-top: auto !important">Created by <b>Slidea</b></h3>
 
+      <div class="pricing-main-element">
+        <h3>Professional</h3>
+        <p class="pricing-price-sub">$ 4.99</p>
+        <div class="pricing-spacer"></div>
+        <p>Create up to 5 presentations</p>
+        <div class="pricing-spacer"></div>
+        <p>2 Users allowed</p>
+        <div class="pricing-spacer"></div>
+        <p>Send up to 8MB</p>
+        <div class="pricing-spacer"></div>
+
+        <div class="pricing-learn-more main-pricing-button">
+          <p>Learn more</p>
+        </div>
+      </div>
+
+
+      <div class="pricing-sub-element" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">
+        <h3>Master</h3>
+        <p class="pricing-price-sub">$ 12.99</p>
+        <div class="pricing-spacer"></div>
+        <p>Create up to 3 presentations</p>
+        <div class="pricing-spacer"></div>
+        <p>2 Users allowed</p>
+        <div class="pricing-spacer"></div>
+        <p>Send up to 8MB</p>
+        <div class="pricing-spacer"></div>
+
+        <div class="pricing-learn-more sub-pricing-button">
+          <p>Learn more</p>
+        </div>
       </div>
     </div>
+  </div>
 
-  </body>
+  <div class="vert-spacer"></div>
+
+
+  <div id="second-section">
+    <div id="second-section-left">
+      <p id="trial">90 Days free trial</p>
+      <h1 id="second-section-title">Life Should <br> Be Easy.</h1>
+      <p style="opacity: 0.8;">create presentations remotely<br> using a electronic device such as a<br> laptop or
+        tablet.</p>
+      <div id="get-started-button">
+        <p>Get started</p>
+      </div>
+    </div>
+    <div id="second-section-right"></div>
+  </div>
+
+
+
+  <div id="newsletter-section">
+    <h1>Subscribe Newsletter</h1>
+    <p>We will notify you about the latest changes of slidea.</p>
+    <div id="notify-container">
+      <input type="text" id="notify-newsletter-input" placeholder="Enter your email." />
+      <div id="subscribe-newsletter">
+        <p>Subscribe</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="footer-section">
+    <div id="footer-column-first">
+      <h1>Slidea</h1>
+      <p>presentations remotely<br>with videochat and realtime.</p>
+
+      <div id="social-media-buttons">
+        <div class="social-media-btn">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </div>
+        <div class="social-media-btn">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </div>
+        <div class="social-media-btn">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </div>
+
+        <div class="social-media-btn">
+          <ion-icon name="logo-linkedin"></ion-icon>
+        </div>
+
+      </div>
+
+
+      <h3>Copyright © 2021 slidea.bastiarts.com</h3>
+    </div>
+    <div id="footer-column-second">
+      <h2>Slidea</h2>
+      <h4>About</h4>
+      <h4>Terms of Use</h4>
+      <h4>Privacy Policy</h4>
+      <h4>How it Works</h4>
+      <h4>Contact Us</h4>
+    </div>
+    <div id="footer-column-third">
+      <h2>Support</h2>
+      <h4>Support Center</h4>
+      <h4>24h Service</h4>
+      <h4>Quick Chat</h4>
+    </div>
+    <div id="footer-column-fourth">
+      <h2>Contact</h2>
+      <h4>WhatsApp</h4>
+      <h4>Mail</h4>
+      <h3 style="margin-top: auto !important">Created by <b>Slidea</b></h3>
+
+    </div>
+  </div>
+
+</body>
+
 </html>

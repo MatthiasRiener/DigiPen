@@ -1,132 +1,14 @@
-// This is where all events are 
+const containers = $('#work-with-right-section div');
 
-window.onload = function () {
+containers.eq(0).append(`<img src="${baseURL}/static/landing_page/img/users/user_2.png" />`);
+containers.eq(0).append(`<img src="https://images.unsplash.com/photo-1506863530036-1efeddceb993?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fHBvcnRyYWl0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />`);
+containers.eq(0).append(`<img src="https://images.unsplash.com/photo-1504834636679-cd3acd047c06?ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODN8fHBvcnRyYWl0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />`);
 
-    if (window.innerWidth > 480) {
-        fillObjects();
+// 
+containers.eq(1).append(`<img src="https://images.unsplash.com/photo-1499651681375-8afc5a4db253?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzJ8fHBvcnRyYWl0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />`);
 
-    }
-    insertUsers();
-    fillTemplates();
-}
+containers.eq(1).append(`<img src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjZ8fHBvcnRyYWl0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />`);
 
-new fullpage('#fullpage', {
+containers.eq(1).append(`<img src="https://images.unsplash.com/photo-1520998116484-6eeb2f72b5b9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDd8fHBvcnRyYWl0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />`);
 
-});
-
-function fillObjects() {
-    var objects = [{
-        "radius": 25,
-        "color": "#EB328D",
-        "top": 15,
-        "left": 20
-    },
-    {
-        "radius": 22,
-        "color": "#00B285",
-        "top": 20,
-        "left": 67
-    },
-    {
-        "radius": 14,
-        "color": "#F6D05A",
-        "top": 30,
-        "left": 25
-    },
-    {
-        "radius": 16,
-        "color": "#D2352F",
-        "top": 50,
-        "left": 20
-    },
-    {
-        "radius": 19,
-        "color": "#73E7E8",
-        "top": 30,
-        "left": 65
-    },
-    {
-        "radius": 23,
-        "color": "#4360E5",
-        "top": 42,
-        "left": 76
-    },
-    {
-        "radius": 22,
-        "color": "#7C18EA",
-        "top": 40,
-        "left": 30
-    },
-    ];
-
-    objects.forEach((el) => {
-        document.getElementsByClassName("header-section")[0].innerHTML +=
-            `<div class="object-header" style="width:${el.radius}px;height:${el.radius}px; top:${el.top}vh;left:${el.left}vw; background:${el.color}"></div>`;
-    })
-}
-
-let users = [];
-let index, picture;
-const PICTURECOUNT = 16;
-
-function insertUsers() {
-    for (let i = 1; i <= 15; i++) {
-        $('.flex-container').eq(Math.ceil(i / 5) - 1).append(`<div class="flex-item" style="background-image: url(${baseURL}/static/landing_page/img/users/user_${i}.png)"></div>`)
-        users[i] = i;
-    }
-}
-
-function updateUsers() {
-
-    // rewriting method
-
-    
-    let counter = 0;
-    do {
-        index = Math.floor(Math.random() * users.length);
-        picture = Math.floor(Math.random() * PICTURECOUNT) + 1;
-        counter++;
-        if (counter == 200) {
-            return;
-        }
-    } while (users.includes(picture));
-    
-
-    users[index] = picture;
-    $(`.flex-item:eq(${index - 1})`).css('background-image', `url(${baseURL}/static/landing_page/img/users/user_${picture}.png)`);
-}
-
-setInterval(updateUsers, 3000);
-
-function fillTemplates() {
-    for (let i = 1; i <= 3; i++) {
-        $('.grid-container').eq(0).append(`<div class="grid-templates" style="background-image: url(${baseURL}/static/landing_page/img/templates/template_${i}.png)"></div>`);
-    }
-}
-
-/* Navigation */
-
-
-$('body').on('click', '#nav-bar-sign-up-div', function () {
-    window.location = "/auth/login";
-});
-
-$('body').on('click', '.nav-bar-login', function () {
-    window.location = "/auth/login";
-});
-
-$('body').on('click', '.lp_bt_register_click', function () {
-    window.location = "/auth/login";
-});
-
-$('body').on('click', '.lp_bt_here_click', function () {
-    window.location = "/";
-});
-
-$('body').on('click', '.lp_bt_privacy_click', function () {
-    window.location = "../../src/terms_of_service/index.html";
-});
-
-$('body').on('click', '.lp_bt_tos_click', function () {
-    window.location = "../../src/terms_of_service/index.html";
-});
+containers.eq(2).append(`<img src="https://images.unsplash.com/photo-1541271696563-3be2f555fc4e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTA5fHxwb3J0cmFpdHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />`);
