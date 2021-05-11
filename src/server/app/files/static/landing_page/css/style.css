@@ -81,6 +81,7 @@ body {
 
 
 #first-section-intro {
+    padding-top: 10vh;
     width: 100%;
     height: auto;
     position: relative;
@@ -420,7 +421,7 @@ body {
 
 
 .pricing-price-sub {
-    font-size: 4rem !important;
+    font-size: 3rem !important;
     font-weight: bold;
     margin: 0 !important;
     color: black;
@@ -530,4 +531,72 @@ body {
     height: auto;
     margin: 5%;
     border-radius: 5px;
+}
+
+
+#section-templates {
+    width: 100%;
+    height: auto;    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#section-templates-title {
+    width: 80%;
+    font-size: 2rem;
+}
+
+#section-templates-subtitle {
+    width: 80%;
+}
+
+#slideshow-container {
+    width: 100%;
+    height: 40vh;
+    margin-top: 5vh;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.slideshow-item {
+    height: 75%;
+    width:30% !important;
+    margin: .5vw;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+
+    background-size: cover;
+    background-position: center;
+
+    border-radius: 15px;
+
+    box-shadow: 0 1px 1px rgba(0,0,0,0.11), 
+    0 2px 2px rgba(0,0,0,0.11), 
+    0 4px 4px rgba(0,0,0,0.11), 
+    0 8px 8px rgba(0,0,0,0.11), 
+    0 16px 16px rgba(0,0,0,0.11), 
+    0 32px 32px rgba(0,0,0,0.11);
+}
+
+.slideshow-item:nth-child(even) {
+    margin-top: -3vh;
+}
+
+.slideshow-item:nth-child(odd) {
+    margin-top: 3vh;
+}
+
+
+.slideshow-item > p {
+    margin: 1rem !important;
+    color: white;
 }

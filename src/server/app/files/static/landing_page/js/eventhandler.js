@@ -91,3 +91,55 @@ mouse.setOrigin(firstSection);
 firstSection.onmouseenter = onMouseEnterHandler;
 firstSection.onmouseleave = onMouseLeaveHandler;
 firstSection.onmousemove = onMouseMoveHandler;
+
+
+
+
+const SMALL_DEVICE = 1050;
+
+$(document).ready(function() {
+    var width = $(window).width();
+
+    if (width < SMALL_DEVICE) {
+        $('.company-element').css("visibility", "hidden");
+    } else {
+        $('.company-element').css("visibility", "visible");
+    }  
+})
+
+$(window).resize(function() {
+    var width = $(window).width();
+
+    if (width < SMALL_DEVICE) {
+        $('.company-element').css("visibility", "hidden");
+    } else {
+        $('.company-element').css("visibility", "visible");
+    }
+})
+
+
+
+$('.faq_question').click(function() {
+
+    if ($(this).parent().is('.open')) {
+        $(this).closest('.faq').find('.faq_answer_container').slideUp();
+        $(this).closest('.faq').removeClass('open');
+    } else {
+        $('.faq_answer_container').slideUp();
+        $('.faq').removeClass('open');
+        $(this).closest('.faq').find('.faq_answer_container').slideDown();
+        $(this).closest('.faq').addClass('open');
+    }
+
+});
+
+
+
+// 
+
+
+$('.slideshow-item').eq(0).css('background-image', `url("https://images.unsplash.com/photo-1620550580806-9426033a77a3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1001&q=80")`);
+
+$('.slideshow-item').eq(1).css('background-image', `url("https://images.unsplash.com/photo-1423768164017-3f27c066407f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80")`)
+
+$('.slideshow-item').eq(2).css('background-image', `url("https://images.unsplash.com/photo-1504309092620-4d0ec726efa4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80")`)
