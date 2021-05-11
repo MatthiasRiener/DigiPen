@@ -82,7 +82,7 @@ body {
 
 #first-section-intro {
     width: 100%;
-    height: 90vh;
+    height: auto;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -191,8 +191,8 @@ body {
     width: 80%;
     height: 3px;
     background: rgba(0,0,0,0.11);
-    margin-top: 8vh;
-    margin-bottom: 8vh;
+    margin-top: 8vh !important;
+    margin-bottom: 8vh !important;
     border-radius: 10px;
     filter: blur(10);
 }
@@ -358,7 +358,7 @@ body {
 
 #section-pricing {
     width: 100%;
-    height: 75vh;
+    height: auto;
 
     display: flex;
     flex-direction: column;
@@ -466,7 +466,7 @@ body {
 
 #work-with-us-section {
     width: 100%;
-    height: 80vh;
+    height: auto;
     display: flex;
     flex-direction: row;
 }
