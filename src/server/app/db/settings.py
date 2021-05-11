@@ -4,7 +4,7 @@ from flask_jwt_extended import JWTManager
 from flask_socketio import SocketIO
 from flask_pymongo import PyMongo
 
-IS_SERVER = False
+IS_SERVER = True
 
 
 jwt = JWTManager()
