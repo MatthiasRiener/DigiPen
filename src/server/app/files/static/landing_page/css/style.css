@@ -470,7 +470,7 @@ body {
 
 
 #work-with-us-section {
-    width: 100%;
+    width: 90%;
     height: auto;
     display: flex;
     flex-direction: row;
@@ -670,4 +670,39 @@ body {
     text-align: right;
 
     color: white;
+}
+
+
+#section-special {
+    width: 70%;
+    height: 60vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#section-special > h1 {
+    font-size: 3rem;
+    padding: 0 !important;
+}
+
+#section-special-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 3vh;
+}
+
+
+.feature-container {
+    width: 29%;
+    height: auto;
+}
+
+.feature-container > h3 {
+    font-size: 1.6rem;
+    color: #7289da;
 }
