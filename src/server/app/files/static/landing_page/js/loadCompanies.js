@@ -11,7 +11,7 @@ $(document).ready(function(){
             clearInterval(insertImgInterval);
         }
         curIndex++;
-    }, 400);
+    }, 150);
     // left side test
 
 })

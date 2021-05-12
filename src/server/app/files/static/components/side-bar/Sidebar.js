@@ -72,17 +72,13 @@ class Sidebar extends HTMLElement {
         let node = document.createElement('style');
         node.innerHTML = data;
         this.shadowRoot.appendChild(node);
-        this.calculateWorkspaceWidth();
       });
   }
   connectedCallback() {
 
   }
 
-  calculateWorkspaceWidth() {
-    var workSpace = this.shadowRoot.querySelector('.cur-workspace');
-    workSpace.style.width = `${workSpace.getBoundingClientRect().height}px`;
-  }
+  
 
   disconnectedCallback() {
 
