@@ -70,7 +70,8 @@ sendRequestToServer({
     url: "/dashboard/getOwnPresentations"
 }).then(data => {
 
-
+    console.log("Meine Presentationen")
+    console.log(data);
     
     var canvas = new fabric.Canvas();
     canvas.enableGLFiltering = false;
