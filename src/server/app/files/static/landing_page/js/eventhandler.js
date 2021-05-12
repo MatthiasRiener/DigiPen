@@ -143,3 +143,79 @@ $('.slideshow-item').eq(0).css('background-image', `url("https://images.unsplash
 $('.slideshow-item').eq(1).css('background-image', `url("https://images.unsplash.com/photo-1423768164017-3f27c066407f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80")`)
 
 $('.slideshow-item').eq(2).css('background-image', `url("https://images.unsplash.com/photo-1504309092620-4d0ec726efa4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80")`)
+
+
+
+
+// slideshow stuff
+
+var slideIndex = 0, maxSlides = $('.how-it-works-slider-item').length;
+
+$('.slider-left').click(function() {
+
+    if (slideIndex > 0) {
+        slideIndex--;
+        changeSlide();
+    } else {
+        centerSlideShow();
+    }
+});
+
+
+$('.slider-right').click(function() {
+
+    if (slideIndex < maxSlides - 1) {
+        slideIndex++;
+        changeSlide();
+    } else {
+        centerSlideShow();
+    }
+
+});
+
+
+
+const slideArray = [
+    {
+        title: "Los geht's!",
+        text: "Lade Discord herunter, wo immer du bist – auf deinen PC, Mac oder dein Smartphone. Einen Account zu erstellen, ist einfach. Du brauchst nur eine E-Mail und einen Namen. Sei du selbst und wähle deinen bevorzugten Nicknamen.",
+    },
+    {
+        title: "Erstelle deinen Discord-Server",
+        text: "Dein Server ist ein Ort, den man nur mit Einladung betreten kann und an dem du dich mit deinen Communitys und Freunden unterhalten kannst. Unterteile deinen Server in verschiedene Textkanäle, in denen du über all die Dinge sprechen kannst, die du liebst.",
+    },
+    {
+        title: "Rede drauflos",
+        text: "Mach es dir in einem Sprachkanal gemütlich, wenn du Zeit hast, und Freunde können problemlos über Sprach- oder Videochat vorbeischauen.",
+    },
+    {
+        title: "Hänge mit Freunden ab",
+        text: "Mit unserer Videotechnologie kannst du deinen Bildschirm direkt für andere übertragen. Streame ein Spiel mit Freunden, zeig deine Kunst live oder stell dich einer Gruppe mit nur einem Klick vor.",
+    },
+    {
+        title: "Organisiere deine Mitglieder",
+        text: "Passe den Zugriff für Mitglieder mithilfe von Rollen an. So kannst du Moderatoren ernennen, Fans besondere Belohnungen geben oder Arbeitsgruppen erstellen, die du alle auf einmal anschreiben kannst.",
+    },
+    
+];
+
+
+function changeSlide() {
+    console.log(slideIndex);
+
+    $('.how-it-works-dot').removeClass("active-dot");
+    $('.how-it-works-dot').eq(slideIndex).addClass("active-dot");
+    $('#showing-feature-title').html(slideArray[slideIndex].title);
+    $('#showing-feature-text').html(slideArray[slideIndex].text);
+
+    var distance = (-1) * slideIndex * 40;
+
+    $('#how-it-works-slider').css("transform", `translateX(${distance}vw)`);
+
+}
+
+function centerSlideShow() {
+    slideIndex = maxSlides / 2 - 0.5;
+    console.log("centering to slide", slideIndex);
+    changeSlide();
+}
