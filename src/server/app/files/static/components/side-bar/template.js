@@ -2,7 +2,7 @@
 export const template = `
         <div class="left-side-content">
          
-        <div id="teams-title" style="margin-bottom: 2vh">
+        <div id="teams-title" >
           <p>Navigation</p> 
         </div>
 
@@ -24,7 +24,7 @@ export const template = `
 
          
 
-          <div class="nav-bar-element quiz-item">
+          <div class="nav-bar-element quiz-item soon-item">
             <ion-icon name="stats-chart" class="icon-navbar"></ion-icon>
             <p>Quiz</p>
             <div class="soon-btn"><p>Soon</p></div>
