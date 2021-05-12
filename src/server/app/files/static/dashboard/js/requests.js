@@ -80,7 +80,7 @@ sendRequestToServer({
     //canvas.setHeight($('#invisibleCanvas').height());
 
     data.res.forEach(presentation => {
-        if (presentation.canvas == null) {
+        if (presentation.canvas[0] == null) {
             return;
         }
 
