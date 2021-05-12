@@ -211,9 +211,13 @@ const slideArray = [
 
 
 $('#section-how-it-works').click(function (event) {
-    console.log(event.clientX)
+    console.log(event.target.classList)
     var windowWidth = window.innerWidth;
     var clickedPosX = event.clientX;
+
+    if (event.target.classList.contains("slideshow-element")) {
+        return;
+    }
 
     if (clickedPosX <= windowWidth / 2) {
         goLeft();

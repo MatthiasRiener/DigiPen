@@ -1,4 +1,4 @@
-const isServer = true;
+const isServer = false;
 let baseURL;
 
 if (isServer) {
