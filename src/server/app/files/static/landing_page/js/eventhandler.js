@@ -97,17 +97,17 @@ firstSection.onmousemove = onMouseMoveHandler;
 
 const SMALL_DEVICE = 1050;
 
-$(document).ready(function() {
+$(document).ready(function () {
     var width = $(window).width();
 
     if (width < SMALL_DEVICE) {
         $('.company-element').css("visibility", "hidden");
     } else {
         $('.company-element').css("visibility", "visible");
-    }  
+    }
 })
 
-$(window).resize(function() {
+$(window).resize(function () {
     var width = $(window).width();
 
     if (width < SMALL_DEVICE) {
@@ -119,7 +119,7 @@ $(window).resize(function() {
 
 
 
-$('.faq_question').click(function() {
+$('.faq_question').click(function () {
 
     if ($(this).parent().is('.open')) {
         $(this).closest('.faq').find('.faq_answer_container').slideUp();
@@ -151,28 +151,37 @@ $('.slideshow-item').eq(2).css('background-image', `url("https://images.unsplash
 
 var slideIndex = 0, maxSlides = $('.how-it-works-slider-item').length;
 
-$('.slider-left').click(function() {
+$('.slider-left').click(function () {
+    goLeft();
+});
+
+
+$('.slider-right').click(function () {
+    goRight();
+});
+
+function goLeft() {
 
     if (slideIndex > 0) {
         slideIndex--;
-        changeSlide();
     } else {
-        centerSlideShow();
+        slideIndex = maxSlides - 1;
     }
-});
 
+    changeSlide();
 
-$('.slider-right').click(function() {
+}
 
+function goRight() {
     if (slideIndex < maxSlides - 1) {
         slideIndex++;
-        changeSlide();
     } else {
-        centerSlideShow();
+        slideIndex = 0;
     }
 
-});
+    changeSlide();
 
+}
 
 
 const slideArray = [
@@ -196,9 +205,22 @@ const slideArray = [
         title: "Organisiere deine Mitglieder",
         text: "Passe den Zugriff für Mitglieder mithilfe von Rollen an. So kannst du Moderatoren ernennen, Fans besondere Belohnungen geben oder Arbeitsgruppen erstellen, die du alle auf einmal anschreiben kannst.",
     },
-    
+
 ];
 
+
+
+$('#section-how-it-works').click(function (event) {
+    console.log(event.clientX)
+    var windowWidth = window.innerWidth;
+    var clickedPosX = event.clientX;
+
+    if (clickedPosX <= windowWidth / 2) {
+        goLeft();
+    } else {
+        goRight();
+    }
+});
 
 function changeSlide() {
     console.log(slideIndex);
@@ -212,10 +234,4 @@ function changeSlide() {
 
     $('#how-it-works-slider').css("transform", `translateX(${distance}vw)`);
 
-}
-
-function centerSlideShow() {
-    slideIndex = maxSlides / 2 - 0.5;
-    console.log("centering to slide", slideIndex);
-    changeSlide();
 }
