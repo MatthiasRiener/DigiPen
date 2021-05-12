@@ -385,6 +385,10 @@ body {
     align-items: center;
 }
 
+#pricing-container > div > p {
+    text-align: center !important;
+}
+
 .pricing-sub-element {
     width: 30%;
     background: white;
@@ -413,7 +417,7 @@ body {
 .pricing-main-element {
     width: 30%;
     z-index: 2;
-    background: #6050B5;
+    background: #7289da;
 
     padding-top: 3vh;
     padding-bottom: 3vh;
@@ -444,7 +448,7 @@ body {
 }
 
 .sub-pricing-button {
-    background: #6050B5;
+    background: #7289da;
     color: white !important;
 }
 .main-pricing-button {
@@ -599,5 +603,71 @@ body {
 
 .slideshow-item > p {
     margin: 1rem !important;
+    color: white;
+}
+
+#section-customers {
+    width: 90%;
+    height: auto;
+}
+
+#section-customers > h1 {
+    font-size: 2.4rem;
+}
+
+#section-customers > p {
+    font-size: 1.1rem;
+}
+
+
+#customers-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.customer-bubble {
+    width: 29%;
+    height: auto;
+
+    
+    padding: 2vh 2vh 2vh 2vh;
+    background: #7289da;
+
+    border-radius: 22px;
+}
+
+.customer-bubble-picture-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.customer-bubble-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+
+    background-size: cover;
+    background-position: center;
+
+}
+
+.customer-bubble-text > p {
+    color: white;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+
+.customer-bubble-name {
+    width: 100%;
+    text-align: right;
+
     color: white;
 }
