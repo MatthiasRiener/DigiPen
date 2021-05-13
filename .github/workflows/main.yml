@@ -45,4 +45,13 @@ jobs:
           TARGET: ${{ secrets.REMOTE_TARGET }}
 
 
-
+    - name: change auth flow to is Server true
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        script: |
+          cd slideaenv/server/app/files/static/authentication/
+          ls -al
+          sed -i "1 s/^.*$/const isServer = true;/" auth_flow.js
