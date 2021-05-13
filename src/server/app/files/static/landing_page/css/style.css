@@ -638,11 +638,12 @@ body {
     width: 29%;
     height: auto;
 
-    
+    margin: 2vw;
     padding: 2vh 2vh 2vh 2vh;
     background: #7289da;
 
     border-radius: 22px;
+
 }
 
 .customer-bubble-picture-container {
@@ -788,7 +789,7 @@ body {
 .how-it-works-slide-btn {
     width: 3vw;
     height: 3vw;
-    background: #7289da;
+    background: #383838;
     border-radius: 50%;
     margin: 3vw;
 
