@@ -714,7 +714,7 @@ body {
 }
 
 #section-how-it-works {
-    width: 90%;
+    width: 100%;
     height: auto;
 
     display: flex;
@@ -746,6 +746,7 @@ body {
 #showing-feature-title {
     font-size: 1.4rem;
     user-select: none;
+    text-align: center;
 }
 
 #showing-feature-text {
@@ -811,7 +812,7 @@ body {
 
 
 .slider-spacer {
-    min-width: calc(50vw - 35vw / 2 - 2vw);
+    min-width: calc(43vw - 35vw / 2 - 2vw) ;
 }
 
 #slider-control-panel {

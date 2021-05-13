@@ -1,3 +1,170 @@
-body {
-    background: red;
+
+#top-bar-subpoints {
+    display: none;
+}
+
+#section-special-container {
+    flex-direction: column;
+}
+
+#section-special > h1 {
+    font-size: 2.4rem;
+}
+
+.feature-container {
+    width: 100%;
+}
+
+#section-how-it-works > h1 {
+    text-align: center;
+}
+
+.slider-spacer {
+    min-width: 0;
+}
+
+
+.how-it-works-slider-item {
+   min-width: 80vw;
+}
+
+#showing-feature-text {
+    width: 100%;
+}
+
+#showing-feature-title {
+    margin: 0vh 2vh;
+}
+
+.how-it-works-slide-btn {
+    min-width: 12vw;
+    min-height: 12vw;
+}
+
+.how-it-works-slide-btn > .icon-slider{
+    width: 5vw;
+    height: 5vw;
+}
+
+#work-with-us-section {
+    flex-direction: column;
+}
+
+#work-with-us-section > div {
+    width: 100%;
+}
+
+#work-with-title {
+    font-size: 2rem;
+}
+
+#work-with-left-section > p {
+    font-size: 1.1rem;
+    text-align: left;
+}
+
+#work-with-buttons {
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+#work-with-right-section {
+    display: none;
+}
+
+#customers-container {
+    align-items: center;
+}
+
+#section-customers > h1 {
+    text-align: center;
+}
+
+
+#section-customers > p {
+    text-align:justify;
+    hyphens: auto; 
+    width: 100%;
+    font-size: 1rem;
+}
+
+#customers-container {
+    flex-direction: column;
+}
+
+.customer-bubble {
+    width: 100%;
+}
+
+
+#pricing-container {
+    flex-direction: column;
+    width: 100%;
+}
+
+#pricing-container > div {
+    width: 100%;
+    margin-top: 3vh;
+    border-radius: 15px !important;
+}
+
+#second-section {
+    flex-direction: column;
+    height: auto;
+}
+
+#second-section-right {
+    display: none;
+}
+
+#second-section > div {
+    width: 100% !important;
+    padding: 5% !important;
+    background: transparent;
+}
+
+
+#slideshow-container {
+    flex-direction: column;
+    height: auto !important;
+}
+
+
+
+.slideshow-item {
+    width: 100% !important;
+    margin: 0 !important;
+    margin-top: 3vh !important;
+    min-height: 70vw;
+    box-shadow: none;
+}
+
+
+#newsletter-section {
+    justify-content: center;   
+    margin-top: 0 !important;
+    height: auto;
+}
+
+#newsletter-section > h1, #newsletter-section > p {
+    width: 100%;
+    text-align: center;
+}
+
+#footer-section {
+    flex-wrap: wrap;
+    height: auto;
+    margin-top: 5vh;
+}
+
+#footer-section > div {
+    width: 50%;
+    margin-top: 3vh;
+}
+
+
+.team-member {
+    width: 10vw;
+    height: 10vw;
 }

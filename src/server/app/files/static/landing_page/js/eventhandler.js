@@ -1,3 +1,7 @@
+// set width of slider-spacer
+
+
+
 const containers = $('#work-with-right-section div');
 
 containers.eq(0).append(`<img src="${baseURL}/static/landing_page/img/users/user_2.png" />`);
@@ -190,7 +194,7 @@ const slideArray = [
         text: "Lade Discord herunter, wo immer du bist – auf deinen PC, Mac oder dein Smartphone. Einen Account zu erstellen, ist einfach. Du brauchst nur eine E-Mail und einen Namen. Sei du selbst und wähle deinen bevorzugten Nicknamen.",
     },
     {
-        title: "Erstelle deinen Discord-Server",
+        title: "Erstelle deine Präsentationen",
         text: "Dein Server ist ein Ort, den man nur mit Einladung betreten kann und an dem du dich mit deinen Communitys und Freunden unterhalten kannst. Unterteile deinen Server in verschiedene Textkanäle, in denen du über all die Dinge sprechen kannst, die du liebst.",
     },
     {
@@ -234,7 +238,9 @@ function changeSlide() {
     $('#showing-feature-title').html(slideArray[slideIndex].title);
     $('#showing-feature-text').html(slideArray[slideIndex].text);
 
-    var distance = (-1) * slideIndex * 40;
+    var marginOfContainer = parseInt($('.how-it-works-slider-item').css("marginLeft").replace('px', ''));
+    console.log(marginOfContainer)
+    var distance = (-1) * slideIndex * ($('.how-it-works-slider-item').width() + 2 * marginOfContainer) / $(window).width() * 100;
 
     $('#how-it-works-slider').css("transform", `translateX(${distance}vw)`);
 

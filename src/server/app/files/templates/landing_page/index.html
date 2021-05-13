@@ -8,11 +8,13 @@
 
   <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
 
-  <link rel="stylesheet" type="text/css" media="(max-width: 480px) "
-    href="{{ url_for('static', filename='/landing_page/css/mobile-version.css') }}" />
-  <link rel="stylesheet" type="text/css" media="(min-width: 481px)  "
+ 
+  <link rel="stylesheet" type="text/css"
     href="{{ url_for('static', filename='/landing_page/css/style.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/landing_page/css/variables.css') }}" />
+
+  <link rel="stylesheet" type="text/css" media="(max-width: 480px) "
+  href="{{ url_for('static', filename='/landing_page/css/mobile-version.css') }}" />
 
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
@@ -39,12 +41,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
 
   <script>
+    /*
     
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
     // This is needed if the user scrolls down during page load and you want to make sure the page is scrolled to the top once it's fully loaded. This has Cross-browser support.
     window.scrollTo(0, 0);
+
+    */
     
   </script>
 </head>
