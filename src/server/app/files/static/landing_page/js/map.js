@@ -28,13 +28,13 @@ var drawTheMap = function () {
 
     var geometry = new THREE.Geometry();
     var geometry2 = new THREE.Geometry();
-
+    var geometry3 = new THREE.Geometry();
 
 
     // test
-   
 
-    
+
+
 
     //
 
@@ -50,38 +50,73 @@ var drawTheMap = function () {
         sizeAttenuation: false
     });
 
-    console.log(imagedata.width, imagedata.height)
+    var material3 = new THREE.PointsMaterial({
+        color: 0xff0000,
+        size: 11,
+        sizeAttenuation: false
+    });
+
+
+    function getColorIndicesForCoord(x, y, width) {
+        var red = y * (width * 4) + x * 4;
+        return [red, red + 1, red + 2, red + 3];
+    }
+
+
     for (var y = 0, y2 = imagedata.height; y < y2; y += 2) {
         for (var x = 0, x2 = imagedata.width; x < x2; x += 2) {
-            if (imagedata.data[(x * 4 + y * 4 * imagedata.width) + 3] > 128) {
 
+            var colorIndices = getColorIndicesForCoord(x, y, imagedata.width);
+
+            var redIndex = colorIndices[0];
+            var greenIndex = colorIndices[1];
+            var blueIndex = colorIndices[2];
+            var alphaIndex = colorIndices[3];
+
+            var imgBrightness = imagedata.data[alphaIndex];
+            var redCoordinate = imagedata.data[redIndex];
+            var blueCoordinate = imagedata.data[blueIndex];
+            var greenCoordinate = imagedata.data[greenIndex];
+
+            
+            if (redCoordinate == 255 && blueCoordinate == 0 && greenCoordinate == 0) {
+                console.log(redCoordinate);
+
+                var vertex = new THREE.Vector3();
+                vertex.x = 0;
+                vertex.y = 0;
+                vertex.z = -Math.random() * 500;
+
+                var destX = x - imagedata.width / 2;
+                var destY = -y + imagedata.height / 2;
+
+                vertex.destination = {
+                    x: destX,
+                    y: destY,
+                    z: 1
+                };
+
+                vertex.speed = Math.random() / 200 + 0.015;
+
+                geometry3.vertices.push(vertex);
+            } else if (imgBrightness > 128) {
                 var vertex = new THREE.Vector3();
                 vertex.x = Math.random() * 1000 - 500;
                 vertex.y = Math.random() * 1000 - 500;
                 vertex.z = -Math.random() * 500;
 
+                var destX = x - imagedata.width / 2;
+                var destY = -y + imagedata.height / 2;
+
                 vertex.destination = {
-                    x: x - imagedata.width / 2,
-                    y: -y + imagedata.height / 2,
+                    x: destX,
+                    y: destY,
                     z: 0
                 };
 
                 vertex.speed = Math.random() / 200 + 0.015;
 
-
-                if (x == 28 && y == 40) {
-
-                    console.log(x, y)
-
-                    console.log("hi")
-
-                    geometry2.vertices.push(vertex);
-                }
-
-
                 geometry.vertices.push(vertex);
-
-
             } else {
                 var vertex = new THREE.Vector3();
                 vertex.x = Math.random() * 1000 - 500;
@@ -102,6 +137,8 @@ var drawTheMap = function () {
                 geometry2.vertices.push(vertex);
 
             }
+
+
         }
     }
 
@@ -109,10 +146,11 @@ var drawTheMap = function () {
 
     particles = new THREE.Points(geometry, material);
     particles2 = new THREE.Points(geometry2, material2);
-
+    particles3 = new THREE.Points(geometry3, material3);
 
     scene.add(particles);
     scene.add(particles2)
+    scene.add(particles3);
 
     requestAnimationFrame(render);
 };
@@ -133,7 +171,7 @@ var init = function () {
     camera.lookAt(centerVector);
     scene.add(camera);
 
-    texture = THREE.ImageUtils.loadTexture("https://s3-us-west-2.amazonaws.com/s.cdpn.io/127738/transparentMap.png", undefined, function () {
+    texture = THREE.ImageUtils.loadTexture(`${baseURL}/static/landing_page/img/map/transparentMap_test.png`, undefined, function () {
         imagedata = getImageData(texture.image);
         drawTheMap();
     });
@@ -163,10 +201,20 @@ var render = function (a) {
         particle.color = new THREE.Color("rgb(255,255,255)");
     }
 
-    
+
 
     for (var i = 0, j = particles2.geometry.vertices.length; i < j; i++) {
         var particle = particles2.geometry.vertices[i];
+
+        particle.x += (particle.destination.x - particle.x) * particle.speed;
+        particle.y += (particle.destination.y - particle.y) * particle.speed;
+        particle.z += (particle.destination.z - particle.z) * particle.speed;
+
+        particle.color = new THREE.Color("rgb(255,255,255)");
+    }
+
+    for (var i = 0, j = particles3.geometry.vertices.length; i < j; i++) {
+        var particle = particles3.geometry.vertices[i];
 
         particle.x += (particle.destination.x - particle.x) * particle.speed;
         particle.y += (particle.destination.y - particle.y) * particle.speed;
@@ -179,6 +227,7 @@ var render = function (a) {
 
     particles.geometry.verticesNeedUpdate = true;
     particles2.geometry.verticesNeedUpdate = true;
+    particles3.geometry.verticesNeedUpdate = true;
 
     camera.position.x = 0;
     camera.lookAt(centerVector);
@@ -188,8 +237,7 @@ var render = function (a) {
 
 
 
-function isOnScreen(element)
-{
+function isOnScreen(element) {
     var top_of_element = element.offset().top;
     var bottom_of_element = element.offset().top + element.outerHeight();
     var bottom_of_screen = $(window).scrollTop() + $(window).innerHeight();
@@ -199,12 +247,12 @@ function isOnScreen(element)
 }
 
 var canvasLoaded = false;
-$(window).scroll(function() {
+$(window).scroll(function () {
     var visible = isOnScreen($('#map-section'));
-    
+
     if (visible && !canvasLoaded) {
         canvasLoaded = true;
         init();
-        
+
     }
 })
