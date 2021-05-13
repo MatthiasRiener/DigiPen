@@ -48,6 +48,15 @@ $('#imgupload').on('change', function(evt) {
 
 // wenn ma auf eine präsi klcikt
 
+
+$('.close-presentation-section').click(function() {
+    toggleVisibility($('#unfinished-presentations-container'), $(this));
+});
+
+$('.close-task-section').click(function() {
+    toggleVisibility($('.dashboard-tasks-section'), $(this));
+});
+
 $('.dashboard-tasks-presentation-dropdown').click(function() {
     
     const rotation = $(this).css("transform");
