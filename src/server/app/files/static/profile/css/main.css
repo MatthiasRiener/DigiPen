@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif, Karla;
+    font-family: 'Poppins', sans-serif;        cursor: default;
     outline: none;
     color: var(--dark-grey);
 }
@@ -9,6 +9,7 @@
 body {
     display: flex;
     flex-direction: row;
+    overflow: hidden;
 }
 
 #content {
@@ -18,13 +19,13 @@ body {
 
 #content-top {
     width: 100%;
-    height: 7%;
+    height: 6%;
     border-bottom: 3px solid #F8F7F9;
 }
 
 #content-bottom {
     width: 100%;
-    height: 93%;
+    height: 94%;
     display: flex;
     flex-direction: row;
 }
@@ -51,7 +52,7 @@ body {
 
 #content-bottom-left-right-card {
     width: 95%;
-    height: 50%;
+    height: 45%;
     background-color: var(--dark-grey);
     border-radius: 10px;
     margin-top: 4vh;
@@ -62,10 +63,11 @@ body {
 
 #content-bottom-left-right-card-inner {
     width: 90%;
-    height: 85%;
+    height: 90%;
     background-color: white;
     border-radius: 10px;
     margin-bottom: 2vh;
+    margin-top: 2vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -74,7 +76,9 @@ body {
 #content-bottom-left-right-card-inner-top {
     width: 90%;
     height: 50%;
-    background-color: blue;
+    background-image: url("https://images.unsplash.com/photo-1488161628813-04466f872be2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTQ1fHxwb3J0cmFpdHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+    background-size: cover;
+    background-position: center;
     border-radius: 10px;
     margin-top: 1.4vh;
 }
@@ -117,12 +121,17 @@ body {
     align-items: center;
 }
 
+#bottom > p {
+    opacity: 0.9;
+    text-align: center;
+}
+
 #content-bottom-left-right-trophies {
     width: 95%;
-    height: 25%;
+    height: 30%;
     border-radius: 10px;
     margin-top: 2vh;
-    border: 3px solid var(--light-grey);
+    border: 2px solid var(--light-grey);
 }
 
 #content-bottom-left-right-trophies-top {
@@ -140,7 +149,7 @@ body {
 
 #content-bottom-left-right-trophies-middle {
     width: 100%;
-    height: 55%;
+    height: 60%;
     display: flex;
     justify-content: center;
 }
@@ -153,10 +162,10 @@ body {
     justify-content: space-between;
 }
 
-#content-bottom-left-right-trophies-middle-inner-first, #content-bottom-left-right-trophies-middle-inner-second {
+#content-bottom-left-right-trophies-middle-inner > div {
     width: 45%;
     height: 100%;
-    background-color: var(--light-grey);
+    background-color: #ebe9e7;
     border-radius: 10px;
 }
 
@@ -242,18 +251,84 @@ body {
     border-bottom: solid 2px var(--light-grey);
 }
 
-#content-bottom-right-inner-top-bottom-inner-left, #content-bottom-right-inner-top-bottom-inner-middle, #content-bottom-right-inner-top-bottom-inner-right {
+.content-main-section {
     width: 8%;
     height: 100%;
     display: flex;
     align-items: center;
 }
 
-#content-bottom-right-inner-top-bottom-inner-left:hover, #content-bottom-right-inner-top-bottom-inner-middle:hover, #content-bottom-right-inner-top-bottom-inner-right:hover {
+.content-main-section:hover {
     cursor: pointer;
 }
 
 #content-bottom-right-inner-bottom {
     width: 100%;
     height: 80%;
+}
+
+
+#profile-card-subinfo {
+    opacity: 0.8;
+}
+
+
+.content-container {
+    width: 100%;
+    height: 80%;
+    background: transparent;
+    display: none;
+}
+
+.active {
+    display: flex;
+}
+
+
+.personal {
+    flex-direction: column;
+}
+
+
+#personal-description {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.personal-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.personal-section > h3 {
+    font-weight: bold;
+    color: black;
+    opacity: 0.5;
+    text-transform: uppercase;
+    font-size: .9rem;
+    margin: 1vh 0vh !important;
+   margin-top: 2vh !important;
+}
+
+.sub-personal-section {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    
+    flex-wrap: wrap;
+}
+
+.sub-personal-section > div {
+    min-width: 33%;
+}
+
+.sub-personal-section > div > h4 {
+    font-weight: 700;
+    opacity: 0.8;
+}
+
+.sub-personal-section > div > p {
+    font-weight: 500;
+    margin-bottom: 3vh;
 }

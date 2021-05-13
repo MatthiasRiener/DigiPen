@@ -9,7 +9,9 @@ body {
     padding-left: 7vw !important;
     padding-right: 7vw !important;
 
-    overflow-x: hidden;
+
+    width: 86vw !important;
+    overflow-x: hidden !important;
 
 
     font-family: 'Poppins', sans-serif;        cursor: default;

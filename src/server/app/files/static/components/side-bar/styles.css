@@ -5,6 +5,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Poppins', sans-serif;        cursor: default;
+
 }
 
  #title-nav {
@@ -52,7 +54,7 @@
 
 .nav-bar-element p {
     margin-left: 20px;
-    font-weight: bold;
+    font-weight: 400;
 }
 
 .notification-navbar {
@@ -123,6 +125,7 @@
 #teams-title > p {
     margin: 0 !important;
     padding: 0 !important;
+    font-weight: 400;
 }
 
 .team-item {
@@ -147,6 +150,6 @@
     margin: 0 !important;
     padding: 0 !important;
 
-    font-weight: bold;
+    font-weight: 400;
     font-size: 1rem;
 }

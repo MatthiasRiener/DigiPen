@@ -1,13 +1,7 @@
-$('#content-bottom-right-inner-top-bottom-inner-left').on('click', function () {
-    $('#content-bottom-right-inner-bottom').text('Moin 1!');
-})
-
-$('#content-bottom-right-inner-top-bottom-inner-middle').on('click', function () {
-    $('#content-bottom-right-inner-bottom').text('Moin 2!');
-})
-
-$('#content-bottom-right-inner-top-bottom-inner-right').on('click', function () {
-    $('#content-bottom-right-inner-bottom').text('Moin 3!');
+$('.content-main-section').click(function() {
+    var index = $(this).index();
+    $('.content-container').removeClass("active");
+    $('.content-container').eq(index).addClass("active");
 })
 
 /*
