@@ -1,4 +1,5 @@
 const isServer = false;
+console.log("===")
 let baseURL;
 
 if (isServer) {
