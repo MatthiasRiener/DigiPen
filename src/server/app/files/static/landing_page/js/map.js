@@ -6,8 +6,8 @@ $('.team-member').each(function (index) {
 
 
 
-ww = $('#map-section').width(),
-    wh = $('#map-section').height();
+ww = $('#map').width(),
+    wh = $('#map').height();
 
 var centerVector = new THREE.Vector3(0, 0, 0);
 var previousTime = 0;
@@ -179,11 +179,13 @@ var init = function () {
 
 };
 var onResize = function () {
-    ww = $('#map-section').width(),
-        wh = $('#map-section').height();
+    ww = $('#map').width(),
+        wh = $('#map').height();
+
+        console.log(wh)
     camera.aspect = ww / wh;
     camera.updateProjectionMatrix();
-    renderer.setSize(ww, wh);
+    //renderer.setSize(ww, wh);
 
 };
 
