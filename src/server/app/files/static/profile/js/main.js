@@ -2,7 +2,13 @@ $('.content-main-section').click(function() {
     var index = $(this).index();
     $('.content-container').removeClass("active");
     $('.content-container').eq(index).addClass("active");
+
+    $('.content-main-section').removeClass("active-bar");
+    $(this).addClass("active-bar");
 })
+
+
+
 
 /*
 // dropzone test
@@ -36,3 +42,33 @@ $('#imgupload').on('change', function(evt) {
     reader.readAsDataURL(files[0])
 })
 */
+
+
+// der ganze expand scheiß und so
+
+// wenn ma auf eine präsi klcikt
+
+$('.dashboard-tasks-presentation-dropdown').click(function() {
+    
+    const rotation = $(this).css("transform");
+    $(this).css("transform", `rotateX(${180 + $(this).css("transform")}deg)`);
+
+    const parent = $(this).parent();
+    if (parent.hasClass("dashboard-tasks-presentation-container")) {
+        const closest = parent.next(".dashboard-tasks-container");
+        toggleVisibility(closest, $(this));
+    } else if(parent.hasClass("dashboard-task-item")) {
+        const closest = parent.next(".subtask-container");
+        toggleVisibility(closest, $(this));
+    }
+});
+
+function toggleVisibility(element, icon) {
+    if (element.is(":visible")) {
+        element.css("display", "none");
+        icon.css("transform", `rotateX(180deg)`);
+    } else {
+        element.css("display", "flex");
+        icon.css("transform", `rotateX(0deg)`);
+    }
+}
