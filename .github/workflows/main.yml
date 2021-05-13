@@ -45,4 +45,12 @@ jobs:
           TARGET: ${{ secrets.REMOTE_TARGET }}
 
 
-
+    - name: change auth flow to is Server true
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        script: |
+          whoami
+          ls -al
