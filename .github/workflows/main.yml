@@ -52,5 +52,5 @@ jobs:
         username: ${{ secrets.REMOTE_USER }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
-          whoami
+          cd slideaenv/server/app/files/static/authentication/
           ls -al
