@@ -49,6 +49,18 @@ def getUserData():
     user.update({"location": locRepo.getUsersLocation(user_id=cur_user)})
     return json.dumps(user)
 
+
+@profile.route('/getActivityInfo')
+@jwt_required
+def getActivityRoute():
+    u_id = get_jwt_identity()
+    response = dict()
+    response["presentations"] = presRepo.getPresentationCount(user_id=u_id)
+    response["tasks"] = taskRepo.getTasksCount(u_id=u_id)
+    response["organizations"] = wRepo.getRepoCounter(u_id=u_id)
+
+    return json.dumps({"res": response})
+
 @profile.route('/getUpComingTasks')
 @jwt_required
 def getUsersTasksRoute():

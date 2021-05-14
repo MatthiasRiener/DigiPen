@@ -197,6 +197,9 @@ class TaskRepository():
             index = index + 1
         return response
 
+    def getTasksCount(self, u_id):
+        return len(Task.objects(assignee=u_id).order_by('end'))
+
     def deleteAllTasks(self):
         if self.testing:
             Task.objects().delete()
