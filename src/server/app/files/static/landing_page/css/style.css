@@ -825,7 +825,9 @@ body {
 }
 
 
-
+.should-cursor:hover {
+    cursor: pointer;
+}
 
 
 

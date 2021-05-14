@@ -245,3 +245,27 @@ function changeSlide() {
     $('#how-it-works-slider').css("transform", `translateX(${distance}vw)`);
 
 }
+
+
+// event listeners
+
+$('#top-bar-login').click(function() {
+    window.location.href = "/auth/login";
+});
+
+
+$('#top-bar-sign').click(function() {
+    window.location.href = "/auth/login";
+})
+
+$('#work-with-get-started').click(function() {
+    window.location.href = "/auth/login";
+});
+
+$('#get-started-button').click(function() {
+    window.location.href = "/auth/login";
+});
+
+$('#download-button').click(function() {
+    window.location.href = "/auth/login";
+});

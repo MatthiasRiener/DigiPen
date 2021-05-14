@@ -73,7 +73,7 @@ function silentLogin(r_token, callback, args, resolve, reject) {
     sendRequestToServer({type: "GET", url: "/auth/logout"}).then(data => {
         unsetAToken();
         unsetRToken();
-        window.location.href = baseURL + "/auth/login";
+        window.location.href = baseURL + "/";
     });
 }
 
