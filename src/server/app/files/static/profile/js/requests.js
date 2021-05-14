@@ -2,7 +2,14 @@ sendRequestToServer({
     type: "GET",
     url: "/profile/user"
 }).then(data => {
-    $('#insert-username').text(data.name);
+    console.log(data);
+    $('#content-bottom-right-inner-top-top-headline').text(data.name);
+    $('#card-username').text(data.name);
+    $('#profile-card-subinfo').text(data.mail);
+    $('#content-bottom-right-inner-top-top-secondline-email').text(data.mail);
+
+    $('.package').text("Wuhu");
+
     $('#Profile .whoami p').text(data.name);
 
     $('#ppContainer').css('background-image', 'url("' + data.img + '")');

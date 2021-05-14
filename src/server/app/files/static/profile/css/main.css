@@ -229,7 +229,7 @@ body {
     height: 40%;
 }
 
-#content-bottom-right-inner-top-top-secondline span {
+.package {
     background-color: var(--dark-grey);
     color: white;
     padding: 0.5% 1%;
@@ -299,6 +299,10 @@ body {
     margin-bottom: 2vh;
 }
 
+#personal-description:hover {
+    cursor: text;
+}
+
 .personal-section {
     width: 100%;
     display: flex;
@@ -339,6 +343,14 @@ body {
     opacity: 0.8;
 }
 
+#trophyHeader {
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
 
 #collect-info-card {
     height: auto;
@@ -346,7 +358,7 @@ body {
 
     display: flex;
     justify-content: flex-start;
-    margin-top: 3vh;
+    margin: 1vh 0 3vh 0;
 }
 
 #info-card-container {
@@ -362,15 +374,45 @@ body {
 
 .trophies {
     flex-direction: column;
-    align-items: center;
 }
 
+.trophyBox {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #e7e7e7;
+    border-radius: 10px;
+    margin-bottom: 1.5vh;
+}
+
+.trophyProgress {
+    width: 5.5vw;
+    height: 5.5vw;
+    background-color: blue;
+    border-radius: 10px;
+    margin: 0.5vw;
+}
+
+.trophyText {
+    width: auto;
+    height: auto;
+    margin-left: 1vw;
+}
+
+.trophyReward {
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    margin-right: 0.8vw;
+    margin-top: auto;
+    margin-bottom: 0.8vh;
+}
 
 .dashboard {
     flex-direction: column;
 }
-
-
 
 .title-section-dashboard {
     display: flex;

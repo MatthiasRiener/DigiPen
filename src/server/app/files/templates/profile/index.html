@@ -74,11 +74,11 @@
                             </div>
                             <div id="content-bottom-left-right-card-inner-bottom">
                                 <div id="top">
-                                    <p><b>Darrell Steward</b></p>
+                                    <p><b id="card-username">Darrell Steward</b></p>
                                     <p id="profile-card-subinfo">Senior Designer</p>
                                 </div>
                                 <div id="middle">
-                                    <p>Master</p>
+                                    <p class="package">Master</p>
                                 </div>
                                 <div id="bottom">
                                     <p>San Francisico - 03:30pm</p>
@@ -118,7 +118,7 @@
                                 Darrell Steward
                             </div>
                             <div id="content-bottom-right-inner-top-top-secondline">
-                                Senior Designer <span>Master</span>
+                                <span id="content-bottom-right-inner-top-top-secondline-email">Senior Designer</span> <span class="package">Master</span>
                             </div>
                         </div>
                         <div id="content-bottom-right-inner-top-bottom">
@@ -137,7 +137,7 @@
                     </div>
                     <div id="content-bottom-right-inner-bottom">
                         <div class="content-container active personal">
-                            <p id="personal-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
+                            <p id="personal-description" contenteditable="true">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
                                 hic eaque unde provident omnis voluptate eos ad rem non, illum optio nihil. Autem
                                 exercitationem recusandae, alias perspiciatis magnam debitis architecto.</p>
                             <div class="personal-section">
@@ -150,10 +150,6 @@
                                     <div>
                                         <h4 class="sub-personal-subtitle">Birthday</h4>
                                         <p>2 April, 2001 (20)</p>
-                                    </div>
-                                    <div>
-                                        <h4 class="sub-personal-subtitle">Languages</h4>
-                                        <p>English, Russian, German</p>
                                     </div>
 
                                     <div>
@@ -173,23 +169,19 @@
                                 </div>
 
 
-                                <h3>Hobbies</h3>
+                                <h3>Activity</h3>
                                 <div class="sub-personal-section">
                                     <div>
-                                        <h4 class="sub-personal-subtitle">Favorite Movie</h4>
-                                        <p>Shrek 4</p>
+                                        <h4 class="sub-personal-subtitle">Presentations</h4>
+                                        <p>24</p>
                                     </div>
                                     <div>
-                                        <h4 class="sub-personal-subtitle">Favorite band</h4>
-                                        <p>Queen</p>
+                                        <h4 class="sub-personal-subtitle">Tasks</h4>
+                                        <p>12</p>
                                     </div>
                                     <div>
-                                        <h4 class="sub-personal-subtitle">My spirit animal</h4>
-                                        <p>Frog</p>
-                                    </div>
-                                    <div>
-                                        <h4 class="sub-personal-subtitle">Last meal on earth</h4>
-                                        <p>Schweinsbraten</p>
+                                        <h4 class="sub-personal-subtitle">Organizations</h4>
+                                        <p>4</p>
                                     </div>
 
                                 </div>
@@ -203,8 +195,8 @@
                                         <p>gregory@jackson.com</p>
                                     </div>
                                     <div>
-                                        <h4 class="sub-personal-subtitle">Phone</h4>
-                                        <p>+436002020212</p>
+                                        <h4 class="sub-personal-subtitle">Username</h4>
+                                        <p>FriesiLukas</p>
                                     </div>
 
 
@@ -290,10 +282,48 @@
 
 
                         <div class="content-container trophies">
+                            <div id="trophyHeader">
+                                <h1>Trophies</h1>
+                                <h2>69/420</h2>
+                            </div>
+
                             <div id="info-card-container">
                                 <div id="collect-info-card">
                                     <p>Collect trophies to get rewards such as 30 days master package, 2 new
                                         presentation slots and much more.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="trophyBox">
+                                <div class="trophyProgress"></div>
+                                <div class="trophyText">
+                                    <h2>Trymacs</h2>
+                                    <p>Moin Leute Trymacs hier!</p>
+                                </div>
+                                <div class="trophyReward">
+                                    <h3>100€</h3>
+                                </div>
+                            </div>
+
+                            <div class="trophyBox">
+                                <div class="trophyProgress"></div>
+                                <div class="trophyText">
+                                    <h2>Trymacs</h2>
+                                    <p>Moin Leute Trymacs hier!</p>
+                                </div>
+                                <div class="trophyReward">
+                                    <h3>100€</h3>
+                                </div>
+                            </div>
+
+                            <div class="trophyBox">
+                                <div class="trophyProgress"></div>
+                                <div class="trophyText">
+                                    <h2>Trymacs</h2>
+                                    <p>Moin Leute Trymacs hier!</p>
+                                </div>
+                                <div class="trophyReward">
+                                    <h3>100€</h3>
                                 </div>
                             </div>
 
@@ -304,7 +334,6 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/fullpage.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/main.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/popup.js') }}"></script>
     <script src={{ url_for('static', filename="components/side-bar/invites.js" ) }} type="text/javascript"
