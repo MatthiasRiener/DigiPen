@@ -117,6 +117,7 @@ body {
     width: 100%;
     height: 40%;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
@@ -124,6 +125,17 @@ body {
 #bottom > p {
     opacity: 0.9;
     text-align: center;
+    margin-right: 1vw;
+}
+
+#card-flag {
+    width: 2.5vw;
+    height: 3vh;
+    background-color: red;
+    background-position: center;
+    background-size: cover;
+    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 #content-bottom-left-right-trophies {

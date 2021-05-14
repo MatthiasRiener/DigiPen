@@ -2,37 +2,15 @@ sendRequestToServer({
     type: "GET",
     url: "/profile/user"
 }).then(data => {
-    console.log(data);
+    $('#content-bottom-left-right-card-inner-top').css('background-image', 'url("' + data.img + '")')
     $('#content-bottom-right-inner-top-top-headline').text(data.name);
     $('#card-username').text(data.name);
     $('#profile-card-subinfo').text(data.mail);
     $('#content-bottom-right-inner-top-top-secondline-email').text(data.mail);
 
-    $('.package').text("Wuhu");
-    $('.location').text("San Franz");
-    $('.localtime').text("11:25");
-
-    let date = new Date(data.created * 1000).toLocaleDateString("en-US", {
-        month: "long",
-        day: "2-digit",
-        year: "numeric"
-    });
-    $('#joindate').text(date);
-
-    /*$('#Profile .whoami p').text(data.name);
-
-    $('#ppContainer').css('background-image', 'url("' + data.img + '")');
-    $('#secppContainer').css('background-image', 'url("' + data.img + '")');
-
-
-    $('#workspaceCount').text(data.workspaces);
-
-    let date = new Date(data.created * 1000).toLocaleDateString("en-US", {
-        month: "long",
-        day: "2-digit",
-        year: "numeric"
-    });
-    $('#userSince').text(date);*/
+    $('.package').text("Master");
+    $('#card-country').text(data.location.location.country);
+    $('#card-flag').css('background-image', 'url("' + data.location.location.flag.png + '")');
 });
 
 

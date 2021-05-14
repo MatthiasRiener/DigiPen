@@ -81,7 +81,8 @@
                                     <p class="package">Master</p>
                                 </div>
                                 <div id="bottom">
-                                    <p><span class="location">San Francisico</span> - <span class="localtime">03:30</span>pm</p>
+                                    <p id="card-country">San Francisico</p>
+                                    <div id="card-flag"></div>
                                 </div>
                             </div>
                         </div>
@@ -145,7 +146,7 @@
                                 <div class="sub-personal-section">
                                     <div>
                                         <h4 class="sub-personal-subtitle">Join Date</h4>
-                                        <p id="joindate">10 May, 2019</p>
+                                        <p id="info-joindate">10 May, 2019</p>
                                     </div>
                                     <div>
                                         <h4 class="sub-personal-subtitle">Birthday</h4>
@@ -154,17 +155,17 @@
 
                                     <div>
                                         <h4 class="sub-personal-subtitle">Location</h4>
-                                        <p class="location">Linz, Austria</p>
+                                        <p id="info-location">Linz, Austria</p>
                                     </div>
 
                                     <div>
                                         <h4 class="sub-personal-subtitle">Local time</h4>
-                                        <p class="localtime">10:34</p>
+                                        <p id="info-localtime">10:34</p>
                                     </div>
 
                                     <div>
-                                        <h4 class="sub-personal-subtitle">Hometown</h4>
-                                        <p>Linz, Austria</p>
+                                        <h4 class="sub-personal-subtitle">Timezone</h4>
+                                        <p id="info-timezone">Linz, Austria</p>
                                     </div>
                                 </div>
 
@@ -173,15 +174,15 @@
                                 <div class="sub-personal-section">
                                     <div>
                                         <h4 class="sub-personal-subtitle">Presentations</h4>
-                                        <p>24</p>
+                                        <p id="info-presentationCount">24</p>
                                     </div>
                                     <div>
                                         <h4 class="sub-personal-subtitle">Tasks</h4>
-                                        <p>12</p>
+                                        <p id="info-taskCount">12</p>
                                     </div>
                                     <div>
                                         <h4 class="sub-personal-subtitle">Organizations</h4>
-                                        <p>4</p>
+                                        <p id="info-organizationCount">4</p>
                                     </div>
 
                                 </div>
@@ -191,12 +192,12 @@
                                 <h3>Contacts</h3>
                                 <div class="sub-personal-section">
                                     <div>
-                                        <h4 class="sub-personal-subtitle">Email</h4>
-                                        <p>gregory@jackson.com</p>
+                                        <h4 class="sub-personal-subtitle">Username</h4>
+                                        <p id="info-username">FriesiLukas</p>
                                     </div>
                                     <div>
-                                        <h4 class="sub-personal-subtitle">Username</h4>
-                                        <p>FriesiLukas</p>
+                                        <h4 class="sub-personal-subtitle">Email</h4>
+                                        <p id="info-email">gregory@jackson.com</p>
                                     </div>
 
 
@@ -336,6 +337,7 @@
 
     <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/main.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/popup.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/info.js') }}"></script>
     <script src={{ url_for('static', filename="components/side-bar/invites.js" ) }} type="text/javascript"
         defer></script>
 </body>
