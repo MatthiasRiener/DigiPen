@@ -114,7 +114,7 @@ var drawTheMap = function () {
                     z: 0
                 };
 
-                vertex.speed = Math.random() / 200 + 0.015;
+                vertex.speed = Math.random() / 7 + 0.015;
 
                 geometry.vertices.push(vertex);
             } else {
