@@ -37,18 +37,12 @@ class AuthenticationRepository():
         if last_login > time.time():
             return CustomException("Last login must not be in the future").__str__()
 
-        if last_login < created:
-            return CustomException("Last login has to be equal/greater then created").__str__()
-
         if user_id is None:
             return CustomException("No information was given regarding the users userid").__str__()
         # test case username not None
         if name is None:
             return CustomException("No information was given regarding the users username").__str__()
 
-        # test case only letters
-        if name.isalpha() is False:
-            return CustomException('The username can only contain alphabetical letters').__str__()
 
         if User.objects(u_id=user_id):
 
