@@ -2,7 +2,7 @@ sendRequestToServer({
     type: "GET",
     url: "/profile/user"
 }).then(data => {
-    $('#content-bottom-left-right-card-inner-top').css('background-image', 'url("' + data.img + '")')
+    $('#content-bottom-left-right-card-inner-top').css('background-image', 'url("' + baseURL + data.img + '")')
     $('#content-bottom-right-inner-top-top-headline').text(data.name);
     $('#card-username').text(data.name);
     $('#profile-card-subinfo').text(data.mail);

@@ -31,6 +31,14 @@ function getProfileInfo() {
     });
 }
 
+$('#personal-description').on('focusout', function () {
+    console.log("SAVE: " + $('#personal-description').text());
+
+    sendRequestToServer({type: "POST", url: "/profile/saveDesc", data: {desc: $('#personal-description').text()}}).then(data => {
+        console.log("SAVED");
+    });
+})
+
 function showTime(){
     var date = new Date();
     var h = date.getHours(); // 0 - 23
