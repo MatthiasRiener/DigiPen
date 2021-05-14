@@ -108,9 +108,9 @@ class AuthenticationRepository():
         # test
 
         if IS_SERVER:
-            PREFIX = "https://slidea.bastiarts.com/static/profile/img/images/" + user_id + "/" + file_name
+            PREFIX = "/static/profile/img/images/" + user_id + "/" + file_name
         else:
-            PREFIX = "http://localhost:5000/static/profile/img/images/" + user_id + "/" + file_name
+            PREFIX = "/static/profile/img/images/" + user_id + "/" + file_name
         User.objects(u_id=user_id).update(set__img=str(PREFIX))
         return 1
 
