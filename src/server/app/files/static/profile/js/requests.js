@@ -9,8 +9,17 @@ sendRequestToServer({
     $('#content-bottom-right-inner-top-top-secondline-email').text(data.mail);
 
     $('.package').text("Wuhu");
+    $('.location').text("San Franz");
+    $('.localtime').text("11:25");
 
-    $('#Profile .whoami p').text(data.name);
+    let date = new Date(data.created * 1000).toLocaleDateString("en-US", {
+        month: "long",
+        day: "2-digit",
+        year: "numeric"
+    });
+    $('#joindate').text(date);
+
+    /*$('#Profile .whoami p').text(data.name);
 
     $('#ppContainer').css('background-image', 'url("' + data.img + '")');
     $('#secppContainer').css('background-image', 'url("' + data.img + '")');
@@ -23,7 +32,7 @@ sendRequestToServer({
         day: "2-digit",
         year: "numeric"
     });
-    $('#userSince').text(date);
+    $('#userSince').text(date);*/
 });
 
 
