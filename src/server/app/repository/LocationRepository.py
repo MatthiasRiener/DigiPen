@@ -11,6 +11,10 @@ class LocationRepository():
     def createLocationEntry(self, user_id, location_data):
         mongoclient.db["location"].insert_one({"user": user_id, "location": location_data, "time": time.time()})
         return 1
+    
+    def getUsersLocation(self, user_id):
+        return mongoclient.db["location"].find({"user": user_id}).sort({"_id":-1}).limit(1);
+
     def getUsersAndLocation(self, start, end):
         response = dict()
         elements = mongoclient.db["location"].find({"time": {"$gt": int(start), "$lt": int(end)} })
