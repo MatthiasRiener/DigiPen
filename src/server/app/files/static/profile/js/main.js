@@ -8,20 +8,11 @@ $('.content-main-section').click(function() {
 })
 
 
-
-
-/*
 // dropzone test
 
-$('#ppContainer').click(
+$('#content-bottom-left-right-card-inner-top').click(
     function () { $('#imgupload').trigger('click'); }
 );
-
-$('#secppContainer').click(
-    function () { $('#imgupload').trigger('click'); }
-);
-
-
 
 $('#imgupload').on('change', function(evt) {
     var files = evt.target.files;
@@ -32,8 +23,8 @@ $('#imgupload').on('change', function(evt) {
 
 
         sendRequestToServer({type: "POST", url: "/profile/uploadImage", data: {"img": img, "name": files[0].name, "lm": files[0].lastModified}}).then(data => {
-            $('#ppContainer').css('background-image', 'url("' + data.res.img + '")');
-            $('#secppContainer').css('background-image', 'url("' + data.res.img + '")');
+            $('#content-bottom-left-right-card-inner-top').css('background-image', 'url("' + data.res.img + '")');
+            //$('#secppContainer').css('background-image', 'url("' + data.res.img + '")');
 
         })
     }
@@ -41,7 +32,6 @@ $('#imgupload').on('change', function(evt) {
 
     reader.readAsDataURL(files[0])
 })
-*/
 
 
 // der ganze expand scheiß und so
