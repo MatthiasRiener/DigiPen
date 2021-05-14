@@ -55,3 +55,4 @@ jobs:
           cd slideaenv/server/app/files/static/authentication/
           ls -al
           sed -i "1 s/^.*$/const isServer = true;/" auth_flow.js
+          sudo systemctl restart slidea
