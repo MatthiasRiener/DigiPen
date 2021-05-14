@@ -13,7 +13,7 @@ class LocationRepository():
         return 1
     
     def getUsersLocation(self, user_id):
-        return list(mongoclient.db["location"].find({"user": user_id}).sort({"_id":-1}).limit(1));
+        return list(mongoclient.db["location"].find({"user": user_id}).sort("_id", -1).limit(1))
 
     def getUsersAndLocation(self, start, end):
         response = dict()
