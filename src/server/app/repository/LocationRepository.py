@@ -4,6 +4,8 @@ from ..db.settings import mongoclient
 import json
 import time
 
+from bson import json_util
+
 
 class LocationRepository():
     def __init__(self, testing):
@@ -13,7 +15,8 @@ class LocationRepository():
         return 1
     
     def getUsersLocation(self, user_id):
-        return json.loads(json.dumps(mongoclient.db["location"].find({"user": user_id}).sort("_id", -1).limit(1)))
+        result = mongoclient.db["location"].find({"user": user_id}).sort([("time", -1)]).limit(1) 
+        return json.loads(json_util.dumps(result[0]))
 
     def getUsersAndLocation(self, start, end):
         response = dict()
