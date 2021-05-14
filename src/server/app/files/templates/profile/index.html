@@ -59,6 +59,12 @@
 
     <feedback-form id="reportform-comp"></feedback-form>
 
+    <!--Import for Loader-->
+    <script src={{ url_for('static', filename="components/loading-screen/Loader.js" ) }} type="module"></script>
+    <loading-screen id="loadingScreen"></loading-screen>
+    <!--End of loader-->
+
+
     <div id="content">
         <div id="content-top">
 
@@ -84,7 +90,7 @@
                                 </div>
                                 <div id="bottom">
                                     <p id="card-country">San Francisico</p>
-                                    <div id="card-flag"></div>
+                                    <div title="Bist wirklich so deppad dasd a Flagge brauchst?" id="card-flag"></div>
                                 </div>
                             </div>
                         </div>
@@ -121,7 +127,8 @@
                                 Darrell Steward
                             </div>
                             <div id="content-bottom-right-inner-top-top-secondline">
-                                <span id="content-bottom-right-inner-top-top-secondline-email">Senior Designer</span> <span class="package">Master</span>
+                                <span id="content-bottom-right-inner-top-top-secondline-email">Senior Designer</span>
+                                <span class="package">Master</span>
                             </div>
                         </div>
                         <div id="content-bottom-right-inner-top-bottom">
@@ -140,7 +147,8 @@
                     </div>
                     <div id="content-bottom-right-inner-bottom">
                         <div class="content-container active personal">
-                            <p id="personal-description" contenteditable="true">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
+                            <p id="personal-description" contenteditable="true">Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Illo
                                 hic eaque unde provident omnis voluptate eos ad rem non, illum optio nihil. Autem
                                 exercitationem recusandae, alias perspiciatis magnam debitis architecto.</p>
                             <div class="personal-section">
@@ -210,7 +218,8 @@
 
                             <div class="title-section-dashboard">
                                 <h1>Unfinished Presentations</h1>
-                                <ion-icon name="chevron-down" class="expand-icon-dashboard close-presentation-section"></ion-icon>
+                                <ion-icon name="chevron-down" class="expand-icon-dashboard close-presentation-section">
+                                </ion-icon>
                             </div>
 
                             <div id="unfinished-presentations-container">
@@ -243,7 +252,8 @@
 
                             <div class="title-section-dashboard">
                                 <h1>Unfinished Tasks</h1>
-                                <ion-icon name="chevron-down" class="expand-icon-dashboard close-task-section"></ion-icon>
+                                <ion-icon name="chevron-down" class="expand-icon-dashboard close-task-section">
+                                </ion-icon>
                             </div>
 
                             <div class="dashboard-tasks-section">
@@ -296,7 +306,7 @@
                                         presentation slots and much more.</p>
                                 </div>
                             </div>
-                            
+
                             <div class="trophyBox">
                                 <div class="trophyProgress"></div>
                                 <div class="trophyText">

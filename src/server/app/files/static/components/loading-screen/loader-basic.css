@@ -37,7 +37,7 @@
     height: 150px;
     border-radius: 50%;
     border: 5px solid transparent;
-    border-top-color: #3498db;
+    border-top-color: #5e5e5e;
 
     -webkit-animation: spin 2s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
     animation: spin 2s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
@@ -68,7 +68,7 @@
         bottom: 5px;
         border-radius: 50%;
         border: 5px solid transparent;
-        border-top-color: #e74c3c;
+        border-top-color: #383838;
 
         -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
         animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
@@ -83,7 +83,7 @@
         bottom: 15px;
         border-radius: 50%;
         border: 5px solid transparent;
-        border-top-color: #f9c922;
+        border-top-color: black;
 
         -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
           animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */

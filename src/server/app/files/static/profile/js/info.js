@@ -14,11 +14,24 @@ function getProfileInfo() {
         type: "GET",
         url: "/profile/user"
     }).then(data => {
-        let date = new Date(data.created * 1000).toLocaleDateString("en-US", {
-            month: "long",
-            day: "2-digit",
-            year: "numeric"
-        });
+
+        console.log(data);
+
+        let options = {
+            timeZone: data.location.location.timezone.name,
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            //second: '',
+          },
+          formatter = new Intl.DateTimeFormat([], options);
+
+
+        let date = formatter.format(new Date(data.created * 1000));
+
+        
         $('#info-joindate').text(date);
         $('#info-location').text(data.location.location.city);
         
@@ -27,7 +40,14 @@ function getProfileInfo() {
         $('#info-email').text(data.mail);
         $('#info-username').text(data.name);
 
-        showTime();
+
+        if (data.description == null || data.description == undefined || data.description.length == 0) {
+            alert("Wollen Sie Ihren Status ändern?")
+        }
+
+        $('#personal-description').text(data.description);
+
+        showTime(data.location.location.timezone.name);
     });
 }
 
@@ -39,7 +59,20 @@ $('#personal-description').on('focusout', function () {
     });
 })
 
-function showTime(){
+function showTime(timezone){
+
+
+    let options = {
+        timeZone: timezone,
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        //second: '',
+      },
+      formatter = new Intl.DateTimeFormat([], options);
+
     var date = new Date();
     var h = date.getHours(); // 0 - 23
     var m = date.getMinutes(); // 0 - 59
@@ -48,7 +81,7 @@ function showTime(){
     m = (m < 10) ? "0" + m : m;
     
     var time = h + ":" + m;
-    document.getElementById("info-localtime").innerText = time;
+    document.getElementById("info-localtime").innerText = formatter.format(date);
     
     setTimeout(showTime, 1000);  
 }

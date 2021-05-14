@@ -78,6 +78,15 @@ def getUsersPresentationCountRoute():
     return json.dumps({"res": response})
 
 
+@profile.route('/saveDesc', methods=["POST"])
+@jwt_required
+def updateUsersDescriptionRoute():
+    u_id = get_jwt_identity()
+    data = request.form
+    desc = data["desc"]
+    res = repo.updateUserDesc(user_id=u_id, desc=desc)
+    return json.dumps({"res": res})
+
 import urllib
 import os
 import platform

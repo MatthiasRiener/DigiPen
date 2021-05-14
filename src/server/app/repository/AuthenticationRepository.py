@@ -108,7 +108,9 @@ class AuthenticationRepository():
         User.objects(u_id=user_id).update(set__img=str(PREFIX))
         return 1
 
-
+    def updateUserDesc(self, user_id, desc):
+        User.objects(u_id=user_id).update(set__description=str(desc))
+        return 1
 
     def getUserIds(self, users):
         userIds = []
