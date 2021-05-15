@@ -47,7 +47,7 @@ $('.close-task-section').click(function() {
     toggleVisibility($('.dashboard-tasks-section'), $(this));
 });
 
-$('.dashboard-tasks-presentation-dropdown').click(function() {
+$('body').on('click', '.dashboard-tasks-presentation-dropdown', function() {
     
     const rotation = $(this).css("transform");
     $(this).css("transform", `rotateX(${180 + $(this).css("transform")}deg)`);

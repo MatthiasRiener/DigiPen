@@ -49,6 +49,8 @@ function getPresentations() {
             }, function (o, object) {
             })
         });
+
+        $('#presentationCount').text("(" + data.res.length + ")");
     });
 }
 
@@ -59,5 +61,98 @@ $('body').on('click', '.unfinished-presentation', function () {
 
 
 function getTasks() {
+    sendRequestToServer({
+        type: "GET",
+        url: "/profile/getUpComingTasks"
+    }).then(data => {
+        console.warn(data);
+
+        for (const [key, value] of Object.entries(data.res)) {
+            console.warn(key, value);
+            const presentationSection = document.createElement("div");
+            presentationSection.classList.add("dashboard-tasks-presentation-section");
+
+            presentationSection.appendChild(appendHeader(value));
+            presentationSection.appendChild(appendTasks(value));
+
+            document.getElementsByClassName("dashboard-tasks-section")[0].appendChild(presentationSection);
+        }
+
+    });
+}
+
+function appendHeader(value) {
+    const presentationSectionInfo = document.createElement("div");
+    presentationSectionInfo.classList.add("dashboard-tasks-presentation-container");
+
+    const presentationTitle = document.createElement("p");
+    presentationTitle.classList.add("task-title");
+    presentationTitle.innerText = value.pres_info.name;
+
+    const presentationTaskCount = document.createElement("p");
+    presentationTaskCount.classList.add("task-count");
+    presentationTaskCount.innerText = value.tasks.length + " Tasks";
+
+    presentationSectionInfo.appendChild(presentationTitle);
+    presentationSectionInfo.appendChild(presentationTaskCount);
+    presentationSectionInfo.innerHTML += `<ion-icon name="chevron-down" class="dashboard-tasks-presentation-dropdown"></ion-icon>`;
+
+    return presentationSectionInfo;
+}
+
+function appendTasks(value) {
+    const taskSection = document.createElement("div");
+    taskSection.classList.add("dashboard-tasks-container");
+
+    value.tasks.forEach(task => {
+        const taskContainer = document.createElement("div");
+        taskContainer.classList.add("task-container");
+
+        const taskItem = document.createElement("div");
+        taskItem.classList.add("dashboard-task-item");
+
+        const taskItemTitle = document.createElement("p");
+        taskItemTitle.classList.add("task-title");
+        taskItemTitle.innerText = task.task.name;
     
+        const taskItemTaskCount = document.createElement("p");
+        taskItemTaskCount.classList.add("task-count");
+        taskItemTaskCount.innerText = task.subtasks.length + " Subtasks";
+    
+        taskItem.appendChild(taskItemTitle);
+        taskItem.appendChild(taskItemTaskCount);
+        taskItem.innerHTML += `<ion-icon name="chevron-down" class="dashboard-tasks-presentation-dropdown"></ion-icon>`;
+
+        taskContainer.appendChild(taskItem);
+        taskContainer.appendChild(appendSubtasks(task));
+        taskSection.appendChild(taskContainer);
+    });
+
+    return taskSection;
+}
+
+function appendSubtasks(value) {
+    const subtaskContainer = document.createElement("div");
+    subtaskContainer.classList.add("subtask-container");
+
+    value.subtasks.forEach(subtask => {
+        console.warn(subtask);
+        const subtaskItem = document.createElement("div");
+        subtaskItem.classList.add("dashboard-subtask-item");
+
+        const subtaskTitle = document.createElement("p");
+        subtaskTitle.classList.add("task-title");
+        subtaskTitle.innerText = subtask.name;
+
+        const subtaskStatus = document.createElement("div");
+        subtaskStatus.classList.add("subtask-status");
+
+        subtask.finished ? subtaskStatus.classList.add("subtask-finished") : subtaskStatus.classList.add("subtask-pending");
+
+        subtaskItem.appendChild(subtaskTitle);
+        subtaskItem.appendChild(subtaskStatus);
+        subtaskContainer.appendChild(subtaskItem);
+    });
+
+    return subtaskContainer;
 }

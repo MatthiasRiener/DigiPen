@@ -535,6 +535,10 @@ body {
     margin: auto 0.5vw;
 }
 
+.dashboard-tasks-presentation-dropdown:hover {
+    cursor: pointer;
+}
+
 .dashboard-tasks-container {
     width: 90%;
     height: auto;
@@ -582,4 +586,19 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+}
+.subtask-status {
+    width: 1vw;
+    height: 1vw;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: 0.5vw;
+}
+
+.subtask-finished {
+    background-color: rgb(3, 184, 3);
+}
+
+.subtask-pending {
+    background-color: orange;
 }
