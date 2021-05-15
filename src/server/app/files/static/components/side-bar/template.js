@@ -58,16 +58,12 @@ export const template = `
           </div>
 
           <div id="teams-title">
-            <p>Teams</p> 
+            <p>Organizations</p> 
             <ion-icon
               name="add-outline"
               style="margin-left: auto; margin-right: 15px"
               class="icon-navbar add-workspace-btn"
             ></ion-icon>
           </div>
-          <div class="team-item">
-              <div class="team-banner"></div>
-              <div class="team-name"><p>Management</p></div>
-        </div>
       </div>
 `;

@@ -15,7 +15,7 @@ class Sidebar extends HTMLElement {
 
     this.shadowRoot.appendChild(this.temp.content.cloneNode(true));
     this.loadCss(this.getAttribute("path"));
-    this.container = this.shadowRoot.querySelector('.left-side-bar');
+    this.container = this.shadowRoot.querySelector('.left-side-content');
     this.workSpaceBtn = this.shadowRoot.querySelector('.add-workspace-btn');
     this.dashboardBtn = this.shadowRoot.querySelector('.dashboard-item');
     this.taskBtn = this.shadowRoot.querySelector('.task-item');
@@ -30,11 +30,9 @@ class Sidebar extends HTMLElement {
     this.workspaceText = this.shadowRoot.querySelector('#workspace-text');
     this.workspaceIMG = this.shadowRoot.querySelector('.cur-workspace');
 
-
+    this.initializeEvents();
     this.checkIfAdmin();
     this.getWorkspaces();
-
-    this.initializeEvents();
   }
   initializeEvents() {
 
@@ -90,8 +88,11 @@ class Sidebar extends HTMLElement {
       url: "/workspace/getWorkspaces"
     }).then(data => {
       data.res.forEach(workspace => {
-        this.workspaceText.innerHTML = workspace.w_name + "<br/> Workspace";
-        this.workspaceIMG.style.backgroundImage = `url('${workspace.w_img}')`;
+        this.container.insertAdjacentHTML('beforeend', `
+        <div class="team-item">
+          <div class="team-banner" style="background: ${workspace.w_color}"></div>
+          <div class="team-name"><p>${workspace.w_name}</p></div>
+        </div>`);
       });
     })
   }

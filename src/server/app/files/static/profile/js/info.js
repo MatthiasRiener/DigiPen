@@ -43,9 +43,11 @@ function getProfileInfo() {
 
         if (data.description == null || data.description == undefined || data.description.length == 0) {
             //alert("Wollen Sie Ihren Status ändern?")
+            $('#personal-description').text("Hey there I'm using Slidea! :)");
+            $('.status-alert').css('display', 'flex');
+        } else {
+            $('#personal-description').text(data.description);
         }
-
-        $('#personal-description').text(data.description);
 
         showTime(data.location.location.timezone.name);
     });
