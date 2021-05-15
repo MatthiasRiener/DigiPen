@@ -29,8 +29,7 @@ def createWorkspace():
     data = request.form
     w_name = data['name']
     w_users = aRepo.getUserIds(users=data.getlist('users[]'))
-    w_image = data['image']
-    msg = wRepo.createWorkspace(name=w_name, img=w_image, users=w_users, creator=get_jwt_identity())
+    msg = wRepo.createWorkspace(name=w_name, users=w_users, creator=get_jwt_identity())
 
 
     return msg

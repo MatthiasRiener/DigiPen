@@ -17,7 +17,7 @@ function dailyGoalPrinterPresentations(todaysNumber, goal) {
     // Make chart not full circle
     chart.startAngle = 0;
     chart.endAngle = 360;
-    chart.innerRadius = am4core.percent(80);
+    chart.innerRadius = am4core.percent(75);
 
     // Set number format
     chart.numberFormatter.numberFormat = "";
@@ -54,9 +54,9 @@ function dailyGoalPrinterPresentations(todaysNumber, goal) {
     label.text = Math.round(todaysNumber / goal * 100) + "%";
     label.horizontalCenter = "middle";
     label.verticalCenter = "middle";
-    label.fontSize = 40;
+    label.fontSize = "auto";
     label.fontWeight = 600;
-    label.fill = am4core.color("white");
+    label.fill = am4core.color("#383838");
 
     var series2 = chart.series.push(new am4charts.RadarColumnSeries());
     series2.dataFields.valueX = "value";
@@ -64,8 +64,8 @@ function dailyGoalPrinterPresentations(todaysNumber, goal) {
     series2.clustered = false;
     series2.columns.template.strokeWidth = 0;
     series2.columns.template.radarColumn.cornerRadius = 100;
-    series2.columns.template.fill = new am4core.color("white");
-    series1.columns.template.fill = new am4core.color("white");
+    series2.columns.template.fill = new am4core.color("#383838");
+    series1.columns.template.fill = new am4core.color("#383838");
 
 
 

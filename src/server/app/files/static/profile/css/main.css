@@ -192,7 +192,6 @@ body {
 #content-bottom-left-right-trophies-bottom-inner {
     width: 90%;
     height: 40%;
-    color: blue;
     display: flex;
     align-items: center;
 }
@@ -400,11 +399,9 @@ body {
 }
 
 .trophyProgress {
-    width: 5.5vw;
-    height: 5.5vw;
-    background-color: blue;
+    width: 6vw;
+    height: 6vw;
     border-radius: 10px;
-    margin: 0.5vw;
 }
 
 .trophyText {
