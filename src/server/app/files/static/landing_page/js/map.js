@@ -5,256 +5,136 @@ $('.team-member').each(function (index) {
 });
 
 
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2xpZGVhIiwiYSI6ImNrb3EybTA1ejA5Y2Iyc25sazBhanM3aXIifQ.4VkwdxqmiCrZCjJb9RgpYQ';
 
-ww = $('#map').width(),
-    wh = $('#map').height();
+var monument = [-77.0353, 38.8895];
 
-var centerVector = new THREE.Vector3(0, 0, 0);
-var previousTime = 0;
-
-var getImageData = function (image) {
-
-    var canvas = document.createElement("canvas");
-    canvas.width = image.width;
-    canvas.height = image.height;
-
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(image, 0, 0);
-
-    return ctx.getImageData(0, 0, image.width, image.height);
-}
-
-var drawTheMap = function () {
-
-    var geometry = new THREE.Geometry();
-    var geometry2 = new THREE.Geometry();
-    var geometry3 = new THREE.Geometry();
-
-
-    // test
+var map = new mapboxgl.Map({
+    container: 'map',
+    center: monument,
+    style: 'mapbox://styles/mapbox/light-v10'
+});
 
 
 
 
-    //
+// standorte
 
-    var material = new THREE.PointsMaterial({
-        size: 3,
-        color: 0x000000,
-        sizeAttenuation: false
-    });
-
-    var material2 = new THREE.PointsMaterial({
-        color: 0xE7E7E7,
-        size: 2,
-        sizeAttenuation: false
-    });
-
-    var material3 = new THREE.PointsMaterial({
-        color: 0xff0000,
-        size: 11,
-        sizeAttenuation: false
-    });
-
-
-    function getColorIndicesForCoord(x, y, width) {
-        var red = y * (width * 4) + x * 4;
-        return [red, red + 1, red + 2, red + 3];
-    }
-
-
-    for (var y = 0, y2 = imagedata.height; y < y2; y += 2) {
-        for (var x = 0, x2 = imagedata.width; x < x2; x += 2) {
-
-            var colorIndices = getColorIndicesForCoord(x, y, imagedata.width);
-
-            var redIndex = colorIndices[0];
-            var greenIndex = colorIndices[1];
-            var blueIndex = colorIndices[2];
-            var alphaIndex = colorIndices[3];
-
-            var imgBrightness = imagedata.data[alphaIndex];
-            var redCoordinate = imagedata.data[redIndex];
-            var blueCoordinate = imagedata.data[blueIndex];
-            var greenCoordinate = imagedata.data[greenIndex];
-
-            
-            if (redCoordinate == 255 && blueCoordinate == 0 && greenCoordinate == 0) {
-                console.log(redCoordinate);
-
-                var vertex = new THREE.Vector3();
-                vertex.x = 0;
-                vertex.y = 0;
-                vertex.z = -Math.random() * 500;
-
-                var destX = x - imagedata.width / 2;
-                var destY = -y + imagedata.height / 2;
-
-                vertex.destination = {
-                    x: destX,
-                    y: destY,
-                    z: 1
-                };
-
-                vertex.speed = Math.random() / 200 + 0.015;
-
-                geometry3.vertices.push(vertex);
-            } else if (imgBrightness > 128) {
-                var vertex = new THREE.Vector3();
-                vertex.x = Math.random() * 1000 - 500;
-                vertex.y = Math.random() * 1000 - 500;
-                vertex.z = -Math.random() * 500;
-
-                var destX = x - imagedata.width / 2;
-                var destY = -y + imagedata.height / 2;
-
-                vertex.destination = {
-                    x: destX,
-                    y: destY,
-                    z: 0
-                };
-
-                vertex.speed = Math.random() / 7 + 0.015;
-
-                geometry.vertices.push(vertex);
-            } else {
-                var vertex = new THREE.Vector3();
-                vertex.x = Math.random() * 1000 - 500;
-                vertex.y = Math.random() * 1000 - 500;
-                vertex.z = -Math.random() * 500;
-
-                vertex.destination = {
-                    x: x - imagedata.width / 2,
-                    y: -y + imagedata.height / 2,
-                    z: 0
-                };
-
-                vertex.speed = Math.random() / 200 + 0.015;
-
-
-
-
-                geometry2.vertices.push(vertex);
+var locations = {
+    'type': 'FeatureCollection',
+    'features': [
+        {
+            'type': 'Feature',
+            'geometry': {
+                'type': 'Point',
+                'coordinates': [14.2495914, 48.2685109]
+            },
+            'properties': {
 
             }
+        },
+        
+        {
+            'type': 'Feature',
+            'geometry': {
+                'type': 'Point',
+                'coordinates': [-73.9109737, 40.8517687]
+            },
+            'properties': {
 
+            }
+        },
+        {
+            'type': 'Feature',
+            'geometry': {
+                'type': 'Point',
+                'coordinates': [-118.2879734, 33.8309233]
+            },
+            'properties': {
 
+            }
         }
-    }
 
-
-
-    particles = new THREE.Points(geometry, material);
-    particles2 = new THREE.Points(geometry2, material2);
-    particles3 = new THREE.Points(geometry3, material3);
-
-    scene.add(particles);
-    scene.add(particles2)
-    scene.add(particles3);
-
-    requestAnimationFrame(render);
-};
-
-var init = function () {
-    THREE.ImageUtils.crossOrigin = '';
-    renderer = new THREE.WebGLRenderer({
-        canvas: document.getElementById("map"),
-        antialias: true
-    });
-    renderer.setSize(ww, wh);
-    renderer.setClearColor(0xffffff);
-
-    scene = new THREE.Scene();
-
-    camera = new THREE.PerspectiveCamera(50, ww / wh, 0.1, 10000);
-    camera.position.set(-100, 0, 220);
-    camera.lookAt(centerVector);
-    scene.add(camera);
-
-    texture = THREE.ImageUtils.loadTexture(`${baseURL}/static/landing_page/img/map/transparentMap_test.png`, undefined, function () {
-        imagedata = getImageData(texture.image);
-        drawTheMap();
-    });
-    window.addEventListener('resize', onResize, false);
-
-};
-var onResize = function () {
-    ww = $('#map').width(),
-        wh = $('#map').height();
-
-        console.log(wh)
-    camera.aspect = ww / wh;
-    camera.updateProjectionMatrix();
-    //renderer.setSize(ww, wh);
-
-};
-
-var render = function (a) {
-
-    requestAnimationFrame(render);
-
-    for (var i = 0, j = particles.geometry.vertices.length; i < j; i++) {
-        var particle = particles.geometry.vertices[i];
-
-        particle.x += (particle.destination.x - particle.x) * particle.speed;
-        particle.y += (particle.destination.y - particle.y) * particle.speed;
-        particle.z += (particle.destination.z - particle.z) * particle.speed;
-
-        particle.color = new THREE.Color("rgb(255,255,255)");
-    }
-
-
-
-    for (var i = 0, j = particles2.geometry.vertices.length; i < j; i++) {
-        var particle = particles2.geometry.vertices[i];
-
-        particle.x += (particle.destination.x - particle.x) * particle.speed;
-        particle.y += (particle.destination.y - particle.y) * particle.speed;
-        particle.z += (particle.destination.z - particle.z) * particle.speed;
-
-        particle.color = new THREE.Color("rgb(255,255,255)");
-    }
-
-    for (var i = 0, j = particles3.geometry.vertices.length; i < j; i++) {
-        var particle = particles3.geometry.vertices[i];
-
-        particle.x += (particle.destination.x - particle.x) * particle.speed;
-        particle.y += (particle.destination.y - particle.y) * particle.speed;
-        particle.z += (particle.destination.z - particle.z) * particle.speed;
-
-        particle.color = new THREE.Color("rgb(255,255,255)");
-    }
-
-
-
-    particles.geometry.verticesNeedUpdate = true;
-    particles2.geometry.verticesNeedUpdate = true;
-    particles3.geometry.verticesNeedUpdate = true;
-
-    camera.position.x = 0;
-    camera.lookAt(centerVector);
-
-    renderer.render(scene, camera);
+    ]
 };
 
 
+// add unique id
 
-function isOnScreen(element) {
-    var top_of_element = element.offset().top;
-    var bottom_of_element = element.offset().top + element.outerHeight();
-    var bottom_of_screen = $(window).scrollTop() + $(window).innerHeight();
-    var top_of_screen = $(window).scrollTop();
+locations.features.forEach(function (location, i) {
+    location.properties.id = i;
+});
 
-    return (bottom_of_screen > top_of_element) && (top_of_screen < bottom_of_element);
+
+map.on('load', function (e) {
+    map.addControl(new mapboxgl.NavigationControl());
+    addMarkers();
+})
+
+
+// if button was clicked
+
+$('#find-nearest-location').click(function () {
+
+    getLocation();
+
+
+});
+
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(getNearestLocation);
+    } else {
+        console.log("Location not supported on device..")
+    }
 }
 
-var canvasLoaded = false;
-$(window).scroll(function () {
-    var visible = isOnScreen($('#map-section'));
+function getNearestLocation(position) {
+    var searchResult = [position.coords.latitude, position.coords.longitude];
 
-    if (visible && !canvasLoaded) {
-        canvasLoaded = true;
-        init();
+    var options = { units: 'miles' };
+    locations.features.forEach(function (store) {
+        Object.defineProperty(store.properties, 'distance', {
+            value: turf.distance(searchResult, store.geometry, options),
+            writable: true,
+            enumerable: true,
+            configurable: true
+        });
+    });
 
-    }
-})
+
+    locations.features.sort(function (a, b) {
+        if (a.properties.distance > b.properties.distance) {
+            return 1;
+        }
+        if (a.properties.distance < b.properties.distance) {
+            return -1;
+        }
+        return 0; // a must be equal to b
+    });
+
+    console.log(locations.features[0])
+
+
+    map.flyTo({
+        center: [
+            locations.features[0].geometry.coordinates[0],
+            locations.features[0].geometry.coordinates[1],
+        ],
+        zoom: 12,
+        essential: true // this animation is considered essential with respect to prefers-reduced-motion
+    });
+}
+
+function addMarkers() {
+    locations.features.forEach((location) => {
+        var el = document.createElement('div');
+        el.id = 'marker';
+        console.log(location)
+        // create the marker
+        new mapboxgl.Marker(el)
+            .setLngLat(location.geometry.coordinates)
+            .addTo(map);
+    })
+}
