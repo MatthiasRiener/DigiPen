@@ -98,10 +98,12 @@ class Sidebar extends HTMLElement {
   }
 
   getWorkspaces() {
+    console.log("FETCHING WORKSPACES")
     sendRequestToServer({
       type: "GET",
       url: "/workspace/getWorkspaces"
     }).then(data => {
+      console.log(data)
       data.res.forEach(workspace => {
         this.container.insertAdjacentHTML('beforeend', `
         <div class="team-item">
