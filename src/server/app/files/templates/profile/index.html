@@ -27,6 +27,10 @@
 
     <script src={{ url_for('static', filename="editor/js/fabric.min.js" ) }} type="text/javascript" defer></script>
 
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
     <script type="text/javascript" defer>
         setAToken("{{ access }}");
         setRToken("{{ refresh }}");
@@ -256,7 +260,7 @@
                             </div>
 
                             <div class="trophyBox">
-                                <div class="trophyProgress"></div>
+                                <div class="trophyProgress" id="trophyChart"></div>
                                 <div class="trophyText">
                                     <h2>Trymacs</h2>
                                     <p>Moin Leute Trymacs hier!</p>
@@ -298,6 +302,7 @@
     <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/main.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/info.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/dashboard.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='/profile/js/trophy.js') }}"></script>
     <script src={{ url_for('static', filename="components/side-bar/invites.js" ) }} type="text/javascript"
         defer></script>
 </body>
