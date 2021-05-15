@@ -81,6 +81,7 @@ $('#find-nearest-location').click(function () {
 
 });
 
+var lastLocation;
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -116,6 +117,7 @@ function getNearestLocation(position) {
 
     console.log(locations.features[0])
 
+    lastLocation = locations.features[0];
 
     map.flyTo({
         center: [
@@ -125,7 +127,25 @@ function getNearestLocation(position) {
         zoom: 12,
         essential: true // this animation is considered essential with respect to prefers-reduced-motion
     });
+    
+    flying = true;
+    
 }
+
+var flying = false;
+
+map.on('moveend', function(){
+    if (flying) {
+        new mapboxgl.Popup()
+        .setLngLat([locations.features[0].geometry.coordinates[0],
+            locations.features[0].geometry.coordinates[1]])
+        .setHTML("Was geht ab lol")
+        .addTo(map);
+
+        flying = false;
+    }
+   
+});
 
 function addMarkers() {
     locations.features.forEach((location) => {
@@ -138,3 +158,47 @@ function addMarkers() {
             .addTo(map);
     })
 }
+
+
+
+
+// custom control
+class MapboxGLButtonControl {
+    constructor({
+      className = "",
+      title = "",
+      eventHandler = evtHndlr
+    }) {
+      this._className = className;
+      this._title = title;
+      this._eventHandler = eventHandler;
+    }
+  
+    onAdd(map) {
+      this._btn = document.createElement("button");
+      this._btn.className = "mapboxgl-ctrl-icon" + " " + this._className;
+      this._btn.type = "button";
+      this._btn.title = this._title;
+      this._btn.onclick = this._eventHandler;
+  
+      this._container = document.createElement("div");
+      this._container.className = "mapboxgl-ctrl-group mapboxgl-ctrl";
+      this._container.appendChild(this._btn);
+  
+      return this._container;
+    }
+  
+    onRemove() {
+      this._container.parentNode.removeChild(this._container);
+      this._map = undefined;
+    }
+  }
+
+
+  const ctrlPolygon = new MapboxGLButtonControl({
+    className: "mapbox-gl-draw_polygon",
+    title: "Draw Polygon",
+    eventHandler: getLocation
+  });
+
+  map.addControl(ctrlPolygon, "top-right");
