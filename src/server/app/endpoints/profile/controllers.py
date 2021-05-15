@@ -65,7 +65,7 @@ def getActivityRoute():
 @jwt_required
 def getUsersTasksRoute():
     u_id = get_jwt_identity()
-    res = taskRepo.getUsersTasks(u_id=u_id)
+    res = taskRepo.getUpcomingTasks(u_id=u_id)
 
     return json.dumps({"res": res})
 

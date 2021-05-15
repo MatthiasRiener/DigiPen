@@ -197,6 +197,24 @@ class TaskRepository():
             index = index + 1
         return response
 
+    def getUpcomingTasks(self, u_id):
+        tasks = Task.objects(assignee=u_id).order_by('end')
+        presentation = dict()
+
+        for t in tasks:
+                
+                pres_id = presRepo.getPresentation(p_id=t["p_id"])["p_id"]
+                task = json.loads(t.to_json())
+                # check if presentation is already vorhanden
+
+                if pres_id not in presentation:
+                    presentation[pres_id] = list()
+
+                presentation[pres_id].append(self.getTask(task_id=task["task_id"]))
+
+                
+        return presentation
+
     def getTasksCount(self, u_id):
         return len(Task.objects(assignee=u_id).order_by('end'))
 
