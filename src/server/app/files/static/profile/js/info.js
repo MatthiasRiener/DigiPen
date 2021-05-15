@@ -42,7 +42,7 @@ function getProfileInfo() {
 
 
         if (data.description == null || data.description == undefined || data.description.length == 0) {
-            alert("Wollen Sie Ihren Status ändern?")
+            //alert("Wollen Sie Ihren Status ändern?")
         }
 
         $('#personal-description').text(data.description);

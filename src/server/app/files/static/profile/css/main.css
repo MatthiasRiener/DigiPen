@@ -463,6 +463,10 @@ body {
     margin-right: 2vh;
 }
 
+.unfinished-presentation-img:hover {
+    cursor: pointer !important;
+}
+
 .unfinished-presentation-img {
     width: var(--unfinished-width);
     height: calc(var(--unfinished-width) / 16 * 9);
