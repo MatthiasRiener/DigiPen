@@ -203,13 +203,17 @@ class TaskRepository():
 
         for t in tasks:
                 
-                pres_id = presRepo.getPresentation(p_id=t["p_id"])["p_id"]
+                p_res = presRepo.getPresentation(p_id=t["p_id"])
+                pres_id = p_res["p_id"]
                 # check if presentation is already vorhanden
 
                 if pres_id not in presentation:
-                    presentation[pres_id] = list()
+                    presentation[pres_id] = dict()
+                    presentation[pres_id]["tasks"] = list()
+                    presentation[pres_id]["pres_info"] = dict()
+                    presentation[pres_id]["pres_info"]["name"] = p_res["name"]
 
-                presentation[pres_id].append(self.getTask(task_id=t["task_id"]))
+                presentation[pres_id]["tasks"].append(self.getTask(task_id=t["task_id"]))
 
                 
         return presentation
