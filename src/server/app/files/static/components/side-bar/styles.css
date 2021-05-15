@@ -33,8 +33,10 @@
 }
 
 .nav-bar-element:hover {
-    background: #e8e7e4;
+    background: linear-gradient(90deg, rgba(232,231,228,1) 0%, rgba(238,237,234,1) 65%, rgba(247,246,243,1) 100%);
+
     cursor:pointer;
+    border-left: 3px solid #383838;
 }
 
 .soon-item:hover {
@@ -152,4 +154,51 @@
 
     font-weight: 400;
     font-size: 1rem;
+}
+
+#profile-image-container-sidebar {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 5vh;
+}
+
+#profile-image-container-around {
+    width: 6vw;
+    height: 6vw;
+    padding: 0.5vw;
+    background: #383838;
+    border-radius: 50%;
+    border-radius: center;
+    margin-bottom: 1.5vh !important;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+}
+
+#profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+}
+
+#profile-image-container-sidebar > p {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#profile-container-username {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: 1.5vh !important;
+}
+
+#profile-container-email {
+    font-weight: 400;
+    font-size: 0.8rem;
+    opacity: 0.6;
 }
