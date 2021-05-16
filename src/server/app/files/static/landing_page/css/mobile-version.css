@@ -164,3 +164,7 @@
     height: 10vw;
 }
 
+#scroll-button {
+    right: 3%;
+    padding: 2vw;
+}

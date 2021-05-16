@@ -843,7 +843,7 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv
     background: white;
     border-radius: 15px;
     z-index: 10;
-    opacity: 0;
+    opacity: 1;
 
     display: flex;
     align-items: center;
@@ -860,8 +860,3 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv
     padding: .5vh 1vw;
 }
 
-
-.blend-in {
-    opacity: 1 !important;
-    transition: all 500ms ease-in;
-}

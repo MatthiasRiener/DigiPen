@@ -282,11 +282,9 @@ window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
     if (window.scrollY > 20 || document.documentElement.scrollTop > 20) {
-        mybutton.style.display = "flex";
-        mybutton.classList.add("blend-in");
+        mybutton.style.display = "block";
     } else {
         mybutton.style.display = "none";
-        mybutton.classList.remove("blend-in");
     }
 }
 
