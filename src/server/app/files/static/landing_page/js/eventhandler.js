@@ -249,23 +249,53 @@ function changeSlide() {
 
 // event listeners
 
-$('#top-bar-login').click(function() {
+$('#top-bar-login').click(function () {
     window.location.href = "/auth/login";
 });
 
 
-$('#top-bar-sign').click(function() {
+$('#top-bar-sign').click(function () {
     window.location.href = "/auth/login";
 })
 
-$('#work-with-get-started').click(function() {
+$('#work-with-get-started').click(function () {
     window.location.href = "/auth/login";
 });
 
-$('#get-started-button').click(function() {
+$('#get-started-button').click(function () {
     window.location.href = "/auth/login";
 });
 
-$('#download-button').click(function() {
+$('#download-button').click(function () {
     window.location.href = "/auth/login";
 });
+
+
+
+// scroll button
+
+
+mybutton = document.getElementById("scroll-button");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function () { scrollFunction() };
+
+function scrollFunction() {
+    if (window.scrollY > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "flex";
+        mybutton.classList.add("blend-in");
+    } else {
+        mybutton.style.display = "none";
+        mybutton.classList.remove("blend-in");
+    }
+}
+
+
+mybutton.addEventListener('click', topFunction);
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
