@@ -1019,3 +1019,8 @@ $('.back').click(function () {
     $('#keybindsPopup').css('opacity', '0.0');
 });
 
+
+
+$('#expander-content-rightOptions').click(function() {
+    $('#content-rightOptions-inner').toggleClass("expand-rightOptions");
+});
