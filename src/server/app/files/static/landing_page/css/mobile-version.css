@@ -1,4 +1,3 @@
-
 #top-bar-subpoints {
     display: none;
 }
@@ -7,7 +6,7 @@
     flex-direction: column;
 }
 
-#section-special > h1 {
+#section-special>h1 {
     font-size: 2.4rem;
 }
 
@@ -15,7 +14,7 @@
     width: 100%;
 }
 
-#section-how-it-works > h1 {
+#section-how-it-works>h1 {
     text-align: center;
 }
 
@@ -23,9 +22,8 @@
     min-width: 0;
 }
 
-
 .how-it-works-slider-item {
-   min-width: 80vw;
+    min-width: 80vw;
 }
 
 #showing-feature-text {
@@ -41,7 +39,7 @@
     min-height: 12vw;
 }
 
-.how-it-works-slide-btn > .icon-slider{
+.how-it-works-slide-btn>.icon-slider {
     width: 5vw;
     height: 5vw;
 }
@@ -50,7 +48,7 @@
     flex-direction: column;
 }
 
-#work-with-us-section > div {
+#work-with-us-section>div {
     width: 100%;
 }
 
@@ -58,7 +56,7 @@
     font-size: 2rem;
 }
 
-#work-with-left-section > p {
+#work-with-left-section>p {
     font-size: 1.1rem;
     text-align: left;
 }
@@ -68,7 +66,6 @@
     justify-content: space-evenly;
 }
 
-
 #work-with-right-section {
     display: none;
 }
@@ -77,14 +74,13 @@
     align-items: center;
 }
 
-#section-customers > h1 {
+#section-customers>h1 {
     text-align: center;
 }
 
-
-#section-customers > p {
-    text-align:justify;
-    hyphens: auto; 
+#section-customers>p {
+    text-align: justify;
+    hyphens: auto;
     width: 100%;
     font-size: 1rem;
 }
@@ -97,13 +93,12 @@
     width: 100%;
 }
 
-
 #pricing-container {
     flex-direction: column;
     width: 100%;
 }
 
-#pricing-container > div {
+#pricing-container>div {
     width: 100%;
     margin-top: 3vh;
     border-radius: 15px !important;
@@ -118,19 +113,16 @@
     display: none;
 }
 
-#second-section > div {
+#second-section>div {
     width: 100% !important;
     padding: 5% !important;
     background: transparent;
 }
 
-
 #slideshow-container {
     flex-direction: column;
     height: auto !important;
 }
-
-
 
 .slideshow-item {
     width: 100% !important;
@@ -140,14 +132,13 @@
     box-shadow: none;
 }
 
-
 #newsletter-section {
-    justify-content: center;   
+    justify-content: center;
     margin-top: 0 !important;
     height: auto;
 }
 
-#newsletter-section > h1, #newsletter-section > p {
+#newsletter-section>h1, #newsletter-section>p {
     width: 100%;
     text-align: center;
 }
@@ -158,11 +149,10 @@
     margin-top: 5vh;
 }
 
-#footer-section > div {
+#footer-section>div {
     width: 50%;
     margin-top: 3vh;
 }
-
 
 .team-member {
     width: 10vw;
@@ -174,8 +164,3 @@
     height: 10vw;
 }
 
-#scroll-button {
-    width: 10vw;
-    height: 10vw;
-    
-}

@@ -2449,3 +2449,38 @@ h1 {
     justify-content: center;
     font-size: 1.2rem;
 }
+
+
+#content-rightOptions-nav-bar {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 2px solid #f2f2f2;
+}
+
+.nav-bar-rightOptions-item {
+    width: 50%;
+    font-weight: 400;
+    padding: 0.5vw 1vw;
+    font-size: 1.4rem;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.nav-bar-item-active {
+    font-weight: bold;
+}
+
+.nav-bar-rightOptions-item:hover {
+    border-bottom: 2px solid grey;
+    background: #e7e7e7;
+}
+
+.sidebarSection {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}

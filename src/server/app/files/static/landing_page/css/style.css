@@ -838,12 +838,10 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv
 
 #scroll-button {
     position: fixed;
-    right: 3%;
+    right: 1%;
     bottom: 3%;
-    width: 4vw;
-    height: 4vw;
     background: white;
-    border-radius: 50%;
+    border-radius: 15px;
     z-index: 10;
     opacity: 0;
 
@@ -851,9 +849,15 @@ background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNv
     align-items: center;
     justify-content: center;
 
-    font-size: 1.4rem;
     box-shadow: rgba(99, 99, 99, 0.4) 0px 2px 8px 0px;
 
+}
+
+#scroll-button > p {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0 !important;
+    padding: .5vh 1vw;
 }
 
 

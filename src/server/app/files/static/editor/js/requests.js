@@ -39,6 +39,7 @@ function saveCanvas(canvas, width, height) {
 function createSlide() {
     sendRequestToServer({ type: "POST", url: "/editor/createSlide", data: { p_id: getCustomStorage("p_id") } }).then(data => {
         addSlide(data.res);
+        console.log(data.res)
         loadCanvasFromJson(data.res.canvas);
         setCanvasID(data.res._id.$oid);
         canvas.setWidth($('#content-main-inner-spacing-middle').width());

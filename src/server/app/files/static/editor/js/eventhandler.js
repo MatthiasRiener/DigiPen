@@ -1024,3 +1024,19 @@ $('.back').click(function () {
 $('#expander-content-rightOptions').click(function() {
     $('#content-rightOptions-inner').toggleClass("expand-rightOptions");
 });
+
+
+$('.nav-bar-rightOptions-item').click(function() {
+    $('.nav-bar-rightOptions-item').removeClass("nav-bar-item-active");
+    $(this).addClass("nav-bar-item-active");
+
+    $('.sidebarSection').css("display", "none");
+
+    const index = $(this).index() + 1;
+    const section = $('#content-rightOptions-inner').find(".sidebarSection[data-navbarsection='" + index + "']");
+    section.css("display", "flex");
+    console.log(section, index);
+
+});
+
+
