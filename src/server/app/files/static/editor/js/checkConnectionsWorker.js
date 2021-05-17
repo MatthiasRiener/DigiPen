@@ -1,15 +1,14 @@
 let data;
 self.addEventListener("message", function(event) {
-
-    reLoop();
+    console.log(event)
+    reLoop(event.data.session);
 
 });
 
 
-function reLoop() {
+function reLoop(session) {
 
     setInterval(function() {
-        self.postMessage({})
-        self.close();
+        self.postMessage({session: session})
     }, 50 * 1 * 1000)
 } 

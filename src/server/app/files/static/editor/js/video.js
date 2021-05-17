@@ -46,22 +46,30 @@ function updateParticipantCount() {
 
 };
 
-var worker;
+var worker, startSession;
 
 function startWorker() {
 
     if (userCounter == 1) {
         worker = new Worker(baseURL + "/static/editor/js/checkConnectionsWorker.js?" + Math.random());
 
-        worker.postMessage({})
+        startSession = Math.random().toString(36).substring(7);
+        worker.postMessage({session: startSession})
+
+
+
         worker.addEventListener('message', function (event) {
 
-            if (connected) {
+            console.log(event.data.session, startSession);
+
+            if (connected && startSession == event.data.session) {
                 disconnect();
             }
 
-            worker.terminate();
+            this.terminate();
+
         });
+
     }
 
 }
