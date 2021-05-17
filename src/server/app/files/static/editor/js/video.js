@@ -141,6 +141,9 @@ function disconnect() {
     let presi_vid = document.getElementById('my-video-track');
     presi_vid.innerHTML = "";
 
+    document.getElementById("content-navigation-third-box-counter").innerHTML = 0;
+
+
     connected = false;
     updateParticipantCount();
 };
