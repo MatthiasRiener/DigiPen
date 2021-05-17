@@ -11,6 +11,9 @@ function videoInitialized() {
 
 function reloadCameras() {
 
+    if (!connected) {
+        return;
+    }
 
     const videoContainer = document.getElementById('localVideo');
     const localVideo = (videoContainer.getElementsByTagName('video'))[0];
@@ -20,7 +23,7 @@ function reloadCameras() {
     var brightness = getBrightness(img);
 
     if (brightness < 35 && !hasClickedBrightness) {
-        showBrightnessSnackbar();
+        showBrightnessSnackbar("Turn on the lights, we can't see you!");
     }
 
 }
@@ -64,8 +67,7 @@ var hasClickedBrightness = false;
 
 function showBrightnessSnackbar() {
     // Get the snackbar DIV
-
-
+    
     if (x.classList.contains("show")) {
         return;
     }
@@ -75,6 +77,7 @@ function showBrightnessSnackbar() {
 }
 
 $('body').on('click', "#skip-brightness", function () {
+
     x.className = x.className.replace("show", "hidden");
     hasClickedBrightness = true;
 })

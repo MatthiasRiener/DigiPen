@@ -42,6 +42,7 @@
 
 
     <script src={{ url_for('static', filename="editor/js/presExport.js" ) }} type="text/javascript" defer></script>
+    <script src={{ url_for('static', filename="editor/js/audio-player.js" ) }} type="text/javascript" defer></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.js" type="text/javascript" defer></script>
@@ -60,10 +61,10 @@
 <body>
 
 
-    <!--Import for Loader
+    <!--Import for Loader-->
     <script src={{ url_for('static', filename="components/loading-screen/Loader.js" ) }} type="module"></script>
     <loading-screen id="loadingScreen"></loading-screen>
-    End of loader-->
+    <!--End of loader-->
 
 
     <div id="notifiy-brightness-snackbar">
@@ -103,16 +104,8 @@
             </div>
             <div id="content-navigation-fourth">
                 <div id="content-navigation-fourth-position">
-                    <div class="content-navigation-fourth-position-circle"
-                        id="content-navigation-fourth-position-firstCircle"></div>
-                    <div class="content-navigation-fourth-position-circle"
-                        id="content-navigation-fourth-position-secondCircle"></div>
-                    <div class="content-navigation-fourth-position-circle"
-                        id="content-navigation-fourth-position-thirdCircle"></div>
-                    <div class="content-navigation-fourth-position-circle"
-                        id="content-navigation-fourth-position-fourthCircle"></div>
-                    <div class="content-navigation-fourth-position-circle"
-                        id="content-navigation-fourth-position-fifthCircle">+4</div>
+                   
+                  
                 </div>
 
                 <ion-icon id="content-navigation-fourth-share" name="share-social-outline"
@@ -143,7 +136,7 @@
         <div id="content-main">
             <div id="content-main-inner">
                 <div id="content-main-inner-spacing-top">
-                    <div class="content-main-inner-spacing-top-profile">
+                    <div class="content-main-inner-spacing-top-profile" id="local">
                         <div class="content-main-inner-spacing-top-profile-image" id="localVideo"></div>
                         <h2 class="content-main-inner-spacing-top-profile-text" id="localVideoText"></h2>
                     </div>

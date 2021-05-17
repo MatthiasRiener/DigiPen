@@ -130,7 +130,7 @@
 }
 
 #content-navigation-fourth {
-    width: 12%;
+    width: auto;
     height: 70%;
     border-right: solid 2px rgb(112, 112, 112, 0.24);
     display: flex;
@@ -147,12 +147,15 @@
 }
 
 .content-navigation-fourth-position-circle {
-    width: 1.5vw;
-    height: 1.5vw;
+    width: 1.8vw;
+    height: 1.8vw;
     border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background-size: cover;
+    background-position: center;
 }
 
 #content-navigation-fourth-position-firstCircle {
@@ -1431,8 +1434,11 @@
 #settingsPopup-inner-bottom-picture-inner {
     width: 18vh;
     height: 18vh;
-    background-color: blue;
     border-radius: 100%;
+
+    background-size: cover;
+    background-position: center;
+
 }
 
 #settingsPopup-inner-bottom-header-exit:hover {
@@ -2457,26 +2463,30 @@ h1 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-start;
     border-bottom: 2px solid #f2f2f2;
 }
 
 .nav-bar-rightOptions-item {
-    width: 50%;
-    font-weight: 400;
+    font-weight: bold;
     padding: 0.5vw 1vw;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     box-sizing: border-box;
     cursor: pointer;
+
+    background: #383838;
+    border-radius: 5px;
+    margin: 1vh;
+    color:#b1b1b1;
 }
 
 .nav-bar-item-active {
     font-weight: bold;
+    color: white;
 }
 
 .nav-bar-rightOptions-item:hover {
-    border-bottom: 2px solid grey;
-    background: #e7e7e7;
+    color: white;
 }
 
 .sidebarSection {
