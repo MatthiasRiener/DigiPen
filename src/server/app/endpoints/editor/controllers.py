@@ -212,7 +212,7 @@ def connectVideoChatRoute():
 
     else:
         token = AccessToken(twilio_account_sid, twilio_api_key_sid,
-                            twilio_api_key_secret, identity=u_id)
+                            twilio_api_key_secret, identity=username)
         token.add_grant(VideoGrant(room=str(p_id)))
         tokens[u_id] = token
 
