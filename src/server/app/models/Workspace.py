@@ -7,4 +7,5 @@ class Workspace(db.Document):
     w_name = db.StringField(required=True)
     w_color = db.StringField()
     w_users = db.ListField()
+    w_creator = db.StringField()
 

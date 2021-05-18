@@ -1,8 +1,15 @@
 let room;
 let container = document.getElementById("content-main-inner-spacing-top");
 let userCounter = 1;
+let connected = false;
 
 function connectToVideo() {
+
+    const loader = document.getElementById('loadingScreen');
+    loader.style.display = "flex";
+    loader.relightLoader("Connecting...");
+
+
     sendRequestToServer({ type: "POST", url: "/editor/connectToVideoChat", data: { p_id: getCustomStorage("p_id") } }).then(data => {
         document.getElementById("localVideoText").innerHTML = data.faggot;
         return Twilio.Video.connect(data.vt);
@@ -13,8 +20,18 @@ function connectToVideo() {
         room.on('participantDisconnected', participantDisconnected);
         connected = true;
         updateParticipantCount();
+        audioSelfConnected();
+
+
+        loader.documentLoaded();
+
+        setTimeout(() => {
+            loader.style.display = "none";
+        }, 700)
+
     }).catch((err) => {
-        
+        console.log("ERROR WHILE CONNECTING....")
+        console.log(err)
     });;
 }
 
@@ -24,9 +41,48 @@ function updateParticipantCount() {
 
 
     $('body').addClass('loaded');
+    resetWorker();
 
 
 };
+
+var worker, startSession;
+
+function startWorker() {
+
+    if (userCounter == 1) {
+        worker = new Worker(baseURL + "/static/editor/js/checkConnectionsWorker.js?" + Math.random());
+
+        startSession = Math.random().toString(36).substring(7);
+        worker.postMessage({session: startSession})
+
+
+
+        worker.addEventListener('message', function (event) {
+
+            console.log(event.data.session, startSession);
+
+            if (connected && startSession == event.data.session) {
+                disconnect();
+            }
+
+            this.terminate();
+
+        });
+
+    }
+
+}
+
+
+function resetWorker() {
+    if (userCounter == 1) {
+        startWorker();
+    } else {
+        worker.terminate();
+    }
+
+}
 
 function participantConnected(participant) {
     let participantDiv = document.createElement('div');
@@ -71,9 +127,23 @@ function trackUnsubscribed(track) {
 
 function disconnect() {
     room.disconnect();
-    while (container.lastChild.id != 'local')
+    audioSelfDisonnected();
+    while (container.lastChild !== null && container.lastChild !== undefined && container.lastChild.id != 'local')
         container.removeChild(container.lastChild);
-    button.innerHTML = 'Join call';
+    //button.innerHTML = 'Join call';
+
+    let video = document.getElementById('localVideo');
+    video.innerHTML = "";
+
+    let videoText = document.getElementById('localVideoText');
+    videoText.innerHTML = "";
+
+    let presi_vid = document.getElementById('my-video-track');
+    presi_vid.innerHTML = "";
+
+    document.getElementById("content-navigation-third-box-counter").innerHTML = 0;
+
+
     connected = false;
     updateParticipantCount();
 };
@@ -93,5 +163,3 @@ function addLocalVideo() {
     });
 };
 
-addLocalVideo();
-connectToVideo();

@@ -28,6 +28,7 @@
                 "ry": 0
             }
         ],
-        "background": "rgba(38, 38, 38, 1)"
+        "version": "4.1.0",
+        "background": "#383838"
     }
 }

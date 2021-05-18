@@ -244,18 +244,56 @@ $('#chartsPopup-inner-right-settings-close').click(function () {
 
 // open settings popup
 $('#content-navigation-second-settings').click(function () {
-    $('#settingsPopup').css('display', 'flex');
-    $('#settingsPopup').animate({
-        opacity: 1.0
-    }, 100);
+    openSettingsPopup();
 });
 
-// close settings popup
 $('#settingsPopup-inner-bottom-header-exit').click(function () {
+    closeSettings();
+ });
+
+ function openSettingsPopup() {
+     console.log(connected)
+    if (typeof connected !== 'undefined' && connected) {
+        $('#settingsPopup-inner-bottom-button-join').text("Disconnect");
+    } else {
+        $('#settingsPopup-inner-bottom-button-join').text("Join");
+        console.log("HALLOOO")
+    }
+
+    sendRequestToServer({ type: "POST", url: "/editor/getPresentationInfo", data: { p_id: getCustomStorage("p_id") } }).then(pres_data => {
+
+            console.log(pres_data);
+
+            $('#settingsPopup-inner-bottom-picture-inner').css('background-image', `url(${pres_data.ownUser.img})`);
+            $('#settingsPopup-inner-top-middle-title').html(pres_data.pres.name);
+
+            $('#settingsPopup').css('display', 'flex');
+            $('#settingsPopup').animate({
+                opacity: 1.0
+            }, 100);
+
+    });
+
+
+}
+
+$('#settingsPopup-inner-bottom-button-join').click(function() {
+    if (!connected) {
+        addLocalVideo();
+        connectToVideo();
+    } else {
+        disconnect();
+    }
+    closeSettings();
+
+});
+
+ function closeSettings() {
     $('#settingsPopup').css('display', 'none');
     $('#settingsPopup').css('opacity', '0.0');
-    $('#settingsPopup-inner-bottom-button-join').css('display', 'none');
-});
+}
+
+
 
 // open cam popup in settings popup
 $('#settingsPopup-inner-bottom-settings-cam-bottom-popup').click(function () {
@@ -1018,4 +1056,25 @@ $('.back').click(function () {
     $('#keybindsPopup').css('display', 'none');
     $('#keybindsPopup').css('opacity', '0.0');
 });
+
+
+
+$('#expander-content-rightOptions').click(function() {
+    $('#content-rightOptions-inner').toggleClass("expand-rightOptions");
+});
+
+
+$('.nav-bar-rightOptions-item').click(function() {
+    $('.nav-bar-rightOptions-item').removeClass("nav-bar-item-active");
+    $(this).addClass("nav-bar-item-active");
+
+    $('.sidebarSection').css("display", "none");
+
+    const index = $(this).index() + 1;
+    const section = $('#content-rightOptions-inner').find(".sidebarSection[data-navbarsection='" + index + "']");
+    section.css("display", "flex");
+    console.log(section, index);
+
+});
+
 

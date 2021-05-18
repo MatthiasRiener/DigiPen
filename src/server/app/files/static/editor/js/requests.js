@@ -9,10 +9,32 @@ $(document).ready(function () {
         loadContentOfSideSlides(data.canvas);
 
         
-            
+        insertPresUsers(data.users); 
                 
     });
 });
+
+
+function insertPresUsers(users) {
+    console.log(users)
+    var index = 0;
+
+    users.forEach((user) => {
+
+        if (index >= 3) {
+            $('#content-navigation-fourth-position').append(
+                `<div class="content-navigation-fourth-position-circle" style="margin-left: -0.3vw; z-index: ${index+1}; background-color: #383838;font-weight: bold; color: white;');"><p>+${users.length - index}</p></div>`
+            );
+
+            return;
+        }
+
+        $('#content-navigation-fourth-position').append(
+            `<div title="${user.name}" class="content-navigation-fourth-position-circle" style="margin-left: -0.3vw; z-index: ${index+1}; background-image: url('${user.img}');"></div>`
+        );
+        index++;
+    });
+}
 
 function saveCanvas(canvas, width, height) {
     sendRequestToServer({ type: "POST", url: "/editor/updateCanvas", data: { p_id: getCustomStorage("p_id"), s_id: getCanvasID(), width: width, height: height, canvas: JSON.stringify(canvas) } }).then(data => {
@@ -39,6 +61,7 @@ function saveCanvas(canvas, width, height) {
 function createSlide() {
     sendRequestToServer({ type: "POST", url: "/editor/createSlide", data: { p_id: getCustomStorage("p_id") } }).then(data => {
         addSlide(data.res);
+        console.log(data.res)
         loadCanvasFromJson(data.res.canvas);
         setCanvasID(data.res._id.$oid);
         canvas.setWidth($('#content-main-inner-spacing-middle').width());

@@ -176,6 +176,7 @@ def getVideoChatInformationRoute():
     return json.dumps({"res": 1})
     
 
+tokens = dict()
 
 # video chat route
 @editor.route('/connectToVideoChat', methods=['POST', 'GET'])
@@ -206,11 +207,16 @@ def connectVideoChatRoute():
     except:
         print("Room already exists.")
 
-    token = AccessToken(twilio_account_sid, twilio_api_key_sid,
-                        twilio_api_key_secret, identity=username)
-    token.add_grant(VideoGrant(room=str(p_id)))
+    if u_id in tokens:
+        return json.dumps({'vt': tokens[u_id].to_jwt().decode(), 'faggot': username})
 
-    return json.dumps({'vt': token.to_jwt().decode(), 'faggot': username})
+    else:
+        token = AccessToken(twilio_account_sid, twilio_api_key_sid,
+                            twilio_api_key_secret, identity=username)
+        token.add_grant(VideoGrant(room=str(p_id)))
+        tokens[u_id] = token
+
+        return json.dumps({'vt': token.to_jwt().decode(), 'faggot': username})
 
 
 # realtime support

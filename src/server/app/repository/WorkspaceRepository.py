@@ -20,11 +20,15 @@ class WorkspaceRepository():
         if type(name) is not str:
             return CustomException("Name must be a string").__str__()
 
-        Workspace(w_id=str(time.time()), w_name=name, w_color=self.randomColor(), w_users=users).save()
+
+        if creator not in users:
+            users.append(creator)
+
+        Workspace(w_id=str(time.time()), w_name=name, w_color=self.randomColor(), w_users=users, w_creator=creator).save()
         return json.dumps({"workspaces": self.getRepoCounter(u_id=creator)})
 
     def getWorkspaces(self, u_id):
-        spaces = mongoclient.db['workspace'].find({"w_users": u_id})
+        spaces = mongoclient.db['workspace'].find({"w_users": u_id}).sort([("w_name", 1)])
         workspaces = list()
 
         for sp in spaces:

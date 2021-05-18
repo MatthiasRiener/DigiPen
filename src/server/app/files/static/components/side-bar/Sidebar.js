@@ -30,9 +30,16 @@ class Sidebar extends HTMLElement {
     this.workspaceText = this.shadowRoot.querySelector('#workspace-text');
     this.workspaceIMG = this.shadowRoot.querySelector('.cur-workspace');
 
+
+    this.profileImage = this.shadowRoot.querySelector("#profile-image-container-around");
+    this.userImg = this.shadowRoot.querySelector("#profile-image");
+
+    this.getUserInfo();
     this.initializeEvents();
     this.checkIfAdmin();
     this.getWorkspaces();
+
+
   }
   initializeEvents() {
 
@@ -51,6 +58,14 @@ class Sidebar extends HTMLElement {
     this.adminBtn.addEventListener('click', e => { this.navigateToAdminPanel() })
   }
 
+
+  getUserInfo() {
+    sendRequestToServer({ type: "GET", url: "/profile/user" }).then(data => {
+      this.userImg.style.backgroundImage = `url('${data.img}')`;
+      this.shadowRoot.querySelector("#profile-container-username").innerHTML = data.name;
+      this.shadowRoot.querySelector("#profile-container-email").innerHTML = data.mail;
+    });
+  }
   addWorkSpace() {
     this.dispatchEvent(new CustomEvent('animWorkSpace', {}));
   }
@@ -76,17 +91,19 @@ class Sidebar extends HTMLElement {
 
   }
 
-  
+
 
   disconnectedCallback() {
 
   }
 
   getWorkspaces() {
+    console.log("FETCHING WORKSPACES")
     sendRequestToServer({
       type: "GET",
       url: "/workspace/getWorkspaces"
     }).then(data => {
+      console.log(data)
       data.res.forEach(workspace => {
         this.container.insertAdjacentHTML('beforeend', `
         <div class="team-item">

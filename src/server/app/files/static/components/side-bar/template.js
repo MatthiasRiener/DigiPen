@@ -1,6 +1,16 @@
 
 export const template = `
         <div class="left-side-content">
+
+        <div id="profile-image-container-sidebar">
+            <div id="profile-image-container-around">
+                <div id="profile-image">
+                </div>
+            </div>
+
+            <p id="profile-container-username">Max Mustermann</p>
+            <p id="profile-container-email">maxmustermann@anonym.com</p>
+        </div>
          
         <div id="teams-title" >
           <p>Navigation</p> 

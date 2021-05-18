@@ -5,7 +5,7 @@ class User(db.Document):
     u_id = db.StringField(primary_key=True, required=True)
     name = db.StringField()
     mail = db.StringField(required=True)
-    img = db.StringField(default="https://i1.wp.com/katzenworld.co.uk/wp-content/uploads/2019/06/funny-cat.jpeg?fit=1920%2C1920&ssl=1")
+    img = db.StringField(default="/static/profile/img/images/unknown/slidea_no_profile.jpg")
     description = db.StringField()
     last_login = db.IntField()
     created = db.IntField()

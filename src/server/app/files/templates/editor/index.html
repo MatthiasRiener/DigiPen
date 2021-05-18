@@ -14,8 +14,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
-        <!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+    <!--
     <script
         src="https://raw.githubusercontent.com/dimsemenov/Magnific-Popup/master/dist/jquery.magnific-popup.js"></script>
     <script
@@ -42,8 +42,9 @@
 
 
     <script src={{ url_for('static', filename="editor/js/presExport.js" ) }} type="text/javascript" defer></script>
+    <script src={{ url_for('static', filename="editor/js/audio-player.js" ) }} type="text/javascript" defer></script>
 
-    
+
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.js" type="text/javascript" defer></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js"
@@ -51,6 +52,8 @@
         crossorigin="anonymous"></script>
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/editor/css/style.css') }}"" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/editor/css/chat.css') }}"" />
+
     <link rel=" stylesheet" type="text/css" href="{{ url_for('static', filename='/editor/css/variables.css') }}" />
 
 </head>
@@ -58,10 +61,10 @@
 <body>
 
 
-     <!--Import for Loader-->
-     <script src={{ url_for('static', filename="components/loading-screen/Loader.js" ) }} type="module"></script>
-     <loading-screen id="loadingScreen"></loading-screen>
- <!--End of loader-->
+    <!--Import for Loader-->
+    <script src={{ url_for('static', filename="components/loading-screen/Loader.js" ) }} type="module"></script>
+    <loading-screen id="loadingScreen"></loading-screen>
+    <!--End of loader-->
 
 
     <div id="notifiy-brightness-snackbar">
@@ -101,19 +104,12 @@
             </div>
             <div id="content-navigation-fourth">
                 <div id="content-navigation-fourth-position">
-                    <div class="content-navigation-fourth-position-circle"
-                        id="content-navigation-fourth-position-firstCircle"></div>
-                    <div class="content-navigation-fourth-position-circle"
-                        id="content-navigation-fourth-position-secondCircle"></div>
-                    <div class="content-navigation-fourth-position-circle"
-                        id="content-navigation-fourth-position-thirdCircle"></div>
-                    <div class="content-navigation-fourth-position-circle"
-                        id="content-navigation-fourth-position-fourthCircle"></div>
-                    <div class="content-navigation-fourth-position-circle"
-                        id="content-navigation-fourth-position-fifthCircle">+4</div>
+                   
+                  
                 </div>
 
-                <ion-icon id="content-navigation-fourth-share" name="share-social-outline" style="fill: #383838; margin-right: 1.5vw; font-size: 1.6rem;"></ion-icon>
+                <ion-icon id="content-navigation-fourth-share" name="share-social-outline"
+                    style="fill: #383838; margin-right: 1.5vw; font-size: 1.6rem;"></ion-icon>
 
 
             </div>
@@ -140,7 +136,7 @@
         <div id="content-main">
             <div id="content-main-inner">
                 <div id="content-main-inner-spacing-top">
-                    <div class="content-main-inner-spacing-top-profile">
+                    <div class="content-main-inner-spacing-top-profile" id="local">
                         <div class="content-main-inner-spacing-top-profile-image" id="localVideo"></div>
                         <h2 class="content-main-inner-spacing-top-profile-text" id="localVideoText"></h2>
                     </div>
@@ -174,210 +170,232 @@
                 </div>
             </div>
         </div>
+
+
         <div id="content-rightOptions">
+            <div id="expander-content-rightOptions-container">
+                <div id="expander-content-rightOptions">
+                    <ion-icon name="chevron-back"></ion-icon>
+                </div>
+            </div>
+
             <div id="content-rightOptions-inner">
 
-                <div id="canvas-editor">
-                    <div class="text-editor-title">
-                        <p>Canvas</p>
-                    </div>
-                    <div class="text-editor-item">
-                        <p>Background Color</p>
-                        <input type="color" class="color-picker canvas-fill-color">
-                    </div>
 
-                    <div class="text-editor-item">
-                        <p>Background Image</p>
-                        <input type="text" class="canvas-background-img" />
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Export to JSON</p>
-                        <button class="btn-export-to-json">Export</button>
-                    </div>
+                <div id="content-rightOptions-nav-bar">
+                    <div class="nav-bar-rightOptions-item nav-bar-item-active"><p>Canvas</p></div>
+                    <div class="nav-bar-rightOptions-item"><p>Chat</p></div>
                 </div>
 
 
-                <div id="chart-editor">
-                    <div class="text-editor-title">
-                        <p>Chart</p>
+                <div id="chat-options-section" class="sidebarSection" data-navBarSection="2">
+
+                </div>
+
+                <div id="presentation-options-section" class="sidebarSection" data-navBarSection="1">
+                    <div id="canvas-editor">
+                        <div class="text-editor-title">
+                            <p>Canvas</p>
+                        </div>
+                        <div class="text-editor-item">
+                            <p>Background Color</p>
+                            <input type="color" class="color-picker canvas-fill-color">
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Background Image</p>
+                            <input type="text" class="canvas-background-img" />
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Export to JSON</p>
+                            <button class="btn-export-to-json">Export</button>
+                        </div>
+                    </div>
+
+
+                    <div id="chart-editor">
+                        <div class="text-editor-title">
+                            <p>Chart</p>
+                        </div>
+                    </div>
+
+                    <div id="image-editor">
+                        <div class="text-editor-title">
+                            <p>Image</p>
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>StrokeWidth</p>
+                            <input type="number" class="img-stroke-width">
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Stroke Color</p>
+                            <input type="color" class="color-picker img-stroke-color">
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Invert</p>
+                            <button class="toggleButton img-invert-img">Invert</button>
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Grayscale</p>
+                            <select class="img-grayscale-val">
+                                <option value="cancel">-</option>
+                                <option value="average">Average</option>
+                                <option value="luminosity">Luminosity</option>
+                                <option value="lightness">Light</option>
+                            </select>
+                            <button class="img-grayscale-img">Grayscale</button>
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Sepia</p>
+                            <button class="toggleButton img-sepia-img">Sepia</button>
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Black and White</p>
+                            <button class="toggleButton img-black_white-img">Black and White</button>
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Brownie</p>
+                            <button class="toggleButton img-brownie-img">Brownie</button>
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Vintage</p>
+                            <button class="toggleButton img-vintage-img">Vintage</button>
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Kodachrome</p>
+                            <button class="toggleButton img-kodachrome-img">Kodachrome</button>
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Technicolor</p>
+                            <button class="toggleButton img-technicolor-img">Technicolor</button>
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Polaroid</p>
+                            <button class="toggleButton img-polaroid-img">Polaroid</button>
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Remove Color</p>
+                            <input type="color" class="color-picker img-removeColor-color-img">
+                            <input type="range" min="0" max="100" value="0" class="img-removeColor-slider-img">
+                            <button class="img-removeColor-img">Remove</button>
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Brightness</p>
+                            <input type="range" class="img-brightness-slider-img" min="0" max="100" value="0" />
+                            <button class="img-brightness-img">Brightness</button>
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Opacity</p>
+                            <input type="range" class="img-opacity-slider-img" min="0" max="100" value="100" />
+                        </div>
+                    </div>
+
+
+                    <div id="text-editor">
+                        <div class="text-editor-title">
+                            <p>Text</p>
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Color</p>
+                            <input type="color" class="color-picker fill-color-picker">
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Background-Color</p>
+                            <input type="color" class="color-picker background-color-picker">
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Opacity</p>
+                            <input class="text-opacity-slider" type="range" min="00" max="100" value="100" step="10" />
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Family</p>
+                            <select class="text-font-family">
+                                <option value="arial">Arial</option>
+                                <option value="helvetica" selected>Helvetica</option>
+                                <option value="verdana">Verdana</option>
+                                <option value="courier">Courier</option>
+                                <option value="Roboto">Roboto</option>
+                                <option value="Open Sans">Open Sans</option>
+                                <option value="Zilla Slab">Zilla Slab</option>
+                                <option value="Lato">Lato</option>
+                                <option value="Bellefair">Bellefair</option>
+                                <option value="Fresca">Fresca</option>
+                                <option value="Raleway">Raleway</option>
+                                <option value="Open Sans Condensed">Open Sans Condensed</option>
+                                <option value="Indie Flower">Indie Flower</option>
+                                <option value="Josefin Sans">Josefin Sans</option>
+                                <option value="Inconsolata">Inconsolata</option>
+                                <option value="Pacifico">Pacifico</option>
+                                <option value="Gloria Hallelujah">Gloria Hallelujah</option>
+                            </select>
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Size</p>
+                            <input type="number" class="font-size-text" />
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Bold</p>
+                            <input type="checkbox" class="text-isbold">
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Italic</p>
+                            <input type="checkbox" class="text-isitalic">
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Center</p>
+                            <button class="text-centerYX">Center</button>
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Char Spacing</p>
+                            <input type="number" class="text-char-spacing" />
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Line Height</p>
+                            <input type="range" class="text-line-height" step="0.1" min="0" max="10" />
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Style</p>
+                            <button data-val="underline" class="btn-text-style">Underline</button>
+                            <button data-val="overline" class="btn-text-style">Overline</button>
+                            <button data-val="line-through" class="btn-text-style">Line Through</button>
+                        </div>
+
+                        <div class="text-editor-item">
+                            <p>Align</p>
+                            <button data-val="left" class="btn-text-align">Left</button>
+                            <button data-val="center" class="btn-text-align">Center</button>
+                            <button data-val="right" class="btn-text-align">Right</button>
+                            <button data-val="justify" class="btn-text-align">Justify</button>
+                        </div>
                     </div>
                 </div>
 
-                <div id="image-editor">
-                    <div class="text-editor-title">
-                        <p>Image</p>
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>StrokeWidth</p>
-                        <input type="number" class="img-stroke-width">
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Stroke Color</p>
-                        <input type="color" class="color-picker img-stroke-color">
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Invert</p>
-                        <button class="toggleButton img-invert-img">Invert</button>
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Grayscale</p>
-                        <select class="img-grayscale-val">
-                            <option value="cancel">-</option>
-                            <option value="average">Average</option>
-                            <option value="luminosity">Luminosity</option>
-                            <option value="lightness">Light</option>
-                        </select>
-                        <button class="img-grayscale-img">Grayscale</button>
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Sepia</p>
-                        <button class="toggleButton img-sepia-img">Sepia</button>
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Black and White</p>
-                        <button class="toggleButton img-black_white-img">Black and White</button>
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Brownie</p>
-                        <button class="toggleButton img-brownie-img">Brownie</button>
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Vintage</p>
-                        <button class="toggleButton img-vintage-img">Vintage</button>
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Kodachrome</p>
-                        <button class="toggleButton img-kodachrome-img">Kodachrome</button>
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Technicolor</p>
-                        <button class="toggleButton img-technicolor-img">Technicolor</button>
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Polaroid</p>
-                        <button class="toggleButton img-polaroid-img">Polaroid</button>
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Remove Color</p>
-                        <input type="color" class="color-picker img-removeColor-color-img">
-                        <input type="range" min="0" max="100" value="0" class="img-removeColor-slider-img">
-                        <button class="img-removeColor-img">Remove</button>
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Brightness</p>
-                        <input type="range" class="img-brightness-slider-img" min="0" max="100" value="0" />
-                        <button class="img-brightness-img">Brightness</button>
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Opacity</p>
-                        <input type="range" class="img-opacity-slider-img" min="0" max="100" value="100" />
-                    </div>
-                </div>
-
-
-                <div id="text-editor">
-                    <div class="text-editor-title">
-                        <p>Text</p>
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Color</p>
-                        <input type="color" class="color-picker fill-color-picker">
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Background-Color</p>
-                        <input type="color" class="color-picker background-color-picker">
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Opacity</p>
-                        <input class="text-opacity-slider" type="range" min="00" max="100" value="100" step="10" />
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Family</p>
-                        <select class="text-font-family">
-                            <option value="arial">Arial</option>
-                            <option value="helvetica" selected>Helvetica</option>
-                            <option value="verdana">Verdana</option>
-                            <option value="courier">Courier</option>
-                            <option value="Roboto">Roboto</option>
-                            <option value="Open Sans">Open Sans</option>
-                            <option value="Zilla Slab">Zilla Slab</option>
-                            <option value="Lato">Lato</option>
-                            <option value="Bellefair">Bellefair</option>
-                            <option value="Fresca">Fresca</option>
-                            <option value="Raleway">Raleway</option>
-                            <option value="Open Sans Condensed">Open Sans Condensed</option>
-                            <option value="Indie Flower">Indie Flower</option>
-                            <option value="Josefin Sans">Josefin Sans</option>
-                            <option value="Inconsolata">Inconsolata</option>
-                            <option value="Pacifico">Pacifico</option>
-                            <option value="Gloria Hallelujah">Gloria Hallelujah</option>
-                        </select>
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Size</p>
-                        <input type="number" class="font-size-text" />
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Bold</p>
-                        <input type="checkbox" class="text-isbold">
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Italic</p>
-                        <input type="checkbox" class="text-isitalic">
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Center</p>
-                        <button class="text-centerYX">Center</button>
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Char Spacing</p>
-                        <input type="number" class="text-char-spacing" />
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Line Height</p>
-                        <input type="range" class="text-line-height" step="0.1" min="0" max="10" />
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Style</p>
-                        <button data-val="underline" class="btn-text-style">Underline</button>
-                        <button data-val="overline" class="btn-text-style">Overline</button>
-                        <button data-val="line-through" class="btn-text-style">Line Through</button>
-                    </div>
-
-                    <div class="text-editor-item">
-                        <p>Align</p>
-                        <button data-val="left" class="btn-text-align">Left</button>
-                        <button data-val="center" class="btn-text-align">Center</button>
-                        <button data-val="right" class="btn-text-align">Right</button>
-                        <button data-val="justify" class="btn-text-align">Justify</button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -770,7 +788,8 @@
         <div id="share-presi-inner-first">
             <div id="share-presi-first-header">
                 <div id="share-presi-first-header-icon">
-                    <ion-icon name="person-add-outline" style="fill: white; font-size: 1.3rem;font-weight: bold;"></ion-icon>
+                    <ion-icon name="person-add-outline" style="fill: white; font-size: 1.3rem;font-weight: bold;">
+                    </ion-icon>
                 </div>
 
 
@@ -828,12 +847,13 @@
 
     <div id="loader-wrapper">
         <div id="loader"></div>
-     
+
         <div class="loader-section section-left"></div>
         <div class="loader-section section-right"></div>
-     
+
     </div>
-    <script src={{ url_for('static', filename="editor/js/shortcut-handler.js" ) }} type="text/javascript" defer></script>
+    <script src={{ url_for('static', filename="editor/js/shortcut-handler.js" ) }} type="text/javascript"
+        defer></script>
 
     <script src={{ url_for('static', filename="editor/js/canvas-start.js" ) }} type="text/javascript" defer></script>
     <script src={{ url_for('static', filename="editor/js/eventhandler.js" ) }} type="text/javascript" defer></script>
@@ -842,7 +862,7 @@
 
 
     <script src={{ url_for('static', filename="editor/js/video.js" ) }} type="text/javascript" defer></script>
-    
+
     <script src={{ url_for('static', filename="editor/js/sockets.js" ) }} type="text/javascript" defer></script>
 
     <script src={{ url_for('static', filename="editor/js/easter-eggs.js" ) }} type="text/javascript" defer></script>

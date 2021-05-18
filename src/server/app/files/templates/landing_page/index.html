@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1" />
   <title>Slidea</title>
 
   <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
@@ -34,11 +34,14 @@
 
   <script src={{ url_for('static', filename="landing_page/js/map.js" ) }} type="text/javascript" defer></script>
 
+  <script src="https://npmcdn.com/@turf/turf/turf.min.js"></script>
 
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r72/three.min.js" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+
+
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
 
   <script>
     /*
@@ -55,6 +58,11 @@
 </head>
 
 <body>
+
+
+  <div id="scroll-button">
+    <p>Top</p>
+  </div>
 
   <div class="top-bar">
     <p id="logo">Slidea</p>
@@ -420,7 +428,12 @@
     <h1>World Class Customer Support</h1>
     <p>We have a worldwide team of customer advocated on standby to support yo so that<br>all your questions get an
       answer, fast.</p>
-    <canvas id="map"></canvas>
+
+
+
+    
+      <div id='map' class="dark"></div>
+
 
     <div id="team-members">
       <div class="team-member"></div>
