@@ -9,3 +9,5 @@ config.js
 __pycache__/
 .realm-export.json
 
+profile/img/images/
+
