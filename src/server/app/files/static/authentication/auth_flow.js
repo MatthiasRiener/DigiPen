@@ -47,7 +47,7 @@ function ajaxRequest(resolve, reject, args) {
 function silentLogin(r_token, callback, args, resolve, reject) {
     $.ajax({
         type: "POST",
-        url: baseURL + "/auth/refresh_token",
+        url: baseURL + "/authentication/refresh_token",
         headers: {
         Authorization: "Bearer " + getRToken(),
         },
@@ -70,7 +70,7 @@ function silentLogin(r_token, callback, args, resolve, reject) {
  }
 
  function logOut() {
-    sendRequestToServer({type: "GET", url: "/auth/logout"}).then(data => {
+    sendRequestToServer({type: "GET", url: "/authentication/logout"}).then(data => {
         unsetAToken();
         unsetRToken();
         window.location.href = baseURL + "/";

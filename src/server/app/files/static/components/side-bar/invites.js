@@ -1,7 +1,7 @@
 var socket = io();
         
 socket.on('connect', function() {
-    sendRequestToServer({type: "GET", url: "/auth/getUserID"}).then(data => {
+    sendRequestToServer({type: "GET", url: "/authentication/getUserID"}).then(data => {
         socket.emit('connectUser', {user_id: data.u_id});
     });
 });
@@ -26,7 +26,7 @@ socket.on('handleInvite', function (data) {
 })
 
 function handleInvite(status, p_id) {
-    sendRequestToServer({type: "GET", url: "/auth/getUserID"}).then(data => {
+    sendRequestToServer({type: "GET", url: "/authentication/getUserID"}).then(data => {
         socket.emit('handleInvite', {status: status, p_id: p_id, u_id: data.u_id});
     });
 }

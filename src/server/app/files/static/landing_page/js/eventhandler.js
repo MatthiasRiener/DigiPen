@@ -250,22 +250,22 @@ function changeSlide() {
 // event listeners
 
 $('#top-bar-login').click(function() {
-    window.location.href = "/auth/login";
+    window.location.href = "/authentication/login";
 });
 
 
 $('#top-bar-sign').click(function() {
-    window.location.href = "/auth/login";
+    window.location.href = "/authentication/login";
 })
 
 $('#work-with-get-started').click(function() {
-    window.location.href = "/auth/login";
+    window.location.href = "/authentication/login";
 });
 
 $('#get-started-button').click(function() {
-    window.location.href = "/auth/login";
+    window.location.href = "/authentication/login";
 });
 
 $('#download-button').click(function() {
-    window.location.href = "/auth/login";
+    window.location.href = "/authentication/login";
 });

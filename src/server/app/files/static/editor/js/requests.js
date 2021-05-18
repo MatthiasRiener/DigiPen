@@ -46,7 +46,7 @@ function createSlide() {
 
         const newlyCreatedCanvas = data.res._id.$oid;
 
-        sendRequestToServer({ type: "GET", url: "/auth/getUserID" }).then(data => {
+        sendRequestToServer({ type: "GET", url: "/authentication/getUserID" }).then(data => {
             socket.emit('slideCreated', { s_id: newlyCreatedCanvas, p_id: getCustomStorage("p_id"), user_id: data.u_id });
         });
     });

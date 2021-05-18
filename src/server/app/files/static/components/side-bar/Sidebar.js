@@ -100,7 +100,7 @@ class Sidebar extends HTMLElement {
   checkIfAdmin() {
     sendRequestToServer({
       type: "GET",
-      url: "/auth/isAdmin"
+      url: "/authentication/isAdmin"
     }).then(data => {
       if (!data.res) {
         this.adminBtn.style.display = "none";
@@ -112,7 +112,7 @@ class Sidebar extends HTMLElement {
   navigateToAdminPanel() {
     sendRequestToServer({
       type: "GET",
-      url: "/auth/isAdmin"
+      url: "/authentication/isAdmin"
     }).then(data => {
       if (data.res) {
         window.location = baseURL + `/admin`
