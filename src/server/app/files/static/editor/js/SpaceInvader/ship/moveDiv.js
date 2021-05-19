@@ -1,6 +1,6 @@
 let dublicationError;
-(function() {
-    document.characterSet='UTF-8';
+(function () {
+    document.characterSet = 'UTF-8';
 
     let fontAbel = document.createElement('link');
     fontAbel.setAttribute('rel', 'stylesheet');
@@ -15,18 +15,18 @@ let dublicationError;
     //create stylesheet
     let stylesht = document.createElement('link');
     stylesht.setAttribute('rel', 'stylesheet');
-    stylesht.setAttribute('href', './_css/ship.css');
+    stylesht.setAttribute('href', 'http://localhost:5000/static/editor/css/SpaceInvader/ship.css');
     stylesht.setAttribute('type', 'text/css');
     document.head.appendChild(stylesht);
 
 
     let dustBin = document.createElement('img');
-    dustBin.setAttribute('src', './_images/trashOrange.png');
+    dustBin.setAttribute('src', 'http://localhost:5000/static/editor/img/SpaceInvader/trashOrange.png');
     dustBin.setAttribute('id', 'trashcan');
     dustBin.setAttribute('id', 'dustBin');
     document.body.appendChild(dustBin);
     let dustbin = document.getElementById('dustBin');
-    
+
     let menuWrapper = document.createElement('div');
     menuWrapper.setAttribute('id', 'menuWrapper');
     document.body.appendChild(menuWrapper);
@@ -57,7 +57,7 @@ let dublicationError;
     btn.setAttribute('id', 'generalMenu');
     menuWrapperDiv.appendChild(btn);
     // toggle game menu (Drill Game)
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function () {
         if (!menuCreated) {
             document.getElementById('drillCreator').style.display = 'block';
             document.getElementById('divMoveCreator').style.display = 'block';
@@ -145,7 +145,7 @@ let dublicationError;
                 createFreeplayButton.innerHTML = 'Cancel Freeplay';
             }
             setUp.appendChild(createFreeplayButton);
-            createFreeplayButton.addEventListener('click', function() {
+            createFreeplayButton.addEventListener('click', function () {
                 selected = true;
                 timerSelected = false;
                 settedScore = 0;
@@ -162,7 +162,7 @@ let dublicationError;
                 createStartButton.setAttribute('id', 'createStartButton');
                 createStartButton.innerHTML = 'Set your Time';
                 setUp.appendChild(createStartButton);
-                createStartButton.addEventListener('click', function() {
+                createStartButton.addEventListener('click', function () {
                     score = 0;
                     setUp.parentNode.removeChild(setUp);
                     timeSetter();
@@ -173,7 +173,7 @@ let dublicationError;
             createCancelButton.setAttribute('id', 'createCancelButton');
             createCancelButton.innerHTML = 'Cancel';
             setUp.appendChild(createCancelButton);
-            createCancelButton.addEventListener('click', function() {
+            createCancelButton.addEventListener('click', function () {
                 selected = false;
                 timerSelected = false;
                 settedScore = 0;
@@ -210,7 +210,7 @@ let dublicationError;
         }
         startButton.innerHTML = 'Start';
         buttonTimePage.appendChild(startButton);
-        startButton.addEventListener('click', function() {
+        startButton.addEventListener('click', function () {
             if (timerSelected && !startButton.classList.contains('notDone')) {
                 selected = true;
                 timerSelected = true;
@@ -224,7 +224,7 @@ let dublicationError;
         backButton.setAttribute('id', 'backButton');
         backButton.innerHTML = 'Back ↩';
         buttonTimePage.appendChild(backButton);
-        backButton.addEventListener('click', function() {
+        backButton.addEventListener('click', function () {
             deleteSetUp();
             startGameSetUp();
         });
@@ -250,7 +250,7 @@ let dublicationError;
         up.setAttribute('id', 'upArrowScore');
         up.innerHTML = '▲';
         scoreSelector.appendChild(up);
-        up.addEventListener('click', function() {
+        up.addEventListener('click', function () {
             settedScore += 10;
             if (settedScore > maxScore) settedScore = 0;
             if (settedScore < 10) scoreCounter.innerHTML = '0' + settedScore;
@@ -278,7 +278,7 @@ let dublicationError;
         down.setAttribute('id', 'downArrowScore');
         down.innerHTML = '▼';
         scoreSelector.appendChild(down);
-        down.addEventListener('click', function() {
+        down.addEventListener('click', function () {
             settedScore -= 10;
             if (settedScore < 0) settedScore = maxScore;
             if (settedScore < 10) scoreCounter.innerHTML = '0' + settedScore;
@@ -311,7 +311,7 @@ let dublicationError;
         up.setAttribute('id', 'upArrowMin');
         up.innerHTML = '▲';
         minSelector.appendChild(up);
-        up.addEventListener('click', function() {
+        up.addEventListener('click', function () {
             min++;
             if (min == 60) min = 0;
             if (min < 10) secCounter.innerHTML = '0' + min;
@@ -339,7 +339,7 @@ let dublicationError;
         down.setAttribute('id', 'downArrowMin');
         down.innerHTML = '▼';
         minSelector.appendChild(down);
-        down.addEventListener('click', function() {
+        down.addEventListener('click', function () {
             min--;
             if (min < 0) min = 59;
             if (min < 10) secCounter.innerHTML = '0' + min;
@@ -372,7 +372,7 @@ let dublicationError;
         up.setAttribute('id', 'upArrow');
         up.innerHTML = '▲';
         secSelector.appendChild(up);
-        up.addEventListener('click', function() {
+        up.addEventListener('click', function () {
             sec++;
             if (sec == 60) sec = 0;
             if (sec < 10) secCounter.innerHTML = '0' + sec;
@@ -400,7 +400,7 @@ let dublicationError;
         down.setAttribute('id', 'downArrow');
         down.innerHTML = '▼';
         secSelector.appendChild(down);
-        down.addEventListener('click', function() {
+        down.addEventListener('click', function () {
             sec--;
             if (sec < 0) sec = 59;
             if (sec < 10) secCounter.innerHTML = '0' + sec;
@@ -422,7 +422,7 @@ let dublicationError;
     function startGame() {
         if (!spriteCreated && selected) {
             let drillImg = document.createElement('img');
-            drillImg.setAttribute('src', './_images/drillFinal.png');
+            drillImg.setAttribute('src', 'http://localhost:5000/static/editor/img/SpaceInvader/drillFinal.png');
             drillImg.setAttribute('id', 'MYWEBDESTROYERIMAGE');
             drillImg.setAttribute('alt', 'drill');
             drillImg.setAttribute('width', '40px');
@@ -509,7 +509,7 @@ let dublicationError;
     }
 
     //keydown
-    window.addEventListener('keydown', function(e) {
+    window.addEventListener('keydown', function (e) {
         if ([32, 37, 38, 39, 40].indexOf(e.keyCode) !== -1 && !clicked) {
             e.preventDefault();
             keyState[e.keyCode || e.which] = true;
@@ -517,7 +517,7 @@ let dublicationError;
     }, true);
 
     //keyup
-    window.addEventListener('keyup', function(e) {
+    window.addEventListener('keyup', function (e) {
         if ([32, 37, 38, 39, 40].indexOf(e.keyCode) !== -1 && !clicked) keyState[e.keyCode || e.which] = false;
     }, true);
 
@@ -704,7 +704,7 @@ let dublicationError;
             endingmessage.innerHTML = 'You deleted every single element on this website! Your score: ' + score;
             alert('You deleted every single element on this website! Your score: ' + score);
             document.body.appendChild(endingmessage);
-            setTimeout(function() {
+            setTimeout(function () {
                 document.body.removeChild(endingmessage);
             }, 8000);
             done = true;
@@ -713,7 +713,7 @@ let dublicationError;
             endingmessageUncomplete.setAttribute('id', 'ENIDNGMESSAGE');
             endingmessageUncomplete.innerHTML = 'You reached your setted score of ' + settedScore + '!\nTime remaining: ' + min + ':' + sec;
             document.body.appendChild(endingmessageUncomplete);
-            setTimeout(function() {
+            setTimeout(function () {
                 document.body.removeChild(endingmessageUncomplete);
             }, 8000);
             doneSettedScore = true;
@@ -728,7 +728,7 @@ let dublicationError;
      * 
      * 
      *******************************************************************************************/
-    document.getElementById('divMoveCreator').addEventListener('click', function() {
+    document.getElementById('divMoveCreator').addEventListener('click', function () {
         //Make the DIV element draggagle
         if (enemyIndex.length != 0) {
             if (moveable) {
@@ -788,19 +788,19 @@ let dublicationError;
                 pos4 <= dustbin.offsetHeight + dustbin.offsetTop) {
                 elementToDust = true;
                 elmnt.style.opacity = '0.5';
-                dustBin.setAttribute('src', './_images/trashOrangeOpened.png');
+                dustBin.setAttribute('src', 'http://localhost:5000/static/editor/img/SpaceInvader/trashOrangeOpened.png');
                 return;
             }
             elmnt.style.opacity = opacityElem;
             elementToDust = false;
-            dustBin.setAttribute('src', './_images/trashOrange.png');
+            dustBin.setAttribute('src', 'http://localhost:5000/static/editor/img/SpaceInvader/trashOrange.png');
         }
 
         function closeDragElement() {
             /* stop moving when mouse button is released:*/
             document.onmouseup = null;
             document.onmousemove = null;
-            dustBin.setAttribute('src', './_images/trashOrange.png');
+            dustBin.setAttribute('src', 'http://localhost:5000/static/editor/img/SpaceInvader/trashOrange.png');
 
             if (elementToDust) {
                 elmnt.style.visibility = 'hidden';
@@ -929,7 +929,7 @@ let dublicationError;
             outputWrapperBody.innerHTML += '<div class="notesBox" id="' + howManyNodesCreated + '"><p class="notes">' + innerTextArea.value.trim() + '</p><br><hr class="headRow"></div>';
 
             for (let i = 0; i < outputWrapperBody.childElementCount; i++) {
-                outputWrapperBody.childNodes[i].addEventListener('click', function() {
+                outputWrapperBody.childNodes[i].addEventListener('click', function () {
                     delNote(i)
                 });
             }
@@ -961,4 +961,4 @@ let dublicationError;
         counter++;
         if (counter == outputWrapperBody.childNodes.length) destroyNoteOutput();
     }
-})();	
+})();
