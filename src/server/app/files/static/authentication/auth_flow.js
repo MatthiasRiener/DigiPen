@@ -3,7 +3,7 @@ console.log("===")
 let baseURL;
 
 if (isServer) {
-    baseURL = "https://slidea.bastiarts.com";
+    baseURL = "https://slidea.at";
 } else {
     baseURL = "http://localhost:5000";
 }
