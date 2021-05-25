@@ -30,6 +30,8 @@ services:
       KEYCLOAK_HOSTNAME: slidea.at
       KEYCLOAK_HTTPS_PORT: 8443
       KEYCLOAK_HTTP_PORT: 8080
+      PROXY_ADRESS_FORWARDING: "true"
+      KEYCLOAK_FRONTEND_URL: slidea.at
     ports:
       - 8080:8080
       - 8443:8443
