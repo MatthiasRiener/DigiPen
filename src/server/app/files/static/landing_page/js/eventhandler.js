@@ -270,6 +270,17 @@ $('#download-button').click(function() {
     window.location.href = "/authentication/login";
 });
 
+$('#work-with-watch-demo').click(function() {
+
+    $('#video-section').css("display", "flex");
+    document.getElementById('product-video').play();
+});
+
+$('#video-icon').click(function() {
+    $('#video-section').css("display", "none");
+    document.getElementById('product-video').pause();
+    document.getElementById('product-video').currentTime = 0;
+})
 
 
 // scroll button
