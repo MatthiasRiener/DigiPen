@@ -634,11 +634,18 @@ function resizePresentationCanvas() {
 let mouseismoving = false;
 let timer;
 $("body").mousemove(function (event) {
+
+
+
+
     mouseismoving = true;
     if ($("#presi").css('display') == "flex") {
         $("div#iconbox").removeClass('fadeout')
         $("#iconbox").css('opacity', '1');
         $("#iconbox").css('userselect', 'auto');
+    } else {
+        return;
+        
     }
     $("body, canvas, div").removeClass('nocursor');
 
