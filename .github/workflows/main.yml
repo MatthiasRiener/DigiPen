@@ -34,3 +34,5 @@ jobs:
           ls -al
           sed -i "1 s/^.*$/const isServer = true;/" auth_flow.js
           sudo systemctl restart slidea
+          cd 
+          sudo sh keycloak_cert_copier.sh
