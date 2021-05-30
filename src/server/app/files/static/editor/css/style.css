@@ -2494,3 +2494,16 @@ h1 {
     display: flex;
     flex-direction: column;
 }
+
+#callPopup {
+    width: 20vw;
+    height: 20vh;
+    display: none;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: red;
+    z-index: 300;
+    margin-top: 10vh;
+}

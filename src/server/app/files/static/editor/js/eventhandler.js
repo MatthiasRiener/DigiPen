@@ -277,7 +277,7 @@ $('#settingsPopup-inner-bottom-header-exit').click(function () {
 
 }
 
-$('#settingsPopup-inner-bottom-button-join').click(function() {
+$('#settingsPopup-inner-bottom-button-join, #callPopup-button').click(function() {
     if (!connected) {
         addLocalVideo();
         connectToVideo();

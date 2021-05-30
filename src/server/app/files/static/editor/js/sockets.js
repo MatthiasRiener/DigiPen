@@ -91,3 +91,28 @@ function showChangeNotification(data) {
         container.removeClass("notify-animation");
     });
 }
+
+socket.on('callStarted', function(data) {
+    console.warn(data);
+    data = JSON.parse(data);
+    console.warn("DATA:");
+    console.warn(data.user.name);
+    audioUserJoined();
+
+    if (typeof connected !== 'undefined' && connected) {
+        $('#callPopup-button').text('Disconnect');
+    } else {
+        $('#callPopup-button').text('Join');
+    }
+
+    $('#callPopup').css('display', 'flex');
+    $('#callPopup-inner').text(data.user.name);
+
+    setTimeout(() => {
+        $('#callPopup').css('display', 'none');
+    }, 10000);
+})
+
+$('#callPopup-button').on('click', function () {
+    $('#callPopup').css('display', 'none');
+})
