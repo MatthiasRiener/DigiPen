@@ -14,17 +14,18 @@ import time
 
 from .PresentationRepository import PresentationRepository
 from .AuthenticationRepository import AuthenticationRepository
+from .WorkspaceRepository import WorkspaceRepository
 
 presRepo = PresentationRepository(testing=False)
 authRepo = AuthenticationRepository(testing=False)
-
+workRepo = WorkspaceRepository(testing=False)
 
 class TaskRepository():
     def __init__(self, testing):
         self.testing = testing
 
     def createTaskList(self, p_id):
-        TaskList(p_id=p_id).save()
+        TaskList(p_id=p_id, t_color=workRepo.randomColor()).save()
 
         print("task created!!! :D")
 
