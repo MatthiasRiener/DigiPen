@@ -1,4 +1,4 @@
-var joinSound;
+var joinSound = new Audio(baseURL + "/static/editor/sounds/amoung.mp3");
 
 function audioSelfConnected() {
     var audio = new Audio(baseURL + "/static/editor/sounds/IMPORTANT_404.mp3");
@@ -11,7 +11,6 @@ function audioSelfDisonnected() {
 }
 
 function audioUserJoined() {
-    joinSound = new Audio(baseURL + "/static/editor/sounds/amoung.mp3");
     joinSound.play();
 }
 
@@ -19,6 +18,6 @@ function audioUserJoined() {
 
 
 function dismissCall() {
-    joinSound.stop();
+    joinSound.pause();
     joinSound.currentTime = 0;
 }

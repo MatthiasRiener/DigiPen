@@ -284,6 +284,8 @@ $('#settingsPopup-inner-bottom-button-join, #callPopup-button').click(function()
     } else {
         disconnect();
     }
+
+    dismissCall();
     closeSettings();
 
 });

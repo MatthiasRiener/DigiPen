@@ -97,12 +97,12 @@ socket.on('callStarted', function(data) {
     data = JSON.parse(data);
     console.warn("DATA:");
     console.warn(data.user.name);
-    audioUserJoined();
 
     if (typeof connected !== 'undefined' && connected) {
         $('#callPopup-button').text('Disconnect');
     } else {
         $('#callPopup-button').text('Join');
+        audioUserJoined();
     }
 
     $('#callPopup').css('display', 'flex');
