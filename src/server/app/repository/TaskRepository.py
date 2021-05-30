@@ -114,6 +114,8 @@ class TaskRepository():
 
         response["task"]["assignee"] = authRepo.retrieveUserWithOutTimeChange(user_id=task["assignee"])
         response["task"]["presentation"] = presRepo.getPresentation(p_id=task["p_id"]).to_mongo()
+        response["task"]["color"] = self.getColor(p_id=task["p_id"])
+
 
         response["subtasks"] = list()
         for sub in subtasks:
