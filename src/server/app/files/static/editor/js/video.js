@@ -62,7 +62,7 @@ function startWorker() {
 
             console.log(event.data.session, startSession);
 
-            if (connected && startSession == event.data.session) {
+            if (connected && startSession == event.data.session && userCounter == 1) {
                 disconnect();
             }
 
