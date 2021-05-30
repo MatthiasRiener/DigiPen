@@ -96,17 +96,23 @@ socket.on('callStarted', function(data) {
     console.warn(data);
     data = JSON.parse(data);
     console.warn("DATA:");
-    console.warn(data.user.name);
 
     if (typeof connected !== 'undefined' && connected) {
         $('#callPopup-button').text('Disconnect');
+        $('#callPopup-button').css('background-color', '#f55c47');
     } else {
         $('#callPopup-button').text('Join');
+        $('#callPopup-button').css('background-color', '#4aa96c');
         audioUserJoined();
     }
 
+    console.warn(data)
     $('#callPopup').css('display', 'flex');
-    $('#callPopup-inner').text(data.user.name);
+    $('#callPopup').animate({
+        opacity: 1.0
+    }, 300);
+    $('#callPopup-name').text(data.user.name);
+    $('#profilepic').css('background-image', "url('" + data.user.img + "')")
 
     setTimeout(() => {
         dismissCall();
@@ -115,6 +121,11 @@ socket.on('callStarted', function(data) {
 })
 
 $('#callPopup-button').on('click', function () {
+    dismissCall();
+    $('#callPopup').css('display', 'none');
+})
+
+$('#callPopup-close, #callPopup-closeButton').on('click', function () {
     dismissCall();
     $('#callPopup').css('display', 'none');
 })

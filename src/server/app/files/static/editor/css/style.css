@@ -2496,14 +2496,98 @@ h1 {
 }
 
 #callPopup {
-    width: 20vw;
+    width: 16vw;
     height: 20vh;
     display: none;
-    justify-content: center;
+    flex-direction: column;
     position: absolute;
-    top: 0;
-    left: 0;
-    background-color: red;
+    top: 6vh;
+    left: 67vw;
+    background-color: var(--dark-grey);
     z-index: 300;
-    margin-top: 10vh;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px #00000030;
+    opacity: 0.0;
 }
+
+#callPopup-top {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+#callPopup-icon {
+    font-size: 1.6rem;
+    color: white;
+    margin-right: 0.5vw;
+}
+
+#callPopup-icon:hover {
+    cursor: pointer;
+}
+
+#callPopup-middle {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+}
+
+#profile {
+    width: 33%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#profilepic {
+    width: 4vw;
+    height: 4vw;
+    border-radius: 22%;
+    background-position: center;
+    background-size: cover;
+}
+
+#data {
+    width: 67%;
+    height: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#data h3, #data h4 {
+    margin-left: 1vw;
+}
+
+#callPopup-bottom {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#callPopup-button, #callPopup-closeButton {
+    width: 41%;
+    height: 63%;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: bold;
+}
+
+#callPopup-button {
+    background-color: #4aa96c;
+} 
+
+#callPopup-closeButton {
+    background-color: #f55c47;
+} 
