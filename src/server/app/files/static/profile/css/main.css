@@ -470,6 +470,7 @@ body {
     height: calc(var(--unfinished-width) / 16 * 9);
     background: blue;
     border-radius: 15px;
+    border: 1px solid rgb(182, 182, 182);
 }
 
 .unfinished-presentation-name {

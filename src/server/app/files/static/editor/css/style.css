@@ -153,7 +153,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     background-size: cover;
     background-position: center;
 }
@@ -432,7 +431,6 @@
     overflow-y: scroll;
     position: relative;
     transition: 300ms all ease-in;
-
 }
 
 .expand-rightOptions {
@@ -1435,10 +1433,8 @@
     width: 18vh;
     height: 18vh;
     border-radius: 100%;
-
     background-size: cover;
     background-position: center;
-
 }
 
 #settingsPopup-inner-bottom-header-exit:hover {
@@ -2449,13 +2445,11 @@ h1 {
     z-index: 10;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
 }
-
 
 #content-rightOptions-nav-bar {
     width: 100%;
@@ -2473,11 +2467,10 @@ h1 {
     font-size: 1.2rem;
     box-sizing: border-box;
     cursor: pointer;
-
     background: #383838;
     border-radius: 5px;
     margin: 1vh;
-    color:#b1b1b1;
+    color: #b1b1b1;
 }
 
 .nav-bar-item-active {
@@ -2586,8 +2579,28 @@ h1 {
 
 #callPopup-button {
     background-color: #4aa96c;
-} 
+}
 
 #callPopup-closeButton {
     background-color: #f55c47;
-} 
+}
+
+
+.fullscreen-own {
+    z-index: 9999;
+    width: 20%;
+    height: auto;
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
+
+}
+.fullscreen {
+    z-index: 9998;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #383838;
+}

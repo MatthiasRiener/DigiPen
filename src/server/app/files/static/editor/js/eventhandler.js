@@ -645,10 +645,8 @@ $("body").mousemove(function (event) {
         $("div#iconbox").removeClass('fadeout')
         $("#iconbox").css('opacity', '1');
         $("#iconbox").css('userselect', 'auto');
-    } else {
-        return;
-        
     }
+
     $("body, canvas, div").removeClass('nocursor');
 
     // mousemove end
@@ -1087,3 +1085,8 @@ $('.nav-bar-rightOptions-item').click(function() {
 });
 
 
+$('body').on('dblclick', '.content-main-inner-spacing-top-profile-image', function() {
+    if ($(this).parent().attr("id") == "local") return;
+    $("#local .content-main-inner-spacing-top-profile-image").toggleClass("fullscreen-own");
+    $(this).toggleClass("fullscreen");
+});
