@@ -92,12 +92,12 @@ function sendTaskData() {
     }
 
     if($('#taskPopup').data('update')) {
-
         sendRequestToServer({type: "POST", url: "/task/updateTask", data: task}).then(data => {
-
+            location.reload();
         });
     } else{
         sendRequestToServer({type: "POST", url: "/task/addTask", data: task}).then(data => {
+            location.reload();
         });
     }
 }
