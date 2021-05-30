@@ -199,7 +199,7 @@ def connectVideoChatRoute():
     username = user["name"]
 
 
-    notifyAboutCallStarted(p_id, authRepo.retrieveUserWithOutTimeChange(user_id=u_id, u_id=u_id))
+    notifyAboutCallStarted(p_id, authRepo.retrieveUserWithOutTimeChange(user_id=u_id), u_id=u_id)
 
 
     try:
