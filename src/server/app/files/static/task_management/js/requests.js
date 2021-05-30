@@ -106,9 +106,11 @@ function getTaskInfo(id) {
     sendRequestToServer({type: "POST", url: "/task/getTaskInfo", data: {id: id}}).then(data => {
         let start = data.res.task.start.split(" ");
         let end = data.res.task.end.split(" ");
+        console.warn(data.res);
 
         $('#currentPresentation').text(data.res.task.presentation.name);
         $('#currentPresentation').data('presentation', data.res.task.presentation._id);
+        $('#taskPopup-top-left').css('background', data.res.task.color);
         $('#taskPopup-second-headline').text(data.res.task.name);
         $('#taskPopup-fourth-left-image').css('background', 'url("' + data.res.task.assignee.img + '")');
         $('#taskPopup-fourth-left-image').css('background-size', 'cover');
