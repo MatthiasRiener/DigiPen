@@ -93,20 +93,20 @@ function showChangeNotification(data) {
 }
 
 socket.on('callStarted', function(data) {
-    console.warn(data);
     data = JSON.parse(data);
-    console.warn("DATA:");
 
+    let timeout;
     if (typeof connected !== 'undefined' && connected) {
         $('#callPopup-button').text('Disconnect');
         $('#callPopup-button').css('background-color', '#f55c47');
+        timeout = 10000;
     } else {
         $('#callPopup-button').text('Join');
         $('#callPopup-button').css('background-color', '#4aa96c');
+        timeout = 92000;
         audioUserJoined();
     }
 
-    console.warn(data)
     $('#callPopup').css('display', 'flex');
     $('#callPopup').animate({
         opacity: 1.0
@@ -117,7 +117,7 @@ socket.on('callStarted', function(data) {
     setTimeout(() => {
         dismissCall();
         $('#callPopup').css('display', 'none');
-    }, 92000);
+    }, timeout);
 })
 
 $('#callPopup-button').on('click', function () {
