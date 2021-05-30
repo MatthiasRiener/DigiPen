@@ -109,10 +109,12 @@ socket.on('callStarted', function(data) {
     $('#callPopup-inner').text(data.user.name);
 
     setTimeout(() => {
+        dismissCall();
         $('#callPopup').css('display', 'none');
-    }, 10000);
+    }, 92000);
 })
 
 $('#callPopup-button').on('click', function () {
+    dismissCall();
     $('#callPopup').css('display', 'none');
 })
