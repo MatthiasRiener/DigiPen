@@ -204,6 +204,8 @@ def connectVideoChatRoute():
             record_participants_on_connect=True
         )
 
+        notifyAboutCallStarted(p_id, authRepo.retrieveUserWithOutTimeChange(user_id=u_id, u_id=u_id))
+
     except:
         print("Room already exists.")
 
@@ -221,6 +223,12 @@ def connectVideoChatRoute():
 
 # realtime support
 
+def notifyAboutCallStarted(p_id, user, u_id):
+    thread = threading.Thread(target=broadCastMessageExceptOwn, kwargs=dict(
+        event="callStarted", pres_id=p_id, msg=json_util.dumps({"p_id": p_id, "user": user}), sender_id=u_id))
+    thread.start()
+
+    
 
 @socketio.on('updateSlide')
 def updateSlideSocket(json):
