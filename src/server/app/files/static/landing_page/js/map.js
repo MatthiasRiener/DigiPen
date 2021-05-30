@@ -139,7 +139,7 @@ map.on('moveend', function(){
         new mapboxgl.Popup()
         .setLngLat([locations.features[0].geometry.coordinates[0],
             locations.features[0].geometry.coordinates[1]])
-        .setHTML("Was geht ab lol")
+        .setHTML("Your closest Slidea Location!")
         .addTo(map);
 
         flying = false;

@@ -168,3 +168,7 @@
     right: 3%;
     padding: 2vw;
 }
+
+#customers-section-companies {
+    display: none;
+}
