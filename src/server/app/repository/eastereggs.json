@@ -7,5 +7,26 @@
             "KeyM"
         ],
         "callback": "createSpaceInvader"
+    },
+    {
+        "name": "nextSlideLaserPointer",
+        "keys": [
+            "PageDown"
+        ],
+        "callback": "next"
+    },
+    {
+        "name": "backSlideLaserPointer",
+        "keys": [
+            "PageUp"
+        ],
+        "callback": "previous"
+    },
+    {
+        "name": "startPresentationLaserPointer",
+        "keys": [
+            "Escape"
+        ],
+        "callback": "triggerCurrentSlideLaserPoint"
     }
 ]
