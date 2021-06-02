@@ -577,6 +577,15 @@ function startFromBeginning() {
 
 $("#" + startFromCurrentButtonId).click(function () {
 
+    startFromCurrentSlide();
+});
+
+
+function triggerCurrentSlideLaserPoint() {
+    $("#" + startFromCurrentButtonId).trigger("click");
+}
+
+function startFromCurrentSlide() {
     index = curretSlide - 1;
 
     toggleFullScreen(document.body);
@@ -596,7 +605,7 @@ $("#" + startFromCurrentButtonId).click(function () {
         $("#presi").css('display', display);
         resizePresentationCanvas()
     }, 500);
-});
+}
 
 function resizePresentationCanvas() {
     let w = $("body").width()
