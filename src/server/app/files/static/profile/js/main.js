@@ -25,7 +25,8 @@ $('#imgupload').on('change', function(evt) {
         sendRequestToServer({type: "POST", url: "/profile/uploadImage", data: {"img": img, "name": files[0].name, "lm": files[0].lastModified}}).then(data => {
             $('#content-bottom-left-right-card-inner-top').css('background-image', 'url("' + data.res.img + '")');
             //$('#secppContainer').css('background-image', 'url("' + data.res.img + '")');
-
+	        var sideBar = document.getElementById("sidebar-comp");
+	        sideBar.userImg.style.backgroundImage = `url('${data.res.img}')`;
         })
     }
     
