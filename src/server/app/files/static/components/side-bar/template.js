@@ -60,9 +60,13 @@ export const template = `
             <p>Dashboard</p>
         </div>
 
-        <div class="nav-bar-element task-item">
+        <div class="nav-bar-element task-item soon-item">
             <ion-icon name="checkbox" class="icon-navbar"></ion-icon>
             <p>Tasks</p>
+
+            <div class="soon-btn">
+            <p>Maintenance</p>
+        </div>
         </div>
 
         <div class="nav-bar-element quiz-item soon-item">
