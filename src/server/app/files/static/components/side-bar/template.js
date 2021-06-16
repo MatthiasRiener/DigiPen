@@ -5,7 +5,7 @@ export const template = `
 <div id="sidebar-scroller-container">
 
     <div id="side-bar-header-section">
-        <h2>Slidea</h2>
+        <h3>Navigation</h3>
     </div>
 
     <div id="side-bar-sections-container">
