@@ -88,6 +88,9 @@ export const template = `
         <div class="nav-bar-element notification-item" id="notification">
             <ion-icon name="notifications" class="icon-navbar"></ion-icon>
             <p>Notifications</p>
+            <div class="soon-btn">
+              <p id="notifications-count"> Free</p>
+            </div>
         </div>
 
         <div class="nav-bar-element soon-item">

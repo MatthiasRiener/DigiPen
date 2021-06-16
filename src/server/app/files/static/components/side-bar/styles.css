@@ -173,7 +173,7 @@
     position: absolute;
     bottom: 0;
     border-top: 2px solid #e7e7e7;
-    height: 6vh;
+    height: 6%;
     z-index: 3;
     background: #f7f6f3;
 }
@@ -181,7 +181,7 @@
 #sidebar-scroller-container {
     overflow-y: auto;
     overflow-x: hidden;
-    height: 94vh;
+    height: 94%;
 }
 
 #profile-image {
@@ -190,7 +190,6 @@
     border-radius: 50%;
     background-size: cover;
     background-position: center;
-    background: black;
     margin: 3%;
     border: 1px solid #383838;
 }
@@ -243,11 +242,11 @@
     padding: 1%;
 
     display: flex;
-    justify-content: center;
 }
 
 #side-bar-sections-tab {
     width: 70%;
+    margin-left: 5%;
     padding: 2%;  
     background: #383838;  
     border-radius: 8px;

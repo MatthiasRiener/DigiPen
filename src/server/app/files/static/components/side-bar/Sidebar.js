@@ -42,6 +42,7 @@ class Sidebar extends HTMLElement {
     this.initializeEvents();
     this.checkIfAdmin();
     this.getWorkspaces();
+    this.getNotificationsCount();
 
 
   }
@@ -135,6 +136,16 @@ class Sidebar extends HTMLElement {
         </div>`);
       });
     })
+  }
+
+
+  getNotificationsCount() {
+    sendRequestToServer({
+      type: "GET",
+      url: "/dashboard/getInvites"
+    }).then(data => {
+      this.shadowRoot.querySelector("#notifications-count").innerHTML = data.count;
+    });
   }
 
   checkIfAdmin() {
