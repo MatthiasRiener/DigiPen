@@ -16,6 +16,7 @@ class Sidebar extends HTMLElement {
     this.shadowRoot.appendChild(this.temp.content.cloneNode(true));
     this.loadCss(this.getAttribute("path"));
     this.container = this.shadowRoot.querySelector('.left-side-content');
+    this.scrollerContainer = this.shadowRoot.querySelector("#sidebar-scroller-container");
     this.workSpaceBtn = this.shadowRoot.querySelector('.add-workspace-btn');
     this.dashboardBtn = this.shadowRoot.querySelector('.dashboard-item');
     this.taskBtn = this.shadowRoot.querySelector('.task-item');
@@ -30,8 +31,11 @@ class Sidebar extends HTMLElement {
     this.workspaceText = this.shadowRoot.querySelector('#workspace-text');
     this.workspaceIMG = this.shadowRoot.querySelector('.cur-workspace');
 
+    this.generalTab = this.shadowRoot.querySelector("#general-tab");
+    this.otherTab = this.shadowRoot.querySelector("#other-tab");
 
-    this.profileImage = this.shadowRoot.querySelector("#profile-image-container-around");
+    this.sidebarTab = this.shadowRoot.querySelector(".side-bar-sections-tab-item");
+
     this.userImg = this.shadowRoot.querySelector("#profile-image");
 
     this.getUserInfo();
@@ -54,8 +58,26 @@ class Sidebar extends HTMLElement {
     this.quizBtn.addEventListener('click', e => { window.location = `${this.path}/quiz/index.html` })
     this.logoutBtn.addEventListener('click', e => { logOut() })
 
-
     this.adminBtn.addEventListener('click', e => { this.navigateToAdminPanel() })
+
+    
+    this.generalTab.addEventListener('click', e => { 
+      this.generalTab.classList.add("active-tab");
+      this.otherTab.classList.remove("active-tab");
+      this.shadowRoot.querySelector("#general-section").style.display = "block";
+      this.shadowRoot.querySelector("#other-section").style.display = "none";
+
+    })
+    this.otherTab.addEventListener('click', e => {
+      this.generalTab.classList.remove("active-tab");
+      this.otherTab.classList.add("active-tab");
+
+      this.shadowRoot.querySelector("#general-section").style.display = "none";
+      this.shadowRoot.querySelector("#other-section").style.display = "block";
+
+
+    })
+
   }
 
 
@@ -104,8 +126,9 @@ class Sidebar extends HTMLElement {
       url: "/workspace/getWorkspaces"
     }).then(data => {
       console.log(data)
+      this.shadowRoot.querySelector("#organizations-title").innerHTML += ` (${data.res.length})`
       data.res.forEach(workspace => {
-        this.container.insertAdjacentHTML('beforeend', `
+        this.shadowRoot.querySelector("#workspace-container-filler").insertAdjacentHTML('beforeend', `
         <div class="team-item">
           <div class="team-banner" style="background: ${workspace.w_color}"></div>
           <div class="team-name"><p>${workspace.w_name}</p></div>

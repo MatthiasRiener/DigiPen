@@ -24,6 +24,7 @@
     overflow-x: hidden;
     font-family: 'Poppins', sans-serif;        cursor: default;
     padding-bottom: 3vh;
+    position: relative;
 }
 
 
@@ -166,42 +167,42 @@
 
 #profile-image-container-sidebar {
     width: 100%;
-    height: auto;
     display: flex;
+    padding: 2% 0%;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 5vh;
+    position: absolute;
+    bottom: 0;
+    border-top: 2px solid #e7e7e7;
+    height: 6vh;
+    z-index: 3;
+    background: #f7f6f3;
 }
 
-#profile-image-container-around {
-    width: 6vw;
-    height: 6vw;
-    padding: 0.5vw;
-    background: #383838;
-    border-radius: 50%;
-    border-radius: center;
-    margin-bottom: 1.5vh !important;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
+#sidebar-scroller-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 94vh;
 }
 
 #profile-image {
-    width: 100%;
-    height: 100%;
+    width: 43px;
+    height: 43px;
     border-radius: 50%;
     background-size: cover;
     background-position: center;
+    background: black;
+    margin: 3%;
+    border: 1px solid #383838;
 }
 
-#profile-image-container-sidebar > p {
+#side-bar-navigation-info > p {
     padding: 0 !important;
     margin: 0 !important;
 }
 
 #profile-container-username {
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-top: 1.5vh !important;
 }
 
@@ -209,4 +210,72 @@
     font-weight: 400;
     font-size: 0.8rem;
     opacity: 0.6;
+}
+
+#side-bar-navigation-info {
+    display: flex;
+    flex-direction: column;
+}
+
+#profile-ellipses {
+    margin-left: auto;
+    margin-right: 3%;
+    font-size: 1.2rem;
+}
+
+#side-bar-header-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 5%;
+    margin-top: 15%;
+}
+
+#side-bar-header-section > h2 {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+
+#side-bar-sections-container {
+    width: 100%;
+    height: auto;
+    padding: 1%;
+
+    display: flex;
+    justify-content: center;
+}
+
+#side-bar-sections-tab {
+    width: 70%;
+    padding: 2%;  
+    background: #383838;  
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.side-bar-sections-tab-item {
+    width: 49%;
+    padding: 3% 2%;
+    border-radius: 8px;
+}
+
+
+.side-bar-sections-tab-item > p {
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center;
+    color: white;
+    font-size: 0.9rem;
+}
+
+
+.active-tab {
+    background: #4b4b4b;  
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
 }
