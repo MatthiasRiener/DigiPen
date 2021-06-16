@@ -1,5 +1,5 @@
 # Slidea
-
+[![Server Workflow](https://github.com/MatthiasRiener/Slidea/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/MatthiasRiener/Slidea/actions/workflows/main.yml)
 
 
 <!--
